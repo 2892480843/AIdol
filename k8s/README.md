@@ -99,6 +99,7 @@ kubectl -n wardrobe get pods -w
 ```bash
 kubectl apply -f backend.yaml
 kubectl apply -f worker.yaml
+kubectl apply -f image-worker.yaml
 kubectl apply -f frontend.yaml
 ```
 
@@ -131,6 +132,36 @@ kubectl -n wardrobe exec deployment/backend -- alembic upgrade head
 
 ```bash
 kubectl apply -f network-policy.yaml
+```
+
+## Upgrading
+
+The manifests use `:latest` images with `imagePullPolicy: IfNotPresent`, so a node keeps running the image it already has until the new one is loaded and the pods restart. Back up the database first; keep the file, since the main [README](../README.md#upgrading) explains why and its repair SQL needs the UTC time in the name:
+
+```bash
+kubectl -n wardrobe exec deployment/postgres -- sh -c 'pg_dump -U "$POSTGRES_USER" "$POSTGRES_DB"' \
+  > backup-$(date -u +%Y%m%dT%H%M%SZ).sql
+```
+
+Then:
+
+```bash
+# 1. Make the new images reach the nodes. With images loaded onto each node, load the new ones
+#    on every node. With a registry, a re-pushed :latest is not pulled again under IfNotPresent;
+#    push a new tag and point the deployments at it with `kubectl -n wardrobe set image`.
+# 2. Restart the pods on the new images.
+kubectl -n wardrobe rollout restart deployment/backend deployment/worker deployment/frontend
+kubectl -n wardrobe rollout status deployment/backend
+kubectl -n wardrobe rollout status deployment/worker
+kubectl -n wardrobe rollout status deployment/frontend
+# Only if image-worker is deployed (kubectl -n wardrobe get deployment image-worker):
+kubectl -n wardrobe rollout restart deployment/image-worker
+kubectl -n wardrobe rollout status deployment/image-worker
+# 3. Check the backend pod runs the new image (compare the digest with the one you built or pushed),
+#    because migrating inside an old pod finds nothing to do and still reports success.
+kubectl -n wardrobe get pods -l app=backend -o jsonpath='{.items[*].status.containerStatuses[*].imageID}'
+# 4. Migrate inside the new backend.
+kubectl -n wardrobe exec deployment/backend -- alembic upgrade head
 ```
 
 ## Files

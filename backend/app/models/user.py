@@ -31,10 +31,13 @@ class User(Base):
     family_id: Mapped[uuid.UUID | None] = mapped_column(
         UUID(as_uuid=True), ForeignKey("families.id", ondelete="SET NULL")
     )
-    external_id: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
+    # Frozen: user_identities, backfilled from it as legacy rows, holds sign-in identities. Only
+    # tokens minted before that table existed are checked against it, so it is never written
+    # and new users get NULL; it is dropped in the next release.
+    external_id: Mapped[str | None] = mapped_column(String(255), unique=True)
     email: Mapped[str] = mapped_column(String(255), unique=True, nullable=False)
-    # Whether the identity source vouched for the current email; only such rows may be adopted
-    # by another external_id, so that a squatted, unverified email cannot be taken over.
+    # Whether the identity source vouched for the current email; only such rows may gain an
+    # identity by email, so that a squatted, unverified email cannot be taken over.
     email_verified: Mapped[bool] = mapped_column(Boolean, nullable=False, server_default=false())
     display_name: Mapped[str] = mapped_column(String(100), nullable=False)
     avatar_url: Mapped[str | None] = mapped_column(String(500))

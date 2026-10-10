@@ -2,23 +2,25 @@ import html as html_mod
 from datetime import UTC, datetime, timedelta
 from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 import pytest
 from pydantic import ValidationError
+from sqlalchemy import update
 
 from app.api.auth import _is_dev_mode
 from app.api.outfits import StudioCreateRequest, SuggestionCreateRequest, SuggestRequest
 from app.api.users import UserProfileUpdate
 from app.config import Settings
-from app.models import Family, FamilyInvite, User
+from app.models import Family, FamilyInvite, User, UserIdentity
 from app.schemas.family import FamilyCreate, FamilyUpdate
 from app.schemas.item import LogWearRequest
 from app.schemas.notification import NtfyConfig, ScheduleBase, ScheduleUpdate
 from app.schemas.preference import PreferenceUpdate
 from app.schemas.user import UserSyncRequest
-from app.services.user_service import UserService
+from app.utils.auth import decode_token
 from app.utils.garment_vocabulary import OCCASIONS
+from tests.identity_helpers import identities_of, identity_ids_of, user_of_subject
 
 ITEM_ID = "00000000-0000-0000-0000-000000000001"
 OCCASION_REQUESTS = {
@@ -407,7 +409,7 @@ class TestAuthEmailValidation:
 
         assert response.status_code == 200
         assert response.json()["email"] == stored
-        user = await UserService(db_session).get_by_external_id(external_id)
+        user = await user_of_subject(db_session, external_id)
         assert (user.email, user.email_verified, user.display_name) == (stored, True, stored_name)
 
     @pytest.mark.asyncio
@@ -456,7 +458,7 @@ class TestAuthEmailValidation:
 
         assert response.status_code == expected_status
         assert expected_detail in response.json()["detail"]
-        assert await UserService(db_session).get_by_external_id(external_id) is None
+        assert await user_of_subject(db_session, external_id) is None
 
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
@@ -486,7 +488,7 @@ class TestAuthEmailValidation:
 
         assert response.status_code == 200
         assert response.json()["is_new_user"] is True
-        user = await UserService(db_session).get_by_external_id(external_id)
+        user = await user_of_subject(db_session, external_id)
         assert user.email_verified is expected_verified
 
     @pytest.mark.asyncio
@@ -520,7 +522,7 @@ class TestAuthEmailValidation:
             response = await client.post("/api/v1/auth/sync", json=body)
 
         assert response.status_code == expected_status
-        assert await UserService(db_session).get_by_external_id(external_id) is None
+        assert await user_of_subject(db_session, external_id) is None
 
 
 class TestProviderMigrationRequiresVerifiedEmail:
@@ -538,6 +540,7 @@ class TestProviderMigrationRequiresVerifiedEmail:
             pytest.param(True, None, 409, id="claim-missing"),
         ],
     )
+    @pytest.mark.parametrize("stored_provider", ["legacy", "dev", "oidc"])
     async def test_migration_requires_verified_email_claim(
         self,
         client,
@@ -547,9 +550,16 @@ class TestProviderMigrationRequiresVerifiedEmail:
         email_claim,
         email_verified,
         expected_status,
+        stored_provider,
     ):
-        original_external_id = test_user.external_id
-        oidc_claims.return_value = {"sub": "new-provider-id"}
+        stored = (stored_provider, test_user.external_id)
+        await db_session.execute(
+            update(UserIdentity)
+            .where(UserIdentity.user_id == test_user.id)
+            .values(provider=stored_provider)
+        )
+        new_subject = f"new-provider-{uuid4()}"
+        oidc_claims.return_value = {"sub": new_subject}
         if email_verified is not None:
             oidc_claims.return_value["email_verified"] = email_verified
         if email_claim:
@@ -557,7 +567,7 @@ class TestProviderMigrationRequiresVerifiedEmail:
         response = await client.post(
             "/api/v1/auth/sync",
             json={
-                "external_id": "new-provider-id",
+                "external_id": new_subject,
                 "email": test_user.email,
                 "display_name": "Test",
                 "id_token": "fake-token",
@@ -565,12 +575,61 @@ class TestProviderMigrationRequiresVerifiedEmail:
         )
 
         assert response.status_code == expected_status
-        await db_session.refresh(test_user)
+        identities = await identities_of(db_session, test_user.id)
         if expected_status == 409:
             assert "provider that verifies" in response.json()["detail"]
-            assert test_user.external_id == original_external_id
+            assert identities == {stored}
+        elif stored_provider == "dev":
+            assert identities == {stored, ("oidc", new_subject)}
         else:
-            assert test_user.external_id == "new-provider-id"
+            # The legacy identity ends as main's external_id overwrite did, and an earlier OIDC
+            # subject is replaced because a user holds one subject per provider.
+            assert identities == {("oidc", new_subject)}
+
+
+class TestSignInThroughAnotherProvider:
+    @pytest.mark.asyncio
+    async def test_signing_in_through_another_provider_keeps_the_first_session(
+        self, client, db_session
+    ):
+        run = uuid4()
+        email = f"both-{run}@example.com"
+        with (
+            patch("app.api.auth.rate_limit_by_ip", new_callable=AsyncMock),
+            patch("app.api.auth._is_dev_mode", return_value=True),
+        ):
+            first = await client.post(
+                "/api/v1/auth/sync",
+                json={"external_id": f"dev-{run}", "email": email, "display_name": "Dev"},
+            )
+        with (
+            patch("app.api.auth.rate_limit_by_ip", new_callable=AsyncMock),
+            patch("app.api.auth._is_dev_mode", return_value=False),
+            patch("app.api.auth._oidc_configured", return_value=True),
+            patch("app.api.auth.validate_oidc_id_token") as validate,
+        ):
+            validate.return_value = {"sub": f"oidc-{run}", "email": email, "email_verified": True}
+            second = await client.post(
+                "/api/v1/auth/sync",
+                json={
+                    "external_id": f"oidc-{run}",
+                    "email": email,
+                    "display_name": "Oidc",
+                    "id_token": "t",
+                },
+            )
+        assert (first.status_code, second.status_code) == (200, 200)
+        assert second.json()["id"] == first.json()["id"]
+
+        session = await client.get(
+            "/api/v1/auth/session",
+            headers={"Authorization": f"Bearer {first.json()['access_token']}"},
+        )
+
+        assert session.status_code == 200
+        held = await identity_ids_of(db_session, UUID(first.json()["id"]))
+        assert set(held) == {("dev", f"dev-{run}"), ("oidc", f"oidc-{run}")}
+        assert decode_token(second.json()["access_token"]).iid == str(held[("oidc", f"oidc-{run}")])
 
 
 DIFFERENT_EMAIL = "This invite was sent to a different email address"
