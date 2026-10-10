@@ -257,3 +257,22 @@ class TestProtectedRoutes:
         assert response.status_code == 200
         data = response.json()
         assert data["email"] == test_user.email
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize(
+        ("is_active", "expected"),
+        [
+            pytest.param(True, (200, 404), id="active-reaches-the-file-lookup"),
+            pytest.param(False, (403, 401), id="inactive-is-refused-everywhere"),
+        ],
+    )
+    async def test_deactivated_account_token_is_refused_on_every_route(
+        self, client: AsyncClient, db_session, test_user, auth_headers, is_active, expected
+    ):
+        test_user.is_active = is_active
+        await db_session.commit()
+
+        me = await client.get("/api/v1/users/me", headers=auth_headers)
+        image = await client.get(f"/api/v1/images/{test_user.id}/missing.jpg", headers=auth_headers)
+
+        assert (me.status_code, image.status_code) == expected
