@@ -7,17 +7,24 @@ from uuid import UUID
 from sqlalchemy import Select, delete, exists, insert, select, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
+from sqlalchemy.orm import aliased, selectinload
 
 from app.models.identity import UserIdentity
 from app.models.user import User
 from app.schemas.auth import IDENTITY_TOKEN, TokenPayload
+from app.schemas.email import normalise_email
 from app.schemas.user import UserSyncRequest
 
 # Reserved by RFC 2606, so a detached address can never be delivered to or claimed by a sign-in.
 DETACHED_EMAIL_DOMAIN = "detached.invalid"
 EMAIL_IN_USE = "Email already in use by another account."
+FORWARD_AUTH = "forward_auth"
 LEGACY = "legacy"
+LEGACY_IDENTITY_CONFLICT = "legacy_identity_conflict"
+# Forward-auth before identities gave a user the proxy sent no Remote-Email for
+# "<Remote-User>@forward-auth.local" (frontend sign-in) or "<Remote-User>@example.com" (backend
+# header check).
+PRE_IDENTITY_PROXY_EMAIL_DOMAINS = ("forward-auth.local", "example.com")
 # Any oidc or dev subject equal to a user's external_id signed into that user before identities
 # existed, so these providers claim a matching legacy identity without granting anything new.
 LEGACY_CLAIMING_PROVIDERS = frozenset({"oidc", "dev"})
@@ -39,6 +46,13 @@ class _SignIn(NamedTuple):
     user: User
     identity_id: UUID
     is_new: bool
+
+
+class _LegacyHolder(NamedTuple):
+    user: User
+    subject: str
+    holds_proxy_identity: bool
+    caller_identity_exists: bool
 
 
 class UserService:
@@ -91,6 +105,42 @@ class UserService:
     async def get_by_email(self, email: str) -> User | None:
         return await self._fetch_current(select(User).where(User.email == email))
 
+    async def holds_identity(self, user_id: UUID, provider: str, subject: str) -> bool:
+        return await self._identity_id(user_id, provider, subject) is not None
+
+    async def _legacy_holder_of_proxy_user(self, subject: str) -> _LegacyHolder | None:
+        # Forward-auth before identities stored Remote-User as Starlette and Node read it, as
+        # Latin-1, so a non-ASCII username's legacy row holds its UTF-8 bytes as Latin-1.
+        latin1 = subject.encode("utf-8").decode("latin-1")
+        legacy = aliased(UserIdentity)
+        for legacy_subject in dict.fromkeys((subject, latin1)):
+            if _read_as_latin1(legacy_subject) not in (None, subject):
+                # That row is the Latin-1 spelling of another username, so it is that user's.
+                continue
+            # One statement, so the holder's email, whether it has a forward_auth identity and
+            # whether the caller's own identity exists by now come from the same snapshot: a
+            # twin's sign-in changes them together, and a conflict decided on a mix of old and
+            # new values would refuse the twin.
+            row = (
+                await self.db.execute(
+                    select(
+                        User,
+                        exists().where(
+                            UserIdentity.user_id == User.id, UserIdentity.provider == FORWARD_AUTH
+                        ),
+                        exists().where(
+                            UserIdentity.provider == FORWARD_AUTH, UserIdentity.subject == subject
+                        ),
+                    )
+                    .join(legacy, legacy.user_id == User.id)
+                    .where(legacy.provider == LEGACY, legacy.subject == legacy_subject)
+                    .execution_options(populate_existing=True)
+                )
+            ).one_or_none()
+            if row is not None:
+                return _LegacyHolder(row[0], legacy_subject, row[1], row[2])
+        return None
+
     async def _fetch_current(self, query: Select) -> User | None:
         # populate_existing because a sync attempt that lost a race leaves the row's earlier
         # state in the identity map, and the next attempt must decide on the committed state.
@@ -109,7 +159,14 @@ class UserService:
         sync_data.email, and is recorded on the user whenever its email is set.
 
         A user holds at most one identity per provider. An oidc or dev subject matching a
-        user's legacy identity (its external_id from before identities existed) claims it. An
+        user's legacy identity (its external_id from before identities existed) claims it. A
+        forward_auth subject is a proxy username that may only coincide with a legacy subject,
+        so it claims a verified legacy holder only when that holder's email is the proxy's or a
+        placeholder forward-auth gave users before identities, and the holder has no
+        forward_auth identity yet; the legacy row stays for its other owner. An
+        unverified legacy holder is ignored, and any other verified one raises
+        UserEmailConflictError(LEGACY_IDENTITY_CONFLICT) unless it already holds a forward_auth
+        identity and the proxy's exact email, which the email rules below then decide. An
         unknown identity whose email belongs to an existing account is added to that account
         when both emails are verified, replacing the account's earlier identity of the same
         provider, so signing in through one provider never breaks another provider's sessions.
@@ -141,13 +198,39 @@ class UserService:
         user = await self.get_by_identity(provider, subject)
         if user is not None:
             return await self._sign_in_existing(user, sync_data, provider, email_verified)
+        expected_holder_id = None
         if provider in LEGACY_CLAIMING_PROVIDERS:
             user = await self.get_by_identity(LEGACY, subject)
             if user is not None:
                 return await self._sign_in_existing(
-                    user, sync_data, provider, email_verified, claim=True
+                    user, sync_data, provider, email_verified, legacy_subject=subject
                 )
+        elif provider == FORWARD_AUTH:
+            legacy = await self._legacy_holder_of_proxy_user(subject)
+            if legacy is not None and legacy.caller_identity_exists:
+                # Committed since the identity lookup above, which the retry repeats.
+                raise _RowChanged
+            # An unverified holder may be a squatter on the owner's address, so the email rules
+            # below decide, and may reclaim the address, rather than its legacy row.
+            if legacy is not None and legacy.user.email_verified:
+                if not legacy.holds_proxy_identity and _is_proxy_users_email(
+                    legacy.user.email, sync_data.email, legacy.subject
+                ):
+                    return await self._sign_in_existing(
+                        legacy.user,
+                        sync_data,
+                        provider,
+                        email_verified,
+                        legacy_subject=legacy.subject,
+                    )
+                if not (legacy.holds_proxy_identity and legacy.user.email == sync_data.email):
+                    raise UserEmailConflictError(LEGACY_IDENTITY_CONFLICT)
+                expected_holder_id = legacy.user.id
         holder = await self.get_by_email(sync_data.email)
+        if expected_holder_id is not None and (holder is None or holder.id != expected_holder_id):
+            # Retried because the decision above relied on the legacy holder keeping the proxy
+            # email, and it moved off it after that read.
+            raise _RowChanged
         if holder is None:
             return await self._insert_synced_user(sync_data, provider, email_verified)
         if await self._identity_id(holder.id, provider, subject) is not None:
@@ -173,7 +256,7 @@ class UserService:
         provider: str,
         email_verified: bool,
         *,
-        claim: bool = False,
+        legacy_subject: str | None = None,
     ) -> _SignIn:
         holder = None
         if user.email != sync_data.email:
@@ -199,11 +282,13 @@ class UserService:
                 await self._lock_in_id_order(holder, user)
                 await self._detach_email(holder)
             await self._update_unchanged(user, **values)
-            identity_id = await self._held_identity(
-                user.id, LEGACY if claim else provider, sync_data.external_id
-            )
-            if claim:
-                identity_id = await self._claim_legacy(identity_id, provider)
+            if legacy_subject is None:
+                identity_id = await self._held_identity(user.id, provider, sync_data.external_id)
+            else:
+                legacy_id = await self._held_identity(user.id, LEGACY, legacy_subject)
+                identity_id = await self._claim_legacy(
+                    user.id, legacy_id, provider, sync_data.external_id
+                )
         await self.db.refresh(user)
         return _SignIn(user, identity_id, False)
 
@@ -242,7 +327,15 @@ class UserService:
             raise _RowChanged
         return identity_id
 
-    async def _claim_legacy(self, identity_id: UUID, provider: str) -> UUID:
+    async def _claim_legacy(
+        self, user_id: UUID, identity_id: UUID, provider: str, subject: str
+    ) -> UUID:
+        if provider == FORWARD_AUTH:
+            # The legacy row stays, because the subject may also be the account's pre-upgrade
+            # OIDC subject: that sign-in can still claim it, and pre-upgrade tokens keep working.
+            # A forward_auth identity gained meanwhile fails uq_user_identities_user_provider,
+            # and the retry decides again.
+            return await self._insert_identity(user_id, provider, subject)
         claimed = await self.db.scalar(
             update(UserIdentity)
             .where(UserIdentity.id == identity_id, UserIdentity.provider == LEGACY)
@@ -375,6 +468,31 @@ class UserService:
     async def complete_onboarding(self, user: User) -> None:
         user.onboarding_completed = True
         await self.db.flush()
+
+
+def _is_proxy_users_email(email: str, proxy_email: str, legacy_subject: str) -> bool:
+    # Stored addresses were kept as sent, so the stored side is normalised too.
+    stored = _normalised(email)
+    placeholders = {
+        _normalised(f"{legacy_subject}@{domain}") for domain in PRE_IDENTITY_PROXY_EMAIL_DOMAINS
+    }
+    return stored == proxy_email or stored in placeholders
+
+
+def _read_as_latin1(subject: str) -> str | None:
+    try:
+        return subject.encode("latin-1").decode("utf-8")
+    except UnicodeError:
+        return None
+
+
+def _normalised(email: str) -> str:
+    # A Latin-1 read CJK username holds C1 control characters that normalisation refuses,
+    # and such an address can still equal its own placeholder.
+    try:
+        return normalise_email(email)
+    except ValueError:
+        return email.strip().lower()
 
 
 def _lost_sign_in_race(error: IntegrityError) -> bool:
