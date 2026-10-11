@@ -9,7 +9,7 @@ from arq import Retry
 from sqlalchemy import select, update
 
 from app.config import get_settings
-from app.models.item import ClothingItem, ItemStatus, TaggedBy, TaggingStatus
+from app.models.item import TAG_COLUMNS, ClothingItem, ItemStatus, TaggedBy, TaggingStatus
 from app.models.preference import UserPreference
 from app.services.ai_service import AIService, ClothingTags
 from app.workers.db import get_db_session
@@ -322,15 +322,7 @@ async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, 
                 **(item.tags or {}),
                 **{
                     k: getattr(item, k)
-                    for k in (
-                        "colors",
-                        "primary_color",
-                        "pattern",
-                        "material",
-                        "style",
-                        "season",
-                        "formality",
-                    )
+                    for k in TAG_COLUMNS
                     if getattr(item, k) not in (None, [], "")
                 },
             }

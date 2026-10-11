@@ -6,7 +6,14 @@ from sqlalchemy import and_, func, or_, select, text, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import attributes, selectinload
 
-from app.models.item import ClothingItem, ItemHistory, ItemStatus, TaggingStatus, WashHistory
+from app.models.item import (
+    TAG_COLUMNS,
+    ClothingItem,
+    ItemHistory,
+    ItemStatus,
+    TaggingStatus,
+    WashHistory,
+)
 from app.schemas.item import DEFAULT_WASH_INTERVALS, ItemCreate, ItemFilter, ItemUpdate
 
 
@@ -262,15 +269,7 @@ class ItemService:
             attributes.flag_modified(item, "tags")
             # Mirror from what the caller sent, not from the merged result, so
             # clearing a tag also clears its column instead of leaving it stale.
-            for column in (
-                "colors",
-                "primary_color",
-                "pattern",
-                "material",
-                "style",
-                "season",
-                "formality",
-            ):
+            for column in TAG_COLUMNS:
                 if column in incoming:
                     setattr(item, column, incoming[column])
 
