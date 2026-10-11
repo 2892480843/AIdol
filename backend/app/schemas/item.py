@@ -28,6 +28,9 @@ class ItemTags(BaseModel):
     source_url: str | None = Field(None, max_length=500)
 
 
+USER_TAG_KEYS = frozenset({"size", "care_instructions", "source_url"})
+
+
 class ItemBase(BaseModel):
     type: str = Field(default="unknown", max_length=50)  # Default to unknown, AI will detect
     subtype: str | None = Field(None, max_length=50)
