@@ -329,17 +329,20 @@ Upgrading from a release before sign-in identities (the `user_identities` table)
 
 </details>
 
-See [.env.example](.env.example) for all options.
+<details>
+<summary>Using your own Redis (password, TLS, unix socket)</summary>
 
-For deployments outside the bundled Compose stack, set the same `REDIS_URL` on the API
-and both workers. TCP and TLS URLs support credentials in the URL authority, for
-example `redis://user:password@redis:6379/2` and `rediss://user:password@redis:6379/2`.
-Unix socket URLs use an absolute path, for example
-`unix:///run/redis/redis.sock?db=2`, or `unix://:password@/run/redis/redis.sock?db=2`
-when Redis requires a password. The only supported query parameter is `db`;
-percent-encode reserved characters in credentials and socket paths. The bundled
-Compose files point every service at their own Redis container, so a `REDIS_URL` in
-`.env` has no effect there.
+Set the same `REDIS_URL` on the API and both workers. The bundled Compose files point every service at their own Redis container, so a `REDIS_URL` in `.env` has no effect there.
+
+- Password: `redis://:password@redis:6379/2` (or `user:password@`)
+- TLS: `rediss://:password@redis:6380/2`
+- Unix socket: `unix://:password@/run/redis/redis.sock?db=2`
+
+`db` is the only supported query parameter. Percent-encode reserved characters in passwords and socket paths (`@` as `%40`, `/` as `%2F`, `#` as `%23`).
+
+</details>
+
+See [.env.example](.env.example) for all options.
 
 ### Authentication
 
