@@ -1,11 +1,11 @@
 import logging
 from functools import lru_cache
 from typing import Literal
-from urllib.parse import parse_qs, urlsplit
 
-from arq.connections import RedisSettings
 from pydantic import Field, PostgresDsn, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+from app.utils.redis_url import parse_redis_url
 
 logger = logging.getLogger(__name__)
 
@@ -24,6 +24,7 @@ class Settings(BaseSettings):
         case_sensitive=False,
         extra="ignore",
         env_ignore_empty=True,
+        hide_input_in_errors=True,
     )
 
     # Application
@@ -66,27 +67,8 @@ class Settings(BaseSettings):
     @field_validator("redis_url")
     @classmethod
     def validate_redis_url(cls, value: str) -> str:
-        """Accept the URL formats supported by both ARQ and redis-py."""
-        parsed = urlsplit(value)
-        if parsed.scheme in {"redis", "rediss"}:
-            if not parsed.hostname:
-                raise ValueError("Redis TCP URL must include a host")
-        elif parsed.scheme == "unix":
-            if parsed.netloc or not parsed.path.startswith("/") or parsed.path == "/":
-                raise ValueError("Redis Unix URL must include an absolute socket path")
-        else:
-            raise ValueError("Redis URL must use redis, rediss, or unix scheme")
-
-        query = parse_qs(parsed.query, keep_blank_values=True)
-        if set(query) - {"db"}:
-            raise ValueError("Redis URL only supports the db query parameter")
-        if "db" in query and (len(query["db"]) != 1 or not query["db"][0].isdigit()):
-            raise ValueError("Redis URL db must be a non-negative integer")
-
-        try:
-            RedisSettings.from_dsn(value)
-        except (RuntimeError, ValueError) as exc:
-            raise ValueError("Invalid Redis URL") from exc
+        value = value.strip()
+        parse_redis_url(value)
         return value
 
     # Authentication - OIDC

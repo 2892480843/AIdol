@@ -270,7 +270,7 @@ Upgrading from a release before sign-in identities (the `user_identities` table)
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `REDIS_URL` | Redis URL for the API and workers (default: `redis://localhost:6379/0`) | No |
+| `REDIS_URL` | Redis URL for the API and workers (default: `redis://localhost:6379/0`; the bundled Compose files set it themselves) | No |
 | `SECRET_KEY` | Backend secret for JWT. The backend refuses to start with the default `change-me-in-production` unless `DEBUG=true` and neither OIDC nor forward-auth is configured | Yes |
 | `NEXTAUTH_SECRET` | NextAuth session encryption. The frontend refuses to start with a value beginning `change-me-in-production` when `OIDC_ISSUER_URL` or `FORWARD_AUTH_SECRET` is set | Yes |
 | `AI_BASE_URL` | AI service URL | Yes |
@@ -333,11 +333,13 @@ See [.env.example](.env.example) for all options.
 
 For deployments outside the bundled Compose stack, set the same `REDIS_URL` on the API
 and both workers. TCP and TLS URLs support credentials in the URL authority, for
-example `redis://user:password@redis:6379/2` and `rediss://redis:6379/2`.
+example `redis://user:password@redis:6379/2` and `rediss://user:password@redis:6379/2`.
 Unix socket URLs use an absolute path, for example
-`unix:///run/redis/redis.sock?db=2`. The only supported query parameter is `db`;
+`unix:///run/redis/redis.sock?db=2`, or `unix://:password@/run/redis/redis.sock?db=2`
+when Redis requires a password. The only supported query parameter is `db`;
 percent-encode reserved characters in credentials and socket paths. The bundled
-Compose files set their own Redis URL for each service.
+Compose files point every service at their own Redis container, so a `REDIS_URL` in
+`.env` has no effect there.
 
 ### Authentication
 

@@ -1,21 +1,20 @@
-from urllib.parse import unquote
-
 from arq.connections import RedisSettings
+from redis.asyncio.connection import SSLConnection
 
 from app.config import get_settings
+from app.utils.redis_url import parse_redis_url
 
 settings = get_settings()
 
 
 def get_redis_settings() -> RedisSettings:
-    redis_settings = RedisSettings.from_dsn(settings.redis_url)
-    # redis-py decodes URL components; keep ARQ's connection in sync with it.
-    if redis_settings.unix_socket_path is None:
-        redis_settings.host = unquote(redis_settings.host)
-    if redis_settings.username is not None:
-        redis_settings.username = unquote(redis_settings.username)
-    if redis_settings.password is not None:
-        redis_settings.password = unquote(redis_settings.password)
-    if redis_settings.unix_socket_path is not None:
-        redis_settings.unix_socket_path = unquote(redis_settings.unix_socket_path)
-    return redis_settings
+    options = parse_redis_url(settings.redis_url)
+    return RedisSettings(
+        host=options.get("host", "localhost"),
+        port=options.get("port", 6379),
+        unix_socket_path=options.get("path"),
+        database=options.get("db", 0),
+        username=options.get("username"),
+        password=options.get("password"),
+        ssl=options.get("connection_class") is SSLConnection,
+    )
