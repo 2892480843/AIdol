@@ -170,7 +170,7 @@ To build the images from source instead of pulling them, use the development sta
 #### Step 4: Access the App
 
 - **Frontend:** http://localhost:3000
-- **API Docs:** http://localhost:8000/docs
+- **API Docs:** http://localhost:8000/docs (dev mode only)
 - **Login:** Click "Login" - uses dev credentials by default (no password needed)
 
 ### Development Mode
@@ -316,6 +316,22 @@ publishes `backend-<version>` / `frontend-<version>` (e.g. `backend-1.3.0`). To
 pin a deployment to a specific release, replace the `-latest` tags in the
 compose file with the version, e.g. `ghcr.io/anyesh/wardrowbe:backend-1.3.0`.
 
+### Client IPs behind a reverse proxy
+
+Sign-in rate limits key on the client's IP. Every proxy that forwards a request appends the address it received it from to `X-Forwarded-For`, and everything to the left of those entries is whatever the client sent, so the backend reads the entry `TRUSTED_PROXY_COUNT` places from the right. The Next.js frontend adds the header only when a request arrives without one, with the address of the connection, and otherwise relays it unchanged, so it does not count.
+
+| Deployment | Proxies that append | `TRUSTED_PROXY_COUNT` |
+|------------|--------------------|-----------------------|
+| `docker-compose.yml`, browsers on `:3000` | none | `0` (default) |
+| `docker-compose.yml` behind Caddy or Traefik, with `:3000` and `:8000` bound to `127.0.0.1` | the proxy | `1` |
+| `docker-compose.prod.yml`, nginx reached directly | nginx | `1` (default) |
+| `docker-compose.prod.yml` behind Caddy, Traefik or another proxy on `:8080` | that proxy and nginx | `2` |
+| Kubernetes with the bundled Traefik ingress | the ingress controller | `1` (configmap) |
+
+Count a CDN or load balancer in front of these only when it appends to the header too. Too low a count is safe, since clients only end up sharing a proxy's address and its limit; too high a count lets anyone choose the IP they are limited under by sending their own header. Clients that can reach the backend without passing through every counted proxy can do the same, and when a request carries fewer entries than the count, the backend falls back to the address of the connection itself.
+
+An entry may carry a port (`203.0.113.7:4711`, `[2001:db8::1]:4711`), and an IPv4-mapped IPv6 address counts as the IPv4 address. A public IPv6 client is limited by its /64, because one host usually holds a whole /64 and could otherwise rotate addresses inside it; private, unique-local and link-local addresses are limited one by one, so containers on a Docker network stay apart.
+
 ### Kubernetes
 
 See the [k8s/](k8s/) directory for Kubernetes manifests including:
@@ -416,19 +432,23 @@ Then point the image tags at the previous release and run `docker compose up -d`
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `SECRET_KEY` | Backend secret for JWT | Yes |
+| `SECRET_KEY` | Backend secret for JWT. The backend refuses to start with the default `change-me-in-production` unless `DEBUG=true` and neither OIDC nor forward-auth is configured | Yes |
 | `PUID` | Uid the app process runs as (default: 1000 backend/worker, 1001 frontend) | No |
 | `PGID` | Gid the app process runs as (default: 1000 backend/worker, 1001 frontend) | No |
-| `NEXTAUTH_SECRET` | NextAuth session encryption | Yes |
+| `NEXTAUTH_SECRET` | NextAuth session encryption. The frontend refuses to start with a value beginning `change-me-in-production` when `OIDC_ISSUER_URL` or `FORWARD_AUTH_SECRET` is set | Yes |
 | `AI_BASE_URL` | AI service URL | Yes |
 | `AI_API_KEY` | AI API key (if required) | Depends |
 | `OIDC_ISSUER_URL` | OIDC provider URL (enables SSO login) | No |
 | `OIDC_CLIENT_ID` | OIDC client ID | If OIDC |
 | `OIDC_CLIENT_SECRET` | OIDC client secret | If OIDC |
 | `OIDC_CA_BUNDLE` | Path inside the backend container to a PEM CA certificate the backend trusts for the OIDC provider (private CA or self-signed certs) | No |
+| `NODE_EXTRA_CA_CERTS` | Path inside the frontend container to a PEM CA certificate Node trusts on top of the system store, for the OIDC provider and an `https` `BACKEND_URL` | No |
 | `FORWARD_AUTH_SECRET` | Shared secret the forward-auth proxy sends as `X-Forward-Auth-Secret` (at least 32 characters; enables forward-auth). Set the same value for the backend and the frontend | No |
 | `TINYAUTH_URL` | TinyAuth base URL, where logout sends the browser in forward-auth mode | No |
 | `FORWARD_AUTH_LOGOUT_URL` | Proxy logout URL for Authelia and others in forward-auth mode | No |
+| `TRUSTED_PROXY_COUNT` | Reverse proxies in front of the API that append to `X-Forwarded-For` (default: 0; `docker-compose.prod.yml` and k8s set 1). See [Client IPs behind a reverse proxy](#client-ips-behind-a-reverse-proxy) | No |
+| `NTFY_SERVER` | Default ntfy server offered when a user adds an ntfy channel | No |
+| `NTFY_TOKEN` | Access token for `NTFY_SERVER`, used for any ntfy channel on that server that has no token of its own | No |
 | `LOCAL_DNS` | Custom DNS server for container name resolution (e.g. local OIDC host) | No |
 | `SMTP_HOST` | SMTP server for email notifications | No |
 | `SMTP_PORT` | SMTP port (default: 587) | No |
@@ -477,7 +497,23 @@ If neither is configured, the remove-background button returns a 501 with setup 
 - **OIDC Mode**: Any OIDC provider (PocketID, Authentik, Keycloak, Auth0, etc.)
 - **Forward-auth Mode**: An authenticating reverse proxy such as TinyAuth or Authelia signs people in (see [Forward-auth](#forward-auth-tinyauth-authelia))
 
-To enable OIDC, set `OIDC_ISSUER_URL`, `OIDC_CLIENT_ID`, and `OIDC_CLIENT_SECRET` in your `.env`. If your OIDC provider uses a self-signed certificate or a private CA, mount that CA certificate (PEM) into the backend container and set `OIDC_CA_BUNDLE` to its path inside the container, e.g. `/certs/internal-ca.pem`. The backend then verifies the provider's discovery and JWKS requests against that CA; TLS verification itself is never turned off. If your OIDC provider runs on a hostname that Docker containers can't resolve (e.g. a local DNS name), set `LOCAL_DNS` to your DNS server IP, or set `OIDC_HOST` and `OIDC_HOST_IP` to inject the hostname directly into the container's `/etc/hosts`.
+To enable OIDC, set `OIDC_ISSUER_URL`, `OIDC_CLIENT_ID`, and `OIDC_CLIENT_SECRET` in your `.env`. If your OIDC provider uses a self-signed certificate or a private CA, mount that CA certificate (PEM) into the backend container and set `OIDC_CA_BUNDLE` to its path inside the container, e.g. `/certs/internal-ca.pem`. The backend then verifies the provider's discovery and JWKS requests against that CA; TLS verification itself is never turned off. The frontend talks to the provider too (NextAuth fetches the discovery document and JWKS, exchanges the code at the token endpoint and reads the userinfo endpoint), so mount the same PEM into the frontend container and set `NODE_EXTRA_CA_CERTS` to its path there; it also covers a `BACKEND_URL` served over `https` by the same CA. The certificate has to be readable by the uid and gid the containers run as (`PUID`/`PGID`), for example:
+
+```yaml
+services:
+  backend:
+    environment:
+      OIDC_CA_BUNDLE: /certs/internal-ca.pem
+    volumes:
+      - ./certs:/certs:ro
+  frontend:
+    environment:
+      NODE_EXTRA_CA_CERTS: /certs/internal-ca.pem
+    volumes:
+      - ./certs:/certs:ro
+```
+
+If your OIDC provider runs on a hostname that Docker containers can't resolve (e.g. a local DNS name), set `LOCAL_DNS` to your DNS server IP, or set `OIDC_HOST` and `OIDC_HOST_IP` to inject the hostname directly into the container's `/etc/hosts`.
 
 When registering the app in your OIDC provider, use this as the callback/redirect URI:
 
@@ -548,6 +584,8 @@ Authelia only follows `rd` to an HTTPS address inside one of its session cookie 
 If only one of the two services gets the secret, sign-in fails. With only the backend's, the login page reports missing proxy headers and the frontend log says its `FORWARD_AUTH_SECRET` is not set. With only the frontend's, the login page offers OIDC or development sign-in, and every page load through the proxy signs that session out again, with a warning in the frontend log.
 
 Put the proxy in front of the frontend on `:3000` with the default `docker-compose.yml`, or in front of nginx on `:8080` with `docker-compose.prod.yml`. Only the proxy should be able to reach those ports. The prod compose already binds nginx to `127.0.0.1` and publishes nothing else; with the default compose, set `FRONTEND_PORT=127.0.0.1:3000` and `BACKEND_PORT=127.0.0.1:8000` in `.env` (or remove the `ports:` entries if the proxy shares the stack's Docker network), so nobody on your LAN can skip the proxy or watch the secret go past in plain HTTP.
+
+Then set `TRUSTED_PROXY_COUNT` to `1` with the default compose or `2` with the prod compose, so sign-in rate limits see each browser's address instead of the proxy's (see [Client IPs behind a reverse proxy](#client-ips-behind-a-reverse-proxy)).
 
 Every snippet below strips any `Remote-*` and `X-Forward-Auth-Secret` headers the client sent before the auth server's headers are set, and adds the secret on the way to Wardrowbe. Keep both steps if you adapt them to another proxy.
 
@@ -653,7 +691,7 @@ npm run build
 
 ### API Documentation
 
-Available when running:
+Served only in dev mode (`DEBUG=true` with neither OIDC nor forward-auth configured):
 - Swagger UI: http://localhost:8000/docs
 - ReDoc: http://localhost:8000/redoc
 

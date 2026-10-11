@@ -3,14 +3,17 @@ from uuid import uuid4
 
 import pytest
 from httpx import AsyncClient
+from redis.asyncio import Redis
 from sqlalchemy.ext.asyncio import AsyncSession
+from starlette.requests import Request
 
-from app.api.auth import _is_dev_mode, create_access_token
+from app.api.auth import create_access_token
 from app.config import Settings, get_settings
 from app.models import User, UserIdentity
 from app.schemas.user import UserSyncRequest
 from app.services.user_service import FORWARD_AUTH, UserEmailConflictError, UserService
 from app.utils.auth import decode_token
+from app.utils.rate_limit import _get_client_ip, check_rate_limit
 from tests.identity_helpers import (
     add_users_with_identities,
     identities_of,
@@ -438,10 +441,10 @@ class TestForwardAuthRejections:
     @pytest.mark.asyncio
     @pytest.mark.parametrize(
         "user",
-        [None, "\u200b\ufeff".encode(), "\u0301".encode()],
-        ids=["missing", "zero-width-only", "combining-mark-only"],
+        [None, "\u200b\ufeff".encode(), "\u0301".encode(), b"mallory, tinyauth-alice"],
+        ids=["missing", "zero-width-only", "combining-mark-only", "comma-joined-duplicate"],
     )
-    async def test_missing_or_blank_remote_user_returns_400(
+    async def test_missing_blank_or_joined_remote_user_returns_400(
         self, client: AsyncClient, db_session: AsyncSession, user: bytes | None
     ):
         headers = _proxy_headers(user=user)
@@ -454,6 +457,30 @@ class TestForwardAuthRejections:
         assert "Remote-User" in response.json()["detail"]
         if user is not None:
             assert await user_of_subject(db_session, user.decode()) is None
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize(
+        ("name", "client_value"),
+        [
+            ("Remote-User", "mallory"),
+            ("Remote-Email", "mallory@example.com"),
+            ("Remote-Name", "Mallory"),
+            ("X-Forward-Auth-Secret", PROXY_SECRET),
+        ],
+        ids=["remote-user", "remote-email", "remote-name", "secret"],
+    )
+    async def test_repeated_proxy_header_returns_400(
+        self, client: AsyncClient, db_session: AsyncSession, name: str, client_value: str
+    ):
+        # The client's line comes first, as when a proxy appends its header instead of replacing.
+        headers = [(name, client_value), *_proxy_headers().items()]
+        with patch("app.api.auth.settings", _forward_auth_only()):
+            response = await client.post(SYNC_URL, headers=headers)
+
+        assert response.status_code == 400
+        assert name in response.json()["detail"]
+        assert await user_of_subject(db_session, "mallory") is None
+        assert await user_of_subject(db_session, "tinyauth-alice") is None
 
     @pytest.mark.asyncio
     async def test_overlong_remote_user_returns_400(
@@ -542,24 +569,143 @@ class TestForwardAuthRateLimit:
         assert statuses == [200] * 15
 
     @pytest.mark.asyncio
+    @pytest.mark.parametrize(
+        ("trusted_proxy_count", "forwarded_for"),
+        [
+            (0, "203.0.113.{i}"),
+            (1, "203.0.113.{i}, 198.51.100.7"),
+        ],
+        ids=["direct-with-spoofed-header", "behind-one-proxy-with-spoofed-prefix"],
+    )
     async def test_failed_attempts_are_limited_without_blocking_valid_ones(
-        self, client: AsyncClient
+        self, client: AsyncClient, trusted_proxy_count: int, forwarded_for: str
     ):
         bad = _proxy_headers(secret="x" * 32)
-        with patch("app.api.auth.settings", _forward_auth_only()):
-            statuses = [(await client.post(SYNC_URL, headers=bad)).status_code for _ in range(11)]
+        with (
+            patch("app.api.auth.settings", _forward_auth_only()),
+            patch(
+                "app.utils.rate_limit.get_settings",
+                return_value=_settings(trusted_proxy_count=trusted_proxy_count),
+            ),
+        ):
+            statuses = [
+                (
+                    await client.post(
+                        SYNC_URL, headers={**bad, "X-Forwarded-For": forwarded_for.format(i=i)}
+                    )
+                ).status_code
+                for i in range(11)
+            ]
             valid = await client.post(SYNC_URL, headers=_proxy_headers())
 
         assert statuses == [401] * 10 + [429]
         assert valid.status_code == 200
 
+    @pytest.mark.asyncio
+    async def test_hits_inside_the_window_do_not_extend_it(self):
+        key = f"rate_limit:test:{uuid4()}"
+        redis = Redis.from_url(str(get_settings().redis_url))
+        try:
+            await check_rate_limit(key, 10, 60)
+            assert 0 < await redis.ttl(key) <= 60
+            # Stands in for most of the window passing, which the second hit must not restart.
+            await redis.expire(key, 5)
+            await check_rate_limit(key, 10, 60)
+
+            assert int(await redis.get(key)) == 2
+            assert 0 < await redis.ttl(key) <= 5
+        finally:
+            await redis.delete(key)
+            await redis.aclose()
+
+    @pytest.mark.parametrize(
+        ("trusted_proxy_count", "forwarded_for", "peer", "expected"),
+        [
+            (0, ["203.0.113.9"], "10.0.0.5", "10.0.0.5"),
+            (0, [], None, "unknown"),
+            (1, [], "10.0.0.5", "10.0.0.5"),
+            (1, ["198.51.100.7"], "10.0.0.5", "198.51.100.7"),
+            (1, ["203.0.113.9, 198.51.100.7"], "10.0.0.5", "198.51.100.7"),
+            (1, ["203.0.113.9", "198.51.100.7"], "10.0.0.5", "198.51.100.7"),
+            (1, [" 203.0.113.9 ,, 2001:db8::7 "], "10.0.0.5", "2001:db8::7"),
+            (2, ["203.0.113.9, 198.51.100.7, 172.18.0.1"], "10.0.0.5", "198.51.100.7"),
+            (2, ["198.51.100.7"], "10.0.0.5", "10.0.0.5"),
+            (1, ["203.0.113.9, not-an-ip"], "10.0.0.5", "10.0.0.5"),
+            (1, ["203.0.113.9, 198.51.100.7:4711"], "10.0.0.5", "198.51.100.7"),
+            (1, ["[2001:db8::7]:4711"], "10.0.0.5", "2001:db8::7"),
+            (1, ["2001:db8::7:4711"], "10.0.0.5", "2001:db8::7:4711"),
+            (1, ["198.51.100.7:http"], "10.0.0.5", "10.0.0.5"),
+            (1, ["[198.51.100.7]:4711"], "10.0.0.5", "10.0.0.5"),
+            (1, ["::ffff:198.51.100.7"], "10.0.0.5", "198.51.100.7"),
+            (1, ["[::ffff:198.51.100.7]:4711"], "10.0.0.5", "198.51.100.7"),
+            (1, ["2600:1f18:abcd:1234:5:6:7:8"], "10.0.0.5", "2600:1f18:abcd:1234::/64"),
+            (1, ["fd00:1:2:3::5"], "10.0.0.5", "fd00:1:2:3::5"),
+            (1, ["fe80::5"], "10.0.0.5", "fe80::5"),
+            (0, [], "::ffff:10.0.0.5", "10.0.0.5"),
+            (0, [], "2600:1f18:abcd:1234::9", "2600:1f18:abcd:1234::/64"),
+            (1, ["not-an-ip"], "::ffff:10.0.0.5", "10.0.0.5"),
+        ],
+        ids=[
+            "zero-hops-ignores-header",
+            "zero-hops-without-peer",
+            "no-header-uses-peer",
+            "one-hop",
+            "one-hop-spoofed-prefix",
+            "one-hop-repeated-header-lines",
+            "one-hop-whitespace-empty-entries-ipv6",
+            "two-hops-spoofed-prefix",
+            "fewer-entries-than-hops-uses-peer",
+            "malformed-trusted-entry-uses-peer",
+            "one-hop-ipv4-with-port",
+            "one-hop-bracketed-ipv6-with-port",
+            "one-hop-ipv6-ending-in-port-like-group-is-an-address",
+            "one-hop-non-numeric-port-uses-peer",
+            "one-hop-bracketed-ipv4-uses-peer",
+            "one-hop-ipv4-mapped-ipv6-folds-to-ipv4",
+            "one-hop-bracketed-ipv4-mapped-ipv6-with-port",
+            "one-hop-global-ipv6-buckets-on-its-64",
+            "one-hop-ula-ipv6-stays-distinct",
+            "one-hop-link-local-ipv6-stays-distinct",
+            "ipv4-mapped-peer-folds-to-ipv4",
+            "global-ipv6-peer-buckets-on-its-64",
+            "malformed-entry-falls-back-to-normalised-peer",
+        ],
+    )
+    def test_client_ip_is_the_entry_the_trusted_proxies_appended(
+        self, trusted_proxy_count, forwarded_for, peer, expected
+    ):
+        request = Request(
+            {
+                "type": "http",
+                "headers": [(b"x-forwarded-for", line.encode()) for line in forwarded_for],
+                "client": (peer, 4321) if peer else None,
+            }
+        )
+        with patch(
+            "app.utils.rate_limit.get_settings",
+            return_value=_settings(trusted_proxy_count=trusted_proxy_count),
+        ):
+            assert _get_client_ip(request) == expected
+
+    @pytest.mark.asyncio
+    async def test_secret_is_checked_before_the_rate_limit(self, client: AsyncClient):
+        limiter = AsyncMock()
+        with (
+            patch("app.api.auth.settings", _forward_auth_only()),
+            patch("app.api.auth.rate_limit_by_ip", limiter),
+        ):
+            ok = await client.post(SYNC_URL, headers=_proxy_headers())
+            limiter.assert_not_awaited()
+            bad = await client.post(SYNC_URL, headers=_proxy_headers(secret="x" * 32))
+
+        assert ok.status_code == 200
+        assert bad.status_code == 401
+        limiter.assert_awaited_once()
+
 
 class TestForwardAuthPrecedence:
     def test_debug_with_secret_is_not_dev_mode(self):
-        with patch(
-            "app.api.auth.settings", _settings(debug=True, forward_auth_secret=PROXY_SECRET)
-        ):
-            assert _is_dev_mode() is False
+        assert _settings(debug=True, forward_auth_secret=PROXY_SECRET).dev_mode is False
 
     @pytest.mark.asyncio
     async def test_debug_with_secret_takes_forward_auth_branch(
@@ -848,6 +994,25 @@ class TestRequestsAfterSignIn:
             )
 
         assert (me.status_code, image.status_code) == expected
+
+    @pytest.mark.asyncio
+    async def test_repeated_remote_user_is_refused_after_sign_in(self, client: AsyncClient):
+        with (
+            patch("app.api.auth.settings", _forward_auth_only()),
+            patch("app.utils.auth.settings", _forward_auth_only()),
+        ):
+            signed_in = (await client.post(SYNC_URL, headers=_proxy_headers())).json()
+            response = await client.get(
+                "/api/v1/users/me",
+                headers=[
+                    ("Remote-User", "tinyauth-alice"),
+                    *_proxy_headers(user="tinyauth-other").items(),
+                    ("Authorization", f"Bearer {signed_in['access_token']}"),
+                ],
+            )
+
+        assert response.status_code == 400
+        assert "Remote-User" in response.json()["detail"]
 
     @pytest.mark.asyncio
     async def test_bearer_matching_non_ascii_remote_user_is_accepted(

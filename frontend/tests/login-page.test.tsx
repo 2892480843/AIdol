@@ -9,26 +9,33 @@ import {
   FORWARD_AUTH_USERNAME_CONFLICT,
 } from '@/lib/auth-errors'
 
-const nav = vi.hoisted(() => ({
-  params: new URLSearchParams(),
-  push: vi.fn(),
-}))
+const nav = vi.hoisted(() => {
+  const push = vi.fn()
+  return {
+    params: new URLSearchParams(),
+    push,
+    router: { push, replace: vi.fn(), prefetch: vi.fn(), back: vi.fn() },
+  }
+})
 
 const auth = vi.hoisted(() => ({
   signIn: vi.fn(),
+  getSession: vi.fn(),
   getProviders: vi.fn(),
   status: 'unauthenticated' as 'loading' | 'authenticated' | 'unauthenticated',
+  session: null as { accessToken: string } | null,
 }))
 
 vi.mock('next/navigation', () => ({
-  useRouter: () => ({ push: nav.push, replace: vi.fn(), prefetch: vi.fn(), back: vi.fn() }),
+  useRouter: () => nav.router,
   usePathname: () => '/login',
   useSearchParams: () => nav.params,
 }))
 
 vi.mock('next-auth/react', () => ({
-  useSession: () => ({ data: null, status: auth.status }),
+  useSession: () => ({ data: auth.session, status: auth.status }),
   signIn: auth.signIn,
+  getSession: auth.getSession,
   signOut: vi.fn(),
   getProviders: auth.getProviders,
 }))
@@ -59,10 +66,12 @@ describe('login page in forward-auth mode', () => {
     vi.clearAllMocks()
     nav.params = new URLSearchParams()
     auth.status = 'unauthenticated'
+    auth.session = null
     auth.getProviders.mockResolvedValue({
       'forward-auth': { id: 'forward-auth', type: 'credentials' },
     })
     auth.signIn.mockResolvedValue({ ok: true, error: null, status: 200, url: '/dashboard' })
+    auth.getSession.mockResolvedValue({ accessToken: 'backend-jwt' })
     mockBackend({ forward_auth: true })
   })
 
@@ -149,6 +158,18 @@ describe('login page in forward-auth mode', () => {
     await waitFor(() => expect(auth.signIn).toHaveBeenCalledWith('forward-auth', { redirect: false }))
   })
 
+  // A logout or proxy user switch in another tab can clear the cookie the callback just set, so
+  // the sign-in succeeds yet leaves no session for the redirect effect to follow.
+  it('offers the button again when a successful sign-in leaves no session', async () => {
+    auth.getSession.mockResolvedValue(null)
+
+    renderLogin()
+
+    const button = await screen.findByRole('button', { name: 'forwardAuth.continue' })
+    await waitFor(() => expect(button).toBeEnabled())
+    expect(auth.signIn).toHaveBeenCalledTimes(1)
+  })
+
   it('does not sign in again when a session already exists', async () => {
     auth.status = 'authenticated'
 
@@ -164,7 +185,35 @@ describe('login page without forward-auth', () => {
     vi.clearAllMocks()
     nav.params = new URLSearchParams()
     auth.status = 'unauthenticated'
+    auth.session = null
     mockBackend({ forward_auth: false })
+  })
+
+  it.each([
+    ['//evil.example', '/dashboard'],
+    ['/\\evil.example', '/dashboard'],
+    ['https://evil.example/dashboard', '/dashboard'],
+    ['/dashboard/outfits?page=2', '/dashboard/outfits?page=2'],
+  ])('sends a signed-in user from callbackUrl %s to %s', async (callbackUrl, expected) => {
+    auth.getProviders.mockResolvedValue({})
+    auth.status = 'authenticated'
+    auth.session = { accessToken: 'token' }
+    nav.params = new URLSearchParams({ callbackUrl })
+
+    renderLogin()
+
+    await waitFor(() => expect(nav.push).toHaveBeenCalledWith(expected))
+    expect(nav.push).toHaveBeenCalledTimes(1)
+  })
+
+  it('hands sign-in only a same-origin callbackUrl', async () => {
+    auth.getProviders.mockResolvedValue({ oidc: { id: 'oidc', type: 'oauth' } })
+    nav.params = new URLSearchParams({ callbackUrl: '//evil.example' })
+
+    renderLogin()
+
+    fireEvent.click(await screen.findByRole('button', { name: 'title' }))
+    expect(auth.signIn).toHaveBeenCalledWith('oidc', { callbackUrl: '/dashboard' })
   })
 
   it('keeps the dev login form and never calls the proxy provider', async () => {

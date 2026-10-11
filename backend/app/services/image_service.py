@@ -7,6 +7,7 @@ from pathlib import Path
 
 import imagehash
 from PIL import Image, ImageOps
+from pillow_heif import register_heif_opener
 
 from app.config import get_settings
 from app.services import background_removal
@@ -44,10 +45,6 @@ IMAGE_MIME_TYPES = {
 }
 ALLOWED_EXTENSIONS = frozenset(IMAGE_MIME_TYPES)
 ALLOWED_MIME_TYPES = frozenset(IMAGE_MIME_TYPES.values())
-
-
-def get_full_path(relative_path: str) -> str:
-    return f"{settings.storage_path}/{relative_path}"
 
 
 def _flatten_to_rgb(image: Image.Image) -> Image.Image:
@@ -89,13 +86,7 @@ class ImageService:
 
     def _convert_heic(self, image_data: bytes) -> Image.Image:
         """Convert HEIC/HEIF to PIL Image."""
-        try:
-            from pillow_heif import register_heif_opener
-
-            register_heif_opener()
-        except ImportError:
-            pass
-
+        register_heif_opener()
         return Image.open(BytesIO(image_data))
 
     def _open_bounded(self, image_data: bytes, ext: str) -> Image.Image:
@@ -121,7 +112,7 @@ class ImageService:
 
         return image
 
-    def _encode_variant(self, image: Image.Image, variant: ImageVariant) -> bytes:
+    def encode_variant(self, image: Image.Image, variant: ImageVariant) -> bytes:
         image = _flatten_to_rgb(image.copy())
         image.thumbnail(variant.box, Image.Resampling.LANCZOS)
         output = BytesIO()
@@ -163,7 +154,7 @@ class ImageService:
 
         for variant in VARIANTS:
             filename = f"{base_name}{variant.suffix}.jpg"
-            (user_path / filename).write_bytes(self._encode_variant(image, variant))
+            (user_path / filename).write_bytes(self.encode_variant(image, variant))
             paths[variant.path_field] = f"{user_id}/{filename}"
 
         paths["image_hash"] = self._phash_of(image)
@@ -252,7 +243,7 @@ class ImageService:
         for variant in VARIANTS:
             # The original is written back to image_path itself so that the stored path stays valid.
             path = image_path if variant is ORIGINAL else f"{base_path}{variant.suffix}.jpg"
-            (self.storage_path / path).write_bytes(self._encode_variant(image, variant))
+            (self.storage_path / path).write_bytes(self.encode_variant(image, variant))
             paths[variant.path_field] = path
         return paths
 

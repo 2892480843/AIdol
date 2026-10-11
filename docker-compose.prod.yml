@@ -31,9 +31,7 @@ x-backend-env: &backend-env
   MAX_UPLOAD_SIZE_MB: ${MAX_UPLOAD_SIZE_MB:-}
   MAX_BULK_ACTION_COUNT: ${MAX_BULK_ACTION_COUNT:-}
   NTFY_SERVER: ${NTFY_SERVER:-}
-  NTFY_TOPIC: ${NTFY_TOPIC:-}
   NTFY_TOKEN: ${NTFY_TOKEN:-}
-  MATTERMOST_WEBHOOK_URL: ${MATTERMOST_WEBHOOK_URL:-}
   SMTP_HOST: ${SMTP_HOST:-}
   SMTP_PORT: ${SMTP_PORT:-}
   SMTP_USER: ${SMTP_USER:-}
@@ -94,6 +92,8 @@ services:
       OIDC_CA_BUNDLE: ${OIDC_CA_BUNDLE:-}
       # The authenticating proxy must send this as X-Forward-Auth-Secret (README: Forward-auth)
       FORWARD_AUTH_SECRET: ${FORWARD_AUTH_SECRET:-}
+      # nginx appends X-Forwarded-For; add one for each proxy in front of it that appends too
+      TRUSTED_PROXY_COUNT: ${TRUSTED_PROXY_COUNT:-1}
     volumes:
       - uploads_data:/data/uploads
     dns:
@@ -191,8 +191,8 @@ services:
       FORWARD_AUTH_LOGOUT_URL: ${FORWARD_AUTH_LOGOUT_URL:-}
       TINYAUTH_URL: ${TINYAUTH_URL:-}
       FORWARD_AUTH_SECRET: ${FORWARD_AUTH_SECRET:-}
-      # Trust self-signed certs for internal OIDC provider
-      NODE_TLS_REJECT_UNAUTHORIZED: "0"
+      # PEM path inside the container for a private CA (OIDC provider, https BACKEND_URL)
+      NODE_EXTRA_CA_CERTS: ${NODE_EXTRA_CA_CERTS:-}
     depends_on:
       - backend
     healthcheck:
