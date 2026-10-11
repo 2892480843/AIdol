@@ -282,6 +282,9 @@ async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, 
                     # Empty AI values are skipped, so a null cannot erase a
                     # real value.
                     merged = dict(item.tags or {})
+                    # logprobs_confidence scores this run like ai_confidence does,
+                    # so an earlier run's score must not survive the fill below.
+                    merged.pop("logprobs_confidence", None)
                     for key, val in (value or {}).items():
                         if val in (None, [], "", {}):
                             continue

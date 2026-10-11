@@ -313,6 +313,28 @@ class TestTagsMergeOnAnalysis:
         assert item.tags["care_instructions"] == "Dry clean"
 
     @pytest.mark.asyncio
+    @pytest.mark.parametrize("latest", [0.95, None], ids=["new-score", "no-score"])
+    async def test_reanalysis_replaces_logprobs_confidence(
+        self, db_session, test_user, stub_ai, item_image, latest
+    ):
+        item = await _make_item(
+            db_session,
+            test_user,
+            image_path=str(item_image),
+            tags={"logprobs_confidence": 0.4},
+        )
+        stub_ai(_ai_tags(logprobs_confidence=latest))
+
+        with (
+            patch("app.workers.tagging.get_db_session", return_value=db_session),
+            patch.object(db_session, "close", new_callable=AsyncMock),
+        ):
+            await tagging.tag_item_image({}, str(item.id), str(item_image))
+
+        await db_session.refresh(item)
+        assert item.tags.get("logprobs_confidence") == latest
+
+    @pytest.mark.asyncio
     async def test_user_set_fit_survives_analysis(self, db_session, test_user, stub_ai, item_image):
         """`fit` has no mirrored column, so only the JSONB merge protects it."""
         item = await _make_item(
