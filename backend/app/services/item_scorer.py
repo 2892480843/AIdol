@@ -76,6 +76,7 @@ REMOVABLE_LAYER_HOT_FLOOR = 0.6
 
 REMOVABLE_LAYER_TYPES = {"jacket", "coat", "blazer", "hoodie", "cardigan", "vest"}
 RAIN_LAYER_TYPES = {"jacket", "coat", "hoodie"}
+RAIN_LIKELY_CHANCE = 50
 WARM_LAYER_TYPES = REMOVABLE_LAYER_TYPES | {"sweater"}
 HEAVY_LAYER_TYPES = {"coat"}
 HEAVY_LAYER_MATERIALS = {"wool", "fleece", "down", "shearling"}
@@ -104,6 +105,14 @@ class ScoredItem:
     pair_bonus: float = 0.0
 
 
+def _temp_band(temp: float, cold_threshold: float, hot_threshold: float) -> str:
+    if temp < cold_threshold:
+        return "cold"
+    if temp > hot_threshold:
+        return "hot"
+    return "mild"
+
+
 def _temp_bucket_score(
     item_type: str,
     subtype: str,
@@ -119,7 +128,8 @@ def _temp_bucket_score(
     warm_tights = item_type == "tights" and (
         subtype == "thermal" or material in ("wool", "fleece", "knit")
     )
-    if temp < cold_threshold:
+    band = _temp_band(temp, cold_threshold, hot_threshold)
+    if band == "cold":
         if warm_tights or item_type in WARM_LAYER_TYPES or material in ("wool", "fleece", "knit"):
             return 1.0
         elif "winter" in seasons:
@@ -128,7 +138,7 @@ def _temp_bucket_score(
             return 0.05
         else:
             return 0.7
-    elif temp > hot_threshold:
+    elif band == "hot":
         if warm_tights:
             return 0.05
         if material in ("cotton", "linen", "silk") or "summer" in seasons:
@@ -184,6 +194,14 @@ def stays_above_hot_threshold(weather: WeatherData, preferences: UserPreference 
     return coolest > hot_threshold
 
 
+def temperature_band(temp: float, preferences: UserPreference | None) -> str:
+    return _temp_band(temp, *_resolve_temp_thresholds(preferences))
+
+
+def rain_likely(weather: WeatherData) -> bool:
+    return weather.precipitation_chance > RAIN_LIKELY_CHANCE
+
+
 def _weather_score(
     item: ClothingItem,
     weather: WeatherData,
@@ -219,7 +237,7 @@ def _weather_score(
             hot_threshold,
         )
 
-    if weather.precipitation_chance > 50 and item_type in RAIN_LAYER_TYPES:
+    if rain_likely(weather) and item_type in RAIN_LAYER_TYPES:
         score = min(1.0, score + 0.1)
 
     return score

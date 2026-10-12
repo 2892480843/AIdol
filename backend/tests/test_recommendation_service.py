@@ -6,7 +6,7 @@ from uuid import uuid4
 import pytest
 
 from app.models.item import ClothingItem, ItemStatus
-from app.models.outfit import Outfit, OutfitItem, OutfitSource, OutfitStatus
+from app.models.outfit import Outfit, OutfitItem, OutfitSource, OutfitStatus, TimeOfDay
 from app.models.preference import UserPreference
 from app.models.user import User
 from app.services.item_scorer import ScoredItem
@@ -14,8 +14,10 @@ from app.services.recommendation_service import (
     RECOMMENDATION_PROMPT,
     AIRecommendationError,
     RecommendationService,
+    cached_suggestion_fits,
     format_temp_range_text,
     get_time_of_day,
+    suggestion_context,
 )
 from app.services.weather_service import WeatherData
 
@@ -144,16 +146,24 @@ class TestPromptTemplate:
 
 
 def _weather(
-    temp=20, temp_min=None, temp_max=None, is_day=True, window_min=None, window_max=None
+    temp=20,
+    temp_min=None,
+    temp_max=None,
+    is_day=True,
+    window_min=None,
+    window_max=None,
+    condition="clear",
+    feels_like=None,
+    precipitation=0,
 ) -> WeatherData:
     return WeatherData(
         temperature=temp,
-        feels_like=temp,
+        feels_like=temp if feels_like is None else feels_like,
         humidity=50,
-        precipitation_chance=0,
+        precipitation_chance=precipitation,
         precipitation_mm=0,
         wind_speed=10,
-        condition="clear",
+        condition=condition,
         condition_code=0,
         is_day=is_day,
         uv_index=5,
@@ -233,6 +243,87 @@ class TestTempRangeText:
         text = format_temp_range_text(weather)
         assert "5.1°C" in text
         assert "30.0°C" in text
+
+
+def _fit_prefs(updated_at=datetime(2026, 3, 8, 9, 0), **kwargs) -> UserPreference:
+    return UserPreference(
+        user_id=uuid4(),
+        cold_threshold=10,
+        hot_threshold=25,
+        temperature_sensitivity="normal",
+        updated_at=updated_at,
+        **kwargs,
+    )
+
+
+_FIT_PREFS = _fit_prefs()
+
+
+def _ctx(weather=None, time="morning", prefs=_FIT_PREFS, measurements=None) -> dict:
+    return suggestion_context(weather or _weather(), TimeOfDay(time), prefs, measurements)
+
+
+@pytest.mark.parametrize(
+    ("cached", "now", "expected"),
+    [
+        (_ctx(), _ctx(), True),
+        (_ctx(_weather(temp=20)), _ctx(_weather(temp=22.5)), True),
+        (_ctx(_weather(temp=20)), _ctx(_weather(temp=23.5)), False),
+        (_ctx(_weather(temp=2)), _ctx(_weather(temp=28)), False),
+        (_ctx(_weather(temp=11)), _ctx(_weather(temp=9)), False),
+        (_ctx(_weather(temp=24)), _ctx(_weather(temp=26)), False),
+        (_ctx(_weather(temp=20)), _ctx(_weather(temp=20, feels_like=14)), False),
+        (_ctx(), _ctx(_weather(condition="rainy")), False),
+        (_ctx(_weather(precipitation=10)), _ctx(_weather(precipitation=40)), True),
+        (_ctx(_weather(precipitation=10)), _ctx(_weather(precipitation=80)), False),
+        (_ctx(), _ctx(time="evening"), False),
+        (_ctx(), _ctx(_weather(temp=20, window_min=8, window_max=22)), False),
+        (
+            _ctx(_weather(temp=14, window_min=10.5, window_max=24)),
+            _ctx(_weather(temp=14, window_min=10.5, window_max=26)),
+            False,
+        ),
+        (
+            _ctx(_weather(temp=12, window_min=8, window_max=22)),
+            _ctx(_weather(temp=13, window_min=9, window_max=23)),
+            True,
+        ),
+        (_ctx(prefs=None), _ctx(), False),
+        (_ctx(prefs=_fit_prefs(updated_at=datetime(2026, 3, 8, 8, 0))), _ctx(), False),
+        (_ctx(measurements={"height": 170}), _ctx(measurements={"height": 170}), True),
+        (_ctx(measurements={"height": 170}), _ctx(measurements={"height": 180}), False),
+    ],
+    ids=[
+        "same",
+        "small-drift",
+        "drift-past-tolerance",
+        "cold-to-hot",
+        "crosses-cold-threshold",
+        "crosses-hot-threshold",
+        "feels-colder",
+        "condition-changed",
+        "rain-chance-stays-low",
+        "rain-became-likely",
+        "time-of-day-changed",
+        "swing-appeared",
+        "window-top-crossed-hot",
+        "window-small-drift",
+        "preferences-created",
+        "preferences-edited",
+        "same-measurements",
+        "measurements-edited",
+    ],
+)
+def test_cached_suggestion_fits_only_the_context_it_was_made_for(cached, now, expected):
+    stored = json.loads(json.dumps(cached))
+    assert cached_suggestion_fits(stored, now, _FIT_PREFS) is expected
+
+
+def test_a_cached_suggestion_without_context_does_not_fit():
+    assert cached_suggestion_fits(None, _ctx(), _FIT_PREFS) is False
+    assert cached_suggestion_fits({}, _ctx(), _FIT_PREFS) is False
+    older = {k: v for k, v in _ctx().items() if k != "body_measurements"}
+    assert cached_suggestion_fits(older, _ctx(), _FIT_PREFS) is False
 
 
 class TestSuggestRequestTimeOfDay:
@@ -719,7 +810,17 @@ class TestHotDayLegwear:
         with pytest.raises(AIRecommendationError):
             await self._materialize(db_session, test_user, ("tights",), [1], True)
 
-    async def _hot_day_outfits(self, db_session, user, ai_outfits, cached=None, count=1):
+    async def _hot_day_outfits(
+        self,
+        db_session,
+        user,
+        ai_outfits,
+        cached=None,
+        count=1,
+        cached_weather=None,
+        unavailable=None,
+        include=(),
+    ):
         kinds = ("tights", "skirt", "t-shirt", "sneakers")
         items = [
             ClothingItem(
@@ -731,6 +832,10 @@ class TestHotDayLegwear:
             )
             for kind in kinds
         ]
+        if unavailable == "archived":
+            items[3].is_archived = True
+        elif unavailable == "needs_wash":
+            items[3].needs_wash = True
         db_session.add_all(items)
         await db_session.commit()
         number_map = {n: item.id for n, item in enumerate(items, start=1)}
@@ -743,36 +848,42 @@ class TestHotDayLegwear:
                 endpoint="e",
             )
         )
+        weather = _weather(temp=35)
         if cached is not None:
-            cached = {**cached, "_number_map": {str(k): str(v) for k, v in number_map.items()}}
+            cached = {
+                **cached,
+                "_number_map": {str(k): str(v) for k, v in number_map.items()},
+                "_context": suggestion_context(
+                    cached_weather or weather, TimeOfDay.afternoon, None, user.body_measurements
+                ),
+            }
+            cached = json.loads(json.dumps(cached))
+        rejected = {items[3].id} if unavailable == "rejected" else set()
         service = RecommendationService(db_session)
         with (
             patch("app.services.recommendation_service.AIService", return_value=ai),
             patch(
                 "app.services.recommendation_service.pop_suggestion",
                 AsyncMock(side_effect=[cached, None]),
-            ),
+            ) as pop,
             patch("app.services.recommendation_service.push_suggestions", AsyncMock()) as push,
             patch.object(service, "_format_items_for_prompt", return_value=("", number_map)),
+            patch.object(service, "_get_today_rejected_item_ids", AsyncMock(return_value=rejected)),
         ):
             outfits = await service.generate_recommendations(
                 user=user,
                 occasion="casual",
-                weather_override=WeatherData(
-                    temperature=35,
-                    feels_like=35,
-                    humidity=50,
-                    precipitation_chance=0,
-                    precipitation_mm=0,
-                    wind_speed=0,
-                    condition="clear",
-                    condition_code=0,
-                    is_day=True,
-                    uv_index=0,
-                    timestamp=datetime.utcnow(),
-                ),
+                weather_override=weather,
+                include_items=[items[n - 1].id for n in include],
+                time_of_day=TimeOfDay.afternoon,
                 count=count,
             )
+        self.ai = ai
+        self.pop = pop
+        self.raw_responses = [o.ai_raw_response for o in outfits]
+        self.pushed_contexts = (
+            [od["_context"] for od in push.call_args.args[2]] if push.call_args else []
+        )
         self.pushed = [od["items"] for od in push.call_args.args[2]] if push.call_args else []
         return items, [{oi.item_id for oi in o.items} for o in outfits]
 
@@ -792,6 +903,65 @@ class TestHotDayLegwear:
             db_session, test_user, [[3, 2, 4]], cached={"items": [1]}
         )
         assert outfits == [{items[1].id, items[2].id, items[3].id}]
+
+    @pytest.mark.asyncio
+    async def test_a_cached_suggestion_for_the_same_weather_is_served(self, db_session, test_user):
+        items, outfits = await self._hot_day_outfits(
+            db_session, test_user, [[3, 2, 4]], cached={"items": [2, 4]}
+        )
+        assert outfits == [{items[1].id, items[3].id}]
+        self.ai.generate_text.assert_not_called()
+        assert not {"_context", "_number_map"} & set(self.raw_responses[0])
+
+    @pytest.mark.asyncio
+    async def test_a_cached_suggestion_from_a_cold_day_is_not_served_on_a_hot_day(
+        self, db_session, test_user
+    ):
+        items, outfits = await self._hot_day_outfits(
+            db_session,
+            test_user,
+            [[3, 2, 4]],
+            cached={"items": [2, 4]},
+            cached_weather=_weather(temp=2),
+        )
+        assert outfits == [{items[1].id, items[2].id, items[3].id}]
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize("unavailable", ["archived", "needs_wash", "rejected"])
+    async def test_a_cached_suggestion_with_an_unavailable_item_is_not_served(
+        self, db_session, test_user, unavailable
+    ):
+        items, outfits = await self._hot_day_outfits(
+            db_session, test_user, [[3, 2]], cached={"items": [2, 4]}, unavailable=unavailable
+        )
+        assert outfits == [{items[1].id, items[2].id}]
+        assert self.pop.await_count == 2
+
+    @pytest.mark.asyncio
+    async def test_a_cached_suggestion_with_a_requested_item_is_served_even_if_it_needs_a_wash(
+        self, db_session, test_user
+    ):
+        items, outfits = await self._hot_day_outfits(
+            db_session,
+            test_user,
+            [[3, 2]],
+            cached={"items": [2, 4]},
+            unavailable="needs_wash",
+            include=(4,),
+        )
+        assert outfits == [{items[1].id, items[3].id}]
+        self.ai.generate_text.assert_not_called()
+
+    @pytest.mark.asyncio
+    async def test_cached_options_record_the_weather_they_were_made_for(
+        self, db_session, test_user
+    ):
+        await self._hot_day_outfits(db_session, test_user, [[3, 2, 4], [2, 4]])
+        assert self.pushed_contexts == [
+            suggestion_context(
+                _weather(temp=35), TimeOfDay.afternoon, None, test_user.body_measurements
+            )
+        ]
 
     @pytest.mark.asyncio
     async def test_a_tights_only_first_option_falls_through_to_the_next(
