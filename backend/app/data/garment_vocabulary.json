@@ -1,5 +1,5 @@
 {
-  "roles": ["full_body", "base_top", "mid_layer", "suit", "outer_layer", "bottom", "footwear", "socks", "neckwear", "accessory"],
+  "roles": ["full_body", "base_top", "mid_layer", "suit", "outer_layer", "bottom", "legwear", "footwear", "socks", "neckwear", "accessory"],
   "types": [
     {"value": "shirt", "role": "base_top", "wash_interval": 2},
     {"value": "t-shirt", "role": "base_top", "wash_interval": 1},
@@ -26,6 +26,7 @@
     {"value": "boots", "role": "footwear", "wash_interval": 15},
     {"value": "sandals", "role": "footwear", "wash_interval": 15},
     {"value": "socks", "role": "socks", "wash_interval": 1},
+    {"value": "tights", "role": "legwear", "wash_interval": 1},
     {"value": "tie", "role": "neckwear", "wash_interval": 20},
     {"value": "hat", "role": "accessory", "wash_interval": 20},
     {"value": "scarf", "role": "accessory", "wash_interval": 10},

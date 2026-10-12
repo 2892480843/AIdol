@@ -1,3 +1,4 @@
+import json
 from datetime import UTC, date, datetime
 from unittest.mock import AsyncMock, MagicMock, patch
 from uuid import uuid4
@@ -11,6 +12,7 @@ from app.models.user import User
 from app.services.item_scorer import ScoredItem
 from app.services.recommendation_service import (
     RECOMMENDATION_PROMPT,
+    AIRecommendationError,
     RecommendationService,
     format_temp_range_text,
     get_time_of_day,
@@ -648,3 +650,155 @@ class TestIncludeItems:
             assert isinstance(data, list)
             assert len(data) == 3
             assert mock_generate.call_args.kwargs["count"] == 3
+
+
+class TestHotDayLegwear:
+    async def _materialize(self, db_session, user, kinds, picked, drop_legwear, mandatory=()):
+        items = [
+            ClothingItem(
+                user_id=user.id,
+                type=kind,
+                image_path=f"test/{uuid4()}.jpg",
+                status=ItemStatus.ready,
+                primary_color="black",
+            )
+            for kind in kinds
+        ]
+        db_session.add_all(items)
+        await db_session.commit()
+        weather = WeatherData(
+            temperature=30,
+            feels_like=30,
+            humidity=50,
+            precipitation_chance=0,
+            precipitation_mm=0,
+            wind_speed=0,
+            condition="clear",
+            condition_code=0,
+            is_day=True,
+            uv_index=0,
+            timestamp=datetime.utcnow(),
+        )
+        number_map = {n: item.id for n, item in enumerate(items, start=1)}
+        outfit = await RecommendationService(db_session)._materialize_outfit(
+            {"items": picked, "headline": "Hot day"},
+            user,
+            weather,
+            occasion="casual",
+            source=OutfitSource.on_demand,
+            number_map=number_map,
+            mandatory_item_ids={items[n - 1].id for n in mandatory} or None,
+            drop_legwear=drop_legwear,
+        )
+        return items, {oi.item_id for oi in outfit.items}
+
+    @pytest.mark.asyncio
+    @pytest.mark.parametrize(
+        ("drop_legwear", "mandatory", "tights_kept"),
+        [(True, (), False), (False, (), True), (True, (3,), True)],
+        ids=["hot", "not-hot", "hot-but-requested"],
+    )
+    async def test_drops_only_unrequested_tights_on_a_hot_day(
+        self, db_session, test_user, drop_legwear, mandatory, tights_kept
+    ):
+        items, kept = await self._materialize(
+            db_session,
+            test_user,
+            ("t-shirt", "skirt", "tights", "sneakers"),
+            [1, 2, 3, 4],
+            drop_legwear,
+            mandatory,
+        )
+        assert (items[2].id in kept) is tights_kept
+        assert {items[0].id, items[1].id, items[3].id} <= kept
+
+    @pytest.mark.asyncio
+    async def test_an_answer_of_only_tights_is_not_saved_as_an_empty_outfit(
+        self, db_session, test_user
+    ):
+        with pytest.raises(AIRecommendationError):
+            await self._materialize(db_session, test_user, ("tights",), [1], True)
+
+    async def _hot_day_outfits(self, db_session, user, ai_outfits, cached=None, count=1):
+        kinds = ("tights", "skirt", "t-shirt", "sneakers")
+        items = [
+            ClothingItem(
+                user_id=user.id,
+                type=kind,
+                image_path=f"test/{uuid4()}.jpg",
+                status=ItemStatus.ready,
+                primary_color="black",
+            )
+            for kind in kinds
+        ]
+        db_session.add_all(items)
+        await db_session.commit()
+        number_map = {n: item.id for n, item in enumerate(items, start=1)}
+        user.preferences = None
+        ai = MagicMock()
+        ai.generate_text = AsyncMock(
+            return_value=MagicMock(
+                content=json.dumps({"outfits": [{"items": o} for o in ai_outfits]}),
+                model="m",
+                endpoint="e",
+            )
+        )
+        if cached is not None:
+            cached = {**cached, "_number_map": {str(k): str(v) for k, v in number_map.items()}}
+        service = RecommendationService(db_session)
+        with (
+            patch("app.services.recommendation_service.AIService", return_value=ai),
+            patch(
+                "app.services.recommendation_service.pop_suggestion",
+                AsyncMock(side_effect=[cached, None]),
+            ),
+            patch("app.services.recommendation_service.push_suggestions", AsyncMock()) as push,
+            patch.object(service, "_format_items_for_prompt", return_value=("", number_map)),
+        ):
+            outfits = await service.generate_recommendations(
+                user=user,
+                occasion="casual",
+                weather_override=WeatherData(
+                    temperature=35,
+                    feels_like=35,
+                    humidity=50,
+                    precipitation_chance=0,
+                    precipitation_mm=0,
+                    wind_speed=0,
+                    condition="clear",
+                    condition_code=0,
+                    is_day=True,
+                    uv_index=0,
+                    timestamp=datetime.utcnow(),
+                ),
+                count=count,
+            )
+        self.pushed = [od["items"] for od in push.call_args.args[2]] if push.call_args else []
+        return items, [{oi.item_id for oi in o.items} for o in outfits]
+
+    @pytest.mark.asyncio
+    async def test_a_tights_only_option_is_skipped_not_fatal(self, db_session, test_user):
+        items, outfits = await self._hot_day_outfits(
+            db_session, test_user, [[3, 2], [1], [2, 4], [3]], count=2
+        )
+        assert outfits == [{items[2].id, items[1].id}, {items[1].id, items[3].id}]
+        assert self.pushed == [[3]]
+
+    @pytest.mark.asyncio
+    async def test_a_tights_only_cached_suggestion_falls_through_to_a_fresh_one(
+        self, db_session, test_user
+    ):
+        items, outfits = await self._hot_day_outfits(
+            db_session, test_user, [[3, 2, 4]], cached={"items": [1]}
+        )
+        assert outfits == [{items[1].id, items[2].id, items[3].id}]
+
+    @pytest.mark.asyncio
+    async def test_a_tights_only_first_option_falls_through_to_the_next(
+        self, db_session, test_user
+    ):
+        items, outfits = await self._hot_day_outfits(
+            db_session, test_user, [[1], [3, 2, 4], [2, 3]]
+        )
+        assert outfits == [{items[1].id, items[2].id, items[3].id}]
+        assert self.pushed == [[2, 3]]

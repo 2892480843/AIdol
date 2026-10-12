@@ -23,7 +23,12 @@ from app.models.outfit import (
 from app.models.preference import UserPreference
 from app.models.user import User
 from app.services.ai_service import AIResponseTruncatedError, AIService, require_internal_ai
-from app.services.item_scorer import get_season, score_items, scoring_temp_range
+from app.services.item_scorer import (
+    get_season,
+    score_items,
+    scoring_temp_range,
+    stays_above_hot_threshold,
+)
 from app.services.suggestion_cache import pop_suggestion, push_suggestions
 from app.services.weather_service import (
     GeocodingServiceError,
@@ -31,7 +36,7 @@ from app.services.weather_service import (
     WeatherService,
     WeatherServiceError,
 )
-from app.utils.clothing import canonical_item_order, deduplicate_by_body_slot
+from app.utils.clothing import canonical_item_order, deduplicate_by_body_slot, remove_legwear
 from app.utils.preference_defaults import (
     DEFAULT_LAYERING_PREFERENCE,
     DEFAULT_TEMPERATURE_SENSITIVITY,
@@ -599,6 +604,7 @@ class RecommendationService:
         number_map: dict[int, UUID],
         scheduled_date: date | None = None,
         mandatory_item_ids: set[UUID] | None = None,
+        drop_legwear: bool = False,
     ) -> Outfit:
         selected_numbers = outfit_data.get("items", [])
         valid_ids = []
@@ -631,9 +637,6 @@ class RecommendationService:
                     logger.info(f"Adding missing mandatory item {mid} to outfit")
                     valid_ids.insert(0, mid)
 
-        if not valid_ids:
-            raise AIRecommendationError("AI did not select any valid items")
-
         # Deduplicate by body slot (e.g. prevent shorts + pants)
         items_result = await self.db.execute(
             select(ClothingItem.id, ClothingItem.type).where(ClothingItem.id.in_(valid_ids))
@@ -642,6 +645,12 @@ class RecommendationService:
         valid_ids = deduplicate_by_body_slot(
             valid_ids, item_type_map, mandatory_item_ids=mandatory_item_ids
         )
+        # Prompt wording alone does not keep small models from adding tights on a hot
+        # day; tights the user asked for stay.
+        if drop_legwear:
+            valid_ids = remove_legwear(valid_ids, item_type_map, mandatory_item_ids or set())
+        if not valid_ids:
+            raise EmptyOutfitError("AI did not select any valid items")
         valid_ids = canonical_item_order(valid_ids, item_type_map)
 
         reasoning = outfit_data.get("headline") or outfit_data.get("reasoning")
@@ -754,6 +763,7 @@ class RecommendationService:
                 ) from e
 
         preferences = user.preferences
+        drop_legwear = stays_above_hot_threshold(weather, preferences)
 
         ai_endpoints = None
         if preferences and preferences.ai_endpoints:
@@ -823,16 +833,21 @@ class RecommendationService:
                     continue
 
                 logger.info(f"Using cached suggestion for user {user.id}, occasion: {occasion}")
-                outfit = await self._materialize_outfit(
-                    cached,
-                    user,
-                    weather,
-                    occasion,
-                    source,
-                    number_map,
-                    scheduled_date=scheduled_date,
-                    mandatory_item_ids=set(include_items) if include_items else None,
-                )
+                try:
+                    outfit = await self._materialize_outfit(
+                        cached,
+                        user,
+                        weather,
+                        occasion,
+                        source,
+                        number_map,
+                        scheduled_date=scheduled_date,
+                        mandatory_item_ids=set(include_items) if include_items else None,
+                        drop_legwear=drop_legwear,
+                    )
+                except EmptyOutfitError:
+                    logger.info("Cached suggestion has nothing left to wear, skipping")
+                    continue
                 return [outfit]
 
         # Fetch scoring context
@@ -931,6 +946,7 @@ class RecommendationService:
                     number_map,
                     scheduled_date=scheduled_date,
                     mandatory_item_ids=set(include_items) if include_items else None,
+                    drop_legwear=drop_legwear,
                 )
                 return [outfit]
 
@@ -938,26 +954,37 @@ class RecommendationService:
             outfit_list = self._parse_multi_outfit_response(result.content)
 
             outfits = []
-            for od in outfit_list[:count]:
+            consumed = 0
+            for od in outfit_list:
+                if len(outfits) == count:
+                    break
+                consumed += 1
                 od["_ai_model"] = result.model
                 od["_ai_endpoint"] = result.endpoint
-                outfit = await self._materialize_outfit(
-                    od,
-                    user,
-                    weather,
-                    occasion,
-                    source,
-                    number_map,
-                    scheduled_date=scheduled_date,
-                    mandatory_item_ids=set(include_items) if include_items else None,
-                )
+                try:
+                    outfit = await self._materialize_outfit(
+                        od,
+                        user,
+                        weather,
+                        occasion,
+                        source,
+                        number_map,
+                        scheduled_date=scheduled_date,
+                        mandatory_item_ids=set(include_items) if include_items else None,
+                        drop_legwear=drop_legwear,
+                    )
+                except EmptyOutfitError:
+                    logger.warning("AI outfit option has nothing left to wear, skipping")
+                    continue
                 outfits.append(outfit)
+            if not outfits:
+                raise AIRecommendationError("AI did not select any valid items")
 
             # Cache remaining outfits for "Try Another"
-            if use_cache and len(outfit_list) > count:
+            if use_cache and len(outfit_list) > consumed:
                 serializable_map = {str(k): str(v) for k, v in number_map.items()}
                 to_cache = []
-                for od in outfit_list[count:]:
+                for od in outfit_list[consumed:]:
                     od["_number_map"] = serializable_map
                     od["_ai_model"] = result.model
                     od["_ai_endpoint"] = result.endpoint
@@ -1013,4 +1040,10 @@ class InsufficientWardrobeError(Exception):
 
 
 class AIRecommendationError(Exception):
+    pass
+
+
+# An outfit with nothing left to wear after cleanup; one bad option among several, or a
+# stale cached one, is skipped rather than failing the whole request.
+class EmptyOutfitError(AIRecommendationError):
     pass
