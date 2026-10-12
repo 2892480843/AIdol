@@ -270,6 +270,7 @@ Upgrading from a release before sign-in identities (the `user_identities` table)
 | Variable | Description | Required |
 |----------|-------------|----------|
 | `DATABASE_URL` | PostgreSQL connection string | Yes |
+| `REDIS_URL` | Redis URL for the API and workers (default: `redis://localhost:6379/0`; the bundled Compose files set it themselves) | No |
 | `SECRET_KEY` | Backend secret for JWT. The backend refuses to start with the default `change-me-in-production` unless `DEBUG=true` and neither OIDC nor forward-auth is configured | Yes |
 | `NEXTAUTH_SECRET` | NextAuth session encryption. The frontend refuses to start with a value beginning `change-me-in-production` when `OIDC_ISSUER_URL` or `FORWARD_AUTH_SECRET` is set | Yes |
 | `AI_BASE_URL` | AI service URL | Yes |
@@ -325,6 +326,19 @@ Upgrading from a release before sign-in identities (the `user_identities` table)
 | `NEXT_PUBLIC_NETWORK_LOCATION_URL` | Override the IP geolocation provider (default: `https://ipapi.co/json/`). Only used when the fallback above is enabled | No |
 | `PUID` | Uid the app process runs as (default: 1000 backend/worker, 1001 frontend) | No |
 | `PGID` | Gid the app process runs as (default: 1000 backend/worker, 1001 frontend) | No |
+
+</details>
+
+<details>
+<summary>Using your own Redis (password, TLS, unix socket)</summary>
+
+Set the same `REDIS_URL` on the API and both workers. The bundled Compose files point every service at their own Redis container, so a `REDIS_URL` in `.env` has no effect there.
+
+- Password: `redis://:password@redis:6379/2` (or `user:password@`)
+- TLS: `rediss://:password@redis:6380/2`
+- Unix socket: `unix://:password@/run/redis/redis.sock?db=2`
+
+`db` is the only supported query parameter. Percent-encode reserved characters in passwords and socket paths (`@` as `%40`, `/` as `%2F`, `#` as `%23`).
 
 </details>
 
