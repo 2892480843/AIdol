@@ -40,6 +40,12 @@
 
 Self-hosted wardrobe management with AI-powered outfit recommendations. Take photos of your clothes, let AI tag them, and get daily outfit suggestions based on weather and occasion.
 
+## 参赛队伍
+
+- **队伍**：云上码术
+- **队长**：陈帅
+- **队员**：阮虹、翊元乘壹
+
 ## Features
 
 - **Photo-based wardrobe** - Upload photos, AI extracts clothing details automatically
