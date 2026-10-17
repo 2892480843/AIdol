@@ -1,0 +1,304 @@
+{
+  "recordedAt": "2026-10-17T10:53:40.689Z",
+  "checks": [
+    {
+      "check": "deployed-home-default",
+      "url": "http://localhost:3000/dashboard",
+      "headings": [
+        "欢迎回来，演示验收",
+        "待你确认的推荐5",
+        "最近入库",
+        "换个单品，换点新意",
+        "今日天气",
+        "衣橱待办",
+        "每日安排",
+        "常见配色",
+        "洞察",
+        "常用入口"
+      ],
+      "images": [
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "架构验收：黄色连衣裙",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shoes",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shirt",
+          "loaded": true
+        },
+        {
+          "alt": "网页验收：红色外套",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-pants",
+          "loaded": true
+        },
+        {
+          "alt": "架构验收：黄色连衣裙",
+          "loaded": true
+        },
+        {
+          "alt": "网页验收：红色外套",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shoes",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-pants",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shirt",
+          "loaded": true
+        },
+        {
+          "alt": "架构验收：黄色连衣裙",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shirt",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-pants",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shoes",
+          "loaded": true
+        }
+      ],
+      "metrics": [
+        "衣橱单品5",
+        "搭配记录11",
+        "近7天新增穿搭11",
+        "累计采纳率100%"
+      ],
+      "scrollWidth": 830,
+      "width": 830
+    },
+    {
+      "check": "recent-garment-detail",
+      "url": "http://localhost:3000/dashboard/wardrobe?item=082b6966-1580-4ec9-af7a-4fc9de3a6db6",
+      "dialog": "架构验收：黄色连衣裙",
+      "passed": true
+    },
+    {
+      "check": "rediscover-base-item",
+      "url": "http://localhost:3000/dashboard/suggest?item=082b6966-1580-4ec9-af7a-4fc9de3a6db6",
+      "selected": true,
+      "passed": true
+    },
+    {
+      "check": "ai-history-filter",
+      "url": "http://localhost:3000/dashboard/outfits?filter=ai",
+      "selected": "true",
+      "passed": true
+    },
+    {
+      "check": "outfit-detail",
+      "url": "http://localhost:3000/dashboard/outfits/3b3a96f0-8788-4791-979e-381c3a74fe2c",
+      "title": "复古波点休闲裙",
+      "passed": true
+    },
+    {
+      "check": "washing-filter",
+      "url": "http://localhost:3000/dashboard/wardrobe?needsWash=true",
+      "empty": true,
+      "selectedStyle": "default",
+      "passed": true
+    },
+    {
+      "check": "favorites-shortcut",
+      "url": "http://localhost:3000/dashboard/wardrobe?favorite=true",
+      "main": "我的衣柜\n\n衣柜中有 0 件单品\n\n添加单品\n最新在前\n1\n\n没有找到符合筛选条件的单品。\n\n清除筛选\n全选\n未选择",
+      "passed": true
+    },
+    {
+      "check": "worn-shortcut",
+      "url": "http://localhost:3000/dashboard/outfits?filter=worn",
+      "selected": "true",
+      "passed": true
+    },
+    {
+      "check": "studio-shortcut",
+      "url": "http://localhost:3000/dashboard/outfits/new",
+      "heading": "工作室",
+      "passed": true
+    },
+    {
+      "check": "analytics-shortcut",
+      "url": "http://localhost:3000/dashboard/analytics",
+      "heading": "数据分析",
+      "passed": true
+    },
+    {
+      "check": "weather-location-anchor",
+      "sectionExists": true,
+      "url": "http://localhost:3000/dashboard/settings#settings-location",
+      "passed": true
+    },
+    {
+      "check": "daily-setup-notifications",
+      "url": "http://localhost:3000/dashboard/notifications",
+      "headings": [
+        "通知",
+        "通知渠道0",
+        "推送时间表0"
+      ],
+      "passed": true
+    },
+    {
+      "check": "final-desktop-1280",
+      "headings": [
+        "待你确认的推荐5",
+        "复古波点休闲裙",
+        "蓝红撞色休闲装",
+        "最近入库",
+        "架构验收：黄色连衣裙",
+        "网页验收：红色外套",
+        "验收样例-shoes",
+        "验收样例-pants",
+        "验收样例-shirt",
+        "换个单品，换点新意",
+        "架构验收：黄色连衣裙",
+        "验收样例-shirt",
+        "验收样例-pants",
+        "验收样例-shoes",
+        "今日天气",
+        "衣橱待办",
+        "每日安排",
+        "常见配色",
+        "洞察",
+        "常用入口"
+      ],
+      "images": [
+        {
+          "alt": "",
+          "loaded": true
+        },
+        {
+          "alt": "架构验收：黄色连衣裙",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shoes",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shirt",
+          "loaded": true
+        },
+        {
+          "alt": "网页验收：红色外套",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-pants",
+          "loaded": true
+        },
+        {
+          "alt": "架构验收：黄色连衣裙",
+          "loaded": true
+        },
+        {
+          "alt": "网页验收：红色外套",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shoes",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-pants",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shirt",
+          "loaded": true
+        },
+        {
+          "alt": "架构验收：黄色连衣裙",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shirt",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-pants",
+          "loaded": true
+        },
+        {
+          "alt": "验收样例-shoes",
+          "loaded": true
+        }
+      ],
+      "scrollWidth": 1280,
+      "title": "欢迎回来，演示验收",
+      "width": 1280,
+      "passed": true
+    },
+    {
+      "check": "final-layout-1024",
+      "scrollWidth": 1024,
+      "width": 1024,
+      "passed": true
+    },
+    {
+      "check": "final-layout-mobile-390",
+      "scrollWidth": 390,
+      "theme": "light",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "check": "final-mobile-dark",
+      "scrollWidth": 390,
+      "theme": "dark",
+      "width": 390,
+      "passed": true
+    },
+    {
+      "check": "final-desktop-dark",
+      "scrollWidth": 1280,
+      "theme": "dark",
+      "width": 1280,
+      "passed": true
+    },
+    {
+      "check": "final-default-830",
+      "headings": [
+        "待你确认的推荐5",
+        "最近入库",
+        "换个单品，换点新意",
+        "今日天气",
+        "衣橱待办",
+        "每日安排",
+        "常见配色",
+        "洞察",
+        "常用入口"
+      ],
+      "scrollWidth": 830,
+      "theme": "light",
+      "width": 830,
+      "passed": true
+    },
+    {
+      "check": "final-named-recommendation-detail",
+      "url": "http://localhost:3000/dashboard/outfits/3b3a96f0-8788-4791-979e-381c3a74fe2c",
+      "heading": "复古波点休闲裙",
+      "passed": true
+    }
+  ]
+}

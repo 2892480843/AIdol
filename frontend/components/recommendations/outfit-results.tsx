@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { useLocale } from 'next-intl';
@@ -36,8 +38,8 @@ function OutfitCard({
 }) {
   const typeLabel = useTypeLabel();
   return (
-    <Card className="overflow-hidden flex flex-col h-full">
-      <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-4 border-b">
+    <Card className={styles.resultCard}>
+      <div className={styles.resultHeading}>
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2 min-w-0">
             <Sparkles className="h-5 w-5 text-primary flex-shrink-0" />
@@ -64,7 +66,7 @@ function OutfitCard({
       </div>
 
       <CardContent className="p-4 flex-1 flex flex-col justify-between space-y-4">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+        <div className={styles.resultItems}>
           {outfit.items.map((item) => {
             const isBase = !!baseItemId && item.id === baseItemId;
             return (
@@ -182,7 +184,7 @@ export function OutfitResultsView({
   return (
     <div className="space-y-6">
       {/* Header with occasion and start over */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-wrap gap-3">
         <div className="flex items-center gap-2">
           <Badge variant="secondary" className="text-sm px-3 py-1">
             {occasionLabel(occasion)}
@@ -219,13 +221,14 @@ export function OutfitResultsView({
 
       {/* Options Switcher Bar (when multiple outfits exist) */}
       {outfits.length > 1 && (
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-1.5 bg-muted/60 rounded-xl border">
+        <div className={styles.resultChoices}>
           <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none py-0.5">
             {outfits.map((opt, idx) => (
-              <button
+              <Button variant="ghost"
                 key={opt.id}
                 type="button"
                 onClick={() => onSelectOption(idx)}
+                aria-pressed={!isCompareAll && activeOptionIndex === idx}
                 className={cn(
                   'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 flex-shrink-0',
                   !isCompareAll && activeOptionIndex === idx
@@ -235,7 +238,7 @@ export function OutfitResultsView({
               >
                 <Sparkles className={cn("h-3.5 w-3.5", !isCompareAll && activeOptionIndex === idx ? "text-primary" : "opacity-40")} />
                 <span>{t('options.optionNumber', { number: idx + 1 })}</span>
-              </button>
+              </Button>
             ))}
           </div>
 
@@ -256,7 +259,7 @@ export function OutfitResultsView({
       {/* View: All Outfits Side-by-Side Grid */}
       {isCompareAll ? (
         <div className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className={styles.collection}>
             {outfits.map((opt, idx) => (
               <OutfitCard
                 key={opt.id}

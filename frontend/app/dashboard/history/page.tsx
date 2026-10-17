@@ -1,5 +1,8 @@
 'use client';
 
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/secondary-ui.module.css';
+
 import { useState, useMemo } from 'react';
 import { Calendar } from 'lucide-react';
 import { useLocale, useTranslations } from 'next-intl';
@@ -31,7 +34,7 @@ import { useUserToday } from '@/lib/hooks/use-user';
 
 function EmptyHistory({ t }: { t: (key: string) => string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
+    <div className={styles.emptyState}>
       <div className="rounded-full bg-muted p-6 mb-4">
         <Calendar className="h-12 w-12 text-muted-foreground" />
       </div>
@@ -49,7 +52,7 @@ function EmptyHistory({ t }: { t: (key: string) => string }) {
 function EmptyDate({ date, t }: { date: Date; t: (key: string, params?: Record<string, string | number>) => string }) {
   const locale = useLocale();
   return (
-    <div className="flex flex-col items-center justify-center py-8 px-4 text-center">
+    <div className={styles.emptyState}>
       <Calendar className="h-8 w-8 text-muted-foreground mb-2" />
       <p className="text-sm text-muted-foreground">
         {t('noOutfitsForDate', {
@@ -146,26 +149,18 @@ export default function HistoryPage() {
 
   if (isError) {
     return (
-      <div className="text-center py-8 text-red-500">
+      <div role="alert" className="surface-panel p-8 text-center text-destructive">
         {t('loadError')}
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-muted-foreground">
-            {t('subtitle')}
-          </p>
-        </div>
-      </div>
+    <div className={styles.page}>
+      <PageHeader title={t('title')} description={t('subtitle')} icon={<Calendar className="h-5 w-5" />} />
 
       {/* Filters */}
-      <div className="flex gap-3 flex-wrap">
+      <div className={styles.toolbar}>
         <Select value={filters.occasion || 'all'} onValueChange={handleOccasionChange}>
           <SelectTrigger className="w-[150px]">
             <SelectValue placeholder={t('filters.allOccasions')} />
@@ -183,9 +178,9 @@ export default function HistoryPage() {
       </div>
 
       {/* Main content - two column layout */}
-      <div className="grid lg:grid-cols-[350px_1fr] gap-6">
+      <div className="grid items-start gap-6 lg:grid-cols-[340px_minmax(0,1fr)]">
         {/* Calendar column */}
-        <Card className="h-fit order-2 lg:order-1">
+        <Card className="min-w-0 lg:sticky lg:top-24">
           <CardContent className="p-4">
             {isLoading ? (
               <CalendarSkeleton />
@@ -203,11 +198,11 @@ export default function HistoryPage() {
         </Card>
 
         {/* Outfits column */}
-        <div className="order-1 lg:order-2 space-y-4">
+        <div className="min-w-0 space-y-5">
           {/* Selected date header */}
           {selectedDate && (
-            <div className="border-b pb-3">
-              <h2 className="text-lg font-semibold">
+            <div className="flex flex-wrap items-end justify-between gap-2 border-b pb-4">
+              <h2 className="text-xl font-semibold tracking-tight">
                 {formatDate(selectedDate, locale, { weekday: 'long', month: 'long', day: 'numeric' })}
               </h2>
               <p className="text-sm text-muted-foreground">

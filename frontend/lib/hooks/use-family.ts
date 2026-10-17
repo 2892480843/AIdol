@@ -14,6 +14,7 @@ export function useFamily() {
 
   return useQuery({
     queryKey: queryKeys.family,
+    meta: { quietErrorStatuses: [404] },
     queryFn: () => api.get<Family>('/families/me'),
     enabled: status !== 'loading',
     retry: false, // Don't retry on 404 (user not in family)

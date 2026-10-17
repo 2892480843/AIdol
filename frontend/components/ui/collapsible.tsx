@@ -1,88 +1,112 @@
-'use client';
-
-import * as React from 'react';
-import { cn } from '@/lib/utils';
-
-interface CollapsibleContextValue {
+"use client";
+import * as React from "react";
+import { Box, Collapse } from "@mantine/core";
+import { Slot } from "./slot";
+interface CollapsibleValue {
   open: boolean;
-  onOpenChange: (open: boolean) => void;
+  change: (open: boolean) => void;
+  id: string;
+  disabled?: boolean;
 }
-
-const CollapsibleContext = React.createContext<CollapsibleContextValue | undefined>(undefined);
-
-interface CollapsibleProps {
-  children: React.ReactNode;
+const Context = React.createContext<CollapsibleValue | null>(null);
+function useCollapsible() {
+  const value = React.useContext(Context);
+  if (!value) throw new Error("Collapsible components require Collapsible");
+  return value;
+}
+interface CollapsibleProps extends React.HTMLAttributes<HTMLDivElement> {
   open?: boolean;
-  onOpenChange?: (open: boolean) => void;
   defaultOpen?: boolean;
-  className?: string;
+  onOpenChange?: (open: boolean) => void;
+  disabled?: boolean;
 }
-
-function Collapsible({
-  children,
-  open: controlledOpen,
-  onOpenChange,
-  defaultOpen = false,
-  className,
-}: CollapsibleProps) {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(defaultOpen);
-  const isControlled = controlledOpen !== undefined;
-  const open = isControlled ? controlledOpen : uncontrolledOpen;
-
-  const handleOpenChange = React.useCallback(
-    (newOpen: boolean) => {
-      if (!isControlled) {
-        setUncontrolledOpen(newOpen);
-      }
-      onOpenChange?.(newOpen);
+const Collapsible = React.forwardRef<HTMLDivElement, CollapsibleProps>(
+  (
+    {
+      open: controlled,
+      defaultOpen = false,
+      onOpenChange,
+      disabled,
+      children,
+      ...props
     },
-    [isControlled, onOpenChange]
-  );
-
-  return (
-    <CollapsibleContext.Provider value={{ open, onOpenChange: handleOpenChange }}>
-      <div className={className}>{children}</div>
-    </CollapsibleContext.Provider>
-  );
-}
-
-interface CollapsibleTriggerProps {
-  children: React.ReactNode;
-  asChild?: boolean;
-  className?: string;
-}
-
-function CollapsibleTrigger({ children, asChild, className }: CollapsibleTriggerProps) {
-  const context = React.useContext(CollapsibleContext);
-  if (!context) throw new Error('CollapsibleTrigger must be used within Collapsible');
-
-  const handleClick = () => context.onOpenChange(!context.open);
-
-  if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(children as React.ReactElement<{ onClick?: () => void }>, {
-      onClick: handleClick,
-    });
-  }
-
-  return (
-    <button type="button" className={className} onClick={handleClick}>
+    ref,
+  ) => {
+    const [local, setLocal] = React.useState(defaultOpen);
+    const open = controlled ?? local;
+    const id = React.useId();
+    const change = (next: boolean) => {
+      if (disabled) return;
+      if (controlled === undefined) setLocal(next);
+      onOpenChange?.(next);
+    };
+    return (
+      <Context.Provider value={{ open, change, id, disabled }}>
+        <Box
+          ref={ref}
+          data-ui="collapsible"
+          data-state={open ? "open" : "closed"}
+          {...props}
+        >
+          {children}
+        </Box>
+      </Context.Provider>
+    );
+  },
+);
+const CollapsibleTrigger = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement> & { asChild?: boolean }
+>(({ asChild, onClick, children, ...props }, ref) => {
+  const ctx = useCollapsible();
+  const shared = {
+    ...props,
+    "aria-expanded": ctx.open,
+    "aria-controls": ctx.id,
+    disabled: ctx.disabled,
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+      onClick?.(event);
+      if (!event.defaultPrevented) ctx.change(!ctx.open);
+    },
+  };
+  return asChild ? (
+    <Slot
+      ref={ref as React.ForwardedRef<HTMLElement>}
+      {...(shared as React.HTMLAttributes<HTMLElement>)}
+    >
+      {children as React.ReactElement}
+    </Slot>
+  ) : (
+    <Box
+      component="button"
+      type="button"
+      ref={ref}
+      data-ui="collapsible-trigger"
+      {...shared}
+    >
       {children}
-    </button>
+    </Box>
   );
-}
-
-interface CollapsibleContentProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-function CollapsibleContent({ children, className }: CollapsibleContentProps) {
-  const context = React.useContext(CollapsibleContext);
-  if (!context) throw new Error('CollapsibleContent must be used within Collapsible');
-
-  if (!context.open) return null;
-
-  return <div className={cn('animate-in fade-in-0 slide-in-from-top-1', className)}>{children}</div>;
-}
-
+});
+const CollapsibleContent = React.forwardRef<
+  HTMLDivElement,
+  Omit<React.HTMLAttributes<HTMLDivElement>, "onTransitionEnd"> & {
+    forceMount?: boolean;
+  }
+>(({ forceMount, ...props }, ref) => {
+  const ctx = useCollapsible();
+  return (
+    <Collapse
+      ref={ref}
+      in={ctx.open}
+      keepMounted={forceMount}
+      id={ctx.id}
+      data-ui="collapsible-content"
+      {...props}
+    />
+  );
+});
+Collapsible.displayName = "Collapsible";
+CollapsibleTrigger.displayName = "CollapsibleTrigger";
+CollapsibleContent.displayName = "CollapsibleContent";
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };

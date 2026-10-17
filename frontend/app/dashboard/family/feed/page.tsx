@@ -1,5 +1,10 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/secondary-ui.module.css';
+
 import { useState } from 'react';
 import {
   Loader2,
@@ -55,10 +60,10 @@ function FeedOutfitCard({
   const myRating = outfit.family_ratings?.find((r) => r.user_id === currentMemberId);
 
   return (
-    <Card className="overflow-hidden">
-      <CardContent className="p-4 space-y-3">
+    <Card className="min-w-0 overflow-hidden">
+      <CardContent className="space-y-5 p-5 sm:p-6">
         {/* Header */}
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <SourceBadge source={outfit.source} />
             <Badge variant="secondary" className="capitalize text-xs">
@@ -77,23 +82,23 @@ function FeedOutfitCard({
         </div>
 
         {/* Item thumbnails - clickable */}
-        <button
+        <UnstyledButton
           type="button"
           onClick={onPreview}
-          className="flex gap-2 text-left w-full group"
+          className={styles.outfitGallery}
         >
           {outfit.items.map((item) => (
             <div
               key={item.id}
-              className="w-20 h-20 rounded-lg bg-muted overflow-hidden relative border shadow-sm group-hover:shadow-md transition-shadow"
+              className={styles.outfitTile}
             >
               {item.thumbnail_url ? (
                 <Image
                   src={item.thumbnail_url}
                   alt={item.name || typeLabel(item.type)}
                   fill
-                  className="object-cover"
-                  sizes="80px"
+                  className="object-contain p-1"
+                  sizes="(max-width: 640px) 28vw, 160px"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">
@@ -102,7 +107,7 @@ function FeedOutfitCard({
               )}
             </div>
           ))}
-        </button>
+        </UnstyledButton>
 
         {/* AI reasoning */}
         {outfit.reasoning && (
@@ -111,7 +116,7 @@ function FeedOutfitCard({
 
         {/* Family ratings summary */}
         {outfit.family_rating_count != null && outfit.family_rating_count > 0 && (
-          <div className="flex items-center gap-2 text-sm">
+          <div className="flex min-w-0 flex-wrap items-center gap-2 text-sm">
             <Users className="h-4 w-4 text-muted-foreground" />
             <StarRatingDisplay
               value={Math.round(outfit.family_rating_average ?? 0)}
@@ -153,8 +158,8 @@ function FeedOutfitCard({
             </Button>
           )
         ) : (
-          <div className="flex items-center justify-between pt-2 border-t">
-            <div className="flex items-center gap-2 text-sm">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t pt-4">
+            <div className="flex min-w-0 flex-wrap items-center gap-2 text-sm">
               <span className="text-muted-foreground">{t('ratings.yourRating')}</span>
               <StarRatingDisplay value={myRating.rating} starClassName="h-4 w-4" />
               {myRating.comment && (
@@ -192,15 +197,10 @@ function FeedOutfitCard({
 function NoFamilyState() {
   const t = useTranslations('family');
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">{t('feed.title')}</h1>
-        <p className="text-muted-foreground">
-          {t('feed.subtitle')}
-        </p>
-      </div>
+    <div className={styles.page}>
+      <PageHeader title={t('feed.title')} description={t('feed.subtitle')} icon={<Users className="h-5 w-5" />} />
 
-      <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
+      <div className={styles.emptyState}>
         <div className="rounded-full bg-muted p-6 mb-4">
           <Users className="h-12 w-12 text-muted-foreground" />
         </div>
@@ -257,28 +257,20 @@ function FeedContent() {
   }
 
   if (memberError) {
-    return <div className="text-center py-8 text-red-500">{te('pageLoad.title')}</div>;
+    return <div role="alert" className="surface-panel p-8 text-center text-destructive">{te('pageLoad.title')}</div>;
   }
 
   if (otherMembers.length === 0) {
     return (
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">{t('feed.title')}</h1>
-            <p className="text-muted-foreground">
-              {t('feed.subtitle')}
-            </p>
-          </div>
-          <Button variant="outline" size="sm" asChild>
+      <div className={styles.page}>
+        <PageHeader title={t('feed.title')} description={t('feed.subtitle')} icon={<Users className="h-5 w-5" />} actions={<Button variant="outline" size="sm" asChild>
             <Link href="/dashboard/family">
               <Settings className="h-4 w-4 mr-2" />
               {t('feed.noMembers.manageFamily')}
             </Link>
-          </Button>
-        </div>
+          </Button>} />
 
-        <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
+        <div className={styles.emptyState}>
           <div className="rounded-full bg-muted p-6 mb-4">
             <Users className="h-12 w-12 text-muted-foreground" />
           </div>
@@ -297,30 +289,22 @@ function FeedContent() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className={styles.page}>
       {/* Header */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t('feed.title')}</h1>
-          <p className="text-muted-foreground">
-            {t('feed.subtitle')}
-          </p>
-        </div>
-        <Button variant="outline" size="sm" asChild>
+      <PageHeader title={t('feed.title')} description={t('feed.subtitle')} icon={<Users className="h-5 w-5" />} actions={<Button variant="outline" size="sm" asChild>
           <Link href="/dashboard/family">
             <Settings className="h-4 w-4 mr-2" />
             {t('feed.noMembers.manageFamily')}
           </Link>
-        </Button>
-      </div>
+        </Button>} />
 
       {/* Member selector */}
-      <div className="flex gap-3 overflow-x-auto pb-2">
+      <div className="flex gap-3 overflow-x-auto rounded-[20px] border border-border bg-card p-3">
         {otherMembers.map((member) => (
-          <button
+          <UnstyledButton
             key={member.id}
             type="button"
-            onClick={() => setSelectedMember(member.id)}
+            aria-pressed={activeMemberId === member.id} onClick={() => setSelectedMember(member.id)}
             className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 transition-all flex-shrink-0 min-w-[80px] ${
               activeMemberId === member.id
                 ? 'border-primary bg-primary/5 shadow-sm'
@@ -336,7 +320,7 @@ function FeedContent() {
             }`}>
               {member.display_name.split(' ')[0]}
             </span>
-          </button>
+          </UnstyledButton>
         ))}
       </div>
 
@@ -345,7 +329,7 @@ function FeedContent() {
         <div className="grid gap-4 md:grid-cols-2">
           {[1, 2, 3, 4].map((i) => (
             <Card key={i}>
-              <CardContent className="p-4 space-y-3">
+              <CardContent className="space-y-5 p-5 sm:p-6">
                 <div className="flex gap-2">
                   <Skeleton className="h-5 w-20" />
                   <Skeleton className="h-5 w-16" />
@@ -361,7 +345,7 @@ function FeedContent() {
           ))}
         </div>
       ) : !data || data.outfits.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
+        <div className={styles.emptyState}>
           <Shirt className="h-10 w-10 text-muted-foreground mb-3" />
           <h3 className="text-base font-semibold mb-1">{t('feed.noOutfits.title')}</h3>
           <p className="text-sm text-muted-foreground max-w-xs">

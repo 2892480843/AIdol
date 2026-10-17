@@ -1,0 +1,934 @@
+{
+  "checked_at": "2026-10-17T10:00:02.796330+00:00",
+  "scope": "Independent read-only API and PostgreSQL persistence verification",
+  "api_base": "http://localhost:3000/api/v1 (container route: frontend:3000)",
+  "safety": {
+    "http_methods": [
+      "GET"
+    ],
+    "database_transaction": "READ ONLY",
+    "credentials": "Short-lived identity tokens kept in process memory only",
+    "excluded": [
+      "tokens",
+      "configuration",
+      "signed image URLs",
+      "invite codes",
+      "raw model output"
+    ]
+  },
+  "checks": [
+    {
+      "name": "both_accounts_exist",
+      "passed": true,
+      "evidence": [
+        {
+          "id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "email": "ui-redesign-20261017-171957-e4b8a8@example.com",
+          "display_name": "UI 重构验收",
+          "locale": "zh-CN",
+          "timezone": "Asia/Shanghai",
+          "onboarding_completed": true,
+          "family_id": "f5303edc-7ce4-4961-901b-1cb73d0bc6e1"
+        },
+        {
+          "id": "27e521de-ba2d-47d8-8de5-4884553d7c9b",
+          "email": "demo@wardrowbe.local",
+          "display_name": "演示验收",
+          "locale": "zh-CN",
+          "timezone": "Asia/Shanghai",
+          "onboarding_completed": true,
+          "family_id": null
+        }
+      ]
+    },
+    {
+      "name": "onboarding_and_profile_persisted",
+      "passed": true,
+      "evidence": {
+        "id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "email": "ui-redesign-20261017-171957-e4b8a8@example.com",
+        "display_name": "UI 重构验收",
+        "locale": "zh-CN",
+        "timezone": "Asia/Shanghai",
+        "onboarding_completed": true,
+        "family_id": "f5303edc-7ce4-4961-901b-1cb73d0bc6e1"
+      }
+    },
+    {
+      "name": "four_ui_items_five_demo_items_disjoint",
+      "passed": true,
+      "evidence": {
+        "ui_count": 4,
+        "demo_count": 5,
+        "overlap_ids": []
+      }
+    },
+    {
+      "name": "seed_classification_persisted",
+      "passed": true,
+      "evidence": {
+        "3e7990fa-a938-45de-9654-8bc43d07dc36": {
+          "id": "3e7990fa-a938-45de-9654-8bc43d07dc36",
+          "type": "shirt",
+          "primary_color": "blue"
+        },
+        "d0e56d4f-4160-47c1-9eca-4397b51a496b": {
+          "id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+          "type": "pants",
+          "primary_color": "black"
+        },
+        "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96": {
+          "id": "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96",
+          "type": "shoes",
+          "primary_color": "white"
+        }
+      }
+    },
+    {
+      "name": "pants_edit_favorite_wear_wash_persisted",
+      "passed": true,
+      "evidence": {
+        "item": {
+          "id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+          "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "name": "黑色长裤（UI 已编辑）",
+          "type": "pants",
+          "primary_color": "black",
+          "favorite": true,
+          "status": "ready",
+          "ai_processed": false,
+          "ai_confidence": null,
+          "tagging_status": "tagged",
+          "tagged_by": "manual",
+          "wear_count": 3,
+          "wears_since_wash": 2,
+          "last_worn_at": "2026-10-17",
+          "last_washed_at": "2026-10-17",
+          "created_at": "2026-10-17 09:19:59.347182+00:00"
+        },
+        "wear_history": [
+          {
+            "id": "2979b10c-b7b6-4b01-9af5-1312ff39bae9",
+            "item_id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+            "outfit_id": null,
+            "worn_at": "2026-10-17"
+          },
+          {
+            "id": "a159f491-141f-46f8-953a-f7d6227ba185",
+            "item_id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+            "outfit_id": "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea",
+            "worn_at": "2026-10-17"
+          },
+          {
+            "id": "570a176e-3de8-4138-9cea-0fa591ae841d",
+            "item_id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+            "outfit_id": "601aec73-5347-4a1c-9d48-06998ad5ee8d",
+            "worn_at": "2026-10-17"
+          }
+        ],
+        "wash_history": [
+          {
+            "id": "1ab83721-08d0-460d-a06c-0d9216a7d18d",
+            "item_id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+            "washed_at": "2026-10-17"
+          }
+        ]
+      }
+    },
+    {
+      "name": "red_coat_real_ai_tagging_persisted",
+      "passed": true,
+      "evidence": [
+        {
+          "id": "b6423d38-94c3-4bcb-954a-bc60d80780a3",
+          "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "name": "UI 验收：红色外套",
+          "type": "coat",
+          "primary_color": "red",
+          "favorite": false,
+          "status": "ready",
+          "ai_processed": true,
+          "ai_confidence": 0.9,
+          "tagging_status": "tagged",
+          "tagged_by": "auto",
+          "wear_count": 0,
+          "wears_since_wash": 0,
+          "last_worn_at": null,
+          "last_washed_at": null,
+          "created_at": "2026-10-17 09:24:36.206656+00:00"
+        }
+      ]
+    },
+    {
+      "name": "tagging_intent_completed",
+      "passed": true,
+      "evidence": [
+        {
+          "job_id": "e0c771cf-fe60-42b0-aec5-79ee707446b6",
+          "item_id": "b6423d38-94c3-4bcb-954a-bc60d80780a3",
+          "attempts": 1,
+          "published_at": "2026-10-17 09:24:36.431198+00:00",
+          "completed_at": "2026-10-17 09:24:55.565576+00:00"
+        }
+      ]
+    },
+    {
+      "name": "manual_three_item_lookbook_and_today_instance_persisted",
+      "passed": true,
+      "evidence": {
+        "templates": [
+          {
+            "id": "7343b869-d37a-45fd-824b-a235af156fb6",
+            "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+            "name": "UI 验收：周末蓝白穿搭",
+            "source": "manual",
+            "status": "pending",
+            "scheduled_for": null,
+            "source_item_id": null,
+            "cloned_from_outfit_id": null,
+            "created_at": "2026-10-17 09:27:44.345768+00:00",
+            "item_ids": [
+              "3e7990fa-a938-45de-9654-8bc43d07dc36",
+              "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+              "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96"
+            ]
+          }
+        ],
+        "wear_instances": [
+          {
+            "id": "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea",
+            "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+            "name": "UI 验收：周末蓝白穿搭",
+            "source": "manual",
+            "status": "pending",
+            "scheduled_for": "2026-10-17",
+            "source_item_id": null,
+            "cloned_from_outfit_id": "7343b869-d37a-45fd-824b-a235af156fb6",
+            "created_at": "2026-10-17 09:28:16.144437+00:00",
+            "item_ids": [
+              "3e7990fa-a938-45de-9654-8bc43d07dc36",
+              "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+              "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "single_ai_task_single_result_no_replay_duplicates",
+      "passed": true,
+      "evidence": {
+        "tasks": [
+          {
+            "id": "40aa24c2-5e33-42f5-a3ff-69cb61225fd1",
+            "kind": "recommendation",
+            "status": "succeeded",
+            "stage": "completed",
+            "attempts": 1,
+            "generation": 1,
+            "outfit_ids": [
+              "601aec73-5347-4a1c-9d48-06998ad5ee8d"
+            ],
+            "created_at": "2026-10-17 09:26:58.209310+00:00",
+            "updated_at": "2026-10-17 09:28:00.272623+00:00"
+          }
+        ],
+        "outbox": [
+          {
+            "task_id": "40aa24c2-5e33-42f5-a3ff-69cb61225fd1",
+            "generation": 1,
+            "attempts": 1,
+            "published_at": "2026-10-17 09:26:59.368758+00:00"
+          }
+        ],
+        "outfits": [
+          {
+            "id": "601aec73-5347-4a1c-9d48-06998ad5ee8d",
+            "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+            "name": null,
+            "source": "on_demand",
+            "status": "accepted",
+            "scheduled_for": "2026-10-17",
+            "source_item_id": null,
+            "cloned_from_outfit_id": null,
+            "created_at": "2026-10-17 09:26:59.568694+00:00",
+            "item_ids": [
+              "3e7990fa-a938-45de-9654-8bc43d07dc36",
+              "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+              "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "ai_acceptance_four_star_actually_worn_persisted",
+      "passed": true,
+      "evidence": {
+        "outfit_status": "accepted",
+        "feedback": [
+          {
+            "outfit_id": "601aec73-5347-4a1c-9d48-06998ad5ee8d",
+            "accepted": null,
+            "rating": 4,
+            "actually_worn": true,
+            "worn_at": "2026-10-17"
+          }
+        ]
+      }
+    },
+    {
+      "name": "single_blue_shirt_pairing_persisted",
+      "passed": true,
+      "evidence": [
+        {
+          "id": "3c15f6f2-e6f0-485b-a07d-920e0c75a59d",
+          "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "name": null,
+          "source": "pairing",
+          "status": "pending",
+          "scheduled_for": "2026-10-17",
+          "source_item_id": "3e7990fa-a938-45de-9654-8bc43d07dc36",
+          "cloned_from_outfit_id": null,
+          "created_at": "2026-10-17 09:32:34.752526+00:00",
+          "item_ids": [
+            "3e7990fa-a938-45de-9654-8bc43d07dc36",
+            "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+            "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "four_outfits_no_duplicate_members_or_semantic_rows",
+      "passed": true,
+      "evidence": {
+        "count": 4,
+        "by_source": {
+          "on_demand": 1,
+          "manual": 2,
+          "pairing": 1
+        },
+        "duplicate_groups": 0,
+        "template_and_dated_wear_instance_are_distinct_records": true
+      }
+    },
+    {
+      "name": "blue_white_preferences_persisted",
+      "passed": true,
+      "evidence": [
+        {
+          "color_favorites": [
+            "blue",
+            "white"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "family_created_no_invitation_sent",
+      "passed": true,
+      "evidence": {
+        "family": [
+          {
+            "id": "f5303edc-7ce4-4961-901b-1cb73d0bc6e1",
+            "name": "UI 验收家庭",
+            "created_by": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+            "created_at": "2026-10-17 09:29:25.948224+00:00"
+          }
+        ],
+        "member_ids": [
+          "7d476b21-1e28-4c11-9fa0-fcb7a53000fa"
+        ],
+        "invite_count": 0
+      }
+    },
+    {
+      "name": "api_profile_matches_database",
+      "passed": true,
+      "evidence": {
+        "id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "email": "ui-redesign-20261017-171957-e4b8a8@example.com",
+        "display_name": "UI 重构验收",
+        "locale": "zh-CN",
+        "timezone": "Asia/Shanghai",
+        "onboarding_completed": true,
+        "family_id": "f5303edc-7ce4-4961-901b-1cb73d0bc6e1"
+      }
+    },
+    {
+      "name": "api_item_sets_match_both_database_owners",
+      "passed": true,
+      "evidence": {
+        "ui_total": 4,
+        "demo_total": 5
+      }
+    },
+    {
+      "name": "api_item_values_match_database",
+      "passed": true,
+      "evidence": [
+        {
+          "id": "b6423d38-94c3-4bcb-954a-bc60d80780a3",
+          "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "name": "UI 验收：红色外套",
+          "type": "coat",
+          "primary_color": "red",
+          "favorite": false,
+          "status": "ready",
+          "ai_processed": true,
+          "ai_confidence": "0.90",
+          "wear_count": 0,
+          "wears_since_wash": 0,
+          "last_worn_at": null,
+          "last_washed_at": null
+        },
+        {
+          "id": "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96",
+          "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "name": "白色鞋子（UI 验收）",
+          "type": "shoes",
+          "primary_color": "white",
+          "favorite": false,
+          "status": "ready",
+          "ai_processed": false,
+          "ai_confidence": null,
+          "wear_count": 2,
+          "wears_since_wash": 2,
+          "last_worn_at": "2026-10-17",
+          "last_washed_at": null
+        },
+        {
+          "id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+          "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "name": "黑色长裤（UI 已编辑）",
+          "type": "pants",
+          "primary_color": "black",
+          "favorite": true,
+          "status": "ready",
+          "ai_processed": false,
+          "ai_confidence": null,
+          "wear_count": 3,
+          "wears_since_wash": 2,
+          "last_worn_at": "2026-10-17",
+          "last_washed_at": "2026-10-17"
+        },
+        {
+          "id": "3e7990fa-a938-45de-9654-8bc43d07dc36",
+          "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "name": "蓝色衬衫（UI 验收）",
+          "type": "shirt",
+          "primary_color": "blue",
+          "favorite": false,
+          "status": "ready",
+          "ai_processed": false,
+          "ai_confidence": null,
+          "wear_count": 2,
+          "wears_since_wash": 2,
+          "last_worn_at": "2026-10-17",
+          "last_washed_at": null
+        }
+      ]
+    },
+    {
+      "name": "api_wear_wash_history_match_database",
+      "passed": true,
+      "evidence": {
+        "wear_count": 3,
+        "wash_count": 1
+      }
+    },
+    {
+      "name": "worn_filter_includes_manual_and_ai_facts",
+      "passed": true,
+      "evidence": {
+        "expected_ids": [
+          "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea",
+          "601aec73-5347-4a1c-9d48-06998ad5ee8d"
+        ],
+        "returned_ids": [
+          "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea",
+          "601aec73-5347-4a1c-9d48-06998ad5ee8d"
+        ],
+        "total": 2
+      }
+    },
+    {
+      "name": "unworn_filter_excludes_all_actual_wear",
+      "passed": true,
+      "evidence": {
+        "returned_ids": [
+          "3c15f6f2-e6f0-485b-a07d-920e0c75a59d",
+          "7343b869-d37a-45fd-824b-a235af156fb6"
+        ],
+        "total": 2
+      }
+    },
+    {
+      "name": "worn_calendar_date_and_template_scope",
+      "passed": true,
+      "evidence": {
+        "returned_ids": [
+          "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea"
+        ],
+        "total": 1
+      }
+    },
+    {
+      "name": "api_outfits_pairings_tasks_match_database",
+      "passed": true,
+      "evidence": {
+        "profile": {
+          "id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+          "email": "ui-redesign-20261017-171957-e4b8a8@example.com",
+          "display_name": "UI 重构验收",
+          "locale": "zh-CN",
+          "timezone": "Asia/Shanghai",
+          "onboarding_completed": true,
+          "family_id": "f5303edc-7ce4-4961-901b-1cb73d0bc6e1"
+        },
+        "ui_items": [
+          {
+            "id": "b6423d38-94c3-4bcb-954a-bc60d80780a3",
+            "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+            "name": "UI 验收：红色外套",
+            "type": "coat",
+            "primary_color": "red",
+            "favorite": false,
+            "status": "ready",
+            "ai_processed": true,
+            "ai_confidence": "0.90",
+            "wear_count": 0,
+            "wears_since_wash": 0,
+            "last_worn_at": null,
+            "last_washed_at": null
+          },
+          {
+            "id": "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96",
+            "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+            "name": "白色鞋子（UI 验收）",
+            "type": "shoes",
+            "primary_color": "white",
+            "favorite": false,
+            "status": "ready",
+            "ai_processed": false,
+            "ai_confidence": null,
+            "wear_count": 2,
+            "wears_since_wash": 2,
+            "last_worn_at": "2026-10-17",
+            "last_washed_at": null
+          },
+          {
+            "id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+            "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+            "name": "黑色长裤（UI 已编辑）",
+            "type": "pants",
+            "primary_color": "black",
+            "favorite": true,
+            "status": "ready",
+            "ai_processed": false,
+            "ai_confidence": null,
+            "wear_count": 3,
+            "wears_since_wash": 2,
+            "last_worn_at": "2026-10-17",
+            "last_washed_at": "2026-10-17"
+          },
+          {
+            "id": "3e7990fa-a938-45de-9654-8bc43d07dc36",
+            "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+            "name": "蓝色衬衫（UI 验收）",
+            "type": "shirt",
+            "primary_color": "blue",
+            "favorite": false,
+            "status": "ready",
+            "ai_processed": false,
+            "ai_confidence": null,
+            "wear_count": 2,
+            "wears_since_wash": 2,
+            "last_worn_at": "2026-10-17",
+            "last_washed_at": null
+          }
+        ],
+        "demo_item_ids": [
+          "082b6966-1580-4ec9-af7a-4fc9de3a6db6",
+          "bdf3d913-37fb-4ba3-8abe-cc04ed25a5c7",
+          "b9288608-f488-43d8-b579-fe04d6220469",
+          "a619ca9f-f02a-44bc-b213-e689122c619b",
+          "58f0e0b7-6a93-419f-9a36-2b4086579a57"
+        ],
+        "outfit_ids": [
+          "3c15f6f2-e6f0-485b-a07d-920e0c75a59d",
+          "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea",
+          "7343b869-d37a-45fd-824b-a235af156fb6",
+          "601aec73-5347-4a1c-9d48-06998ad5ee8d"
+        ],
+        "pairing_ids": [
+          "3c15f6f2-e6f0-485b-a07d-920e0c75a59d"
+        ],
+        "tasks": [
+          {
+            "id": "40aa24c2-5e33-42f5-a3ff-69cb61225fd1",
+            "kind": "recommendation",
+            "status": "succeeded",
+            "stage": "completed",
+            "attempts": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "api_feedback_matches_persisted_rating",
+      "passed": true,
+      "evidence": {
+        "outfit_id": "601aec73-5347-4a1c-9d48-06998ad5ee8d",
+        "accepted": null,
+        "rating": 4,
+        "actually_worn": true,
+        "worn_at": "2026-10-17"
+      }
+    },
+    {
+      "name": "api_preferences_match_database",
+      "passed": true,
+      "evidence": {
+        "color_favorites": [
+          "blue",
+          "white"
+        ]
+      }
+    },
+    {
+      "name": "api_family_matches_database_without_invites",
+      "passed": true,
+      "evidence": {
+        "id": "f5303edc-7ce4-4961-901b-1cb73d0bc6e1",
+        "name": "UI 验收家庭",
+        "member_count": 1,
+        "pending_invite_count": 0
+      }
+    },
+    {
+      "name": "cross_account_resources_return_404",
+      "passed": true,
+      "evidence": {
+        "demo_get_ui_item": 404,
+        "ui_get_demo_item": 404,
+        "demo_get_ui_outfit": 404,
+        "demo_get_ui_task": 404
+      }
+    }
+  ],
+  "accounts": {
+    "ui": {
+      "id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+      "email": "ui-redesign-20261017-171957-e4b8a8@example.com",
+      "display_name": "UI 重构验收",
+      "locale": "zh-CN",
+      "timezone": "Asia/Shanghai",
+      "onboarding_completed": true,
+      "family_id": "f5303edc-7ce4-4961-901b-1cb73d0bc6e1"
+    },
+    "demo": {
+      "id": "27e521de-ba2d-47d8-8de5-4884553d7c9b",
+      "email": "demo@wardrowbe.local",
+      "onboarding_completed": true
+    }
+  },
+  "database": {
+    "ui_items": [
+      {
+        "id": "3e7990fa-a938-45de-9654-8bc43d07dc36",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "蓝色衬衫（UI 验收）",
+        "type": "shirt",
+        "primary_color": "blue",
+        "favorite": false,
+        "status": "ready",
+        "ai_processed": false,
+        "ai_confidence": null,
+        "tagging_status": "pending",
+        "tagged_by": null,
+        "wear_count": 2,
+        "wears_since_wash": 2,
+        "last_worn_at": "2026-10-17",
+        "last_washed_at": null,
+        "created_at": "2026-10-17 09:19:57.724058+00:00"
+      },
+      {
+        "id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "黑色长裤（UI 已编辑）",
+        "type": "pants",
+        "primary_color": "black",
+        "favorite": true,
+        "status": "ready",
+        "ai_processed": false,
+        "ai_confidence": null,
+        "tagging_status": "tagged",
+        "tagged_by": "manual",
+        "wear_count": 3,
+        "wears_since_wash": 2,
+        "last_worn_at": "2026-10-17",
+        "last_washed_at": "2026-10-17",
+        "created_at": "2026-10-17 09:19:59.347182+00:00"
+      },
+      {
+        "id": "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "白色鞋子（UI 验收）",
+        "type": "shoes",
+        "primary_color": "white",
+        "favorite": false,
+        "status": "ready",
+        "ai_processed": false,
+        "ai_confidence": null,
+        "tagging_status": "pending",
+        "tagged_by": null,
+        "wear_count": 2,
+        "wears_since_wash": 2,
+        "last_worn_at": "2026-10-17",
+        "last_washed_at": null,
+        "created_at": "2026-10-17 09:19:59.609226+00:00"
+      },
+      {
+        "id": "b6423d38-94c3-4bcb-954a-bc60d80780a3",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "UI 验收：红色外套",
+        "type": "coat",
+        "primary_color": "red",
+        "favorite": false,
+        "status": "ready",
+        "ai_processed": true,
+        "ai_confidence": 0.9,
+        "tagging_status": "tagged",
+        "tagged_by": "auto",
+        "wear_count": 0,
+        "wears_since_wash": 0,
+        "last_worn_at": null,
+        "last_washed_at": null,
+        "created_at": "2026-10-17 09:24:36.206656+00:00"
+      }
+    ],
+    "demo_item_ids": [
+      "082b6966-1580-4ec9-af7a-4fc9de3a6db6",
+      "58f0e0b7-6a93-419f-9a36-2b4086579a57",
+      "a619ca9f-f02a-44bc-b213-e689122c619b",
+      "b9288608-f488-43d8-b579-fe04d6220469",
+      "bdf3d913-37fb-4ba3-8abe-cc04ed25a5c7"
+    ],
+    "tagging_intents": [
+      {
+        "job_id": "e0c771cf-fe60-42b0-aec5-79ee707446b6",
+        "item_id": "b6423d38-94c3-4bcb-954a-bc60d80780a3",
+        "attempts": 1,
+        "published_at": "2026-10-17 09:24:36.431198+00:00",
+        "completed_at": "2026-10-17 09:24:55.565576+00:00"
+      }
+    ],
+    "outfits": [
+      {
+        "id": "601aec73-5347-4a1c-9d48-06998ad5ee8d",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": null,
+        "source": "on_demand",
+        "status": "accepted",
+        "scheduled_for": "2026-10-17",
+        "source_item_id": null,
+        "cloned_from_outfit_id": null,
+        "created_at": "2026-10-17 09:26:59.568694+00:00",
+        "item_ids": [
+          "3e7990fa-a938-45de-9654-8bc43d07dc36",
+          "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+          "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96"
+        ]
+      },
+      {
+        "id": "7343b869-d37a-45fd-824b-a235af156fb6",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "UI 验收：周末蓝白穿搭",
+        "source": "manual",
+        "status": "pending",
+        "scheduled_for": null,
+        "source_item_id": null,
+        "cloned_from_outfit_id": null,
+        "created_at": "2026-10-17 09:27:44.345768+00:00",
+        "item_ids": [
+          "3e7990fa-a938-45de-9654-8bc43d07dc36",
+          "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+          "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96"
+        ]
+      },
+      {
+        "id": "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "UI 验收：周末蓝白穿搭",
+        "source": "manual",
+        "status": "pending",
+        "scheduled_for": "2026-10-17",
+        "source_item_id": null,
+        "cloned_from_outfit_id": "7343b869-d37a-45fd-824b-a235af156fb6",
+        "created_at": "2026-10-17 09:28:16.144437+00:00",
+        "item_ids": [
+          "3e7990fa-a938-45de-9654-8bc43d07dc36",
+          "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+          "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96"
+        ]
+      },
+      {
+        "id": "3c15f6f2-e6f0-485b-a07d-920e0c75a59d",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": null,
+        "source": "pairing",
+        "status": "pending",
+        "scheduled_for": "2026-10-17",
+        "source_item_id": "3e7990fa-a938-45de-9654-8bc43d07dc36",
+        "cloned_from_outfit_id": null,
+        "created_at": "2026-10-17 09:32:34.752526+00:00",
+        "item_ids": [
+          "3e7990fa-a938-45de-9654-8bc43d07dc36",
+          "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+          "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96"
+        ]
+      }
+    ],
+    "feedback": [
+      {
+        "outfit_id": "7343b869-d37a-45fd-824b-a235af156fb6",
+        "accepted": true,
+        "rating": null,
+        "actually_worn": null,
+        "worn_at": null
+      },
+      {
+        "outfit_id": "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea",
+        "accepted": true,
+        "rating": null,
+        "actually_worn": null,
+        "worn_at": "2026-10-17"
+      },
+      {
+        "outfit_id": "601aec73-5347-4a1c-9d48-06998ad5ee8d",
+        "accepted": null,
+        "rating": 4,
+        "actually_worn": true,
+        "worn_at": "2026-10-17"
+      }
+    ],
+    "tasks": [
+      {
+        "id": "40aa24c2-5e33-42f5-a3ff-69cb61225fd1",
+        "kind": "recommendation",
+        "status": "succeeded",
+        "stage": "completed",
+        "attempts": 1,
+        "generation": 1,
+        "outfit_ids": [
+          "601aec73-5347-4a1c-9d48-06998ad5ee8d"
+        ],
+        "created_at": "2026-10-17 09:26:58.209310+00:00",
+        "updated_at": "2026-10-17 09:28:00.272623+00:00"
+      }
+    ]
+  },
+  "api": {
+    "profile": {
+      "id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+      "email": "ui-redesign-20261017-171957-e4b8a8@example.com",
+      "display_name": "UI 重构验收",
+      "locale": "zh-CN",
+      "timezone": "Asia/Shanghai",
+      "onboarding_completed": true,
+      "family_id": "f5303edc-7ce4-4961-901b-1cb73d0bc6e1"
+    },
+    "ui_items": [
+      {
+        "id": "b6423d38-94c3-4bcb-954a-bc60d80780a3",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "UI 验收：红色外套",
+        "type": "coat",
+        "primary_color": "red",
+        "favorite": false,
+        "status": "ready",
+        "ai_processed": true,
+        "ai_confidence": "0.90",
+        "wear_count": 0,
+        "wears_since_wash": 0,
+        "last_worn_at": null,
+        "last_washed_at": null
+      },
+      {
+        "id": "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "白色鞋子（UI 验收）",
+        "type": "shoes",
+        "primary_color": "white",
+        "favorite": false,
+        "status": "ready",
+        "ai_processed": false,
+        "ai_confidence": null,
+        "wear_count": 2,
+        "wears_since_wash": 2,
+        "last_worn_at": "2026-10-17",
+        "last_washed_at": null
+      },
+      {
+        "id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "黑色长裤（UI 已编辑）",
+        "type": "pants",
+        "primary_color": "black",
+        "favorite": true,
+        "status": "ready",
+        "ai_processed": false,
+        "ai_confidence": null,
+        "wear_count": 3,
+        "wears_since_wash": 2,
+        "last_worn_at": "2026-10-17",
+        "last_washed_at": "2026-10-17"
+      },
+      {
+        "id": "3e7990fa-a938-45de-9654-8bc43d07dc36",
+        "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+        "name": "蓝色衬衫（UI 验收）",
+        "type": "shirt",
+        "primary_color": "blue",
+        "favorite": false,
+        "status": "ready",
+        "ai_processed": false,
+        "ai_confidence": null,
+        "wear_count": 2,
+        "wears_since_wash": 2,
+        "last_worn_at": "2026-10-17",
+        "last_washed_at": null
+      }
+    ],
+    "demo_item_ids": [
+      "082b6966-1580-4ec9-af7a-4fc9de3a6db6",
+      "bdf3d913-37fb-4ba3-8abe-cc04ed25a5c7",
+      "b9288608-f488-43d8-b579-fe04d6220469",
+      "a619ca9f-f02a-44bc-b213-e689122c619b",
+      "58f0e0b7-6a93-419f-9a36-2b4086579a57"
+    ],
+    "outfit_ids": [
+      "3c15f6f2-e6f0-485b-a07d-920e0c75a59d",
+      "3a4c4f73-7ca8-4dad-929f-26c4e79df8ea",
+      "7343b869-d37a-45fd-824b-a235af156fb6",
+      "601aec73-5347-4a1c-9d48-06998ad5ee8d"
+    ],
+    "pairing_ids": [
+      "3c15f6f2-e6f0-485b-a07d-920e0c75a59d"
+    ],
+    "tasks": [
+      {
+        "id": "40aa24c2-5e33-42f5-a3ff-69cb61225fd1",
+        "kind": "recommendation",
+        "status": "succeeded",
+        "stage": "completed",
+        "attempts": 1
+      }
+    ]
+  },
+  "passed": true,
+  "check_count": 26,
+  "finished_at": "2026-10-17T10:00:03.511894+00:00"
+}

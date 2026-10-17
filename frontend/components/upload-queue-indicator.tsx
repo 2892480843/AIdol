@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useSession } from 'next-auth/react';
 import { Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Paper } from '@mantine/core';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { useFeatures } from '@/lib/hooks/use-features';
 import * as uploadManager from '@/lib/upload-manager';
@@ -84,8 +85,8 @@ export function UploadQueueIndicator() {
   const anyRetryable = state.terminalRecords.some((record) => record.retryable);
 
   return (
-    <div className="fixed bottom-20 right-4 lg:bottom-4 z-50 w-full max-w-xs">
-      <div className="rounded-lg border bg-card p-3 shadow-lg space-y-2">
+    <div className="upload-queue-float">
+      <Paper withBorder p="md" radius="lg" shadow="md" className="space-y-2">
         {state.parkedCount > 0 && <p className="text-xs text-muted-foreground">{t('otherAccountPaused', { count: state.parkedCount })}</p>}
         {state.legacyRecords.length > 0 && (
           <details className="space-y-2">
@@ -138,21 +139,21 @@ export function UploadQueueIndicator() {
                   </span>
                   <div className="flex shrink-0 items-center gap-2">
                     {record.retryable && (
-                      <button
+                      <Button variant="link" size="sm"
                         type="button"
                         className="text-primary hover:underline"
                         onClick={() => uploadManager.retry(record.id)}
                       >
                         {t('retry')}
-                      </button>
+                      </Button>
                     )}
-                    <button
+                    <Button variant="link" size="sm"
                       type="button"
                       className="text-muted-foreground hover:underline"
                       onClick={() => uploadManager.dismiss(record.id)}
                     >
                       {t('dismiss')}
-                    </button>
+                    </Button>
                   </div>
                 </li>
               ))}
@@ -170,7 +171,7 @@ export function UploadQueueIndicator() {
             </div>
           </div>
         )}
-      </div>
+      </Paper>
       <AlertDialog open={!!claim} onOpenChange={(open) => { if (!open) setClaim(null); }}>
         <AlertDialogContent>
           <AlertDialogHeader>

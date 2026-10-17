@@ -120,7 +120,7 @@ export function AddChannelDialog({
           {t('channels.addChannel')}
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="sm:max-w-lg">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>{t('channels.dialog.title')}</DialogTitle>
@@ -128,9 +128,9 @@ export function AddChannelDialog({
               {t('channels.dialog.description')}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4 py-4">
+          <div className="space-y-5 py-6">
             <div className="space-y-2">
-              <Label>{t('channels.channelType')}</Label>
+              <Label htmlFor="channel-type">{t('channels.channelType')}</Label>
               <Select
                 value={channel}
                 onValueChange={(v: ManualNotificationChannel) => {
@@ -138,7 +138,7 @@ export function AddChannelDialog({
                   setConfig({});
                 }}
               >
-                <SelectTrigger>
+                <SelectTrigger id="channel-type">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -152,9 +152,10 @@ export function AddChannelDialog({
             {channel === 'ntfy' && (
               <>
                 <div className="space-y-2">
-                  <Label>{t('channels.fields.serverUrl')}</Label>
+                  <Label htmlFor="server">{t('channels.fields.serverUrl')}</Label>
                   <Input
                     id="server"
+                    type="url"
                     value={config.server || 'https://ntfy.sh'}
                     onChange={(e) => setConfig({ ...config, server: e.target.value })}
                     placeholder="https://ntfy.sh"
@@ -196,6 +197,7 @@ export function AddChannelDialog({
                 <Label htmlFor="webhook">{t('channels.fields.webhookUrl')}</Label>
                 <Input
                   id="webhook"
+                  type="url"
                   value={config.webhook_url || ''}
                   onChange={(e) => setConfig({ ...config, webhook_url: e.target.value })}
                   placeholder="https://mattermost.example.com/hooks/xxx"

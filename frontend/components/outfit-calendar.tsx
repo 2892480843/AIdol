@@ -1,5 +1,7 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
 import { useMemo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -40,8 +42,9 @@ export function OutfitCalendar({
   onMonthChange,
 }: OutfitCalendarProps) {
   const t = useTranslations('outfits.calendar');
+  const tc = useTranslations('common');
   const locale = useLocale();
-  const currentMonth = new Date(year, month - 1, 1);
+  const currentMonth = useMemo(() => new Date(year, month - 1, 1), [year, month]);
 
   const outfitsByDate = useMemo(() => buildCalendarIndicators(outfits), [outfits]);
   const todayKey = useUserToday()();
@@ -71,14 +74,14 @@ export function OutfitCalendar({
   return (
     <div className="w-full">
       {/* Month navigation */}
-      <div className="flex items-center justify-between mb-4">
-        <Button variant="ghost" size="icon" onClick={handlePrevMonth}>
+      <div className="mb-5 flex items-center justify-between gap-2">
+        <Button variant="ghost" size="icon" aria-label={tc('previous')} onClick={handlePrevMonth}>
           <ChevronLeft className="h-4 w-4" />
         </Button>
         <h3 className="font-semibold text-lg">
           {formatDate(currentMonth, locale, { month: 'long', year: 'numeric' })}
         </h3>
-        <Button variant="ghost" size="icon" onClick={handleNextMonth}>
+        <Button variant="ghost" size="icon" aria-label={tc('next')} onClick={handleNextMonth}>
           <ChevronRight className="h-4 w-4" />
         </Button>
       </div>
@@ -107,13 +110,14 @@ export function OutfitCalendar({
           const isDayToday = dateKey === todayKey;
 
           return (
-            <button
+            <UnstyledButton
               key={dateKey}
               type="button"
               onClick={() => onSelectDate(day)}
               aria-current={isDayToday ? 'date' : undefined}
+              aria-pressed={!!isSelected}
               className={cn(
-                'relative h-10 w-full rounded-md text-sm transition-colors',
+                'relative h-11 w-full rounded-[10px] text-sm transition-colors motion-reduce:transition-none',
                 'hover:bg-accent hover:text-accent-foreground',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 !isCurrentMonth && 'text-muted-foreground/50',
@@ -143,13 +147,13 @@ export function OutfitCalendar({
                   )}
                 </div>
               )}
-            </button>
+            </UnstyledButton>
           );
         })}
       </div>
 
       {/* Legend */}
-      <div className="flex items-center gap-4 mt-4 text-xs text-muted-foreground">
+      <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-4 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-primary" />
           <span>{t('legendScheduled')}</span>

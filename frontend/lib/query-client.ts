@@ -21,6 +21,7 @@ function handleError(error: unknown) {
 
 // A caller that shows its own translated toast (or handles the failure silently) sets
 // meta.toastsOwnErrors, so that the raw server message does not appear beside it.
+// Queries can silence specific expected API statuses when their page renders an empty state.
 export function createQueryClient(): QueryClient {
   return new QueryClient({
     defaultOptions: {
@@ -45,6 +46,8 @@ export function createQueryClient(): QueryClient {
     queryCache: new QueryCache({
       onError: (error, query) => {
         if (query.meta?.toastsOwnErrors) return;
+        const quietStatuses = query.meta?.quietErrorStatuses;
+        if (error instanceof ApiError && Array.isArray(quietStatuses) && quietStatuses.includes(error.status)) return;
         handleError(error);
       },
     }),

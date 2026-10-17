@@ -1,11 +1,11 @@
 {
   "aiLearning": "KI-Lernprofil",
   "analytics": "Statistiken",
-  "brandAlt": "wardrowbe",
-  "brandName": "wardrowbe",
+  "brandAlt": "搭搭",
+  "brandName": "搭搭",
   "changeLanguage": "Sprache ändern",
   "closeSidebar": "Seitenleiste schließen",
-  "dashboard": "Dashboard",
+  "dashboard": "Stil im Alltag",
   "family": "Familie",
   "familyFeed": "Familien-Feed",
   "history": "Verlauf",
@@ -20,5 +20,6 @@
   "suggestOutfit": "Outfit vorschlagen",
   "toggleTheme": "Design wechseln",
   "userFallback": "Benutzer",
-  "wardrobe": "Kleiderschrank"
+  "wardrobe": "Kleiderschrank",
+  "inspiration": "Stilnotizen"
 }

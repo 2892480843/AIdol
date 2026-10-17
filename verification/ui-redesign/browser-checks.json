@@ -1,0 +1,388 @@
+{
+  "checks": [
+    {
+      "name": "production wardrobe renders existing private items",
+      "passed": true,
+      "detail": "Demo account retains five synthetic items; all images render after image deployment.",
+      "at": "2026-10-17T09:23:19.715Z"
+    },
+    {
+      "name": "login, account switch and onboarding",
+      "passed": true,
+      "detail": "Signed out demo; signed into isolated UI test account. Five wizard steps, optional family/location skipped, blue preference saved; completion routes to dashboard.",
+      "at": "2026-10-17T09:24:07.895Z"
+    },
+    {
+      "name": "wardrobe search/edit/favorite/wear/wash and nested confirmation",
+      "passed": true,
+      "detail": "Search matched pants; edited name/notes; toggled favorite; wear count 1 and wash reset 0/4 confirmed. Cancelled destructive confirmation and closed detail using Escape.",
+      "at": "2026-10-17T09:25:48.502Z"
+    },
+    {
+      "name": "real AI upload recognition",
+      "passed": true,
+      "detail": "Synthetic red coat submitted through file chooser and upload dialog; four items visible, coat classified 大衣 with AI completion 90%.",
+      "at": "2026-10-17T09:25:52.873Z"
+    },
+    {
+      "name": "Mantine select and bulk checkbox",
+      "passed": true,
+      "detail": "Changed sort to 名称 A–Z; selected pants, observed 已选择 1 项 and bulk actions; cleared selection.",
+      "at": "2026-10-17T09:26:23.019Z"
+    },
+    {
+      "name": "durable recommendation survives browser reload",
+      "passed": true,
+      "detail": "Submitted one look with sunny 21°C. Busy form disabled; page reload restores same in-progress recommendation task.",
+      "at": "2026-10-17T09:27:05.680Z"
+    },
+    {
+      "name": "Studio save and wear today",
+      "passed": true,
+      "detail": "Built three-item casual look, saved named lookbook, opened detail with valid item links, and received 已添加到今天 after wear today.",
+      "at": "2026-10-17T09:28:22.707Z"
+    },
+    {
+      "name": "family create and empty feed",
+      "passed": true,
+      "detail": "Family empty state renders without raw error toast; created isolated family containing test account only. No invitations sent.",
+      "at": "2026-10-17T09:29:31.828Z"
+    },
+    {
+      "name": "notification channel form validation",
+      "passed": true,
+      "detail": "Opened real Mantine dialog; blank ntfy topic blocks submission; cancelled without creating channel or sending messages.",
+      "at": "2026-10-17T09:29:50.483Z"
+    },
+    {
+      "name": "settings section navigation and persistence",
+      "passed": true,
+      "detail": "Jumped to color settings, saved white preference, reloaded and aria-pressed remains true; blue preference retained.",
+      "at": "2026-10-17T09:30:39.591Z"
+    },
+    {
+      "name": "real AI result acceptance and rating",
+      "passed": true,
+      "detail": "Completed single-look task restored from history. Liked recommendation, accepted badge appears; submitted four-star actually-worn feedback and modal closed successfully.",
+      "at": "2026-10-17T09:32:14.555Z"
+    },
+    {
+      "name": "mobile route layout sweep",
+      "passed": true,
+      "detail": "390×844 across all authenticated routes; headings render, no horizontal overflow and no broken visible images.",
+      "at": "2026-10-17T09:33:51.313Z"
+    },
+    {
+      "name": "theme and locale responsive checks",
+      "passed": true,
+      "detail": "Mantine dark scheme matches app theme; mobile drawer Escape works. Switched wardrobe to German, checked 390px without horizontal overflow, restored Chinese/light.",
+      "at": "2026-10-17T09:34:56.961Z"
+    },
+    {
+      "name": "real AI anchored pairing generation",
+      "passed": true,
+      "detail": "Generated one pairing around blue shirt. Success dialog states 创建了1套穿搭 and opens pairing page.",
+      "at": "2026-10-17T09:36:05.788Z"
+    },
+    {
+      "name": "calendar month and day navigation",
+      "passed": true,
+      "detail": "Switched worn looks to calendar, moved September→October and selected 17; accepted AI look shown for current month.",
+      "at": "2026-10-17T09:37:07.345Z"
+    },
+    {
+      "name": "restore original session and verify isolation",
+      "passed": true,
+      "detail": "Returned from isolated test account with four items to original demo account with five unchanged items; UI test records do not appear in demo wardrobe.",
+      "at": "2026-10-17T09:37:43.887Z"
+    },
+    {
+      "name": "manual worn filter final regression",
+      "passed": true,
+      "detail": "Final API/frontend images: worn list now contains two looks, manual today instance plus accepted actually-worn AI. Calendar shows 本月 2 套穿搭; template and unworn pairing excluded.",
+      "at": "2026-10-17T10:01:13.042Z"
+    },
+    {
+      "name": "final release original session restored",
+      "passed": true,
+      "detail": "After worn-filter recheck, restored demo account, Chinese/light theme and default browser viewport.",
+      "at": "2026-10-17T10:02:02.070Z"
+    }
+  ],
+  "routes": [
+    {
+      "route": "/login",
+      "view": "login form",
+      "passed": true
+    },
+    {
+      "route": "/onboarding",
+      "view": "five-step Mantine wizard",
+      "passed": true
+    },
+    {
+      "route": "/dashboard",
+      "view": "isolated-account overview",
+      "passed": true
+    },
+    {
+      "route": "/dashboard/wardrobe",
+      "view": "four items; real AI upload complete",
+      "passed": true
+    },
+    {
+      "route": "/dashboard/outfits",
+      "view": "list and source filters",
+      "passed": true
+    },
+    {
+      "route": "/dashboard/outfits/new",
+      "view": "three-panel Studio with selected garments",
+      "passed": true
+    },
+    {
+      "route": "/dashboard/outfits/[id]",
+      "url": "http://localhost:3000/dashboard/outfits/7343b869-d37a-45fd-824b-a235af156fb6",
+      "view": "saved lookbook detail",
+      "passed": true
+    },
+    {
+      "route": "/dashboard/analytics",
+      "view": "数据分析",
+      "passed": true,
+      "viewport": {
+        "heading": "数据分析",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "route": "/dashboard/learning",
+      "view": "AI 学习",
+      "passed": true,
+      "viewport": {
+        "heading": "AI 学习",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "route": "/dashboard/family/feed",
+      "view": "家庭动态",
+      "passed": true,
+      "viewport": {
+        "heading": "家庭动态",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "route": "/dashboard/family",
+      "view": "家庭",
+      "passed": true,
+      "viewport": {
+        "heading": "家庭",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "route": "/dashboard/notifications",
+      "view": "通知",
+      "passed": true,
+      "viewport": {
+        "heading": "通知",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "route": "/dashboard/settings",
+      "view": "设置",
+      "passed": true,
+      "viewport": {
+        "heading": "设置",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "route": "/dashboard/history",
+      "view": "grouped synthetic outfit history",
+      "passed": true
+    },
+    {
+      "route": "/dashboard/suggest",
+      "view": "real AI single look restored from task history",
+      "passed": true
+    },
+    {
+      "route": "/dashboard/pairings",
+      "view": "搭配",
+      "passed": true,
+      "viewport": {
+        "heading": "搭配",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "route": "/dashboard",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "欢迎回来，UI",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/wardrobe",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "我的衣柜",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/suggest",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "晚上好",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/outfits",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "穿搭",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/outfits/new",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "工作室",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/outfits/7343b869-d37a-45fd-824b-a235af156fb6",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "UI 验收：周末蓝白穿搭",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/history",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "历史记录",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/pairings",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "搭配",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/learning",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "AI 学习",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/family/feed",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "家庭动态",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/family",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "UI 验收家庭",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/notifications",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "通知",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/dashboard/settings",
+      "mode": "mobile light",
+      "passed": true,
+      "viewport": {
+        "brokenImages": [],
+        "heading": "设置",
+        "scrollWidth": 390,
+        "width": 390
+      }
+    },
+    {
+      "route": "/invite",
+      "view": "invitation card and already-in-family rejection",
+      "passed": true
+    },
+    {
+      "route": "/",
+      "view": "photo entry and get-started action",
+      "passed": true
+    },
+    {
+      "route": "/_not-found",
+      "view": "404 recovery link",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+- alert
+- link "跳转到主要内容":
+  - /url: "#main-content"
+- banner:
+  - button "打开侧边栏":
+  - generic: wardrowbe
+  - generic: 仪表盘
+  - button "切换主题":
+  - button "切换语言":
+  - generic "演示验收":
+    - generic: 演
+  - button "退出登录":
+- main:
+  - heading "欢迎回来，演示验收" [level=1]
+  - paragraph: 每天穿什么，也把衣橱照顾好。
+  - link "获取搭配推荐":
+    - /url: /dashboard/suggest
+    - text: 获取搭配推荐
+  - link "添加新衣物":
+    - /url: /dashboard/wardrobe
+    - text: 添加新衣物
+  - region "衣橱概览":
+    - link "衣橱单品 5":
+      - /url: /dashboard/wardrobe
+      - text: 衣橱单品
+      - strong: "5"
+    - link "搭配记录 11":
+      - /url: /dashboard/outfits
+      - text: 搭配记录
+      - strong: "11"
+    - link "近7天新增穿搭 11":
+      - /url: /dashboard/history
+      - text: 近7天新增穿搭
+      - strong: "11"
+    - link "累计采纳率 100%":
+      - /url: /dashboard/analytics
+      - text: 累计采纳率
+      - strong: 100%
+  - heading "待你确认的推荐 5" [level=2]:
+    - text: 待你确认的推荐
+    - generic: "5"
+  - paragraph: 看看最近为你生成的穿搭，选一套喜欢的。
+  - link "推荐记录":
+    - /url: /dashboard/outfits?filter=ai
+    - text: 推荐记录
+  - 'link "查看穿搭: 复古波点休闲裙"':
+    - /url: /dashboard/outfits/3b3a96f0-8788-4791-979e-381c3a74fe2c
+    - img "架构验收：黄色连衣裙"
+    - img "验收样例-shoes"
+  - heading "复古波点休闲裙" [level=3]
+  - generic: 10月17日周六
+  - paragraph: 2件单品 · 连衣裙 / 运动鞋
+  - link "查看穿搭":
+    - /url: /dashboard/outfits/3b3a96f0-8788-4791-979e-381c3a74fe2c
+    - generic: 查看穿搭
+  - 'button "关闭搭配: 复古波点休闲裙"':
+  - 'button "采纳这套搭配: 复古波点休闲裙"':
+  - 'link "查看穿搭: 蓝红撞色休闲装"':
+    - /url: /dashboard/outfits/c8ecbad9-8ac8-4c8e-8b04-2ad0195eb000
+    - img "验收样例-shirt"
+    - img "网页验收：红色外套"
+    - img "验收样例-pants"
+  - heading "蓝红撞色休闲装" [level=3]
+  - generic: 10月17日周六
+  - paragraph: 3件单品 · T恤 / 大衣 / 长裤
+  - link "查看穿搭":
+    - /url: /dashboard/outfits/c8ecbad9-8ac8-4c8e-8b04-2ad0195eb000
+    - generic: 查看穿搭
+  - 'button "关闭搭配: 蓝红撞色休闲装"':
+  - 'button "采纳这套搭配: 蓝红撞色休闲装"':
+  - region "最近入库":
+    - heading "最近入库" [level=2]
+    - paragraph: 用新加入的单品，开启下一次搭配。
+    - generic: 衣橱共 5 件单品
+    - link "查看全部":
+      - /url: /dashboard/wardrobe
+      - generic: 查看全部
+    - link "架构验收：黄色连衣裙":
+      - /url: /dashboard/wardrobe?item=082b6966-1580-4ec9-af7a-4fc9de3a6db6
+      - img "架构验收：黄色连衣裙"
+      - generic: 已就绪
+      - heading "架构验收：黄色连衣裙" [level=3]
+      - text: 连衣裙
+      - generic: ", 已就绪"
+    - link "网页验收：红色外套":
+      - /url: /dashboard/wardrobe?item=bdf3d913-37fb-4ba3-8abe-cc04ed25a5c7
+      - img "网页验收：红色外套"
+      - generic: 已就绪
+      - heading "网页验收：红色外套" [level=3]
+      - text: 大衣
+      - generic: ", 已就绪"
+    - link "验收样例-shoes":
+      - /url: /dashboard/wardrobe?item=b9288608-f488-43d8-b579-fe04d6220469
+      - img "验收样例-shoes"
+      - generic: 已就绪
+      - heading "验收样例-shoes" [level=3]
+      - text: 运动鞋
+      - generic: ", 已就绪"
+    - link "验收样例-pants":
+      - /url: /dashboard/wardrobe?item=a619ca9f-f02a-44bc-b213-e689122c619b
+      - img "验收样例-pants"
+      - generic: 已就绪
+      - heading "验收样例-pants" [level=3]
+      - text: 长裤
+      - generic: ", 已就绪"
+    - link "验收样例-shirt":
+      - /url: /dashboard/wardrobe?item=58f0e0b7-6a93-419f-9a36-2b4086579a57
+      - img "验收样例-shirt"
+      - generic: 已就绪
+      - heading "验收样例-shirt" [level=3]
+      - text: T恤
+      - generic: ", 已就绪"
+  - region "换个单品，换点新意":
+    - heading "换个单品，换点新意" [level=2]
+    - paragraph: 从较少穿着的单品开始，发现新的组合。
+    - link "架构验收：黄色连衣裙":
+      - /url: /dashboard/wardrobe?item=082b6966-1580-4ec9-af7a-4fc9de3a6db6
+      - img "架构验收：黄色连衣裙"
+      - heading "架构验收：黄色连衣裙" [level=3]
+      - generic: 连衣裙
+      - paragraph: 已穿着 0 次
+    - 'link "围绕它搭配: 架构验收：黄色连衣裙"':
+      - /url: /dashboard/suggest?item=082b6966-1580-4ec9-af7a-4fc9de3a6db6
+      - generic: 围绕它搭配
+    - link "验收样例-shirt":
+      - /url: /dashboard/wardrobe?item=58f0e0b7-6a93-419f-9a36-2b4086579a57
+      - img "验收样例-shirt"
+      - heading "验收样例-shirt" [level=3]
+      - generic: T恤
+      - paragraph: 已穿着 0 次
+    - 'link "围绕它搭配: 验收样例-shirt"':
+      - /url: /dashboard/suggest?item=58f0e0b7-6a93-419f-9a36-2b4086579a57
+      - generic: 围绕它搭配
+    - link "验收样例-pants":
+      - /url: /dashboard/wardrobe?item=a619ca9f-f02a-44bc-b213-e689122c619b
+      - img "验收样例-pants"
+      - heading "验收样例-pants" [level=3]
+      - generic: 长裤
+      - paragraph: 已穿着 0 次
+    - 'link "围绕它搭配: 验收样例-pants"':
+      - /url: /dashboard/suggest?item=a619ca9f-f02a-44bc-b213-e689122c619b
+      - generic: 围绕它搭配
+    - link "验收样例-shoes":
+      - /url: /dashboard/wardrobe?item=b9288608-f488-43d8-b579-fe04d6220469
+      - img "验收样例-shoes"
+      - heading "验收样例-shoes" [level=3]
+      - generic: 运动鞋
+      - paragraph: 已穿着 0 次
+    - 'link "围绕它搭配: 验收样例-shoes"':
+      - /url: /dashboard/suggest?item=b9288608-f488-43d8-b579-fe04d6220469
+      - generic: 围绕它搭配
+  - complementary:
+    - heading "今日天气" [level=2]
+    - heading "衣橱待办" [level=2]
+    - link "待清洗 衣物清洗状态良好":
+      - /url: /dashboard/wardrobe?needsWash=true
+      - strong: 待清洗
+      - generic: 衣物清洗状态良好
+    - generic: 暂无待处理的识别任务
+    - heading "每日安排" [level=2]
+    - paragraph: 把提醒安排好，让每天的穿搭更从容。
+    - link "下一个计划 设置计划":
+      - /url: /dashboard/notifications
+      - strong: 下一个计划
+      - generic: 设置计划
+    - link "通知 添加渠道":
+      - /url: /dashboard/notifications
+      - strong: 通知
+      - generic: 添加渠道
+    - paragraph: 推荐进度
+    - paragraph: 查看推荐进度，或继续查看最近生成的搭配。
+    - link "查看推荐":
+      - /url: /dashboard/suggest
+      - text: 查看推荐
+  - heading "常见配色" [level=2]
+  - paragraph: 基于已就绪衣物的颜色分布
+  - generic: 红色1件
+  - strong: 20%
+  - generic: 蓝色1件
+  - strong: 20%
+  - generic: 黄色1件
+  - strong: 20%
+  - generic: 黑色1件
+  - strong: 20%
+  - generic: 白色1件
+  - strong: 20%
+  - heading "洞察" [level=2]
+  - link "查看全部":
+    - /url: /dashboard/analytics
+    - text: 查看全部
+  - list:
+    - generic: 你有 5 件单品从未穿过，试着搭配一下吧！
+    - generic: 品味不错！你采纳了 100% 的推荐。
+  - heading "常用入口" [level=2]
+  - link "穿搭工作室":
+    - /url: /dashboard/outfits/new
+    - generic: 穿搭工作室
+  - link "收藏的衣物":
+    - /url: /dashboard/wardrobe?favorite=true
+    - generic: 收藏的衣物
+  - link "穿着记录":
+    - /url: /dashboard/outfits?filter=worn
+    - generic: 穿着记录
+  - link "衣橱分析":
+    - /url: /dashboard/analytics
+    - generic: 衣橱分析
+- navigation:
+  - link "仪表盘" [active]:
+    - /url: /dashboard
+    - generic: 仪表盘
+  - link "衣橱":
+    - /url: /dashboard/wardrobe
+    - generic: 衣橱
+  - link "推荐":
+    - /url: /dashboard/suggest
+    - generic: 推荐
+  - link "穿搭":
+    - /url: /dashboard/outfits
+    - generic: 穿搭
+  - link "设置":
+    - /url: /dashboard/settings
+    - generic: 设置
+- region "Notifications alt+T"

@@ -1,5 +1,8 @@
 'use client';
 
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { Suspense, useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -116,7 +119,7 @@ function chipToFilters(chip: FilterChip, search: string, occasions: string[]): O
       return filters;
     case 'worn':
       filters.is_lookbook = false;
-      filters.status = 'accepted';
+      filters.worn = true;
       return filters;
     case 'pairings':
       filters.has_source_item = true;
@@ -146,6 +149,7 @@ function OutfitsPageContent() {
   const chip: FilterChip = urlFilter;
   const view: ViewMode = urlView;
   const urlMonth = parseMonthParam(searchParams.get('month'));
+  const clonedFromId = searchParams.get('cloned_from') || undefined;
 
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
@@ -180,8 +184,8 @@ function OutfitsPageContent() {
 
   const occasionsMatching = useOccasionsMatching();
   const filters = useMemo(
-    () => chipToFilters(chip, debouncedSearch, occasionsMatching(debouncedSearch)),
-    [chip, debouncedSearch, occasionsMatching],
+    () => ({ ...chipToFilters(chip, debouncedSearch, occasionsMatching(debouncedSearch)), ...(clonedFromId ? { cloned_from_outfit_id: clonedFromId } : {}) }),
+    [chip, debouncedSearch, occasionsMatching, clonedFromId],
   );
 
   const listQuery = useInfiniteOutfits(filters, GRID_PAGE_SIZE);
@@ -191,7 +195,7 @@ function OutfitsPageContent() {
   // can span loaded pages.
   useEffect(() => {
     setSelection({ mode: 'none', selectedIds: new Set(), excludedIds: new Set() });
-  }, [chip, debouncedSearch]);
+  }, [chip, debouncedSearch, clonedFromId]);
 
   useEffect(() => {
     if (view === 'calendar') {
@@ -269,6 +273,7 @@ function OutfitsPageContent() {
     } else {
       params.set('filter', next);
     }
+    params.delete('cloned_from');
     setSelectedDate(null);
     router.replace(
       `/dashboard/outfits${params.toString() ? `?${params}` : ''}`,
@@ -398,19 +403,15 @@ function OutfitsPageContent() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-start justify-between gap-4 flex-wrap">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-muted-foreground">{t('subtitle')}</p>
-        </div>
-        <div className="flex items-center gap-3">
+    <div className={`page-container ${styles.page}`}>
+      <PageHeader title={t('title')} description={t('subtitle')} icon={<ListIcon className="h-5 w-5" />} actions={
+        <div className="flex items-center gap-3 flex-wrap">
           <div
             className="inline-flex rounded-full border-2 border-muted overflow-hidden"
             role="group"
             aria-label={t('viewToggle')}
           >
-            <button
+            <Button variant="ghost"
               type="button"
               onClick={() => handleViewChange('list')}
               aria-pressed={view === 'list'}
@@ -423,8 +424,8 @@ function OutfitsPageContent() {
             >
               <ListIcon className="h-3.5 w-3.5" />
               {t('viewList')}
-            </button>
-            <button
+            </Button>
+            <Button variant="ghost"
               type="button"
               onClick={() => handleViewChange('calendar')}
               aria-pressed={view === 'calendar'}
@@ -437,7 +438,7 @@ function OutfitsPageContent() {
             >
               <CalendarDays className="h-3.5 w-3.5" />
               {t('viewCalendar')}
-            </button>
+            </Button>
           </div>
           {view === 'list' && (
             <Button
@@ -455,16 +456,17 @@ function OutfitsPageContent() {
             </Link>
           </Button>
         </div>
-      </div>
+      } />
 
       {view === 'list' && (
-      <div className="flex items-center gap-3 flex-wrap">
+      <div className={`${styles.toolbar} ${styles.toolbarRow}`}>
         <div className="flex flex-wrap gap-2">
           {CHIP_ORDER.map((c) => (
-            <button
+            <Button variant="ghost"
               key={c}
               type="button"
               onClick={() => handleChipClick(c)}
+              aria-pressed={chip === c}
               className={cn(
                 'inline-flex items-center rounded-full border-2 px-4 py-1.5 text-sm font-medium transition-all',
                 chip === c
@@ -473,12 +475,12 @@ function OutfitsPageContent() {
               )}
             >
               {t(CHIP_KEYS[c])}
-            </button>
+            </Button>
           ))}
         </div>
 
         {chip === 'my-looks' && (
-          <div className="relative ml-auto min-w-[220px]">
+          <div className="relative w-full sm:ml-auto sm:max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
               placeholder={t('search')}
@@ -500,15 +502,15 @@ function OutfitsPageContent() {
       {view === 'list' ? (
         <>
           {listError ? (
-            <div className="text-center py-8 text-destructive">{t('loadError')}</div>
+            <div className={`${styles.empty} text-destructive`}>{t('loadError')}</div>
           ) : listLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            <div className={styles.collection}>
               {Array.from({ length: 6 }).map((_, i) => (
                 <Skeleton key={i} className="aspect-[5/4] rounded-lg" />
               ))}
             </div>
           ) : outfits.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
+            <div className={styles.empty}>
               <p className="text-muted-foreground mb-6 max-w-sm">{t(EMPTY_KEYS[chip])}</p>
               {chip === 'my-looks' && (
                 <Button asChild>
@@ -521,7 +523,7 @@ function OutfitsPageContent() {
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              <div className={styles.collection}>
                 {outfits.map((outfit) => {
                   const isSelected = selection.mode === 'all'
                     ? !selection.excludedIds.has(outfit.id)
@@ -583,7 +585,7 @@ function OutfitsPageContent() {
 
           <div className="space-y-4">
             {calendarError ? (
-              <div className="text-center py-8 text-destructive">{t('loadError')}</div>
+              <div className={`${styles.empty} text-destructive`}>{t('loadError')}</div>
             ) : calendarLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {Array.from({ length: 4 }).map((_, i) => (
@@ -648,7 +650,7 @@ export default function OutfitsPage() {
       fallback={
         <div className="space-y-6">
           <Skeleton className="h-10 w-48" />
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <div className={styles.collection}>
             {Array.from({ length: 6 }).map((_, i) => (
               <Skeleton key={i} className="aspect-[5/4] rounded-lg" />
             ))}

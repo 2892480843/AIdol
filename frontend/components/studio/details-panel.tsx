@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState } from 'react';
 import { AlertTriangle, Loader2, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
@@ -88,8 +90,8 @@ export function DetailsPanel({
   };
 
   return (
-    <div className="space-y-6">
-      <div className="space-y-2">
+    <div className="space-y-7">
+      <div className={`${styles.formSection} space-y-2`}>
         <Label htmlFor="studio-name" className="flex items-center gap-1">
           {t('name')}
           <span className="text-xs text-muted-foreground font-normal ml-1">
@@ -105,7 +107,7 @@ export function DetailsPanel({
         />
       </div>
 
-      <div className="space-y-2">
+      <div className={`${styles.formSection} space-y-2`}>
         <Label className="flex items-center gap-1">
           {t('occasion')}
           <span className="text-destructive" aria-label={t('required')}>*</span>

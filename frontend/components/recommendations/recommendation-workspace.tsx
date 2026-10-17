@@ -1,5 +1,8 @@
 'use client';
 
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
@@ -17,7 +20,6 @@ import { useRecommendationTasks } from '@/lib/recommendations/use-recommendation
 import { isTaskActive, type RecommendationTask } from '@/lib/recommendations/types';
 import type { Item, Outfit } from '@/lib/types';
 import type { TempUnit } from '@/lib/temperature';
-import { cn } from '@/lib/utils';
 import { RecommendationForm } from './recommendation-form';
 import { OutfitResultsView } from './outfit-results';
 import { TaskPanel } from './task-panel';
@@ -231,11 +233,8 @@ export function RecommendationWorkspace() {
   }
 
   return (
-    <div className={cn('mx-auto space-y-6', isCompareAll && outfits.length ? 'max-w-5xl' : 'max-w-2xl')}>
-      <div className="flex items-start gap-3">
-        <div className="rounded-xl bg-primary/10 p-2.5 text-primary"><Sparkles className="h-6 w-6" aria-hidden="true" /></div>
-        <div className="space-y-1"><h1 className="text-2xl font-bold tracking-tight">{t(getGreetingKey())}</h1><p className="text-muted-foreground">{t('subtitle')}</p></div>
-      </div>
+    <div className={`page-container ${styles.page}`}>
+      <PageHeader title={t(getGreetingKey())} description={t('subtitle')} icon={<Sparkles className="h-5 w-5" />} />
       {error && <Alert variant="destructive"><AlertCircle className="h-4 w-4" /><AlertDescription>{error}</AlertDescription></Alert>}
       <TaskPanel
         tasks={tasks.tasks} activeTask={tasks.activeTask} loading={tasks.isLoading}

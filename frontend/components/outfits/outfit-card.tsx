@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -118,14 +120,14 @@ export function OutfitCard({ outfit, onClick, selectMode, selected, onSelect }: 
   const content = (
     <Card
       className={cn(
-        'overflow-hidden transition-all hover:shadow-md',
+        styles.photoCard,
         handleCardClick && 'cursor-pointer',
         selectMode && selected && 'ring-2 ring-primary shadow-md'
       )}
       onClick={handleCardClick}
     >
       <CardContent className="p-0">
-        <div className="relative aspect-[5/4] bg-muted">
+        <div className={styles.outfitPhoto}>
           {selectMode && (
             <div
               className="absolute top-2 left-2 z-10"
@@ -138,7 +140,7 @@ export function OutfitCard({ outfit, onClick, selectMode, selected, onSelect }: 
               />
             </div>
           )}
-          <div className="absolute inset-0 grid grid-cols-4 gap-0.5 p-2">
+          <div className={styles.collage}>
             {visibleItems.map((item, idx) => (
               <div
                 key={`${item.id}-${idx}`}
@@ -163,7 +165,7 @@ export function OutfitCard({ outfit, onClick, selectMode, selected, onSelect }: 
               </div>
             ))}
             {overflow > 0 && (
-              <div className="relative rounded overflow-hidden bg-background flex items-center justify-center">
+              <div className={`${styles.overflowCount} flex items-center justify-center`}>
                 <span className="text-sm font-medium text-muted-foreground">
                   +{overflow}
                 </span>
@@ -182,7 +184,7 @@ export function OutfitCard({ outfit, onClick, selectMode, selected, onSelect }: 
             </div>
           )}
         </div>
-        <div className="p-3 space-y-1">
+        <div className={styles.outfitCaption}>
           <h3 className="text-sm font-semibold leading-tight truncate">
             {getTitle(outfit)}
           </h3>

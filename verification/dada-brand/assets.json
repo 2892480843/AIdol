@@ -1,0 +1,123 @@
+{
+  "assets": [
+    {
+      "file": "logo.svg",
+      "width": 64,
+      "height": 64,
+      "format": "svg",
+      "bytes": 525,
+      "sha256": "1d40eee31150ff265fa82174737878166f6961bbe97f48c8c6f67ff02218f4c1"
+    },
+    {
+      "file": "icon-16.png",
+      "width": 16,
+      "height": 16,
+      "format": "png",
+      "bytes": 444,
+      "sha256": "16ae9b866ec551c7ef39d7f0030030fe073aa231f0fc7591bc4a8cc914ba9ca1"
+    },
+    {
+      "file": "icon-32.png",
+      "width": 32,
+      "height": 32,
+      "format": "png",
+      "bytes": 806,
+      "sha256": "3b0d2d04921af21e2f7460cc44b7b373e45b069681a741184ffb7cded3a5cd9d"
+    },
+    {
+      "file": "icon-48.png",
+      "width": 48,
+      "height": 48,
+      "format": "png",
+      "bytes": 1325,
+      "sha256": "9f97306e8670e19590dc7629fe96beb744f858a2d302fd94496bfbbd6bb59932"
+    },
+    {
+      "file": "icon-96.png",
+      "width": 96,
+      "height": 96,
+      "format": "png",
+      "bytes": 2458,
+      "sha256": "0d73a217b7381c73e93489e8c26d266a99435fad59454032ca3559fad8ab1c81"
+    },
+    {
+      "file": "icon-128.png",
+      "width": 128,
+      "height": 128,
+      "format": "png",
+      "bytes": 3313,
+      "sha256": "9e585a0def0ee9acb01514c6fe4cd2a3e5a5c9df95d163502efe4c024cdbd887"
+    },
+    {
+      "file": "icon-192.png",
+      "width": 192,
+      "height": 192,
+      "format": "png",
+      "bytes": 5036,
+      "sha256": "f44c4edf6e33ebd338619186b8e8c4d030782b4ce4d0c3a901674f2e366c7e44"
+    },
+    {
+      "file": "icon-256.png",
+      "width": 256,
+      "height": 256,
+      "format": "png",
+      "bytes": 6912,
+      "sha256": "e11e4401a20495d9950306d9b2a4b89063ce179648e34caf196fbb89e9f07182"
+    },
+    {
+      "file": "icon-512.png",
+      "width": 512,
+      "height": 512,
+      "format": "png",
+      "bytes": 31849,
+      "sha256": "dac5b0a46c6cb4b4ab9fe6cc7db857fcd1666784a27a57246df4a33417a8eeb1"
+    },
+    {
+      "file": "apple-touch-icon.png",
+      "width": 180,
+      "height": 180,
+      "format": "png",
+      "bytes": 3991,
+      "sha256": "dc8cb8517a28a609b12c274ded5d334f883cd85b618cf21926f1ab31203f5954"
+    },
+    {
+      "file": "favicon.ico",
+      "bytes": 2629,
+      "sha256": "1d0addd11811cd71ade77043e067c438a78fdce91c37ffa4cf3180860beabb30"
+    }
+  ],
+  "catalog": [
+    {
+      "locale": "en",
+      "brand": "搭搭"
+    },
+    {
+      "locale": "zh-CN",
+      "brand": "搭搭"
+    },
+    {
+      "locale": "zh-TW",
+      "brand": "搭搭"
+    },
+    {
+      "locale": "de",
+      "brand": "搭搭"
+    },
+    {
+      "locale": "fr",
+      "brand": "搭搭"
+    },
+    {
+      "locale": "it",
+      "brand": "搭搭"
+    },
+    {
+      "locale": "ja",
+      "brand": "搭搭"
+    },
+    {
+      "locale": "ko",
+      "brand": "搭搭"
+    }
+  ]
+}

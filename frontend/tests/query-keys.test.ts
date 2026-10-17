@@ -9,6 +9,8 @@ describe('queryKeys equal the literal keys they replaced', () => {
   const outfitFilters = { status: 'accepted' as const }
 
   it.each([
+    ['inspirationWardrobe', queryKeys.inspirationWardrobe('owner-a'), ['inspiration-wardrobe', 'owner-a']],
+    ['inspirationSeed', queryKeys.inspirationSeed('owner-a', 'seed=i1'), ['inspiration-seed', 'owner-a', 'seed=i1']],
     ['authConfig', queryKeys.authConfig, ['auth-config']],
     ['authUser', queryKeys.authUser, ['auth-user']],
     ['userProfile', queryKeys.userProfile, ['user-profile']],

@@ -1,0 +1,1104 @@
+{
+  "checked_at": "2026-10-17T09:18:13.064Z",
+  "platform": "Darwin arm64",
+  "source_revision": "09c10d121fe5f879f9a54c2e5aa1f1406fc7959c",
+  "working_tree_changes_included": true,
+  "method": "TypeScript AST scan of production frontend source; local import graph resolves actual Mantine JSX use, not unused imports. Metadata-only env checks; no env contents or secret values read.",
+  "status": "passed",
+  "summary": {
+    "page_count": 18,
+    "covered_pages": 18,
+    "error_and_not_found_count": 3,
+    "ui_adapter_count": 21,
+    "production_source_files": 157,
+    "radix_imports": 0,
+    "radix_dependencies": 0,
+    "radix_lock_packages": 0,
+    "forbidden_raw_controls": 0,
+    "allowed_native_file_inputs": 5,
+    "tracked_private_env_files": 0,
+    "encoding_files_checked": 125,
+    "encoding_errors": 0
+  },
+  "versions": {
+    "core": "8.3.18",
+    "hooks": "8.3.18",
+    "react": "18.2.0",
+    "next": "14.2.35"
+  },
+  "pages": [
+    {
+      "route": "/dashboard/analytics",
+      "file": "frontend/app/dashboard/analytics/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "badge",
+        "card",
+        "progress",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge",
+        "Box",
+        "Paper",
+        "Progress",
+        "Skeleton",
+        "Text",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/family/feed",
+      "file": "frontend/app/dashboard/family/feed/page.tsx",
+      "direct_mantine_imports": [
+        "UnstyledButton"
+      ],
+      "ui_adapter_imports": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Avatar",
+        "Badge",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Image",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "Skeleton",
+        "Text",
+        "Textarea",
+        "Title",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/family",
+      "file": "frontend/app/dashboard/family/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "alert-dialog",
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "input",
+        "label",
+        "select"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Avatar",
+        "Badge",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "Image",
+        "Input.Label",
+        "InputBase",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "Text",
+        "TextInput",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/history",
+      "file": "frontend/app/dashboard/history/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "button",
+        "card",
+        "select",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Avatar",
+        "Badge",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "Image",
+        "InputBase",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "Skeleton",
+        "Text",
+        "TextInput",
+        "Textarea",
+        "Title",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/learning",
+      "file": "frontend/app/dashboard/learning/page.tsx",
+      "direct_mantine_imports": [
+        "UnstyledButton"
+      ],
+      "ui_adapter_imports": [
+        "badge",
+        "button",
+        "card",
+        "progress",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge",
+        "Box",
+        "Button",
+        "Paper",
+        "Progress",
+        "Skeleton",
+        "Text",
+        "Title",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/notifications",
+      "file": "frontend/app/dashboard/notifications/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "alert-dialog",
+        "button",
+        "card",
+        "dialog",
+        "input",
+        "label",
+        "select",
+        "skeleton",
+        "switch"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "Input.Label",
+        "InputBase",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "Skeleton",
+        "Switch",
+        "Text",
+        "TextInput",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/outfits/[id]",
+      "file": "frontend/app/dashboard/outfits/[id]/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "alert",
+        "badge",
+        "button",
+        "card",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Alert",
+        "Badge",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Input.Label",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "Skeleton",
+        "Text",
+        "TextInput",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/outfits/new",
+      "file": "frontend/app/dashboard/outfits/new/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "alert-dialog",
+        "button"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Alert",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Input.Label",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Portal",
+        "TextInput",
+        "Title",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/outfits",
+      "file": "frontend/app/dashboard/outfits/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "badge",
+        "button",
+        "card",
+        "input",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge",
+        "Box",
+        "Button",
+        "Checkbox",
+        "CloseButton",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "Skeleton",
+        "Text",
+        "TextInput",
+        "Title",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard",
+      "file": "frontend/app/dashboard/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "badge",
+        "button",
+        "card",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge",
+        "Box",
+        "Button",
+        "Paper",
+        "Skeleton",
+        "Text",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/pairings",
+      "file": "frontend/app/dashboard/pairings/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "button",
+        "card",
+        "select",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Avatar",
+        "Badge",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "Image",
+        "InputBase",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "Skeleton",
+        "Text",
+        "TextInput",
+        "Textarea",
+        "Title",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/settings",
+      "file": "frontend/app/dashboard/settings/page.tsx",
+      "direct_mantine_imports": [
+        "UnstyledButton"
+      ],
+      "ui_adapter_imports": [
+        "alert-dialog",
+        "badge",
+        "button",
+        "card",
+        "input",
+        "label",
+        "select",
+        "slider",
+        "switch"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "Input.Label",
+        "InputBase",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "RangeSlider",
+        "Slider",
+        "Switch",
+        "Text",
+        "TextInput",
+        "Title",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/suggest",
+      "file": "frontend/app/dashboard/suggest/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "card",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Accordion",
+        "Accordion.Control",
+        "Accordion.Item",
+        "Accordion.Panel",
+        "Alert",
+        "Badge",
+        "Box",
+        "Button",
+        "CloseButton",
+        "Collapse",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "RangeSlider",
+        "Skeleton",
+        "Slider",
+        "Text",
+        "TextInput",
+        "Title",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/dashboard/wardrobe",
+      "file": "frontend/app/dashboard/wardrobe/page.tsx",
+      "direct_mantine_imports": [
+        "UnstyledButton"
+      ],
+      "ui_adapter_imports": [
+        "badge",
+        "button",
+        "card",
+        "checkbox",
+        "input",
+        "select",
+        "skeleton",
+        "tooltip"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge",
+        "Box",
+        "Button",
+        "Checkbox",
+        "CloseButton",
+        "Collapse",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "Input.Label",
+        "InputBase",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Paper",
+        "Portal",
+        "Progress",
+        "RangeSlider",
+        "ScrollArea",
+        "Skeleton",
+        "Slider",
+        "Tabs",
+        "Tabs.List",
+        "Tabs.Panel",
+        "Tabs.Tab",
+        "Text",
+        "TextInput",
+        "Textarea",
+        "Title",
+        "Tooltip",
+        "Tooltip.Group",
+        "UnstyledButton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/invite",
+      "file": "frontend/app/invite/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "button",
+        "card",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "Button",
+        "NavLink",
+        "Paper",
+        "Skeleton",
+        "Text",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/login",
+      "file": "frontend/app/login/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "button",
+        "input",
+        "skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Button",
+        "Menu",
+        "Menu.Dropdown",
+        "Menu.Item",
+        "Menu.Target",
+        "NavLink",
+        "Skeleton",
+        "TextInput"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/onboarding",
+      "file": "frontend/app/onboarding/page.tsx",
+      "direct_mantine_imports": [
+        "ColorSwatch",
+        "Stepper"
+      ],
+      "ui_adapter_imports": [
+        "badge",
+        "button",
+        "card",
+        "input",
+        "label",
+        "select",
+        "slider"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge",
+        "Box",
+        "Button",
+        "ColorSwatch",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "Input.Label",
+        "InputBase",
+        "Menu",
+        "Menu.Dropdown",
+        "Menu.Item",
+        "Menu.Target",
+        "NavLink",
+        "Paper",
+        "RangeSlider",
+        "Slider",
+        "Stepper",
+        "Stepper.Step",
+        "Text",
+        "TextInput",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "route": "/",
+      "file": "frontend/app/page.tsx",
+      "direct_mantine_imports": [],
+      "ui_adapter_imports": [
+        "button"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Button",
+        "Menu",
+        "Menu.Dropdown",
+        "Menu.Item",
+        "Menu.Target",
+        "NavLink"
+      ],
+      "mantine_rendering_reachable": true
+    }
+  ],
+  "error_and_not_found_views": [
+    {
+      "file": "frontend/app/error.tsx",
+      "exists": true,
+      "reachable_rendered_mantine_components": [
+        "Button"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/app/dashboard/error.tsx",
+      "exists": true,
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "Button",
+        "Paper",
+        "Text",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/app/not-found.tsx",
+      "exists": true,
+      "reachable_rendered_mantine_components": [
+        "Button"
+      ],
+      "mantine_rendering_reachable": true
+    }
+  ],
+  "ui_adapters": [
+    {
+      "file": "frontend/components/ui/alert-dialog.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [],
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "Button",
+        "CloseButton",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Portal"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/alert.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Alert",
+        "Box",
+        "Title"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Alert",
+        "Box",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/avatar.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Avatar",
+        "Box",
+        "Image"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Avatar",
+        "Box",
+        "Image"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/badge.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Badge"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Badge"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/button.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Button"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Button"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/card.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Box",
+        "Paper",
+        "Text",
+        "Title"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "Paper",
+        "Text",
+        "Title"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/checkbox.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Checkbox"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Checkbox"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/collapsible.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Box",
+        "Collapse"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "Collapse"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/dialog.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Box",
+        "CloseButton",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Portal"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "Button",
+        "CloseButton",
+        "Modal.Body",
+        "Modal.Content",
+        "Modal.Overlay",
+        "Modal.Root",
+        "Modal.Title",
+        "Overlay",
+        "Portal"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/dropdown-menu.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Menu",
+        "Menu.Dropdown",
+        "Menu.Item",
+        "Menu.Target"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Button",
+        "Menu",
+        "Menu.Dropdown",
+        "Menu.Item",
+        "Menu.Target"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/input.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "TextInput"
+      ],
+      "reachable_rendered_mantine_components": [
+        "TextInput"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/label.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Input.Label"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Input.Label"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/progress.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Progress"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Progress"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/scroll-area.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Box",
+        "ScrollArea"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "ScrollArea"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/select.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Box",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "InputBase"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "Combobox",
+        "Combobox.Chevron",
+        "Combobox.Dropdown",
+        "Combobox.Group",
+        "Combobox.HiddenInput",
+        "Combobox.Option",
+        "Combobox.Options",
+        "Combobox.Target",
+        "InputBase"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/skeleton.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Skeleton"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Skeleton"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/slider.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "RangeSlider",
+        "Slider"
+      ],
+      "reachable_rendered_mantine_components": [
+        "RangeSlider",
+        "Slider"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/switch.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Switch"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Switch"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/tabs.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Tabs",
+        "Tabs.List",
+        "Tabs.Panel",
+        "Tabs.Tab"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Tabs",
+        "Tabs.List",
+        "Tabs.Panel",
+        "Tabs.Tab"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/textarea.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Textarea"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Textarea"
+      ],
+      "mantine_rendering_reachable": true
+    },
+    {
+      "file": "frontend/components/ui/tooltip.tsx",
+      "client_directive": true,
+      "direct_rendered_mantine_components": [
+        "Box",
+        "Tooltip",
+        "Tooltip.Group"
+      ],
+      "reachable_rendered_mantine_components": [
+        "Box",
+        "Tooltip",
+        "Tooltip.Group"
+      ],
+      "mantine_rendering_reachable": true
+    }
+  ],
+  "radix": {
+    "imports": [],
+    "dependencies": [],
+    "lock_packages": [],
+    "old_registry_exists": false
+  },
+  "native_controls_outside_adapters": [
+    {
+      "file": "frontend/app/onboarding/page.tsx",
+      "line": 755,
+      "tag": "input",
+      "input_type": "file",
+      "input_factory": null,
+      "allowed": true,
+      "reason": "Native file picker"
+    },
+    {
+      "file": "frontend/components/add-item-dialog.tsx",
+      "line": 281,
+      "tag": "input",
+      "input_type": null,
+      "input_factory": "getSingleInputProps",
+      "allowed": true,
+      "reason": "react-dropzone getInputProps produces type=file"
+    },
+    {
+      "file": "frontend/components/add-item-dialog.tsx",
+      "line": 416,
+      "tag": "input",
+      "input_type": null,
+      "input_factory": "getBulkInputProps",
+      "allowed": true,
+      "reason": "react-dropzone getInputProps produces type=file"
+    },
+    {
+      "file": "frontend/components/item-detail-dialog.tsx",
+      "line": 465,
+      "tag": "input",
+      "input_type": "file",
+      "input_factory": null,
+      "allowed": true,
+      "reason": "Native file picker"
+    },
+    {
+      "file": "frontend/components/item-detail-dialog.tsx",
+      "line": 622,
+      "tag": "input",
+      "input_type": "file",
+      "input_factory": null,
+      "allowed": true,
+      "reason": "Native file picker"
+    }
+  ],
+  "environment_paths_only": {
+    "tracked": [
+      {
+        "path": ".env.example",
+        "public_template": true
+      }
+    ],
+    "existing_path_ignore_checks": [
+      {
+        "path": ".env",
+        "tracked": false,
+        "ignored": true,
+        "public_template": false
+      },
+      {
+        "path": ".env.ai.local",
+        "tracked": false,
+        "ignored": true,
+        "public_template": false
+      },
+      {
+        "path": ".env.architecture.local",
+        "tracked": false,
+        "ignored": true,
+        "public_template": false
+      },
+      {
+        "path": ".env.example",
+        "tracked": true,
+        "ignored": false,
+        "public_template": true
+      }
+    ],
+    "tracked_private_runtime_paths": []
+  },
+  "encoding": {
+    "checked_text_files": 125,
+    "invalid_utf8": [],
+    "utf8_bom": [],
+    "replacement_character": [],
+    "env_file_contents_excluded": true
+  },
+  "changed_file_sizes": {
+    "file_count": 127,
+    "total_bytes": 1529412,
+    "largest_file": {
+      "path": "frontend/package-lock.json",
+      "bytes": 367688
+    }
+  },
+  "findings": [],
+  "verification_boundary": "Static source audit only. Visual coverage, keyboard/browser interactions, API behavior, test suite and production build are validated separately by root."
+}

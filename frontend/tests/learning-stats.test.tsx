@@ -5,6 +5,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import type { ReactNode } from 'react'
 import { describe, expect, it, vi } from 'vitest'
 import LearningPage from '@/app/dashboard/learning/page'
+import type { ItemPair } from '@/lib/hooks/use-learning'
 
 vi.unmock('next-intl')
 // A maximum other than 5 shows whether the copy follows the scale or repeats a literal.
@@ -28,7 +29,7 @@ const learningData = vi.hoisted(() => ({
     weather_preferences: [] as { weather_type: string; preferred_layers: number; success_rate: number }[],
     last_computed_at: null as string | null,
   },
-  best_pairs: [],
+  best_pairs: [] as ItemPair[],
   insights: [],
   preference_suggestions: { updated: false },
 }))
@@ -90,3 +91,12 @@ describe('learning stats', () => {
     ).toBeInTheDocument()
   })
 })
+
+  it('opens each learned combination item in the wardrobe detail panel', () => {
+    const item = { id: 'shirt-1', name: 'White shirt', type: 'shirt', primary_color: 'white', thumbnail_path: null, thumbnail_url: null }
+    learningData.best_pairs = [{ item1: item, item2: { ...item, id: 'trousers-1', name: 'Trousers' }, compatibility_score: 0.8, times_paired: 3, times_accepted: 2 }]
+    const { container } = render(<LearningPage />, { wrapper })
+    expect(container.querySelector('a[href="/dashboard/wardrobe?item=shirt-1"]')).toBeInTheDocument()
+    expect(container.querySelector('a[href="/dashboard/wardrobe?item=trousers-1"]')).toBeInTheDocument()
+    learningData.best_pairs = []
+  })

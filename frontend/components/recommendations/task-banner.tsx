@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { useTranslations } from 'next-intl';
@@ -14,7 +16,7 @@ function AuthenticatedTaskBanner() {
   const active = tasks.find(isTaskActive);
   if (!tasks.length) return null;
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-primary/20 bg-primary/5 p-4">
+    <div className={`${styles.statusStrip} justify-between`}>
       <div className="flex items-start gap-3">
         {active ? <Loader2 className="h-5 w-5 text-primary mt-0.5 animate-spin" aria-hidden="true" /> : <Sparkles className="h-5 w-5 text-primary mt-0.5" aria-hidden="true" />}
         <div><p className="font-medium text-sm">{active ? t('status.running') : t('title')}</p><p className="text-xs text-muted-foreground mt-1">{t('dashboardHint')}</p></div>

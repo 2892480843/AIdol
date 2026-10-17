@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/secondary-ui.module.css';
+
 import type { ReactNode } from 'react';
 import { Bell, Loader2, Mail, MessageSquare, Send, Smartphone, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -37,24 +39,24 @@ export function ChannelCard({
     expo_push: t('channels.mobileAppRegistered'),
   };
   return (
-    <Card>
-      <CardContent className="pt-6">
-        <div className="flex items-start justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 text-primary">
+    <Card className={styles.channel}>
+      <CardContent className="p-5">
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex min-w-0 items-start gap-3">
+            <div className={`${styles.statIcon} shrink-0`}>
               {CHANNEL_ICONS[setting.channel]}
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="font-medium">{t(`channels.types.${setting.channel}`)}</p>
-              <p className="text-sm text-muted-foreground">{details[setting.channel]}</p>
+              <p className="break-words text-sm text-muted-foreground">{details[setting.channel]}</p>
               {setting.config_error && (
                 <p className="text-sm text-destructive">{t('channels.invalidConfigHint')}</p>
               )}
             </div>
           </div>
-          <Switch checked={setting.enabled} onCheckedChange={onToggle} />
+          <Switch checked={setting.enabled} aria-label={t(`channels.types.${setting.channel}`)} onCheckedChange={onToggle} />
         </div>
-        <div className="flex items-center gap-2 mt-4">
+        <div className="mt-5 flex flex-wrap items-center gap-2 border-t border-border/70 pt-4">
           <Button
             variant="outline"
             size="sm"
@@ -75,7 +77,7 @@ export function ChannelCard({
           <Button
             variant="ghost"
             size="sm"
-            className="ml-auto text-destructive hover:text-destructive"
+            aria-label={t('channels.deleteConfirm.title')} className="ml-auto text-destructive hover:text-destructive"
             onClick={onDelete}
           >
             <Trash2 className="h-4 w-4" />

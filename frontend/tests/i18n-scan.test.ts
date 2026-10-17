@@ -36,7 +36,7 @@ describe('i18n scan', () => {
         <>
           <img alt={t('photo')} />
           <a title="https://example.com" />
-          <span aria-label="Wardrowbe" />
+          <span aria-label="搭搭" />
           <span title="--" />
           <img alt={\`\${name}\`} />
         </>

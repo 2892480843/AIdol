@@ -1,5 +1,9 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { Check, X, ChevronLeft, Search, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -166,17 +170,17 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="max-w-md">
+      <DialogContent className={`${styles.dialog} max-w-md`}>
         {/* Step 1: Did you wear this? */}
         {step === 'wear-question' && (
           <>
-            <DialogHeader>
+            <DialogHeader className={styles.dialogHeader}>
               <DialogTitle>{t('didYouWear')}</DialogTitle>
               <DialogDescription>
                 {t('didYouWearDesc')}
               </DialogDescription>
             </DialogHeader>
-            <div className="flex flex-col gap-3 py-4">
+            <div className={styles.feedbackChoices}>
               <Button
                 variant="outline"
                 size="lg"
@@ -212,7 +216,7 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
         {/* Step 2a: Rating (if they wore it) */}
         {step === 'rating' && (
           <>
-            <DialogHeader>
+            <DialogHeader className={styles.dialogHeader}>
               <DialogTitle>{t('rateThisOutfit')}</DialogTitle>
               <DialogDescription>{t('howDidItWork')}</DialogDescription>
             </DialogHeader>
@@ -252,7 +256,7 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
         {/* Step 2b: What did you wear instead? */}
         {step === 'wore-instead' && (
           <>
-            <DialogHeader>
+            <DialogHeader className={styles.dialogHeader}>
               <DialogTitle>{t('whatDidYouWear')}</DialogTitle>
               <DialogDescription>
                 {t('whatDidYouWearDesc')}
@@ -283,14 +287,16 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
                 </div>
               )}
 
-              <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+              <div className={styles.pickerGrid}>
                 {wardrobeItems
                   .filter((item) => !outfitItemIds.has(item.id))
                   .map((item) => (
-                    <button
+                    <UnstyledButton
                       key={item.id}
                       type="button"
                       onClick={() => toggleItemSelection(item.id)}
+                      aria-pressed={selectedItems.includes(item.id)}
+                      aria-label={item.name || typeLabel(item.type)}
                       className={cn(
                         'relative aspect-square rounded-lg overflow-hidden border-2 transition-all',
                         selectedItems.includes(item.id)
@@ -318,7 +324,7 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
                           {item.name || typeLabel(item.type)}
                         </span>
                       </div>
-                    </button>
+                    </UnstyledButton>
                   ))}
               </div>
 

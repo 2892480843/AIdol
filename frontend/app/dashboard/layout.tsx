@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Loader2 } from 'lucide-react';
+import { Skeleton } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 import { Sidebar } from '@/components/sidebar';
 import { MobileSidebar } from '@/components/mobile-sidebar';
@@ -41,9 +41,9 @@ export default function DashboardLayout({
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-[100dvh] items-center justify-center p-6">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          <Skeleton height={48} width={48} radius="lg" />
           <p className="text-sm text-muted-foreground">{t('layout.loading')}</p>
         </div>
       </div>
@@ -56,12 +56,13 @@ export default function DashboardLayout({
 
   return (
     <LightboxProvider>
-      <div className="min-h-screen bg-background">
+      <div className="app-shell">
+        <a href="#main-content" className="skip-navigation">{t('layout.skipToContent')}</a>
         <Sidebar />
         <MobileSidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <div className="lg:pl-72">
+        <div className="app-workspace">
           <Header onMenuClick={() => setSidebarOpen(true)} />
-          <main className="py-6 px-4 sm:px-6 lg:px-8 pb-20 lg:pb-6 overflow-x-hidden">
+          <main id="main-content" className="app-main">
             {children}
           </main>
         </div>

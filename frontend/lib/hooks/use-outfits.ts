@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import {
   type InfiniteData,
   useInfiniteQuery,
@@ -6,8 +7,8 @@ import {
   useQueryClient,
 } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { api } from '@/lib/api';
-import { useSetTokenIfAvailable, applySessionToken } from '@/lib/hooks/use-session-token';
+import { api, getAccessToken, getActiveUserId, subscribeActiveSession } from '@/lib/api';
+import { useSetTokenIfAvailable } from '@/lib/hooks/use-session-token';
 import type { FamilyRating, Outfit, OutfitStatus } from '@/lib/types';
 import { formatDateKey } from '@/lib/utils';
 import { DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE } from '@/lib/pagination';
@@ -39,9 +40,11 @@ export interface OutfitFilters {
   date_to?: string;
   source?: string;
   is_lookbook?: boolean;
+  worn?: boolean;
   is_replacement?: boolean;
   has_source_item?: boolean;
   search?: string;
+  item_type?: string;
   occasions?: string[];
   cloned_from_outfit_id?: string;
 }
@@ -87,11 +90,13 @@ function outfitListParams(filters: OutfitFilters, page: number, pageSize: number
   if (filters.date_to) params.date_to = filters.date_to;
   if (filters.source) params.source = filters.source;
   if (filters.is_lookbook !== undefined) params.is_lookbook = String(filters.is_lookbook);
+  if (filters.worn !== undefined) params.worn = String(filters.worn);
   if (filters.is_replacement !== undefined)
     params.is_replacement = String(filters.is_replacement);
   if (filters.has_source_item !== undefined)
     params.has_source_item = String(filters.has_source_item);
   if (filters.search) params.search = filters.search;
+  if (filters.item_type) params.item_type = filters.item_type;
   if (filters.occasions?.length) params.occasions = filters.occasions.join(',');
   if (filters.cloned_from_outfit_id)
     params.cloned_from_outfit_id = filters.cloned_from_outfit_id;
@@ -214,17 +219,51 @@ export interface BulkOutfitOperationParams {
   filters?: OutfitFilters;
 }
 
+interface OutfitMutationSession {
+  ownerId: string | null;
+  token: string | null;
+  controller: AbortController;
+  unsubscribe: () => void;
+}
+
+function isCurrentOutfitMutationSession(operation: OutfitMutationSession | undefined): boolean {
+  return !!operation && !operation.controller.signal.aborted && !!operation.ownerId && !!operation.token
+    && operation.ownerId === getActiveUserId() && operation.token === getAccessToken();
+}
+
+function assertOutfitMutationSession(operation: OutfitMutationSession | undefined): asserts operation is OutfitMutationSession {
+  if (!isCurrentOutfitMutationSession(operation)) throw new Error('Outfit action stopped after session change');
+}
+
 export function useBulkDeleteOutfits() {
   const queryClient = useQueryClient();
   const { data: session } = useSession();
 
-  return useMutation({
+  // Each invocation gets a distinct payload key, so concurrent calls with the
+  // same caller-owned object cannot overwrite each other's session boundary.
+  const operations = useRef(new WeakMap<BulkOutfitOperationParams, OutfitMutationSession>());
+  const mutation = useMutation({
     mutationFn: async (params: BulkOutfitOperationParams) => {
-      applySessionToken(session);
-      return api.post<BulkDeleteOutfitsResponse>('/outfits/bulk/delete', params);
+      const operation = operations.current.get(params);
+      assertOutfitMutationSession(operation);
+      try {
+        // api.post captures its Authorization header synchronously: no await may
+        // separate this guard from the network call.
+        const response = await api.post<BulkDeleteOutfitsResponse>('/outfits/bulk/delete', params, {
+          signal: operation.controller.signal,
+        });
+        assertOutfitMutationSession(operation);
+        return response;
+      } catch (error) {
+        assertOutfitMutationSession(operation);
+        throw error;
+      }
     },
     onMutate: async (params) => {
+      const operation = operations.current.get(params);
+      assertOutfitMutationSession(operation);
       await queryClient.cancelQueries({ queryKey: queryKeys.outfits.all });
+      assertOutfitMutationSession(operation);
 
       const previousData = queryClient.getQueriesData({ queryKey: queryKeys.outfits.all });
 
@@ -251,16 +290,40 @@ export function useBulkDeleteOutfits() {
       return { previousData };
     },
     onError: (_err, _params, context) => {
-      if (context?.previousData) {
+      if (isCurrentOutfitMutationSession(operations.current.get(_params)) && context?.previousData) {
         context.previousData.forEach(([queryKey, data]) => {
           queryClient.setQueryData(queryKey, data);
         });
       }
     },
-    onSettled: () => {
-      invalidateOutfitCaches(queryClient);
+    onSettled: (_data, _error, params) => {
+      const operation = operations.current.get(params);
+      if (isCurrentOutfitMutationSession(operation)) invalidateOutfitCaches(queryClient);
+      operation?.unsubscribe();
+      operations.current.delete(params);
     },
   });
+
+  function bindOperation(params: BulkOutfitOperationParams): BulkOutfitOperationParams {
+    const bound = { ...params };
+    const operation: OutfitMutationSession = {
+      ownerId: session?.user.id ?? null,
+      token: getAccessToken(),
+      controller: new AbortController(),
+      unsubscribe: () => {},
+    };
+    operation.unsubscribe = subscribeActiveSession(() => {
+      if (!isCurrentOutfitMutationSession(operation)) operation.controller.abort();
+    });
+    operations.current.set(bound, operation);
+    return bound;
+  }
+
+  // Capture before TanStack invokes any asynchronous onMutate callback. Pending
+  // mutations may otherwise receive newer observer options after a re-render.
+  const mutate: typeof mutation.mutate = (params, options) => mutation.mutate(bindOperation(params), options);
+  const mutateAsync: typeof mutation.mutateAsync = (params, options) => mutation.mutateAsync(bindOperation(params), options);
+  return { ...mutation, mutate, mutateAsync };
 }
 
 export function useCalendarOutfits(year: number, month: number, filters: OutfitFilters = {}) {
@@ -270,15 +333,7 @@ export function useCalendarOutfits(year: number, month: number, filters: OutfitF
   const date_from = formatDateKey(new Date(year, month - 1, 1));
   const date_to = formatDateKey(new Date(year, month, 0));
 
-  const params: Record<string, string> = {
-    page: '1',
-    page_size: String(MAX_PAGE_SIZE),
-    date_from,
-    date_to,
-  };
-
-  if (filters.status) params.status = filters.status;
-  if (filters.occasion) params.occasion = filters.occasion;
+  const params = outfitListParams({ ...filters, date_from, date_to }, 1, MAX_PAGE_SIZE);
 
   return useQuery({
     queryKey: queryKeys.calendarOutfits.month(year, month, filters),

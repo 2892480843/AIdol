@@ -1,5 +1,8 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+import { UnstyledButton } from '@mantine/core';
+
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Check, Loader2, Search } from 'lucide-react';
@@ -99,7 +102,7 @@ export function ItemPicker({
   );
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className={styles.picker}>
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
@@ -115,16 +118,18 @@ export function ItemPicker({
         onScroll={handleScroll}
         className={cn('overflow-y-auto py-2 -mx-1 px-1', heightClass)}
       >
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-2">
+        <div className={styles.pickerGrid}>
           {items.map((item) => {
             const isSelected = selectedIds.has(item.id);
             return (
-              <button
+              <UnstyledButton
                 key={item.id}
                 type="button"
                 onClick={() => onToggle(item)}
+                aria-pressed={isSelected}
+                aria-label={item.name || typeLabel(item.type)}
                 className={cn(
-                  'relative aspect-square rounded-lg overflow-hidden border-2 transition-all',
+                  styles.pickerItem,
                   isSelected
                     ? 'border-primary ring-2 ring-primary/20'
                     : 'border-border hover:border-muted-foreground/50'
@@ -158,7 +163,7 @@ export function ItemPicker({
                     {item.name ?? item.type}
                   </span>
                 </div>
-              </button>
+              </UnstyledButton>
             );
           })}
         </div>

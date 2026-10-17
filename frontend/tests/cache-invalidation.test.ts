@@ -1,4 +1,4 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
@@ -22,6 +22,11 @@ import {
   useSubmitFeedback,
 } from '@/lib/hooks/use-outfits'
 import { useCreateStudioOutfit, useCreateWoreInstead, useWearToday } from '@/lib/hooks/use-studio'
+import { setActiveSession } from '@/lib/api'
+
+vi.mock('next-auth/react', () => ({
+  useSession: () => ({ data: { user: { id: 'cache-test-owner' }, accessToken: 'cache-test-token' }, status: 'authenticated' }),
+}))
 
 vi.mock('@/lib/api', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/lib/api')>()),
@@ -64,8 +69,11 @@ describe('mutation cache invalidation', () => {
   const file = new File(['x'], 'x.jpg', { type: 'image/jpeg' })
 
   beforeEach(() => {
+    setActiveSession('cache-test-owner', 'cache-test-token')
     vi.mocked(fetch).mockResolvedValue({ ok: true, json: async () => ({}) } as Response)
   })
+
+  afterEach(() => setActiveSession(null, null))
 
   it.each([
     ['useUpdateItem', () => invalidatedKeys(useUpdateItem, { id: 'i1', data: {} }), ITEM_ONLY],

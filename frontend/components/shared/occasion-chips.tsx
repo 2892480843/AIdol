@@ -1,5 +1,8 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+import { Button } from '@/components/ui/button';
+
 import React from 'react';
 import {
   Briefcase,
@@ -11,7 +14,6 @@ import {
   TreePine,
 } from 'lucide-react';
 
-import { cn } from '@/lib/utils';
 import { useOccasionOptions } from '@/lib/hooks/use-translated-constants';
 import type { FeaturedOccasion } from '@/lib/types';
 
@@ -72,25 +74,21 @@ interface OccasionChipsProps {
 export function OccasionChips({ selected, onSelect, extraOccasions = [] }: OccasionChipsProps) {
   const occasions = useOccasionOptions([...extraOccasions, selected]);
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className={styles.occasionGrid}>
       {occasions.map((occasion) => {
         const config = configFor(occasion.value);
         return (
-          <button
+          <Button variant="outline"
             key={occasion.value}
             type="button"
             onClick={() => onSelect(occasion.value)}
             data-selected={selected === occasion.value}
-            className={cn(
-              'inline-flex items-center gap-2 px-4 py-2.5 rounded-full border-2 transition-all',
-              'border-muted bg-background',
-              config.color,
-              'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50'
-            )}
+            aria-pressed={selected === occasion.value}
+            className={styles.occasion}
           >
             {config.icon}
             <span className="text-sm font-medium">{occasion.label}</span>
-          </button>
+          </Button>
         );
       })}
     </div>

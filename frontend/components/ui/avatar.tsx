@@ -1,48 +1,63 @@
-import * as React from 'react';
-import * as AvatarPrimitive from '@radix-ui/react-avatar';
+"use client";
 
-import { cn } from '@/lib/utils';
-
-const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn(
-      'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
-      className
-    )}
-    {...props}
-  />
-));
-Avatar.displayName = AvatarPrimitive.Root.displayName;
+import * as React from "react";
+import { Avatar as MantineAvatar, Image, Box } from "@mantine/core";
 
 const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn('aspect-square h-full w-full', className)}
-    {...props}
-  />
+  HTMLImageElement,
+  React.ImgHTMLAttributes<HTMLImageElement>
+>((props, ref) => (
+  <Image ref={ref} data-ui="avatar-image" alt={props.alt ?? ""} {...props} />
 ));
-AvatarImage.displayName = AvatarPrimitive.Image.displayName;
-
 const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
-    ref={ref}
-    className={cn(
-      'flex h-full w-full items-center justify-center rounded-full bg-muted',
-      className
-    )}
-    {...props}
-  />
+  HTMLSpanElement,
+  React.HTMLAttributes<HTMLSpanElement> & { delayMs?: number }
+>(({ delayMs, ...props }, ref) => (
+  <Box component="span" ref={ref} data-ui="avatar-fallback" {...props} />
 ));
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
 
+function isImage(
+  node: React.ReactNode,
+): node is React.ReactElement<React.ImgHTMLAttributes<HTMLImageElement>> {
+  if (!React.isValidElement(node)) return false;
+  // Fast Refresh can retain an earlier forwardRef identity in an existing tree.
+  return (
+    node.type === AvatarImage ||
+    (node.type as { displayName?: string }).displayName === "AvatarImage"
+  );
+}
+
+const Avatar = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ children, className, ...props }, ref) => {
+  const nodes = React.Children.toArray(children);
+  const image = nodes.find(isImage);
+  const { src, alt, ...imageProps } = image?.props ?? {};
+  const imageRef = (
+    image as unknown as
+      | { ref?: React.ForwardedRef<HTMLImageElement> }
+      | undefined
+  )?.ref;
+  const fallback = nodes.filter((node) => !isImage(node));
+  const legacySize = className?.match(/(?:^|\s)h-(\d+(?:\.\d+)?)(?:\s|$)/)?.[1];
+
+  return (
+    <MantineAvatar
+      ref={ref}
+      data-ui="avatar"
+      className={className}
+      size={legacySize ? `${Number(legacySize) * 0.25}rem` : undefined}
+      src={src?.trim() || null}
+      alt={alt}
+      imageProps={{ ...imageProps, ...(imageRef ? { ref: imageRef } : {}) }}
+      {...props}
+    >
+      {fallback.length ? fallback : undefined}
+    </MantineAvatar>
+  );
+});
+Avatar.displayName = "Avatar";
+AvatarImage.displayName = "AvatarImage";
+AvatarFallback.displayName = "AvatarFallback";
 export { Avatar, AvatarImage, AvatarFallback };

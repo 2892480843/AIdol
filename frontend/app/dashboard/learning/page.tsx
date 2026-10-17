@@ -1,5 +1,10 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/secondary-ui.module.css';
+
 import {
   Brain,
   Lightbulb,
@@ -54,13 +59,13 @@ function StatCard({
   trend?: 'up' | 'down' | 'neutral';
 }) {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+    <Card className={styles.statCard}>
+      <CardHeader className="flex flex-row items-center justify-between gap-3 space-y-0 pb-1">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        <Icon className="h-4 w-4 text-muted-foreground" />
+        <span className={styles.statIcon}><Icon className="h-5 w-5" /></span>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+        <div className="text-4xl font-semibold tracking-tight tabular-nums">{value}</div>
         <p className="text-xs text-muted-foreground flex items-center gap-1">
           {trend === 'up' && <TrendingUp className="h-3 w-3 text-green-500" />}
           {trend === 'down' && <TrendingUp className="h-3 w-3 text-red-500 rotate-180" />}
@@ -73,8 +78,8 @@ function StatCard({
 
 function LoadingSkeleton() {
   return (
-    <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className={styles.page}>
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {[1, 2, 3, 4].map((i) => (
           <Card key={i}>
             <CardHeader className="pb-2">
@@ -88,7 +93,7 @@ function LoadingSkeleton() {
         ))}
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <Skeleton className="h-5 w-32" />
           </CardHeader>
@@ -100,7 +105,7 @@ function LoadingSkeleton() {
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <Skeleton className="h-5 w-32" />
           </CardHeader>
@@ -184,12 +189,12 @@ function ItemPairCard({ pair }: { pair: ItemPair }) {
     : 0;
 
   return (
-    <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/50">
+    <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-border/70 bg-muted/30 p-4">
       <div className="flex items-center gap-2 flex-1">
         {/* Item 1 */}
         <Link
-          href={`/dashboard/wardrobe/${pair.item1.id}`}
-          className="w-12 h-12 rounded bg-background overflow-hidden relative flex-shrink-0 hover:ring-2 ring-primary transition-all"
+          href={`/dashboard/wardrobe?item=${pair.item1.id}`}
+          className="w-16 h-20 rounded-[10px] bg-background overflow-hidden relative flex-shrink-0 hover:ring-2 ring-primary transition-all"
         >
           {pair.item1.thumbnail_url ? (
             <Image
@@ -197,7 +202,7 @@ function ItemPairCard({ pair }: { pair: ItemPair }) {
               alt={pair.item1.name || pair.item1.type}
               fill
               className="object-cover"
-              sizes="48px"
+              sizes="64px"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
@@ -211,8 +216,8 @@ function ItemPairCard({ pair }: { pair: ItemPair }) {
 
         {/* Item 2 */}
         <Link
-          href={`/dashboard/wardrobe/${pair.item2.id}`}
-          className="w-12 h-12 rounded bg-background overflow-hidden relative flex-shrink-0 hover:ring-2 ring-primary transition-all"
+          href={`/dashboard/wardrobe?item=${pair.item2.id}`}
+          className="w-16 h-20 rounded-[10px] bg-background overflow-hidden relative flex-shrink-0 hover:ring-2 ring-primary transition-all"
         >
           {pair.item2.thumbnail_url ? (
             <Image
@@ -220,7 +225,7 @@ function ItemPairCard({ pair }: { pair: ItemPair }) {
               alt={pair.item2.name || pair.item2.type}
               fill
               className="object-cover"
-              sizes="48px"
+              sizes="64px"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center">
@@ -266,24 +271,24 @@ function InsightCard({
   };
 
   const typeColors: Record<string, string> = {
-    positive: 'border-green-500/30 bg-green-500/10',
-    negative: 'border-red-500/30 bg-red-500/10',
-    suggestion: 'border-blue-500/30 bg-blue-500/10',
-    pattern: 'border-purple-500/30 bg-purple-500/10',
+    positive: 'border-primary/15 bg-primary/5',
+    negative: 'border-amber-500/20 bg-amber-500/5',
+    suggestion: 'border-primary/15 bg-primary/5',
+    pattern: 'border-border bg-muted/30',
   };
 
   const Icon = categoryIcons[insight.category] || Lightbulb;
   const borderColor = typeColors[insight.insight_type] || 'border-muted';
 
   return (
-    <div className={`p-4 rounded-lg border-2 ${borderColor} relative`}>
-      <button
+    <div className={`relative rounded-2xl border p-5 ${borderColor}`}>
+      <UnstyledButton
         onClick={() => onAcknowledge(insight.id)}
-        className="absolute top-2 right-2 p-1 rounded hover:bg-muted transition-colors"
+        type="button" aria-label={t('dismiss')} className="absolute right-3 top-3 rounded-[10px] p-2 transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
         title={t('dismiss')}
       >
         <X className="h-4 w-4 text-muted-foreground" />
-      </button>
+      </UnstyledButton>
       <div className="flex items-start gap-3 pr-6">
         <Icon className="h-5 w-5 text-muted-foreground flex-shrink-0 mt-0.5" />
         <div>
@@ -307,7 +312,7 @@ function NoLearningData({ onRecompute, isRefreshing }: { onRecompute: () => void
   const t = useTranslations('learning');
   return (
     <Card className="col-span-full">
-      <CardContent className="flex flex-col items-center justify-center py-12 text-center">
+      <CardContent className={styles.emptyState}>
         <Brain className="h-12 w-12 text-muted-foreground mb-4" />
         <h3 className="text-lg font-semibold mb-2">{t('noData.title')}</h3>
         <p className="text-muted-foreground max-w-md mb-4">
@@ -370,13 +375,8 @@ export default function LearningPage() {
 
   if (isLoading) {
     return (
-      <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-            <p className="text-muted-foreground">{t('subtitle')}</p>
-          </div>
-        </div>
+      <div className={styles.page}>
+        <PageHeader title={t('title')} description={t('subtitle')} icon={<Brain className="h-5 w-5" />} />
         <LoadingSkeleton />
       </div>
     );
@@ -384,7 +384,7 @@ export default function LearningPage() {
 
   if (isError || !data) {
     return (
-      <div className="text-center py-8 text-red-500">
+      <div role="alert" className="surface-panel p-8 text-center text-destructive">
         {t('loadError')}
       </div>
     );
@@ -393,34 +393,25 @@ export default function LearningPage() {
   const { profile, best_pairs, insights, preference_suggestions } = data;
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-muted-foreground">
-            {profile.has_learning_data
-              ? t('subtitle')
-              : t('subtitleEmpty')}
-          </p>
-        </div>
-        {profile.has_learning_data && (
-          <Button
-            variant="outline"
-            onClick={handleRecompute}
-            disabled={isRefreshing}
-          >
-            <RefreshCw className={`h-4 w-4 mr-2 ${isRefreshing ? 'animate-spin' : ''}`} />
+    <div className={styles.page}>
+      <PageHeader
+        title={t('title')}
+        description={profile.has_learning_data ? t('subtitle') : t('subtitleEmpty')}
+        icon={<Brain className="h-5 w-5" />}
+        actions={profile.has_learning_data && (
+          <Button variant="outline" onClick={handleRecompute} disabled={isRefreshing}>
+            <RefreshCw className={`mr-2 h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
             {t('recompute')}
           </Button>
         )}
-      </div>
+      />
 
       {!profile.has_learning_data ? (
         <NoLearningData onRecompute={handleRecompute} isRefreshing={isRefreshing} />
       ) : (
         <>
           {/* Stats Cards */}
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <StatCard
               title={t('stats.feedbackGiven')}
               value={profile.feedback_count}
@@ -456,8 +447,8 @@ export default function LearningPage() {
 
           {/* Active Insights */}
           {insights.length > 0 && (
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between">
+            <Card className="min-w-0">
+              <CardHeader className="flex flex-wrap items-center justify-between gap-3">
                 <div>
                   <CardTitle className="flex items-center gap-2">
                     <Lightbulb className="h-5 w-5" />
@@ -486,7 +477,7 @@ export default function LearningPage() {
 
           <div className="grid gap-4 md:grid-cols-2">
             {/* Color Preferences */}
-            <Card>
+            <Card className="min-w-0">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Sparkles className="h-5 w-5" />
@@ -510,7 +501,7 @@ export default function LearningPage() {
             </Card>
 
             {/* Style Preferences */}
-            <Card>
+            <Card className="min-w-0">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Heart className="h-5 w-5" />
@@ -553,7 +544,7 @@ export default function LearningPage() {
 
           {/* Best Item Pairs */}
           {best_pairs.length > 0 && (
-            <Card>
+            <Card className="min-w-0">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Heart className="h-5 w-5 text-red-500" />
@@ -573,7 +564,7 @@ export default function LearningPage() {
 
           {/* Occasion Patterns */}
           {profile.occasion_patterns.length > 0 && (
-            <Card>
+            <Card className="min-w-0">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calendar className="h-5 w-5" />
@@ -584,7 +575,7 @@ export default function LearningPage() {
               <CardContent>
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {profile.occasion_patterns.map((pattern) => (
-                    <div key={pattern.occasion} className="p-4 rounded-lg bg-muted/50">
+                    <div key={pattern.occasion} className="rounded-2xl border border-border/70 bg-muted/30 p-5">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-medium">{occasionLabel(pattern.occasion)}</h4>
                         <Badge variant="outline">
@@ -615,7 +606,7 @@ export default function LearningPage() {
 
           {/* Weather Preferences */}
           {profile.weather_preferences.length > 0 && (
-            <Card>
+            <Card className="min-w-0">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Cloud className="h-5 w-5" />
@@ -624,9 +615,9 @@ export default function LearningPage() {
                 <CardDescription>{t('weatherPreferences.description')}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                   {profile.weather_preferences.map((pref) => (
-                    <div key={pref.weather_type} className="p-4 rounded-lg bg-muted/50 text-center">
+                    <div key={pref.weather_type} className="rounded-2xl border border-border/70 bg-muted/30 p-5 text-center">
                       <div className="text-2xl mb-1">
                         {pref.weather_type === 'cold' && '❄️'}
                         {pref.weather_type === 'cool' && '🍂'}

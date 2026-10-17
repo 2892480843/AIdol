@@ -1,5 +1,9 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -324,7 +328,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
   return (
     <>
       <Dialog open={open} onOpenChange={onOpenChange}>
-        <DialogContent className="sm:max-w-2xl max-h-[90vh] flex flex-col p-0 overflow-hidden [&>button]:hidden">
+        <DialogContent className={`${styles.detailDialog} sm:max-w-5xl max-h-[90vh] flex flex-col p-0 overflow-hidden [&>button]:hidden`}>
           {/* Header - sticky */}
           <DialogHeader className="flex flex-row items-center gap-2 space-y-0 p-4 border-b flex-shrink-0">
             {/* Below sm the title keeps its 45% cap and the actions stay in a
@@ -503,10 +507,10 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
 
           {/* Scrollable content */}
           <div className="flex-1 overflow-y-auto overscroll-contain p-6 pt-4">
-            <div className="grid gap-6 sm:grid-cols-2 [&>*]:min-w-0">
+            <div className={`${styles.detailGrid} [&>*]:min-w-0`}>
             {/* Image Gallery */}
             <div className="space-y-2">
-              <div className="relative aspect-square bg-muted rounded-lg overflow-hidden">
+              <div className={`${styles.detailPhoto} relative aspect-[4/5] overflow-hidden`}>
                 {(() => {
                   const allImages = [
                     { url: `${imageUrl}&v=${imageKey}`, id: 'primary' },
@@ -520,27 +524,30 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                         src={currentImage.url}
                         alt={item.name || typeLabel(item.type)}
                         fill
-                        className="object-cover"
+                        className="object-contain p-3"
                         sizes="(max-width: 640px) 100vw, 50vw"
                       />
                       {allImages.length > 1 && (
                         <>
-                          <button
+                          <UnstyledButton
+                            aria-label={tc('previous')} type="button"
                             className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-1 hover:bg-black/70"
                             onClick={() => setActiveImageIndex((i) => (i - 1 + allImages.length) % allImages.length)}
                           >
                             <ChevronLeft className="h-4 w-4" />
-                          </button>
-                          <button
+                          </UnstyledButton>
+                          <UnstyledButton
+                            aria-label={tc('next')} type="button"
                             className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-1 hover:bg-black/70"
                             onClick={() => setActiveImageIndex((i) => (i + 1) % allImages.length)}
                           >
                             <ChevronRight className="h-4 w-4" />
-                          </button>
+                          </UnstyledButton>
                           <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
                             {allImages.map((_, idx) => (
-                              <button
+                              <UnstyledButton
                                 key={idx}
+                                type="button" aria-label={`${tc('open')} ${idx + 1}`} aria-pressed={idx === activeImageIndex}
                                 className={`w-1.5 h-1.5 rounded-full ${idx === activeImageIndex ? 'bg-white' : 'bg-white/50'}`}
                                 onClick={() => setActiveImageIndex(idx)}
                               />
@@ -561,23 +568,25 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
               {/* Thumbnail strip */}
               {(item.additional_images?.length > 0 || isEditing) && (
                 <div className="flex gap-1.5 overflow-x-auto">
-                  <button
+                  <UnstyledButton
                     className={`relative w-12 h-12 rounded border-2 overflow-hidden flex-shrink-0 ${activeImageIndex === 0 ? 'border-primary' : 'border-transparent'}`}
                     onClick={() => setActiveImageIndex(0)}
+                    type="button" aria-label={t('view.primaryImage')} aria-pressed={activeImageIndex === 0}
                   >
                     <Image src={imageUrl} alt={t('view.primaryImage')} fill className="object-cover" sizes="48px" />
-                  </button>
+                  </UnstyledButton>
                   {(item.additional_images || []).map((img, idx) => (
                     <div key={img.id} className="relative flex-shrink-0">
-                      <button
+                      <UnstyledButton
                         className={`relative w-12 h-12 rounded border-2 overflow-hidden ${activeImageIndex === idx + 1 ? 'border-primary' : 'border-transparent'}`}
                         onClick={() => setActiveImageIndex(idx + 1)}
+                        type="button" aria-label={`${tc('open')} ${idx + 2}`} aria-pressed={activeImageIndex === idx + 1}
                       >
                         <Image src={img.thumbnail_url || img.image_url} alt="" fill className="object-cover" sizes="48px" />
-                      </button>
+                      </UnstyledButton>
                       {isEditing && (
                         <div className="absolute -top-1 -right-1 flex gap-0.5">
-                          <button
+                          <UnstyledButton
                             className="bg-primary text-primary-foreground rounded-full p-0.5 hover:bg-primary/90"
                             title={t('titles.setAsPrimary')}
                             onClick={() => {
@@ -586,8 +595,8 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                             }}
                           >
                             <Star className="h-2.5 w-2.5" />
-                          </button>
-                          <button
+                          </UnstyledButton>
+                          <UnstyledButton
                             className="bg-destructive text-destructive-foreground rounded-full p-0.5 hover:bg-destructive/90"
                             title={t('titles.deleteImage')}
                             onClick={() => {
@@ -596,7 +605,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                             }}
                           >
                             <X className="h-2.5 w-2.5" />
-                          </button>
+                          </UnstyledButton>
                         </div>
                       )}
                     </div>

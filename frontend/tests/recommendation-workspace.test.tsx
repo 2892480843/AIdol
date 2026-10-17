@@ -57,8 +57,9 @@ describe('recommendation page task flow', () => {
     fireEvent.click(await screen.findByRole('button', { name: 'lookCount.single' }));
     fireEvent.click(screen.getByRole('button', { name: 'Choose base item' }));
     fireEvent.click(screen.getByRole('button', { name: 'weatherOverride.overrideWeather' }));
-    fireEvent.click(screen.getByRole('button', { name: 'clear' }));
-    fireEvent.change(screen.getByRole('slider', { name: 'weatherOverride.temperature' }), { target: { value: '26' } });
+    fireEvent.click(await screen.findByRole('button', { name: 'clear' }));
+    const temperature = screen.getByRole('slider', { name: 'weatherOverride.temperature' });
+    for (let step = 0; step < 6; step += 1) fireEvent.keyDown(temperature, { key: 'ArrowRight' });
     fireEvent.click(screen.getByRole('button', { name: 'getSuggestion' }));
     await screen.findByText('A fresh everyday look');
     expect(transport.post).toHaveBeenCalledWith('/tasks/recommendations', expect.objectContaining({

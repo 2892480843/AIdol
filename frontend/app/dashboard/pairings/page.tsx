@@ -1,5 +1,8 @@
 'use client';
 
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState } from 'react';
 import { Sparkles, Layers } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -24,8 +27,8 @@ import { useTypeLabel } from '@/lib/hooks/use-translated-constants';
 
 function EmptyPairings({ t }: { t: (key: string) => string }) {
   return (
-    <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-      <div className="rounded-full bg-muted p-6 mb-4">
+    <div className={styles.empty}>
+      <div className={styles.emptyIcon}>
         <Layers className="h-12 w-12 text-muted-foreground" />
       </div>
       <h3 className="text-lg font-semibold mb-2">{t('empty.title')}</h3>
@@ -41,7 +44,7 @@ function EmptyPairings({ t }: { t: (key: string) => string }) {
 
 function LoadingSkeleton() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+    <div className={styles.collection}>
       {[1, 2, 3, 4, 5, 6].map((i) => (
         <Card key={i}>
           <CardContent className="p-4">
@@ -88,31 +91,20 @@ export default function PairingsPage() {
 
   if (isError) {
     return (
-      <div className="text-center py-8 text-red-500">
+      <div className={`${styles.empty} text-destructive`} role="alert">
         {t('loadError')}
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-            <Sparkles className="h-6 w-6 text-primary" />
-            {t('title')}
-          </h1>
-          <p className="text-muted-foreground">
-            {t('subtitle')}
-          </p>
-        </div>
-      </div>
+    <div className={`page-container ${styles.page}`}>
+      <PageHeader title={t('title')} description={t('subtitle')} icon={<Sparkles className="h-5 w-5" />} />
 
       {/* Filters */}
-      <div className="flex gap-3 flex-wrap items-center">
+      <div className={`${styles.toolbar} ${styles.toolbarRow}`}>
         <Select value={sourceType || 'all'} onValueChange={handleSourceTypeChange}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-full sm:w-[220px]">
             <SelectValue placeholder={t('allItemTypes')} />
           </SelectTrigger>
           <SelectContent>
@@ -138,7 +130,7 @@ export default function PairingsPage() {
         <EmptyPairings t={t} />
       ) : (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <div className={styles.collection}>
             {pairings.map((pairing) => (
               <PairingCard
                 key={pairing.id}

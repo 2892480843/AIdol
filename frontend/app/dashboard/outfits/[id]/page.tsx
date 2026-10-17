@@ -1,5 +1,8 @@
 'use client';
 
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -93,7 +96,7 @@ export default function OutfitDetailPage() {
   const title = getTitle(outfit);
 
   return (
-    <div className="space-y-6 max-w-4xl mx-auto">
+    <div className={`page-container ${styles.page}`}>
       <div className="flex items-center justify-between gap-4">
         <Button variant="ghost" size="sm" asChild>
           <Link href="/dashboard/outfits">
@@ -104,8 +107,8 @@ export default function OutfitDetailPage() {
       </div>
 
       <div>
-        <h1 className="text-2xl font-bold tracking-tight capitalize">{title}</h1>
-        <div className="flex items-center gap-2 mt-2">
+        <PageHeader title={title} icon={<BookmarkPlus className="h-5 w-5" />} />
+        <div className="flex items-center flex-wrap gap-2 mt-3">
           <Badge variant="outline" className="capitalize">
             {occasionLabel(outfit.occasion)}
           </Badge>
@@ -152,18 +155,18 @@ export default function OutfitDetailPage() {
       <LineageCard outfit={outfit} />
 
       <Card>
-        <CardContent className="p-4">
+        <CardContent className="p-5 sm:p-7">
           <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
             {t('detail.items', { count: outfit.items.length })}
           </h2>
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
+          <div className={styles.gallery}>
             {outfit.items.map((item) => (
               <Link
                 key={item.id}
-                href={`/dashboard/wardrobe?itemId=${item.id}`}
+                href={`/dashboard/wardrobe?item=${item.id}`}
                 className="group"
               >
-                <div className="relative aspect-square rounded-lg overflow-hidden border bg-muted">
+                <div className={`${styles.garmentPhoto} rounded-2xl overflow-hidden border`}>
                   {item.thumbnail_url || item.image_url ? (
                     <Image
                       src={(item.thumbnail_url || item.image_url)!}
@@ -227,7 +230,7 @@ export default function OutfitDetailPage() {
 
       {isTemplate && wearInstancesData && wearInstancesData.total > 0 && (
         <Card>
-          <CardContent className="p-4">
+          <CardContent className="p-5 sm:p-7">
             <h2 className="text-sm font-semibold text-muted-foreground mb-3 uppercase tracking-wide">
               {t('detail.wornCount', { count: wearInstancesData.total })}
             </h2>

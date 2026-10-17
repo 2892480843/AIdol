@@ -1,0 +1,1682 @@
+[
+  {
+    "path": "frontend/app/api/auth/[...nextauth]/route.ts",
+    "sha256": "227dcf41f18e4a9ecc20c2b2451276d817719f3a7c5a24b30159c593970d6fe6"
+  },
+  {
+    "path": "frontend/app/api/v1/[...path]/route.ts",
+    "sha256": "e2eca3cc1f381efb93551b46d8286e679e154d35e187874c82150b6e5a24f632"
+  },
+  {
+    "path": "frontend/app/auth/logout/route.ts",
+    "sha256": "abfbf33987ed6d205ff3cca4a8a096f64afa9b5e48da57970fe6d1c82272486e"
+  },
+  {
+    "path": "frontend/app/dashboard/analytics/page.tsx",
+    "sha256": "3e6f1b6c11fb999e9063339f07a9c9c3f7c00dcf909079d5d8f2c09d0f7d8391"
+  },
+  {
+    "path": "frontend/app/dashboard/error.tsx",
+    "sha256": "92836fb31165d9c5699af245a8a5d96d4a638f5b170cea2cefb832129325e338"
+  },
+  {
+    "path": "frontend/app/dashboard/family/feed/page.tsx",
+    "sha256": "8fff118155dde1830e37d3a2de005a378186346f4b858057f68ccac35fd9d081"
+  },
+  {
+    "path": "frontend/app/dashboard/family/page.tsx",
+    "sha256": "9deb12225578d43578e3fa2eb28e0a83396d5f2c266e56c857fc08a6dec3f200"
+  },
+  {
+    "path": "frontend/app/dashboard/history/page.tsx",
+    "sha256": "ddb7b1e246032db5508734cd5874c0fafcee73bba2d1fd902acba666767e9b92"
+  },
+  {
+    "path": "frontend/app/dashboard/layout.tsx",
+    "sha256": "6cfec097a77b8134fed66c7ceff90cb12d37a72620fbd751810b5238faa6c634"
+  },
+  {
+    "path": "frontend/app/dashboard/learning/page.tsx",
+    "sha256": "bd0052797b62030e5544690ead2aebda822316a7dec2288ecc0209db9c1c75c3"
+  },
+  {
+    "path": "frontend/app/dashboard/notifications/page.tsx",
+    "sha256": "37fee8f9aca63584b09934f99631e14e3415d7bc53880236a1b08cb4e4e38cba"
+  },
+  {
+    "path": "frontend/app/dashboard/outfits/[id]/page.tsx",
+    "sha256": "86dbe56b5311fe680dcc27b5dd045d3464ce1fd7f7eb05202fbe0aa22f4e7cbc"
+  },
+  {
+    "path": "frontend/app/dashboard/outfits/new/page.tsx",
+    "sha256": "48fed9473e89e7f031eeddd9e8ad71e712557bbc9d2545277785f4cc7139c2d0"
+  },
+  {
+    "path": "frontend/app/dashboard/outfits/page.tsx",
+    "sha256": "ac66c81d59325a17e59109b912fe851d05ace4dcc8629bf96001151b19235d75"
+  },
+  {
+    "path": "frontend/app/dashboard/page.tsx",
+    "sha256": "7760321f577117bceff5a3be63c18c00d79467d6951c667439f357b1ba16b851"
+  },
+  {
+    "path": "frontend/app/dashboard/pairings/page.tsx",
+    "sha256": "f3cb82b5ab417870dad527442b2db4e2c9e57037f68ee0a1903f9abedf71df05"
+  },
+  {
+    "path": "frontend/app/dashboard/settings/page.tsx",
+    "sha256": "abe9960e01d09a84678ca88f851dbb746a184070f42f6e9a0f118bcb1e3f24e0"
+  },
+  {
+    "path": "frontend/app/dashboard/suggest/page.tsx",
+    "sha256": "43c7676a1dd09ca42e5469af45052816a18483e5e2f6ad76ec3606a28aa085e4"
+  },
+  {
+    "path": "frontend/app/dashboard/wardrobe/page.tsx",
+    "sha256": "8093f13561431b89ded55481d713385b852677a2585090ffb4a3f1d2a9525c7b"
+  },
+  {
+    "path": "frontend/app/error.tsx",
+    "sha256": "7f412bdb32344af5c167aab2f09bc43febd40be6ee63e3584cc829dbd34fe148"
+  },
+  {
+    "path": "frontend/app/globals.css",
+    "sha256": "5900e6b2f2428b1a717ca51937543ed74cbc1d4e9fda37cca4f023510763bffb"
+  },
+  {
+    "path": "frontend/app/invite/page.tsx",
+    "sha256": "9b21c65acf3d7d48ff81b27380ea9112e0f70dc7bc17b4bdffaf8c7f11196a5b"
+  },
+  {
+    "path": "frontend/app/layout.tsx",
+    "sha256": "708b63bbecd68b13b48428914b27481d6d8919a7de14f12dcb11a761a9e3ce88"
+  },
+  {
+    "path": "frontend/app/login/page.tsx",
+    "sha256": "5fd6ef3223503c7504c43c49978c31ef88198bc5537a73a142ca2939ac2765fb"
+  },
+  {
+    "path": "frontend/app/not-found.tsx",
+    "sha256": "e6572e109a4815ddb18719459b5d129d8a5c12cef27d1b8d61aea4564bc84e51"
+  },
+  {
+    "path": "frontend/app/onboarding/page.tsx",
+    "sha256": "b4128e729add0fb5e51769d1fa57d048f650647223a27aaba2d37294892292ac"
+  },
+  {
+    "path": "frontend/app/page.tsx",
+    "sha256": "a6afd9ef9fed5a60ebef9f0872625443228a82a80c0c86d8078f9d22bd72720b"
+  },
+  {
+    "path": "frontend/app/providers.tsx",
+    "sha256": "66b9b4f649a697d1b9055195ef7f48bb95a00446b910c7a4a572f90c79b33204"
+  },
+  {
+    "path": "frontend/components/acceptance-trend-chart.tsx",
+    "sha256": "40dc6116d4afe5f359595371ad359ac2f664100c2e8f46385928f8530bf12f69"
+  },
+  {
+    "path": "frontend/components/add-item-dialog.tsx",
+    "sha256": "5f178e933ee408deb0c0f3eb8783841d2b01bb96cb6c1e2187bf07c175e400ec"
+  },
+  {
+    "path": "frontend/components/analysis-queue-panel.tsx",
+    "sha256": "63cd3692150d0e68c98f1672ea8bfe3c488a2b841a64d170f491144f2cd911f3"
+  },
+  {
+    "path": "frontend/components/app-navigation.tsx",
+    "sha256": "d6e3321d388be3527002c8f08f93bdba49e5b6256481a83623aad417f1cd3f35"
+  },
+  {
+    "path": "frontend/components/auth-frame.tsx",
+    "sha256": "a9ae4d2e7dac0aaa4e08709ca34fb86ec5a1fd8390416263fccfed8bc350b66b"
+  },
+  {
+    "path": "frontend/components/auth-provider.tsx",
+    "sha256": "459ed2271ccb6093cfcd50b743d051996ccd9d38aba72584307f4592e35a517c"
+  },
+  {
+    "path": "frontend/components/bulk-action-toolbar.tsx",
+    "sha256": "033d84ffbb625a81705f74c56109753c241a8ebe992929db5d6a9d41e188febd"
+  },
+  {
+    "path": "frontend/components/color-eyedropper.tsx",
+    "sha256": "ddac8ae83cbe80146349cd4e4a524b24ed085fcf9d5cc3300c3bd21cd13957ca"
+  },
+  {
+    "path": "frontend/components/design-provider.tsx",
+    "sha256": "e7ca701ca86b06c057ea8228f81f0a267151461a75545e6f72daf96906bba84f"
+  },
+  {
+    "path": "frontend/components/family-ratings.tsx",
+    "sha256": "e432b8a12bf0ee947a3de22b9f65305d8e846b72994c04cdab0da4d8eee4fd45"
+  },
+  {
+    "path": "frontend/components/feedback-dialog.tsx",
+    "sha256": "b676156452eee2fa759e71e51093e33defc46d0606017b5cf546ac998387bb67"
+  },
+  {
+    "path": "frontend/components/generate-pairings-dialog.tsx",
+    "sha256": "0f7bcc3603e9444f1076c5cc0f166b3a404443edb74961cb127ea62f23161276"
+  },
+  {
+    "path": "frontend/components/header.tsx",
+    "sha256": "d349f3c27a4e8a6b597549c113aed9c02e3ae2575354f27cf6db5e0c10c2680a"
+  },
+  {
+    "path": "frontend/components/image-lightbox.tsx",
+    "sha256": "32c634a4848c25d73ad90233eedc452a154b115f7a0ff396af6e96e07c3ac7f9"
+  },
+  {
+    "path": "frontend/components/item-detail-dialog.tsx",
+    "sha256": "e7ed8717a7f3874b93c5702480a285550a1c66f77556ad405f94ede0d3e9c4fd"
+  },
+  {
+    "path": "frontend/components/locale-switcher.tsx",
+    "sha256": "bcc3d09ccc57f3ea6611c4dbd5c7e63d25c9201cccd3aa2898372d4b385ffd5d"
+  },
+  {
+    "path": "frontend/components/mobile-nav.tsx",
+    "sha256": "33c38f3d173cc1c26e5ab46fe96e7cff82ba78f3b6a2945546f0269dfed39da3"
+  },
+  {
+    "path": "frontend/components/mobile-sidebar.tsx",
+    "sha256": "afb7e7bb00894d5af34c8fd331c9d10ce2d8ed2646e8b3b11789520f3242ec7d"
+  },
+  {
+    "path": "frontend/components/notifications/add-channel-dialog.tsx",
+    "sha256": "0730321ad2834fffff680f1ef57f164245907f07e04c204616a4ef4ed368f4be"
+  },
+  {
+    "path": "frontend/components/notifications/channel-card.tsx",
+    "sha256": "bc84e3defd4d11bbcd2bd2d27374a5ba8697816fc13ab1d8aedd887bfea190ef"
+  },
+  {
+    "path": "frontend/components/offline-indicator.tsx",
+    "sha256": "a41079f603bb8367f0ece921c6c61c336d2620dd1cfd7fde9ef21c465b238d87"
+  },
+  {
+    "path": "frontend/components/outfit-calendar.tsx",
+    "sha256": "82b4f4dbb7af8a780aa59e42506198253a1cbaf17c9776c740a6cf1c1efedf77"
+  },
+  {
+    "path": "frontend/components/outfit-history-card.tsx",
+    "sha256": "1f4fc05bcb63a18b685643231cbf3a2af56768aeb9b3f9f2c06e83c96b5bf0f3"
+  },
+  {
+    "path": "frontend/components/outfit-preview-dialog.tsx",
+    "sha256": "8ce8b12e94695db6e769f07bb809ce95866e6bfa97893d209ce2d5801c66609f"
+  },
+  {
+    "path": "frontend/components/outfit-status.tsx",
+    "sha256": "f19420a306796312f97919705b6769a59fe17b58c6301b27c80a4e104d299bbd"
+  },
+  {
+    "path": "frontend/components/outfits/outfit-card.tsx",
+    "sha256": "34c0f485dfab21656b3c89194dd9d3f0ad74c8e9d926aa4bb13bd808ca6bdbb1"
+  },
+  {
+    "path": "frontend/components/page-header.tsx",
+    "sha256": "18cd36f9fe0afc712110c73472d248fd7f8992ad5580c52c8264582ff5711521"
+  },
+  {
+    "path": "frontend/components/pairing-card.tsx",
+    "sha256": "2d4a5a86757bcd94a295b8ad59550fd0c0d5ca188fc992ecaefa51a4e4ed86d8"
+  },
+  {
+    "path": "frontend/components/profile-locale-sync.tsx",
+    "sha256": "f634c7942b70d03fb8167d7168e4a3f6bf4dfa4b722b7b476ac85e119ced255e"
+  },
+  {
+    "path": "frontend/components/recommendations/base-item-picker.tsx",
+    "sha256": "a738ac222e0dff5434f123ee9c6701b3eeb424b843ef9944289936752ad3246a"
+  },
+  {
+    "path": "frontend/components/recommendations/outfit-results.tsx",
+    "sha256": "046ab3ef233740ff0d185f4e2beac73d981835d9a7c9ed514ffbfa69e4c99f6c"
+  },
+  {
+    "path": "frontend/components/recommendations/recommendation-form.tsx",
+    "sha256": "b4d9f4133364f6bad7c950ac48da581e7cad97f296e9767badbc8e11a82b38c3"
+  },
+  {
+    "path": "frontend/components/recommendations/recommendation-workspace.tsx",
+    "sha256": "f2163b4de5939c7fa2feae908da7fbbded00042116cd2eb4c77a8ffb769c698d"
+  },
+  {
+    "path": "frontend/components/recommendations/task-banner.tsx",
+    "sha256": "a50e49140d96f81c3b7cfaf109198aecccc3d81ac2ec2b764563e43f70035ba6"
+  },
+  {
+    "path": "frontend/components/recommendations/task-panel.tsx",
+    "sha256": "ac5b46107b245b69cf02f494ee71f1057c8b52c68fb29b756080bb3dc66ceb04"
+  },
+  {
+    "path": "frontend/components/recommendations/weather-context.tsx",
+    "sha256": "8f5c25478dd458966919f48a93defc68d3b2dae45d30eb96481e180c25486b92"
+  },
+  {
+    "path": "frontend/components/secondary-ui.module.css",
+    "sha256": "fe1e533f8d0815c42cd3797327f3ef4f5a5d24fb913e9be0ce992cc47f51b95b"
+  },
+  {
+    "path": "frontend/components/shared/clone-to-lookbook-dialog.tsx",
+    "sha256": "24c0365e68edc9a191d5b6655a090d9350836c3a40b3f1ee5b4585a31e908310"
+  },
+  {
+    "path": "frontend/components/shared/core-surfaces.module.css",
+    "sha256": "fa3e881c4b28719c599560b0d03db88b89104f2a3e216a554dccde12fb9b858d"
+  },
+  {
+    "path": "frontend/components/shared/item-picker.tsx",
+    "sha256": "540738d9734cabd31d92228eb9ec4c39727617750dbe4fcaa02f2c858d3f6e12"
+  },
+  {
+    "path": "frontend/components/shared/lineage-card.tsx",
+    "sha256": "330d99d2725cd30fcb78667bd43e2a2fa30fc2fecc685e67563470bcdac808b2"
+  },
+  {
+    "path": "frontend/components/shared/occasion-chips.tsx",
+    "sha256": "57b2ea0e44652bef304db51d1b8546a3af2aba5927494109680a59241706af28"
+  },
+  {
+    "path": "frontend/components/shared/source-badge.tsx",
+    "sha256": "541e2c8cca6ecd393142dacdc79e64c0c1bcc94d3ff5f21c8f3e0af631553bb9"
+  },
+  {
+    "path": "frontend/components/shared/star-rating.tsx",
+    "sha256": "6a23c1cf33aa0c741412a94339e899962fb1e5e806013d079180babe9419a7da"
+  },
+  {
+    "path": "frontend/components/sidebar.tsx",
+    "sha256": "d95ccd7ba8964137de857e7b78e680a91dc5b55dd1ca8f2854cb17848bccbb50"
+  },
+  {
+    "path": "frontend/components/studio/canvas-panel.tsx",
+    "sha256": "4ace50207882e79e007314de321cca21cf24861ead08af8c58b9cf27fe8ab6f3"
+  },
+  {
+    "path": "frontend/components/studio/details-panel.tsx",
+    "sha256": "b01e02586a14413dc0f602b54ae2db735298512ca2a5c520d7aeb2271ffb8ad2"
+  },
+  {
+    "path": "frontend/components/theme-provider.tsx",
+    "sha256": "6341f3b71ab0e7a3bd71ac92c9f98f13b5473e4155ffb6889226ce68e3a662cc"
+  },
+  {
+    "path": "frontend/components/ui/alert-dialog.tsx",
+    "sha256": "68a7eb58766d52b533be76651eb9efae4f0614c8b4c74106ccae2b48d77d0a09"
+  },
+  {
+    "path": "frontend/components/ui/alert.tsx",
+    "sha256": "c5ccc00431b49a880bcffe383e2ed95992456cefec471de793a884ea3d027ea5"
+  },
+  {
+    "path": "frontend/components/ui/avatar.tsx",
+    "sha256": "0f2dfeaa842ff098ef57e463bd1ebf5f832f0ccef80bad1b4178ffea88606588"
+  },
+  {
+    "path": "frontend/components/ui/badge.tsx",
+    "sha256": "55967761c081a24b89457a0966b1e7cf7bf2ad632e0a014e7f76f0f79ef14d0f"
+  },
+  {
+    "path": "frontend/components/ui/button.tsx",
+    "sha256": "c09e2ed4e3f32c2014c580c68ccceeddcc2405bc56c14a1b5d74109a6161a99c"
+  },
+  {
+    "path": "frontend/components/ui/card.tsx",
+    "sha256": "b06561858b09aeb53e9ab80fda8961b2475c2189e55ea1e49cba3367b24379f8"
+  },
+  {
+    "path": "frontend/components/ui/checkbox.tsx",
+    "sha256": "2b57caf853efe9fb958cc7c6b5a070535ac29e19e65a252ab7f695bb045a2663"
+  },
+  {
+    "path": "frontend/components/ui/collapsible.tsx",
+    "sha256": "8d636c6a14f8bb704d4ef360378f0a0b1885cca39466a1bf57f206745ad89073"
+  },
+  {
+    "path": "frontend/components/ui/dialog.tsx",
+    "sha256": "3f0d84eb8736966c8369c1aefc1c47d1d1cb0e178cf5b4fa8a6fdaddb4bb8b23"
+  },
+  {
+    "path": "frontend/components/ui/dropdown-menu.tsx",
+    "sha256": "ba1a3b2c216e467bac8a84d8330a9a9cbc440dd629745a8ae35423451a493cea"
+  },
+  {
+    "path": "frontend/components/ui/input.tsx",
+    "sha256": "ecd286be989b5556115ca15663b799e8b9e33d5ee8e83d9e952f15f4eb6b0500"
+  },
+  {
+    "path": "frontend/components/ui/label.tsx",
+    "sha256": "6e862e7baf4ac0f7e2f8a446335b6d51e1399fdf1b0d2d6b2f6eac727d5c6ec0"
+  },
+  {
+    "path": "frontend/components/ui/progress.tsx",
+    "sha256": "f475e89fa29a7244922bf61afb54d9c284dfae1d23f5172759911c21fa13e8a7"
+  },
+  {
+    "path": "frontend/components/ui/scroll-area.tsx",
+    "sha256": "56ffc13698c3826e49c4aeee1599e2bd8214413919a92607bd9372cde2385d6b"
+  },
+  {
+    "path": "frontend/components/ui/select.tsx",
+    "sha256": "7f80eed2b416f044e86387ec53379867d3de756e1a1f7e366d2291349715da87"
+  },
+  {
+    "path": "frontend/components/ui/skeleton.tsx",
+    "sha256": "0de8fff385cec7325ab392c23dd7b8de55e1691c0206cd01271818ff7ac4b1e3"
+  },
+  {
+    "path": "frontend/components/ui/slider.tsx",
+    "sha256": "d69b21b7e82dd14e20c81de2daa13b2489c673ce26cebccf80a6d7cadafee391"
+  },
+  {
+    "path": "frontend/components/ui/slot.tsx",
+    "sha256": "0e98430d1378c7be7b90d24e8423969dfa24e1247182fc08884ce4274e0e3814"
+  },
+  {
+    "path": "frontend/components/ui/switch.tsx",
+    "sha256": "67b90d7d68b8f63bdde68fed4c484d765479cb2576fbb500cdbe50d42b8b1f86"
+  },
+  {
+    "path": "frontend/components/ui/tabs.tsx",
+    "sha256": "e10ade95d82a525a5118801b901ed8c1775ae0720b25e6b05d969c04eb4937d4"
+  },
+  {
+    "path": "frontend/components/ui/textarea.tsx",
+    "sha256": "04afb863d4277e61534fbbf1268a98f4147cbf84230da683dfac18394ee58d69"
+  },
+  {
+    "path": "frontend/components/ui/tooltip.tsx",
+    "sha256": "855a981f34d0b1a1cd682a6f2da85b7ec4a1f25d6b7c216f50900132c47ebe19"
+  },
+  {
+    "path": "frontend/components/upload-queue-indicator.tsx",
+    "sha256": "3788e7493784d49e15d0bb128d993c3a0859de3df1a3a1ca0b278788edaffc65"
+  },
+  {
+    "path": "frontend/lib/api.ts",
+    "sha256": "31b145743bec44d57b690b58cea7e40f859c1e512a8dae031db94b25a8280018"
+  },
+  {
+    "path": "frontend/lib/auth-errors.ts",
+    "sha256": "65077237b9c670db21e9d9ccb4e0f7513a63695c706d2d3e21f5e3d9995bbe69"
+  },
+  {
+    "path": "frontend/lib/auth.ts",
+    "sha256": "525e522fc5a2b686eb6b2655a80eb20d9eec14e9ed006fb1a0c5ea556b1dd84b"
+  },
+  {
+    "path": "frontend/lib/callback-url.ts",
+    "sha256": "c8f5b650e3ca0ae4ba144da5c9be4ee6466088119a2ff66b7bbd54cbb57adb8e"
+  },
+  {
+    "path": "frontend/lib/colors.ts",
+    "sha256": "93bb67f529eee40bf7a5575b1cccadb6b189f52b0b8834aa63cb876393139b92"
+  },
+  {
+    "path": "frontend/lib/design-system.ts",
+    "sha256": "fd6192f1d2e3478cab8b41b017b6788db27659be79d9f75040dafde4e032393b"
+  },
+  {
+    "path": "frontend/lib/generated/garment-vocabulary.ts",
+    "sha256": "ac45c4e1d6d24704a74958cf749d231637ea164c95ab76f4765a97923c5d5c84"
+  },
+  {
+    "path": "frontend/lib/generated/locales.ts",
+    "sha256": "8198d46e7edd6a085a3c9601d73c6ca90d73916c3fdacde42c055fd219c3a498"
+  },
+  {
+    "path": "frontend/lib/generated/preference-defaults.ts",
+    "sha256": "138268a72613e05aacf5ece0efdbb844ff342e2fe5d24b711dcf4d51e008ef59"
+  },
+  {
+    "path": "frontend/lib/generated/scales.ts",
+    "sha256": "fdd5eb4b6095f8db34916cf6e629bdb169c99b355397df21044f4bdace1c70b0"
+  },
+  {
+    "path": "frontend/lib/hooks/cache-invalidation.ts",
+    "sha256": "7657197a87b91e9e21c0741fd62b451c405538c0bcd88f84a79ec46739fd6ee5"
+  },
+  {
+    "path": "frontend/lib/hooks/query-keys.ts",
+    "sha256": "d7ef69b698dfcd6edd31d08157a3870bfe1fbb7fc7fcf6f502266a5ade255080"
+  },
+  {
+    "path": "frontend/lib/hooks/query-timing.ts",
+    "sha256": "0c6bcc912d34f790de41569557f4efa21ef245ab21ac733934851da1c5c50565"
+  },
+  {
+    "path": "frontend/lib/hooks/use-analytics.ts",
+    "sha256": "431fb16fe2261c6a394f3c620ecf78d1394e5f3612c08aaf6d9b780721268f5c"
+  },
+  {
+    "path": "frontend/lib/hooks/use-auth-config.ts",
+    "sha256": "4486ae58c32fddbf8b80331641f0765facd9b22f136505c545cc6ad4aa892f75"
+  },
+  {
+    "path": "frontend/lib/hooks/use-auth.ts",
+    "sha256": "8195c167112c46fc3f1b923ddf263abdc302e617220fb081271764186b09f4e6"
+  },
+  {
+    "path": "frontend/lib/hooks/use-family.ts",
+    "sha256": "c86c4c1ed8d633ecbd42cffccd3b9bbb3c00c8684fe03bb5d7057ca67f44d28b"
+  },
+  {
+    "path": "frontend/lib/hooks/use-features.ts",
+    "sha256": "2f3a0b5468c29f12b3628a9fcc9861b8658c414ee0656569d47fbce07d9ff147"
+  },
+  {
+    "path": "frontend/lib/hooks/use-insight-text.ts",
+    "sha256": "f0063653f610c1bb1f2b959055a16988b5f791798bb6c72da35065486006b007"
+  },
+  {
+    "path": "frontend/lib/hooks/use-items.ts",
+    "sha256": "c77b7104650f92af82ab217e57fb8d926b60b37b9e9f4e39a0b0deb98fc46737"
+  },
+  {
+    "path": "frontend/lib/hooks/use-learning.ts",
+    "sha256": "3ba678b10f279c5482cb89af1066d56a3fff3fcc9a8a12a35b1780fbec22f548"
+  },
+  {
+    "path": "frontend/lib/hooks/use-notifications.ts",
+    "sha256": "484049696912f212c2bbca48c8a33cdb78bae7a74bd49ac17268c00d6ae5d659"
+  },
+  {
+    "path": "frontend/lib/hooks/use-outfit-title.ts",
+    "sha256": "dce45fe812cf5ca631eadfda8be87bed0f6bbaf2364e11c56842b4016b7eaf1e"
+  },
+  {
+    "path": "frontend/lib/hooks/use-outfits.ts",
+    "sha256": "af96c446b555d596a307a73460ba04336734fc5c731fe7501e1bb3b4d6acbf4c"
+  },
+  {
+    "path": "frontend/lib/hooks/use-pairings.ts",
+    "sha256": "95f0daa6d75786812328fc863d63f354e27aee28f3ac2bb3b8dbadb77b2a14b5"
+  },
+  {
+    "path": "frontend/lib/hooks/use-preferences.ts",
+    "sha256": "e978014a85eb83456d28c67b46538789e183ff3302077f902eb95f62f3a7f719"
+  },
+  {
+    "path": "frontend/lib/hooks/use-session-token.ts",
+    "sha256": "b8ad1b38215dbecff15ba343e4227331a0ce3d4c8c699fce3ad35d1be5162fd3"
+  },
+  {
+    "path": "frontend/lib/hooks/use-studio.ts",
+    "sha256": "2aba0b9c419a76ae1a84ce24e998eadb0d014d86e8ea0ea0526ab80600afb5ee"
+  },
+  {
+    "path": "frontend/lib/hooks/use-translated-constants.ts",
+    "sha256": "dd9493b084c7775cc8694528bb767c3d27bd201c8f19e68880cfcc9ac8bb243a"
+  },
+  {
+    "path": "frontend/lib/hooks/use-user.ts",
+    "sha256": "486c4b9e3054e1e8732d0aba38553c4e5f196f35a8dbe93f0828ae80114aae11"
+  },
+  {
+    "path": "frontend/lib/hooks/use-weather.ts",
+    "sha256": "ce8aabce942e3a7e1bbd84b772990b9fd2efa4776de4faef32212622102e14f1"
+  },
+  {
+    "path": "frontend/lib/i18n/locales.ts",
+    "sha256": "9f37d9d9bfdf89f3c49dbfe1a651dce0995a891d6428da401215380422fdd0bc"
+  },
+  {
+    "path": "frontend/lib/image-types.ts",
+    "sha256": "b6594503bcf1c60da6cd121824b5a9162f2d66f2cf5c3b8c01c2ddc73b6fe98c"
+  },
+  {
+    "path": "frontend/lib/insights.ts",
+    "sha256": "62f5860454747a4a18b94cee0831d66f3b9b588de683d5fda6300dd0ec561dab"
+  },
+  {
+    "path": "frontend/lib/lightbox-adapters.ts",
+    "sha256": "d302123a70fbb6a936902079ca1de58f43e354bedb80c3e39c0469d5cc840c2f"
+  },
+  {
+    "path": "frontend/lib/lightbox-context.tsx",
+    "sha256": "22e9f79d7addf42989da6e027bc9c902a7cc749afaf06a224c9b26b51dcdbbc1"
+  },
+  {
+    "path": "frontend/lib/location.ts",
+    "sha256": "c22ad3db16966a913bbe1b333921383fdd31f99ed69c5d15171fde1392972bef"
+  },
+  {
+    "path": "frontend/lib/outfits/calendar-indicators.ts",
+    "sha256": "9b5b96ea9e4d35f51f0a916603e20178cfe3627641cce50b908868b37bd2f3c9"
+  },
+  {
+    "path": "frontend/lib/pagination.ts",
+    "sha256": "84c5d1aa3aba392b1e9b8696306d297051501ef1a444357ec630e4762d8f0860"
+  },
+  {
+    "path": "frontend/lib/preferences.ts",
+    "sha256": "53b41ca3bbddad3a5b45df1e12f234d869b53119b897526907f3190a8e7201a4"
+  },
+  {
+    "path": "frontend/lib/proxy-headers.ts",
+    "sha256": "f1d1cc7d5af16e54ebcb402f3a05895b048b77afc447b5111973db5f5efb821c"
+  },
+  {
+    "path": "frontend/lib/query-client.ts",
+    "sha256": "8a01838ff808aa8cf3df045a6f87fa41f872217b725f973af55c381cd33cca3f"
+  },
+  {
+    "path": "frontend/lib/rating.ts",
+    "sha256": "e1da07ab48c181c53f20d75759760c977e2b486da71928befb0bfb85871a9b9f"
+  },
+  {
+    "path": "frontend/lib/recommendations/presentation.ts",
+    "sha256": "9f860f0bedce720f0a3d2fdbf901679ba35be3622f3fdfd927ad3adc26d63376"
+  },
+  {
+    "path": "frontend/lib/recommendations/types.ts",
+    "sha256": "9fff8e2ff997ef09f100212639a291d5955f95cacf59a679c5e7ac1f94c0d9cc"
+  },
+  {
+    "path": "frontend/lib/recommendations/use-recommendation-tasks.ts",
+    "sha256": "adb19595607fc788b20698840f7904c3cba3269ff4947aa6e99f657e33bc4b46"
+  },
+  {
+    "path": "frontend/lib/schedules.ts",
+    "sha256": "b41b503f63e1458716dd1584f1a5f95bc1a76dfeb2708940cc37ea5f09edb3f9"
+  },
+  {
+    "path": "frontend/lib/session-cookies.ts",
+    "sha256": "92238accae7c88563cbcca1cc5eba8ccffe5d4e141f9ac635e761ca01c90005a"
+  },
+  {
+    "path": "frontend/lib/startup-checks.ts",
+    "sha256": "dbc05afdc126a626d548340e81a1cc14e656e3d7cd9d7a6e851c78903a7b1764"
+  },
+  {
+    "path": "frontend/lib/studio/ai-assist-merge.ts",
+    "sha256": "eed47b6416ee4a2f384852be9d5209932afdfc295e042cf68c47d99fda8b66b7"
+  },
+  {
+    "path": "frontend/lib/studio/canonical-order.ts",
+    "sha256": "bfacc5520c535887d899f36d40afa477a0ee8c1c07f1f8d974301642972899fb"
+  },
+  {
+    "path": "frontend/lib/studio/draft-storage.ts",
+    "sha256": "030e27068e499aea26ce22bb063cfce4ab320eb5101e8d1d8066c0a9254fc8a2"
+  },
+  {
+    "path": "frontend/lib/studio/edit-load.ts",
+    "sha256": "e39e8e187efb18684bf8d24a78bd619bd9a2a5dc01dfba126483955c2f28290c"
+  },
+  {
+    "path": "frontend/lib/studio/editor-state.ts",
+    "sha256": "cf548e878bed1756197bd8bc1f42ba4165dd0d3199381215ff0baffda989ea1f"
+  },
+  {
+    "path": "frontend/lib/studio/errors.ts",
+    "sha256": "1e1e08aa029e789e55a0e013bbb58d03e9782234f2603be678902c770d14e362"
+  },
+  {
+    "path": "frontend/lib/studio/warnings.ts",
+    "sha256": "b863c7070f29d18447a8c5378bff7563725274d3c31ae6442636832557844ac8"
+  },
+  {
+    "path": "frontend/lib/temperature.ts",
+    "sha256": "26f9431492bfa5cba8d2eaf18250ab7bbd329b13378a733bceb0ea10e0939162"
+  },
+  {
+    "path": "frontend/lib/types.ts",
+    "sha256": "12dc8098082a39b0d2adf05c4dde797cc1d590907ddb0bd168922075140767e7"
+  },
+  {
+    "path": "frontend/lib/upload-manager.ts",
+    "sha256": "118a82feb37bae8ce1d03380515f8d94a51e2013159901d441295a3e48a3fae3"
+  },
+  {
+    "path": "frontend/lib/upload-queue.ts",
+    "sha256": "180f2a5c784d9cee2a602b2a826f5446781309c142b52f74687c3cd457dba886"
+  },
+  {
+    "path": "frontend/lib/utils.ts",
+    "sha256": "9096b4b5b54ba930f2cdfbcf9f697fd2d2f551b463e6147475d497c0fc19ba92"
+  },
+  {
+    "path": "frontend/messages/de/analytics.json",
+    "sha256": "fdd7bf4c903f0cfb3cc58c462aa1dc5e2dc0baafad142252a9717f325c0da313"
+  },
+  {
+    "path": "frontend/messages/de/auth.json",
+    "sha256": "1857ddd6f4b01cfb3fbdccec1ec3355b9da17512477b4896709f8baba6f45c26"
+  },
+  {
+    "path": "frontend/messages/de/common.json",
+    "sha256": "7f0d16bdf9993f73f6750eaa1dd4afbe4d57275bd639875a8affd4350506c512"
+  },
+  {
+    "path": "frontend/messages/de/constants.json",
+    "sha256": "d90a55476caf001bf0819d4a266cfdfb84a06a6fc20da9dfce97cebd454c0271"
+  },
+  {
+    "path": "frontend/messages/de/dashboard.json",
+    "sha256": "edc5458ce91e40761e9eebe38d6003da9385510323aba7b04746e19253a5b3fa"
+  },
+  {
+    "path": "frontend/messages/de/errors.json",
+    "sha256": "47f5187fa2eeddc20e76651020f29541a1352b18f60bdc8f1070983247c9f8f4"
+  },
+  {
+    "path": "frontend/messages/de/family.json",
+    "sha256": "23ed733a04027f724cbae51147525cbd40657d340c3023418d7ad2d924e0622c"
+  },
+  {
+    "path": "frontend/messages/de/history.json",
+    "sha256": "a794ac30f6eba5b8542e2a808a914768ce80087097cefeec23e8cb8319665190"
+  },
+  {
+    "path": "frontend/messages/de/learning.json",
+    "sha256": "b21a80c11e2395110746282d2d6274e3c3c1763f87979f4dd9b68b5656da4fec"
+  },
+  {
+    "path": "frontend/messages/de/nav.json",
+    "sha256": "4a67bfd5cfea3d93e9574ed79d95bba97ece2cf24290607dda1f5addb877e8a1"
+  },
+  {
+    "path": "frontend/messages/de/notifications.json",
+    "sha256": "b93d1fb5a5c4cd9f602f109807433225d39e9a38e6146ef48bc846351b52ac3e"
+  },
+  {
+    "path": "frontend/messages/de/onboarding.json",
+    "sha256": "ab04c896a257634e1a471f78a4026226aa2de940ba75dd7e1405aa96b25af1e3"
+  },
+  {
+    "path": "frontend/messages/de/outfits.json",
+    "sha256": "0b3cd685fa149fcca628ee56d4daafa79aada9b5feb2189f07219dd9eb16faba"
+  },
+  {
+    "path": "frontend/messages/de/pairings.json",
+    "sha256": "c5815a27c588a7b5639deea2e73b5bab7ecb48cfa7db184543451c137ab87772"
+  },
+  {
+    "path": "frontend/messages/de/settings.json",
+    "sha256": "f9b2ec8832a3455ede410ba335eb22036b7f63d74dba629fb1044c610fe92e6d"
+  },
+  {
+    "path": "frontend/messages/de/suggest.json",
+    "sha256": "7e8158f5481e002bdba1e776d54b96ee4301a8363cd3252ec2eb3840c443ef07"
+  },
+  {
+    "path": "frontend/messages/de/wardrobe.json",
+    "sha256": "9347cc25c21adf9fc23df0ddb8075568789ac2484b8103f93f40f8cfc3c32dab"
+  },
+  {
+    "path": "frontend/messages/en/analytics.json",
+    "sha256": "5e96e2df3319b027eaf3496891d5186acd3fe8fd8164483c68e99ede4f3aa029"
+  },
+  {
+    "path": "frontend/messages/en/auth.json",
+    "sha256": "09189e0b7b900dab9912ec70e25e2ccd7eaa91b5fa0bc414cf09c9a4e8fce7a9"
+  },
+  {
+    "path": "frontend/messages/en/common.json",
+    "sha256": "f08d646fdbeb6881046a1c3eeecb4dd6b909e763da7c0bd3db176d82eedae6d7"
+  },
+  {
+    "path": "frontend/messages/en/constants.json",
+    "sha256": "13390c53df73c16330d67ae27cdb297a46dd8f1cdf0458b4c0d2e3d6cc69ee9a"
+  },
+  {
+    "path": "frontend/messages/en/dashboard.json",
+    "sha256": "f31c8750da3c4f2973f6200958de32c4d06fc421b4630b663687652249625eb8"
+  },
+  {
+    "path": "frontend/messages/en/errors.json",
+    "sha256": "ea74b3bb3b7c8bb5ce936383324faf7b0847fbd310652e7646d392e9ee701233"
+  },
+  {
+    "path": "frontend/messages/en/family.json",
+    "sha256": "78560fe8d016bb002bbbe007035aecb76c8b003b529ee51d306dad22f91158d6"
+  },
+  {
+    "path": "frontend/messages/en/history.json",
+    "sha256": "4a273a37e315d871f2d302e48aaf885d83dd095391c7af77b19d50bb53b30219"
+  },
+  {
+    "path": "frontend/messages/en/learning.json",
+    "sha256": "21d86966bb91d9e3b0f5a2256e508fe3d360e3edd7b601861f37e6fdc6492f2f"
+  },
+  {
+    "path": "frontend/messages/en/nav.json",
+    "sha256": "c3d1e28bef6a93452bcf757dc6b0fc94aadba5cf30a4b5cfc03b82286539d78a"
+  },
+  {
+    "path": "frontend/messages/en/notifications.json",
+    "sha256": "81145dcca5552bcd8eb2a43346b6caef45a2cdc06f98b4d119645d3d37bc2d94"
+  },
+  {
+    "path": "frontend/messages/en/onboarding.json",
+    "sha256": "8f0b09ccae11480c54fd3e9b928a5473177f8ddc95cb28256941208addeac847"
+  },
+  {
+    "path": "frontend/messages/en/outfits.json",
+    "sha256": "5630da90875fdd7821808deda122f081747aa011b9e10403dfe11a72f3059917"
+  },
+  {
+    "path": "frontend/messages/en/pairings.json",
+    "sha256": "fa7e7136ef4b4ec01405ccd6d0b8519718166d35e6f78bd2c17c94967ea5d2aa"
+  },
+  {
+    "path": "frontend/messages/en/settings.json",
+    "sha256": "e676af6334dc16d9a480e7e2bcab7a541e1c67cbc74cddb0dbd85a03ebc1d277"
+  },
+  {
+    "path": "frontend/messages/en/suggest.json",
+    "sha256": "8367b2961ce4ff0a3405abf0747137dbe18e3ff03e8a2efb6648cde1189fc8c2"
+  },
+  {
+    "path": "frontend/messages/en/wardrobe.json",
+    "sha256": "032d41e7f6a3ff7d9c757660e5945d0e0b545d08fb9875940ea9f8430e9aa174"
+  },
+  {
+    "path": "frontend/messages/fr/analytics.json",
+    "sha256": "3cff3d9f0c02fe3d956484f82060fbf29ff04c9ca7f54dd5fb2dd0dedd19839a"
+  },
+  {
+    "path": "frontend/messages/fr/auth.json",
+    "sha256": "63017799433dc19880f9a07c970647f9eb1e3ec8894645928416085688872589"
+  },
+  {
+    "path": "frontend/messages/fr/common.json",
+    "sha256": "2d329e3afab8a10d69ef5785a77a164682a45699037ca020a140dc55fba01528"
+  },
+  {
+    "path": "frontend/messages/fr/constants.json",
+    "sha256": "d06719e1a860d009a9d0b3448f9d8c107493198bb8b5043d6e40ed960902e604"
+  },
+  {
+    "path": "frontend/messages/fr/dashboard.json",
+    "sha256": "efb301a57d07a140c5e1c620fcfd381c91f0af43124951d9f7881e34fc6a54c7"
+  },
+  {
+    "path": "frontend/messages/fr/errors.json",
+    "sha256": "95a06bc19d8b20396f45b06f914e32a7e3643f4600ff1e793bae47cc1ccc3432"
+  },
+  {
+    "path": "frontend/messages/fr/family.json",
+    "sha256": "4526c7cad63f27d00c3abcfb86c6d2abfd962404f0977d61a9f16488db00e08f"
+  },
+  {
+    "path": "frontend/messages/fr/history.json",
+    "sha256": "38f9997144963a28cc9c0f4b1095b09a0134c84467a7a2f760f291b11ede8277"
+  },
+  {
+    "path": "frontend/messages/fr/learning.json",
+    "sha256": "e72c77b8533bd6eb8d920049268dfe5822e0770d061f819b53bf65f59a378952"
+  },
+  {
+    "path": "frontend/messages/fr/nav.json",
+    "sha256": "47d4819fc3e4baad1a1af83d983f15fc7f2aa0b5d319603adb8ae6b0d4181fb4"
+  },
+  {
+    "path": "frontend/messages/fr/notifications.json",
+    "sha256": "cae77ac3782151a727c45f300a13b0d0ba065c2fbba43996f9a4a81d1ce2cb95"
+  },
+  {
+    "path": "frontend/messages/fr/onboarding.json",
+    "sha256": "189ae86e3337dabffd0ab51f3dd593bd8cc28ce77df7ecd56616d7373e015402"
+  },
+  {
+    "path": "frontend/messages/fr/outfits.json",
+    "sha256": "197eae707c117ea03e9efa794d92950d8c4d28109a28a5e6d3f0ea98154655aa"
+  },
+  {
+    "path": "frontend/messages/fr/pairings.json",
+    "sha256": "c800300314180139ddcf10b7ffbd4d56ab966e86fb69adde36321aafaaa6af6a"
+  },
+  {
+    "path": "frontend/messages/fr/settings.json",
+    "sha256": "d294ff9176ac7ede6333a794da4e356f17b6fcf701ffb803516b1ef3e9adc445"
+  },
+  {
+    "path": "frontend/messages/fr/suggest.json",
+    "sha256": "7f79c47d67aee642ef13087a1e4c02558ceb2409fe39ca9c4e498d5b8656567c"
+  },
+  {
+    "path": "frontend/messages/fr/wardrobe.json",
+    "sha256": "b4f27a3f9022d394e74d68be2ff19323c6eaec353f2f990bcc022dc143f98155"
+  },
+  {
+    "path": "frontend/messages/it/analytics.json",
+    "sha256": "e0b7e98061c94604ffcd12743963e6478af4b51143816a70f715f59685c032a8"
+  },
+  {
+    "path": "frontend/messages/it/auth.json",
+    "sha256": "673350666790f68ad8696a23630b176e43830bbaf4bd34e352ba530f6d832b07"
+  },
+  {
+    "path": "frontend/messages/it/common.json",
+    "sha256": "13d2966fe1c9c0d5656bb4e0b65381f97567d57d28c080e6c3f755511589fc57"
+  },
+  {
+    "path": "frontend/messages/it/constants.json",
+    "sha256": "a54a7c1a642e3485bca03a2a7438d1b50d406427f534637c4d9d7a63217c5e26"
+  },
+  {
+    "path": "frontend/messages/it/dashboard.json",
+    "sha256": "a18b152f64a0c1720012e9061735cb210862b1cdcb023fa0abd47b5c0e1e245b"
+  },
+  {
+    "path": "frontend/messages/it/errors.json",
+    "sha256": "ec1a97f70b86837242860b51a689640a1e62ffbc414b51188dc1f6dae7c1dee4"
+  },
+  {
+    "path": "frontend/messages/it/family.json",
+    "sha256": "23617ad2caaf2799c7cc860d4b1670e0976f83395d088d4600c27205b030df29"
+  },
+  {
+    "path": "frontend/messages/it/history.json",
+    "sha256": "2c24cbcede79aa3f89657ab4c13dee10f66e071267cac99bcb31ab08ec1a0133"
+  },
+  {
+    "path": "frontend/messages/it/learning.json",
+    "sha256": "45fda396d62650bcc740204001483bf77581dfdb0f04395694747b55eb0890e2"
+  },
+  {
+    "path": "frontend/messages/it/nav.json",
+    "sha256": "e2b5e6fc25f625683df9b5bba80e0af0782342c1024275161eaeec7e3eb7970f"
+  },
+  {
+    "path": "frontend/messages/it/notifications.json",
+    "sha256": "60c067cd6927fe341fc888e6f07c4c685e53e2de47d4fa92a45b83cc4c8c89a2"
+  },
+  {
+    "path": "frontend/messages/it/onboarding.json",
+    "sha256": "0a0877879225e41d95e2ec372fa840100ca5b6d10ccbbfd95ec769714e9cc42c"
+  },
+  {
+    "path": "frontend/messages/it/outfits.json",
+    "sha256": "b7477e1a342b1c90e3181ebd3045b23191e36e830d955a7e0e31d3b978f54359"
+  },
+  {
+    "path": "frontend/messages/it/pairings.json",
+    "sha256": "b0598ef4454876abdde0ac9d48a19172f5484f3876e3e5815ebc739197bf4df7"
+  },
+  {
+    "path": "frontend/messages/it/settings.json",
+    "sha256": "565d2c5a9b939aac76653f531cbcd5e6f4dcd837e3b0df8f5bd57a6281880fd3"
+  },
+  {
+    "path": "frontend/messages/it/suggest.json",
+    "sha256": "6210cb8997f7de273382440eba5ea8458b6fb770840c93faab9ae0aad5eb1cef"
+  },
+  {
+    "path": "frontend/messages/it/wardrobe.json",
+    "sha256": "c10c03a242a2de6e79db5059a9c97f22d2fdae2ab26e33831e3817452a8145ee"
+  },
+  {
+    "path": "frontend/messages/ja/analytics.json",
+    "sha256": "871ff1b2ac0df0d8911b41ec85105f7acf01004182a9a71cea7fa00d35480fa6"
+  },
+  {
+    "path": "frontend/messages/ja/auth.json",
+    "sha256": "b94f5d4996d74f6301bb74d56ba25c240908e0e4cb7d8da41f8bfd76dd6eeca0"
+  },
+  {
+    "path": "frontend/messages/ja/common.json",
+    "sha256": "abbb329cfcc04fd8b677e5ce321e9627ccbfb7a1e9539a1f6601f2eb4de27f6a"
+  },
+  {
+    "path": "frontend/messages/ja/constants.json",
+    "sha256": "9daf9e9720a969b904db2ef5ae8c9c13269fa641bc3c1075a19e371906081d21"
+  },
+  {
+    "path": "frontend/messages/ja/dashboard.json",
+    "sha256": "a9edb4cdb7dca6809722946c740bb07620084794a11d9b04c68f94410d23a895"
+  },
+  {
+    "path": "frontend/messages/ja/errors.json",
+    "sha256": "d05b8409d278b5ca485ac22e4eff7847819bf9836e3c2552c573a862f747c04d"
+  },
+  {
+    "path": "frontend/messages/ja/family.json",
+    "sha256": "851f2483bc3931f517e77a3ba4e6140830e20c3783e190479e95894426ad4da7"
+  },
+  {
+    "path": "frontend/messages/ja/history.json",
+    "sha256": "fab09e7f75c4e2535ebac8841145181fbf7aa17c78040d8e12d18f5f0f287c41"
+  },
+  {
+    "path": "frontend/messages/ja/learning.json",
+    "sha256": "f57b394140636051cb7a083862e0f7b096bdbd32e3b04718b98baea872a89417"
+  },
+  {
+    "path": "frontend/messages/ja/nav.json",
+    "sha256": "815bb556164d224f720f97da3b822369d87fbe3604f3a0049186559351579ec0"
+  },
+  {
+    "path": "frontend/messages/ja/notifications.json",
+    "sha256": "a4158c75343c74619a46ac653af462eb83ffa3ffd21c4eb703257e5103bbd7e2"
+  },
+  {
+    "path": "frontend/messages/ja/onboarding.json",
+    "sha256": "26d110d1ee0d65d2322884ad08f776dfa059abde71e70d68e75c98214e0b47e3"
+  },
+  {
+    "path": "frontend/messages/ja/outfits.json",
+    "sha256": "3db3926fcb158795ca7e82e9fdf54945cf6075c2dcad2b74d8d8186f7c2be870"
+  },
+  {
+    "path": "frontend/messages/ja/pairings.json",
+    "sha256": "ab562d89f9d86afbd84e3a5772f13a1fe8b38c6f4dd6c4b85a0f44afe6948c5a"
+  },
+  {
+    "path": "frontend/messages/ja/settings.json",
+    "sha256": "0a2999f17fd3bd66aff407829a80d71fa8067951e91b6857afd16c9f1360f02c"
+  },
+  {
+    "path": "frontend/messages/ja/suggest.json",
+    "sha256": "4357eda9ac709a2850148d0ba7fea524f877a8478c36aad655a2c860fd53ad8f"
+  },
+  {
+    "path": "frontend/messages/ja/wardrobe.json",
+    "sha256": "361f30a25111470d4bf86681175b54ea1dae659e91d75eeb4cfd9e5dcbb1af03"
+  },
+  {
+    "path": "frontend/messages/ko/analytics.json",
+    "sha256": "d901ec8cd27c5a7012702ce1aee892247041e27c6e824aabfa986aa8609c9175"
+  },
+  {
+    "path": "frontend/messages/ko/auth.json",
+    "sha256": "e149efbbaf25edce8ca2505ca4cf096e64a3086297997e157352667117bb0719"
+  },
+  {
+    "path": "frontend/messages/ko/common.json",
+    "sha256": "bd19b15cb68490b704ff3d69e1366a4e8b9936b2d24fc67d73fd03b3654d87fa"
+  },
+  {
+    "path": "frontend/messages/ko/constants.json",
+    "sha256": "078669e01beae055fbfe8dbdc6c10a3c1be7333e27b7dbe02b6af5c13c32cef3"
+  },
+  {
+    "path": "frontend/messages/ko/dashboard.json",
+    "sha256": "9aee92d08bb5c880ebf3472abd5f8296a7b5946475262cf7a0900c335cf5425f"
+  },
+  {
+    "path": "frontend/messages/ko/errors.json",
+    "sha256": "3ca618884ce509ba95d5bd33b07cc39ab37cc3fe4e64cd1c0ec8ba943f7ae7eb"
+  },
+  {
+    "path": "frontend/messages/ko/family.json",
+    "sha256": "bbac74044eeab0a29134edf6c914bce516b56c2e5cf2af1b368d795b2804b114"
+  },
+  {
+    "path": "frontend/messages/ko/history.json",
+    "sha256": "2cdcf0bbd77838baa9063a0cec9fb05433c7c9be4cd90ea3ffbe7f62ad01becf"
+  },
+  {
+    "path": "frontend/messages/ko/learning.json",
+    "sha256": "b8dbc05b4a6b4ad28379585c0d9ecfa37e581acb5c3316a30d859aae6f3f3ffe"
+  },
+  {
+    "path": "frontend/messages/ko/nav.json",
+    "sha256": "4a720f62db09c6cd9acbe1b9656927ea330ca984a6585befab817245f8f9920a"
+  },
+  {
+    "path": "frontend/messages/ko/notifications.json",
+    "sha256": "77bb80e6f664532bf2a1cb7e56ef1ce0f27911255a8922014072245a1537769e"
+  },
+  {
+    "path": "frontend/messages/ko/onboarding.json",
+    "sha256": "1e111f1cc61bfc20a2d5b4b6f0798bd69d2a72654db62456228cf09033c5308c"
+  },
+  {
+    "path": "frontend/messages/ko/outfits.json",
+    "sha256": "381ab99b2141238d9a9c14b632156258aba126023ea7b8b7e884b82a97332aaa"
+  },
+  {
+    "path": "frontend/messages/ko/pairings.json",
+    "sha256": "184ef2f61b870b7f88017e36c7847386f23b6c42e687f1d10dfedaa5727bb6f8"
+  },
+  {
+    "path": "frontend/messages/ko/settings.json",
+    "sha256": "333867f06a66b50ca5385a045cfc8b145a59d21d921d5c3aaeecb94dd4a804d4"
+  },
+  {
+    "path": "frontend/messages/ko/suggest.json",
+    "sha256": "1feefc8872752780135f999cdfef7d0e6104f590acec68614621b693d5384f63"
+  },
+  {
+    "path": "frontend/messages/ko/wardrobe.json",
+    "sha256": "dae64fab77ac43199eaeda505fdcf3eed23934e04ad340a947340952616b6f93"
+  },
+  {
+    "path": "frontend/messages/zh-CN/analytics.json",
+    "sha256": "04cbcc4fe18a0a1cffe5eb0fbfb84765a2322d6e41ec013fca91867cac350b2e"
+  },
+  {
+    "path": "frontend/messages/zh-CN/auth.json",
+    "sha256": "9b276ad30268894b8dea13c71f7770bf7911d18df2cca0b9881a07a5ce3f7505"
+  },
+  {
+    "path": "frontend/messages/zh-CN/common.json",
+    "sha256": "ce13b5b259cca1d813e849db561df88e6db438bd9bafa30cd70eceb35159f276"
+  },
+  {
+    "path": "frontend/messages/zh-CN/constants.json",
+    "sha256": "ad377ca4eba1095d31985727404c9828086c13eaf51a9aced85dd12dabea5179"
+  },
+  {
+    "path": "frontend/messages/zh-CN/dashboard.json",
+    "sha256": "551f1b9a81800bd5024a6eef6ef323752b21d367da8969bfafe4a163803a615c"
+  },
+  {
+    "path": "frontend/messages/zh-CN/errors.json",
+    "sha256": "d0c80f0cbb34dffa729678e74b3b8b8954aa4e4773d5de1aebd5b8cf32e5fced"
+  },
+  {
+    "path": "frontend/messages/zh-CN/family.json",
+    "sha256": "9e11f306fb42e916e529aca349bc7d56a6a1f8be8e910b8d9730842ef7dbd707"
+  },
+  {
+    "path": "frontend/messages/zh-CN/history.json",
+    "sha256": "2699c7684c9c6408f3bbc2a1ea293d187a9a2b66b2b78409056c3f134157c487"
+  },
+  {
+    "path": "frontend/messages/zh-CN/learning.json",
+    "sha256": "23e4e374106e986f732523e03d1da6ab43c9bc579b1cded0c57e12accd0ad39d"
+  },
+  {
+    "path": "frontend/messages/zh-CN/nav.json",
+    "sha256": "0eee8cb18425ba87cea84d9fea9fa9f59981329ffbb1ccfd7602d4f6bb9e5bbb"
+  },
+  {
+    "path": "frontend/messages/zh-CN/notifications.json",
+    "sha256": "7271660bd8d06c80731083bbf0602f473596069c7cfefe79898c824e842f3c64"
+  },
+  {
+    "path": "frontend/messages/zh-CN/onboarding.json",
+    "sha256": "6d7b36f85a79950ad91dc0498d6ab0cab5a0d3b1198e734ed235476cccc1761e"
+  },
+  {
+    "path": "frontend/messages/zh-CN/outfits.json",
+    "sha256": "a0b807a01340e2af54d960542f644572695a4d49e24b84eaddedf9f2c9a803e4"
+  },
+  {
+    "path": "frontend/messages/zh-CN/pairings.json",
+    "sha256": "87eb522fcdb2845f49ddf628ced5b71c770c84798a1143f45c1eb18ccdb58a33"
+  },
+  {
+    "path": "frontend/messages/zh-CN/settings.json",
+    "sha256": "e7936800538d42598e83ca1f3b6082a20ea56e0e5db72a3ec02cceba011fa42c"
+  },
+  {
+    "path": "frontend/messages/zh-CN/suggest.json",
+    "sha256": "5f1762d88568e50dffe1e1c9c58e54178ba49822ed4b2fa8582ae9bfb953278f"
+  },
+  {
+    "path": "frontend/messages/zh-CN/wardrobe.json",
+    "sha256": "ca50972568c5e1e452c95562ad60e253c9e6d215a404fdcea2ada70ed7b5ca5e"
+  },
+  {
+    "path": "frontend/messages/zh-TW/analytics.json",
+    "sha256": "43b0ec33dee72f6784e18a4b9129e13bb34ac108641cd9c66b39b0ebab19402b"
+  },
+  {
+    "path": "frontend/messages/zh-TW/auth.json",
+    "sha256": "677e420427b6141392c9c82793b9cd5967a617655b9f335370d6c7adb03e0bd0"
+  },
+  {
+    "path": "frontend/messages/zh-TW/common.json",
+    "sha256": "f247fb8637f87c42e2de8be522bfda9d8504f9fa35e279ecb359a40f92f1a6a3"
+  },
+  {
+    "path": "frontend/messages/zh-TW/constants.json",
+    "sha256": "591cff015742d720b4ed69d0b566771710758b3002e9cf0b21703d2ffdfbdfc6"
+  },
+  {
+    "path": "frontend/messages/zh-TW/dashboard.json",
+    "sha256": "e05929e1efbf0c28325bb4ce3fb719d47a978de0c18ef646ea7a768132ee0e95"
+  },
+  {
+    "path": "frontend/messages/zh-TW/errors.json",
+    "sha256": "eb034e5118b67395cc812c8151030a77c0e9f14edc455e710c41d76311ab1bf0"
+  },
+  {
+    "path": "frontend/messages/zh-TW/family.json",
+    "sha256": "eecf6a719996ed4603e9f1e003b1db7b1a16ad50a4b8c233b1514dbf779b12e4"
+  },
+  {
+    "path": "frontend/messages/zh-TW/history.json",
+    "sha256": "b7c95d6ce0f06a915e90c0f43ed27fb8c9cdd539a6921104ac9d702e2fcf7b32"
+  },
+  {
+    "path": "frontend/messages/zh-TW/learning.json",
+    "sha256": "16e7d4bd0fde33381a81f809567f69d55535601d7b8e0cc20318ba842c59766e"
+  },
+  {
+    "path": "frontend/messages/zh-TW/nav.json",
+    "sha256": "cdb1a5e7cdb54e682bae0536245ac5df36a608c3735ba366e9eda6f3d8d886c2"
+  },
+  {
+    "path": "frontend/messages/zh-TW/notifications.json",
+    "sha256": "4c365316c879d63fdc43c459a24bba996655b3dd9a128d2da804d254bd9746cf"
+  },
+  {
+    "path": "frontend/messages/zh-TW/onboarding.json",
+    "sha256": "b987ee07f3e6313baed67d399e69fcd828d727738fd345df5aa2087d9bf775de"
+  },
+  {
+    "path": "frontend/messages/zh-TW/outfits.json",
+    "sha256": "b28ee32f2f5e0b94104cf617cf28ba516acaa28a17cb57e899c9c71f3fae109b"
+  },
+  {
+    "path": "frontend/messages/zh-TW/pairings.json",
+    "sha256": "05a808a20a31e928f6cb3c3f80831ea7686737dcc6b125a565ab1bbb071832e6"
+  },
+  {
+    "path": "frontend/messages/zh-TW/settings.json",
+    "sha256": "4ec82c09fdf45d3cc8b9a6a89277b17972481459990856df25197043ae609804"
+  },
+  {
+    "path": "frontend/messages/zh-TW/suggest.json",
+    "sha256": "7e743e0b50d9859efe1aea7d7d550387dbc5114a5f92487bd2112653a71903ab"
+  },
+  {
+    "path": "frontend/messages/zh-TW/wardrobe.json",
+    "sha256": "4f86f1a65f9c06f13c6434e2a4e52110f9f8061280a991b0f6f1515265222dea"
+  },
+  {
+    "path": "frontend/public/apple-touch-icon.png",
+    "sha256": "bc25be1ac3dc7c58b53afdd9b838ebc126ecfc31b8b445ffcca9719cb2730b1e"
+  },
+  {
+    "path": "frontend/public/favicon.ico",
+    "sha256": "70f7c9cbef6dd1890c8b9f3622dbc5bc09448c14b45093451e108a2a4d490083"
+  },
+  {
+    "path": "frontend/public/icon-128.png",
+    "sha256": "a4b75b782faec991e80c648ae12497a6ea6f4d885b550bd78141613abccc42c1"
+  },
+  {
+    "path": "frontend/public/icon-16.png",
+    "sha256": "8d62baa912d6bdf95bc3ea4ed530c1aa43c92b407269ac2ec6c452e8dafb0b07"
+  },
+  {
+    "path": "frontend/public/icon-192.png",
+    "sha256": "c1107eacf3cec631645118886bb901f8d4be28b4a722a65fcbb83bafa4eb97c9"
+  },
+  {
+    "path": "frontend/public/icon-256.png",
+    "sha256": "ceaf006826f9326f5cc09fb0b0869c3bec7c4f82229b2cd680471012dd9537f8"
+  },
+  {
+    "path": "frontend/public/icon-32.png",
+    "sha256": "70f7c9cbef6dd1890c8b9f3622dbc5bc09448c14b45093451e108a2a4d490083"
+  },
+  {
+    "path": "frontend/public/icon-48.png",
+    "sha256": "3dabbee22e4a3e0f4e34240d472b526d6e700ca1545a69dadc71002761aea49e"
+  },
+  {
+    "path": "frontend/public/icon-512.png",
+    "sha256": "03402924204e31ff4bfe9512657b6126c5a6cc217c3fc5f0e62cd89c29204384"
+  },
+  {
+    "path": "frontend/public/icon-96.png",
+    "sha256": "27aadd18d8268d3f7e567e7338436a73dc8cd1a1dcc613d491d5b68c3a6b5e27"
+  },
+  {
+    "path": "frontend/public/images/wardrobe-editorial.webp",
+    "sha256": "d7e53e027a830d4e66f83a8e9d9657c069471a56fbb2a49e7e5b6e54820e8eff"
+  },
+  {
+    "path": "frontend/public/logo.svg",
+    "sha256": "cbd7dec3a59d5a9eb15c8449c674985e21ec5a6df1e9b7910fcf537cd811a427"
+  },
+  {
+    "path": "frontend/package.json",
+    "sha256": "873a852ecf4a5379920991c1011e10bb1aa5e4b151888507bc721fd2800b63ef"
+  },
+  {
+    "path": "frontend/package-lock.json",
+    "sha256": "00b10e687d4e22ce2971d716ca8013dc604b90d7c7421ccc9dbcccc22f486166"
+  },
+  {
+    "path": "frontend/tailwind.config.js",
+    "sha256": "ca1301e50d149e8c19c906dae71549dd87071b37a919a3fc8c0a1f30362dcf4a"
+  },
+  {
+    "path": "frontend/next.config.js",
+    "sha256": "77bd95201d8f123c35070ee156f032bda4eb6b7f844c7664da0092cfbfba3cc5"
+  },
+  {
+    "path": "frontend/Dockerfile",
+    "sha256": "4dfd78dcf440bfc4d4f4136781e3e9735b6697f6ede1dd50e7f4f6e15d39fefd"
+  },
+  {
+    "path": "frontend/tests/setup.ts",
+    "sha256": "8246b8319a09f75e38226b2ce0c8b97bde78e7d25f7d7f08d1141a0d7d955ea9"
+  },
+  {
+    "path": "backend/app/__init__.py",
+    "sha256": "2a7d6dff6d51932ebf8caad88c740664c50b9bc1a58506f50aecfe8079bc9ada"
+  },
+  {
+    "path": "backend/app/api/__init__.py",
+    "sha256": "9e4465a14108263e19793726d23ca5c63be17d9bd23a853133e8378b5abaeb54"
+  },
+  {
+    "path": "backend/app/api/analytics.py",
+    "sha256": "5d6ce7d7de383a8f01f4b3957986732a3b67b33c9a5475a9e66f981b8d6c7915"
+  },
+  {
+    "path": "backend/app/api/auth.py",
+    "sha256": "d4baa640881aec87e6d21a4434e17455c09a7ec9b68d92da3432be0825044fab"
+  },
+  {
+    "path": "backend/app/api/families.py",
+    "sha256": "408674aa521b9d90327d271bd016745f47ecf0483c2343315c7f87ae0cd0d4ae"
+  },
+  {
+    "path": "backend/app/api/health.py",
+    "sha256": "884ff306f938943a140d966f398f6d334df0a3d4ee74e869862794ee7f83fe2d"
+  },
+  {
+    "path": "backend/app/api/images.py",
+    "sha256": "04bae0438226b8eace8943bb994c345133e6a8664afb2c151e5bce47858d8dce"
+  },
+  {
+    "path": "backend/app/api/items.py",
+    "sha256": "edbdcc60932a2d09237540cff2d2f0306eeeef11038bbf888c555fdd25f221a2"
+  },
+  {
+    "path": "backend/app/api/learning.py",
+    "sha256": "b4d805d3873fcc11fd9812693a13d5e0f7a13e571c80b793d7878ccc356af4c3"
+  },
+  {
+    "path": "backend/app/api/notifications.py",
+    "sha256": "4081200aa738273625fbd9bc5c8b92626f3ee949bec280240b5fed59ebed34e9"
+  },
+  {
+    "path": "backend/app/api/outfits.py",
+    "sha256": "6be1382faedfe703a6e00a242f13264a43ced690a464ee14053ed998e55e943c"
+  },
+  {
+    "path": "backend/app/api/pagination.py",
+    "sha256": "ea38b38d44114ef17826d83d1e6e736ab8fc6dbf9d42c01ac60daae74d6169d4"
+  },
+  {
+    "path": "backend/app/api/pairings.py",
+    "sha256": "1f4bbfdbc0df8656299af5379651c2c334457f4151edb1825084d00580a837ca"
+  },
+  {
+    "path": "backend/app/api/preferences.py",
+    "sha256": "810ea788a196f44dd87150bec05713a21d388f53cbb2353afe11081b5abaada3"
+  },
+  {
+    "path": "backend/app/api/router.py",
+    "sha256": "0607e34ef98a0f8ecf0315a13c5e4f5ac60a76996fbc3d98f920c87747c00ee3"
+  },
+  {
+    "path": "backend/app/api/tasks.py",
+    "sha256": "6cae8d0e573a91e0d7c9126d8f13b92dd47c7c1aaacd118a854e6be3b08aa3be"
+  },
+  {
+    "path": "backend/app/api/users.py",
+    "sha256": "2659400368e89c07cfaff90d1d1d1509588619df722644f80633d48b2759ff5e"
+  },
+  {
+    "path": "backend/app/api/weather.py",
+    "sha256": "83c0d2e9b3ecc17645575be34584680a2ebd8608ef52fe3b7fec18a54537eab9"
+  },
+  {
+    "path": "backend/app/config.py",
+    "sha256": "fff25d81494c1937d969b1543685b54fb1f2a6815ede1442fd6c24cf913c3344"
+  },
+  {
+    "path": "backend/app/database.py",
+    "sha256": "2c65fcb6cb30142dd977b88318887271bff1b41ca0df3de62e3abefc1363d8ac"
+  },
+  {
+    "path": "backend/app/logging_config.py",
+    "sha256": "b399fe57003740ba958ee356e5ecaf99112638e43bc4f35d250ac34a1442e342"
+  },
+  {
+    "path": "backend/app/main.py",
+    "sha256": "aaecb0afbbf2e31b9f339014691f5bdebed28a4897f5cba07b5b74894d0b6add"
+  },
+  {
+    "path": "backend/app/models/__init__.py",
+    "sha256": "6fb792abfcdd20b1e4a900b252a85f4bcec5a833100c0889c1ba5226925a76f0"
+  },
+  {
+    "path": "backend/app/models/family.py",
+    "sha256": "d1292cb61f4c9157d1fa9036c42966c3c7d4bfb6bd86a186fe709f17bfe0247c"
+  },
+  {
+    "path": "backend/app/models/identity.py",
+    "sha256": "51722fa85a51897e481844e47f00729e3ae95737bde5e045f6a04651bce6bf51"
+  },
+  {
+    "path": "backend/app/models/item.py",
+    "sha256": "efde1638910ae146668129038da1919e7d51e545f0ae126ed9184a40841384a1"
+  },
+  {
+    "path": "backend/app/models/learning.py",
+    "sha256": "e13900414d209350b0173afa19ef7ee9dd5cf453d8e31a5b32611779126fcba6"
+  },
+  {
+    "path": "backend/app/models/notification.py",
+    "sha256": "5172e57e0e682ed242564d76d01048dd8a9c294d24d0592708e9375de0062287"
+  },
+  {
+    "path": "backend/app/models/outfit.py",
+    "sha256": "59b0b92e71d303feb609aff2a05baeeb68ecb5d763873856f7ec1cd8cc5955e8"
+  },
+  {
+    "path": "backend/app/models/preference.py",
+    "sha256": "84ab0775abd27958d2d49132e13e916da167961ee71edc01e275ec879417ab3b"
+  },
+  {
+    "path": "backend/app/models/schedule.py",
+    "sha256": "3a52b67fab658b42a5b2590b678456bff2ba90cdfabd69c2040ad9f4f1c1ed8d"
+  },
+  {
+    "path": "backend/app/models/tagging_outbox.py",
+    "sha256": "aadb6542ac931a1686e9e5d1f5285e0bf8a5198c869ecbd13032ef4377248272"
+  },
+  {
+    "path": "backend/app/models/task.py",
+    "sha256": "f88369dce418a94f1ca778bf707802761c42e7bcb83f30634149b2d9abce238f"
+  },
+  {
+    "path": "backend/app/models/user.py",
+    "sha256": "1bb41e07b7ec30d8b3d9c1fc4f930c218c7c04a6a84be187d55c885eda50abfb"
+  },
+  {
+    "path": "backend/app/observability.py",
+    "sha256": "c66803dd79382588fc73283bf6d4fcf6518eba4120817daef9674c3077b8e9d6"
+  },
+  {
+    "path": "backend/app/schemas/__init__.py",
+    "sha256": "219f4081d8d2d9473bcdec655958fd999a2825c3cced275193cb7db38119736b"
+  },
+  {
+    "path": "backend/app/schemas/auth.py",
+    "sha256": "9df90c139c95b5e208bdb7c4614d16ec403feca519b761a04c6a9932382d56d1"
+  },
+  {
+    "path": "backend/app/schemas/color.py",
+    "sha256": "fd83f201eb1b9558797c0682faed14c725a5bfd2c8475ac43975011f977f8c16"
+  },
+  {
+    "path": "backend/app/schemas/email.py",
+    "sha256": "81d38ea0fe2190ca4e2ea1d3b8be1ec4621d81dd22c0ab9000d7e1a99016fb69"
+  },
+  {
+    "path": "backend/app/schemas/family.py",
+    "sha256": "f757df00ecd2ee9c44addd53739debf359282fb869b533e6ae16a055e0b08049"
+  },
+  {
+    "path": "backend/app/schemas/item.py",
+    "sha256": "4d33817296035567048502be3e04c8d65e42b4488fb18b25b1fd83580f20e4e7"
+  },
+  {
+    "path": "backend/app/schemas/notification.py",
+    "sha256": "923c266f0f7ce1a315ca3e2d467fe855d97ce77c489585cd5d5cf624590bfc04"
+  },
+  {
+    "path": "backend/app/schemas/outfit.py",
+    "sha256": "f41315c1ea87677a03b9516666e44dae96f2e9142d9fa2dbafa88be6fd0cd37a"
+  },
+  {
+    "path": "backend/app/schemas/preference.py",
+    "sha256": "1988ce353b0fdf03b6dcbba57e8d569b41b59e019c673699ed4582aae0b7929d"
+  },
+  {
+    "path": "backend/app/schemas/recommendation.py",
+    "sha256": "e0f128dff0820f5877f2f3e1ddbc688355779824f144fdee299a7480d6ddd1f0"
+  },
+  {
+    "path": "backend/app/schemas/text.py",
+    "sha256": "e768eb8e375b71c2b50287831a6bcf6c6e32b40c8c888c4659d03b6f03510a39"
+  },
+  {
+    "path": "backend/app/schemas/user.py",
+    "sha256": "0c94f58f3cce0542ca591bc91e50df511d47b2b21d8ae5e7ee03279117f2042a"
+  },
+  {
+    "path": "backend/app/services/__init__.py",
+    "sha256": "ffd70276d72bd926114cb0b63807c2dc8d6c860b2f30d5e2a331a1b1f06cad53"
+  },
+  {
+    "path": "backend/app/services/ai_service.py",
+    "sha256": "2fb77ede193e563b8ca8b96759d500ada7e1edf4212353fcc30990722c01f64b"
+  },
+  {
+    "path": "backend/app/services/background_removal.py",
+    "sha256": "c7430ec9c0683999ef9ff46e18c7d3f47678e75eea65d71abdebf33e12dcac14"
+  },
+  {
+    "path": "backend/app/services/external_outfit_service.py",
+    "sha256": "12f992ec7561fd13947b3f0552ca767a2c7269673a704216aa1a9a29be143448"
+  },
+  {
+    "path": "backend/app/services/family_service.py",
+    "sha256": "c93e5a1c5e4bbe2a2298f7a90935a3cecc216e8c3c5de68cbe5ebbdba8ac9ed9"
+  },
+  {
+    "path": "backend/app/services/image_service.py",
+    "sha256": "ee7530a14a86387c1558094286e4c58aca674a6ed60533bdb46e134c8f2ca112"
+  },
+  {
+    "path": "backend/app/services/item_scorer.py",
+    "sha256": "fd4875106aa5957b125a70b1c6fc0d9bbd4ba1507b3fc96489ed6d13ba456177"
+  },
+  {
+    "path": "backend/app/services/item_service.py",
+    "sha256": "4c2f9b085fcf1a941f98569f2902a99b59a164aa0fef58e8d9327555e67c18e4"
+  },
+  {
+    "path": "backend/app/services/learning_service.py",
+    "sha256": "6f85959c3957d9d4d690002aa0d78b00e8dd7b30edb213f12c1cc053deee3884"
+  },
+  {
+    "path": "backend/app/services/model_gateway.py",
+    "sha256": "082837553b7adcb75f27026f109d25fa138be165fd1f619f28b570b50288d893"
+  },
+  {
+    "path": "backend/app/services/notification_providers.py",
+    "sha256": "569fc7f77ba899c62905e2587b5d0d52bac1cceee9b721c0d02a8171aee490b6"
+  },
+  {
+    "path": "backend/app/services/notification_service.py",
+    "sha256": "54954b61dfc87241cf4c93735d9c08e67690e6e0dd92c8ea3ed17924646265c9"
+  },
+  {
+    "path": "backend/app/services/outfit_service.py",
+    "sha256": "14d3ca6062a73a5324f3857e0986e09e950b154d2503ee3ccb0ea2f71d1ba67e"
+  },
+  {
+    "path": "backend/app/services/pairing_service.py",
+    "sha256": "a0a3ecc374524e2746e16667382c2c21ba578cdaf1b8eb9f9ca8092f54da34cc"
+  },
+  {
+    "path": "backend/app/services/preference_service.py",
+    "sha256": "0ce065db0e27fbef510d25d7438e2c4a6a648ac7d731d0db5379c467f8b26170"
+  },
+  {
+    "path": "backend/app/services/recommendation_service.py",
+    "sha256": "a430ab6b1a108d8218f99c8b784e02a7f666ab49ad8a35cde60572ec0e0005cc"
+  },
+  {
+    "path": "backend/app/services/studio_service.py",
+    "sha256": "44a442be3b80ff32c8a173677544dbcf930c960a349c98c2510bb3b3f4e17495"
+  },
+  {
+    "path": "backend/app/services/suggestion_cache.py",
+    "sha256": "af1aa6d99853712164be8fca87456d4d5637109975e0ce0e9c167c0055116fd5"
+  },
+  {
+    "path": "backend/app/services/user_service.py",
+    "sha256": "beae5e7792b3b0a3dc87f65e3357304d5998d8cf11be791e9c44a7afc951bcec"
+  },
+  {
+    "path": "backend/app/services/weather_service.py",
+    "sha256": "656712bb8731fbaa1ba85f6e32e8eb2f99882653820d1d1ef509e7b0cbbf8b81"
+  },
+  {
+    "path": "backend/app/storage/__init__.py",
+    "sha256": "b21c7f046fc1ce861d05bf4a2cfa22cdd721296a486c63edbbea1cbd6de75b31"
+  },
+  {
+    "path": "backend/app/storage/base.py",
+    "sha256": "e9837371dbe00b21fb83052a7bdec9432bc9f40714c226a960489d634f72a315"
+  },
+  {
+    "path": "backend/app/storage/filesystem.py",
+    "sha256": "c69a9995a86757b333b52dcd773f0330acd0888e7636c2bfe64a9a376679648b"
+  },
+  {
+    "path": "backend/app/storage/migration.py",
+    "sha256": "862db309faf8af6866e03484d768c0e53babc692a8551ce8704fad16984c15ef"
+  },
+  {
+    "path": "backend/app/storage/s3.py",
+    "sha256": "29f1286584e85a6994c4c65b7c3096c416cf9e515d71f9cd140c457357793775"
+  },
+  {
+    "path": "backend/app/tasks/__init__.py",
+    "sha256": "4de389b437136db144a077c9448be544c2d3b70a850561b1f2f495b911617e57"
+  },
+  {
+    "path": "backend/app/tasks/dispatcher.py",
+    "sha256": "73ce962a74c9e9ece64af258702a37dfcecd88daf0363f07ad8ca06a42e6273c"
+  },
+  {
+    "path": "backend/app/tasks/execution.py",
+    "sha256": "62f6b8fbf42998919ff1ff70a326a1224d00d62f17d5fa40080c25d221efd826"
+  },
+  {
+    "path": "backend/app/tasks/schemas.py",
+    "sha256": "d5432b9e65a7dfe397a8c800c0e4a8e36b48b7e06f0dd1755da06de03928750e"
+  },
+  {
+    "path": "backend/app/tasks/service.py",
+    "sha256": "1b47672fbc411be3435ef74291643389265ff7651395095375621c45b6f5f7b0"
+  },
+  {
+    "path": "backend/app/tasks/tagging.py",
+    "sha256": "0e03f1e001f07331fe60e13be1fb34e17f8b517436ec2b7590616279879510a4"
+  },
+  {
+    "path": "backend/app/utils/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "backend/app/utils/auth.py",
+    "sha256": "eb50543d35131ec54d806cf71a703ebb8dfd59803d9e4096de0b4ec77a63cff2"
+  },
+  {
+    "path": "backend/app/utils/clothing.py",
+    "sha256": "23992a827c5a398b568c09fa41b9acb30fe4b9d6e9cbe9a310d7faabc9f5ce92"
+  },
+  {
+    "path": "backend/app/utils/forward_auth.py",
+    "sha256": "5b4830cc840c2f81ec72598175408507ace618dbf66a34a1c590e0c50249ad3d"
+  },
+  {
+    "path": "backend/app/utils/garment_vocabulary.py",
+    "sha256": "112b192cce376dca03d77ea2209d8103b11e4612155d9f70177c2995a000d1de"
+  },
+  {
+    "path": "backend/app/utils/locale.py",
+    "sha256": "d4a7bc58cc25424b7113335b0deacee42a11b4157f9d3d5be6fdbc3b778fb382"
+  },
+  {
+    "path": "backend/app/utils/numbers.py",
+    "sha256": "d4ddf9151231b8db1b2f8e0689067b5d25d37ea34c2b9be279013f06d52b1eb4"
+  },
+  {
+    "path": "backend/app/utils/oidc.py",
+    "sha256": "7a19410c39d837eebe3d6fc73353786475fb68564d827af46b1bf2cd2fd6eb86"
+  },
+  {
+    "path": "backend/app/utils/preference_defaults.py",
+    "sha256": "89e7a1666a7f772e9387c64ed614dfb308c6424dd585b5b48b3536b6233585a3"
+  },
+  {
+    "path": "backend/app/utils/prompts.py",
+    "sha256": "151cf6060caf78dda5b546699f910d2b37365a0bb2235acb1cb0cb043310fe62"
+  },
+  {
+    "path": "backend/app/utils/rate_limit.py",
+    "sha256": "49fd11d54d836b22d7feabdb948a0a0fe582c151c48a409b1e712ef6fee8497e"
+  },
+  {
+    "path": "backend/app/utils/redis_lock.py",
+    "sha256": "190b3b77ef25f7ef57ad5237b18d312edb0c0f74201730d47e9b80b5444469b6"
+  },
+  {
+    "path": "backend/app/utils/redis_url.py",
+    "sha256": "3923ea3b44e4c7efdf93f3aba320d424010dd3b62fc9b2a476cf25749bda706b"
+  },
+  {
+    "path": "backend/app/utils/scales.py",
+    "sha256": "f9e1a32e7f0b17463ffe12cbf00cb444cc956a00b7ab325a4fe71d8ba7880647"
+  },
+  {
+    "path": "backend/app/utils/signed_urls.py",
+    "sha256": "d69dbd1214b58690c60bb79451a1ef5e2f4fe062a99aaea806bfb2e88e04f08b"
+  },
+  {
+    "path": "backend/app/utils/timezone.py",
+    "sha256": "4bebc2e4ad09f557ac367614fbeaede4cd1c7c24a1323821805ada7a2b6f0745"
+  },
+  {
+    "path": "backend/app/utils/uploads.py",
+    "sha256": "f2f9b6a2ad4e10044c7bf16816e7ad315df48d8f4e6cd021615ec8c57883fd27"
+  },
+  {
+    "path": "backend/app/workers/__init__.py",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "backend/app/workers/background_removal.py",
+    "sha256": "77c1bb1877443e124ffdd1358e2191e1d39ef68afef87e3f0ffb45bb908d639f"
+  },
+  {
+    "path": "backend/app/workers/db.py",
+    "sha256": "65fe4c3ce9821a540869376564575aff9fce47fad8edca30a3c81b65c398de8a"
+  },
+  {
+    "path": "backend/app/workers/image_worker.py",
+    "sha256": "eec02800f99a705a5d25ae0d6cb1ada8416835b17e6a15445d9326a6897ba927"
+  },
+  {
+    "path": "backend/app/workers/notifications.py",
+    "sha256": "7d97a20881c5fcaec92d14f428dcdae3b765d05263e5dd58d093a0c05b39704d"
+  },
+  {
+    "path": "backend/app/workers/queues.py",
+    "sha256": "a3bf33adbd82e8ec588e05bbfdb96ac65a49b211fe30ff7d83c8c459ce1cfd41"
+  },
+  {
+    "path": "backend/app/workers/rotation.py",
+    "sha256": "8a920b3f74ded6820997e437095a1e1cd08d7d80da96a56f2b95e4e3833b8cfa"
+  },
+  {
+    "path": "backend/app/workers/settings.py",
+    "sha256": "3fabea9a56378c054abf6f7108fb44983f0f474aa4b8cb727ea649fb60a876ef"
+  },
+  {
+    "path": "backend/app/workers/tagging.py",
+    "sha256": "0ee8d95c6ff32735d868e04ff26c02ea12b4df2282412f76366c24ee6b906fce"
+  },
+  {
+    "path": "backend/app/workers/task_worker.py",
+    "sha256": "75acc1ecf3d0e1897b035e4d3a62afdf4cabaf5dc3575b0e91cd5d6c2e1acaf5"
+  },
+  {
+    "path": "backend/app/workers/worker.py",
+    "sha256": "be97fe14eb4f16414f80c9f203e121d708c71b806bcc85005a4453bf94aa5319"
+  }
+]

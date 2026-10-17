@@ -1,53 +1,95 @@
-import * as React from 'react';
-import { Slot } from '@radix-ui/react-slot';
-import { cva, type VariantProps } from 'class-variance-authority';
+"use client";
+import * as React from "react";
+import { Button as MantineButton } from "@mantine/core";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { Slot } from "./slot";
 
-import { cn } from '@/lib/utils';
-
-const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
-  {
-    variants: {
-      variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
-        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline: 'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
-        secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline',
-      },
-      size: {
-        default: 'h-10 px-4 py-2',
-        sm: 'h-9 rounded-md px-3',
-        lg: 'h-11 rounded-md px-8',
-        icon: 'h-10 w-10',
-      },
+const buttonVariants = cva("design-button", {
+  variants: {
+    variant: {
+      default: "",
+      destructive: "",
+      outline: "",
+      secondary: "",
+      ghost: "",
+      link: "",
     },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
-    },
-  }
-);
-
+    size: { default: "", sm: "", lg: "", icon: "" },
+  },
+  defaultVariants: { variant: "default", size: "default" },
+});
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
 }
-
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button';
+  (
+    {
+      className,
+      variant = "default",
+      size = "default",
+      asChild,
+      children,
+      style,
+      ...props
+    },
+    ref,
+  ) => {
+    const mantineVariant = {
+      default: "filled",
+      destructive: "filled",
+      outline: "outline",
+      secondary: "light",
+      ghost: "subtle",
+      link: "transparent",
+    }[variant ?? "default"];
+    const child = asChild
+      ? (React.Children.only(children) as React.ReactElement<{
+          children?: React.ReactNode;
+        }>)
+      : null;
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+      <MantineButton
         ref={ref}
+        data-ui="button"
+        data-variant={variant}
+        data-size={size}
+        classNames={{
+          inner: "design-button-inner",
+          label: "design-button-label",
+        }}
+        styles={{
+          inner: { gap: "inherit" },
+          label: { gap: "inherit", whiteSpace: "inherit" },
+        }}
+        variant={mantineVariant}
+        color={variant === "destructive" ? "red" : undefined}
+        size={size === "lg" ? "md" : size === "sm" ? "xs" : "sm"}
+        className={cn(buttonVariants({ variant, size }), className)}
+        style={{
+          ...(size === "icon"
+            ? { width: 36, paddingInline: 0, flexShrink: 0 }
+            : {}),
+          ...(variant === "link" ? { textDecoration: "underline" } : {}),
+          ...style,
+        }}
         {...props}
-      />
+        renderRoot={
+          child
+            ? (rootProps) => (
+                <Slot {...rootProps}>
+                  {React.cloneElement(child, {}, rootProps.children)}
+                </Slot>
+              )
+            : undefined
+        }
+      >
+        {child ? child.props.children : children}
+      </MantineButton>
     );
-  }
+  },
 );
-Button.displayName = 'Button';
-
+Button.displayName = "Button";
 export { Button, buttonVariants };

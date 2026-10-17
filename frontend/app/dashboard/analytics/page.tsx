@@ -1,5 +1,8 @@
 'use client';
 
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/secondary-ui.module.css';
+
 import {
   Shirt,
   Sparkles,
@@ -36,13 +39,13 @@ function StatCard({
   trend?: 'up' | 'down' | 'neutral';
 }) {
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+    <Card className={styles.statCard}>
+      <CardHeader className="flex flex-row items-center justify-between gap-3 space-y-0 pb-1">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
-        <Icon className="h-4 w-4 text-muted-foreground" />
+        <span className={styles.statIcon}><Icon className="h-5 w-5" /></span>
       </CardHeader>
       <CardContent>
-        <div className="text-2xl font-bold">{value}</div>
+        <div className="text-4xl font-semibold tracking-tight tabular-nums">{value}</div>
         <p className="text-xs text-muted-foreground flex items-center gap-1">
           {trend === 'up' && <TrendingUp className="h-3 w-3 text-green-500" />}
           {trend === 'down' && <TrendingUp className="h-3 w-3 text-red-500 rotate-180" />}
@@ -55,8 +58,8 @@ function StatCard({
 
 function LoadingSkeleton() {
   return (
-    <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className={styles.page}>
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {[1, 2, 3, 4].map((i) => (
           <Card key={i}>
             <CardHeader className="pb-2">
@@ -70,7 +73,7 @@ function LoadingSkeleton() {
         ))}
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <Skeleton className="h-5 w-32" />
           </CardHeader>
@@ -82,7 +85,7 @@ function LoadingSkeleton() {
             </div>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <Skeleton className="h-5 w-32" />
           </CardHeader>
@@ -123,16 +126,16 @@ function ItemCard({ item }: { item: { id: string; name: string | null; type: str
   return (
     <Link
       href={`/dashboard/wardrobe?item=${item.id}`}
-      className="flex items-center gap-3 p-2 rounded-lg hover:bg-muted transition-colors"
+      className="flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
-      <div className="w-12 h-12 rounded bg-muted overflow-hidden relative flex-shrink-0">
+      <div className="relative h-16 w-14 shrink-0 overflow-hidden rounded-[10px] bg-muted">
         {item.thumbnail_url ? (
           <Image
             src={item.thumbnail_url}
             alt={item.name || typeLabel(item.type)}
             fill
             className="object-cover"
-            sizes="48px"
+            sizes="56px"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
@@ -151,17 +154,15 @@ function ItemCard({ item }: { item: { id: string; name: string | null; type: str
 
 export default function AnalyticsPage() {
   const typeLabel = useTypeLabel();
+  const colorLabel = useColorLabel();
   const t = useTranslations('analytics');
   const { data, isLoading, isError } = useAnalytics(60);
   const insights = useAnalyticsInsightLines(data);
 
   if (isLoading) {
     return (
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-muted-foreground">{t('subtitle')}</p>
-        </div>
+      <div className={styles.page}>
+        <PageHeader title={t('title')} description={t('subtitle')} icon={<BarChart className="h-5 w-5" />} />
         <LoadingSkeleton />
       </div>
     );
@@ -169,7 +170,7 @@ export default function AnalyticsPage() {
 
   if (isError || !data) {
     return (
-      <div className="text-center py-8 text-red-500">
+      <div role="alert" className="surface-panel p-8 text-center text-destructive">
         {t('loadError')}
       </div>
     );
@@ -178,14 +179,11 @@ export default function AnalyticsPage() {
   const { wardrobe, color_distribution, type_distribution, most_worn, least_worn, never_worn, acceptance_trend } = data;
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-        <p className="text-muted-foreground">{t('subtitle')}</p>
-      </div>
+    <div className={styles.page}>
+      <PageHeader title={t('title')} description={t('subtitle')} icon={<BarChart className="h-5 w-5" />} />
 
       {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard
           title={t('stats.totalItems.title')}
           value={wardrobe.total_items}
@@ -215,7 +213,7 @@ export default function AnalyticsPage() {
 
       {/* Insights */}
       {insights.length > 0 && (
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Lightbulb className="h-5 w-5" />
@@ -237,7 +235,7 @@ export default function AnalyticsPage() {
 
       <div className="grid gap-4 md:grid-cols-2">
         {/* Color Distribution */}
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <PieChart className="h-5 w-5" />
@@ -249,17 +247,32 @@ export default function AnalyticsPage() {
             {color_distribution.length === 0 ? (
               <p className="text-muted-foreground text-sm">{t('insights.colorDistribution.noData')}</p>
             ) : (
-              <div className="space-y-3">
+              <div className={styles.donutLayout}>
+                <svg viewBox="0 0 120 120" className={styles.donut} role="img" aria-label={t('insights.colorDistribution.title')}>
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="hsl(var(--muted))" strokeWidth="16" />
+                  {color_distribution.map((color, index) => (
+                    <circle key={color.color} cx="60" cy="60" r="46" pathLength="100" fill="none" stroke={colorSwatch(color.color)} strokeWidth="16"
+                      strokeDasharray={`${color.percentage} ${100 - color.percentage}`}
+                      strokeDashoffset={-color_distribution.slice(0, index).reduce((total, previous) => total + previous.percentage, 0)}
+                      transform="rotate(-90 60 60)">
+                      <title>{colorLabel(color.color)}: {t('percent', { value: color.percentage.toFixed(1) })}</title>
+                    </circle>
+                  ))}
+                  <text x="60" y="61" textAnchor="middle" fill="currentColor" fontSize="22" fontWeight="600">{wardrobe.total_items}</text>
+                  <text x="60" y="76" textAnchor="middle" fill="currentColor" fontSize="8" opacity=".55">{t('stats.totalItems.title')}</text>
+                </svg>
+                <div className="space-y-3">
                 {color_distribution.slice(0, 8).map((color) => (
                   <ColorBar key={color.color} color={color.color} percentage={color.percentage} />
                 ))}
+                </div>
               </div>
             )}
           </CardContent>
         </Card>
 
         {/* Type Distribution */}
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BarChart className="h-5 w-5" />
@@ -273,10 +286,10 @@ export default function AnalyticsPage() {
             ) : (
               <div className="space-y-3">
                 {type_distribution.map((type) => (
-                  <div key={type.type} className="flex items-center justify-between">
+                  <div key={type.type} className="space-y-2">
                     <span className="capitalize">{typeLabel(type.type)}</span>
-                    <div className="flex items-center gap-2">
-                      <Progress value={type.percentage} className="w-24 h-2" />
+                    <div className="flex items-center gap-3">
+                      <Progress value={type.percentage} className="h-2.5 flex-1" />
                       <span className="text-sm text-muted-foreground w-12 text-right">
                         {type.count}
                       </span>
@@ -291,7 +304,7 @@ export default function AnalyticsPage() {
 
       <div className="grid gap-4 md:grid-cols-3">
         {/* Most Worn */}
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle>{t('insights.mostWorn.title')}</CardTitle>
             <CardDescription>{t('insights.mostWorn.description')}</CardDescription>
@@ -310,7 +323,7 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Least Worn */}
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle>{t('insights.leastWorn.title')}</CardTitle>
             <CardDescription>{t('insights.leastWorn.description')}</CardDescription>
@@ -329,7 +342,7 @@ export default function AnalyticsPage() {
         </Card>
 
         {/* Never Worn */}
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle>{t('insights.neverWorn.title')}</CardTitle>
             <CardDescription>{t('insights.neverWorn.description')}</CardDescription>
@@ -350,7 +363,7 @@ export default function AnalyticsPage() {
 
       {/* Acceptance Trend */}
       {acceptance_trend.length > 0 && acceptance_trend.some((t) => t.total > 0) && (
-        <Card>
+        <Card className="min-w-0">
           <CardHeader>
             <CardTitle>{t('insights.acceptanceTrend.title')}</CardTitle>
             <CardDescription>{t('insights.acceptanceTrend.description')}</CardDescription>

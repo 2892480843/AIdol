@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -70,14 +72,14 @@ export function CloneToLookbookDialog({
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="max-w-md">
-        <DialogHeader>
+      <DialogContent className={`${styles.dialog} max-w-md`}>
+        <DialogHeader className={styles.dialogHeader}>
           <DialogTitle>{t('title')}</DialogTitle>
           <DialogDescription>
             {t('description')}
           </DialogDescription>
         </DialogHeader>
-        <div className="space-y-2 py-2">
+        <div className="space-y-3 py-4">
           <Label htmlFor="lookbook-name">{t('name')}</Label>
           <Input
             id="lookbook-name"

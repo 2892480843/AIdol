@@ -1,0 +1,154 @@
+{
+  "recorded_at": "2026-10-17T18:54:05.681982+08:00",
+  "platform": {
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64"
+  },
+  "git_head": "09c10d121fe5f879f9a54c2e5aa1f1406fc7959c",
+  "working_tree": "contains uncommitted implementation changes",
+  "frontend_image": {
+    "tag": "wardrowbe-frontend:dashboard-20261017",
+    "id": "sha256:680f0f541cb46f32f037fd7094932643f65ad004a03875222fbf232ded6a2614",
+    "created": "2026-10-17T10:51:20.645071138Z"
+  },
+  "services": [
+    {
+      "name": "wardrobe-frontend",
+      "image": "wardrowbe-frontend:dashboard-20261017",
+      "image_id": "sha256:680f0f541cb46f32f037fd7094932643f65ad004a03875222fbf232ded6a2614",
+      "state": "running",
+      "health": null,
+      "ports": {
+        "3000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "3000"
+          }
+        ]
+      }
+    },
+    {
+      "name": "wardrobe-backend",
+      "image": "wardrowbe-backend:ui-20261017",
+      "image_id": "sha256:72f6dc5dfffdbb493da9fca34abf257fb9e33bde9516f3c5977de2dda516df2f",
+      "state": "running",
+      "health": "healthy",
+      "ports": {
+        "8000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "18000"
+          }
+        ]
+      }
+    },
+    {
+      "name": "wardrobe-image-worker",
+      "image": "wardrowbe-backend:architecture-20261017",
+      "image_id": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+      "state": "running",
+      "health": null,
+      "ports": {
+        "8000/tcp": null
+      }
+    },
+    {
+      "name": "wardrobe-worker",
+      "image": "wardrowbe-backend:architecture-20261017",
+      "image_id": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+      "state": "running",
+      "health": null,
+      "ports": {
+        "8000/tcp": null
+      }
+    },
+    {
+      "name": "wardrowbe-task-worker-1",
+      "image": "wardrowbe-backend:architecture-20261017",
+      "image_id": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+      "state": "running",
+      "health": null,
+      "ports": {
+        "8000/tcp": null
+      }
+    },
+    {
+      "name": "wardrowbe-task-dispatcher-1",
+      "image": "wardrowbe-backend:architecture-20261017",
+      "image_id": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+      "state": "running",
+      "health": null,
+      "ports": {
+        "8000/tcp": null
+      }
+    },
+    {
+      "name": "wardrobe-object-store",
+      "image": "ghcr.io/rustfs/rustfs@sha256:87763ed4dcb2bed3fc52cbf6cb7d865411e085b0b952dc78e50dffa9ece0ed9e",
+      "image_id": "sha256:87763ed4dcb2bed3fc52cbf6cb7d865411e085b0b952dc78e50dffa9ece0ed9e",
+      "state": "running",
+      "health": null,
+      "ports": {
+        "9000/tcp": null,
+        "9001/tcp": null
+      }
+    },
+    {
+      "name": "wardrobe-otel-collector",
+      "image": "otel/opentelemetry-collector-contrib@sha256:38c349c3b7a2fd7ea46700cde8fa13d35b699ef2ce245bdf34dae2a413512f76",
+      "image_id": "sha256:38c349c3b7a2fd7ea46700cde8fa13d35b699ef2ce245bdf34dae2a413512f76",
+      "state": "running",
+      "health": null,
+      "ports": {
+        "4317/tcp": null,
+        "4318/tcp": null,
+        "55679/tcp": null
+      }
+    },
+    {
+      "name": "wardrobe-db",
+      "image": "postgres@sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81",
+      "image_id": "sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81",
+      "state": "running",
+      "health": "healthy",
+      "ports": {
+        "5432/tcp": null
+      }
+    },
+    {
+      "name": "wardrobe-redis",
+      "image": "redis@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+      "image_id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+      "state": "running",
+      "health": "healthy",
+      "ports": {
+        "6379/tcp": null
+      }
+    }
+  ],
+  "ready": {
+    "http_status": 200,
+    "body": {
+      "status": "healthy",
+      "checks": {
+        "database": "healthy"
+      }
+    }
+  },
+  "tests": {
+    "files": 82,
+    "passed": 793,
+    "failed": 0,
+    "skipped": 0
+  },
+  "browser_checks": 19,
+  "source_files": 418,
+  "source_manifest_sha256": "7cbe2be06ce3f68b1b92a5d269db0433785468f0ec49535f800c6cb9acd214e0",
+  "dependencies": {
+    "@mantine/core": "8.3.18",
+    "next": "14.2.35",
+    "react": "18.2.0"
+  },
+  "scope": "dashboard homepage frontend only; backend/dependencies unchanged during this follow-up"
+}

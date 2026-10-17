@@ -1,0 +1,29 @@
+{
+  "email": "ui-redesign-20261017-171957-e4b8a8@example.com",
+  "user_id": "7d476b21-1e28-4c11-9fa0-fcb7a53000fa",
+  "display_name": "UI 重构验收",
+  "locale": "zh-CN",
+  "timezone": "Asia/Shanghai",
+  "onboarding_completed": false,
+  "items": [
+    {
+      "id": "3e7990fa-a938-45de-9654-8bc43d07dc36",
+      "type": "shirt",
+      "color": "blue",
+      "path": "/Users/a111/chen/竞赛/京东 Aidol 创造营 S2 冒险季/wardrowbe/verification/ui-redesign/fixtures/20261017-171957-e4b8a8/blue-shirt.png"
+    },
+    {
+      "id": "d0e56d4f-4160-47c1-9eca-4397b51a496b",
+      "type": "pants",
+      "color": "black",
+      "path": "/Users/a111/chen/竞赛/京东 Aidol 创造营 S2 冒险季/wardrowbe/verification/ui-redesign/fixtures/20261017-171957-e4b8a8/black-pants.png"
+    },
+    {
+      "id": "6c13b6b1-66d9-4b7b-b537-2e2ad58adc96",
+      "type": "shoes",
+      "color": "white",
+      "path": "/Users/a111/chen/竞赛/京东 Aidol 创造营 S2 冒险季/wardrowbe/verification/ui-redesign/fixtures/20261017-171957-e4b8a8/white-shoes.png"
+    }
+  ],
+  "scope": "Synthetic data preparation through existing frontend proxy; new UI not verified"
+}

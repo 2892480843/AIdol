@@ -1,5 +1,9 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { Trash2, Star, Sparkles, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -21,6 +25,7 @@ interface PairingCardProps {
 export function PairingCard({ pairing, onFeedback, onPreview }: PairingCardProps) {
   const typeLabel = useTypeLabel();
   const t = useTranslations('pairings.card');
+  const tc = useTranslations('common');
   const deletePairing = useDeletePairing();
 
   const handleDelete = async () => {
@@ -38,8 +43,8 @@ export function PairingCard({ pairing, onFeedback, onPreview }: PairingCardProps
   const otherItems = pairing.items.filter((item) => item.id !== sourceItemId);
 
   return (
-    <Card className="overflow-hidden h-full flex flex-col">
-      <CardContent className="p-3 flex flex-col flex-1">
+    <Card className={`${styles.photoCard} h-full flex flex-col`}>
+      <CardContent className="p-5 flex flex-col gap-4 flex-1">
         {/* Header with source badge */}
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1.5">
@@ -62,6 +67,7 @@ export function PairingCard({ pairing, onFeedback, onPreview }: PairingCardProps
             size="icon"
             className="h-6 w-6 text-muted-foreground hover:text-destructive"
             onClick={handleDelete}
+            aria-label={tc('delete')}
             disabled={deletePairing.isPending}
           >
             <Trash2 className="h-3.5 w-3.5" />
@@ -72,25 +78,25 @@ export function PairingCard({ pairing, onFeedback, onPreview }: PairingCardProps
         {pairing.source_item && (
           <div className="mb-2">
             <p className="text-xs text-muted-foreground mb-1">{t('builtAround')}</p>
-            <div className="flex items-center gap-2 p-2 rounded-lg bg-primary/5 border border-primary/20">
-              <div className="w-12 h-12 rounded-md bg-muted overflow-hidden relative border-2 border-primary/30">
+            <div className={styles.pairingSource}>
+              <div className={styles.pairingSourcePhoto}>
                 {pairing.source_item.thumbnail_url ? (
                   <Image
                     src={pairing.source_item.thumbnail_url}
-                    alt={pairing.source_item.name || pairing.source_item.type}
+                    alt={pairing.source_item.name || typeLabel(pairing.source_item.type)}
                     fill
                     className="object-cover"
                     sizes="48px"
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">
-                    {pairing.source_item.type}
+                    {typeLabel(pairing.source_item.type)}
                   </div>
                 )}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium truncate">
-                  {pairing.source_item.name || pairing.source_item.type}
+                  {pairing.source_item.name || typeLabel(pairing.source_item.type)}
                 </p>
                 {pairing.source_item.primary_color && (
                   <p className="text-xs text-muted-foreground capitalize">
@@ -103,10 +109,11 @@ export function PairingCard({ pairing, onFeedback, onPreview }: PairingCardProps
         )}
 
         {/* Other items in outfit */}
-        <button
+        <UnstyledButton
           type="button"
           onClick={onPreview}
-          className="flex gap-2 text-left w-full group"
+          aria-label={tc('open')}
+          className={`${styles.pairingItems} group`}
         >
           {otherItems.map((item) => (
             <div
@@ -128,7 +135,7 @@ export function PairingCard({ pairing, onFeedback, onPreview }: PairingCardProps
               )}
             </div>
           ))}
-        </button>
+        </UnstyledButton>
 
         {/* Feedback display */}
         {pairing.feedback && (pairing.feedback.rating || pairing.feedback.comment) && (

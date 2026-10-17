@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { WifiOff } from 'lucide-react';
+import { Alert } from '@mantine/core';
 import { useTranslations } from 'next-intl';
 
 export function OfflineIndicator() {
@@ -27,11 +28,10 @@ export function OfflineIndicator() {
   if (!isOffline) return null;
 
   return (
-    <div className="fixed bottom-20 left-1/2 -translate-x-1/2 lg:bottom-4 z-50">
-      <div className="flex items-center gap-2 bg-destructive text-destructive-foreground px-4 py-2 rounded-full shadow-lg">
-        <WifiOff className="w-4 h-4" />
-        <span className="text-sm font-medium">{t('youreOffline')}</span>
-      </div>
+    <div className="offline-status">
+      <Alert role="status" icon={<WifiOff className="h-4 w-4" />} color="forest" variant="filled" radius="xl">
+        {t('youreOffline')}
+      </Alert>
     </div>
   );
 }

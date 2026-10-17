@@ -7,7 +7,7 @@ services:
     image: redis@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
     ports: !reset []
   backend:
-    image: wardrowbe-backend:architecture-20261017
+    image: wardrowbe-backend:ui-20261017
     build:
       context: ./backend
       dockerfile: Dockerfile.local
@@ -16,7 +16,7 @@ services:
     environment:
       CORS_ORIGINS: '["http://localhost:3000", "http://127.0.0.1:3000"]'
   frontend:
-    image: wardrowbe-frontend:architecture-20261017
+    image: wardrowbe-frontend:dada-20261017
     build:
       context: ./frontend
     ports: !override

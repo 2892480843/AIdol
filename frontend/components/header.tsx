@@ -1,14 +1,18 @@
-'use client';
+"use client";
 
-import { Menu, Moon, Sun, LogOut } from 'lucide-react';
-import { useTheme } from 'next-themes';
-import { signOut } from 'next-auth/react';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Button } from '@/components/ui/button';
-import { useAuth } from '@/lib/hooks/use-auth';
-import { useAuthConfig } from '@/lib/hooks/use-auth-config';
-import { useTranslations } from 'next-intl';
-import { LocaleSwitcher } from '@/components/locale-switcher';
+import { Menu, Moon, Sun, LogOut } from "lucide-react";
+import { useTheme } from "next-themes";
+import { signOut } from "next-auth/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/lib/hooks/use-auth";
+import { useAuthConfig } from "@/lib/hooks/use-auth-config";
+import { useTranslations } from "next-intl";
+import { LocaleSwitcher } from "@/components/locale-switcher";
+import { usePathname } from "next/navigation";
+import { currentNavigation } from "@/components/app-navigation";
+import Image from "next/image";
+import { BRAND_LOGO_URL } from "@/lib/brand";
 
 interface HeaderProps {
   onMenuClick?: () => void;
@@ -16,12 +20,14 @@ interface HeaderProps {
 
 export function Header({ onMenuClick }: HeaderProps) {
   const { user } = useAuth();
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
+  const pathname = usePathname();
+  const current = currentNavigation(pathname);
   const authConfig = useAuthConfig();
-  const t = useTranslations('nav');
+  const t = useTranslations("nav");
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
   const handleLogout = () => {
@@ -31,70 +37,87 @@ export function Header({ onMenuClick }: HeaderProps) {
     // cookies itself; a client signOut first would tell every tab, and one of them could sign
     // back in through the still-live proxy session before the proxy logout.
     if (authConfig.data?.forward_auth !== false) {
-      window.location.assign('/auth/logout');
+      window.location.assign("/auth/logout");
       return;
     }
-    signOut({ callbackUrl: '/login' });
+    signOut({ callbackUrl: "/login" });
   };
 
   const getInitials = (name?: string | null) => {
-    if (!name) return '?';
+    if (!name) return "?";
     return name
-      .split(' ')
+      .split(" ")
       .map((n) => n[0])
-      .join('')
+      .join("")
       .toUpperCase()
       .slice(0, 2);
   };
 
   return (
-    <header className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b bg-background px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-      <button
-        type="button"
-        className="-m-2.5 p-2.5 text-muted-foreground lg:hidden"
-        onClick={onMenuClick}
-      >
-        <span className="sr-only">{t('openSidebar')}</span>
-        <Menu className="h-6 w-6" aria-hidden="true" />
-      </button>
-
-      <div className="h-6 w-px bg-border lg:hidden" aria-hidden="true" />
-
-      <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-        <div className="flex flex-1" />
-        <div className="flex items-center gap-x-4 lg:gap-x-6">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            aria-label={t('toggleTheme')}
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
-
-          <LocaleSwitcher />
-
-          <div className="hidden lg:block lg:h-6 lg:w-px lg:bg-border" aria-hidden="true" />
-
-          <div className="flex items-center gap-x-4">
-            <Avatar className="h-8 w-8">
-              <AvatarImage src={user?.avatar_url || ''} alt={user?.display_name || ''} />
-              <AvatarFallback>{getInitials(user?.display_name)}</AvatarFallback>
-            </Avatar>
-            <span className="hidden text-sm font-semibold lg:block">
-              {user?.display_name || t('userFallback')}
-            </span>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={handleLogout}
-              aria-label={t('signOut')}
-            >
-              <LogOut className="h-5 w-5" />
-            </Button>
-          </div>
+    <header className="app-header">
+      <div className="app-header-context">
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          className="app-mobile-menu"
+          onClick={onMenuClick}
+          aria-label={t("openSidebar")}
+        >
+          <Menu className="h-5 w-5" aria-hidden="true" />
+        </Button>
+        <div className="app-header-path">
+          <span className="app-header-brand">
+            <Image
+              src={BRAND_LOGO_URL}
+              alt=""
+              width={26}
+              height={26}
+              priority
+            />
+            <span>{t("brandName")}</span>
+          </span>
+          <span className="app-header-divider" aria-hidden="true" />
+          <span className="app-header-current">
+            {t(current?.key ?? "dashboard")}
+          </span>
         </div>
+      </div>
+      <div className="app-header-actions">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="app-utility-button"
+          onClick={toggleTheme}
+          aria-label={t("toggleTheme")}
+        >
+          {resolvedTheme === "dark" ? (
+            <Sun className="h-[18px] w-[18px]" aria-hidden="true" />
+          ) : (
+            <Moon className="h-[18px] w-[18px]" aria-hidden="true" />
+          )}
+        </Button>
+        <LocaleSwitcher />
+        <span className="app-account-divider" aria-hidden="true" />
+        <Avatar className="h-8 w-8">
+          <AvatarImage
+            src={user?.avatar_url || ""}
+            alt={user?.display_name || ""}
+          />
+          <AvatarFallback>{getInitials(user?.display_name)}</AvatarFallback>
+        </Avatar>
+        <span className="app-account-name">
+          {user?.display_name || t("userFallback")}
+        </span>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="app-utility-button"
+          onClick={handleLogout}
+          aria-label={t("signOut")}
+        >
+          <LogOut className="h-[18px] w-[18px]" aria-hidden="true" />
+        </Button>
       </div>
     </header>
   );

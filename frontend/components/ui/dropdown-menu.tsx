@@ -1,48 +1,90 @@
-'use client';
-
-import * as React from 'react';
-import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu';
-import { cn } from '@/lib/utils';
-
-const DropdownMenu = DropdownMenuPrimitive.Root;
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
-
-const DropdownMenuContent = React.forwardRef<
-  React.ComponentRef<typeof DropdownMenuPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <DropdownMenuPrimitive.Portal>
-    <DropdownMenuPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      className={cn(
-        'z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md',
-        className,
+"use client";
+import * as React from "react";
+import { Menu } from "@mantine/core";
+import { Button, type ButtonProps } from "./button";
+import { Slot } from "./slot";
+interface MenuProps {
+  children?: React.ReactNode;
+  open?: boolean;
+  defaultOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+function DropdownMenu({
+  children,
+  open,
+  defaultOpen,
+  onOpenChange,
+}: MenuProps) {
+  const content = React.Children.toArray(children).find(
+    (node) => React.isValidElement(node) && node.type === DropdownMenuContent,
+  ) as
+    | React.ReactElement<{
+        align?: "start" | "center" | "end";
+        sideOffset?: number;
+      }>
+    | undefined;
+  return (
+    <Menu
+      opened={open}
+      defaultOpened={defaultOpen}
+      onChange={onOpenChange}
+      position={content?.props.align === "end" ? "bottom-end" : "bottom-start"}
+      offset={content?.props.sideOffset ?? 4}
+      withinPortal
+      zIndex={650}
+    >
+      {children}
+    </Menu>
+  );
+}
+const DropdownMenuTrigger = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ asChild, children, ...props }, ref) => (
+    <Menu.Target>
+      {asChild ? (
+        <Slot
+          ref={ref as React.ForwardedRef<HTMLElement>}
+          {...(props as React.HTMLAttributes<HTMLElement>)}
+        >
+          {children as React.ReactElement}
+        </Slot>
+      ) : (
+        <Button ref={ref} type="button" {...props}>
+          {children}
+        </Button>
       )}
-      {...props}
-    />
-  </DropdownMenuPrimitive.Portal>
-));
-DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
-
-const DropdownMenuItem = React.forwardRef<
-  React.ComponentRef<typeof DropdownMenuPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
-    inset?: boolean;
+    </Menu.Target>
+  ),
+);
+const DropdownMenuContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
+    align?: "start" | "center" | "end";
+    sideOffset?: number;
   }
->(({ className, inset, ...props }, ref) => (
-  <DropdownMenuPrimitive.Item
+>(({ align, sideOffset, ...props }, ref) => (
+  <Menu.Dropdown ref={ref} data-ui="dropdown-menu-content" {...props} />
+));
+const DropdownMenuItem = React.forwardRef<
+  HTMLButtonElement,
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onSelect"> & {
+    inset?: boolean;
+    onSelect?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  }
+>(({ inset, onSelect, onClick, ...props }, ref) => (
+  <Menu.Item
     ref={ref}
-    className={cn(
-      'relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-      inset && 'pl-8',
-      className,
-    )}
+    data-ui="dropdown-menu-item"
+    pl={inset ? "xl" : undefined}
+    onClick={(event) => {
+      onSelect?.(event);
+      if (!event.defaultPrevented) onClick?.(event);
+    }}
     {...props}
   />
 ));
-DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
-
+DropdownMenuTrigger.displayName = "DropdownMenuTrigger";
+DropdownMenuContent.displayName = "DropdownMenuContent";
+DropdownMenuItem.displayName = "DropdownMenuItem";
 export {
   DropdownMenu,
   DropdownMenuTrigger,

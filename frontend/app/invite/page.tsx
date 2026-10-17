@@ -11,6 +11,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useJoinFamilyByToken } from '@/lib/hooks/use-family';
 import { ApiError } from '@/lib/api';
 import { useTranslations } from 'next-intl';
+import { BrandLink } from '@/components/app-navigation';
+import { Skeleton } from '@/components/ui/skeleton';
 
 function getErrorMessage(error: unknown, t: (key: string) => string): string {
   if (error instanceof ApiError) {
@@ -48,8 +50,8 @@ function InviteContent() {
 
   if (status === 'loading' || status === 'unauthenticated') {
     return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+      <div className="flex min-h-[100dvh] items-center justify-center">
+        <Skeleton className="h-48 w-80" />
       </div>
     );
   }
@@ -65,7 +67,8 @@ function InviteContent() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
+    <div className="flex min-h-[100dvh] flex-col items-center justify-center gap-8 p-6">
+      <BrandLink />
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -98,8 +101,8 @@ export default function InvitePage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center">
-          <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+        <div className="flex min-h-[100dvh] items-center justify-center">
+          <Skeleton className="h-48 w-80" />
         </div>
       }
     >

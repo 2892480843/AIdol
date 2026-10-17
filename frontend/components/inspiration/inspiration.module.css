@@ -1,0 +1,1092 @@
+.page {
+  display: grid;
+  gap: 30px;
+  min-width: 0;
+}
+.pageHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 8px 0 27px;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.eyebrow {
+  font-size: 10px !important;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: hsl(var(--primary)) !important;
+  font-weight: 650;
+  margin: 0 0 12px !important;
+}
+.pageHeading h1 {
+  font-family: var(--font-editorial);
+  font-size: clamp(28px, 3.2vw, 43px);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.045em;
+}
+.intro {
+  max-width: 64ch;
+  font-size: 13px;
+  color: hsl(var(--muted-foreground));
+  margin-top: 15px;
+  line-height: 1.9;
+}
+.sourceJump {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  font-size: 11px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid hsl(var(--foreground));
+}
+.filterBar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.search {
+  min-width: 200px;
+  flex: 1;
+  max-width: 350px;
+}
+.scopeFilters {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.scopeFilters button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 13px;
+  border: 0;
+  background: transparent;
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+  border-bottom: 2px solid transparent;
+}
+.scopeFilters button[aria-pressed="true"] {
+  color: hsl(var(--foreground));
+  border-bottom-color: hsl(var(--primary));
+  font-weight: 650;
+}
+.occasionFilter {
+  width: 145px;
+  margin-left: auto;
+}
+.workspace {
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  gap: 34px;
+  align-items: start;
+}
+.formulaIndex {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-top: 1px solid hsl(var(--border));
+}
+.indexRow {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  border-bottom: 1px solid hsl(var(--border));
+  padding: 17px 8px;
+  gap: 4px;
+}
+.indexRow[data-active="true"] {
+  background: hsl(var(--secondary));
+  box-shadow: inset 2px 0 hsl(var(--primary));
+}
+.formulaChoice {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  flex: 1;
+  min-width: 0;
+  color: inherit;
+  padding: 0;
+}
+.number {
+  color: hsl(var(--primary));
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  margin-top: 2px;
+}
+.formulaChoice strong {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.8;
+  display: block;
+}
+.formulaChoice small {
+  font-size: 10px;
+  color: hsl(var(--muted-foreground));
+  display: block;
+  margin-top: 7px;
+}
+.bookmark,
+.bookmarkLarge {
+  background: transparent;
+  border: 0;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  color: hsl(var(--muted-foreground));
+  width: 32px;
+  height: 40px;
+}
+.bookmark[aria-pressed="true"],
+.bookmarkLarge[aria-pressed="true"] {
+  color: hsl(var(--primary));
+}
+.bookmarkLarge {
+  width: 42px;
+  height: 42px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 50%;
+}
+.localNote {
+  color: hsl(var(--muted-foreground));
+  font-size: 10px;
+  line-height: 1.8;
+  margin: 18px 8px;
+}
+.storageError {
+  font-size: 12px;
+  color: hsl(var(--destructive));
+  margin: 8px;
+}
+.practice {
+  min-width: 0;
+  padding: 24px;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  border-radius: 8px;
+}
+.practiceHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.practiceHeader h2 {
+  font-family: var(--font-editorial);
+  font-size: 29px;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.practiceHeader p:not(.eyebrow) {
+  font-size: 12px;
+  color: hsl(var(--muted-foreground));
+  line-height: 1.9;
+  margin-top: 10px;
+}
+.methodNote {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 16px;
+  background: hsl(var(--secondary) / 0.6);
+  margin-top: 20px;
+  padding: 18px;
+}
+.palette {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.palette span {
+  display: block;
+  width: 18px;
+  height: 30px;
+  border: 1px solid hsl(var(--foreground) / 0.06);
+}
+.methodNote p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: hsl(var(--muted-foreground));
+}
+.methodNote a {
+  grid-column: 2;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: hsl(var(--primary));
+  width: fit-content;
+}
+.methodNote a:hover {
+  text-decoration: underline;
+}
+.wardrobeHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 25px 0 8px;
+}
+.wardrobeHeading h3 {
+  font-size: 14px;
+  font-weight: 650;
+}
+.wardrobeHeading > span {
+  font-size: 10px;
+  color: hsl(var(--muted-foreground));
+}
+.coverage {
+  font-size: 11px;
+  color: hsl(var(--primary));
+  margin-bottom: 15px;
+}
+.garments {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px 14px;
+}
+.garment {
+  min-width: 0;
+}
+.slotLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+.slotLabel small {
+  font-size: 9px;
+  color: hsl(var(--muted-foreground));
+}
+.photo {
+  position: relative;
+  aspect-ratio: 4/5;
+  background: hsl(var(--secondary) / 0.6);
+  border: 1px solid hsl(var(--border) / 0.7);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.photo > a {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+.itemImage {
+  object-fit: contain;
+  padding: 8px;
+}
+.itemName {
+  font-size: 11px;
+  font-weight: 550;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 9px 0;
+}
+.imageFallback,
+.missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 10px;
+  text-align: center;
+  color: hsl(var(--muted-foreground));
+  font-size: 10px;
+  line-height: 1.7;
+}
+.missing a {
+  font-size: 10px;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  color: hsl(var(--primary));
+  text-decoration: underline;
+}
+.colorHint {
+  display: block;
+  color: hsl(var(--muted-foreground));
+  font-size: 10px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.matchNote {
+  font-size: 10px;
+  color: hsl(var(--muted-foreground));
+  line-height: 1.8;
+  margin-top: 18px;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 20px;
+  margin-top: 20px;
+  border-top: 1px solid hsl(var(--border));
+}
+.actions > div {
+  margin-right: auto;
+}
+.actions strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+.actions p {
+  font-size: 10px;
+  line-height: 1.8;
+  color: hsl(var(--muted-foreground));
+}
+.actions p:empty {
+  display: none;
+}
+.loadMore {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+.loadMore p {
+  font-size: 11px;
+  color: hsl(var(--muted-foreground));
+}
+.feedback,
+.noResults {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  flex-direction: column;
+  padding: 30px 12px;
+  font-size: 12px;
+  line-height: 1.8;
+  color: hsl(var(--muted-foreground));
+}
+.creators {
+  padding-top: 25px;
+  border-top: 1px solid hsl(var(--border));
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  gap: 34px;
+  scroll-margin-top: 100px;
+}
+.creatorsHeading h2 {
+  font-family: var(--font-editorial);
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.creatorsHeading > p:last-child {
+  font-size: 11px;
+  line-height: 1.9;
+  color: hsl(var(--muted-foreground));
+  margin-top: 16px;
+}
+.creatorList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 24px;
+}
+.creator {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 22px 0;
+  border-bottom: 1px solid hsl(var(--border));
+  min-width: 0;
+}
+.creator:hover h3 {
+  text-decoration: underline;
+}
+.creatorNumber {
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: hsl(var(--primary));
+  padding-top: 3px;
+}
+.creator > div {
+  flex: 1;
+  min-width: 0;
+}
+.creator h3 {
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+.creator small {
+  font-size: 10px;
+  color: hsl(var(--muted-foreground));
+}
+.creator p {
+  font-size: 11px;
+  color: hsl(var(--muted-foreground));
+  margin-top: 9px;
+  line-height: 1.7;
+}
+.creator > svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: hsl(var(--primary));
+}
+@media (min-width: 1500px) {
+  .workspace,
+  .creators {
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 40px;
+  }
+  .garments {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1150px) {
+  .workspace,
+  .creators {
+    grid-template-columns: 205px minmax(0, 1fr);
+    gap: 22px;
+  }
+  .practice {
+    padding: 20px;
+  }
+  .garments {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .pageHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .sourceJump {
+    font-size: 10px;
+  }
+  .formulaChoice strong {
+    font-size: 12px;
+  }
+  .indexRow {
+    padding-inline: 6px;
+  }
+}
+@media (max-width: 720px) {
+  .page {
+    gap: 22px;
+  }
+  .pageHeading {
+    padding-bottom: 22px;
+  }
+  .pageHeading h1 {
+    font-size: 32px;
+  }
+  .filterBar {
+    gap: 12px;
+  }
+  .search {
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .occasionFilter {
+    width: 130px;
+  }
+  .scopeFilters button {
+    padding-inline: 9px;
+    font-size: 11px;
+  }
+  .workspace {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .formulaIndex {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 0;
+    gap: 6px 12px;
+  }
+  .indexRow {
+    padding: 12px 8px;
+    border-top: 1px solid hsl(var(--border));
+  }
+  .formulaChoice {
+    gap: 9px;
+  }
+  .formulaChoice strong {
+    font-size: 11px;
+  }
+  .formulaChoice small {
+    font-size: 9px;
+  }
+  .number {
+    font-size: 10px;
+  }
+  .bookmark {
+    width: 25px;
+  }
+  .localNote,
+  .storageError,
+  .noResults {
+    grid-column: 1/-1;
+  }
+  .localNote {
+    margin: 6px 0 0;
+  }
+  .practice {
+    padding: 18px;
+  }
+  .practiceHeader h2 {
+    font-size: 26px;
+  }
+  .methodNote {
+    padding: 14px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .methodNote a {
+    grid-column: 1;
+  }
+  .palette span {
+    height: 16px;
+    width: 32px;
+  }
+  .garments {
+    gap: 18px 12px;
+  }
+  .actions {
+    align-items: flex-start;
+  }
+  .actions > div {
+    flex-basis: 100%;
+  }
+  .actions > a,
+  .actions > button:last-child {
+    flex: 1;
+  }
+  .creators {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .creatorList {
+    column-gap: 20px;
+  }
+  .creator {
+    gap: 8px;
+  }
+  .creator h3 {
+    font-size: 12px;
+  }
+  .creator p {
+    font-size: 10px;
+  }
+  .creatorNumber {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page * {
+    scroll-behavior: auto;
+  }
+}
+
+/* Discovery boards: public methods, illustrated with the user's own available pieces. */
+.page {
+  gap: 28px;
+}
+.pageHeading {
+  padding: 22px 28px 28px;
+  background: hsl(var(--tone-lavender));
+  border: 0;
+  border-radius: 20px;
+  align-items: center;
+}
+.pageHeading h1 {
+  font-size: clamp(30px, 3.5vw, 45px);
+  font-weight: 750;
+  letter-spacing: -0.045em;
+  line-height: 1.3;
+}
+.eyebrow {
+  font-size: 11px !important;
+  letter-spacing: 0.08em;
+}
+.intro {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.sourceJump {
+  border: 0;
+  font-size: 12px;
+  color: hsl(var(--primary));
+  font-weight: 650;
+}
+.filterBar {
+  padding: 5px 0;
+  gap: 16px;
+}
+.scopeFilters {
+  gap: 8px;
+}
+.scopeFilters button {
+  font-size: 13px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 30px;
+  background: hsl(var(--muted));
+}
+.scopeFilters button[aria-pressed="true"] {
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+.workspace {
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+.formulaIndex {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  border: 0;
+}
+.indexRow {
+  position: relative;
+  display: block;
+  padding: 0 !important;
+  border: 1px solid hsl(var(--border));
+  border-radius: 16px;
+  overflow: hidden;
+  background: hsl(var(--card));
+  box-shadow: 0 4px 14px hsl(var(--foreground) / 0.035);
+  transition:
+    transform 0.18s,
+    border-color 0.18s;
+}
+.indexRow:hover {
+  transform: translateY(-3px);
+  border-color: hsl(var(--primary) / 0.5);
+}
+.indexRow[data-active="true"] {
+  background: hsl(var(--card));
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 1px hsl(var(--primary));
+}
+.formulaChoice {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  gap: 0;
+  padding: 0 !important;
+}
+.formulaPreview {
+  height: 170px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 22px 18px;
+  background: hsl(var(--tone-blush));
+  overflow: hidden;
+}
+.indexRow:nth-child(6n + 2) .formulaPreview {
+  background: hsl(var(--tone-lavender));
+}
+.indexRow:nth-child(6n + 3) .formulaPreview {
+  background: hsl(var(--tone-mint));
+}
+.indexRow:nth-child(6n + 4) .formulaPreview {
+  background: hsl(var(--tone-lemon));
+}
+.indexRow:nth-child(6n + 5) .formulaPreview {
+  background: hsl(var(--tone-lavender));
+}
+.indexRow:nth-child(6n) .formulaPreview {
+  background: hsl(var(--tone-blush));
+}
+.formulaPreview > span {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-width: 0;
+  flex: 1;
+  max-width: 100px;
+  color: hsl(var(--primary));
+  background: hsl(var(--card) / 0.58);
+  border-radius: 10px;
+}
+.previewImage {
+  object-fit: contain;
+  padding: 6px;
+}
+.formulaChoice > .number {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  display: grid;
+  place-items: center;
+  min-width: 25px;
+  height: 25px;
+  padding: 0;
+  margin: 0;
+  border-radius: 50%;
+  background: hsl(var(--card) / 0.9);
+  color: hsl(var(--foreground));
+  font-size: 10px;
+}
+.formulaChoice > span:last-child {
+  padding: 17px 18px 18px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.formulaChoice strong {
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 700;
+  padding-right: 20px;
+}
+.formulaChoice small {
+  font-size: 11px;
+  margin-top: 7px;
+}
+.formulaCTA {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: hsl(var(--primary));
+  font-size: 11px;
+  font-weight: 650;
+  margin-top: 14px;
+}
+.indexRow > .bookmark {
+  position: absolute;
+  right: 8px;
+  top: 180px;
+  height: 36px;
+  width: 36px;
+  color: hsl(var(--primary));
+  border-radius: 50%;
+}
+.indexRow > .bookmark:hover {
+  background: hsl(var(--secondary));
+}
+.localNote,
+.storageError,
+.noResults {
+  grid-column: 1/-1;
+  margin: 0;
+  font-size: 11px;
+}
+.practice {
+  padding: 30px;
+  border-radius: 20px;
+  scroll-margin-top: 92px;
+  box-shadow: 0 4px 24px hsl(var(--foreground) / 0.035);
+}
+.practiceHeader h2 {
+  font-size: 30px;
+  font-weight: 750;
+}
+.practiceHeader p:not(.eyebrow) {
+  font-size: 14px;
+  line-height: 1.8;
+}
+.methodNote {
+  padding: 21px 24px;
+  background: hsl(var(--tone-mint));
+  border-radius: 14px;
+  grid-template-columns: auto 1fr;
+  gap: 12px 20px;
+}
+.methodNote p {
+  font-size: 13px;
+  line-height: 1.8;
+}
+.methodNote a {
+  font-size: 11px;
+}
+.palette span {
+  height: 32px;
+  width: 20px;
+  border-radius: 4px;
+}
+.wardrobeHeading {
+  padding-top: 28px;
+  padding-bottom: 10px;
+}
+.wardrobeHeading h3 {
+  font-size: 17px;
+}
+.wardrobeHeading > span,
+.coverage {
+  font-size: 12px;
+}
+.garments {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+.photo {
+  aspect-ratio: 4/5;
+  border-radius: 12px;
+  background: hsl(var(--muted) / 0.65);
+}
+.slotLabel {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.slotLabel small {
+  font-size: 10px;
+}
+.itemName {
+  font-size: 13px;
+  margin: 12px 0 10px;
+}
+.missing,
+.imageFallback {
+  font-size: 12px;
+  gap: 13px;
+  line-height: 1.8;
+}
+.missing a {
+  font-size: 11px;
+}
+.matchNote {
+  font-size: 12px;
+  line-height: 1.9;
+}
+.colorHint {
+  font-size: 11px;
+}
+.actions strong {
+  font-size: 14px;
+}
+.actions p {
+  font-size: 12px;
+}
+.actions {
+  gap: 14px;
+  padding-top: 22px;
+  margin-top: 22px;
+}
+.creators {
+  display: block;
+  padding-top: 30px;
+}
+.creatorsHeading {
+  max-width: 75ch;
+}
+.creatorsHeading h2 {
+  font-size: 26px;
+  font-weight: 750;
+}
+.creatorsHeading > p:last-child {
+  font-size: 12px;
+  line-height: 1.9;
+}
+.creatorList {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 23px;
+}
+.creator {
+  gap: 13px;
+  padding: 19px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 14px;
+  background: hsl(var(--card));
+  align-items: flex-start;
+}
+.creatorNumber {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: hsl(var(--tone-lavender));
+  color: hsl(var(--foreground));
+  font-size: 11px;
+}
+.creator h3 {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.creator small {
+  font-size: 10px;
+}
+.creator p {
+  font-size: 12px;
+  line-height: 1.8;
+}
+.creator:nth-child(3n + 2) .creatorNumber {
+  background: hsl(var(--tone-mint));
+}
+.creator:nth-child(3n) .creatorNumber {
+  background: hsl(var(--tone-lemon));
+}
+@media (max-width: 1150px) {
+  .formulaIndex {
+    gap: 14px;
+  }
+  .formulaPreview {
+    height: 145px;
+    padding: 19px 12px;
+    gap: 5px;
+  }
+  .indexRow > .bookmark {
+    top: 155px;
+  }
+  .formulaChoice > span:last-child {
+    padding: 15px 12px;
+  }
+  .formulaChoice strong {
+    font-size: 13px;
+  }
+  .practice {
+    padding: 24px;
+  }
+  .garments {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .creatorList {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  .pageHeading {
+    padding: 22px 19px;
+    gap: 14px;
+    border-radius: 16px;
+  }
+  .pageHeading h1 {
+    font-size: 30px;
+  }
+  .intro {
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .sourceJump {
+    font-size: 11px;
+  }
+  .filterBar {
+    gap: 13px;
+  }
+  .scopeFilters button {
+    font-size: 12px;
+    padding: 9px 15px;
+  }
+  .formulaIndex {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px 12px;
+  }
+  .formulaPreview {
+    height: 130px;
+    padding: 25px 10px 17px;
+  }
+  .indexRow > .bookmark {
+    top: 138px;
+    right: 5px;
+  }
+  .formulaChoice > span:last-child {
+    padding: 13px 12px 15px;
+  }
+  .formulaChoice strong {
+    font-size: 12px;
+    line-height: 1.6;
+    min-height: 38px;
+  }
+  .formulaChoice small {
+    font-size: 10px;
+  }
+  .formulaCTA {
+    font-size: 10px;
+    gap: 3px;
+    margin-top: 10px;
+  }
+  .practice {
+    padding: 19px;
+    border-radius: 16px;
+  }
+  .practiceHeader h2 {
+    font-size: 26px;
+  }
+  .practiceHeader p:not(.eyebrow) {
+    font-size: 13px;
+  }
+  .methodNote {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 12px;
+  }
+  .methodNote a {
+    grid-column: 1;
+  }
+  .methodNote p {
+    font-size: 12px;
+  }
+  .palette span {
+    height: 17px;
+    width: 28px;
+  }
+  .garments {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 13px;
+  }
+  .wardrobeHeading h3 {
+    font-size: 16px;
+  }
+  .coverage {
+    font-size: 11px;
+  }
+  .itemName {
+    font-size: 12px;
+  }
+  .actions {
+    gap: 10px;
+  }
+  .actions strong {
+    font-size: 13px;
+  }
+  .matchNote {
+    font-size: 11px;
+  }
+  .creatorList {
+    gap: 12px;
+    grid-template-columns: 1fr;
+  }
+  .creator {
+    padding: 16px;
+  }
+  .creatorNumber {
+    width: 32px;
+    height: 32px;
+  }
+  .creator h3 {
+    font-size: 14px;
+  }
+  .creator p {
+    font-size: 12px;
+  }
+  .creatorsHeading h2 {
+    font-size: 24px;
+  }
+  .localNote {
+    font-size: 11px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .indexRow {
+    transition: none;
+    transform: none !important;
+  }
+}
+.pageHeading h1 {
+  text-wrap: balance;
+}

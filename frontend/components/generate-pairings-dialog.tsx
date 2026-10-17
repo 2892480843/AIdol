@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState } from 'react';
 import { Loader2, Sparkles, Check, AlertCircle } from 'lucide-react';
 import {
@@ -76,8 +78,8 @@ export function GeneratePairingsDialog({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
+      <DialogContent className={`${styles.dialog} sm:max-w-md`}>
+        <DialogHeader className={styles.dialogHeader}>
           <DialogTitle className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-primary" />
             {t('title')}
@@ -91,8 +93,8 @@ export function GeneratePairingsDialog({
           // Generation form
           <div className="space-y-6 py-4 min-w-0">
             {/* Source item preview */}
-            <div className="flex items-center gap-4 p-3 rounded-lg bg-muted/50 border">
-              <div className="w-16 h-16 rounded-lg bg-muted overflow-hidden relative border-2 border-primary/30">
+            <div className={styles.pairingSource}>
+              <div className={styles.pairingSourcePhoto}>
                 <Image
                   src={imageUrl}
                   alt={item.name || typeLabel(item.type)}

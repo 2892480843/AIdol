@@ -1,5 +1,9 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -99,12 +103,12 @@ function ItemCard({
 
   return (
     <Card
-      className={`group overflow-hidden cursor-pointer transition-all ${
+      className={`${styles.photoCard} group cursor-pointer ${
         selected ? 'ring-2 ring-primary shadow-md' : 'hover:shadow-md'
       }`}
       onClick={onClick}
     >
-      <div className="relative aspect-square bg-muted">
+      <div className={styles.garmentPhoto}>
         {item.thumbnail_url ? (
           <Image
             src={item.thumbnail_url}
@@ -121,12 +125,13 @@ function ItemCard({
         {/* Checkbox in top-left */}
         <div
           className={`absolute top-2 left-2 z-10 transition-opacity ${
-            selected ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
+            selected ? 'opacity-100' : 'opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100'
           }`}
           onClick={handleCheckboxClick}
         >
           <Checkbox
             checked={selected}
+            aria-label={item.name || typeLabel(item.type)}
             onCheckedChange={(checked) => onSelect(item.id, checked === true)}
             className="bg-background/80 backdrop-blur-sm"
           />
@@ -243,12 +248,12 @@ function ItemCard({
           </div>
         )}
       </div>
-      <CardContent className="p-3">
+      <CardContent className={styles.caption}>
         <div className="flex items-start justify-between gap-2">
           <div className="min-w-0 flex-1">
-            <p className="font-medium text-sm truncate">
+            <UnstyledButton type="button" className="block w-full text-left font-semibold text-sm truncate" onClick={(event) => { event.stopPropagation(); onClick?.(); }}>
               {item.name || typeLabel(item.type)}
-            </p>
+            </UnstyledButton>
             <p className="text-xs text-muted-foreground capitalize">
               {typeLabel(item.type)}
               {item.subtype && ` • ${subtypeLabel(item.subtype)}`}
@@ -292,8 +297,8 @@ function ItemCard({
 
 function ItemCardSkeleton() {
   return (
-    <Card className="overflow-hidden">
-      <Skeleton className="aspect-square" />
+    <Card className={styles.photoCard}>
+      <Skeleton className="aspect-[4/5]" />
       <CardContent className="p-3">
         <Skeleton className="h-4 w-3/4" />
         <Skeleton className="h-3 w-1/2 mt-1" />
@@ -306,8 +311,8 @@ function EmptyWardrobe({ onAddClick }: { onAddClick: () => void }) {
   const t = useTranslations('wardrobe');
 
   return (
-    <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-      <div className="rounded-full bg-muted p-6 mb-4">
+    <div className={styles.empty}>
+      <div className={styles.emptyIcon}>
         <Grid3X3 className="h-12 w-12 text-muted-foreground" />
       </div>
       <h3 className="text-lg font-semibold mb-2">{t('empty.title')}</h3>
@@ -658,20 +663,12 @@ export default function WardrobePage() {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="min-w-0">
-          <div className="flex items-center justify-between sm:justify-start gap-3">
-            <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-            <Button onClick={() => setAddDialogOpen(true)} className="sm:hidden" size="sm">
-              <Plus className="h-4 w-4" />
-            </Button>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            {t('itemCount', { count: total })}
-          </p>
+    <div className={`page-container ${styles.page}`}>
+      <PageHeader title={t('title')} description={t('itemCount', { count: total })}
+        icon={<Grid3X3 className="h-5 w-5" />}
+        actions={<Button onClick={() => setAddDialogOpen(true)}><Plus className="mr-2 h-4 w-4" />{t('actions.addItem')}</Button>} />
           {(queuedCount > 0 || analyzingCount > 0 || errorCount > 0) && (
-            <div className="flex items-center gap-2 mt-2">
+            <div className={styles.statusStrip}>
               {analyzingCount > 0 && (
                 <Badge variant="secondary" className="gap-1 text-xs">
                   <Loader2 className="h-3 w-3 animate-spin" />
@@ -715,14 +712,7 @@ export default function WardrobePage() {
               )}
             </div>
           )}
-        </div>
-        <Button onClick={() => setAddDialogOpen(true)} className="hidden sm:flex">
-          <Plus className="mr-2 h-4 w-4" />
-          {t('actions.addItem')}
-        </Button>
-      </div>
-
-      <div className="space-y-3">
+      <div className={styles.toolbar}>
         {/* Main row: search + sort + filter toggle */}
         <div className="flex flex-col sm:flex-row gap-3">
           <div className="relative flex-1">
@@ -761,6 +751,8 @@ export default function WardrobePage() {
               variant={showFilters || activeFilterCount > 0 ? 'default' : 'outline'}
               size="icon"
               className="shrink-0 relative"
+              aria-label={tc('filter')}
+              aria-expanded={showFilters}
               onClick={() => setShowFilters((v) => !v)}
             >
               <SlidersHorizontal className="h-4 w-4" />
@@ -862,7 +854,7 @@ export default function WardrobePage() {
       </div>
 
       {error ? (
-        <div className="text-center py-8">
+        <div className={styles.empty}>
           <p className="text-destructive">
             {t('errors.loadFailed')}
           </p>
@@ -875,14 +867,14 @@ export default function WardrobePage() {
           </Button>
         </div>
       ) : isLoading ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className={styles.gallery}>
           {Array.from({ length: 10 }).map((_, i) => (
             <ItemCardSkeleton key={i} />
           ))}
         </div>
       ) : items.length === 0 ? (
         search || typeFilter !== 'all' || needsWash !== undefined || favoriteFilter !== undefined ? (
-          <div className="text-center py-8">
+          <div className={styles.empty}>
             <p className="text-muted-foreground">
               {t('errors.noItemsFound')}
             </p>
@@ -904,7 +896,7 @@ export default function WardrobePage() {
           <EmptyWardrobe onAddClick={() => setAddDialogOpen(true)} />
         )
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 pb-20">
+        <div className={styles.gallery}>
           {items.map((item) => {
             // Determine if item is selected based on selection mode
             const isSelected = selection.mode === 'all'

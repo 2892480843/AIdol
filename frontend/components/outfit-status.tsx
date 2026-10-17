@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { Clock, Eye, SkipForward, ThumbsDown, ThumbsUp } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import {
@@ -30,7 +32,7 @@ export function OutfitStatusIcon({ status }: { status: OutfitStatus }) {
   const label = t(status);
 
   return (
-    <span role="img" aria-label={label} title={label}>
+    <span className={styles.statusIcon} role="img" aria-label={label} title={label}>
       <Icon className={cn('h-4 w-4', className)} aria-hidden="true" />
     </span>
   );

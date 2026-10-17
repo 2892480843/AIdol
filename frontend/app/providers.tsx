@@ -8,6 +8,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { AuthProvider } from '@/components/auth-provider';
 import { ProfileLocaleSync } from '@/components/profile-locale-sync';
 import { createQueryClient } from '@/lib/query-client';
+import { DesignProvider } from '@/components/design-provider';
 
 function AccountQueryScope({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(createQueryClient);
@@ -22,8 +23,10 @@ function AccountQueryScope({ children }: { children: React.ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <ProfileLocaleSync />
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-        {children}
-        <Toaster richColors position="top-center" />
+        <DesignProvider>
+          {children}
+          <Toaster richColors position="top-center" toastOptions={{ className: 'design-toast' }} />
+        </DesignProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

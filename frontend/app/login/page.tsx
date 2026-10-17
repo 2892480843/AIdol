@@ -3,7 +3,11 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { signIn, getProviders, getSession, useSession } from 'next-auth/react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Loader2 } from 'lucide-react';
+import { Loader2, UserRound } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { AuthFrame } from '@/components/auth-frame';
+import { Skeleton } from '@/components/ui/skeleton';
 import { useTranslations } from 'next-intl';
 import { API_BASE_PATH } from '@/lib/api';
 import { safeCallbackUrl } from '@/lib/callback-url';
@@ -19,15 +23,13 @@ function OIDCLoginButton({ getCallbackUrl }: { getCallbackUrl: () => string }) {
   const t = useTranslations('auth');
 
   return (
-    <button
+    <Button
       onClick={() => signIn('oidc', { callbackUrl: getCallbackUrl() })}
       className="flex w-full items-center justify-center gap-3 rounded-md bg-primary px-4 py-3 text-primary-foreground hover:bg-primary/90 transition-colors"
     >
-      <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-      </svg>
+      <UserRound className="h-5 w-5" />
       {t('title')}
-    </button>
+    </Button>
   );
 }
 
@@ -56,7 +58,7 @@ function DevLogin({ getCallbackUrl }: { getCallbackUrl: () => string }) {
         <label htmlFor="email" className="block text-sm font-medium">
           {t('email')}
         </label>
-        <input
+        <Input
           id="email"
           type="email"
           value={email}
@@ -70,7 +72,7 @@ function DevLogin({ getCallbackUrl }: { getCallbackUrl: () => string }) {
         <label htmlFor="name" className="block text-sm font-medium">
           {t('displayName')}
         </label>
-        <input
+        <Input
           id="name"
           type="text"
           value={name}
@@ -79,7 +81,7 @@ function DevLogin({ getCallbackUrl }: { getCallbackUrl: () => string }) {
           placeholder={t('namePlaceholder')}
         />
       </div>
-      <button
+      <Button
         type="submit"
         disabled={isLoading}
         className="flex w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-3 text-primary-foreground hover:bg-primary/90 transition-colors disabled:opacity-50"
@@ -92,7 +94,7 @@ function DevLogin({ getCallbackUrl }: { getCallbackUrl: () => string }) {
         ) : (
           t('title')
         )}
-      </button>
+      </Button>
     </form>
   );
 }
@@ -170,7 +172,7 @@ function ForwardLogin({
       {loggedOut && !failure && state === 'idle' && (
         <p className="text-center text-sm text-muted-foreground">{t('forwardAuth.signedOut')}</p>
       )}
-      <button
+      <Button
         type="button"
         onClick={onSignIn}
         disabled={state === 'signingIn'}
@@ -184,7 +186,7 @@ function ForwardLogin({
         ) : (
           t('forwardAuth.continue')
         )}
-      </button>
+      </Button>
     </div>
   );
 }
@@ -267,7 +269,7 @@ function LoginContent() {
   if (status === 'loading' || authMode === 'loading') {
     return (
       <div className="space-y-4 animate-pulse">
-        <div className="h-12 bg-muted rounded-md" />
+        <Skeleton className="h-12 w-full rounded-md" />
       </div>
     );
   }
@@ -325,26 +327,11 @@ export default function LoginPage() {
   const t = useTranslations('auth');
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-8">
-        <div className="text-center">
-          <div className="flex justify-center mb-4">
-            <img src="/logo.svg" alt="Wardrowbe" className="h-16 w-16" />
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="mt-2 text-muted-foreground">
-            {t('subtitle')}
-          </p>
-        </div>
-
-        <Suspense fallback={<div className="space-y-4 animate-pulse"><div className="h-12 bg-muted rounded-md" /></div>}>
-          <LoginContent />
-        </Suspense>
-
-        <p className="text-center text-sm text-muted-foreground">
-          {t('termsAgreement')}
-        </p>
-      </div>
-    </main>
+    <AuthFrame title={t('title')} subtitle={t('subtitle')} caption={t('tagline')}>
+      <Suspense fallback={<Skeleton className="h-48 w-full" />}>
+        <LoginContent />
+      </Suspense>
+      <p className="mt-8 text-center text-xs leading-6 text-muted-foreground">{t('termsAgreement')}</p>
+    </AuthFrame>
   );
 }

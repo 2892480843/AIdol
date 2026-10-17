@@ -1,5 +1,9 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
+import styles from '@/components/secondary-ui.module.css';
+
 import { useState } from 'react';
 import Link from 'next/link';
 import { ThumbsUp, ThumbsDown, Star, ArrowRight, Shirt, Users, ExternalLink } from 'lucide-react';
@@ -56,12 +60,12 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
   const isPending = outfit.status === 'pending' || outfit.status === 'sent' || outfit.status === 'viewed';
 
   return (
-    <Card className="overflow-hidden h-full flex flex-col">
-      <CardContent className="p-3 flex flex-col flex-1">
+    <Card className="flex h-full min-w-0 flex-col overflow-hidden">
+      <CardContent className="flex flex-1 flex-col gap-3 p-5">
         {/* Header with source badge and status */}
-        <div className="flex items-center justify-between mb-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <SourceBadge source={outfit.source} />
-          <div className="flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
             <Badge variant="secondary" className="capitalize text-xs">
               {occasionLabel(outfit.occasion)}
             </Badge>
@@ -70,23 +74,23 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
         </div>
 
         {/* Item thumbnails - clickable to preview */}
-        <button
+        <UnstyledButton
           type="button"
           onClick={onPreview}
-          className="flex gap-2 text-left w-full group"
+          className={styles.outfitGallery}
         >
           {outfit.items.map((item) => (
             <div
               key={item.id}
-              className="w-16 h-16 rounded-lg bg-muted overflow-hidden relative border shadow-sm group-hover:shadow-md transition-shadow"
+              className={styles.outfitTile}
             >
               {item.thumbnail_url ? (
                 <Image
                   src={item.thumbnail_url}
                   alt={item.name || typeLabel(item.type)}
                   fill
-                  className="object-cover"
-                  sizes="64px"
+                  className="object-contain p-1"
+                  sizes="(max-width: 640px) 28vw, 140px"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-xs text-muted-foreground">
@@ -95,7 +99,7 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
               )}
             </div>
           ))}
-        </button>
+        </UnstyledButton>
 
         {/* Inline feedback display */}
         {outfit.feedback && (outfit.feedback.rating || outfit.feedback.comment) && (
@@ -128,7 +132,7 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
             {outfit.feedback.wore_instead_items && outfit.feedback.wore_instead_items.length > 0 && (
               <div className="flex gap-2 flex-wrap">
                 {outfit.feedback.wore_instead_items.map((item) => (
-                  <button
+                  <UnstyledButton
                     key={item.id}
                     type="button"
                     onClick={() => setPreviewItem(item)}
@@ -140,7 +144,7 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
                         src={item.thumbnail_url}
                         alt={item.name || typeLabel(item.type)}
                         fill
-                        className="object-cover"
+                        className="object-contain p-1"
                         sizes="56px"
                       />
                     ) : (
@@ -148,7 +152,7 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
                         <Shirt className="h-5 w-5 text-muted-foreground" />
                       </div>
                     )}
-                  </button>
+                  </UnstyledButton>
                 ))}
               </div>
             )}
@@ -196,13 +200,13 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
         )}
 
         {/* Action buttons - pushed to bottom */}
-        <div className="mt-auto pt-3">
+        <div className="mt-auto pt-2">
           {isPending && (
             <div className="flex gap-2">
               <Button
                 size="sm"
                 variant="outline"
-                className="flex-1 h-8 text-xs"
+                className="flex-1 h-10 text-sm"
                 onClick={handleReject}
                 disabled={rejectOutfit.isPending}
               >
@@ -211,7 +215,7 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
               </Button>
               <Button
                 size="sm"
-                className="flex-1 h-8 text-xs"
+                className="flex-1 h-10 text-sm"
                 onClick={handleAccept}
                 disabled={acceptOutfit.isPending}
               >
@@ -225,7 +229,7 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
             <Button
               size="sm"
               variant="outline"
-              className="w-full h-8 text-xs"
+              className="w-full h-10 text-sm"
               onClick={onFeedback}
             >
               <Star className="h-3 w-3 mr-1" />
@@ -264,7 +268,7 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
             <Badge variant="secondary" className="capitalize">
               {previewItem?.type}
             </Badge>
-            <Button variant="outline" size="sm" className="w-full h-8 text-xs gap-1.5" asChild>
+            <Button variant="outline" size="sm" className="w-full h-10 text-sm gap-1.5" asChild>
               <Link href={`/dashboard/wardrobe?item=${previewItem?.id}`}>
                 <ExternalLink className="h-3 w-3" />
                 {t('viewItemDetails')}

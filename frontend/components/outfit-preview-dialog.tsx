@@ -1,5 +1,9 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState } from 'react';
 import Link from 'next/link';
 import { CalendarDays, ChevronLeft, ChevronRight, X, RotateCcw, RotateCw, Loader2, Users, Star, ExternalLink } from 'lucide-react';
@@ -83,7 +87,7 @@ export function OutfitPreviewDialog({ outfit, open, onClose, isOwner = true }: O
 
   return (
     <Dialog open={open} onOpenChange={(isOpen) => !isOpen && onClose()}>
-      <DialogContent className="max-w-lg p-0 overflow-hidden max-h-[90vh] flex flex-col [&>button]:hidden">
+      <DialogContent className={`${styles.dialog} sm:max-w-2xl p-0 overflow-hidden max-h-[90vh] flex flex-col [&>button]:hidden`}>
         {/* Header - sticky */}
         <div className="flex items-center justify-between p-4 pb-2 border-b flex-shrink-0">
           <div>
@@ -108,10 +112,10 @@ export function OutfitPreviewDialog({ outfit, open, onClose, isOwner = true }: O
         {/* Scrollable content */}
         <div className="flex-1 overflow-y-auto overscroll-contain">
           {/* Main image area */}
-          <div className="relative bg-muted">
+          <div className={`${styles.detailPhoto} relative`}>
             <Link href={`/dashboard/wardrobe?item=${currentItem.id}`} className="block">
               {/* Image - smaller on mobile */}
-              <div className="relative aspect-square w-full max-h-[280px] sm:max-h-[350px]">
+              <div className="relative aspect-square w-full max-h-[360px] sm:max-h-[460px]">
                 {currentItem.image_url ? (
                   <Image
                     key={`${currentItem.id}-${imageKey}`}
@@ -226,10 +230,12 @@ export function OutfitPreviewDialog({ outfit, open, onClose, isOwner = true }: O
             <div className="border-t p-3">
               <div className="flex gap-2 overflow-x-auto">
                 {items.map((item, index) => (
-                  <button
+                  <UnstyledButton
                     key={item.id}
                     type="button"
                     onClick={() => setCurrentIndex(index)}
+                    aria-pressed={index === currentIndex}
+                    aria-label={item.name || typeLabel(item.type)}
                     className={`relative w-14 h-14 rounded overflow-hidden flex-shrink-0 border-2 transition-colors ${
                       index === currentIndex
                         ? 'border-primary'
@@ -249,7 +255,7 @@ export function OutfitPreviewDialog({ outfit, open, onClose, isOwner = true }: O
                         {item.type.charAt(0).toUpperCase()}
                       </div>
                     )}
-                  </button>
+                  </UnstyledButton>
                 ))}
               </div>
             </div>

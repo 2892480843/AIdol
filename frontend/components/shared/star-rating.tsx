@@ -1,5 +1,8 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+import { Button } from '@/components/ui/button';
+
 import { useState } from 'react';
 import { Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -23,14 +26,14 @@ export function StarRatingInput({ value, onChange, starClassName = 'h-6 w-6' }: 
   return (
     <div className="flex gap-1" onMouseLeave={() => setHovered(0)}>
       {RATING_STARS.map((star) => (
-        <button
+        <Button variant="ghost"
           key={star}
           type="button"
           aria-label={t('rateStars', { count: star })}
           aria-pressed={star === value}
           onMouseEnter={() => setHovered(star)}
           onClick={() => onChange(star)}
-          className="rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 hover:scale-110 transition-transform"
+          className={styles.ratingButton}
         >
           <Star
             aria-hidden="true"
@@ -42,7 +45,7 @@ export function StarRatingInput({ value, onChange, starClassName = 'h-6 w-6' }: 
                 : 'text-muted-foreground/30 hover:text-muted-foreground/50'
             )}
           />
-        </button>
+        </Button>
       ))}
     </div>
   );

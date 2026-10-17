@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/secondary-ui.module.css';
+
 import { useState } from 'react';
 import { Loader2, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -42,8 +44,8 @@ export function FamilyRatingForm({ outfitId, existingRating, onSuccess }: Family
   };
 
   return (
-    <div className="space-y-3">
-      <div className="flex items-center gap-3">
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center gap-3">
         <span className="text-sm font-medium">{t('yourRating')}</span>
         <StarRatingInput value={rating} onChange={setRating} />
       </div>
@@ -53,7 +55,7 @@ export function FamilyRatingForm({ outfitId, existingRating, onSuccess }: Family
         onChange={(e) => setComment(e.target.value)}
         rows={2}
         maxLength={500}
-        className="resize-none text-sm"
+        aria-label={t('addComment')} className="min-h-24 resize-y text-sm"
       />
       <Button
         size="sm"
@@ -98,9 +100,9 @@ export function FamilyRatingsDisplay({ ratings, outfitId, currentUserId }: Famil
   };
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-4">
       {ratings.map((r) => (
-        <div key={r.id} className="flex items-start gap-3 p-2 rounded-lg bg-muted/50">
+        <div key={r.id} className={styles.memberRow}>
           <Avatar className="h-8 w-8">
             <AvatarImage src={r.user_avatar_url ?? undefined} />
             <AvatarFallback className="text-xs">
@@ -108,19 +110,19 @@ export function FamilyRatingsDisplay({ ratings, outfitId, currentUserId }: Famil
             </AvatarFallback>
           </Avatar>
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="text-sm font-medium truncate">{r.user_display_name}</span>
               <StarRatingDisplay value={r.rating} />
             </div>
             {r.comment && (
-              <p className="text-xs text-muted-foreground mt-0.5">&ldquo;{r.comment}&rdquo;</p>
+              <p className="mt-1 break-words text-sm leading-relaxed text-muted-foreground">&ldquo;{r.comment}&rdquo;</p>
             )}
           </div>
           {currentUserId && r.user_id === currentUserId && (
             <Button
               variant="ghost"
               size="icon"
-              className="h-7 w-7 text-muted-foreground hover:text-destructive"
+              aria-label={t('ratingRemoved')} className="h-10 w-10 text-muted-foreground hover:text-destructive"
               onClick={handleDelete}
               disabled={deleteRating.isPending}
             >

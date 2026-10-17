@@ -1,5 +1,6 @@
 'use client';
 
+
 import { Bot, Calendar, Edit3, Zap } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
@@ -39,7 +40,7 @@ export function SourceBadge({ source }: { source: OutfitSource }) {
   const { icon: Icon, label, className } = config[source];
 
   return (
-    <Badge variant="outline" className={className}>
+    <Badge variant="outline" className={`${className} rounded-full px-2.5 py-1 font-medium`}>
       <Icon className="h-3 w-3 mr-1" />
       {label}
     </Badge>

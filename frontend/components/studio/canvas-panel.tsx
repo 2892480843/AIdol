@@ -1,7 +1,10 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import Image from 'next/image';
-import { X } from 'lucide-react';
+import { Shirt, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 import { useRoleLabel, useTypeLabel } from '@/lib/hooks/use-translated-constants';
 import { ITEM_ROLE } from '@/lib/studio/canonical-order';
@@ -24,7 +27,8 @@ export function CanvasPanel({ items, onRemove }: CanvasPanelProps) {
   };
   if (items.length === 0) {
     return (
-      <div className="min-h-[240px] rounded-lg border-2 border-dashed border-muted-foreground/30 bg-muted/20 flex items-center justify-center p-6">
+      <div className={styles.canvasEmpty}>
+        <Shirt className="h-10 w-10 text-primary/50" aria-hidden="true" />
         <p className="text-sm text-muted-foreground text-center">
           {t('empty')}
         </p>
@@ -33,11 +37,11 @@ export function CanvasPanel({ items, onRemove }: CanvasPanelProps) {
   }
 
   return (
-    <div className="rounded-lg border bg-muted/10 p-4">
-      <div className="flex flex-wrap gap-3">
+    <div className={styles.canvas}>
+      <div className={styles.canvasGrid}>
         {items.map((item) => (
-          <div key={item.id} className="relative w-24 shrink-0">
-            <button
+          <div key={item.id} className={styles.canvasItem}>
+            <Button variant="ghost" size="icon"
               type="button"
               onClick={() => onRemove(item.id)}
               className={cn(
@@ -47,7 +51,7 @@ export function CanvasPanel({ items, onRemove }: CanvasPanelProps) {
               aria-label={t('removeItem', { name: item.name || typeLabel(item.type) })}
             >
               <X className="h-3 w-3" />
-            </button>
+            </Button>
             <div className="aspect-square rounded-lg overflow-hidden border-2 border-primary/50 bg-background">
               {item.thumbnail_url || item.image_url ? (
                 <Image

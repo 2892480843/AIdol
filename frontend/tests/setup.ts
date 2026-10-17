@@ -1,32 +1,58 @@
-import '@testing-library/jest-dom'
-import { vi } from 'vitest'
+import "@testing-library/jest-dom";
+import { vi } from "vitest";
 
-vi.mock('next/navigation', () => ({
+// Exercise real library interactions in the same provider environment as the app.
+// Keep a caller's wrapper inside this stable wrapper so rerender retains its state.
+vi.mock("@testing-library/react", async (importOriginal) => {
+  const actual =
+    await importOriginal<typeof import("@testing-library/react")>();
+  const React = await import("react");
+  const { MantineProvider } = await import("@mantine/core");
+  return {
+    ...actual,
+    render: (
+      ui: React.ReactNode,
+      options: import("@testing-library/react").RenderOptions = {},
+    ) => {
+      const Wrapper = options.wrapper;
+      function TestProviders({ children }: { children: React.ReactNode }) {
+        return React.createElement(
+          MantineProvider,
+          { env: "test" },
+          Wrapper ? React.createElement(Wrapper, null, children) : children,
+        );
+      }
+      return actual.render(ui, { ...options, wrapper: TestProviders });
+    },
+  };
+});
+
+vi.mock("next/navigation", () => ({
   useRouter: () => ({
     push: vi.fn(),
     replace: vi.fn(),
     prefetch: vi.fn(),
     back: vi.fn(),
   }),
-  usePathname: () => '/',
+  usePathname: () => "/",
   useSearchParams: () => new URLSearchParams(),
-}))
+}));
 
-vi.mock('next-auth/react', () => ({
+vi.mock("next-auth/react", () => ({
   useSession: () => ({
     data: null,
-    status: 'unauthenticated',
+    status: "unauthenticated",
   }),
   signIn: vi.fn(),
   signOut: vi.fn(),
   SessionProvider: ({ children }: { children: React.ReactNode }) => children,
-}))
+}));
 
-vi.mock('next-intl', () => ({
-  useLocale: () => 'en',
+vi.mock("next-intl", () => ({
+  useLocale: () => "en",
   useFormatter: () => ({
     number: (value: number) => String(value),
-    list: (items: string[]) => items.join(', '),
+    list: (items: string[]) => items.join(", "),
   }),
   useTranslations: () => {
     const t = (key: string) => key;
@@ -36,9 +62,9 @@ vi.mock('next-intl', () => ({
     t.has = () => true;
     return t;
   },
-}))
+}));
 
-vi.mock('next-intl/server', () => ({
+vi.mock("next-intl/server", () => ({
   getTranslations: async () => {
     const t = (key: string) => key;
     t.raw = (key: string) => key;
@@ -47,14 +73,15 @@ vi.mock('next-intl/server', () => ({
     return t;
   },
   getMessages: async () => ({}),
-}))
+}));
 
-global.fetch = vi.fn()
+global.fetch = vi.fn();
 
 // Route-handler specs opt into `@vitest-environment node`, where these browser
 // globals do not exist and are not needed.
-if (typeof window !== 'undefined') {
-  Object.defineProperty(window, 'matchMedia', {
+if (typeof window !== "undefined") {
+  window.HTMLElement.prototype.scrollIntoView = vi.fn();
+  Object.defineProperty(window, "matchMedia", {
     writable: true,
     value: vi.fn().mockImplementation((query) => ({
       matches: false,
@@ -66,21 +93,21 @@ if (typeof window !== 'undefined') {
       removeEventListener: vi.fn(),
       dispatchEvent: vi.fn(),
     })),
-  })
+  });
 
   global.IntersectionObserver = vi.fn().mockImplementation(function () {
     return {
       observe: vi.fn(),
       unobserve: vi.fn(),
       disconnect: vi.fn(),
-    }
-  })
+    };
+  });
 
   global.ResizeObserver = vi.fn().mockImplementation(function () {
     return {
       observe: vi.fn(),
       unobserve: vi.fn(),
       disconnect: vi.fn(),
-    }
-  })
+    };
+  });
 }

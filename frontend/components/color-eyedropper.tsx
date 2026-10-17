@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Pipette, X, Check, Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -271,8 +273,8 @@ export function ColorEyedropper({ imageUrl, onColorSelect, trigger }: ColorEyedr
       )}
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader>
+        <DialogContent className={`${styles.dialog} sm:max-w-lg`}>
+          <DialogHeader className={styles.dialogHeader}>
             <DialogTitle className="flex items-center gap-2">
               <Pipette className="h-5 w-5" />
               {t('title')}
@@ -284,7 +286,7 @@ export function ColorEyedropper({ imageUrl, onColorSelect, trigger }: ColorEyedr
               {t('description')}
             </p>
 
-            <div className="relative flex justify-center bg-muted rounded-lg p-2 min-h-[200px]">
+            <div className={`${styles.colorStage} relative flex justify-center`}>
               {isLoading && (
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
@@ -326,7 +328,7 @@ export function ColorEyedropper({ imageUrl, onColorSelect, trigger }: ColorEyedr
 
             {/* Selected color display */}
             {pickedColor && matchedColor && (
-              <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
+              <div className={styles.colorSelection}>
                 <div className="flex items-center gap-3">
                   <div className="flex flex-col items-center gap-1">
                     <div

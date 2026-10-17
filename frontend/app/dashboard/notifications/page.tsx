@@ -1,5 +1,8 @@
 'use client';
 
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/secondary-ui.module.css';
+
 import { useState } from 'react';
 import { toast } from 'sonner';
 import {
@@ -92,11 +95,11 @@ function ScheduleCard({
     : day;
 
   return (
-    <div className="p-4 border rounded-lg space-y-3">
+    <div className="space-y-4 rounded-2xl border border-border bg-primary/[.025] p-4 sm:p-5">
       {/* Top row: Day info and main toggle */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-muted">
+          <div className={styles.statIcon}>
             <Calendar className="h-4 w-4" />
           </div>
           <div>
@@ -110,14 +113,14 @@ function ScheduleCard({
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Switch checked={schedule.enabled} onCheckedChange={onToggle} />
-          <Button variant="ghost" size="sm" onClick={onDelete}>
+          <Switch checked={schedule.enabled} aria-label={t('schedule.title')} onCheckedChange={onToggle} />
+          <Button variant="ghost" size="icon" aria-label={t('schedule.deleteConfirm.title')} onClick={onDelete}>
             <Trash2 className="h-4 w-4 text-muted-foreground" />
           </Button>
         </div>
       </div>
       {/* Bottom row: Day before toggle */}
-      <div className="flex items-center justify-between pt-2 border-t">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t pt-4">
         <div className="flex items-center gap-2">
           <Switch
             id={`daybefore-${schedule.id}`}
@@ -210,14 +213,14 @@ function AddScheduleDialog({
               {t('schedule.dialogDescription')}
             </DialogDescription>
           </DialogHeader>
-          <div className="space-y-4 py-4">
+          <div className="space-y-5 py-6">
             <div className="space-y-2">
-              <Label>{t('schedule.dayLabel')}</Label>
+              <Label htmlFor="schedule-day">{t('schedule.dayLabel')}</Label>
               <Select
                 value={String(dayOfWeek)}
                 onValueChange={(v) => setDayOfWeek(parseInt(v))}
               >
-                <SelectTrigger>
+                <SelectTrigger id="schedule-day">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -239,9 +242,9 @@ function AddScheduleDialog({
               />
             </div>
             <div className="space-y-2">
-              <Label>{t('schedule.occasionLabel')}</Label>
+              <Label htmlFor="schedule-occasion">{t('schedule.occasionLabel')}</Label>
               <Select value={occasion} onValueChange={setOccasion}>
-                <SelectTrigger>
+                <SelectTrigger id="schedule-occasion">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
@@ -253,7 +256,7 @@ function AddScheduleDialog({
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex items-center justify-between p-3 border rounded-lg bg-muted/50">
+            <div className="flex items-start justify-between gap-4 rounded-2xl border bg-muted/30 p-4">
               <div className="space-y-0.5">
                 <Label htmlFor="notify-day-before">{t('schedule.notifyDayBefore')}</Label>
                 <p className="text-xs text-muted-foreground">
@@ -397,22 +400,18 @@ export default function NotificationsPage() {
   };
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-        <p className="text-muted-foreground">
-          {t('subtitle')}
-        </p>
-      </div>
+    <div className={styles.page}>
+      <PageHeader title={t('title')} description={t('subtitle')} icon={<Bell className="h-5 w-5" />} />
 
       {/* Notification Channels */}
-      <Card>
+      <Card className="min-w-0">
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <CardTitle className="flex items-center gap-2">
                 <Settings2 className="h-5 w-5" />
                 {t('channels.title')}
+                {!loadingSettings && <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">{settings?.length ?? 0}</span>}
               </CardTitle>
               <CardDescription>
                 {t('channels.description')}
@@ -428,8 +427,8 @@ export default function NotificationsPage() {
               <Skeleton className="h-24" />
             </div>
           ) : settings?.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
-              <Bell className="h-12 w-12 mx-auto mb-4 opacity-50" />
+            <div className={styles.emptyState}>
+              <Bell className="mx-auto mb-5 h-10 w-10 text-primary/60" />
               <p>{t('channels.noChannels')}</p>
               <p className="text-sm">{t('channels.noChannelsDesc')}</p>
             </div>
@@ -451,13 +450,14 @@ export default function NotificationsPage() {
       </Card>
 
       {/* Schedules */}
-      <Card>
+      <Card className="min-w-0">
         <CardHeader>
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <CardTitle className="flex items-center gap-2">
                 <Clock className="h-5 w-5" />
                 {t('schedule.title')}
+                {!loadingSchedules && <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">{schedules?.length ?? 0}</span>}
               </CardTitle>
               <CardDescription>
                 {t('schedule.description')}
@@ -476,8 +476,8 @@ export default function NotificationsPage() {
               <Skeleton className="h-16" />
             </div>
           ) : schedules?.length === 0 ? (
-            <div className="text-center py-8 text-muted-foreground">
-              <Calendar className="h-12 w-12 mx-auto mb-4 opacity-50" />
+            <div className={styles.emptyState}>
+              <Calendar className="mx-auto mb-5 h-10 w-10 text-primary/60" />
               <p>{t('schedule.noSchedules')}</p>
               <p className="text-sm">{t('schedule.noSchedulesDesc')}</p>
             </div>

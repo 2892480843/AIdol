@@ -1,0 +1,119 @@
+{
+  "startedAt": "2026-10-17T11:48:34.379Z",
+  "finishedAt": "2026-10-17T11:54:39.154Z",
+  "checks": [
+    {
+      "check": "production-home",
+      "passed": true,
+      "items": 5,
+      "outfits": 11,
+      "width": 1280
+    },
+    {
+      "check": "no-result-search",
+      "passed": true
+    },
+    {
+      "check": "creator-search-Jean",
+      "passed": true,
+      "requiredCategories": "2/2"
+    },
+    {
+      "check": "layer-match",
+      "passed": true,
+      "requiredCategories": "4/4",
+      "selectedItems": 4
+    },
+    {
+      "check": "bookmark-write-filter-reload",
+      "passed": true,
+      "savedFormula": "layer"
+    },
+    {
+      "check": "inspiration-studio-save-reload",
+      "passed": true,
+      "seedUrl": "http://localhost:3000/dashboard/outfits/new?seed=58f0e0b7-6a93-419f-9a36-2b4086579a57%2Ca619ca9f-f02a-44bc-b213-e689122c619b%2Cbdf3d913-37fb-4ba3-8abe-cc04ed25a5c7%2Cb9288608-f488-43d8-b579-fe04d6220469&occasion=office&name=%E5%8A%A0%E4%B8%80%E5%B1%82%EF%BC%8C%E4%B9%9F%E5%A4%9A%E4%B8%80%E7%82%B9%E6%84%8F%E6%80%9D",
+      "savedUrl": "http://localhost:3000/dashboard/outfits/cd342657-b60a-48fc-99b4-ec85a40f2e43",
+      "name": "灵感社区验收 · 通勤练习 1017",
+      "selectedItems": 4,
+      "occasion": "office"
+    },
+    {
+      "check": "page-smoke-wardrobe",
+      "url": "http://localhost:3000/dashboard/wardrobe",
+      "layout": {
+        "h1": "我的衣柜",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "check": "page-smoke-recommendations",
+      "url": "http://localhost:3000/dashboard/suggest",
+      "layout": {
+        "h1": "晚上好",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "check": "page-smoke-analytics",
+      "url": "http://localhost:3000/dashboard/analytics",
+      "layout": {
+        "h1": "数据分析",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "check": "page-smoke-settings",
+      "url": "http://localhost:3000/dashboard/settings",
+      "layout": {
+        "h1": "设置",
+        "scrollWidth": 1280,
+        "width": 1280
+      }
+    },
+    {
+      "check": "inspiration-mobile-layout",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "check": "inspiration-mobile-dark",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "check": "home-mobile-layout",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "check": "home-mobile-dark",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "check": "home-tablet-layout",
+      "passed": true,
+      "width": 830,
+      "scrollWidth": 830
+    },
+    {
+      "check": "inspiration-tablet-layout",
+      "passed": true,
+      "width": 830,
+      "scrollWidth": 830
+    },
+    {
+      "check": "keyboard-search-tab-discover-tab-saved-enter",
+      "passed": true
+    }
+  ],
+  "consoleErrors": []
+}

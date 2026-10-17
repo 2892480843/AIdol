@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { X, Trash2, RefreshCw, Loader2, CheckSquare, Square, MinusSquare, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, RotateCcw, RotateCw, Eraser } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -92,11 +94,11 @@ export function BulkActionToolbar({
   const totalPages = pagination ? Math.ceil(totalItems / pagination.pageSize) : 0;
 
   return (
-    <div className="fixed bottom-20 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 sm:gap-3 bg-background border rounded-lg shadow-lg px-2 sm:px-4 py-2 sm:py-3 max-w-[calc(100vw-1rem)]">
+    <div data-selection={selection.mode} className={`${styles.bulkToolbar} fixed bottom-20 sm:bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 sm:gap-3 max-w-[calc(100vw-1rem)]`}>
       {/* Select All Checkbox */}
-      <div
-        className="flex items-center gap-1 sm:gap-2 cursor-pointer shrink-0"
-        onClick={onSelectAll}
+      <Button variant="ghost" type="button"
+        className="flex items-center gap-1 sm:gap-2 cursor-pointer shrink-0 px-1"
+        onClick={onSelectAll} aria-label={t('selectAll')} aria-pressed={isAllSelected}
       >
         {isAllSelected ? (
           <CheckSquare className="h-5 w-5 text-primary" />
@@ -105,16 +107,16 @@ export function BulkActionToolbar({
         ) : (
           <Square className="h-5 w-5 text-muted-foreground" />
         )}
-        <span className="text-sm font-medium whitespace-nowrap hidden sm:inline">
+        <span className="text-sm font-medium whitespace-nowrap">
           {isEverythingSelected ? t('bulkActions.all') : t('selectAll')}
         </span>
-      </div>
+      </Button>
 
       <div className="h-4 w-px bg-border shrink-0" />
 
       <span className="text-sm text-muted-foreground whitespace-nowrap shrink-0">
         {selectedCount === 0 ? (
-          <span className="hidden sm:inline">{t('bulkActions.noneSelected')}</span>
+          <span>{t('bulkActions.noneSelected')}</span>
         ) : selection.mode === 'all' && selection.excludedIds.size > 0 ? (
           <>
             <span className="sm:hidden">{totalItems - selection.excludedIds.size}</span>

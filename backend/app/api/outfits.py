@@ -166,6 +166,7 @@ class BulkOutfitFilters(BaseModel):
     date_to: date | None = None
     source: str | None = None
     is_lookbook: bool | None = None
+    worn: bool | None = None
     is_replacement: bool | None = None
     has_source_item: bool | None = None
     item_type: str | None = None
@@ -593,6 +594,9 @@ async def list_outfits(
     family_member_id: UUID | None = Query(None, description="View a family member's outfits"),
     source: str | None = Query(None, description="Comma-separated source enum filter"),
     is_lookbook: bool | None = Query(None, description="true for templates only"),
+    worn: bool | None = Query(
+        None, description="Filter by recorded wear date, independently of acceptance"
+    ),
     is_replacement: bool | None = Query(None),
     has_source_item: bool | None = Query(None),
     item_type: str | None = Query(None),
@@ -621,6 +625,7 @@ async def list_outfits(
         date_to=date_to,
         source=source,
         is_lookbook=is_lookbook,
+        worn=worn,
         is_replacement=is_replacement,
         has_source_item=has_source_item,
         item_type=item_type or source_type,
@@ -670,6 +675,7 @@ async def bulk_delete_outfits(
             date_to=request.filters.date_to if request.filters else None,
             source=request.filters.source if request.filters else None,
             is_lookbook=request.filters.is_lookbook if request.filters else None,
+            worn=request.filters.worn if request.filters else None,
             is_replacement=request.filters.is_replacement if request.filters else None,
             has_source_item=request.filters.has_source_item if request.filters else None,
             item_type=request.filters.item_type if request.filters else None,

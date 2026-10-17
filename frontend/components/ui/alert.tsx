@@ -1,59 +1,36 @@
-import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-
-import { cn } from '@/lib/utils';
-
-const alertVariants = cva(
-  'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground',
-  {
-    variants: {
-      variant: {
-        default: 'bg-background text-foreground',
-        destructive:
-          'border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-    },
-  }
-);
-
+"use client";
+import * as React from "react";
+import { Alert as MantineAlert, Box, Title } from "@mantine/core";
 const Alert = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
->(({ className, variant, ...props }, ref) => (
-  <div
+  React.HTMLAttributes<HTMLDivElement> & { variant?: "default" | "destructive" }
+>(({ variant = "default", ...props }, ref) => (
+  <MantineAlert
     ref={ref}
-    role="alert"
-    className={cn(alertVariants({ variant }), className)}
+    data-ui="alert"
+    variant="light"
+    color={variant === "destructive" ? "red" : undefined}
     {...props}
   />
 ));
-Alert.displayName = 'Alert';
-
 const AlertTitle = React.forwardRef<
-  HTMLParagraphElement,
+  HTMLHeadingElement,
   React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h5
+>((props, ref) => (
+  <Title
     ref={ref}
-    className={cn('mb-1 font-medium leading-none tracking-tight', className)}
+    order={5}
+    size="sm"
+    mb={4}
+    data-ui="alert-title"
     {...props}
   />
 ));
-AlertTitle.displayName = 'AlertTitle';
-
 const AlertDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn('text-sm [&_p]:leading-relaxed', className)}
-    {...props}
-  />
-));
-AlertDescription.displayName = 'AlertDescription';
-
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>((props, ref) => <Box ref={ref} data-ui="alert-description" {...props} />);
+Alert.displayName = "Alert";
+AlertTitle.displayName = "AlertTitle";
+AlertDescription.displayName = "AlertDescription";
 export { Alert, AlertTitle, AlertDescription };

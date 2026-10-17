@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState } from 'react';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -25,7 +27,7 @@ export function BaseItemPicker({ selectedItem, onChange }: { selectedItem: Item 
   return (
     <>
       {/* Base item selection */}
-      <div className="space-y-3 pt-1 border-t">
+      <div className={`${styles.formSection} space-y-3`}>
         <div className="space-y-0.5">
           <h2 className="font-semibold text-sm sm:text-base flex items-center gap-2">
             <Sparkles className="h-4 w-4 text-primary" />
@@ -40,7 +42,7 @@ export function BaseItemPicker({ selectedItem, onChange }: { selectedItem: Item 
           <Button
             type="button"
             variant="outline"
-            className="w-full h-16 border-dashed border-2 flex items-center justify-center gap-3 hover:border-primary/60 hover:bg-primary/5 transition-all text-muted-foreground hover:text-foreground"
+            className="w-full min-h-24 h-auto p-4 border-dashed border flex items-center justify-start gap-4 rounded-2xl hover:border-primary/60 hover:bg-primary/5 text-muted-foreground whitespace-normal"
             onClick={() => setIsItemPickerOpen(true)}
           >
             <div className="p-2 rounded-full bg-muted">
@@ -58,7 +60,7 @@ export function BaseItemPicker({ selectedItem, onChange }: { selectedItem: Item 
         ) : (
           <div className="flex items-center justify-between p-3 rounded-xl border bg-card/80 shadow-sm gap-3">
             <div className="flex items-center gap-3 min-w-0">
-              <div className="relative w-14 h-14 rounded-lg overflow-hidden border bg-muted flex-shrink-0">
+              <div className="relative w-20 h-24 rounded-xl overflow-hidden border bg-muted flex-shrink-0">
                 {selectedItem.thumbnail_url || selectedItem.image_url ? (
                   <Image
                     src={(selectedItem.thumbnail_url || selectedItem.image_url)!}
@@ -119,8 +121,8 @@ export function BaseItemPicker({ selectedItem, onChange }: { selectedItem: Item 
 
       {/* Item Picker Dialog */}
       <Dialog open={isItemPickerOpen} onOpenChange={setIsItemPickerOpen}>
-        <DialogContent className="sm:max-w-xl max-h-[85vh] flex flex-col p-6">
-          <DialogHeader>
+        <DialogContent className={`${styles.dialog} sm:max-w-2xl max-h-[85vh] flex flex-col p-6`}>
+          <DialogHeader className={styles.dialogHeader}>
             <DialogTitle className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-primary" />
               {t('baseItem.dialogTitle')}

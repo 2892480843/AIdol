@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import Link from 'next/link';
 import { ArrowRight, BookmarkCheck } from 'lucide-react';
 
@@ -39,14 +41,14 @@ export function LineageCard({ outfit }: LineageCardProps) {
     : t('fromLookbook', { name: referenced.name || occasionLabel(referenced.occasion) });
 
   return (
-    <Card className="border-muted bg-muted/30">
+    <Card className={styles.lineage}>
       <CardContent className="p-3">
         <Link
           href={`/dashboard/outfits/${referenced.id}`}
           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <Icon className="h-4 w-4 shrink-0" />
-          <span className="truncate">{label}</span>
+          <span className="min-w-0 break-words">{label}</span>
         </Link>
       </CardContent>
     </Card>

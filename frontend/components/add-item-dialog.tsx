@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Upload, X, Loader2, CheckCircle2, AlertCircle, Image as ImageIcon } from 'lucide-react';
@@ -250,8 +252,8 @@ export function AddItemDialog({ open, onOpenChange }: AddItemDialogProps) {
   return (
     <>
     <Dialog open={open} onOpenChange={handleCloseRequest}>
-      <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
+      <DialogContent className={`${styles.dialog} sm:max-w-lg`}>
+        <DialogHeader className={styles.dialogHeader}>
           <DialogTitle>{t('title')}</DialogTitle>
           <DialogDescription>
             {t('subtitle')}
@@ -270,7 +272,7 @@ export function AddItemDialog({ open, onOpenChange }: AddItemDialogProps) {
               {!preview ? (
                 <div
                   {...getSingleRootProps()}
-                  className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
+                  className={`${styles.uploadZone} border-2 border-dashed p-8 text-center cursor-pointer transition-colors ${
                     isSingleDragActive
                       ? 'border-primary bg-primary/5'
                       : 'border-muted-foreground/25 hover:border-primary/50'
@@ -292,7 +294,7 @@ export function AddItemDialog({ open, onOpenChange }: AddItemDialogProps) {
                   <img
                     src={preview}
                     alt={t('previewAlt')}
-                    className="w-full h-48 object-cover rounded-lg"
+                    className={styles.uploadPreview}
                   />
                   <Button
                     type="button"
@@ -443,13 +445,13 @@ export function AddItemDialog({ open, onOpenChange }: AddItemDialogProps) {
                             <img
                               src={f.preview}
                               alt={f.file.name}
-                              className="w-full aspect-square object-cover rounded-md"
+                              className="w-full aspect-[4/5] object-contain bg-muted rounded-xl"
                             />
                             <Button
                               type="button"
                               variant="destructive"
                               size="icon"
-                              className="absolute top-1 right-1 h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity"
+                              className="absolute top-1 right-1 h-5 w-5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100 transition-opacity"
                               onClick={() => removeBulkFile(f.id)}
                             >
                               <X className="h-3 w-3" />

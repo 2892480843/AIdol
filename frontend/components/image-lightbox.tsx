@@ -39,8 +39,8 @@ export function ImageLightbox() {
       zoom={{ maxZoomPixelRatio: 4, doubleTapDelay: 250, doubleClickDelay: 250 }}
       counter={{ container: { style: { top: 16 } } }}
       styles={{
-        root: { pointerEvents: "auto" },
-        container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
+        root: { pointerEvents: "auto", "--yarl__color_button": "#dcebe1", "--yarl__color_button_active": "#ffffff" },
+        container: { backgroundColor: "rgba(12, 28, 21, 0.96)" },
       }}
       toolbar={{
         buttons: [
@@ -58,7 +58,7 @@ export function ImageLightbox() {
                 marginRight: 8,
                 backgroundColor: "rgba(255,255,255,0.95)",
                 color: "#000",
-                borderRadius: 999,
+                borderRadius: 10,
                 fontSize: 13,
                 fontWeight: 600,
                 textDecoration: "none",

@@ -1,11 +1,11 @@
 {
   "aiLearning": "AI 學習",
   "analytics": "數據分析",
-  "brandAlt": "wardrowbe",
-  "brandName": "wardrowbe",
+  "brandAlt": "搭搭",
+  "brandName": "搭搭",
   "changeLanguage": "切換語言",
   "closeSidebar": "關閉側邊欄",
-  "dashboard": "儀表板",
+  "dashboard": "穿搭日常",
   "family": "家庭",
   "familyFeed": "家庭動態",
   "history": "歷史紀錄",
@@ -20,5 +20,6 @@
   "suggestOutfit": "建議穿搭",
   "toggleTheme": "切換主題",
   "userFallback": "使用者",
-  "wardrobe": "衣櫥"
+  "wardrobe": "衣櫥",
+  "inspiration": "穿搭手記"
 }

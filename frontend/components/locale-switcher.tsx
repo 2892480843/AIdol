@@ -41,10 +41,10 @@ export function LocaleSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" aria-label={t('changeLanguage')} disabled={isPending}>
-          <Globe className="h-5 w-5" />
+          <Globe className="h-[18px] w-[18px]" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="min-w-[190px]">
         {SUPPORTED_LOCALES.map((locale) => (
           <DropdownMenuItem
             key={locale}

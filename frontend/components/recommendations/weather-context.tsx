@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Cloud, Sun, CloudRain, Thermometer, Droplets, ChevronDown, MapPin, Wind, Cloudy, CloudSun, Snowflake, CloudLightning } from 'lucide-react';
@@ -7,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
+import { Slider } from '@/components/ui/slider';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useWeatherConditionLabel } from '@/lib/hooks/use-translated-constants';
 import type { CurrentWeather } from '@/lib/types';
@@ -96,9 +99,9 @@ export function WeatherCard({ weather, isLoading, temperatureUnit, t }: { weathe
   }
 
   return (
-    <Card className="overflow-hidden">
+    <Card className={`${styles.photoCard} overflow-hidden`}>
       <CardContent className="p-6">
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-4">
             <div className="h-14 w-14 rounded-full bg-muted flex items-center justify-center text-foreground">
               {getWeatherIcon(weather.condition, weather.is_day)}
@@ -140,11 +143,13 @@ export function WeatherOverrideSection({
   weather,
   onChange,
   temperatureUnit,
+  disabled = false,
   t,
 }: {
   weather: WeatherOverride | null;
   onChange: (weather: WeatherOverride | null) => void;
   temperatureUnit: TempUnit;
+  disabled?: boolean;
   t: Translator;
 }) {
   const tc = useTranslations('constants.weatherConditions');
@@ -158,7 +163,7 @@ export function WeatherOverrideSection({
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <CollapsibleTrigger asChild>
-        <button type="button" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+        <Button variant="ghost" type="button" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
           <ChevronDown className={cn('h-4 w-4 transition-transform', isOpen && 'rotate-180')} />
           <span>{weather ? t('weatherOverride.active') : t('weatherOverride.overrideWeather')}</span>
           {weather && (
@@ -166,7 +171,7 @@ export function WeatherOverrideSection({
               {tc(OVERRIDE_CONDITION_KEYS[weather.condition])} {formatTemp(weather.temperature, temperatureUnit)}
             </Badge>
           )}
-        </button>
+        </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className="pt-4">
         <div className="space-y-4 p-4 rounded-lg bg-muted/50">
@@ -178,11 +183,12 @@ export function WeatherOverrideSection({
               </Button>
             )}
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 flex-wrap">
             {conditions.map((c) => (
-              <button
+              <Button variant="outline"
                 type="button"
                 key={c.value}
+                aria-pressed={weather?.condition === c.value}
                 onClick={() =>
                   onChange({
                     temperature: weather?.temperature ?? 20,
@@ -198,23 +204,22 @@ export function WeatherOverrideSection({
               >
                 {c.icon}
                 <span className="text-sm">{tc(OVERRIDE_CONDITION_KEYS[c.value])}</span>
-              </button>
+              </Button>
             ))}
           </div>
           {weather && (
             <div className="flex items-center gap-3">
               <span className="text-sm text-muted-foreground">{t('weatherOverride.temperature')}</span>
-              <input
-                type="range"
+              <Slider
+                disabled={disabled}
                 aria-label={t('weatherOverride.temperature')}
                 min={temperatureUnit === 'fahrenheit' ? 14 : -10}
                 max={temperatureUnit === 'fahrenheit' ? 104 : 40}
-                value={temperatureUnit === 'fahrenheit' ? Math.round(toF(weather.temperature)) : weather.temperature}
-                onChange={(e) => {
-                  const raw = parseInt(e.target.value);
+                value={[temperatureUnit === 'fahrenheit' ? Math.round(toF(weather.temperature)) : weather.temperature]}
+                onValueChange={([raw]) => {
                   onChange({ ...weather, temperature: temperatureUnit === 'fahrenheit' ? Math.round(toCelsius(raw)) : raw });
                 }}
-                className="flex-1 accent-primary"
+                className="flex-1 min-w-0"
               />
               <span className="text-sm font-medium w-14 text-right">{formatTemp(weather.temperature, temperatureUnit)}</span>
             </div>

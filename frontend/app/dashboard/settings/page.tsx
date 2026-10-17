@@ -1,9 +1,15 @@
 'use client';
 
+import { UnstyledButton } from '@mantine/core';
+
+import { PageHeader } from '@/components/page-header';
+import styles from '@/components/secondary-ui.module.css';
+
 import { useState, useEffect, useRef } from 'react';
 import { useSession } from 'next-auth/react';
-import { Loader2, Save, RotateCcw, Check, Plus, Trash2, ChevronUp, ChevronDown, Server, MapPin, Navigation, Ruler } from 'lucide-react';
+import { Loader2, Save, RotateCcw, Check, Plus, Trash2, ChevronUp, ChevronDown, Server, MapPin, Navigation, Ruler, Settings2, User, Palette, Sparkles, Thermometer, Wand2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -98,17 +104,19 @@ function ColorPicker({
         {clothingColors.map((color) => {
           const isSelected = selected.includes(color.value);
           return (
-            <button
+            <UnstyledButton
               key={color.value}
               type="button"
               onClick={() => toggleColor(color.value)}
-              className={`w-8 h-8 rounded-full border-2 transition-all ${
+              className={`w-10 h-10 rounded-full border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 isSelected
                   ? 'border-primary ring-2 ring-primary/30 scale-110'
                   : 'border-muted-foreground/20 hover:border-muted-foreground/40'
               }`}
               style={{ backgroundColor: color.hex }}
               title={color.name}
+              aria-label={color.name}
+              aria-pressed={isSelected}
             >
               {isSelected && (
                 <Check
@@ -119,7 +127,7 @@ function ColorPicker({
                   }`}
                 />
               )}
-            </button>
+            </UnstyledButton>
           );
         })}
       </div>
@@ -184,6 +192,7 @@ export default function SettingsPage() {
   const [formData, setFormData] = useState<Partial<Preferences>>({});
   const occasions = useOccasionOptions([formData.default_occasion, preferences?.default_occasion]);
   const [hasChanges, setHasChanges] = useState(false);
+  const [resetOpen, setResetOpen] = useState(false);
   const [endpointTests, setEndpointTests] = useState<Record<number, EndpointTestResult>>({});
 
   // Location and timezone state
@@ -400,7 +409,7 @@ export default function SettingsPage() {
       window.removeEventListener('beforeunload', onBeforeUnload);
       history.pushState = origPush;
     };
-  }, [isDirty]);
+  }, [isDirty, t]);
 
   const handleToggleUnits = () => {
     const newSystem: UnitSystem = unitSystem === 'metric' ? 'imperial' : 'metric';
@@ -521,12 +530,11 @@ export default function SettingsPage() {
   };
 
   const handleReset = async () => {
-    if (confirm(t('confirmReset'))) {
-      try {
-        await resetPreferences.mutateAsync();
-      } catch (error) {
-        console.error('Failed to reset preferences:', error);
-      }
+    try {
+      await resetPreferences.mutateAsync();
+      setResetOpen(false);
+    } catch (error) {
+      console.error('Failed to reset preferences:', error);
     }
   };
 
@@ -539,33 +547,27 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h1 className="text-2xl font-bold tracking-tight">{t('title')}</h1>
-          <p className="text-sm text-muted-foreground">
-            {t('subtitle')}
-          </p>
-        </div>
-        <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={handleReset} disabled={resetPreferences.isPending}>
-            <RotateCcw className="mr-2 h-4 w-4" />
-            {t('reset')}
-          </Button>
-          <Button size="sm" onClick={handleSave} disabled={!hasChanges || updatePreferences.isPending}>
-            {updatePreferences.isPending ? (
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            ) : (
-              <Save className="mr-2 h-4 w-4" />
-            )}
-            {tc('save')}
-          </Button>
-        </div>
-      </div>
+    <div className={styles.page}>
+      <PageHeader title={t('title')} description={t('subtitle')} icon={<Settings2 className="h-5 w-5" />} />
 
-      <div className="grid gap-6">
+      <div className={styles.settingsLayout}>
+        <nav className={styles.settingsNav} aria-label={t('title')}>
+          {[
+            { id: 'account', label: t('account.title'), icon: User },
+            { id: 'location', label: t('location.title'), icon: MapPin },
+            { id: 'body', label: t('body.title'), icon: Ruler },
+            { id: 'colors', label: t('colors.favoriteColors'), icon: Palette },
+            { id: 'style', label: t('styleProfile.title'), icon: Sparkles },
+            { id: 'temperature', label: t('temperature.title'), icon: Thermometer },
+            { id: 'recommendations', label: t('recommendations.title'), icon: Wand2 },
+            { id: 'ai', label: t('aiEndpoints.title'), icon: Server },
+          ].map(({ id, label, icon: Icon }) => (
+            <a key={id} href={`#settings-${id}`}><Icon className="h-4 w-4 shrink-0" aria-hidden="true" />{label}</a>
+          ))}
+        </nav>
+        <div className={styles.settingsSections}>
         {/* Account Section */}
-        <Card>
+        <Card id="settings-account" className="min-w-0">
           <CardHeader>
             <CardTitle>{t('account.title')}</CardTitle>
             <CardDescription>{t('account.description')}</CardDescription>
@@ -585,7 +587,7 @@ export default function SettingsPage() {
         </Card>
 
         {/* Location Section */}
-        <Card>
+        <Card id="settings-location" className="min-w-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <MapPin className="h-5 w-5" />
@@ -652,7 +654,7 @@ export default function SettingsPage() {
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Button
                 variant="outline"
                 onClick={handleGetCurrentLocation}
@@ -686,7 +688,7 @@ export default function SettingsPage() {
         </Card>
 
         {/* Body Measurements */}
-        <Card>
+        <Card id="settings-body" className="min-w-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Ruler className="h-5 w-5" />
@@ -694,7 +696,7 @@ export default function SettingsPage() {
             </CardTitle>
             <CardDescription>{t('body.description')}</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className={styles.page}>
             <div className="flex items-center justify-between">
               <Label>{t('body.unitSystem')}</Label>
               <Button variant="outline" size="sm" onClick={handleToggleUnits}>
@@ -767,14 +769,14 @@ export default function SettingsPage() {
         </Card>
 
         {/* Color Preferences */}
-        <Card>
+        <Card id="settings-colors" className="min-w-0">
           <CardHeader>
             <CardTitle>{t('colors.favoriteColors')}</CardTitle>
             <CardDescription>
               {t('colors.description')}
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className={styles.page}>
             <ColorPicker
               label={t('colors.favoriteColors')}
               selected={formData.color_favorites || []}
@@ -789,14 +791,14 @@ export default function SettingsPage() {
         </Card>
 
         {/* Style Profile */}
-        <Card>
+        <Card id="settings-style" className="min-w-0">
           <CardHeader>
             <CardTitle>{t('styleProfile.title')}</CardTitle>
             <CardDescription>
               {t('styleProfile.description')}
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className={styles.page}>
             <StyleSlider
               label={tConst('styles.casual')}
               value={formData.style_profile?.casual ?? DEFAULT_STYLE_PROFILE.casual}
@@ -826,7 +828,7 @@ export default function SettingsPage() {
         </Card>
 
         {/* Temperature & Comfort */}
-        <Card>
+        <Card id="settings-temperature" className="min-w-0">
           <CardHeader>
             <CardTitle>{t('temperature.title')}</CardTitle>
             <CardDescription>
@@ -935,7 +937,7 @@ export default function SettingsPage() {
         </Card>
 
         {/* Recommendation Settings */}
-        <Card>
+        <Card id="settings-recommendations" className="min-w-0">
           <CardHeader>
             <CardTitle>{t('recommendations.title')}</CardTitle>
             <CardDescription>
@@ -1016,7 +1018,7 @@ export default function SettingsPage() {
         </Card>
 
         {/* AI Endpoints */}
-        <Card>
+        <Card id="settings-ai" className="min-w-0">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Server className="h-5 w-5" />
@@ -1036,7 +1038,7 @@ export default function SettingsPage() {
                 {(formData.ai_endpoints || []).map((endpoint, index) => (
                   <div
                     key={index}
-                    className={`border rounded-lg p-4 space-y-3 ${
+                    className={`rounded-2xl border p-5 space-y-4 ${
                       !endpoint.enabled ? 'opacity-60 bg-muted/50' : ''
                     }`}
                   >
@@ -1215,7 +1217,7 @@ export default function SettingsPage() {
                 ))}
               </div>
             )}
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               <Button
                 variant="outline"
                 className="flex-1"
@@ -1246,7 +1248,32 @@ export default function SettingsPage() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
+
+      <div className={styles.saveBar}>
+        <Button variant="outline" onClick={() => setResetOpen(true)} disabled={resetPreferences.isPending}>
+          <RotateCcw className="mr-2 h-4 w-4" />{t('reset')}
+        </Button>
+        <Button onClick={handleSave} disabled={!hasChanges || updatePreferences.isPending}>
+          {updatePreferences.isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Save className="mr-2 h-4 w-4" />}
+          {tc('save')}
+        </Button>
+      </div>
+      <AlertDialog open={resetOpen} onOpenChange={setResetOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t('reset')}</AlertDialogTitle>
+            <AlertDialogDescription>{t('confirmReset')}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{tc('cancel')}</AlertDialogCancel>
+            <AlertDialogAction onClick={handleReset} disabled={resetPreferences.isPending}>
+              {resetPreferences.isPending && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}{t('reset')}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

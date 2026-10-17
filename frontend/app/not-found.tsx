@@ -7,8 +7,8 @@ export default async function NotFound() {
   const t = await getTranslations('common');
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="text-center max-w-md">
+    <div className="min-h-[100dvh] flex items-center justify-center bg-background p-6">
+      <div className="error-surface">
         <h1 className="text-8xl font-bold text-muted-foreground mb-4">{t('notFoundCode')}</h1>
         <h2 className="text-2xl font-semibold mb-2">{t('notFound')}</h2>
         <p className="text-muted-foreground mb-6">

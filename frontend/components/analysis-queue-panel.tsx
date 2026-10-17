@@ -1,5 +1,7 @@
 'use client';
 
+import styles from '@/components/shared/core-surfaces.module.css';
+
 import { useEffect, useMemo, useState } from 'react';
 import Image from 'next/image';
 import { AlertCircle, CheckCircle2, Loader2, RotateCw } from 'lucide-react';
@@ -77,8 +79,8 @@ export function AnalysisQueuePanel({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-lg">
-        <DialogHeader>
+      <DialogContent className={`${styles.dialog} sm:max-w-lg`}>
+        <DialogHeader className={styles.dialogHeader}>
           <DialogTitle>{t('title')}</DialogTitle>
           <DialogDescription>{t('description')}</DialogDescription>
         </DialogHeader>
@@ -116,7 +118,7 @@ export function AnalysisQueuePanel({
                     {t('nowAnalyzing')}
                   </h3>
                   {current.map((entry) => (
-                    <div key={entry.item_id} className="flex items-center gap-3">
+                    <div key={entry.item_id} className={styles.queueRow}>
                       <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded bg-muted">
                         {entry.image_url && (
                           <Image
@@ -147,7 +149,7 @@ export function AnalysisQueuePanel({
               {(averageLabel || summary.batchTotal > 0) && (
                 <div
                   className={cn(
-                    'grid gap-3 rounded-md border p-3 text-sm',
+                    `${styles.queueMetrics} grid gap-3 text-sm`,
                     summary.remaining > 0 ? 'grid-cols-2' : 'grid-cols-1'
                   )}
                 >

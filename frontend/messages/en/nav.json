@@ -1,11 +1,11 @@
 {
   "aiLearning": "AI Learning",
   "analytics": "Analytics",
-  "brandAlt": "Wardrowbe",
-  "brandName": "wardrowbe",
+  "brandAlt": "搭搭",
+  "brandName": "搭搭",
   "changeLanguage": "Change language",
   "closeSidebar": "Close sidebar",
-  "dashboard": "Dashboard",
+  "dashboard": "Daily edit",
   "family": "Family",
   "familyFeed": "Family Feed",
   "history": "History",
@@ -20,5 +20,6 @@
   "suggestOutfit": "Suggest Outfit",
   "toggleTheme": "Toggle theme",
   "userFallback": "User",
-  "wardrobe": "Wardrobe"
+  "wardrobe": "Wardrobe",
+  "inspiration": "Style notes"
 }

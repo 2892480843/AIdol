@@ -14,6 +14,7 @@ export function useWeather() {
 
   return useQuery({
     queryKey: queryKeys.weather,
+    meta: { quietErrorStatuses: [400] },
     queryFn: () => api.get<CurrentWeather>('/weather/current'),
     enabled: status !== 'loading',
     staleTime: WEATHER_STALE_TIME,

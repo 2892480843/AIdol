@@ -1,13 +1,23 @@
-'use client';
+"use client";
 
-import { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
-import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
-import { AlertCircle, AlertTriangle, ChevronLeft, Loader2 } from 'lucide-react';
-import { toast } from 'sonner';
+import styles from "@/components/shared/core-surfaces.module.css";
 
-import { Button } from '@/components/ui/button';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+  useSyncExternalStore,
+} from "react";
+import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { AlertCircle, AlertTriangle, ChevronLeft, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,38 +27,78 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
-import { CanvasPanel } from '@/components/studio/canvas-panel';
-import { DetailsPanel } from '@/components/studio/details-panel';
-import { ItemPicker } from '@/components/shared/item-picker';
-import { CloneToLookbookDialog } from '@/components/shared/clone-to-lookbook-dialog';
-import { ApiError, getActiveUserId, getErrorMessage } from '@/lib/api';
-import { useItems } from '@/lib/hooks/use-items';
-import { useOutfit } from '@/lib/hooks/use-outfits';
-import { useCreateStudioOutfit, usePatchOutfit } from '@/lib/hooks/use-studio';
-import { useUserToday } from '@/lib/hooks/use-user';
+} from "@/components/ui/alert-dialog";
+import { CanvasPanel } from "@/components/studio/canvas-panel";
+import { DetailsPanel } from "@/components/studio/details-panel";
+import { ItemPicker } from "@/components/shared/item-picker";
+import { CloneToLookbookDialog } from "@/components/shared/clone-to-lookbook-dialog";
+import {
+  ApiError,
+  getActiveUserId,
+  getErrorMessage,
+  subscribeActiveSession,
+} from "@/lib/api";
+import { useItems } from "@/lib/hooks/use-items";
+import { queryKeys } from "@/lib/hooks/query-keys";
+import { useOutfit } from "@/lib/hooks/use-outfits";
+import { useCreateStudioOutfit, usePatchOutfit } from "@/lib/hooks/use-studio";
+import { useUserToday } from "@/lib/hooks/use-user";
 import {
   INITIAL_STUDIO_STATE,
   studioReducer,
   type StudioItem,
-} from '@/lib/studio/editor-state';
+} from "@/lib/studio/editor-state";
 import {
   clearDraft,
   loadDraft,
   saveDraft,
   type StudioDraft,
-} from '@/lib/studio/draft-storage';
-import type { Item } from '@/lib/types';
-import { isWornImmutableError } from '@/lib/studio/errors';
-import { computeEditLoadPhase } from '@/lib/studio/edit-load';
+} from "@/lib/studio/draft-storage";
+import type { Item } from "@/lib/types";
+import { isWornImmutableError } from "@/lib/studio/errors";
+import { computeEditLoadPhase } from "@/lib/studio/edit-load";
+import {
+  loadInspirationSeed,
+  parseInspirationSeed,
+} from "@/lib/studio/inspiration-seed";
 
 export default function StudioEditorPage() {
-  const t = useTranslations('outfits');
-  const tc = useTranslations('common');
+  const t = useTranslations("outfits");
+  const tc = useTranslations("common");
   const router = useRouter();
   const searchParams = useSearchParams();
-  const editId = searchParams.get('edit') || undefined;
+  const editId = searchParams.get("edit") || undefined;
   const isEditMode = !!editId;
+  const owner = useSyncExternalStore(
+    subscribeActiveSession,
+    getActiveUserId,
+    () => null,
+  );
+  const seedParams = searchParams.toString();
+  const isSeedMode = !isEditMode && searchParams.has("seed");
+  const seedInput = useMemo(() => {
+    if (isEditMode) return { seed: null, invalid: false };
+    try {
+      return {
+        seed: parseInspirationSeed(new URLSearchParams(seedParams)),
+        invalid: false,
+      };
+    } catch {
+      return { seed: null, invalid: true };
+    }
+  }, [isEditMode, seedParams]);
+  const seedIdentity = `${owner}:${seedParams}`;
+  const [loadedSeed, setLoadedSeed] = useState<string | null>(null);
+  const seedQuery = useQuery({
+    queryKey: queryKeys.inspirationSeed(owner, seedParams),
+    enabled: isSeedMode && !!seedInput.seed && !!owner,
+    retry: false,
+    gcTime: 0,
+    refetchOnWindowFocus: false,
+    meta: { toastsOwnErrors: true },
+    queryFn: ({ signal }) =>
+      loadInspirationSeed(seedInput.seed!, owner!, signal),
+  });
 
   const [state, dispatch] = useReducer(studioReducer, INITIAL_STUDIO_STATE);
   const [draftPrompted, setDraftPrompted] = useState(false);
@@ -56,6 +106,44 @@ export default function StudioEditorPage() {
   const [editLoaded, setEditLoaded] = useState(false);
   const [wornConflictOpen, setWornConflictOpen] = useState(false);
   const [cloneDialogOpen, setCloneDialogOpen] = useState(false);
+
+  useEffect(() => {
+    if (
+      !isSeedMode ||
+      !owner ||
+      owner !== getActiveUserId() ||
+      loadedSeed === seedIdentity ||
+      !seedQuery.isSuccess ||
+      seedQuery.isFetching
+    )
+      return;
+    dispatch({
+      type: "LOAD",
+      state: {
+        items: seedQuery.data.map((item) => ({
+          id: item.id,
+          type: item.type,
+          name: item.name ?? null,
+          thumbnail_url: item.thumbnail_url ?? null,
+          image_url: item.image_url ?? null,
+          primary_color: item.primary_color ?? null,
+        })),
+        name: seedInput.seed!.name,
+        occasion: seedInput.seed!.occasion,
+      },
+    });
+    setPendingDraft(null);
+    setLoadedSeed(seedIdentity);
+  }, [
+    isSeedMode,
+    owner,
+    loadedSeed,
+    seedIdentity,
+    seedQuery.isSuccess,
+    seedQuery.isFetching,
+    seedQuery.data,
+    seedInput.seed,
+  ]);
 
   const createMutation = useCreateStudioOutfit();
   const patchMutation = usePatchOutfit();
@@ -85,10 +173,10 @@ export default function StudioEditorPage() {
       primary_color: item.primary_color ?? null,
     }));
     dispatch({
-      type: 'LOAD',
+      type: "LOAD",
       state: {
         items,
-        name: editOutfit.name ?? '',
+        name: editOutfit.name ?? "",
         occasion: editOutfit.occasion ?? null,
       },
     });
@@ -97,21 +185,21 @@ export default function StudioEditorPage() {
   }, [editOutfit, editLoaded, isEditMode]);
 
   useEffect(() => {
-    if (isEditMode || draftPrompted) return;
+    if (isEditMode || isSeedMode || draftPrompted) return;
     const draft = loadDraft();
     if (draft && draft.items.length > 0) {
       setPendingDraft(draft);
     }
     setDraftPrompted(true);
-  }, [draftPrompted, isEditMode]);
+  }, [draftPrompted, isEditMode, isSeedMode]);
 
   const draftItemCount = pendingDraft?.items.length ?? 0;
   const { data: draftItemsData } = useItems(
     pendingDraft
-      ? { ids: pendingDraft.items.join(','), is_archived: false }
+      ? { ids: pendingDraft.items.join(","), is_archived: false }
       : { is_archived: false },
     1,
-    draftItemCount > 0 ? draftItemCount : 50
+    draftItemCount > 0 ? draftItemCount : 50,
   );
 
   const handleResumeDraft = useCallback(() => {
@@ -129,7 +217,7 @@ export default function StudioEditorPage() {
         primary_color: item.primary_color ?? null,
       }));
     dispatch({
-      type: 'LOAD',
+      type: "LOAD",
       state: {
         items: resumedItems,
         name: pendingDraft.name,
@@ -145,7 +233,9 @@ export default function StudioEditorPage() {
   }, []);
 
   useEffect(() => {
-    if (isEditMode) return;
+    // Inspiration is an explicit new canvas. Preserve any normal Studio draft,
+    // including when the user adjusts the seeded look before saving it.
+    if (isEditMode || isSeedMode) return;
     if (!state.isDirty) return;
     const timer = setTimeout(() => {
       saveDraft({
@@ -155,40 +245,50 @@ export default function StudioEditorPage() {
       });
     }, 500);
     return () => clearTimeout(timer);
-  }, [state.isDirty, state.items, state.name, state.occasion, isEditMode]);
+  }, [
+    state.isDirty,
+    state.items,
+    state.name,
+    state.occasion,
+    isEditMode,
+    isSeedMode,
+  ]);
 
   const selectedIds = useMemo(
     () => new Set(state.items.map((i) => i.id)),
-    [state.items]
+    [state.items],
   );
 
-  const handleToggle = useCallback((item: Item) => {
-    const existing = state.items.find((i) => i.id === item.id);
-    if (existing) {
-      dispatch({ type: 'REMOVE_ITEM', itemId: item.id });
-      return;
-    }
-    dispatch({
-      type: 'ADD_ITEM',
-      item: {
-        id: item.id,
-        type: item.type,
-        name: item.name ?? null,
-        thumbnail_url: item.thumbnail_url ?? null,
-        image_url: item.image_url ?? null,
-        primary_color: item.primary_color ?? null,
-      },
-    });
-  }, [state.items]);
+  const handleToggle = useCallback(
+    (item: Item) => {
+      const existing = state.items.find((i) => i.id === item.id);
+      if (existing) {
+        dispatch({ type: "REMOVE_ITEM", itemId: item.id });
+        return;
+      }
+      dispatch({
+        type: "ADD_ITEM",
+        item: {
+          id: item.id,
+          type: item.type,
+          name: item.name ?? null,
+          thumbnail_url: item.thumbnail_url ?? null,
+          image_url: item.image_url ?? null,
+          primary_color: item.primary_color ?? null,
+        },
+      });
+    },
+    [state.items],
+  );
 
   const handleSave = async (markWorn: boolean) => {
     const savingOwnerId = getActiveUserId();
     if (state.items.length === 0) {
-      toast.error(t('new.validation.needItem'));
+      toast.error(t("new.validation.needItem"));
       return;
     }
     if (!state.occasion) {
-      toast.error(t('new.validation.needOccasion'));
+      toast.error(t("new.validation.needOccasion"));
       return;
     }
 
@@ -202,7 +302,7 @@ export default function StudioEditorPage() {
           },
         });
         if (getActiveUserId() !== savingOwnerId) return;
-        toast.success(t('new.outfitUpdated'));
+        toast.success(t("new.outfitUpdated"));
         router.push(`/dashboard/outfits/${editId}`);
       } catch (error) {
         if (getActiveUserId() !== savingOwnerId) return;
@@ -210,13 +310,13 @@ export default function StudioEditorPage() {
           setWornConflictOpen(true);
           return;
         }
-        toast.error(getErrorMessage(error, t('new.saveError')));
+        toast.error(getErrorMessage(error, t("new.saveError")));
       }
       return;
     }
 
     if (!markWorn && !state.name.trim()) {
-      toast.error(t('new.nameRequired'));
+      toast.error(t("new.nameRequired"));
       return;
     }
 
@@ -229,20 +329,24 @@ export default function StudioEditorPage() {
         mark_worn: markWorn,
       });
       if (getActiveUserId() !== savingOwnerId) return;
-      clearDraft();
-      toast.success(markWorn ? t('new.savedAndMarkedWorn') : t('new.savedToLookbook'));
+      if (!isSeedMode) clearDraft();
+      toast.success(
+        markWorn ? t("new.savedAndMarkedWorn") : t("new.savedToLookbook"),
+      );
       router.push(
         markWorn
-          ? '/dashboard/outfits?filter=worn'
-          : '/dashboard/outfits?filter=my-looks'
+          ? "/dashboard/outfits?filter=worn"
+          : "/dashboard/outfits?filter=my-looks",
       );
     } catch (error) {
       if (getActiveUserId() !== savingOwnerId) return;
-      toast.error(getErrorMessage(error, t('new.saveError')));
+      toast.error(getErrorMessage(error, t("new.saveError")));
     }
   };
 
-  const mutationPending = isEditMode ? patchMutation.isPending : createMutation.isPending;
+  const mutationPending = isEditMode
+    ? patchMutation.isPending
+    : createMutation.isPending;
   const canSave =
     state.items.length > 0 && state.occasion !== null && !mutationPending;
 
@@ -255,9 +359,47 @@ export default function StudioEditorPage() {
         isWorn: editOutfitIsWorn,
         editLoaded,
       })
-    : 'ready';
+    : "ready";
 
-  if (isEditMode && editPhase === 'loading') {
+  if (isSeedMode && (seedInput.invalid || seedQuery.isError)) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[60vh] px-4 text-center">
+        <AlertTriangle className="h-10 w-10 text-destructive mb-3" />
+        <h2 className="text-lg font-semibold mb-1">
+          {t("new.errors.couldNotLoad")}
+        </h2>
+        <p className="text-sm text-muted-foreground mb-4 max-w-md">
+          {t("new.errors.genericError")}
+        </p>
+        <div className="flex gap-2">
+          {!seedInput.invalid && (
+            <Button variant="outline" onClick={() => seedQuery.refetch()}>
+              {tc("tryAgain")}
+            </Button>
+          )}
+          <Button asChild>
+            <Link href="/dashboard/outfits">
+              {t("new.errors.backToOutfits")}
+            </Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  if (isSeedMode && loadedSeed !== seedIdentity) {
+    return (
+      <div
+        className="flex items-center justify-center h-[60vh]"
+        role="status"
+        aria-label={tc("loading")}
+      >
+        <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+      </div>
+    );
+  }
+
+  if (isEditMode && editPhase === "loading") {
     return (
       <div className="flex items-center justify-center h-[60vh]">
         <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
@@ -265,29 +407,31 @@ export default function StudioEditorPage() {
     );
   }
 
-  if (isEditMode && editPhase === 'missing') {
+  if (isEditMode && editPhase === "missing") {
     return (
       <div className="flex flex-col items-center justify-center h-[60vh] px-4 text-center">
         <AlertCircle className="h-10 w-10 text-muted-foreground mb-3" />
-        <h2 className="text-lg font-semibold mb-1">{t('new.errors.notFound')}</h2>
+        <h2 className="text-lg font-semibold mb-1">
+          {t("new.errors.notFound")}
+        </h2>
         <p className="text-sm text-muted-foreground mb-4 max-w-md">
-          {t('new.errors.notFoundDesc')}
+          {t("new.errors.notFoundDesc")}
         </p>
         <Button asChild>
-          <Link href="/dashboard/outfits">{t('new.errors.backToOutfits')}</Link>
+          <Link href="/dashboard/outfits">{t("new.errors.backToOutfits")}</Link>
         </Button>
       </div>
     );
   }
 
-  if (isEditMode && editPhase === 'error') {
+  if (isEditMode && editPhase === "error") {
     const isAuthError = editErrorStatus === 401 || editErrorStatus === 403;
     const headline = isAuthError
-      ? t('new.errors.cannotEdit')
-      : t('new.errors.couldNotLoad');
+      ? t("new.errors.cannotEdit")
+      : t("new.errors.couldNotLoad");
     const body = isAuthError
-      ? t('new.errors.couldNotLoadDesc')
-      : t('new.errors.genericError');
+      ? t("new.errors.couldNotLoadDesc")
+      : t("new.errors.genericError");
     return (
       <div className="flex flex-col items-center justify-center h-[60vh] px-4 text-center">
         <AlertTriangle className="h-10 w-10 text-destructive mb-3" />
@@ -296,31 +440,37 @@ export default function StudioEditorPage() {
         <div className="flex gap-2">
           {!isAuthError && (
             <Button variant="outline" onClick={() => refetchEdit()}>
-              {tc('tryAgain')}
+              {tc("tryAgain")}
             </Button>
           )}
           <Button asChild>
-            <Link href="/dashboard/outfits">{t('new.errors.backToOutfits')}</Link>
+            <Link href="/dashboard/outfits">
+              {t("new.errors.backToOutfits")}
+            </Link>
           </Button>
         </div>
       </div>
     );
   }
 
-  if (isEditMode && editPhase === 'wornImmutable' && editOutfit && editId) {
+  if (isEditMode && editPhase === "wornImmutable" && editOutfit && editId) {
     return (
       <>
         <div className="flex flex-col items-center justify-center h-[60vh] px-4 text-center">
           <AlertCircle className="h-10 w-10 text-muted-foreground mb-3" />
-          <h2 className="text-lg font-semibold mb-1">{t('new.worn.title')}</h2>
+          <h2 className="text-lg font-semibold mb-1">{t("new.worn.title")}</h2>
           <p className="text-sm text-muted-foreground mb-4 max-w-md">
-            {t('new.worn.description')}
+            {t("new.worn.description")}
           </p>
           <div className="flex gap-2">
             <Button variant="outline" asChild>
-              <Link href={`/dashboard/outfits/${editId}`}>{t('new.worn.backToOutfit')}</Link>
+              <Link href={`/dashboard/outfits/${editId}`}>
+                {t("new.worn.backToOutfit")}
+              </Link>
             </Button>
-            <Button onClick={() => setCloneDialogOpen(true)}>{t('new.worn.saveAsNew')}</Button>
+            <Button onClick={() => setCloneDialogOpen(true)}>
+              {t("new.worn.saveAsNew")}
+            </Button>
           </div>
         </div>
         <CloneToLookbookDialog
@@ -334,19 +484,22 @@ export default function StudioEditorPage() {
     );
   }
 
-  const cancelHref = isEditMode && editId ? `/dashboard/outfits/${editId}` : '/dashboard/outfits';
+  const cancelHref =
+    isEditMode && editId
+      ? `/dashboard/outfits/${editId}`
+      : "/dashboard/outfits";
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="sticky top-0 z-10 bg-background border-b px-4 py-3 flex items-center justify-between">
+    <div className={`page-container ${styles.studio}`}>
+      <div className={styles.studioHeader}>
         <Button variant="ghost" size="sm" asChild>
           <Link href={cancelHref}>
             <ChevronLeft className="h-4 w-4 mr-1" />
-            {tc('cancel')}
+            {tc("cancel")}
           </Link>
         </Button>
         <h1 className="text-lg font-semibold">
-          {isEditMode ? t('new.editOutfit') : t('new.studio')}
+          {isEditMode ? t("new.editOutfit") : t("new.studio")}
         </h1>
         <div className="flex flex-col items-end">
           <div className="flex gap-2">
@@ -360,90 +513,92 @@ export default function StudioEditorPage() {
                 {mutationPending ? (
                   <Loader2 className="h-4 w-4 animate-spin" />
                 ) : (
-                  t('new.wearToday')
+                  t("new.wearToday")
                 )}
               </Button>
             )}
-            <Button size="sm" disabled={!canSave} onClick={() => handleSave(false)}>
+            <Button
+              size="sm"
+              disabled={!canSave}
+              onClick={() => handleSave(false)}
+            >
               {mutationPending ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : isEditMode ? (
-                t('new.saveChanges')
+                t("new.saveChanges")
               ) : (
-                t('new.saveToLookbook')
+                t("new.saveToLookbook")
               )}
             </Button>
           </div>
           {!canSave && !mutationPending && (
             <p className="text-xs text-muted-foreground mt-1 text-right">
               {state.items.length === 0 && state.occasion === null
-                ? t('new.validation.needItemAndOccasion')
+                ? t("new.validation.needItemAndOccasion")
                 : state.items.length === 0
-                  ? t('new.validation.needItem')
+                  ? t("new.validation.needItem")
                   : state.occasion === null
-                    ? t('new.validation.needOccasion')
-                    : ''}
+                    ? t("new.validation.needOccasion")
+                    : ""}
             </p>
           )}
         </div>
       </div>
 
-      {pendingDraft && (
+      {pendingDraft && !isSeedMode && (
         <div className="bg-blue-50 border-b border-blue-200 px-4 py-3 flex items-center justify-between gap-4">
-          <p className="text-sm text-blue-900">
-            {t('new.draft.found')}
-          </p>
+          <p className="text-sm text-blue-900">{t("new.draft.found")}</p>
           <div className="flex gap-2">
             <Button size="sm" variant="outline" onClick={handleDiscardDraft}>
-              {t('new.draft.startFresh')}
+              {t("new.draft.startFresh")}
             </Button>
             <Button size="sm" onClick={handleResumeDraft}>
-              {t('new.draft.resume')}
+              {t("new.draft.resume")}
             </Button>
           </div>
         </div>
       )}
 
-      <div className="flex-1 overflow-y-auto p-4">
-        <div className="max-w-6xl mx-auto space-y-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div>
+      <div className="min-w-0">
+        <div className="space-y-6">
+          <div className={styles.studioGrid}>
+            <div className={styles.studioPanel}>
               <h2 className="text-sm font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
-                {t('new.tabs.canvas')}
+                {t("new.tabs.canvas")}
               </h2>
               <CanvasPanel
                 items={state.items}
-                onRemove={(id) => dispatch({ type: 'REMOVE_ITEM', itemId: id })}
+                onRemove={(id) => dispatch({ type: "REMOVE_ITEM", itemId: id })}
               />
             </div>
-            <div>
+            <div className={styles.studioPanel}>
               <h2 className="text-sm font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
-                {t('new.tabs.details')}
+                {t("new.tabs.details")}
               </h2>
               <DetailsPanel
                 items={state.items}
                 name={state.name}
                 occasion={state.occasion}
-                onNameChange={(n) => dispatch({ type: 'SET_NAME', name: n })}
+                onNameChange={(n) => dispatch({ type: "SET_NAME", name: n })}
                 onOccasionChange={(o) =>
-                  dispatch({ type: 'SET_OCCASION', occasion: o })
+                  dispatch({ type: "SET_OCCASION", occasion: o })
                 }
                 onAiMerge={(merged) =>
-                  dispatch({ type: 'REPLACE_CANVAS', items: merged })
+                  dispatch({ type: "REPLACE_CANVAS", items: merged })
                 }
               />
             </div>
           </div>
 
-          <div>
+          <div className={styles.studioPanel}>
             <h2 className="text-sm font-semibold text-muted-foreground mb-2 uppercase tracking-wide">
-              {t('new.tabs.yourWardrobe')}
+              {t("new.tabs.yourWardrobe")}
             </h2>
             <ItemPicker
               selectedIds={selectedIds}
               onToggle={handleToggle}
               hideNeedsWash={true}
-              emptyMessage={t('new.tabs.emptyWardrobe')}
+              emptyMessage={t("new.tabs.emptyWardrobe")}
               heightClass="h-[280px]"
             />
           </div>
@@ -453,20 +608,20 @@ export default function StudioEditorPage() {
       <AlertDialog open={wornConflictOpen} onOpenChange={setWornConflictOpen}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>{t('new.worn.title')}</AlertDialogTitle>
+            <AlertDialogTitle>{t("new.worn.title")}</AlertDialogTitle>
             <AlertDialogDescription>
-              {t('new.worn.description')}
+              {t("new.worn.description")}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>{t('new.discardChanges')}</AlertDialogCancel>
+            <AlertDialogCancel>{t("new.discardChanges")}</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
                 setWornConflictOpen(false);
                 setCloneDialogOpen(true);
               }}
             >
-              {t('new.worn.saveAsNew')}
+              {t("new.worn.saveAsNew")}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

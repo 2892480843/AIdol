@@ -19,7 +19,7 @@ const outfit = vi.hoisted(() => ({
   source: 'on_demand',
   occasion: 'casual',
   name: 'Look' as string | null,
-  items: [],
+  items: [] as { id: string; type: string; name: string; thumbnail_url: null; image_url: null }[],
   feedback: null,
 }))
 
@@ -44,6 +44,16 @@ function messages(locale: string, namespace: string) {
 }
 
 describe('outfit detail source label', () => {
+  it('opens an outfit garment with the wardrobe item query key', () => {
+    outfit.items = [{ id: 'garment-1', type: 'shirt', name: 'Linen shirt', thumbnail_url: null, image_url: null }]
+    try {
+      render(<NextIntlClientProvider locale="en" messages={{ outfits: messages('en', 'outfits'), common: messages('en', 'common'), constants: messages('en', 'constants') }} onError={() => {}}><OutfitDetailPage /></NextIntlClientProvider>)
+      expect(screen.getByRole('link', { name: /Linen shirt/ })).toHaveAttribute('href', '/dashboard/wardrobe?item=garment-1')
+    } finally {
+      outfit.items = []
+    }
+  })
+
   it('shows the translated source on the German locale', () => {
     const de = {
       outfits: messages('de', 'outfits'),

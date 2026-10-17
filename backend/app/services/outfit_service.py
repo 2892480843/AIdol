@@ -14,6 +14,7 @@ from app.models.outfit import (
     OutfitItem,
     OutfitSource,
     OutfitStatus,
+    UserFeedback,
 )
 from app.models.user import User
 
@@ -27,6 +28,7 @@ class OutfitListFilters:
     date_to: date | None = None
     source: str | None = None
     is_lookbook: bool | None = None
+    worn: bool | None = None
     is_replacement: bool | None = None
     has_source_item: bool | None = None
     item_type: str | None = None
@@ -114,6 +116,11 @@ class OutfitService:
             clauses.append(Outfit.scheduled_for.is_(None))
         elif filters.is_lookbook is False:
             clauses.append(Outfit.scheduled_for.is_not(None))
+
+        if filters.worn is not None:
+            # Studio wear instances stay pending; a recorded wear date is the fact.
+            recorded_wear = Outfit.feedback.has(UserFeedback.worn_at.is_not(None))
+            clauses.append(recorded_wear if filters.worn else ~recorded_wear)
 
         if filters.is_replacement is True:
             clauses.append(Outfit.replaces_outfit_id.is_not(None))
