@@ -1,4 +1,4 @@
-# Wardrowbe 本机运行与架构
+# 搭搭本机运行与架构
 
 当前环境为 macOS Apple Silicon + Docker Desktop。网页与后端只绑定本机回环地址；数据库、Redis、对象存储、监测采集器不发布主机端口。
 
@@ -25,7 +25,7 @@
 
 前端推荐页已拆为表单、天气、基础单品、结果、任务面板和数据 hooks。任务状态由服务器保存，刷新页面不会再次提交生成请求。任务列表按用户隔离；全局缓存、离线上传队列也按后台用户身份隔离。历史无归属上传文件会保留，需逐个确认归属。
 
-主要前端页面与 21 个基础组件现统一使用 Mantine 8.3.18，保留 React 18 / Next.js 14。支持桌面侧栏、手机抽屉与底部导航、浅色/深色主题。当前前端镜像为 `wardrowbe-frontend:community-20261017`；后端 API 同样更新为 `wardrowbe-backend:ui-20261017`，增加按实际穿着记录筛选的可选参数，工作进程保留原架构镜像。只更新前端可执行 `./local.sh build frontend` 后再执行 `./local.sh up -d --no-deps frontend`。
+主要前端页面与 21 个基础组件现统一使用 Mantine 8.3.18，保留 React 18 / Next.js 14。支持桌面侧栏、手机抽屉与底部导航、浅色/深色主题。当前前端镜像为 `wardrowbe-frontend:dada-20261017`；后端 API 同样更新为 `wardrowbe-backend:ui-20261017`，增加按实际穿着记录筛选的可选参数，工作进程保留原架构镜像。只更新前端可执行 `./local.sh build frontend` 后再执行 `./local.sh up -d --no-deps frontend`。
 
 完整职责与一致性说明见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。
 
@@ -93,6 +93,6 @@ ops/backup-local.sh
 
 ## 验证与部署边界
 
-最新彩色社区界面与灵感功能验收见 [verification/editorial-style/REPORT.md](verification/editorial-style/REPORT.md)：87 个前端测试文件、842 项测试通过，完成发现、搜索、收藏刷新、衣橱试搭、工作室预选及保存后刷新；桌面、平板、手机和深色主题有截图。创作者一手来源与方法边界见 [docs/research/2026-10-17-style-creators.md](docs/research/2026-10-17-style-creators.md)。上一轮首页内容验收见 [verification/dashboard-content/REPORT.md](verification/dashboard-content/REPORT.md)：前端 82 个测试文件、793 项测试通过，并检查电脑、平板、手机及深色主题和首页各入口。首页展示最近衣物、少穿单品、待确认推荐、衣橱待办、配色与常用入口，使用真实账号数据。上轮完整 UI 验收保留在 [verification/ui-redesign/REPORT.md](verification/ui-redesign/REPORT.md)：前端 80 个测试文件、771 项测试及后端 2155 项测试通过，并验证真实上传识图、推荐恢复、搭配生成、造型册与手机布局。后端架构验收见 [verification/architecture/REPORT.md](verification/architecture/REPORT.md)，其中图片存储、真实 AI、后台队列及本地 OTLP 采集有独立运行证据；原部署验收保留为历史记录。
+最新网页品牌已更名为「搭搭」，新衣架图标、八语品牌文案及浏览器/Apple 图标验收见 [verification/dada-brand/REPORT.md](verification/dada-brand/REPORT.md)，完整前端 842 项测试通过；只更新前端，保留原存储、草稿和登录标识。彩色社区界面与灵感功能验收见 [verification/editorial-style/REPORT.md](verification/editorial-style/REPORT.md)：87 个前端测试文件、842 项测试通过，完成发现、搜索、收藏刷新、衣橱试搭、工作室预选及保存后刷新；桌面、平板、手机和深色主题有截图。创作者一手来源与方法边界见 [docs/research/2026-10-17-style-creators.md](docs/research/2026-10-17-style-creators.md)。上一轮首页内容验收见 [verification/dashboard-content/REPORT.md](verification/dashboard-content/REPORT.md)：前端 82 个测试文件、793 项测试通过，并检查电脑、平板、手机及深色主题和首页各入口。首页展示最近衣物、少穿单品、待确认推荐、衣橱待办、配色与常用入口，使用真实账号数据。上轮完整 UI 验收保留在 [verification/ui-redesign/REPORT.md](verification/ui-redesign/REPORT.md)：前端 80 个测试文件、771 项测试及后端 2155 项测试通过，并验证真实上传识图、推荐恢复、搭配生成、造型册与手机布局。后端架构验收见 [verification/architecture/REPORT.md](verification/architecture/REPORT.md)，其中图片存储、真实 AI、后台队列及本地 OTLP 采集有独立运行证据；原部署验收保留为历史记录。
 
 当前仍使用本机开发登录。公开部署所需的域名、HTTPS、正式 OIDC 身份服务，以及真实邮件/推送接收渠道尚未配置。S3 适配器可连接其他兼容服务；本机单节点 RustFS 及 Docker 卷不能替代跨主机容灾。未承诺未经压测的并发容量。

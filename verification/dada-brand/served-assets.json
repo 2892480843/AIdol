@@ -1,0 +1,32 @@
+[
+  {
+    "file": "logo.svg",
+    "status": 200,
+    "sha256": "1d40eee31150ff265fa82174737878166f6961bbe97f48c8c6f67ff02218f4c1"
+  },
+  {
+    "file": "favicon.ico",
+    "status": 200,
+    "sha256": "1d0addd11811cd71ade77043e067c438a78fdce91c37ffa4cf3180860beabb30"
+  },
+  {
+    "file": "icon-32.png",
+    "status": 200,
+    "sha256": "3b0d2d04921af21e2f7460cc44b7b373e45b069681a741184ffb7cded3a5cd9d"
+  },
+  {
+    "file": "icon-192.png",
+    "status": 200,
+    "sha256": "f44c4edf6e33ebd338619186b8e8c4d030782b4ce4d0c3a901674f2e366c7e44"
+  },
+  {
+    "file": "icon-512.png",
+    "status": 200,
+    "sha256": "dac5b0a46c6cb4b4ab9fe6cc7db857fcd1666784a27a57246df4a33417a8eeb1"
+  },
+  {
+    "file": "apple-touch-icon.png",
+    "status": 200,
+    "sha256": "dc8cb8517a28a609b12c274ded5d334f883cd85b618cf21926f1ab31203f5954"
+  }
+]

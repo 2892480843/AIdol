@@ -1,0 +1,76 @@
+{
+  "generatedAt": "2026-10-17T20:17:36.580048+08:00",
+  "platform": "Darwin arm64",
+  "imageTag": "wardrowbe-frontend:dada-20261017",
+  "runningImageId": "sha256:ff2467e77aa9598d91d3166eb99acc29fd5da9f041d9f6704914cb392e9287ca",
+  "builtImageId": "sha256:ff2467e77aa9598d91d3166eb99acc29fd5da9f041d9f6704914cb392e9287ca",
+  "buildId": "qbd8LHJ3IkoNdA9Jk3Fs8",
+  "sourceFiles": 434,
+  "sourceManifestUnchanged": true,
+  "tests": {
+    "files": 87,
+    "total": 842,
+    "passed": 842,
+    "failed": 0
+  },
+  "checks": {
+    "typecheck": true,
+    "i18n": true,
+    "lintExitCode": 0,
+    "existingLintWarnings": 6,
+    "buildExitCode": 0
+  },
+  "browser": {
+    "startedAt": "2026-10-17T12:11:32.131Z",
+    "finishedAt": "2026-10-17T12:16:28.876Z",
+    "checks": [
+      {
+        "check": "metadata-and-header",
+        "passed": true,
+        "title": "搭搭 · 穿搭灵感社区",
+        "iconVersion": "dada-20261017"
+      },
+      {
+        "check": "desktop-brand-assets",
+        "passed": true,
+        "width": 1280,
+        "scrollWidth": 1280,
+        "loaded": true,
+        "filter": "none"
+      },
+      {
+        "check": "mobile-320-brand-layout",
+        "passed": true,
+        "width": 320,
+        "scrollWidth": 320
+      },
+      {
+        "check": "mobile-390-and-drawer",
+        "passed": true,
+        "width": 390,
+        "scrollWidth": 390,
+        "dialogName": "搭搭"
+      },
+      {
+        "check": "dark-brand-colors",
+        "passed": true,
+        "filter": "none"
+      },
+      {
+        "check": "public-entry-auth-frame",
+        "passed": true,
+        "title": "搭搭 · 穿搭灵感社区",
+        "heading": "搭搭",
+        "oldName": false
+      }
+    ],
+    "consoleErrors": [],
+    "originalTheme": "light"
+  },
+  "backendReady": {
+    "status": "healthy",
+    "checks": {
+      "database": "healthy"
+    }
+  }
+}
