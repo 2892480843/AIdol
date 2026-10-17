@@ -54,6 +54,7 @@ k8s/*.secret.yaml
 
 # Local development
 *.local
+!backend/Dockerfile.local
 .claude/
 .serena/
 CLAUDE.md
@@ -64,4 +65,5 @@ screenshots/
 testing/
 .playwright-mcp
 *.review.yml
+backups/
 *-test.yml

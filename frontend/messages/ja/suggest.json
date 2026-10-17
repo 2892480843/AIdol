@@ -102,5 +102,44 @@
     "reset": "リセット",
     "temperature": "気温"
   },
-  "yourOutfit": "あなたのコーデ"
+  "yourOutfit": "あなたのコーデ",
+  "lookCount": {
+    "title": "何通りのコーデにしますか？",
+    "single": "1つのコーデ",
+    "three": "3つのコーデを比較"
+  },
+  "tasks": {
+    "title": "提案の進捗",
+    "refresh": "更新",
+    "loading": "提案履歴を読み込み中…",
+    "loadingResults": "コーデを読み込み中…",
+    "backgroundHint": "コーデを作成しています。このページを離れて後で確認できます。",
+    "completedHint": "下にコーデが表示されます。",
+    "failedHint": "リクエストは保存されています。後で再試行できます。",
+    "cancelledHint": "この提案はキャンセルされました。",
+    "attempt": "試行 {count} / {max}",
+    "cancel": "キャンセル",
+    "retry": "再試行",
+    "history": "最近のリクエスト（{count}）",
+    "view": "開く",
+    "networkError": "提案の進捗を更新できません。更新して再接続してください。",
+    "actionError": "操作を完了できませんでした。再試行してください。",
+    "dashboardHint": "提案の進捗や最近の結果を確認できます。",
+    "openActivity": "提案を確認",
+    "status": {
+      "queued": "待機中",
+      "running": "作成中",
+      "succeeded": "完了",
+      "failed": "確認が必要",
+      "cancelled": "キャンセル済み"
+    },
+    "stage": {
+      "queued": "開始を待っています",
+      "preparing": "ワードローブを確認中",
+      "generating": "コーデを作成中",
+      "completed": "コーデが完成しました",
+      "error": "コーデを作成できませんでした",
+      "cancelled": "提案をキャンセルしました"
+    }
+  }
 }

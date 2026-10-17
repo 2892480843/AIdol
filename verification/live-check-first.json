@@ -1,0 +1,88 @@
+{
+  "started_at": "2026-10-17T03:31:05.541013",
+  "scope": "deployed frontend proxy, API, database, Redis workers and real AI; synthetic data only",
+  "checks": [
+    {
+      "name": "Unauthenticated access is refused",
+      "passed": true,
+      "detail": "Not authenticated",
+      "seconds": 0.03
+    },
+    {
+      "name": "Test account/profile/onboarding and 3 uploads",
+      "passed": true,
+      "detail": {
+        "created_items": 3,
+        "test_account": "wardrowbe-verify-主账号-b792c896@example.com"
+      },
+      "seconds": 0.58
+    },
+    {
+      "name": "AI image upload queue",
+      "passed": true,
+      "detail": {
+        "type": "t-shirt",
+        "primary_color": "blue",
+        "status": "ready",
+        "tagging_status": "tagged",
+        "ai_description": "一件蓝色短袖圆领T恤，纯色无图案设计。"
+      },
+      "seconds": 21.08
+    },
+    {
+      "name": "Signed image via frontend proxy",
+      "passed": true,
+      "detail": {
+        "image_bytes": 8775,
+        "type": "image/jpeg"
+      },
+      "seconds": 0.02
+    },
+    {
+      "name": "Wardrobe management",
+      "passed": true,
+      "detail": "edit, search, filter, archive and restore passed",
+      "seconds": 0.05
+    },
+    {
+      "name": "Wear and wash tracking",
+      "passed": true,
+      "detail": "wear count, history, wash reset and wash history passed",
+      "seconds": 0.04
+    },
+    {
+      "name": "Image rotation",
+      "passed": true,
+      "detail": "clockwise/counterclockwise rotations passed",
+      "seconds": 0.02
+    },
+    {
+      "name": "Background removal and undo",
+      "passed": true,
+      "detail": "image worker completed background removal and original restore",
+      "seconds": 16.23
+    },
+    {
+      "name": "Preferences and exclusions",
+      "passed": true,
+      "detail": "preferences and recommendation exclusions saved",
+      "seconds": 0.08
+    },
+    {
+      "name": "Manual outfit and feedback",
+      "passed": false,
+      "error": "AssertionError: POST /outfits/73279e59-6838-4d23-8eb1-8bfd99ee89b2/wear-today: HTTP 422: {\"detail\":\"Validation error\",\"errors\":[{\"field\":\"body\",\"message\":\"Field required\"}]}",
+      "seconds": 0.25
+    },
+    {
+      "name": "Real AI recommendation",
+      "passed": false,
+      "error": "ReadTimeout: timed out",
+      "seconds": 150.07
+    }
+  ],
+  "test_account": {
+    "email": "wardrowbe-verify-主账号-b792c896@example.com",
+    "user_id": "479345e7-fc3b-4527-ae91-a2842afe59f1"
+  }
+}

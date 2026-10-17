@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from contextlib import AsyncExitStack
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,7 @@ from app.models.item import TAG_COLUMNS, ClothingItem, ItemStatus, TaggedBy, Tag
 from app.models.preference import UserPreference
 from app.models.user import User
 from app.services.ai_service import AIService, ClothingTags, repeats_identically
+from app.services.image_service import ImageService
 from app.utils.locale import DEFAULT_LOCALE
 from app.workers.db import get_db_session
 
@@ -193,9 +195,11 @@ async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, 
         return {"status": "skipped", "reason": "vision disabled", "item_id": item_id}
 
     try:
-        # Verify image exists
+        # Existing filesystem jobs carry absolute paths. S3 jobs carry a
+        # durable key; their temporary file lives only for this AI call.
         path = Path(image_path)
-        if not path.exists():
+        materialize = image_path.startswith("storage://") or get_settings().storage_backend == "s3"
+        if not materialize and not path.exists():
             error_msg = f"Image not found: {image_path}"
             logger.error(error_msg)
             await update_item_status_to_error(ctx, item_id, error_msg)
@@ -239,9 +243,15 @@ async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, 
 
         # Analyze with AI (uses custom endpoints if available)
         ai_service = AIService(endpoints=ai_endpoints)
-        tags = await asyncio.wait_for(
-            ai_service.analyze_image(path, locale=locale), timeout=_tagging_call_budget(ai_service)
-        )
+        async with AsyncExitStack() as image_context:
+            if materialize:
+                path = await image_context.enter_async_context(
+                    ImageService().materialize_image_async(image_path)
+                )
+            tags = await asyncio.wait_for(
+                ai_service.analyze_image(path, locale=locale),
+                timeout=_tagging_call_budget(ai_service),
+            )
 
         logger.info(
             f"AI analysis complete for item {item_id}: type={tags.type}, color={tags.primary_color}"
@@ -357,7 +367,10 @@ async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, 
         raise
     except Exception as e:
         error_msg = str(e)
-        logger.exception(f"Error tagging item {item_id}: {error_msg}")
+        logger.error(
+            "AI tagging failed",
+            extra={"item_id": item_id, "error_type": type(e).__name__},
+        )
         # Returning normally here made max_tries dead: arq books a returned value
         # as success. arq only reschedules on Retry, so a plain re-raise would
         # surface the failure but still never retry.

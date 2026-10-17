@@ -1,0 +1,146 @@
+[
+  {
+    "page": "穿搭",
+    "url": "http://localhost:3000/dashboard/outfits?filter=my-looks",
+    "headings": [
+      "穿搭"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/outfits?filter=my-looks\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 58-66, 68-69, 71-72, 77-89\n~0 AXWebArea Wardrowbe, URL: localhost:3000/dashboard/outfits?filter=my-looks\n~\t\t53 heading 穿搭, Value: 1\n~\t\t\t54 text 穿搭\n~\t\t55 text 您的造型、穿着记录和 AI 建议\n~\t\t56 container 切换视图\n~\t\t\t57 checkbox 列表, Value: 1\n+\t\t\t\t58 image\n+\t\t\t\t59 text 列表\n+\t\t\t60 checkbox 日历, Value: 0\n+\t\t\t\t61 image\n+\t\t\t\t62 text 日历\n+\t\t63 button 选择\n+\t\t\t64 image\n+\t\t\t65 text 选择\n+\t\t66 link Description: 新建穿搭, Value: localhost:3000/dashboard/outfits/new\n~\t\t67 button 全部\n+\t\t68 button 造型册\n+\t\t69 button 已穿着\n~\t\t70 button 搭配\n+\t\t71 button 替换\n+\t\t72 button AI\n~\t\t73 container\n~\t\t\t75 text field (settable)\n~\t\t76 text 共0组\n+\t\t77 text 还没有造型册模板。\n+\t\t78 link Description: 新建穿搭, Value: localhost:3000/dashboard/outfits/new\nThe focused UI element is 8 link Description: 穿搭, URL: localhost:3000/dashboard/outfits"
+  },
+  {
+    "page": "搭配组合",
+    "url": "http://localhost:3000/dashboard/pairings",
+    "headings": [
+      "搭配",
+      "还没有搭配"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/pairings\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 55, 57-62, 64-78\n~0 AXWebArea Wardrowbe, URL: localhost:3000/dashboard/pairings\n~\t\t53 heading 搭配, Value: 1\n~\t\t\t54 image\n+\t\t\t55 text 搭配\n~\t\t56 text AI 为你的单品生成的穿搭组合\n+\t\t57 combo box (collapsed) Value: 所有单品类型, Secondary Actions: Expand\n+\t\t\t58 text 所有单品类型\n+\t\t59 text 0组搭配\n+\t\t60 image\n+\t\t61 heading 还没有搭配, Value: 3\n+\t\t\t62 text 还没有搭配\n~\t\t63 text 从衣柜中选择一件单品，使用「寻找搭配」来发现好看的穿搭组合。\n+\t\t64 link Description: 前往衣柜, Value: localhost:3000/dashboard/wardrobe\nThe focused UI element is 9 link Description: 搭配组合, URL: localhost:3000/dashboard/pairings"
+  },
+  {
+    "page": "历史",
+    "url": "http://localhost:3000/dashboard/pairings",
+    "headings": [
+      "搭配",
+      "还没有搭配"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/pairings\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 10 link Description: 历史, URL: localhost:3000/dashboard/history"
+  },
+  {
+    "page": "家庭动态",
+    "url": "http://localhost:3000/dashboard/family/feed",
+    "headings": [
+      "家庭动态",
+      "请先加入家庭"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/family/feed\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 55, 61-64\n~0 AXWebArea Wardrowbe, URL: localhost:3000/dashboard/family/feed\n~\t\t53 heading 家庭动态, Value: 1\n~\t\t\t54 text 家庭动态\n+\t\t55 text 浏览和评价家人的穿搭\n~\t\t56 image\n~\t\t57 heading 请先加入家庭, Value: 3\n~\t\t\t58 text 请先加入家庭\n~\t\t59 text 创建或加入家庭来浏览和互评穿搭。\n~\t\t60 link Description: 设置家庭, Value: localhost:3000/dashboard/family\n+\t\t\t61 content list\n+\t\t\t\t62 container\n+\t\t\t\t\t63 image\n+\t\t\t\t\t64 text You are not in a family\nThe focused UI element is 11 link Description: 家庭动态, URL: localhost:3000/dashboard/family/feed"
+  },
+  {
+    "page": "数据分析",
+    "url": "http://localhost:3000/dashboard/analytics",
+    "headings": [
+      "数据分析",
+      "单品总数",
+      "已生成穿搭",
+      "采纳率",
+      "总穿着次数",
+      "洞察",
+      "颜色分布",
+      "单品类型",
+      "穿着最多",
+      "穿着最少",
+      "从未穿过"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/analytics\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 57-58, 61-64\n~0 AXWebArea Wardrowbe, URL: localhost:3000/dashboard/analytics\n~\t\t53 heading 数据分析, Value: 1\n~\t\t\t54 text 数据分析\n~\t\t55 text 你的衣柜洞察与统计\n~\t\t56 heading 单品总数, Value: 3\n+\t\t\t57 text 单品总数\n+\t\t58 image\n~\t\t59 text 0\n~\t\t60 text 0 件可穿\n+\t\t61 heading 已生成穿搭, Value: 3\n+\t\t\t62 text 已生成穿搭\n+\t\t63 image\n+\t\t64 text 0\n+\t\t65 text 本周 0 套\n+\t\t66 heading 采纳率, Value: 3\n+\t\t\t67 text 采纳率\n+\t\t68 image\n+\t\t69 text -\n+\t\t70 text 暂无数据\n+\t\t71 heading 总穿着次数, Value: 3\n+\t\t\t72 text 总穿着次数\n+\t\t73 image\n+\t\t74 text 0\n+\t\t75 text 记录你的穿搭\n+\t\t76 heading 洞察, Value: 3\n+\t\t\t77 image\n+\t\t\t78 text 洞察\n+\t\t79 content list\n+\t\t\t80 text 先往衣橱里添加一些单品吧！\n+\t\t81 heading 颜色分布, Value: 3\n+\t\t\t82 image\n+\t\t\t83 text 颜色分布\n+\t\t84 text 衣柜中最常见的颜色\n+\t\t85 text 暂无颜色数据\n+\t\t86 heading 单品类型, Value: 3\n+\t\t\t87 image\n+\t\t\t88 text 单品类型\n+\t\t89 text 按服装类型分类\n+\t\t90 text 暂无单品\n+\t\t91 heading 穿着最多, Value: 3\n+\t\t\t92 text 穿着最多\n+\t\t93 text 你的最爱\n+\t\t94 text 开始记录你的穿搭吧！\n+\t\t95 heading 穿着最少, Value: 3\n+\t\t\t96 text 穿着最少\n+\t\t97 text 考虑穿穿这些\n+\t\t98 text 继续记录吧！\n+\t\t99 heading 从未穿过, Value: 3\n+\t\t\t100 text 从未穿过\n+\t\t101 text 是时候试试了？\n+\t\t102 text 所有单品都穿过了！\nThe focused UI element is 12 link Description: 数据分析, URL: localhost:3000/dashboard/analytics"
+  },
+  {
+    "page": "AI 学习",
+    "url": "http://localhost:3000/dashboard/learning",
+    "headings": [
+      "AI 学习",
+      "暂无学习数据"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/learning\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 57-58, 63, 65-102\n~0 AXWebArea Wardrowbe, URL: localhost:3000/dashboard/learning\n~\t\t53 heading AI 学习, Value: 1\n~\t\t\t54 text AI 学习\n~\t\t55 text 开始评价穿搭，帮助 AI 了解你的偏好\n~\t\t56 image\n+\t\t57 heading 暂无学习数据, Value: 3\n+\t\t\t58 text 暂无学习数据\n~\t\t59 text 从接受或拒绝穿搭建议并评分开始。\n~\t\t60 link Description: 获取穿搭建议, Value: localhost:3000/dashboard/suggest\n~\t\t61 button 立即计算\n~\t\t\t62 image\n+\t\t\t63 text 立即计算\n~\t\t64 text 已经给过反馈了？点击「立即计算」来处理。\nThe focused UI element is 13 link Description: AI 学习, URL: localhost:3000/dashboard/learning"
+  },
+  {
+    "page": "家庭",
+    "url": "http://localhost:3000/dashboard/learning",
+    "headings": [
+      "AI 学习",
+      "暂无学习数据"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/learning\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 17 link Description: 家庭, URL: localhost:3000/dashboard/family"
+  },
+  {
+    "page": "通知",
+    "url": "http://localhost:3000/dashboard/notifications",
+    "headings": [
+      "通知",
+      "通知渠道",
+      "推送时间表"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/notifications\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 57-58, 61-63\n~0 AXWebArea Wardrowbe, URL: localhost:3000/dashboard/notifications\n~\t\t53 heading 通知, Value: 1\n~\t\t\t54 text 通知\n~\t\t55 text 设置接收穿搭推荐的方式和时间\n~\t\t56 heading 通知渠道, Value: 3\n+\t\t\t57 image\n+\t\t\t58 text 通知渠道\n~\t\t59 text 添加渠道以接收每日穿搭推荐\n~\t\t60 pop up button (collapsed) 添加渠道, Secondary Actions: Expand\n+\t\t\t61 image\n+\t\t\t62 text 添加渠道\n+\t\t63 image\n~\t\t64 text 尚未配置通知渠道\n+\t\t65 text 添加一个渠道来开始接收穿搭建议\n+\t\t66 heading 推送时间表, Value: 3\n+\t\t\t67 image\n+\t\t\t68 text 推送时间表\n+\t\t69 text 设置每天接收穿搭推荐的时间\n+\t\t70 pop up button (collapsed) 添加时间表, Secondary Actions: Expand\n+\t\t\t71 image\n+\t\t\t72 text 添加时间表\n+\t\t73 image\n+\t\t74 text 尚未配置时间表\n+\t\t75 text 添加时间表来接收每日穿搭建议\nThe focused UI element is 18 link Description: 通知, URL: localhost:3000/dashboard/notifications"
+  },
+  {
+    "page": "设置",
+    "url": "http://localhost:3000/dashboard/notifications",
+    "headings": [
+      "通知",
+      "通知渠道",
+      "推送时间表"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/notifications\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 19 link Description: 设置, URL: localhost:3000/dashboard/settings"
+  },
+  {
+    "page": "历史",
+    "url": "http://localhost:3000/dashboard/history",
+    "headings": [
+      "历史记录",
+      "2026年10月",
+      "10月17日星期六",
+      "暂无推荐记录"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/history\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 58-61, 65, 70-71, 81, 83-84, 86-87, 90-91, 110, 114, 117-223\n~0 AXWebArea Wardrowbe, URL: localhost:3000/dashboard/history\n~\t\t53 heading 历史记录, Value: 1\n~\t\t\t54 text 历史记录\n~\t\t55 text 查看过去的穿搭推荐\n~\t\t56 combo box (collapsed) Value: 所有场合, Secondary Actions: Expand\n~\t\t\t57 text 所有场合\n+\t\t58 combo box (collapsed) Value: 所有状态, Secondary Actions: Expand\n+\t\t\t59 text 所有状态\n+\t\t60 button\n+\t\t\t61 image\n~\t\t62 heading 2026年10月, Value: 3\n~\t\t\t63 text 2026年10月\n~\t\t64 button\n+\t\t\t65 image\n~\t\t66 text 日\n~\t\t67 text 一\n~\t\t68 text 二\n~\t\t69 text 三\n+\t\t70 text 四\n+\t\t71 text 五\n~\t\t72 text 六\n~\t\t73 button 27\n~\t\t74 button 28\n~\t\t75 button 29\n~\t\t76 button 30\n~\t\t77 button 1\n~\t\t78 button 2\n~\t\t79 button 3\n~\t\t80 button 4\n+\t\t81 button 5\n~\t\t82 button 6\n+\t\t83 button 7\n+\t\t84 button 8\n~\t\t85 button 9\n+\t\t86 button 10\n+\t\t87 button 11\n~\t\t88 button 12\n~\t\t89 button 13\n+\t\t90 button 14\n+\t\t91 button 15\n~\t\t92 button 16\n~\t\t93 button 17\n~\t\t94 button 18\n~\t\t95 button 19\n~\t\t96 button 20\n~\t\t97 button 21\n~\t\t98 button 22\n~\t\t99 button 23\n~\t\t100 button 24\n~\t\t101 button 25\n~\t\t102 button 26\n~\t\t103 button 27\n~\t\t104 button 28\n~\t\t105 button 29\n~\t\t106 button 30\n~\t\t107 button 31\n~\t\t108 text 已计划 按需\n~\t\t109 heading 10月17日星期六, Value: 2\n+\t\t\t110 text 10月17日星期六\n~\t\t111 text 0 套穿搭\n~\t\t112 image\n~\t\t113 heading 暂无推荐记录, Value: 3\n+\t\t\t114 text 暂无推荐记录\n~\t\t115 text 开始获取穿搭建议后，推荐记录将显示在这里。\n~\t\t116 link Description: 获取你的第一个建议, Value: localhost:3000/dashboard/suggest\nThe focused UI element is 10 link Description: 历史, URL: localhost:3000/dashboard/history"
+  },
+  {
+    "page": "家庭",
+    "url": "http://localhost:3000/dashboard/family",
+    "headings": [
+      "家庭",
+      "创建家庭",
+      "加入家庭"
+    ],
+    "state": "Browser tab: 6, Title: \"Wardrowbe\", URL: \"http://localhost:3000/dashboard/family\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\nRemoved element IDs: 54-55, 57-116\n~0 AXWebArea Wardrowbe, URL: localhost:3000/dashboard/family\n~\t\t53 heading 家庭, Value: 1\n+\t\t54 heading 创建家庭, Value: 3\n+\t\t\t55 image\n~\t\t56 button\n+\t\t57 heading 加入家庭, Value: 3\n+\t\t\t58 image\n+\t\t59 button\n+\t\t\t60 content list\n+\t\t\t\t61 container\n+\t\t\t\t\t62 image\nThe focused UI element is 17 link Description: 家庭, URL: localhost:3000/dashboard/family"
+  },
+  {
+    "page": "设置",
+    "url": "http://localhost:3000/dashboard/settings",
+    "headings": [
+      "设置",
+      "账号",
+      "位置",
+      "身体测量",
+      "喜欢的颜色",
+      "风格档案",
+      "温度与舒适度",
+      "推荐设置",
+      "AI 端点"
+    ]
+  },
+  {
+    "page": "网页上传与AI详情",
+    "passed": true,
+    "result": "4件单品；红色外套被识别为大衣、红色，含中文描述和标签"
+  },
+  {
+    "page": "中文三套推荐",
+    "passed": true,
+    "heading": "清爽日常休闲装",
+    "items": 3,
+    "description": "标题、推荐理由和穿搭小贴士均为简体中文"
+  },
+  {
+    "page": "采纳并保存到历史",
+    "passed": true,
+    "result": "历史页显示9套记录，其中最新中文穿搭状态为已采纳"
+  }
+]

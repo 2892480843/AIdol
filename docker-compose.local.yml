@@ -1,0 +1,27 @@
+# Project-owned images; host ports remain loopback-only.
+services:
+  postgres:
+    image: postgres@sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81
+    ports: !reset []
+  redis:
+    image: redis@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
+    ports: !reset []
+  backend:
+    image: wardrowbe-backend:architecture-20261017
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.local
+    ports: !override
+      - "127.0.0.1:${BACKEND_PORT:-18000}:8000"
+    environment:
+      CORS_ORIGINS: '["http://localhost:3000", "http://127.0.0.1:3000"]'
+  frontend:
+    image: wardrowbe-frontend:architecture-20261017
+    build:
+      context: ./frontend
+    ports: !override
+      - "127.0.0.1:${FRONTEND_PORT:-3000}:3000"
+  worker:
+    image: wardrowbe-backend:architecture-20261017
+  image-worker:
+    image: wardrowbe-backend:architecture-20261017

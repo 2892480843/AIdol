@@ -102,5 +102,44 @@
     "reset": "Zurücksetzen",
     "temperature": "Temperatur"
   },
-  "yourOutfit": "Dein Outfit"
+  "yourOutfit": "Dein Outfit",
+  "lookCount": {
+    "title": "Wie viele Looks?",
+    "single": "Ein passender Look",
+    "three": "Drei Looks vergleichen"
+  },
+  "tasks": {
+    "title": "Empfehlungen",
+    "refresh": "Aktualisieren",
+    "loading": "Empfehlungen werden geladen…",
+    "loadingResults": "Looks werden geladen…",
+    "backgroundHint": "Deine Looks werden erstellt. Du kannst diese Seite verlassen und später zurückkehren.",
+    "completedHint": "Deine Looks sind unten bereit.",
+    "failedHint": "Deine Anfrage ist gespeichert. Versuche es später erneut.",
+    "cancelledHint": "Diese Empfehlung wurde abgebrochen.",
+    "attempt": "Versuch {count} von {max}",
+    "cancel": "Abbrechen",
+    "retry": "Erneut versuchen",
+    "history": "Letzte Anfragen ({count})",
+    "view": "Öffnen",
+    "networkError": "Empfehlungen konnten nicht aktualisiert werden. Aktualisiere zum erneuten Verbinden.",
+    "actionError": "Die Aktion konnte nicht abgeschlossen werden. Bitte erneut versuchen.",
+    "dashboardHint": "Verfolge deine Empfehlung oder öffne ein früheres Ergebnis.",
+    "openActivity": "Empfehlungen ansehen",
+    "status": {
+      "queued": "In Warteschlange",
+      "running": "In Arbeit",
+      "succeeded": "Bereit",
+      "failed": "Aktion erforderlich",
+      "cancelled": "Abgebrochen"
+    },
+    "stage": {
+      "queued": "Warten auf den Start",
+      "preparing": "Deine Garderobe wird geprüft",
+      "generating": "Deine Looks werden erstellt",
+      "completed": "Deine Looks sind bereit",
+      "error": "Looks konnten nicht erstellt werden",
+      "cancelled": "Empfehlung abgebrochen"
+    }
+  }
 }

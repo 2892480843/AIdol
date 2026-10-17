@@ -106,7 +106,8 @@ async def startup(ctx: dict) -> None:
     if get_settings().ai_enabled:
         ctx["ai_service"] = AIService()
         health = await ctx["ai_service"].check_health()
-        logger.info(f"AI service health: {health}")
+        logger.info("AI service health (status=%s endpoint_count=%d)",
+                    health.get("status"), len(health.get("endpoints", [])))
     else:
         ctx["ai_service"] = None
         logger.info("Internal AI disabled; skipping AI client init and health check")

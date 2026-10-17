@@ -1,0 +1,26 @@
+{
+  "postgres": {
+    "image_id": "sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81",
+    "digest": "postgres@sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81",
+    "architecture": "arm64",
+    "created": "2026-09-17T21:33:44.32108193Z"
+  },
+  "redis": {
+    "image_id": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+    "digest": "redis@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+    "architecture": "arm64",
+    "created": "2026-09-17T21:34:51.403061283Z"
+  },
+  "backend": {
+    "image_id": "sha256:ea1cee12c1b1e48db72991f37b0ef8a7785de37ecf6affbe913ed55eec68fa6b",
+    "digest": "ghcr.io/anyesh/wardrowbe@sha256:ea1cee12c1b1e48db72991f37b0ef8a7785de37ecf6affbe913ed55eec68fa6b",
+    "architecture": "arm64",
+    "created": "2026-10-16T07:31:03.368468279Z"
+  },
+  "frontend": {
+    "image_id": "sha256:bea2620b8d3ae69881a167446e257b53becdb1bbf264eca76c165b3fa0385c5f",
+    "digest": "ghcr.io/anyesh/wardrowbe@sha256:bea2620b8d3ae69881a167446e257b53becdb1bbf264eca76c165b3fa0385c5f",
+    "architecture": "arm64",
+    "created": "2026-10-16T07:32:01.419638044Z"
+  }
+}

@@ -1,0 +1,8 @@
+[
+  {"id":"invalid-and-duplicate-references","kinds":["shirt","pants","sneakers"],"selected":[1,"2",2,999,"not-a-number",3],"expected":[1,2,3]},
+  {"id":"mandatory-item-omitted","kinds":["shirt","pants","sneakers"],"selected":[1,2],"mandatory":[3],"expected":[1,2,3]},
+  {"id":"mandatory-bottom-wins-body-slot","kinds":["shirt","pants","shorts","sneakers"],"selected":[1,2,4],"mandatory":[3],"expected":[1,3,4]},
+  {"id":"hot-weather-drops-unrequested-tights","kinds":["t-shirt","skirt","tights","sneakers"],"selected":[1,2,3,4],"hot":true,"expected":[1,2,4]},
+  {"id":"hot-weather-keeps-requested-tights","kinds":["t-shirt","skirt","tights","sneakers"],"selected":[1,2,4],"mandatory":[3],"hot":true,"expected":[1,2,3,4]},
+  {"id":"empty-after-weather-guard-is-rejected","kinds":["tights"],"selected":[1],"hot":true,"expected":[],"reject":true}
+]

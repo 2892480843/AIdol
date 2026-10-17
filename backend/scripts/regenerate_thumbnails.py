@@ -27,19 +27,24 @@ from app.services.image_service import VARIANTS, ImageService
 
 
 def regenerate_variants(service: ImageService, original_path: Path) -> None:
-    base_name = original_path.stem.replace("_medium", "").replace("_thumb", "")
-    with Image.open(original_path) as image:
+    key = original_path.relative_to(service.storage_path).as_posix()
+    regenerate_stored_variants(service, key)
+
+
+def regenerate_stored_variants(service: ImageService, key: str) -> None:
+    base = key.rsplit(".", 1)[0]
+    with service.materialize_image(key) as local_path, Image.open(local_path) as image:
         image.load()
         for variant in VARIANTS[1:]:
-            target = original_path.parent / f"{base_name}{variant.suffix}.jpg"
-            target.write_bytes(service.encode_variant(image, variant))
+            service.storage.write(
+                f"{base}{variant.suffix}.jpg", service.encode_variant(image, variant), "image/jpeg"
+            )
 
 
 async def regenerate_all():
     """Regenerate thumbnails for all items."""
     settings = get_settings()
-    storage_path = Path(settings.storage_path)
-    service = ImageService(settings.storage_path)
+    service = ImageService()
 
     # Create async engine
     engine = create_async_engine(str(settings.database_url))
@@ -59,14 +64,12 @@ async def regenerate_all():
         for item in items:
             try:
                 # Get original image path
-                original_path = storage_path / item.image_path
-
-                if not original_path.exists():
+                if not await asyncio.to_thread(service.storage.exists, item.image_path):
                     print(f"  [{item.id}] Original not found: {item.image_path}")
                     skipped += 1
                     continue
 
-                regenerate_variants(service, original_path)
+                await asyncio.to_thread(regenerate_stored_variants, service, item.image_path)
 
                 print(f"  [{item.id}] Regenerated: {item.name or 'unnamed'}")
                 success += 1

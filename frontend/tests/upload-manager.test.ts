@@ -2,7 +2,8 @@
 import 'fake-indexeddb/auto'
 import { IDBFactory } from 'fake-indexeddb'
 import { QueryClient } from '@tanstack/react-query'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
+import { setActiveSession } from '@/lib/api'
 import { enqueueFiles, getPendingUploads, markUploading } from '@/lib/upload-queue'
 import * as manager from '@/lib/upload-manager'
 import { queryKeys } from '@/lib/hooks/query-keys'
@@ -42,8 +43,11 @@ beforeEach(() => {
   globalThis.indexedDB = new IDBFactory()
   vi.restoreAllMocks()
   vi.spyOn(globalThis, 'fetch')
+  setActiveSession('user-a', 'token-a')
   manager.init(clientWithFeatures())
 })
+
+afterEach(() => { manager.shutdown(); setActiveSession(null, null) })
 
 describe('startDrain', () => {
   it('uploads staged records and removes them from the queue on success', async () => {

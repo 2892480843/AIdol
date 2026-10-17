@@ -1,0 +1,9 @@
+# Reuse the verified ARM64 runtime and baked rembg weights; ship our own source
+# in the resulting image instead of bind-mounting patched files at runtime.
+FROM ghcr.io/anyesh/wardrowbe@sha256:ea1cee12c1b1e48db72991f37b0ef8a7785de37ecf6affbe913ed55eec68fa6b
+USER root
+WORKDIR /app
+COPY requirements-architecture.txt ./
+RUN pip install --no-cache-dir -r requirements-architecture.txt
+COPY --chown=appuser:appuser . /app
+LABEL org.opencontainers.image.title="Wardrowbe product architecture"

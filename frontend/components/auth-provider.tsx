@@ -2,30 +2,25 @@
 
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
-import { setAccessToken } from '@/lib/api';
+import { setActiveSession } from '@/lib/api';
 
 interface AuthProviderProps {
   children: React.ReactNode;
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [mounted, setMounted] = useState(false);
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const ownerId = status === 'authenticated' ? session?.user.id ?? null : null;
+  const token = status === 'authenticated' ? session?.accessToken ?? null : null;
+  const [synchronizedOwner, setSynchronizedOwner] = useState<string | null | undefined>();
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setActiveSession(ownerId, token);
+    setSynchronizedOwner(ownerId);
+  }, [ownerId, token]);
 
-  useEffect(() => {
-    // Only set the access token on the client side
-    if (mounted) {
-      if (session?.accessToken) {
-        setAccessToken(session.accessToken as string);
-      } else {
-        setAccessToken(null);
-      }
-    }
-  }, [session, mounted]);
-
-  return <>{children}</>;
+  // Mount the new account only after its credentials are installed. The gate also
+  // unmounts the previous account immediately, without changing globals during render
+  // or sharing authentication state between server-rendered requests.
+  return synchronizedOwner === ownerId ? <>{children}</> : null;
 }

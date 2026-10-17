@@ -18,7 +18,6 @@ from app.models.outfit import (
     Outfit,
     OutfitItem,
     OutfitStatus,
-    TimeOfDay,
     UserFeedback,
 )
 from app.models.user import User
@@ -28,6 +27,7 @@ from app.schemas.outfit import (
     OutfitAttributeFields,
     stored_occasion_or_default,
 )
+from app.schemas.recommendation import SuggestRequest
 from app.services.ai_service import AIDisabledError
 from app.services.external_outfit_service import ExternalOutfitService
 from app.services.item_service import ItemService
@@ -61,26 +61,10 @@ MAX_SEARCH_OCCASIONS = 50
 router = APIRouter(prefix="/outfits", tags=["Outfits"])
 
 
-class WeatherOverrideRequest(BaseModel):
-    temperature: float = Field(description="Temperature in Celsius")
-    feels_like: float | None = Field(None, description="Feels like temperature")
-    condition: str = Field(default="unknown", description="Weather condition")
-    precipitation_chance: int = Field(default=0, ge=0, le=100)
-    humidity: int = Field(default=50, ge=0, le=100)
-
-
 def _default_occasion(user: User) -> str:
     return stored_occasion_or_default(
         user.preferences.default_occasion if user.preferences else None
     )
-
-
-class SuggestRequest(BaseModel):
-    occasion: Occasion | None = None
-    time_of_day: TimeOfDay | None = None
-    weather_override: WeatherOverrideRequest | None = None
-    exclude_items: list[UUID] = Field(default_factory=list, description="Items to exclude")
-    include_items: list[UUID] = Field(default_factory=list, description="Items to include")
 
 
 class OutfitItemResponse(BaseModel):

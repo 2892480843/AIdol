@@ -1,0 +1,7 @@
+{
+  "backend/app/services/ai_service.py": "465779fc77dfd37f4a014efac2f8de49dd5868409f7be142d91dc5a55a5c43d3",
+  "backend/app/services/recommendation_service.py": "a2fab753595448623ee29f03cce3f8347580d691fb580173ba883424e8781e75",
+  "backend/app/services/pairing_service.py": "aa45b4febe0a9b29e3bcac27782a0981d3ba92f8a27ec98efaf1230a1a238122",
+  "backend/app/api/preferences.py": "810ea788a196f44dd87150bec05713a21d388f53cbb2353afe11081b5abaada3",
+  "frontend/package-lock.json": "3e0e4f5413d05b52fd46a2fd720784cb4e6617d19c77c3ac9f9dc41779ff4f99"
+}

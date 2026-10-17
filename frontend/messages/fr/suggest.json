@@ -102,5 +102,44 @@
     "reset": "Réinitialiser",
     "temperature": "Température"
   },
-  "yourOutfit": "Votre tenue"
+  "yourOutfit": "Votre tenue",
+  "lookCount": {
+    "title": "Combien de tenues ?",
+    "single": "Une tenue ciblée",
+    "three": "Comparer trois tenues"
+  },
+  "tasks": {
+    "title": "Suivi des recommandations",
+    "refresh": "Actualiser",
+    "loading": "Chargement des recommandations…",
+    "loadingResults": "Chargement de vos tenues…",
+    "backgroundHint": "Vos tenues sont en cours de création. Vous pouvez revenir plus tard.",
+    "completedHint": "Vos tenues sont prêtes ci-dessous.",
+    "failedHint": "Votre demande est enregistrée. Réessayez quand vous le souhaitez.",
+    "cancelledHint": "Cette recommandation a été annulée.",
+    "attempt": "Tentative {count} sur {max}",
+    "cancel": "Annuler",
+    "retry": "Réessayer",
+    "history": "Demandes récentes ({count})",
+    "view": "Ouvrir",
+    "networkError": "Impossible de mettre à jour les recommandations. Actualisez pour vous reconnecter.",
+    "actionError": "Impossible de terminer cette action. Veuillez réessayer.",
+    "dashboardHint": "Suivez votre recommandation ou ouvrez un résultat récent.",
+    "openActivity": "Voir les recommandations",
+    "status": {
+      "queued": "En attente",
+      "running": "En cours",
+      "succeeded": "Prête",
+      "failed": "À vérifier",
+      "cancelled": "Annulée"
+    },
+    "stage": {
+      "queued": "En attente de démarrage",
+      "preparing": "Analyse de votre garde-robe",
+      "generating": "Création de vos tenues",
+      "completed": "Vos tenues sont prêtes",
+      "error": "Impossible de créer vos tenues",
+      "cancelled": "Recommandation annulée"
+    }
+  }
 }

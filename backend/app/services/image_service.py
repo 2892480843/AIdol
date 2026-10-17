@@ -1,5 +1,8 @@
+import asyncio
 import shutil
+import tempfile
 import uuid
+from contextlib import asynccontextmanager, contextmanager
 from dataclasses import dataclass
 from datetime import datetime
 from io import BytesIO
@@ -11,6 +14,7 @@ from pillow_heif import register_heif_opener
 
 from app.config import get_settings
 from app.services import background_removal
+from app.storage import FileSystemStorage, ObjectStorage, create_storage, validate_key
 
 settings = get_settings()
 
@@ -69,14 +73,13 @@ class ImageTooLargeError(ValueError):
 
 
 class ImageService:
-    def __init__(self, storage_path: str | None = None):
+    def __init__(self, storage_path: str | None = None, *, storage: ObjectStorage | None = None):
         self.storage_path = Path(storage_path or settings.storage_path)
-        self.storage_path.mkdir(parents=True, exist_ok=True)
-
-    def _get_user_path(self, user_id: uuid.UUID) -> Path:
-        user_path = self.storage_path / str(user_id)
-        user_path.mkdir(parents=True, exist_ok=True)
-        return user_path
+        self.storage = storage or (
+            FileSystemStorage(storage_path)
+            if storage_path is not None
+            else create_storage(settings)
+        )
 
     def _generate_filename(self, extension: str = ".jpg") -> str:
         """Generate a unique filename."""
@@ -136,6 +139,13 @@ class ImageService:
             "image_hash": "c3d4...",
         }
         """
+        return await asyncio.to_thread(
+            self._process_and_store, user_id, image_data, original_filename
+        )
+
+    def _process_and_store(
+        self, user_id: uuid.UUID, image_data: bytes, original_filename: str
+    ) -> dict[str, str]:
         # Validate file extension
         ext = Path(original_filename).suffix.lower()
         if ext not in ALLOWED_EXTENSIONS:
@@ -149,28 +159,84 @@ class ImageService:
         image = ImageOps.exif_transpose(image)
 
         base_name = self._generate_filename(".jpg").rsplit(".", 1)[0]
-        user_path = self._get_user_path(user_id)
         paths = {}
 
         for variant in VARIANTS:
             filename = f"{base_name}{variant.suffix}.jpg"
-            (user_path / filename).write_bytes(self.encode_variant(image, variant))
-            paths[variant.path_field] = f"{user_id}/{filename}"
+            key = f"{user_id}/{filename}"
+            self.storage.write(key, self.encode_variant(image, variant), "image/jpeg")
+            paths[variant.path_field] = key
 
         paths["image_hash"] = self._phash_of(image)
         return paths
 
     def get_image_path(self, relative_path: str) -> Path:
-        """Get full path for an image."""
-        return self.storage_path / relative_path
+        """Get a filesystem path. Object storage callers must use materialize_image."""
+        path = self.storage.local_path(relative_path)
+        if path is None:
+            raise ValueError("Object storage images require a scoped local materialization")
+        return path
+
+    def get_job_image_path(self, relative_path: str) -> str:
+        """Preserve legacy filesystem jobs while never queueing temporary downloads."""
+        key = validate_key(relative_path)
+        local = self.storage.local_path(key)
+        return str(local) if local is not None else f"storage://{key}"
+
+    def _reference_key(self, reference: str | Path) -> str:
+        reference = str(reference)
+        if reference.startswith("storage://"):
+            return validate_key(reference[len("storage://") :])
+        path = Path(reference)
+        if path.is_absolute():
+            # Absolute paths queued before migration remain valid object keys,
+            # but cannot expose arbitrary files outside the configured root.
+            try:
+                reference = path.resolve().relative_to(self.storage_path.resolve()).as_posix()
+            except ValueError:
+                raise ValueError("Image reference escapes storage root") from None
+        return validate_key(reference)
+
+    def read_image(self, relative_path: str) -> bytes:
+        return self.storage.read(relative_path)
+
+    def _download_image(self, key: str, target: Path) -> None:
+        with self.storage.open(key) as obj, target.open("wb") as output:
+            shutil.copyfileobj(obj.body, output, length=64 * 1024)
+
+    @contextmanager
+    def materialize_image(self, reference: str | Path):
+        key = self._reference_key(reference)
+        local = self.storage.local_path(key)
+        if local is not None:
+            if not local.is_file():
+                raise FileNotFoundError(key)
+            yield local
+            return
+        with tempfile.TemporaryDirectory(prefix="wardrobe-image-") as directory:
+            target = Path(directory) / Path(key).name
+            self._download_image(key, target)
+            yield target
+
+    @asynccontextmanager
+    async def materialize_image_async(self, reference: str | Path):
+        key = self._reference_key(reference)
+        local = self.storage.local_path(key)
+        if local is not None:
+            if not local.is_file():
+                raise FileNotFoundError(key)
+            yield local
+            return
+        with tempfile.TemporaryDirectory(prefix="wardrobe-image-") as directory:
+            target = Path(directory) / Path(key).name
+            await asyncio.to_thread(self._download_image, key, target)
+            yield target
 
     def delete_images(self, paths: dict[str, str | None]) -> None:
         """Delete all image files for an item."""
         for path in paths.values():
             if path:
-                full_path = self.storage_path / path
-                if full_path.exists():
-                    full_path.unlink()
+                self.storage.delete(path)
 
     def validate_image(self, image_data: bytes, content_type: str) -> bool:
         """Validate image data and content type."""
@@ -243,7 +309,7 @@ class ImageService:
         for variant in VARIANTS:
             # The original is written back to image_path itself so that the stored path stays valid.
             path = image_path if variant is ORIGINAL else f"{base_path}{variant.suffix}.jpg"
-            (self.storage_path / path).write_bytes(self.encode_variant(image, variant))
+            self.storage.write(path, self.encode_variant(image, variant), "image/jpeg")
             paths[variant.path_field] = path
         return paths
 
@@ -253,19 +319,17 @@ class ImageService:
         bg_color: tuple[int, int, int] = (255, 255, 255),
     ) -> dict[str, str]:
         base_path = image_path.rsplit(".", 1)[0]
-        original_full = self.storage_path / image_path
-
-        if not original_full.exists():
-            raise ValueError(f"Image not found: {image_path}")
+        try:
+            original_bytes = self.storage.read(image_path)
+        except FileNotFoundError:
+            raise ValueError(f"Image not found: {image_path}") from None
 
         backup_path = f"{base_path}_orig.jpg"
-        backup_full = self.storage_path / backup_path
         # First removal wins: a second removal must not overwrite the true
         # original with an already-processed image
-        if not backup_full.exists():
-            shutil.copy2(original_full, backup_full)
+        self.storage.write(backup_path, original_bytes, "image/jpeg", if_absent=True)
 
-        image = Image.open(original_full).convert("RGB")
+        image = Image.open(BytesIO(original_bytes)).convert("RGB")
         provider = background_removal.get_provider()
         result = provider.remove(image)
 
@@ -279,13 +343,14 @@ class ImageService:
         return paths
 
     def restore_original(self, image_path: str, backup_path: str) -> dict[str, str]:
-        backup_full = self.storage_path / backup_path
-        if not backup_full.exists():
-            raise ValueError(f"Backup not found: {backup_path}")
+        try:
+            backup_bytes = self.storage.read(backup_path)
+        except FileNotFoundError:
+            raise ValueError(f"Backup not found: {backup_path}") from None
 
-        image = Image.open(backup_full).convert("RGB")
+        image = Image.open(BytesIO(backup_bytes)).convert("RGB")
         paths = self._save_all_sizes(image, image_path)
-        backup_full.unlink()
+        self.storage.delete(backup_path)
         return paths
 
     def rotate_image(self, image_path: str, direction: str = "cw") -> dict[str, str]:
@@ -299,14 +364,14 @@ class ImageService:
         Returns:
             dict with updated paths (same as input since we overwrite)
         """
-        original_full = self.storage_path / image_path
-
-        if not original_full.exists():
-            raise ValueError(f"Image not found: {image_path}")
+        try:
+            original_bytes = self.storage.read(image_path)
+        except FileNotFoundError:
+            raise ValueError(f"Image not found: {image_path}") from None
 
         angle = -90 if direction == "cw" else 90  # PIL rotates counter-clockwise by default
 
-        image = _flatten_to_rgb(Image.open(original_full))
+        image = _flatten_to_rgb(Image.open(BytesIO(original_bytes)))
 
         rotated = image.rotate(angle, expand=True)
 

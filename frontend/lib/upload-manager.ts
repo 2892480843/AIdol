@@ -1,5 +1,5 @@
 import type { QueryClient } from '@tanstack/react-query';
-import { API_BASE_PATH, getAccessToken } from '@/lib/api';
+import { API_BASE_PATH, getAccessToken, getActiveUserId, subscribeActiveSession } from '@/lib/api';
 import {
   getPendingUploads,
   markUploading,
@@ -10,6 +10,7 @@ import {
   getStoragePersisted,
   purgeAbandoned,
   dismiss as dismissRecord,
+  claimLegacyUpload,
   type QueuedUpload,
 } from '@/lib/upload-queue';
 import {
@@ -75,10 +76,13 @@ export interface TerminalRecord {
 }
 
 export interface DrainState {
+  ownerId: string | null;
   draining: boolean;
   remaining: number;
   terminalRecords: TerminalRecord[];
   storagePersisted: boolean | null;
+  legacyRecords: Pick<QueuedUpload, 'id' | 'filename' | 'size'>[];
+  parkedCount: number;
 }
 
 type Listener = (state: DrainState) => void;
@@ -87,6 +91,37 @@ let queryClient: QueryClient | null = null;
 let isDraining = false;
 const listeners = new Set<Listener>();
 let beforeUnloadRegistered = false;
+let activeController: AbortController | null = null;
+let unsubscribeSession: (() => void) | null = null;
+let sessionVersion = 0;
+
+interface DrainContext {
+  ownerId: string;
+  token: string | null;
+  version: number;
+  controller: AbortController;
+  client: QueryClient | null;
+}
+
+class UploadSessionChangedError extends Error {}
+
+function isCurrent(context: DrainContext): boolean {
+  return !context.controller.signal.aborted && context.version === sessionVersion
+    && context.ownerId === getActiveUserId() && context.token === getAccessToken();
+}
+
+function assertCurrent(context: DrainContext): void {
+  if (!isCurrent(context)) throw new UploadSessionChangedError('Upload paused after session change');
+}
+
+function abortable<T>(operation: Promise<T>, signal: AbortSignal): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const abort = () => reject(new UploadSessionChangedError('Upload paused after session change'));
+    signal.addEventListener('abort', abort, { once: true });
+    if (signal.aborted) abort();
+    operation.then(resolve, reject).finally(() => signal.removeEventListener('abort', abort));
+  });
+}
 
 function onBeforeUnload(e: BeforeUnloadEvent) {
   // preventDefault() alone doesn't surface the confirmation dialog in every
@@ -96,7 +131,9 @@ function onBeforeUnload(e: BeforeUnloadEvent) {
 }
 
 async function computeState(): Promise<DrainState> {
-  const records = await getPendingUploads();
+  const ownerId = getActiveUserId();
+  const allRecords = await getPendingUploads();
+  const records = ownerId ? allRecords.filter((record) => record.ownerId === ownerId) : [];
   const remaining = records.filter((r) => r.status !== 'failed').length;
   const terminalRecords: TerminalRecord[] = records
     .filter((r) => r.terminal)
@@ -123,17 +160,39 @@ async function computeState(): Promise<DrainState> {
     }
   }
 
-  return { draining: isDraining, remaining, terminalRecords, storagePersisted };
+  return {
+    ownerId, draining: isDraining && !activeController?.signal.aborted, remaining, terminalRecords, storagePersisted,
+    legacyRecords: allRecords.filter((record) => !record.ownerId).map(({ id, filename, size }) => ({ id, filename, size })),
+    parkedCount: allRecords.filter((record) => record.ownerId && record.ownerId !== ownerId).length,
+  };
 }
 
 async function emit(): Promise<void> {
   const state = await computeState();
-  listeners.forEach((listener) => listener(state));
+  if (state.ownerId === getActiveUserId()) listeners.forEach((listener) => listener(state));
 }
 
 export function init(client: QueryClient): void {
   queryClient = client;
   effectiveChunkSize = BULK_UPLOAD_CHUNK_SIZE;
+  if (!unsubscribeSession) {
+    unsubscribeSession = subscribeActiveSession(() => {
+      sessionVersion += 1;
+      activeController?.abort();
+      clearReschedule();
+      // The provider notifies during render: all React state emission is async.
+      queueMicrotask(() => { void emit(); void startDrain(); });
+    });
+  }
+}
+
+export function shutdown(): void {
+  sessionVersion += 1;
+  activeController?.abort();
+  clearReschedule();
+  unsubscribeSession?.();
+  unsubscribeSession = null;
+  queryClient = null;
 }
 
 export function subscribe(listener: Listener): () => void {
@@ -145,19 +204,21 @@ export async function getState(): Promise<DrainState> {
   return computeState();
 }
 
-async function uploadChunk(chunk: QueuedUpload[]): Promise<BulkUploadResponse> {
+async function uploadChunk(chunk: QueuedUpload[], context: DrainContext): Promise<BulkUploadResponse> {
+  assertCurrent(context);
   const formData = new FormData();
   chunk.forEach((record) => formData.append('images', record.file, record.filename));
   formData.append('skip_ai', String(chunk[0]?.skipAi ?? false));
   chunk.forEach((record) => formData.append('upload_keys', record.id));
 
-  const token = getAccessToken();
-  const response = await fetch(`${API_BASE_PATH}/items/bulk`, {
+  const response = await abortable(fetch(`${API_BASE_PATH}/items/bulk`, {
     method: 'POST',
     body: formData,
     credentials: 'include',
-    headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-  });
+    headers: context.token ? { Authorization: `Bearer ${context.token}` } : undefined,
+    signal: context.controller.signal,
+  }), context.controller.signal);
+  assertCurrent(context);
 
   if (!response.ok) {
     if (response.status === 413) {
@@ -172,18 +233,20 @@ async function uploadChunk(chunk: QueuedUpload[]): Promise<BulkUploadResponse> {
     }
     throw new Error(`Bulk upload request failed with status ${response.status}`);
   }
-  return response.json();
+  const result = await abortable(response.json() as Promise<BulkUploadResponse>, context.controller.signal);
+  assertCurrent(context);
+  return result;
 }
 
-async function uploadChunkWithinServerLimit(chunk: QueuedUpload[]): Promise<BulkUploadResponse> {
+async function uploadChunkWithinServerLimit(chunk: QueuedUpload[], context: DrainContext): Promise<BulkUploadResponse> {
   try {
-    return await uploadChunk(chunk);
+    return await uploadChunk(chunk, context);
   } catch (error) {
     if (error instanceof BulkLimitExceededError && error.limit > 0 && error.limit < chunk.length) {
       effectiveChunkSize = Math.min(effectiveChunkSize, error.limit);
       const responses: BulkUploadResponse[] = [];
       for (let i = 0; i < chunk.length; i += error.limit) {
-        responses.push(await uploadChunkWithinServerLimit(chunk.slice(i, i + error.limit)));
+        responses.push(await uploadChunkWithinServerLimit(chunk.slice(i, i + error.limit), context));
       }
       return mergeBulkUploadResponses(responses);
     }
@@ -195,8 +258,9 @@ function errorMessage(error: unknown): string {
   return error instanceof Error ? error.message : 'Upload failed';
 }
 
-async function drainOnce(): Promise<boolean> {
+async function drainOnce(context: DrainContext): Promise<boolean> {
   const records = await getPendingUploads();
+  if (!isCurrent(context)) return false;
   // A record left 'uploading' means a previous drain (this tab or another)
   // died mid-chunk. Safe to resend unconditionally - the upload_key unique
   // constraint on the backend makes a duplicate send a no-op, not a
@@ -208,6 +272,7 @@ async function drainOnce(): Promise<boolean> {
   // needs its own drain pass, not just its own loop iteration.
   const now = Date.now();
   const actionable = records.filter((r) => {
+    if (r.ownerId !== context.ownerId) return false;
     if (r.status === 'uploading') return true;
     if (r.status !== 'pending') return false;
     if (r.attempts === 0) return true;
@@ -219,7 +284,8 @@ async function drainOnce(): Promise<boolean> {
   // rather than threading a per-file flag through the endpoint.
   const skipAi = actionable[0].skipAi;
   const matching = actionable.filter((r) => r.skipAi === skipAi);
-  const serverLimit = queryClient ? await fetchBulkUploadLimit(queryClient) : null;
+  const serverLimit = context.client ? await fetchBulkUploadLimit(context.client) : null;
+  if (!isCurrent(context)) return false;
   const maxFiles = Math.min(effectiveChunkSize, serverLimit ?? effectiveChunkSize);
   const chunk: QueuedUpload[] = [];
   let chunkBytes = 0;
@@ -238,7 +304,8 @@ async function drainOnce(): Promise<boolean> {
   await emit();
 
   try {
-    const response = await uploadChunkWithinServerLimit(chunk);
+    const response = await uploadChunkWithinServerLimit(chunk, context);
+    assertCurrent(context);
     await Promise.all(
       response.results.map(async (result, idx) => {
         const record = chunk[idx];
@@ -251,6 +318,9 @@ async function drainOnce(): Promise<boolean> {
       })
     );
   } catch (error) {
+    // Retain uploading records and their idempotency keys for the original
+    // account. A late response must not delete blobs or count as a failed try.
+    if (!isCurrent(context) || error instanceof UploadSessionChangedError) return false;
     const message = errorMessage(error);
     // A 413 for a chunk of one file means that file alone is over the proxy's
     // body limit, so resending it can never succeed.
@@ -267,7 +337,7 @@ async function drainOnce(): Promise<boolean> {
     }
   }
 
-  queryClient?.invalidateQueries({ queryKey: queryKeys.items.all });
+  if (isCurrent(context)) context.client?.invalidateQueries({ queryKey: queryKeys.items.all });
   await emit();
   return true;
 }
@@ -289,11 +359,12 @@ function clearReschedule(): void {
 // batch that all landed in backoff at once (e.g. every record in a chunk hit
 // the same network failure) wedges permanently. This finds the soonest a
 // record becomes actionable and arms a timer to resume then.
-async function nextBackoffDelayMs(): Promise<number | null> {
+async function nextBackoffDelayMs(ownerId: string): Promise<number | null> {
   const records = await getPendingUploads();
   const now = Date.now();
   let minDelay: number | null = null;
   for (const record of records) {
+    if (record.ownerId !== ownerId) continue;
     if (record.status !== 'pending' || record.attempts === 0) continue;
     const readyAt = record.updatedAt + record.attempts * RETRY_BACKOFF_BASE_MS;
     const delay = readyAt - now;
@@ -305,23 +376,32 @@ async function nextBackoffDelayMs(): Promise<number | null> {
 }
 
 export async function startDrain(): Promise<void> {
-  if (isDraining) return;
+  const ownerId = getActiveUserId();
+  if (isDraining || !ownerId || !queryClient) return;
   clearReschedule();
+  const context: DrainContext = { ownerId, token: getAccessToken(), version: sessionVersion, controller: new AbortController(), client: queryClient };
+  activeController = context.controller;
   isDraining = true;
   await emit();
   try {
-    await purgeAbandoned();
+    await purgeAbandoned(undefined, ownerId);
     // eslint-disable-next-line no-constant-condition
     while (true) {
-      const madeProgress = await drainOnce();
+      const madeProgress = await drainOnce(context);
       if (!madeProgress) break;
     }
   } finally {
     isDraining = false;
+    activeController = null;
     await emit();
   }
 
-  const delay = await nextBackoffDelayMs();
+  if (!isCurrent(context)) {
+    if (queryClient && getActiveUserId()) queueMicrotask(() => { void startDrain(); });
+    return;
+  }
+  const delay = await nextBackoffDelayMs(ownerId);
+  if (!isCurrent(context)) return;
   if (delay !== null) {
     rescheduleTimer = setTimeout(() => {
       rescheduleTimer = null;
@@ -331,6 +411,7 @@ export async function startDrain(): Promise<void> {
 }
 
 export async function retry(id: string): Promise<void> {
+  if (!(await ownedRecord(id))) return;
   await markPendingForRetry(id);
   void startDrain();
 }
@@ -344,6 +425,7 @@ export async function retryAll(): Promise<void> {
 }
 
 export async function dismiss(id: string): Promise<void> {
+  if (!(await ownedRecord(id))) return;
   await dismissRecord(id);
   await emit();
 }
@@ -360,7 +442,24 @@ export async function cancelAll(): Promise<void> {
   // whose durable write to IndexedDB never actually landed, so it never
   // becomes terminal on its own.
   clearReschedule();
+  activeController?.abort();
+  const ownerId = getActiveUserId();
   const records = await getPendingUploads();
-  await Promise.all(records.map((r) => dismissRecord(r.id)));
+  if (ownerId !== getActiveUserId()) return;
+  await Promise.all(records.filter((record) => ownerId && record.ownerId === ownerId).map((r) => dismissRecord(r.id)));
   await emit();
+}
+
+async function ownedRecord(id: string): Promise<QueuedUpload | undefined> {
+  const ownerId = getActiveUserId();
+  const records = await getPendingUploads();
+  return ownerId && ownerId === getActiveUserId() ? records.find((record) => record.id === id && record.ownerId === ownerId) : undefined;
+}
+
+export async function claimLegacy(id: string, expectedOwnerId: string): Promise<void> {
+  if (expectedOwnerId !== getActiveUserId()) return;
+  if (await claimLegacyUpload(id, expectedOwnerId)) {
+    await emit();
+    void startDrain();
+  }
 }

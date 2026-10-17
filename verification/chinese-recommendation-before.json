@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "seconds": 53.4,
+  "model": "Doubao-Seed-2.0-Mini",
+  "count": 3,
+  "headlines": [
+    "Sunny Morning Basics",
+    "Cheerful Red Layered Look",
+    "Minimalist Red Casual"
+  ],
+  "explanation_samples": [
+    "Blue tee, black pants and white sneakers create a fresh, practical casual look for 20°C sunny mornings.",
+    "Vibrant red coat adds a bold color pop to neutral base layers, perfect for slightly cool morning sun.",
+    "Sleek red coat, black pants and white sneakers form a streamlined casual silhouette for mild mornings."
+  ]
+}

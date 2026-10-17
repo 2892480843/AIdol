@@ -24,8 +24,32 @@ class NetworkError extends Error {
 }
 
 let accessToken: string | null = null;
+let activeUserId: string | null = null;
+let activeSessionKnown = false;
+const sessionListeners = new Set<() => void>();
 
-export function setAccessToken(token: string | null) {
+export function getActiveUserId(): string | null {
+  return activeUserId;
+}
+
+// The authenticated provider owns this boundary. Token-only hook synchronization
+// remains compatible, while persistent queues can observe complete session changes.
+export function setActiveSession(userId: string | null, token: string | null) {
+  activeSessionKnown = true;
+  if (activeUserId === userId && accessToken === token) return;
+  activeUserId = userId;
+  accessToken = token;
+  sessionListeners.forEach((listener) => listener());
+}
+
+export function subscribeActiveSession(listener: () => void): () => void {
+  sessionListeners.add(listener);
+  return () => { sessionListeners.delete(listener); };
+}
+
+export function setAccessToken(token: string | null, expectedUserId?: string) {
+  // Detached hooks may still hold an old session after a provider remount.
+  if (expectedUserId !== undefined && activeSessionKnown && expectedUserId !== activeUserId) return;
   accessToken = token;
 }
 

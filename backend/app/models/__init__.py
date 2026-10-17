@@ -12,8 +12,11 @@ from app.models.outfit import FamilyOutfitRating, Outfit, OutfitItem, UserFeedba
 from app.models.preference import UserPreference
 from app.models.schedule import Schedule
 from app.models.user import User
+from app.models.task import DurableTask, TaskOutbox
 
 __all__ = [
+    "DurableTask",
+    "TaskOutbox",
     "Family",
     "FamilyInvite",
     "User",

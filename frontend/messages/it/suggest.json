@@ -102,5 +102,44 @@
     "reset": "Ripristina",
     "temperature": "Temperatura"
   },
-  "yourOutfit": "Il tuo outfit"
+  "yourOutfit": "Il tuo outfit",
+  "lookCount": {
+    "title": "Quanti look desideri?",
+    "single": "Un look mirato",
+    "three": "Confronta tre look"
+  },
+  "tasks": {
+    "title": "Attività dei consigli",
+    "refresh": "Aggiorna",
+    "loading": "Caricamento dei consigli…",
+    "loadingResults": "Caricamento dei look…",
+    "backgroundHint": "Stiamo creando i tuoi look. Puoi lasciare questa pagina e tornare più tardi.",
+    "completedHint": "I tuoi look sono pronti qui sotto.",
+    "failedHint": "La richiesta è salvata. Riprova quando vuoi.",
+    "cancelledHint": "Questo consiglio è stato annullato.",
+    "attempt": "Tentativo {count} di {max}",
+    "cancel": "Annulla",
+    "retry": "Riprova",
+    "history": "Richieste recenti ({count})",
+    "view": "Apri",
+    "networkError": "Impossibile aggiornare i consigli. Aggiorna per riconnetterti.",
+    "actionError": "Impossibile completare questa azione. Riprova.",
+    "dashboardHint": "Segui il consiglio in corso o apri un risultato recente.",
+    "openActivity": "Visualizza consigli",
+    "status": {
+      "queued": "In coda",
+      "running": "In corso",
+      "succeeded": "Pronto",
+      "failed": "Da verificare",
+      "cancelled": "Annullato"
+    },
+    "stage": {
+      "queued": "In attesa di iniziare",
+      "preparing": "Analisi del guardaroba",
+      "generating": "Creazione dei tuoi look",
+      "completed": "I tuoi look sono pronti",
+      "error": "Impossibile creare i look",
+      "cancelled": "Consiglio annullato"
+    }
+  }
 }

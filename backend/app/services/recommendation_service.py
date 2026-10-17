@@ -32,6 +32,7 @@ from app.services.item_scorer import (
     stays_above_hot_threshold,
     temperature_band,
 )
+from app.services.model_gateway import GATEWAY_VERSION
 from app.services.suggestion_cache import pop_suggestion, push_suggestions
 from app.services.weather_service import (
     GeocodingServiceError,
@@ -139,8 +140,9 @@ RECOMMENDATION_PROMPT = render_outfit_prompt(load_prompt("recommendation"))
 
 
 class RecommendationService:
-    def __init__(self, db: AsyncSession):
+    def __init__(self, db: AsyncSession, *, commit_outfits: bool = True):
         self.db = db
+        self.commit_outfits = commit_outfits
         self.weather_service = WeatherService()
 
     async def get_candidate_items(
@@ -733,7 +735,10 @@ class RecommendationService:
             )
             self.db.add(outfit_item)
 
-        await self.db.commit()
+        if self.commit_outfits:
+            await self.db.commit()
+        else:
+            await self.db.flush()
         await self.db.refresh(outfit)
 
         result = await self.db.execute(
@@ -773,7 +778,7 @@ class RecommendationService:
             time_of_day = get_time_of_day(user)
 
         # Determine cache eligibility before auto-merge
-        use_cache = not exclude_items and not single_outfit
+        use_cache = self.commit_outfits and not exclude_items and not single_outfit
 
         # Auto-exclude today's rejected items for this occasion
         rejected_ids = await self._get_today_rejected_item_ids(user, occasion)
@@ -979,11 +984,12 @@ class RecommendationService:
         )
 
         try:
-            result = await ai_service.generate_text(prompt, return_metadata=True)
+            result = await ai_service.generate_text(
+                prompt, return_metadata=True, locale=getattr(user, "locale", "en")
+            )
             logger.info(
                 f"AI recommendation generated (model: {result.model}, endpoint: {result.endpoint})"
             )
-            logger.debug(f"AI raw response: {result.content[:500]}")
 
             if single_outfit:
                 outfit_data = self._parse_ai_response(result.content)
@@ -993,6 +999,10 @@ class RecommendationService:
                     raise ValueError(f"Expected dict, got {type(outfit_data)}")
                 outfit_data["_ai_model"] = result.model
                 outfit_data["_ai_endpoint"] = result.endpoint
+                outfit_data["_ai_prompt_version"] = hashlib.sha256(
+                    RECOMMENDATION_PROMPT.encode()
+                ).hexdigest()[:16]
+                outfit_data["_ai_gateway_version"] = GATEWAY_VERSION
                 outfit = await self._materialize_outfit(
                     outfit_data,
                     user,
@@ -1017,6 +1027,10 @@ class RecommendationService:
                 consumed += 1
                 od["_ai_model"] = result.model
                 od["_ai_endpoint"] = result.endpoint
+                od["_ai_prompt_version"] = hashlib.sha256(
+                    RECOMMENDATION_PROMPT.encode()
+                ).hexdigest()[:16]
+                od["_ai_gateway_version"] = GATEWAY_VERSION
                 try:
                     outfit = await self._materialize_outfit(
                         od,
@@ -1045,6 +1059,10 @@ class RecommendationService:
                     od["_context"] = context
                     od["_ai_model"] = result.model
                     od["_ai_endpoint"] = result.endpoint
+                    od["_ai_prompt_version"] = hashlib.sha256(
+                        RECOMMENDATION_PROMPT.encode()
+                    ).hexdigest()[:16]
+                    od["_ai_gateway_version"] = GATEWAY_VERSION
                     to_cache.append(od)
                 await push_suggestions(user.id, occasion, to_cache, include_items=include_items)
                 logger.info(f"Cached {len(to_cache)} additional suggestions for user {user.id}")
@@ -1057,10 +1075,10 @@ class RecommendationService:
             # Preserve the specific, actionable cause instead of the generic message
             # below — the AI endpoint responded successfully, it just didn't produce
             # any output content (see AIResponseTruncatedError for why).
-            logger.error(f"AI recommendation failed: {e}")
+            logger.error("AI recommendation failed (error_type=%s)", type(e).__name__)
             raise AIRecommendationError(str(e)) from e
         except Exception as e:
-            logger.error(f"AI recommendation failed: {e}")
+            logger.error("AI recommendation failed (error_type=%s)", type(e).__name__)
             raise AIRecommendationError(
                 "AI service is not available. Please check your AI endpoint configuration in Settings."
             ) from e

@@ -5,6 +5,7 @@ from uuid import UUID
 import httpx
 from fastapi import APIRouter, Depends, HTTPException, status
 
+from app.config import get_settings
 from app.database import DbSession
 from app.models.user import User
 from app.schemas.outfit import stored_occasion_or_default
@@ -139,22 +140,36 @@ async def test_ai_endpoint(
 
     try:
         async with httpx.AsyncClient(timeout=10) as client:
-            # Try Ollama-style health check
-            health_url = url.replace("/v1", "/api/tags")
-            response = await client.get(health_url)
+            settings = get_settings()
+            headers = {}
+            # The server key belongs only to its configured endpoint. Never send
+            # it to an arbitrary URL entered in the preferences form.
+            if url == settings.ai_base_url.rstrip("/") and settings.ai_api_key:
+                headers["Authorization"] = f"Bearer {settings.ai_api_key}"
+            response = await client.get(f"{url}/models", headers=headers)
+            openai_format = response.status_code == 200
+            if not openai_format:
+                health_url = url.replace("/v1", "/api/tags")
+                response = await client.get(health_url)
 
             if response.status_code == 200:
                 data = response.json()
-                models = data.get("models", [])
-                model_names = [m.get("name", "") for m in models]
+                models = data.get("data" if openai_format else "models", [])
+                model_names = [
+                    m.get("id" if openai_format else "name", "") for m in models
+                ]
 
                 # Categorize models
                 vision_models = [
                     m
                     for m in model_names
-                    if any(v in m.lower() for v in ["moondream", "llava", "bakllava", "vision"])
+                    if m == settings.ai_vision_model
+                    or any(v in m.lower() for v in ["moondream", "llava", "bakllava", "vision", "-vl"])
                 ]
-                text_models = [m for m in model_names if m not in vision_models]
+                text_models = [
+                    m for m in model_names
+                    if m not in vision_models or m == settings.ai_text_model
+                ]
 
                 return {
                     "status": "connected",

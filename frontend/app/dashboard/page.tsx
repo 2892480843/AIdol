@@ -42,6 +42,7 @@ import { toast } from 'sonner';
 import { formatShortDate } from '@/lib/utils';
 import { findNextSchedule } from '@/lib/schedules';
 import { useUserTimezone } from '@/lib/hooks/use-user';
+import { RecommendationTaskBanner } from '@/components/recommendations/task-banner';
 
 function WeatherCard() {
   const { data: weather, isLoading, isError } = useWeather();
@@ -623,6 +624,8 @@ export default function DashboardPage() {
           {t('subtitle')}
         </p>
       </div>
+
+      <RecommendationTaskBanner />
 
       {/* Top row - Weather + Pending + Next Scheduled */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "job_result": {
+    "status": "sent",
+    "outfit_id": "e522d93c-fee6-47a0-ae5b-769034ecb5a7"
+  },
+  "sink_messages": 1,
+  "notification_history_statuses": [
+    "sent"
+  ],
+  "schedule_enabled": false,
+  "scope": "real Redis queue -> worker -> AI recommendation -> notification persistence -> local HTTP sink; no external recipient"
+}

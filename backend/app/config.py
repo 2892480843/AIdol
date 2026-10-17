@@ -36,6 +36,13 @@ class Settings(BaseSettings):
 
     log_level: Literal["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] = "INFO"
 
+    # Metadata-only telemetry; exports remain off until a collector URL is set.
+    otel_enabled: bool = True
+    otel_service_name: str = "wardrowbe-backend"
+    otel_exporter_otlp_endpoint: str | None = None
+    otel_export_interval_ms: int = Field(default=60000, ge=1000)
+    otel_export_timeout_seconds: float = Field(default=5.0, gt=0, le=30)
+
     @field_validator("log_level", mode="before")
     @classmethod
     def uppercase_log_level(cls, v: object) -> object:
@@ -143,6 +150,17 @@ class Settings(BaseSettings):
     smtp_from_email: str | None = None
     # Storage
     storage_path: str = Field(default="/data/wardrobe")
+    storage_backend: Literal["filesystem", "s3"] = "filesystem"
+    s3_endpoint_url: str | None = None
+    s3_bucket: str = ""
+    s3_access_key: str | None = Field(default=None, repr=False)
+    s3_secret_key: str | None = Field(default=None, repr=False)
+    s3_region: str = "us-east-1"
+    s3_secure: bool = True
+    s3_addressing_style: Literal["path", "virtual", "auto"] = "path"
+    s3_connect_timeout: int = Field(default=5, ge=1)
+    s3_read_timeout: int = Field(default=30, ge=1)
+    s3_max_attempts: int = Field(default=3, ge=1, le=10)
     max_upload_size_mb: int = Field(default=50, ge=1)
     max_bulk_upload_count: int = Field(default=20)
     # Byte size is a poor proxy for decode cost: a 3.8MB JPEG can be 108MP,

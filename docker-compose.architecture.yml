@@ -1,0 +1,94 @@
+x-runtime-env: &runtime-env
+  DEBUG: ${DEBUG:-false}
+  DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-wardrobe}:${POSTGRES_PASSWORD:-wardrobe}@postgres:5432/${POSTGRES_DB:-wardrobe}
+  REDIS_URL: redis://redis:6379/0
+  SECRET_KEY: ${SECRET_KEY:-change-me-in-production}
+  STORAGE_PATH: /data/wardrobe
+  STORAGE_BACKEND: ${STORAGE_BACKEND:-filesystem}
+  S3_ENDPOINT_URL: ${S3_ENDPOINT_URL:-}
+  S3_BUCKET: ${S3_BUCKET:-}
+  S3_ACCESS_KEY: ${S3_ACCESS_KEY:-}
+  S3_SECRET_KEY: ${S3_SECRET_KEY:-}
+  S3_REGION: ${S3_REGION:-us-east-1}
+  S3_SECURE: ${S3_SECURE:-true}
+  AI_BASE_URL: ${AI_BASE_URL:-http://host.docker.internal:11434/v1}
+  AI_API_KEY: ${AI_API_KEY:-}
+  AI_VISION_MODEL: ${AI_VISION_MODEL:-gpt-4o}
+  AI_TEXT_MODEL: ${AI_TEXT_MODEL:-gpt-4o}
+  AI_TIMEOUT: ${AI_TIMEOUT:-120}
+  AI_MAX_RETRIES: ${AI_MAX_RETRIES:-2}
+  AI_INTERNAL_ENABLED: ${AI_INTERNAL_ENABLED:-true}
+  AI_VISION_ENABLED: ${AI_VISION_ENABLED:-true}
+  AI_TEXT_ENABLED: ${AI_TEXT_ENABLED:-true}
+  AI_REASONING_EFFORT: ${AI_REASONING_EFFORT:-none}
+  OTEL_ENABLED: ${OTEL_ENABLED:-true}
+  OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+  OTEL_EXPORT_INTERVAL_MS: ${OTEL_EXPORT_INTERVAL_MS:-10000}
+  LOG_LEVEL: ${LOG_LEVEL:-INFO}
+
+services:
+  backend:
+    environment:
+      <<: *runtime-env
+      OTEL_SERVICE_NAME: wardrowbe-api
+  worker:
+    environment:
+      <<: *runtime-env
+      OTEL_SERVICE_NAME: wardrowbe-tagging
+  image-worker:
+    environment:
+      <<: *runtime-env
+      OTEL_SERVICE_NAME: wardrowbe-images
+  task-worker:
+    image: wardrowbe-backend:architecture-20261017
+    command: ["arq", "app.workers.task_worker.TaskWorkerSettings"]
+    environment:
+      <<: *runtime-env
+      OTEL_SERVICE_NAME: wardrowbe-recommendations
+    volumes:
+      - wardrobe_data:/data/wardrobe
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+  task-dispatcher:
+    image: wardrowbe-backend:architecture-20261017
+    command: ["python", "-m", "app.tasks.dispatcher"]
+    environment:
+      <<: *runtime-env
+      OTEL_SERVICE_NAME: wardrowbe-dispatcher
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+  object-store:
+    image: ghcr.io/rustfs/rustfs@sha256:87763ed4dcb2bed3fc52cbf6cb7d865411e085b0b952dc78e50dffa9ece0ed9e
+    container_name: wardrobe-object-store
+    command: ["/data"]
+    environment:
+      RUSTFS_ACCESS_KEY: ${S3_ACCESS_KEY:?Configure private S3_ACCESS_KEY}
+      RUSTFS_SECRET_KEY: ${S3_SECRET_KEY:?Configure private S3_SECRET_KEY}
+      RUSTFS_ADDRESS: ":9000"
+      RUSTFS_CONSOLE_ENABLE: "false"
+      RUSTFS_OBS_LOGGER_LEVEL: error
+    volumes:
+      - object_data:/data
+    restart: unless-stopped
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib@sha256:38c349c3b7a2fd7ea46700cde8fa13d35b699ef2ce245bdf34dae2a413512f76
+    container_name: wardrobe-otel-collector
+    command: ["--config=/etc/otelcol/config.yaml"]
+    volumes:
+      - ./ops/otel-collector.yaml:/etc/otelcol/config.yaml:ro
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+    restart: unless-stopped
+
+volumes:
+  object_data:

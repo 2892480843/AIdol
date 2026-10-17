@@ -102,5 +102,44 @@
     "reset": "重置",
     "temperature": "温度"
   },
-  "yourOutfit": "你的穿搭"
+  "yourOutfit": "你的穿搭",
+  "lookCount": {
+    "title": "想要几套搭配？",
+    "single": "专注一套",
+    "three": "比较三套"
+  },
+  "tasks": {
+    "title": "推荐进度",
+    "refresh": "刷新状态",
+    "loading": "正在加载推荐记录…",
+    "loadingResults": "正在加载搭配…",
+    "backgroundHint": "正在为你搭配。你可以离开页面，稍后回来查看。",
+    "completedHint": "搭配已生成，请在下方查看。",
+    "failedHint": "本次需求已保存，可以稍后重新尝试。",
+    "cancelledHint": "本次推荐已取消。",
+    "attempt": "第 {count} 次尝试，最多 {max} 次",
+    "cancel": "取消推荐",
+    "retry": "重新尝试",
+    "history": "最近的推荐（{count}）",
+    "view": "查看",
+    "networkError": "暂时无法更新推荐进度，请刷新状态重连。",
+    "actionError": "操作未完成，请重试。",
+    "dashboardHint": "查看推荐进度，或继续查看最近生成的搭配。",
+    "openActivity": "查看推荐",
+    "status": {
+      "queued": "排队中",
+      "running": "生成中",
+      "succeeded": "已完成",
+      "failed": "需要处理",
+      "cancelled": "已取消"
+    },
+    "stage": {
+      "queued": "正在等待开始",
+      "preparing": "正在整理你的衣橱",
+      "generating": "正在生成搭配",
+      "completed": "搭配已准备好",
+      "error": "搭配生成未完成",
+      "cancelled": "推荐已取消"
+    }
+  }
 }

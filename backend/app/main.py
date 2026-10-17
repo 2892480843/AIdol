@@ -13,6 +13,7 @@ from app.api.router import api_router
 from app.config import Settings, get_settings
 from app.database import engine
 from app.logging_config import configure_logging
+from app.observability import RequestCorrelationMiddleware, shutdown_observability
 
 settings = get_settings()
 logger = logging.getLogger(__name__)
@@ -25,8 +26,11 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     if warning:
         logger.error("Configuration: %s", warning)
     logger.info("Auth mode: %s", settings.get_auth_mode())
-    yield
-    await engine.dispose()
+    try:
+        yield
+    finally:
+        await engine.dispose()
+        shutdown_observability()
 
 
 def docs_urls(settings: Settings) -> dict[str, str | None]:
@@ -52,11 +56,13 @@ app.add_middleware(
     allow_origins=settings.cors_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allow_headers=["Authorization", "Content-Type"],
+    allow_headers=["Authorization", "Content-Type", "Idempotency-Key", "X-Request-ID"],
+    expose_headers=["X-Request-ID"],
 )
 
 # Enable GZip compression for responses > 500 bytes
 app.add_middleware(GZipMiddleware, minimum_size=500)
+app.add_middleware(RequestCorrelationMiddleware)
 # Include API router
 app.include_router(api_router, prefix="/api/v1")
 
@@ -98,11 +104,20 @@ async def pydantic_validation_handler(request: Request, exc: ValidationError) ->
 
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc: Exception) -> JSONResponse:
-    logger.exception(f"Unhandled exception on {request.method} {request.url.path}: {exc}")
+    logger.error(
+        "Unhandled request exception",
+        extra={
+            "error_type": type(exc).__name__,
+            "request_id": getattr(request.state, "request_id", None),
+        },
+    )
 
     # Don't expose internal error details in production
     return JSONResponse(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        headers={"X-Request-ID": request.state.request_id}
+        if getattr(request.state, "request_id", None)
+        else None,
         content={
             "detail": "An unexpected error occurred. Please try again later.",
         },

@@ -1,4 +1,5 @@
 import type { BulkUploadErrorCode } from '@/lib/hooks/use-items';
+import { getActiveUserId } from '@/lib/api';
 
 const DB_NAME = 'wardrobe_upload_queue';
 const DB_VERSION = 1;
@@ -10,6 +11,8 @@ export type UploadStatus = 'pending' | 'uploading' | 'done' | 'failed';
 
 export interface QueuedUpload {
   id: string;
+  // Absent only on records created before account ownership was introduced.
+  readonly ownerId?: string;
   file: Blob;
   filename: string;
   size: number;
@@ -147,12 +150,14 @@ export async function estimateQuota(): Promise<{ quota: number; usage: number } 
 }
 
 async function findReusableRecord(
-  file: File
+  file: File,
+  ownerId: string
 ): Promise<QueuedUpload | undefined> {
   const records = await getAllRecords();
   return records.find(
     (r) =>
       !r.terminal &&
+      r.ownerId === ownerId &&
       r.filename === file.name &&
       r.size === file.size &&
       r.lastModified === file.lastModified
@@ -161,8 +166,10 @@ async function findReusableRecord(
 
 export async function enqueueFiles(
   files: File[],
-  skipAi: boolean
+  skipAi: boolean,
+  ownerId: string | null = getActiveUserId()
 ): Promise<{ staged: string[]; unprotected: File[] }> {
+  if (!ownerId) throw new Error('Authentication required to queue uploads');
   if (!hasIndexedDb()) {
     return { staged: [], unprotected: files };
   }
@@ -176,7 +183,7 @@ export async function enqueueFiles(
 
   for (const file of files) {
     try {
-      const reusable = await findReusableRecord(file);
+      const reusable = await findReusableRecord(file, ownerId);
       if (reusable) {
         staged.push(reusable.id);
         continue;
@@ -186,6 +193,7 @@ export async function enqueueFiles(
       const id = crypto.randomUUID();
       const record: QueuedUpload = {
         id,
+        ownerId,
         file,
         filename: file.name,
         size: file.size,
@@ -216,6 +224,23 @@ export async function getPendingUploads(): Promise<QueuedUpload[]> {
   if (!hasIndexedDb()) return [];
   const records = await getAllRecords();
   return records.filter((r) => r.status !== 'done');
+}
+
+export async function claimLegacyUpload(id: string, ownerId: string): Promise<boolean> {
+  if (!ownerId || getActiveUserId() !== ownerId || !hasIndexedDb()) return false;
+  // A read/write transaction prevents two tabs from assigning the same legacy
+  // record to different accounts. Existing ownership is never overwritten.
+  return withStore('readwrite', STORE_NAME, (store) => new Promise<boolean>((resolve, reject) => {
+    const request = store.get(id);
+    request.onerror = () => reject(request.error);
+    request.onsuccess = () => {
+      const record = request.result as QueuedUpload | undefined;
+      if (!record || record.ownerId || getActiveUserId() !== ownerId) return resolve(false);
+      const write = store.put({ ...record, ownerId, status: 'pending', terminal: false, attempts: 0, lastError: null, errorCode: null, updatedAt: Date.now() });
+      write.onsuccess = () => resolve(true);
+      write.onerror = () => reject(write.error);
+    };
+  }));
 }
 
 export async function markUploading(id: string): Promise<void> {
@@ -277,11 +302,11 @@ export async function dismiss(id: string): Promise<void> {
   await deleteRecord(id);
 }
 
-export async function purgeAbandoned(maxAgeMs: number = ABANDONED_TTL_MS): Promise<void> {
-  if (!hasIndexedDb()) return;
+export async function purgeAbandoned(maxAgeMs: number = ABANDONED_TTL_MS, ownerId: string | null = getActiveUserId()): Promise<void> {
+  if (!hasIndexedDb() || !ownerId) return;
   const cutoff = Date.now() - maxAgeMs;
   const records = await getAllRecords();
   await Promise.all(
-    records.filter((r) => r.updatedAt < cutoff).map((r) => deleteRecord(r.id))
+    records.filter((r) => r.ownerId === ownerId && r.updatedAt < cutoff).map((r) => deleteRecord(r.id))
   );
 }

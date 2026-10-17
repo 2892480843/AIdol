@@ -13,6 +13,21 @@ from PIL import Image, ImageOps
 from pydantic import BaseModel
 
 from app.config import get_settings
+from app.services.model_gateway import (
+    AI_RETRY_MAX_BACKOFF_S as AI_RETRY_MAX_BACKOFF_S,
+)
+from app.services.model_gateway import (
+    GATEWAY_VERSION,
+    CompletionGateway,
+    CompletionUnavailableError,
+    repeats_identically,
+)
+from app.services.model_gateway import (
+    AIResponseTruncatedError as AIResponseTruncatedError,
+)
+from app.services.model_gateway import (
+    _completion_response_json as _completion_response_json,
+)
 from app.utils.garment_vocabulary import (
     COLORS,
     FORMALITY,
@@ -26,17 +41,15 @@ from app.utils.prompts import load_prompt
 
 logger = logging.getLogger(__name__)
 
-AI_RETRY_MAX_BACKOFF_S = 30
-
-
-class _AIProviderResponseError(RuntimeError):
-    pass
-
 
 class TextGenerationResult(BaseModel):
     content: str
     model: str
     endpoint: str
+    usage: dict[str, int] = {}
+    gateway_version: str = GATEWAY_VERSION
+    prompt_version: str = "text-v1"
+    prompt_fingerprint: str = ""
 
 
 class ClothingTags(BaseModel):
@@ -145,52 +158,6 @@ def compute_tag_completeness(tags: "ClothingTags") -> float:
     if tags.colors:
         score += 0.05
     return round(score, 2)
-
-
-def _message_rejects_logprobs(message: str) -> bool:
-    return "logprobs" in message.lower()
-
-
-def _response_rejects_logprobs(response: httpx.Response) -> bool:
-    return response.status_code == 400 and _message_rejects_logprobs(response.text)
-
-
-def _provider_error_message(data: object) -> str | None:
-    if not isinstance(data, dict) or "error" not in data or "choices" in data:
-        return None
-
-    error = data.get("error")
-    if isinstance(error, dict):
-        message = error.get("message")
-        if isinstance(message, str) and message.strip():
-            return message
-    elif isinstance(error, str) and error.strip():
-        return error
-
-    return "provider returned an error response"
-
-
-_REASONING_EFFORT_REJECTION_MARKERS = (
-    "reasoning_effort",
-    "reasoning",
-    "think value",
-    "unsupported parameter",
-)
-
-
-def _message_rejects_reasoning_effort(message: str) -> bool:
-    # Servers disagree on how they name the field they are rejecting. OpenAI answers
-    # "Unsupported parameter: 'reasoning_effort' ...", while Ollama releases predating the
-    # "none" effort level answer `invalid think value: "none" (must be "high", "medium",
-    # "low", true, or false)` and never mention reasoning_effort at all. Matching only the
-    # OpenAI wording would leave those Ollama users with every request failing, because the
-    # default effort is sent on every call and the strip-and-retry would never fire.
-    text = message.lower()
-    return any(marker in text for marker in _REASONING_EFFORT_REJECTION_MARKERS)
-
-
-def _response_rejects_reasoning_effort(response: httpx.Response) -> bool:
-    return response.status_code == 400 and _message_rejects_reasoning_effort(response.text)
 
 
 _CONFIDENCE_FIELDS = {"type", "primary_color", "pattern", "material", "formality"}
@@ -407,7 +374,7 @@ class AIService:
 
         data = extract_json(response_text)
         if not data:
-            logger.warning(f"Could not parse JSON from AI response: {response_text[:200]}")
+            logger.warning("Could not parse JSON from AI response")
             return ClothingTags(raw_response=response_text)
 
         if isinstance(data, list):
@@ -424,7 +391,7 @@ class AIService:
             tags.type = "unknown"
             if isinstance(raw_type, str) and raw_type.strip():
                 tags.unrecognized_type = raw_type.strip().lower()[:50]
-                logger.warning(f"AI returned unsupported item type: {tags.unrecognized_type!r}")
+                logger.warning("AI returned unsupported item type")
 
         tags.subtype = data.get("subtype") if data.get("subtype") else None
         raw_primary_color = data.get("primary_color")
@@ -451,138 +418,23 @@ class AIService:
         use_vision_model: bool = True,
         request_logprobs: bool = False,
     ) -> tuple[str | None, Exception | None, list | None]:
-        last_error = None
-        every_endpoint_repeats = True
-
-        for endpoint in self._endpoints:
-            logger.info(f"Trying AI endpoint for {task_name}: {endpoint.name}")
-            model = endpoint.vision_model if use_vision_model else endpoint.text_model
-            use_logprobs = request_logprobs
-            use_reasoning_effort = bool(self.settings.ai_reasoning_effort)
-            current_reasoning_effort = self.settings.ai_reasoning_effort
-
-            async with httpx.AsyncClient(timeout=self.timeout, follow_redirects=True) as client:
-                attempt = 0
-                while attempt < self.settings.ai_max_retries:
-                    try:
-                        request_body = {
-                            "model": model,
-                            "messages": messages,
-                            "stream": False,
-                            "max_tokens": self.settings.ai_max_tokens,
-                        }
-                        if use_logprobs:
-                            request_body["logprobs"] = True
-                            request_body["top_logprobs"] = 3
-                        if use_reasoning_effort and current_reasoning_effort:
-                            request_body["reasoning_effort"] = current_reasoning_effort
-
-                        response = await client.post(
-                            f"{endpoint.url}/chat/completions",
-                            headers=self._get_headers(),
-                            json=request_body,
-                        )
-                        response.raise_for_status()
-
-                        data = response.json()
-                        provider_error = _provider_error_message(data)
-                        if provider_error is not None:
-                            if use_logprobs and _message_rejects_logprobs(provider_error):
-                                logger.warning(
-                                    f"{endpoint.name} rejected logprobs for {task_name}, "
-                                    f"retrying without it: {provider_error}"
-                                )
-                                use_logprobs = False
-                                continue
-                            if use_reasoning_effort and _message_rejects_reasoning_effort(
-                                provider_error
-                            ):
-                                logger.warning(
-                                    f"{endpoint.name} rejected reasoning_effort for {task_name}, "
-                                    f"retrying without it: {provider_error}"
-                                )
-                                use_reasoning_effort = False
-                                continue
-                            raise _AIProviderResponseError(provider_error)
-                        choice = data["choices"][0]
-                        content = choice["message"].get("content")
-                        logprobs_content = None
-                        if use_logprobs:
-                            lp = choice.get("logprobs")
-                            if lp:
-                                logprobs_content = lp.get("content")
-
-                        used_model = data.get("model", model)
-                        empty_error = _empty_response_error(
-                            choice, endpoint.name, used_model, self.settings.ai_max_tokens
-                        )
-                        if empty_error is None:
-                            logger.info(
-                                f"AI {task_name} successful via {endpoint.name} "
-                                f"(model: {used_model})"
-                            )
-                            return content, None, logprobs_content
-
-                        last_error = empty_error
-                        logger.warning(str(empty_error))
-                        action = _empty_response_action(
-                            choice, use_reasoning_effort and current_reasoning_effort != "none"
-                        )
-                        if action == "lower_reasoning":
-                            logger.info(
-                                f"Retrying {task_name} via {endpoint.name} with "
-                                "reasoning_effort='none' to prevent truncation"
-                            )
-                            current_reasoning_effort = "none"
-                            continue
-                        if action == "next_endpoint":
-                            break
-
-                    except _AIProviderResponseError as e:
-                        last_error = e
-                        logger.warning(f"Provider error from {endpoint.name}: {e}")
-                    except httpx.HTTPStatusError as e:
-                        # Some providers (e.g. Gemini's OpenAI-compat endpoint, or Gemini
-                        # native without the paid tier) reject the logprobs param outright.
-                        # Retry the same attempt without it instead of burning the retry
-                        # budget or losing the tags entirely - this doesn't count against
-                        # ai_max_retries since it's a capability mismatch, not a transient
-                        # failure.
-                        if use_logprobs and _response_rejects_logprobs(e.response):
-                            logger.warning(
-                                f"{endpoint.name} rejected logprobs for {task_name}, "
-                                f"retrying without it: {e}"
-                            )
-                            use_logprobs = False
-                            continue
-                        if use_reasoning_effort and _response_rejects_reasoning_effort(e.response):
-                            logger.warning(
-                                f"{endpoint.name} rejected reasoning_effort for {task_name}, "
-                                f"retrying without it: {e}"
-                            )
-                            use_reasoning_effort = False
-                            continue
-                        last_error = e
-                        logger.warning(f"HTTP error from {endpoint.name}: {e}")
-                    except httpx.RequestError as e:
-                        last_error = e
-                        logger.warning(f"Request error from {endpoint.name}: {e}")
-
-                    attempt += 1
-                    if attempt < self.settings.ai_max_retries:
-                        # Without this the retries fire back to back in milliseconds,
-                        # so a rate-limited or restarting endpoint is hit three times
-                        # in the same instant and the user's manual retry reproduces
-                        # the identical failure.
-                        await asyncio.sleep(min(2**attempt, AI_RETRY_MAX_BACKOFF_S))
-
-            every_endpoint_repeats = every_endpoint_repeats and repeats_identically(last_error)
-
-        # An endpoint that failed transiently can answer on a later run, even when the endpoint
-        # tried last returned a cutoff that repeats identically.
-        if not every_endpoint_repeats and repeats_identically(last_error):
-            last_error.retryable = True
-        return None, last_error, None
+        try:
+            result = await CompletionGateway().complete(
+                messages,
+                endpoints=self._endpoints,
+                settings=self.settings,
+                timeout=self.timeout,
+                headers=self._get_headers(),
+                operation=task_name,
+                use_vision_model=use_vision_model,
+                request_logprobs=request_logprobs,
+                backoff=True,
+            )
+            return result.content, None, result.logprobs_content
+        except CompletionUnavailableError:
+            return None, None, None
+        except (RuntimeError, httpx.HTTPError, ValueError) as error:
+            return None, error, None
 
     async def analyze_image(self, image_path: str | Path, *, locale: str) -> ClothingTags:
         # PIL preprocessing is CPU-bound and synchronous; run off the event loop so
@@ -744,187 +596,49 @@ class AIService:
         prompt: str,
         system_prompt: str | None = None,
         return_metadata: bool = False,
+        locale: str | None = None,
     ) -> str | TextGenerationResult:
+        if locale is not None:
+            language = DESCRIPTION_LANGUAGES.get(locale, DESCRIPTION_LANGUAGES[DEFAULT_LOCALE])
+            instruction = (
+                f"Write all user-facing prose, including outfit titles, explanations, "
+                f"highlights and styling tips, in {language}. Preserve JSON keys, "
+                "numeric item references and canonical enum values exactly."
+            )
+            if locale == "zh-CN":
+                instruction += (
+                    " 所有面向用户的标题、搭配理由、亮点和建议必须使用简体中文，"
+                    "不要输出英文标题或英文说明。JSON字段名、数字编号和枚举值保持原样。"
+                )
+            system_prompt = f"{system_prompt}\n{instruction}" if system_prompt else instruction
+            # Keep this after the long English template as well, so its example
+            # prose does not override the user's selected output language.
+            prompt = f"{prompt}\n\n{instruction}"
         messages = []
         if system_prompt:
             messages.append({"role": "system", "content": system_prompt})
         messages.append({"role": "user", "content": prompt})
 
-        last_error = None
-
-        for endpoint in self._endpoints:
-            logger.info(f"Trying text generation via {endpoint.name}")
-
-            use_reasoning_effort = bool(self.settings.ai_reasoning_effort)
-            current_reasoning_effort = self.settings.ai_reasoning_effort
-
-            async with httpx.AsyncClient(timeout=self.timeout, follow_redirects=True) as client:
-                for attempt in range(self.settings.ai_max_retries):
-                    try:
-                        request_body = {
-                            "model": endpoint.text_model,
-                            "messages": messages,
-                            "stream": False,
-                            "temperature": 0.4,
-                            "max_tokens": self.settings.ai_max_tokens,
-                        }
-                        if use_reasoning_effort and current_reasoning_effort:
-                            request_body["reasoning_effort"] = current_reasoning_effort
-
-                        response = await client.post(
-                            f"{endpoint.url}/chat/completions",
-                            headers=self._get_headers(),
-                            json=request_body,
-                        )
-                        response.raise_for_status()
-
-                        data = response.json()
-                        provider_error = _provider_error_message(data)
-                        if provider_error is not None:
-                            if use_reasoning_effort and _message_rejects_reasoning_effort(
-                                provider_error
-                            ):
-                                logger.warning(
-                                    f"{endpoint.name} rejected reasoning_effort, "
-                                    f"retrying without it: {provider_error}"
-                                )
-                                use_reasoning_effort = False
-                                continue
-                            raise _AIProviderResponseError(provider_error)
-                        used_model = data.get("model", endpoint.text_model)
-                        choice = data["choices"][0]
-                        message = choice["message"]
-                        content = message.get("content")
-
-                        empty_error = _empty_response_error(
-                            choice, endpoint.name, used_model, self.settings.ai_max_tokens
-                        )
-                        if empty_error is not None:
-                            last_error = empty_error
-                            logger.warning(str(last_error))
-                            action = _empty_response_action(
-                                choice, use_reasoning_effort and current_reasoning_effort != "none"
-                            )
-                            if action == "lower_reasoning":
-                                logger.info(
-                                    f"Retrying text generation via {endpoint.name} with "
-                                    "reasoning_effort='none' to prevent truncation"
-                                )
-                                current_reasoning_effort = "none"
-                                continue
-                            if action == "next_endpoint":
-                                break
-                            if attempt < self.settings.ai_max_retries - 1:
-                                continue
-                            break
-
-                        logger.info(
-                            f"Text generation successful via {endpoint.name} (model: {used_model})"
-                        )
-
-                        if return_metadata:
-                            return TextGenerationResult(
-                                content=content,
-                                model=used_model,
-                                endpoint=endpoint.name,
-                            )
-                        return content
-
-                    except _AIProviderResponseError as e:
-                        last_error = e
-                        logger.warning(f"Provider error from {endpoint.name}: {e}")
-                        if attempt < self.settings.ai_max_retries - 1:
-                            continue
-                    except httpx.HTTPStatusError as e:
-                        if use_reasoning_effort and _response_rejects_reasoning_effort(e.response):
-                            logger.warning(
-                                f"{endpoint.name} rejected reasoning_effort, retrying without it: {e}"
-                            )
-                            use_reasoning_effort = False
-                            continue
-                        last_error = e
-                        logger.warning(f"HTTP error from {endpoint.name}: {e}")
-                        if attempt < self.settings.ai_max_retries - 1:
-                            continue
-                    except httpx.RequestError as e:
-                        last_error = e
-                        logger.warning(f"Request error from {endpoint.name}: {e}")
-                        if attempt < self.settings.ai_max_retries - 1:
-                            continue
-
-        if last_error:
-            raise last_error
-        raise RuntimeError("Failed to generate text - no endpoints available")
-
-
-class AIResponseTruncatedError(RuntimeError):
-    """Raised when a model's response was cut off before it produced any output content.
-
-    Reasoning-capable models (e.g. Qwen3, DeepSeek-R1) return their chain-of-thought in a
-    separate ``reasoning_content`` field, distinct from ``content``. If that reasoning
-    consumes the entire completion token budget, the API reports ``finish_reason ==
-    "length"`` with an empty ``content`` string. Downstream JSON parsing of an empty
-    string then fails with an unhelpful message, which used to get swallowed into a
-    generic "AI service is not available" error even though the endpoint responded
-    successfully. This error preserves the real cause so callers can surface it.
-
-    ``retryable`` is False for a length cutoff, because the same request under the same token
-    budget is cut off again, so the tagging worker fails the job instead of rerunning it.
-    """
-
-    def __init__(self, message: str, *, retryable: bool = True):
-        super().__init__(message)
-        self.retryable = retryable
-
-
-def repeats_identically(error: BaseException | None) -> bool:
-    return isinstance(error, AIResponseTruncatedError) and not error.retryable
-
-
-def _reasoning_text(message: dict) -> str | None:
-    return message.get("reasoning_content") or message.get("reasoning")
-
-
-def _empty_response_action(
-    choice: dict, can_lower_reasoning: bool
-) -> Literal["lower_reasoning", "next_endpoint", "retry"]:
-    # Dropping straight to no reasoning avoids replaying the same truncated request, which
-    # is what turned a single slow call into a multi-minute hang. A length cutoff with
-    # reasoning already at its floor is deterministic, so retrying only multiplies the wait;
-    # any other empty response can be transient and keeps the normal retry budget.
-    if can_lower_reasoning and _reasoning_text(choice["message"]):
-        return "lower_reasoning"
-    if choice.get("finish_reason") == "length":
-        return "next_endpoint"
-    return "retry"
-
-
-def _empty_response_error(
-    choice: dict, endpoint_name: str, used_model: str, max_tokens: int
-) -> AIResponseTruncatedError | None:
-    message = choice["message"]
-    content = message.get("content")
-    if content and content.strip():
-        return None
-
-    finish_reason = choice.get("finish_reason")
-    reasoning = _reasoning_text(message)
-    if finish_reason == "length" and reasoning:
-        detail = (
-            "its reasoning/thinking output consumed the entire "
-            "completion token budget before it produced a response"
+        result = await CompletionGateway().complete(
+            messages,
+            endpoints=self._endpoints,
+            settings=self.settings,
+            timeout=self.timeout,
+            headers=self._get_headers(),
+            operation="text",
+            temperature=0.4,
         )
-    elif finish_reason == "length":
-        detail = "the response was cut off before any content was generated"
-    else:
-        detail = f"finish_reason={finish_reason!r}"
-
-    return AIResponseTruncatedError(
-        f"{endpoint_name} (model: {used_model}) returned an empty response: {detail}. "
-        f"Try raising AI_MAX_TOKENS (currently {max_tokens}) or disabling extended "
-        "thinking/reasoning mode for this model.",
-        retryable=finish_reason != "length",
-    )
+        if return_metadata:
+            return TextGenerationResult(
+                content=result.content,
+                model=result.model,
+                endpoint=result.endpoint,
+                usage=result.usage,
+                gateway_version=GATEWAY_VERSION,
+                prompt_version="text-v1",
+                prompt_fingerprint=result.prompt_fingerprint,
+            )
+        return result.content
 
 
 class AIDisabledError(RuntimeError):

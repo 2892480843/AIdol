@@ -1,14 +1,16 @@
+import asyncio
 import re
 from typing import Annotated
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, Response, StreamingResponse
 
 from app.database import DbSession
 from app.models import User
 from app.services.family_service import FamilyService
 from app.services.image_service import IMAGE_MIME_TYPES, ImageService
+from app.storage import InvalidStorageKey, StorageUnavailableError
 from app.utils.auth import get_current_user_optional
 from app.utils.signed_urls import verify_signature
 
@@ -25,7 +27,7 @@ async def get_image(
     current_user: Annotated[User | None, Depends(get_current_user_optional)] = None,
     expires: str | None = Query(None),
     sig: str | None = Query(None),
-) -> FileResponse:
+) -> Response:
     try:
         UUID(user_id)
     except ValueError as e:
@@ -64,27 +66,44 @@ async def get_image(
         )
 
     image_service = ImageService()
-    image_path = image_service.get_image_path(path)
-
-    if not image_path.resolve().is_relative_to(image_service.storage_path.resolve()):
+    headers = {"Cache-Control": "private, max-age=3600, must-revalidate"}
+    try:
+        image_path = image_service.storage.local_path(path)
+        if image_path is not None:
+            if not image_path.is_file():
+                raise FileNotFoundError(path)
+            ext = filename.rsplit(".", 1)[-1].lower()
+            return FileResponse(
+                path=str(image_path),
+                media_type=IMAGE_MIME_TYPES.get(f".{ext}", "image/jpeg"),
+                headers=headers,
+            )
+        obj = await asyncio.to_thread(image_service.storage.open, path)
+    except InvalidStorageKey:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid path",
-        )
-
-    if not image_path.exists():
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid path"
+        ) from None
+    except FileNotFoundError:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Image not found",
-        )
+        ) from None
+    except StorageUnavailableError:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail="Image storage is temporarily unavailable",
+        ) from None
 
-    ext = filename.rsplit(".", 1)[-1].lower()
-    content_type = IMAGE_MIME_TYPES.get(f".{ext}", "image/jpeg")
+    async def chunks():
+        try:
+            while chunk := await asyncio.to_thread(obj.body.read, 64 * 1024):
+                yield chunk
+        finally:
+            obj.body.close()
 
-    return FileResponse(
-        path=str(image_path),
-        media_type=content_type,
-        headers={
-            "Cache-Control": "private, max-age=3600, must-revalidate",
-        },
+    headers["Content-Length"] = str(obj.size)
+    return StreamingResponse(
+        chunks(),
+        media_type=obj.content_type,
+        headers=headers,
     )

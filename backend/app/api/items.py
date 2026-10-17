@@ -273,7 +273,7 @@ async def create_item(
         try:
             redis = await create_pool(get_redis_settings())
             try:
-                full_image_path = str(image_service.get_image_path(image_paths["image_path"]))
+                full_image_path = image_service.get_job_image_path(image_paths["image_path"])
                 job = await redis.enqueue_job(
                     "tag_item_image",
                     str(item.id),
@@ -443,7 +443,7 @@ async def bulk_create_items(
                     await db.commit()
                     try:
                         full_image_path = str(
-                            image_service.get_image_path(image_paths["image_path"])
+                            image_service.get_job_image_path(image_paths["image_path"])
                         )
                         job = await redis.enqueue_job(
                             "tag_item_image",
@@ -486,7 +486,7 @@ async def bulk_create_items(
                 # and the files this iteration already wrote need cleanup or every
                 # retry of the same race leaks orphaned images on disk.
                 await db.rollback()
-                image_service.delete_images(image_paths)
+                await asyncio.to_thread(image_service.delete_images, image_paths)
                 existing_by_key = (
                     await item_service.find_by_upload_key(user_id, upload_key)
                     if upload_key is not None
@@ -552,13 +552,14 @@ async def bulk_delete_items(
                 failed += 1
                 continue
 
-            image_service.delete_images(
+            await asyncio.to_thread(
+                image_service.delete_images,
                 {
                     "image_path": item.image_path,
                     "medium_path": item.medium_path,
                     "thumbnail_path": item.thumbnail_path,
                     "original_backup_path": item.original_image_path,
-                }
+                },
             )
 
             await item_service.delete(item)
@@ -702,7 +703,7 @@ async def bulk_analyze_items(
     try:
         for item, job_id in to_enqueue:
             try:
-                full_image_path = str(image_service.get_image_path(item.image_path))
+                full_image_path = image_service.get_job_image_path(item.image_path)
                 job = await redis.enqueue_job(
                     "tag_item_image",
                     str(item.id),
@@ -1314,13 +1315,14 @@ async def delete_item(
         )
 
     image_service = ImageService()
-    image_service.delete_images(
+    await asyncio.to_thread(
+        image_service.delete_images,
         {
             "image_path": item.image_path,
             "medium_path": item.medium_path,
             "thumbnail_path": item.thumbnail_path,
             "original_backup_path": item.original_image_path,
-        }
+        },
     )
 
     await item_service.delete(item)
@@ -1586,7 +1588,7 @@ async def trigger_ai_analysis(
         try:
             redis = await create_pool(get_redis_settings())
             try:
-                full_image_path = str(image_service.get_image_path(image_path))
+                full_image_path = image_service.get_job_image_path(image_path)
                 enqueued = await redis.enqueue_job(
                     "tag_item_image",
                     str(item_id),
@@ -1617,7 +1619,7 @@ async def trigger_ai_analysis(
 
         redis = await create_pool(get_redis_settings())
         try:
-            full_image_path = str(image_service.get_image_path(item.image_path))
+            full_image_path = image_service.get_job_image_path(item.image_path)
             job = await redis.enqueue_job(
                 "tag_item_image",
                 str(item.id),
@@ -1943,7 +1945,7 @@ async def replace_item_image(
 
     # Old files are removed only after the new paths are committed, so a failed
     # commit cannot leave the item pointing at deleted files
-    image_service.delete_images(old_paths)
+    await asyncio.to_thread(image_service.delete_images, old_paths)
 
     return ItemResponse.model_validate(item)
 
@@ -2041,12 +2043,13 @@ async def delete_item_image(
 
     # Delete image files
     image_service_inst = ImageService()
-    image_service_inst.delete_images(
+    await asyncio.to_thread(
+        image_service_inst.delete_images,
         {
             "image_path": item_image.image_path,
             "medium_path": item_image.medium_path,
             "thumbnail_path": item_image.thumbnail_path,
-        }
+        },
     )
 
     await db.delete(item_image)

@@ -102,5 +102,44 @@
     "reset": "Reset",
     "temperature": "Temperature"
   },
-  "yourOutfit": "Your Outfit"
+  "yourOutfit": "Your Outfit",
+  "lookCount": {
+    "title": "How many looks?",
+    "single": "One focused look",
+    "three": "Compare three looks"
+  },
+  "tasks": {
+    "title": "Recommendation activity",
+    "refresh": "Refresh",
+    "loading": "Loading recommendations…",
+    "loadingResults": "Loading your looks…",
+    "backgroundHint": "Your wardrobe is being styled. You can leave this page and return later.",
+    "completedHint": "Your looks are ready below.",
+    "failedHint": "Your request is saved. Try again when you are ready.",
+    "cancelledHint": "This recommendation was cancelled.",
+    "attempt": "Attempt {count} of {max}",
+    "cancel": "Cancel",
+    "retry": "Try again",
+    "history": "Recent requests ({count})",
+    "view": "Open",
+    "networkError": "Unable to update recommendations. Refresh to reconnect.",
+    "actionError": "Unable to complete this action. Please try again.",
+    "dashboardHint": "Follow your recommendation progress or open a recent result.",
+    "openActivity": "View recommendations",
+    "status": {
+      "queued": "Queued",
+      "running": "In progress",
+      "succeeded": "Ready",
+      "failed": "Needs attention",
+      "cancelled": "Cancelled"
+    },
+    "stage": {
+      "queued": "Waiting to start",
+      "preparing": "Reviewing your wardrobe",
+      "generating": "Creating your looks",
+      "completed": "Your looks are ready",
+      "error": "Could not complete your looks",
+      "cancelled": "Recommendation cancelled"
+    }
+  }
 }

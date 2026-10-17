@@ -223,17 +223,18 @@ class PairingService:
 
         # Call AI
         try:
-            result = await ai_service.generate_text(prompt, return_metadata=True)
+            result = await ai_service.generate_text(
+                prompt, return_metadata=True, locale=getattr(user, "locale", "en")
+            )
             logger.info(f"AI pairings generated (model: {result.model})")
-            logger.debug(f"AI raw response: {result.content[:500]}")
             pairings_data = self._parse_ai_response(result.content)
         except AIResponseTruncatedError as e:
             # Preserve the specific, actionable cause: the endpoint responded
             # successfully but produced no content (see AIResponseTruncatedError).
-            logger.error(f"AI pairing generation failed: {e}")
+            logger.error("AI pairing generation failed (error_type=%s)", type(e).__name__)
             raise AIGenerationError(str(e)) from e
         except Exception as e:
-            logger.error(f"AI pairing generation failed: {e}")
+            logger.error("AI pairing generation failed (error_type=%s)", type(e).__name__)
             raise AIGenerationError(
                 "AI service is not available. Check your AI endpoint configuration."
             ) from e

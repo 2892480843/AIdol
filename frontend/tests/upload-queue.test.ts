@@ -1,6 +1,7 @@
 import 'fake-indexeddb/auto'
 import { IDBFactory } from 'fake-indexeddb'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { setActiveSession } from '@/lib/api'
 import {
   enqueueFiles,
   getPendingUploads,
@@ -19,6 +20,7 @@ function makeFile(name: string, content = 'x', lastModified = 1000): File {
 }
 
 beforeEach(() => {
+  setActiveSession('user-a', 'token-a')
   // Fresh store per test - fake-indexeddb otherwise persists across tests
   // in the same run since the DB name is fixed by the module under test.
   globalThis.indexedDB = new IDBFactory()
