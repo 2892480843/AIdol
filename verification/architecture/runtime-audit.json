@@ -1,0 +1,29 @@
+{
+  "business_outfits": 4,
+  "no_duplicate_or_cancelled_results": true,
+  "originating_request_id": "architecture-live-90a45e5b8440",
+  "model_versions": [
+    {
+      "_ai_model": "Doubao-Seed-2.0-Mini",
+      "_ai_prompt_version": "49183b78d09ee479",
+      "_ai_gateway_version": "completion-v1"
+    },
+    {
+      "_ai_model": "Doubao-Seed-2.0-Mini",
+      "_ai_prompt_version": "49183b78d09ee479",
+      "_ai_gateway_version": "completion-v1"
+    },
+    {
+      "_ai_model": "Doubao-Seed-2.0-Mini",
+      "_ai_prompt_version": "49183b78d09ee479",
+      "_ai_gateway_version": "completion-v1"
+    },
+    {
+      "_ai_model": "Doubao-Seed-2.0-Mini",
+      "_ai_prompt_version": "49183b78d09ee479",
+      "_ai_gateway_version": "completion-v1"
+    }
+  ],
+  "storage_backend": "s3",
+  "private_images_read": 3
+}

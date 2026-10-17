@@ -1,0 +1,72 @@
+[
+  {
+    "Service": "backend",
+    "State": "running",
+    "Health": "healthy",
+    "Image": "wardrowbe-backend:architecture-20261017",
+    "Name": "wardrobe-backend"
+  },
+  {
+    "Service": "postgres",
+    "State": "running",
+    "Health": "healthy",
+    "Image": "postgres@sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81",
+    "Name": "wardrobe-db"
+  },
+  {
+    "Service": "frontend",
+    "State": "running",
+    "Health": "",
+    "Image": "wardrowbe-frontend:architecture-20261017",
+    "Name": "wardrobe-frontend"
+  },
+  {
+    "Service": "image-worker",
+    "State": "running",
+    "Health": "",
+    "Image": "wardrowbe-backend:architecture-20261017",
+    "Name": "wardrobe-image-worker"
+  },
+  {
+    "Service": "object-store",
+    "State": "running",
+    "Health": "",
+    "Image": "ghcr.io/rustfs/rustfs@sha256:87763ed4dcb2bed3fc52cbf6cb7d865411e085b0b952dc78e50dffa9ece0ed9e",
+    "Name": "wardrobe-object-store"
+  },
+  {
+    "Service": "otel-collector",
+    "State": "running",
+    "Health": "",
+    "Image": "otel/opentelemetry-collector-contrib@sha256:38c349c3b7a2fd7ea46700cde8fa13d35b699ef2ce245bdf34dae2a413512f76",
+    "Name": "wardrobe-otel-collector"
+  },
+  {
+    "Service": "redis",
+    "State": "running",
+    "Health": "healthy",
+    "Image": "redis@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499",
+    "Name": "wardrobe-redis"
+  },
+  {
+    "Service": "worker",
+    "State": "running",
+    "Health": "",
+    "Image": "wardrowbe-backend:architecture-20261017",
+    "Name": "wardrobe-worker"
+  },
+  {
+    "Service": "task-dispatcher",
+    "State": "running",
+    "Health": "",
+    "Image": "wardrowbe-backend:architecture-20261017",
+    "Name": "wardrowbe-task-dispatcher-1"
+  },
+  {
+    "Service": "task-worker",
+    "State": "running",
+    "Health": "",
+    "Image": "wardrowbe-backend:architecture-20261017",
+    "Name": "wardrowbe-task-worker-1"
+  }
+]

@@ -140,6 +140,14 @@
       "completed": "Vos tenues sont prêtes",
       "error": "Impossible de créer vos tenues",
       "cancelled": "Recommandation annulée"
+    },
+    "errors": {
+      "interrupted": "La demande a été interrompue. Vous pouvez réessayer.",
+      "insufficientWardrobe": "Ajoutez des vêtements disponibles ou modifiez votre sélection.",
+      "aiDisabled": "Les recommandations IA sont actuellement désactivées.",
+      "invalidRequest": "Vérifiez les vêtements sélectionnés, le lieu et la météo.",
+      "timeout": "La création a pris trop de temps. Veuillez réessayer.",
+      "unavailable": "Le service de recommandation est temporairement indisponible."
     }
   }
 }

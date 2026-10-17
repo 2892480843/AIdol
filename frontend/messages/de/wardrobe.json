@@ -270,7 +270,16 @@
       "unsupportedFormat": "{name} hat kein unterstütztes Format (JPEG, PNG, WebP oder HEIC)",
       "duplicate": "{name} ist bereits in deiner Garderobe",
       "generic": "{name} konnte nicht hochgeladen werden"
-    }
+    },
+    "otherAccountPaused": "{count} Uploads eines anderen Kontos sind pausiert. Melde dich bei diesem Konto an, um fortzufahren.",
+    "legacyReview": "{count} früher gespeicherte Fotos prüfen",
+    "legacyHint": "Für diese Fotos ist kein Konto hinterlegt. Prüfe jedes Foto, bevor du es zum aktuellen Konto hinzufügst. Nicht bestätigte Fotos bleiben gespeichert.",
+    "review": "Prüfen",
+    "claimTitle": "Dieses Foto zu deinem Konto hinzufügen?",
+    "claimDescription": "{name} zu {account} hinzufügen? Bestätige nur, wenn dieses Foto zu diesem Konto gehört.",
+    "currentAccount": "das aktuell angemeldete Konto",
+    "keepParked": "Gespeichert lassen",
+    "claimAndUpload": "Bestätigen und hochladen"
   },
   "wearCount": "{count, plural, one {# Mal getragen} other {# Mal getragen}}",
   "wornAgo": {

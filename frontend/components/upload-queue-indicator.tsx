@@ -3,11 +3,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
+import { useSession } from 'next-auth/react';
 import { Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
 import { useFeatures } from '@/lib/hooks/use-features';
 import * as uploadManager from '@/lib/upload-manager';
 import { getPendingUploads } from '@/lib/upload-queue';
+import { getActiveUserId } from '@/lib/api';
 import type { DrainState, TerminalRecord } from '@/lib/upload-manager';
 
 const BYTES_PER_MB = 1024 * 1024;
@@ -38,9 +41,11 @@ function failureMessage(
 
 export function UploadQueueIndicator() {
   const queryClient = useQueryClient();
+  const { data: session } = useSession();
   const t = useTranslations('wardrobe.uploadQueue');
   const { data: features } = useFeatures();
   const [state, setState] = useState<DrainState | null>(null);
+  const [claim, setClaim] = useState<{ id: string; filename: string; ownerId: string } | null>(null);
   // True only for records that already existed before this component
   // mounted (a real resume, e.g. the tab was closed mid-import) - lets the
   // copy say "resuming an earlier import" instead of implying this is a
@@ -54,22 +59,25 @@ export function UploadQueueIndicator() {
     uploadManager.init(queryClient);
     getPendingUploads().then((records) => {
       if (cancelled) return;
-      resumedRef.current = records.length > 0;
+      resumedRef.current = records.some((record) => record.ownerId === getActiveUserId());
       void uploadManager.startDrain();
     });
 
-    const unsubscribe = uploadManager.subscribe(setState);
+    const unsubscribe = uploadManager.subscribe((next) => {
+      if (next.ownerId === getActiveUserId()) setState(next);
+    });
     uploadManager.getState().then((s) => {
-      if (!cancelled) setState(s);
+      if (!cancelled && s.ownerId === getActiveUserId()) setState(s);
     });
 
     return () => {
       cancelled = true;
       unsubscribe();
+      uploadManager.shutdown();
     };
   }, [queryClient]);
 
-  if (!state || (state.remaining === 0 && state.terminalRecords.length === 0)) {
+  if (!state || state.ownerId !== getActiveUserId() || (state.remaining === 0 && state.terminalRecords.length === 0 && state.legacyRecords.length === 0 && state.parkedCount === 0)) {
     return null;
   }
 
@@ -78,6 +86,21 @@ export function UploadQueueIndicator() {
   return (
     <div className="fixed bottom-20 right-4 lg:bottom-4 z-50 w-full max-w-xs">
       <div className="rounded-lg border bg-card p-3 shadow-lg space-y-2">
+        {state.parkedCount > 0 && <p className="text-xs text-muted-foreground">{t('otherAccountPaused', { count: state.parkedCount })}</p>}
+        {state.legacyRecords.length > 0 && (
+          <details className="space-y-2">
+            <summary className="cursor-pointer text-sm">{t('legacyReview', { count: state.legacyRecords.length })}</summary>
+            <p className="text-xs text-muted-foreground">{t('legacyHint')}</p>
+            <ul className="max-h-40 space-y-2 overflow-y-auto">
+              {state.legacyRecords.map((record) => (
+                <li key={record.id} className="flex items-center justify-between gap-2 text-xs">
+                  <span className="min-w-0 break-words">{record.filename}</span>
+                  <Button type="button" size="sm" variant="outline" onClick={() => { if (state.ownerId) setClaim({ ...record, ownerId: state.ownerId }); }}>{t('review')}</Button>
+                </li>
+              ))}
+            </ul>
+          </details>
+        )}
         {state.remaining > 0 && (
           <div className="flex items-center gap-2">
             <Loader2 className="h-4 w-4 shrink-0 animate-spin text-primary" />
@@ -148,6 +171,18 @@ export function UploadQueueIndicator() {
           </div>
         )}
       </div>
+      <AlertDialog open={!!claim} onOpenChange={(open) => { if (!open) setClaim(null); }}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{t('claimTitle')}</AlertDialogTitle>
+            <AlertDialogDescription>{t('claimDescription', { name: claim?.filename ?? '', account: session?.user.email || session?.user.name || t('currentAccount') })}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>{t('keepParked')}</AlertDialogCancel>
+            <AlertDialogAction onClick={() => { if (claim) void uploadManager.claimLegacy(claim.id, claim.ownerId); setClaim(null); }}>{t('claimAndUpload')}</AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

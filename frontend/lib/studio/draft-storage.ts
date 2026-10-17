@@ -1,4 +1,9 @@
-const DRAFT_KEY = 'studio_draft_v1';
+import { getActiveUserId } from '@/lib/api';
+
+function currentDraftKey(): string | null {
+  const ownerId = getActiveUserId();
+  return ownerId ? `studio_draft_v2:${encodeURIComponent(ownerId)}` : null;
+}
 const DRAFT_TTL_MS = 24 * 60 * 60 * 1000;
 
 export interface StudioDraft {
@@ -11,24 +16,26 @@ export interface StudioDraft {
 export function saveDraft(
   draft: Omit<StudioDraft, 'timestamp'>
 ): void {
-  if (typeof window === 'undefined') return;
+  const key = currentDraftKey();
+  if (typeof window === 'undefined' || !key) return;
   try {
     const payload: StudioDraft = { ...draft, timestamp: Date.now() };
-    window.localStorage.setItem(DRAFT_KEY, JSON.stringify(payload));
+    window.localStorage.setItem(key, JSON.stringify(payload));
   } catch {
     // localStorage full or disabled
   }
 }
 
 export function loadDraft(): StudioDraft | null {
-  if (typeof window === 'undefined') return null;
+  const key = currentDraftKey();
+  if (typeof window === 'undefined' || !key) return null;
   try {
-    const raw = window.localStorage.getItem(DRAFT_KEY);
+    const raw = window.localStorage.getItem(key);
     if (!raw) return null;
     const draft = JSON.parse(raw) as StudioDraft;
     if (!draft || typeof draft.timestamp !== 'number') return null;
     if (Date.now() - draft.timestamp > DRAFT_TTL_MS) {
-      window.localStorage.removeItem(DRAFT_KEY);
+      window.localStorage.removeItem(key);
       return null;
     }
     return draft;
@@ -38,9 +45,10 @@ export function loadDraft(): StudioDraft | null {
 }
 
 export function clearDraft(): void {
-  if (typeof window === 'undefined') return;
+  const key = currentDraftKey();
+  if (typeof window === 'undefined' || !key) return;
   try {
-    window.localStorage.removeItem(DRAFT_KEY);
+    window.localStorage.removeItem(key);
   } catch {
     // noop
   }

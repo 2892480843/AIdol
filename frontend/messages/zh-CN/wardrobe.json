@@ -270,7 +270,16 @@
       "unsupportedFormat": "{name} 的格式不受支持（支持 JPEG、PNG、WebP、HEIC）",
       "duplicate": "{name} 已在你的衣橱中",
       "generic": "{name} 无法上传"
-    }
+    },
+    "otherAccountPaused": "另一个账户的 {count} 张图片已暂停。请登录原账户继续上传。",
+    "legacyReview": "核对旧版保存的 {count} 张图片",
+    "legacyHint": "这些图片没有记录所属账户。请逐张核对后再加入当前账户，未确认的图片会继续保留。",
+    "review": "核对归属",
+    "claimTitle": "将这张图片加入当前账户？",
+    "claimDescription": "确认将「{name}」加入「{account}」？请只确认属于此账户的图片。",
+    "currentAccount": "当前登录账户",
+    "keepParked": "继续保留",
+    "claimAndUpload": "确认归属并上传"
   },
   "wearCount": "{count, plural, one {已穿着 # 次} other {已穿着 # 次}}",
   "wornAgo": {

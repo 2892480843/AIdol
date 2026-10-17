@@ -1,0 +1,62 @@
+{
+  "started_at": "2026-10-17T07:12:40.035233+00:00",
+  "state": "passed",
+  "owner_id": "2aa06228-5d38-486b-9c61-4f2d936fd7e9",
+  "upload_seconds": 1.82,
+  "pending": [
+    {
+      "item_id": "6c70f0df-a24a-4f57-80b6-693b6e3ac282",
+      "job_id": "15fb1eaa-45b1-4e81-ba9f-33dafc82f059",
+      "state": "processing",
+      "ai_processed": false,
+      "published_at": null,
+      "completed_at": null
+    },
+    {
+      "item_id": "f193dd7e-1fd2-469c-adbc-312ec1a51999",
+      "job_id": "76e5fee4-1e6b-4d04-b728-e0963bb89370",
+      "state": "processing",
+      "ai_processed": false,
+      "published_at": null,
+      "completed_at": null
+    }
+  ],
+  "cancel_seconds": 1.03,
+  "cancelled": [
+    {
+      "item_id": "6c70f0df-a24a-4f57-80b6-693b6e3ac282",
+      "job_id": "15fb1eaa-45b1-4e81-ba9f-33dafc82f059",
+      "state": "ready",
+      "ai_processed": false,
+      "published_at": null,
+      "completed_at": null
+    },
+    {
+      "item_id": "f193dd7e-1fd2-469c-adbc-312ec1a51999",
+      "job_id": "76e5fee4-1e6b-4d04-b728-e0963bb89370",
+      "state": "ready",
+      "ai_processed": false,
+      "published_at": null,
+      "completed_at": null
+    }
+  ],
+  "after_restart": [
+    {
+      "item_id": "6c70f0df-a24a-4f57-80b6-693b6e3ac282",
+      "job_id": "15fb1eaa-45b1-4e81-ba9f-33dafc82f059",
+      "state": "ready",
+      "ai_processed": false,
+      "published_at": null,
+      "completed_at": "2026-10-17T07:12:47.939212+00:00"
+    },
+    {
+      "item_id": "f193dd7e-1fd2-469c-adbc-312ec1a51999",
+      "job_id": "76e5fee4-1e6b-4d04-b728-e0963bb89370",
+      "state": "ready",
+      "ai_processed": false,
+      "published_at": null,
+      "completed_at": "2026-10-17T07:12:47.939212+00:00"
+    }
+  ],
+  "finished_at": "2026-10-17T07:13:15.358200+00:00"
+}

@@ -642,7 +642,9 @@ class TestBulkCreateSkipAI:
         assert response.status_code == 201
         item_id = UUID(response.json()["results"][0]["item"]["id"])
         result = await db_session.execute(select(ClothingItem).where(ClothingItem.id == item_id))
-        assert result.scalar_one().ai_job_id == "fake-job-id"
+        job_id = result.scalar_one().ai_job_id
+        assert UUID(job_id)
+        assert mock_redis.enqueue_job.call_args.kwargs["_job_id"] == job_id
 
 
 class TestCancelAnalysis:
@@ -931,7 +933,7 @@ class TestBulkCancelAnalysis:
         assert result.scalar_one().status == ItemStatus.ready
 
     @pytest.mark.asyncio
-    async def test_bulk_cancel_redis_connect_failure_leaves_items_untouched(
+    async def test_bulk_cancel_redis_connect_failure_still_invalidates_jobs(
         self, client: AsyncClient, auth_headers, db_session: AsyncSession, test_user
     ):
         item = await self._create_item(db_session, test_user, ai_job_id="job-1")
@@ -947,11 +949,13 @@ class TestBulkCancelAnalysis:
 
         assert response.status_code == 200
         body = response.json()
-        assert body["cancelled"] == 0
-        assert body["errors"]
+        assert body["cancelled"] == 1
+        assert body["errors"] == []
 
         result = await db_session.execute(select(ClothingItem).where(ClothingItem.id == item.id))
-        assert result.scalar_one().status == ItemStatus.processing
+        cancelled = result.scalar_one()
+        assert cancelled.status == ItemStatus.ready
+        assert cancelled.ai_job_id is None
 
     @pytest.mark.asyncio
     async def test_bulk_cancel_unknown_item_reported_in_errors(
@@ -1031,7 +1035,9 @@ class TestAnalysisIdempotency:
             response = await client.post(f"/api/v1/items/{item.id}/analyze", headers=auth_headers)
 
         assert response.status_code == 200
-        assert response.json() == {"status": "queued", "job_id": "fresh-job-id"}
+        assert response.json()["status"] == "queued"
+        assert UUID(response.json()["job_id"])
+        assert mock_redis.enqueue_job.call_args.kwargs["_job_id"] == response.json()["job_id"]
         mock_redis.enqueue_job.assert_called_once()
 
     @pytest.mark.asyncio
@@ -1124,7 +1130,7 @@ class TestAnalysisIdempotency:
         assert result.scalar_one().processing_kind is None
 
     @pytest.mark.asyncio
-    async def test_bulk_analyze_redis_failure_only_errors_items_it_touched(
+    async def test_bulk_analyze_redis_failure_keeps_new_intent_and_existing_jobs(
         self, client: AsyncClient, auth_headers, db_session: AsyncSession, test_user
     ):
         already_processing = await self._create_item(
@@ -1148,7 +1154,10 @@ class TestAnalysisIdempotency:
                 json={"item_ids": [str(already_processing_id), str(needs_queueing_id)]},
             )
 
-        assert response.status_code == 500
+        assert response.status_code == 200
+        assert response.json()["queued"] == 1
+        assert response.json()["skipped"] == 1
+        assert response.json()["failed"] == 0
 
         db_session.expire_all()
         result = await db_session.execute(
@@ -1161,7 +1170,9 @@ class TestAnalysisIdempotency:
         result = await db_session.execute(
             select(ClothingItem).where(ClothingItem.id == needs_queueing_id)
         )
-        assert result.scalar_one().status == ItemStatus.error
+        queued_item = result.scalar_one()
+        assert queued_item.status == ItemStatus.processing
+        assert queued_item.ai_job_id
 
 
 class TestRetryCooldownClaims:
@@ -1536,7 +1547,8 @@ class TestRetryCooldownEndpoint:
         assert response.status_code == 200
         body = response.json()
         assert body["status"] == "queued"
-        assert body["job_id"] == "ready-job-id"
+        assert UUID(body["job_id"])
+        assert mock_redis.enqueue_job.call_args.kwargs["_job_id"] == body["job_id"]
         mock_redis.enqueue_job.assert_called_once()
 
     @pytest.mark.asyncio
@@ -1560,7 +1572,8 @@ class TestRetryCooldownEndpoint:
         assert response.status_code == 200
         body = response.json()
         assert body["status"] == "queued"
-        assert body["job_id"] == "recovered-job-id"
+        assert UUID(body["job_id"])
+        assert mock_redis.enqueue_job.call_args.kwargs["_job_id"] == body["job_id"]
 
     @pytest.mark.asyncio
     async def test_retry_regression_real_failure_then_immediate_retry_blocked(
@@ -1598,7 +1611,7 @@ class TestRetryCooldownEndpoint:
         mock_create_pool.assert_not_called()
 
     @pytest.mark.asyncio
-    async def test_post_claim_enqueue_failure_rolls_back_without_new_cooldown(
+    async def test_post_claim_enqueue_failure_keeps_intent_without_new_cooldown(
         self, client: AsyncClient, auth_headers, db_session: AsyncSession, test_user
     ):
         item = await self._create_item(
@@ -1616,12 +1629,14 @@ class TestRetryCooldownEndpoint:
 
             response = await client.post(f"/api/v1/items/{item_id}/analyze", headers=auth_headers)
 
-        assert response.status_code == 500
+        assert response.status_code == 200
+        assert response.json()["status"] == "queued"
 
         db_session.expire_all()
         result = await db_session.execute(select(ClothingItem).where(ClothingItem.id == item_id))
         rolled_back = result.scalar_one()
-        assert rolled_back.status == ItemStatus.error
+        assert rolled_back.status == ItemStatus.processing
+        assert rolled_back.ai_job_id == response.json()["job_id"]
         # Infra failure, not an AI failure - must not start a fresh cooldown.
         assert rolled_back.ai_failed_at < datetime.now(UTC) - timedelta(seconds=100)
 
@@ -1719,7 +1734,7 @@ class TestBulkRetryCooldown:
         assert body["retry_after_seconds"] is None
 
     @pytest.mark.asyncio
-    async def test_bulk_redis_failure_releases_claim_without_new_cooldown(
+    async def test_bulk_redis_failure_keeps_claim_without_new_cooldown(
         self, client: AsyncClient, auth_headers, db_session: AsyncSession, test_user
     ):
         eligible = await self._create_item(
@@ -1738,14 +1753,16 @@ class TestBulkRetryCooldown:
                 json={"item_ids": [str(eligible_id)]},
             )
 
-        assert response.status_code == 500
+        assert response.status_code == 200
+        assert response.json()["queued"] == 1
 
         db_session.expire_all()
         result = await db_session.execute(
             select(ClothingItem).where(ClothingItem.id == eligible_id)
         )
         released = result.scalar_one()
-        assert released.status == ItemStatus.error
+        assert released.status == ItemStatus.processing
+        assert released.ai_job_id
         assert released.ai_failed_at < datetime.now(UTC) - timedelta(seconds=100)
 
 

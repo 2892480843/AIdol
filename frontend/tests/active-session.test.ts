@@ -15,6 +15,16 @@ describe('active API session', () => {
     expect(getAccessToken()).toBeNull();
   });
 
+  it('notifies active uploads when the same account synchronizes a rotated token', () => {
+    setActiveSession('user-a', 'old-token');
+    const changed = vi.fn();
+    const unsubscribe = subscribeActiveSession(changed);
+    applySessionToken({ user: { id: 'user-a' }, accessToken: 'rotated-token', expires: '' });
+    expect(getAccessToken()).toBe('rotated-token');
+    expect(changed).toHaveBeenCalledTimes(1);
+    unsubscribe();
+  });
+
   it('notifies subscribers only after the identity and token are changed together', () => {
     setActiveSession('user-a', 'token-a');
     const changed = vi.fn(() => ({ owner: getActiveUserId(), token: getAccessToken() }));

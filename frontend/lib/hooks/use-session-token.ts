@@ -6,7 +6,7 @@ import { setAccessToken } from '@/lib/api';
 
 export function applySessionToken(session: Session | null | undefined) {
   if (session?.accessToken) {
-    setAccessToken(session.accessToken, session.user.id);
+    setAccessToken(session.accessToken, session.user?.id);
   }
 }
 

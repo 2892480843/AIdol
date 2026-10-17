@@ -23,6 +23,8 @@ function jsonResponse(body: unknown, status = 200) {
 async function freshDrain() {
   vi.resetModules()
   const mod = await import('@/lib/hooks/use-items')
+  const { setActiveSession } = await import('@/lib/api')
+  setActiveSession('user-a', 'token-a')
   return mod.drainBulkAction
 }
 
@@ -137,6 +139,62 @@ describe('drainBulkAction with an explicit id list', () => {
 })
 
 describe('drainBulkAction with select_all', () => {
+  it('rejects an old hook callback before its first request under the new account', async () => {
+    const drain = await freshDrain()
+    const { setActiveSession } = await import('@/lib/api')
+    setActiveSession('user-b', 'token-b')
+    await expect(drain<RotateResponse>('/items/bulk/delete', { select_all: true }, SUM_KEYS, 'user-a')).rejects.toThrow('session change')
+    expect(fetchMock).not.toHaveBeenCalled()
+  })
+
+  it('stops cursor mutations after an account switch while the first batch is pending', async () => {
+    const drain = await freshDrain()
+    const { setActiveSession } = await import('@/lib/api')
+    let finish!: (response: Response) => void
+    fetchMock.mockImplementationOnce(() => new Promise<Response>((resolve) => { finish = resolve }))
+    fetchMock.mockResolvedValue(jsonResponse({ queued: 1, failed: 0, errors: [], has_more: false }))
+    const operation = drain<RotateResponse>('/items/bulk/delete', { select_all: true }, SUM_KEYS).catch((error) => error)
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    const signal = fetchMock.mock.calls[0][1].signal as AbortSignal
+    setActiveSession('user-b', 'token-b')
+    finish(jsonResponse({ queued: 1, failed: 0, errors: [], has_more: true, next_cursor: 'next' }))
+    expect(await operation).toBeInstanceOf(Error)
+    expect(signal.aborted).toBe(true)
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+    expect(fetchMock.mock.calls[0][1].headers.Authorization).toBe('Bearer token-a')
+  })
+
+  it('does not split and retry a rejected id list after a session change', async () => {
+    const drain = await freshDrain()
+    const { setActiveSession } = await import('@/lib/api')
+    let finish!: (response: Response) => void
+    fetchMock.mockImplementationOnce(() => new Promise<Response>((resolve) => { finish = resolve }))
+    fetchMock.mockResolvedValue(jsonResponse({ queued: 1, failed: 0, errors: [] }))
+    const operation = drain<RotateResponse>('/items/bulk/rotate', { item_ids: ['a', 'b', 'c'] }, SUM_KEYS).catch((error) => error)
+    setActiveSession('user-b', 'token-b')
+    finish(jsonResponse({ detail: 'Maximum 2 items per bulk action' }, 400))
+    expect(await operation).toBeInstanceOf(Error)
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+
+  it('stops learned-limit chunks even when the same user signs out and returns before the response', async () => {
+    const drain = await freshDrain()
+    const { setActiveSession } = await import('@/lib/api')
+    fetchMock.mockResolvedValueOnce(jsonResponse({ detail: 'Maximum 2 items per bulk action' }, 400))
+      .mockResolvedValue(jsonResponse({ queued: 1, failed: 0, errors: [] }))
+    await drain<RotateResponse>('/items/bulk/rotate', { item_ids: ['a', 'b', 'c'] }, SUM_KEYS)
+    fetchMock.mockReset()
+    let finish!: (response: Response) => void
+    fetchMock.mockImplementationOnce(() => new Promise<Response>((resolve) => { finish = resolve }))
+      .mockResolvedValue(jsonResponse({ queued: 1, failed: 0, errors: [] }))
+    const operation = drain<RotateResponse>('/items/bulk/rotate', { item_ids: ['d', 'e', 'f'] }, SUM_KEYS).catch((error) => error)
+    setActiveSession(null, null)
+    setActiveSession('user-a', 'token-a')
+    finish(jsonResponse({ queued: 2, failed: 0, errors: [] }))
+    expect(await operation).toBeInstanceOf(Error)
+    expect(fetchMock).toHaveBeenCalledTimes(1)
+  })
+
   it('follows the cursor until the server stops reporting more', async () => {
     const drain = await freshDrain()
     fetchMock

@@ -16,6 +16,12 @@ const STAGE_KEYS: Record<string, string> = {
   queued: 'stage.queued', preparing: 'stage.preparing', generating: 'stage.generating', completed: 'stage.completed', error: 'stage.error', cancelled: 'stage.cancelled',
 };
 
+const ERROR_KEYS: Record<string, string> = {
+  interrupted: 'errors.interrupted', insufficient_wardrobe: 'errors.insufficientWardrobe',
+  ai_disabled: 'errors.aiDisabled', invalid_request: 'errors.invalidRequest',
+  timeout: 'errors.timeout', ai_unavailable: 'errors.unavailable',
+};
+
 export function TaskPanel({ tasks, activeTask, loading, busy, loadingResults, error, onOpen, onRetry, onCancel, onRefresh }: {
   tasks: RecommendationTask[];
   activeTask: RecommendationTask | null;
@@ -34,6 +40,7 @@ export function TaskPanel({ tasks, activeTask, loading, busy, loadingResults, er
   if (!tasks.length && !activeTask && !loading && !error) return null;
   const history = tasks.filter((task) => task.id !== activeTask?.id);
   const active = activeTask && isTaskActive(activeTask);
+  const errorKey = activeTask?.error_code ? ERROR_KEYS[activeTask.error_code] : undefined;
   const Icon = active ? Loader2 : activeTask?.status === 'succeeded' ? CheckCircle2 : activeTask?.status === 'failed' ? AlertCircle : XCircle;
 
   return (
@@ -59,7 +66,7 @@ export function TaskPanel({ tasks, activeTask, loading, busy, loadingResults, er
               </div>
               <Badge variant="secondary" className="shrink-0">{t(STATUS_KEYS[activeTask.status])}</Badge>
             </div>
-            {activeTask.error && <p className="text-sm text-destructive break-words">{activeTask.error}</p>}
+            {activeTask.error && errorKey && <p className="text-sm text-destructive break-words">{t(errorKey)}</p>}
             {loadingResults && <p role="status" className="text-xs text-muted-foreground">{t('loadingResults')}</p>}
             {(active || activeTask.status === 'failed') && (
               <div className="flex flex-wrap items-center justify-between gap-2 border-t pt-3">

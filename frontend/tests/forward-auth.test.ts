@@ -298,3 +298,29 @@ describe('jwt callback', () => {
     expect(AbortSignal.timeout).toHaveBeenCalledWith(SYNC_TIMEOUT_MS)
   })
 })
+
+describe('session account identity', () => {
+  const sessionCallback = authOptions.callbacks!.session!
+
+  it('uses the backend user ID for browser caches and upload ownership', async () => {
+    const result = await sessionCallback({
+      session: { user: { name: 'Alice', email: 'alice@example.com' }, expires: '' },
+      token: { sub: 'provider-local-id', backendUserId: SYNC_RESPONSE.id, accessToken: 'backend-jwt' },
+    } as Parameters<typeof sessionCallback>[0])
+    expect(result.user).toMatchObject({ id: SYNC_RESPONSE.id })
+  })
+})
+
+describe('legacy session identity', () => {
+  const jwt = authOptions.callbacks!.jwt!
+  const sessionCallback = authOptions.callbacks!.session!
+
+  it.each([undefined, 'update'] as const)('requires reauthentication before using a missing backend identity (%s)', async (trigger) => {
+    const token = await jwt({ token: { sub: 'external-id', accessToken: 'old-backend-token' }, trigger } as Parameters<typeof jwt>[0])
+    expect(token.accessToken).toBeUndefined()
+    expect(token.syncError).toBe('SessionReauthenticationRequired')
+    const browserSession = await sessionCallback({ session: { user: {}, expires: '' }, token } as Parameters<typeof sessionCallback>[0])
+    expect(browserSession.user).not.toHaveProperty('id', 'external-id')
+    expect(browserSession).toHaveProperty('accessToken', undefined)
+  })
+})

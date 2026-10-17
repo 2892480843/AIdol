@@ -94,6 +94,7 @@ let beforeUnloadRegistered = false;
 let activeController: AbortController | null = null;
 let unsubscribeSession: (() => void) | null = null;
 let sessionVersion = 0;
+let cancelling = false;
 
 interface DrainContext {
   ownerId: string;
@@ -180,7 +181,7 @@ export function init(client: QueryClient): void {
       sessionVersion += 1;
       activeController?.abort();
       clearReschedule();
-      // The provider notifies during render: all React state emission is async.
+      // Emit asynchronously so the old account scope can finish unmounting.
       queueMicrotask(() => { void emit(); void startDrain(); });
     });
   }
@@ -193,6 +194,10 @@ export function shutdown(): void {
   unsubscribeSession?.();
   unsubscribeSession = null;
   queryClient = null;
+  if (beforeUnloadRegistered && typeof window !== 'undefined') {
+    window.removeEventListener('beforeunload', onBeforeUnload);
+    beforeUnloadRegistered = false;
+  }
 }
 
 export function subscribe(listener: Listener): () => void {
@@ -225,7 +230,8 @@ async function uploadChunk(chunk: QueuedUpload[], context: DrainContext): Promis
       throw new PayloadTooLargeError();
     }
     if (response.status === 400) {
-      const body = await response.json().catch(() => null);
+      const body = await abortable(response.json().catch(() => null), context.controller.signal);
+      assertCurrent(context);
       const limit = bulkUploadLimitFromDetail(body?.detail);
       if (limit !== null) {
         throw new BulkLimitExceededError(limit);
@@ -377,7 +383,7 @@ async function nextBackoffDelayMs(ownerId: string): Promise<number | null> {
 
 export async function startDrain(): Promise<void> {
   const ownerId = getActiveUserId();
-  if (isDraining || !ownerId || !queryClient) return;
+  if (isDraining || cancelling || !ownerId || !queryClient) return;
   clearReschedule();
   const context: DrainContext = { ownerId, token: getAccessToken(), version: sessionVersion, controller: new AbortController(), client: queryClient };
   activeController = context.controller;
@@ -417,7 +423,8 @@ export async function retry(id: string): Promise<void> {
 }
 
 export async function retryAll(): Promise<void> {
-  const { terminalRecords } = await computeState();
+  const { terminalRecords, ownerId } = await computeState();
+  if (ownerId !== getActiveUserId()) return;
   await Promise.all(
     terminalRecords.filter((r) => r.retryable).map((r) => markPendingForRetry(r.id))
   );
@@ -431,7 +438,8 @@ export async function dismiss(id: string): Promise<void> {
 }
 
 export async function dismissAll(): Promise<void> {
-  const { terminalRecords } = await computeState();
+  const { terminalRecords, ownerId } = await computeState();
+  if (ownerId !== getActiveUserId()) return;
   await Promise.all(terminalRecords.map((r) => dismissRecord(r.id)));
   await emit();
 }
@@ -442,12 +450,18 @@ export async function cancelAll(): Promise<void> {
   // whose durable write to IndexedDB never actually landed, so it never
   // becomes terminal on its own.
   clearReschedule();
+  cancelling = true;
   activeController?.abort();
   const ownerId = getActiveUserId();
-  const records = await getPendingUploads();
-  if (ownerId !== getActiveUserId()) return;
-  await Promise.all(records.filter((record) => ownerId && record.ownerId === ownerId).map((r) => dismissRecord(r.id)));
-  await emit();
+  try {
+    const records = await getPendingUploads();
+    if (ownerId !== getActiveUserId()) return;
+    await Promise.all(records.filter((record) => ownerId && record.ownerId === ownerId).map((r) => dismissRecord(r.id)));
+    await emit();
+  } finally {
+    cancelling = false;
+    if (ownerId !== getActiveUserId()) void startDrain();
+  }
 }
 
 async function ownedRecord(id: string): Promise<QueuedUpload | undefined> {

@@ -140,6 +140,14 @@
       "completed": "Your looks are ready",
       "error": "Could not complete your looks",
       "cancelled": "Recommendation cancelled"
+    },
+    "errors": {
+      "interrupted": "The task was interrupted. You can try again.",
+      "insufficientWardrobe": "Add more available clothing or adjust your selections.",
+      "aiDisabled": "AI recommendations are currently disabled.",
+      "invalidRequest": "Check your selected clothing, location and weather settings.",
+      "timeout": "Creating your looks took too long. Please try again.",
+      "unavailable": "The recommendation service is temporarily unavailable."
     }
   }
 }

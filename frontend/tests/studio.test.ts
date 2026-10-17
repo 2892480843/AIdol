@@ -11,6 +11,7 @@ import {
 import { mergeAiAssist } from '@/lib/studio/ai-assist-merge';
 import { saveDraft, loadDraft, clearDraft } from '@/lib/studio/draft-storage';
 import { computeEditLoadPhase } from '@/lib/studio/edit-load';
+import { setActiveSession } from '@/lib/api';
 
 function makeItem(id: string, type: string): StudioItem {
   return { id, type, name: `${type} item`, thumbnail_url: null, image_url: null, primary_color: null };
@@ -212,6 +213,7 @@ describe('draft-storage', () => {
   let store: Record<string, string>;
 
   beforeEach(() => {
+    setActiveSession('user-a', 'token-a');
     store = {};
     const mockStorage = {
       getItem: vi.fn((key: string) => store[key] ?? null),
@@ -230,6 +232,27 @@ describe('draft-storage', () => {
     expect(loaded!.occasion).toBe('casual');
   });
 
+  it('isolates saved drafts and clearing between accounts and after sign-out', () => {
+    saveDraft({ items: ['private-a'], name: 'Account A', occasion: 'casual' });
+    setActiveSession('user-b', 'token-b');
+    expect(loadDraft()).toBeNull();
+    saveDraft({ items: ['private-b'], name: 'Account B', occasion: 'work' });
+    clearDraft();
+    setActiveSession('user-a', 'token-a');
+    expect(loadDraft()?.name).toBe('Account A');
+    setActiveSession(null, null);
+    expect(loadDraft()).toBeNull();
+    clearDraft();
+    setActiveSession('user-a', 'token-a');
+    expect(loadDraft()?.name).toBe('Account A');
+  });
+
+  it('preserves an unowned legacy draft without restoring it into the current account', () => {
+    store['studio_draft_v1'] = JSON.stringify({ items: ['unknown-owner-item'], name: 'Legacy', occasion: 'casual', timestamp: Date.now() });
+    expect(loadDraft()).toBeNull();
+    expect(store['studio_draft_v1']).toContain('Legacy');
+  });
+
   it('returns null when no draft saved', () => {
     expect(loadDraft()).toBeNull();
   });
@@ -242,9 +265,9 @@ describe('draft-storage', () => {
 
   it('expired drafts return null', () => {
     saveDraft({ items: ['a'], name: '', occasion: null });
-    const raw = JSON.parse(store['studio_draft_v1']);
+    const raw = JSON.parse(store['studio_draft_v2:user-a']);
     raw.timestamp = Date.now() - 25 * 60 * 60 * 1000;
-    store['studio_draft_v1'] = JSON.stringify(raw);
+    store['studio_draft_v2:user-a'] = JSON.stringify(raw);
     expect(loadDraft()).toBeNull();
   });
 });

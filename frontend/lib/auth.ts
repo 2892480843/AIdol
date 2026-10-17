@@ -7,6 +7,7 @@ import {
   FORWARD_AUTH_ACCOUNT_CONFLICT,
   FORWARD_AUTH_SERVER_ERROR,
   FORWARD_AUTH_USERNAME_CONFLICT,
+  SESSION_REAUTH_REQUIRED,
 } from '@/lib/auth-errors';
 import { decodeProxyHeader, proxySecretMatches } from '@/lib/proxy-headers';
 
@@ -228,6 +229,11 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user, account, trigger }) {
       const apiUrl = backendUrl();
+      // Older cookies did not include the canonical backend identity. Never assign
+      // persistent browser data to a provider-local subject that changes on sign-in.
+      if (!user && token.accessToken && !token.backendUserId) {
+        return { ...token, accessToken: undefined, syncError: SESSION_REAUTH_REQUIRED };
+      }
 
       // Session update triggered - refresh user data from backend
       if (trigger === 'update' && token.accessToken) {
@@ -320,12 +326,12 @@ export const authOptions: NextAuthOptions = {
         ...session,
         user: {
           ...session.user,
-          id: token.sub,
+          id: token.backendUserId,
         },
-        accessToken: token.accessToken,
+        accessToken: token.backendUserId ? token.accessToken : undefined,
         isNewUser: token.isNewUser,
         onboardingCompleted: token.onboardingCompleted,
-        syncError: token.syncError,
+        syncError: !token.backendUserId && token.accessToken ? SESSION_REAUTH_REQUIRED : token.syncError,
       };
     },
   },

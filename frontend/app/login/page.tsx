@@ -11,6 +11,7 @@ import {
   FORWARD_AUTH_ACCOUNT_CONFLICT,
   FORWARD_AUTH_SERVER_ERROR,
   FORWARD_AUTH_USERNAME_CONFLICT,
+  SESSION_REAUTH_REQUIRED,
 } from '@/lib/auth-errors';
 import { useAuthConfig } from '@/lib/hooks/use-auth-config';
 
@@ -275,7 +276,9 @@ function LoginContent() {
     <>
       {backendError && <BackendError message={backendError} />}
 
-      {!backendError && syncError && <BackendError message={syncError} />}
+      {!backendError && syncError && (syncError === SESSION_REAUTH_REQUIRED
+        ? <p role="alert" className="rounded-md bg-destructive/15 p-4 text-sm text-destructive">{t('errors.sessionExpired')}</p>
+        : <BackendError message={syncError} />)}
 
       {error && authMode !== 'forward' && !backendError && !syncError && (
         <div className="rounded-md bg-destructive/15 p-4 text-sm text-destructive">

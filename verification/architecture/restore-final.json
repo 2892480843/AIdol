@@ -1,0 +1,14 @@
+{
+  "backup_directory": "backups/20261017-151508-gDLaX6",
+  "restored_database": "wardrobe_arch_backup_1515",
+  "matches_live_counts": true,
+  "restored_counts": {
+    "users": 14,
+    "items": 29,
+    "outfits": 45,
+    "tasks": 6,
+    "tagging_outbox": 4,
+    "revision": "f0a3b4c5d6e7"
+  },
+  "image_objects_verified": 87
+}

@@ -7,14 +7,17 @@ from typing import Any
 from uuid import UUID
 
 from arq import Retry
-from sqlalchemy import select, update
+from sqlalchemy import or_, select, text, update
 
 from app.config import get_settings
 from app.models.item import TAG_COLUMNS, ClothingItem, ItemStatus, TaggedBy, TaggingStatus
 from app.models.preference import UserPreference
+from app.models.tagging_outbox import TaggingOutbox
 from app.models.user import User
+from app.observability import task_context
 from app.services.ai_service import AIService, ClothingTags, repeats_identically
 from app.services.image_service import ImageService
+from app.tasks.tagging import complete_tagging, tagging_lock_key
 from app.utils.locale import DEFAULT_LOCALE
 from app.workers.db import get_db_session
 
@@ -79,6 +82,7 @@ async def _clear_ai_started_at(ctx: dict, item_id: str) -> None:
         await db.execute(
             update(ClothingItem)
             .where(ClothingItem.id == UUID(item_id), ClothingItem.status == ItemStatus.processing)
+            .where(*_generation_predicates(ctx))
             .values(ai_started_at=None)
         )
         await db.commit()
@@ -140,11 +144,17 @@ def tags_to_item_fields(tags: ClothingTags, raw_response: str | None = None) -> 
 async def mark_item_tagging_skipped(ctx: dict, item_id: str) -> None:
     db = get_db_session(ctx)
     try:
-        result = await db.execute(select(ClothingItem).where(ClothingItem.id == UUID(item_id)))
+        result = await db.execute(
+            select(ClothingItem).where(ClothingItem.id == UUID(item_id)).with_for_update()
+        )
         item = result.scalar_one_or_none()
-        if item and item.status == ItemStatus.processing:
+        if not _fenced_current(ctx, item):
+            await _finish_stale(db, ctx, item)
+            return
+        if item and item.status == ItemStatus.processing and _fenced_current(ctx, item):
             item.status = ItemStatus.ready
             item.tagging_status = TaggingStatus.pending
+            await complete_tagging(db, ctx.get("tagging_job_id"))
             await db.commit()
     finally:
         await db.close()
@@ -154,6 +164,17 @@ async def update_item_status_to_error(ctx: dict, item_id: str, error_msg: str) -
     try:
         db = get_db_session(ctx)
         try:
+            if ctx.get("tagging_job_id"):
+                row = (
+                    await db.execute(
+                        select(ClothingItem)
+                        .where(ClothingItem.id == UUID(item_id))
+                        .with_for_update()
+                    )
+                ).scalar_one_or_none()
+                if not _fenced_current(ctx, row):
+                    await _finish_stale(db, ctx, row)
+                    return
             # Guarded: only flip status if still processing, because an orphaned job
             # (worker crash, or a job the user already cancelled) must not un-ready or
             # re-error an item the user has already moved past.
@@ -162,12 +183,14 @@ async def update_item_status_to_error(ctx: dict, item_id: str, error_msg: str) -
                 .where(
                     ClothingItem.id == UUID(item_id), ClothingItem.status == ItemStatus.processing
                 )
+                .where(*_generation_predicates(ctx))
                 .values(
                     status=ItemStatus.error,
                     ai_raw_response={"error": error_msg},
                     ai_failed_at=datetime.now(UTC),
                 )
             )
+            await complete_tagging(db, ctx.get("tagging_job_id"))
             await db.commit()
         finally:
             await db.close()
@@ -175,7 +198,78 @@ async def update_item_status_to_error(ctx: dict, item_id: str, error_msg: str) -
         logger.error(f"Failed to update item {item_id} status to error: {e}")
 
 
-async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, Any]:
+def _generation_predicates(ctx: dict) -> list:
+    job_id = ctx.get("tagging_job_id")
+    if not job_id:
+        return []
+    predicates = [ClothingItem.ai_job_id == job_id, ClothingItem.processing_kind.is_(None)]
+    created_at = ctx.get("tagging_created_at")
+    if created_at:
+        predicates.append(
+            or_(
+                ClothingItem.tagged_by.is_(None),
+                ClothingItem.tagged_by != TaggedBy.manual,
+                ClothingItem.tagged_at.is_(None),
+                ClothingItem.tagged_at <= created_at,
+            )
+        )
+    return predicates
+
+
+def _fenced_current(ctx: dict, item) -> bool:
+    if not ctx.get("tagging_job_id"):
+        return True  # Legacy direct calls retain their original contract.
+    return bool(
+        item
+        and item.ai_job_id == ctx["tagging_job_id"]
+        and item.status == ItemStatus.processing
+        and item.processing_kind is None
+        and not (
+            item.tagged_by == TaggedBy.manual
+            and item.tagged_at
+            and ctx.get("tagging_created_at")
+            and item.tagged_at > ctx["tagging_created_at"]
+        )
+    )
+
+
+async def _finish_stale(db, ctx, item) -> dict:
+    if (
+        item
+        and item.ai_job_id == ctx.get("tagging_job_id")
+        and item.status == ItemStatus.processing
+        and item.processing_kind is None
+    ):
+        # An explicit manual tagging write superseded this model attempt.
+        item.status, item.ai_started_at, item.ai_job_id = ItemStatus.ready, None, None
+    await complete_tagging(db, ctx.get("tagging_job_id"))
+    await db.commit()
+    return {"status": "stale", "item_id": str(item.id) if item else ctx.get("tagging_item_id")}
+
+
+async def tag_item_image(
+    ctx: dict, item_id: str, image_path: str, expected_job_id: str | None = None
+) -> dict[str, Any]:
+    expected_job_id = expected_job_id or ctx.get("job_id")
+    if not expected_job_id:
+        return await _tag_item_image(ctx, item_id, image_path)
+    local_ctx = {**ctx, "tagging_job_id": expected_job_id, "tagging_item_id": item_id}
+    # Keep an advisory lock in a dedicated transaction through model work. It
+    # serializes duplicate deliveries without blocking user row updates/cancel.
+    async with get_db_session(ctx) as lock_db:
+        locked = await lock_db.scalar(
+            text("SELECT pg_try_advisory_xact_lock(:key)"), {"key": tagging_lock_key(item_id)}
+        )
+        if not locked:
+            return {"status": "duplicate", "item_id": item_id}
+        event = await lock_db.get(TaggingOutbox, expected_job_id)
+        if event:
+            local_ctx["tagging_created_at"] = event.created_at
+        with task_context(expected_job_id, request_id=event.request_id if event else None):
+            return await _tag_item_image(local_ctx, item_id, image_path)
+
+
+async def _tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, Any]:
     """
     Analyze an item's image and update it with AI-generated tags.
 
@@ -211,8 +305,12 @@ async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, 
         db = get_db_session(ctx)
         try:
             # Get the item to find user_id
-            result = await db.execute(select(ClothingItem).where(ClothingItem.id == UUID(item_id)))
+            result = await db.execute(
+                select(ClothingItem).where(ClothingItem.id == UUID(item_id)).with_for_update()
+            )
             item = result.scalar_one_or_none()
+            if not _fenced_current(ctx, item):
+                return await _finish_stale(db, ctx, item)
             if item is None:
                 raise ItemVanishedError(f"Item {item_id} not visible to worker")
 
@@ -264,6 +362,9 @@ async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, 
                 select(ClothingItem).where(ClothingItem.id == UUID(item_id)).with_for_update()
             )
             item = result.scalar_one_or_none()
+
+            if not _fenced_current(ctx, item):
+                return await _finish_stale(db, ctx, item)
 
             if item is None:
                 raise ItemVanishedError(f"Item {item_id} not visible to worker")
@@ -344,6 +445,7 @@ async def tag_item_image(ctx: dict, item_id: str, image_path: str) -> dict[str, 
             }
 
             item.ai_completed_at = datetime.now(UTC)
+            await complete_tagging(db, ctx.get("tagging_job_id"))
 
             await db.commit()
             logger.info(f"Updated item {item_id} with AI tags (status=ready)")

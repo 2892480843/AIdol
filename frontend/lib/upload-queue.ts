@@ -169,7 +169,7 @@ export async function enqueueFiles(
   skipAi: boolean,
   ownerId: string | null = getActiveUserId()
 ): Promise<{ staged: string[]; unprotected: File[] }> {
-  if (!ownerId) throw new Error('Authentication required to queue uploads');
+  if (!ownerId || ownerId !== getActiveUserId()) throw new Error('Authentication required to queue uploads');
   if (!hasIndexedDb()) {
     return { staged: [], unprotected: files };
   }

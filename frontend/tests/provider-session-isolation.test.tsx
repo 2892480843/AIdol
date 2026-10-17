@@ -26,11 +26,12 @@ beforeEach(() => {
 describe('provider account boundary', () => {
   it('replaces shared wardrobe caches and local editor state before rendering another account', async () => {
     const clients: QueryClient[] = [];
+    const credentials: Array<[string | null, string | null]> = [];
     function Wardrobe() {
       const client = useQueryClient();
       if (!clients.includes(client)) clients.push(client);
       const owner = account.id;
-      const { data } = useQuery({ queryKey: listKey, queryFn: async () => `wardrobe-${owner}`, staleTime: Infinity });
+      const { data } = useQuery({ queryKey: listKey, queryFn: async () => { credentials.push([getActiveUserId(), getAccessToken()]); return `wardrobe-${owner}`; }, staleTime: Infinity });
       const [draft, setDraft] = React.useState('');
       return <><p>{data ?? 'Loading wardrobe'}</p><input aria-label="Editor draft" value={draft} onChange={(event) => setDraft(event.target.value)} /></>;
     }
@@ -44,6 +45,7 @@ describe('provider account boundary', () => {
     expect(screen.getByLabelText('Editor draft')).toHaveValue('');
     await screen.findByText('wardrobe-user-b');
     expect(clients).toHaveLength(2);
+    expect(credentials).toEqual([['user-a', 'token-a'], ['user-b', 'token-b']]);
     expect(clients[0].getQueryData(listKey)).toBeUndefined();
     expect(getActiveUserId()).toBe('user-b');
     expect(getAccessToken()).toBe('token-b');

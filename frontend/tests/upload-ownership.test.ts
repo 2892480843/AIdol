@@ -39,6 +39,7 @@ beforeEach(() => {
   vi.restoreAllMocks();
   setActiveSession('user-a', 'token-a');
   vi.spyOn(globalThis, 'fetch');
+  vi.mocked(fetch).mockReset();
 });
 afterEach(() => { manager.shutdown(); setActiveSession(null, null); });
 
@@ -47,6 +48,7 @@ describe('persistent upload ownership', () => {
     const first = await enqueueFiles([file()], false);
     setActiveSession('user-b', 'token-b');
     const second = await enqueueFiles([file()], false);
+    await expect(enqueueFiles([file()], false, 'user-a')).rejects.toThrow('Authentication required');
     const records = await getPendingUploads();
     expect(records.map((record) => record.ownerId).sort()).toEqual(['user-a', 'user-b']);
     expect(second.staged[0]).not.toBe(first.staged[0]);

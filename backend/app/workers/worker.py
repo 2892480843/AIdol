@@ -8,6 +8,7 @@ from sqlalchemy import and_, or_, select, update
 from app.config import get_settings
 from app.logging_config import configure_logging
 from app.models.item import ClothingItem, ItemStatus
+from app.models.tagging_outbox import TaggingOutbox
 from app.services.ai_service import AIService
 from app.workers.db import close_db, get_db_session, init_db
 from app.workers.notifications import (
@@ -68,6 +69,12 @@ async def recover_stale_processing_items(ctx: dict) -> None:
         )
         condemned = 0
         for item_id, ai_job_id, processing_kind in candidates.all():
+            if ai_job_id and processing_kind is None:
+                managed = await db.get(TaggingOutbox, ai_job_id)
+                if managed and managed.completed_at is None:
+                    # The transactional relay replays missing Redis deliveries;
+                    # queue infrastructure failure is not a model failure.
+                    continue
             lost = ai_job_id is None
             if not lost:
                 queue_name = queue_for_kind(processing_kind)
@@ -106,8 +113,11 @@ async def startup(ctx: dict) -> None:
     if get_settings().ai_enabled:
         ctx["ai_service"] = AIService()
         health = await ctx["ai_service"].check_health()
-        logger.info("AI service health (status=%s endpoint_count=%d)",
-                    health.get("status"), len(health.get("endpoints", [])))
+        logger.info(
+            "AI service health (status=%s endpoint_count=%d)",
+            health.get("status"),
+            len(health.get("endpoints", [])),
+        )
     else:
         ctx["ai_service"] = None
         logger.info("Internal AI disabled; skipping AI client init and health check")

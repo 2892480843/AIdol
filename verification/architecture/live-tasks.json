@@ -1,0 +1,93 @@
+{
+  "started_at": "2026-10-17T06:23:08.051328",
+  "checks": [
+    {
+      "name": "Real Chinese AI generation, idempotency and reload state",
+      "passed": true,
+      "detail": {
+        "task_id": "626caeca-2083-4b24-88d7-d52646d29e0d",
+        "outfits": 3,
+        "states": [
+          [
+            "queued",
+            "queued",
+            0
+          ],
+          [
+            "running",
+            "generating",
+            1
+          ],
+          [
+            "succeeded",
+            "completed",
+            1
+          ]
+        ],
+        "idempotency_reused": true,
+        "reload_state": true
+      },
+      "seconds": 40.93
+    },
+    {
+      "name": "Cancellation remains terminal",
+      "passed": true,
+      "detail": {
+        "task_id": "ede35eb1-dd2a-419a-89fc-5d57527ac01e",
+        "status": "cancelled"
+      },
+      "seconds": 3.11
+    },
+    {
+      "name": "Ownership and failed task retry after adding clothing",
+      "passed": true,
+      "detail": {
+        "cross_user_access": 404,
+        "failed_task_retried": "fd4ad7e8-1c7f-43b1-ab17-d40610ac7db8",
+        "final_status": "succeeded"
+      },
+      "seconds": 18.94
+    },
+    {
+      "name": "SIGKILL worker recovery and single committed result",
+      "passed": true,
+      "detail": {
+        "task_id": "4195b79f-793e-4a72-971f-7cd35dad9766",
+        "attempts": 2,
+        "states": [
+          [
+            "running",
+            "generating",
+            1
+          ],
+          [
+            "queued",
+            "queued",
+            1
+          ],
+          [
+            "running",
+            "generating",
+            2
+          ],
+          [
+            "succeeded",
+            "completed",
+            2
+          ]
+        ],
+        "committed_outfits": 1
+      },
+      "seconds": 88.74
+    }
+  ],
+  "test_user_id": "5cc08764-faed-4203-9d27-9972edc56e82",
+  "completed_task_id": "626caeca-2083-4b24-88d7-d52646d29e0d",
+  "outfit_ids": [
+    "14e55bb8-49b1-4b09-a633-ffb5d556bf49",
+    "4e49af73-e72d-44b7-a2b6-9aa84efe0cf2",
+    "da464f0a-c58f-4846-8c47-692216eb5e5a"
+  ],
+  "passed": 4,
+  "failed": 0
+}

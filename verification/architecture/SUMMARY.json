@@ -1,0 +1,15 @@
+{
+  "checked_at": "2026-10-17T07:18:45.229461+00:00",
+  "platform": "Darwin arm64",
+  "backend_tests": 2151,
+  "frontend_tests": 730,
+  "failures": 0,
+  "skips": 0,
+  "running_services": 10,
+  "credential_matches": 0,
+  "backend_source_mismatches": 0,
+  "images": {
+    "backend": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+    "frontend": "sha256:4d785dd117bfc1178c861ca5fa86bf9a0647a5c90962c34c4ae667c818aa122e"
+  }
+}

@@ -22,7 +22,7 @@ import { CanvasPanel } from '@/components/studio/canvas-panel';
 import { DetailsPanel } from '@/components/studio/details-panel';
 import { ItemPicker } from '@/components/shared/item-picker';
 import { CloneToLookbookDialog } from '@/components/shared/clone-to-lookbook-dialog';
-import { ApiError, getErrorMessage } from '@/lib/api';
+import { ApiError, getActiveUserId, getErrorMessage } from '@/lib/api';
 import { useItems } from '@/lib/hooks/use-items';
 import { useOutfit } from '@/lib/hooks/use-outfits';
 import { useCreateStudioOutfit, usePatchOutfit } from '@/lib/hooks/use-studio';
@@ -182,6 +182,7 @@ export default function StudioEditorPage() {
   }, [state.items]);
 
   const handleSave = async (markWorn: boolean) => {
+    const savingOwnerId = getActiveUserId();
     if (state.items.length === 0) {
       toast.error(t('new.validation.needItem'));
       return;
@@ -200,9 +201,11 @@ export default function StudioEditorPage() {
             items: state.items.map((i) => i.id),
           },
         });
+        if (getActiveUserId() !== savingOwnerId) return;
         toast.success(t('new.outfitUpdated'));
         router.push(`/dashboard/outfits/${editId}`);
       } catch (error) {
+        if (getActiveUserId() !== savingOwnerId) return;
         if (isWornImmutableError(error)) {
           setWornConflictOpen(true);
           return;
@@ -225,6 +228,7 @@ export default function StudioEditorPage() {
         scheduled_for: markWorn ? getUserToday() : null,
         mark_worn: markWorn,
       });
+      if (getActiveUserId() !== savingOwnerId) return;
       clearDraft();
       toast.success(markWorn ? t('new.savedAndMarkedWorn') : t('new.savedToLookbook'));
       router.push(
@@ -233,6 +237,7 @@ export default function StudioEditorPage() {
           : '/dashboard/outfits?filter=my-looks'
       );
     } catch (error) {
+      if (getActiveUserId() !== savingOwnerId) return;
       toast.error(getErrorMessage(error, t('new.saveError')));
     }
   };

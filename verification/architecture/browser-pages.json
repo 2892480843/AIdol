@@ -1,0 +1,94 @@
+[
+  {
+    "route": "/dashboard",
+    "headings": [
+      "  - heading \"欢迎回来，演示验收\" [level=1]",
+      "  - heading \"今日天气\" [level=3]:",
+      "  - heading \"待处理的搭配\" [level=3]:",
+      "  - heading \"下一个计划\" [level=3]:",
+      "  - heading \"本周\" [level=3]:",
+      "  - heading \"通知\" [level=3]:",
+      "  - heading \"快捷操作\" [level=3]",
+      "  - heading \"洞察\" [level=3]:"
+    ],
+    "errorBoundary": false
+  },
+  {
+    "route": "/dashboard/wardrobe",
+    "headings": [
+      "  - heading \"我的衣柜\" [level=1]"
+    ],
+    "errorBoundary": false
+  },
+  {
+    "route": "/dashboard/outfits",
+    "headings": [
+      "  - heading \"穿搭\" [level=1]",
+      "    - heading \"蓝红撞色休闲装\" [level=3]",
+      "    - heading \"极简亮色休闲风\" [level=3]",
+      "    - heading \"层叠亮色造型\" [level=3]",
+      "    - heading \"清爽日常休闲装\" [level=3]",
+      "    - heading \"Minimalist Red Casual\" [level=3]",
+      "    - heading \"Cheerful Red Layered Look\" [level=3]",
+      "    - heading \"Sunny Morning Basics\" [level=3]",
+      "    - heading \"Red Coat Statement\" [level=3]",
+      "    - heading \"Red Coat Open Layer\" [level=3]",
+      "    - heading \"Sunny Blue Tee Classic\" [level=3]"
+    ],
+    "errorBoundary": false
+  },
+  {
+    "route": "/dashboard/pairings",
+    "headings": [
+      "  - heading \"搭配\" [level=1]:",
+      "  - heading \"还没有搭配\" [level=3]"
+    ],
+    "errorBoundary": false
+  },
+  {
+    "route": "/dashboard/analytics",
+    "headings": [
+      "  - heading \"数据分析\" [level=1]",
+      "  - heading \"单品总数\" [level=3]",
+      "  - heading \"已生成穿搭\" [level=3]",
+      "  - heading \"采纳率\" [level=3]",
+      "  - heading \"总穿着次数\" [level=3]",
+      "  - heading \"洞察\" [level=3]:",
+      "  - heading \"颜色分布\" [level=3]:",
+      "  - heading \"单品类型\" [level=3]:",
+      "  - heading \"穿着最多\" [level=3]",
+      "  - heading \"穿着最少\" [level=3]",
+      "  - heading \"从未穿过\" [level=3]",
+      "  - heading \"采纳率趋势\" [level=3]"
+    ],
+    "errorBoundary": false
+  },
+  {
+    "route": "/dashboard/learning",
+    "headings": [
+      "  - heading \"AI 学习\" [level=1]",
+      "  - heading \"已提交反馈\" [level=3]",
+      "  - heading \"采纳率\" [level=3]",
+      "  - heading \"平均评分\" [level=3]",
+      "  - heading \"风格评分\" [level=3]",
+      "  - heading \"风格洞察\" [level=3]:",
+      "  - heading \"非常契合！\" [level=4]",
+      "  - heading \"学到的颜色偏好\" [level=3]:",
+      "  - heading \"学到的风格偏好\" [level=3]:",
+      "  - heading \"场合规律\" [level=3]:",
+      "  - heading \"休闲\" [level=4]",
+      "  - heading \"天气偏好\" [level=3]:",
+      "  - heading \"温和\" [level=4]"
+    ],
+    "errorBoundary": false
+  },
+  {
+    "route": "/dashboard/notifications",
+    "headings": [
+      "  - heading \"通知\" [level=1]",
+      "  - heading \"通知渠道\" [level=3]:",
+      "  - heading \"推送时间表\" [level=3]:"
+    ],
+    "errorBoundary": false
+  }
+]

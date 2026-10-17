@@ -270,7 +270,16 @@
       "unsupportedFormat": "{name}은(는) 지원되지 않는 형식입니다(JPEG, PNG, WebP, HEIC 지원)",
       "duplicate": "{name}은(는) 이미 옷장에 있습니다",
       "generic": "{name}을(를) 업로드하지 못했습니다"
-    }
+    },
+    "otherAccountPaused": "다른 계정의 업로드 {count}개가 일시 중지되었습니다. 원래 계정으로 로그인하여 계속하세요.",
+    "legacyReview": "이전에 저장한 사진 {count}개 확인",
+    "legacyHint": "이 사진에는 계정 정보가 없습니다. 현재 계정에 추가하기 전에 각 사진을 확인하세요. 확인하지 않은 사진은 보관됩니다.",
+    "review": "확인",
+    "claimTitle": "이 사진을 현재 계정에 추가할까요?",
+    "claimDescription": "{name}을(를) {account}에 추가할까요? 이 계정에 속하는 사진만 확인하세요.",
+    "currentAccount": "현재 로그인한 계정",
+    "keepParked": "계속 보관",
+    "claimAndUpload": "확인 후 업로드"
   },
   "wearCount": "{count, plural, other {#회 착용}}",
   "wornAgo": {

@@ -75,6 +75,13 @@ describe('login page in forward-auth mode', () => {
     mockBackend({ forward_auth: true })
   })
 
+  it('shows a translated sign-in prompt for a legacy session requiring a verified account identity', async () => {
+    nav.params = new URLSearchParams({ syncError: 'SessionReauthenticationRequired' })
+    renderLogin()
+    expect(await screen.findByText('errors.sessionExpired')).toBeInTheDocument()
+    expect(screen.queryByText('SessionReauthenticationRequired')).not.toBeInTheDocument()
+  })
+
   it('signs in through the proxy automatically without a redirect', async () => {
     renderLogin()
 

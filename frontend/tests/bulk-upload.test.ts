@@ -1,12 +1,15 @@
 import React from 'react'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { act, renderHook } from '@testing-library/react'
+import { act, renderHook, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   mergeBulkUploadResponses,
   uploadFilesWithinServerLimit,
   useBulkCreateItems,
 } from '@/lib/hooks/use-items'
+import { setActiveSession } from '@/lib/api'
+
+vi.mock('next-auth/react', () => ({ useSession: () => ({ data: { user: { id: 'user-a' }, accessToken: 'token-a' }, status: 'authenticated' }) }))
 import type { BulkUploadResponse } from '@/lib/hooks/use-items'
 import { fetchBulkUploadLimit } from '@/lib/hooks/use-features'
 import { queryKeys } from '@/lib/hooks/query-keys'
@@ -20,22 +23,34 @@ vi.mock('sonner', () => ({ toast: { error: vi.fn() } }))
 class FakeXhr {
   static queue: Array<{ status: number; body: unknown }> = []
   static sentImageCounts: number[] = []
+  static defer = false
+  static instances: FakeXhr[] = []
+  aborted = false
+  headers: Record<string, string> = {}
   upload = { addEventListener: () => {} }
   status = 0
   responseText = ''
   private listeners: Record<string, Array<() => void>> = {}
   open() {}
-  setRequestHeader() {}
+  constructor() { FakeXhr.instances.push(this) }
+  setRequestHeader(name: string, value: string) { this.headers[name] = value }
+  abort() {
+    this.aborted = true
+    this.listeners['abort']?.forEach((fn) => fn())
+    this.listeners['loadend']?.forEach((fn) => fn())
+  }
   addEventListener(event: string, handler: () => void) {
     ;(this.listeners[event] ??= []).push(handler)
   }
   send(body: FormData) {
     FakeXhr.sentImageCounts.push(body.getAll('images').length)
+    if (FakeXhr.defer) return
     const next = FakeXhr.queue.shift()
     if (!next) throw new Error('FakeXhr.queue exhausted')
     this.status = next.status
     this.responseText = JSON.stringify(next.body)
     this.listeners['load']?.forEach((fn) => fn())
+    this.listeners['loadend']?.forEach((fn) => fn())
   }
 }
 
@@ -96,6 +111,8 @@ describe('uploadFilesWithinServerLimit', () => {
     originalXhr = globalThis.XMLHttpRequest
     FakeXhr.queue = []
     FakeXhr.sentImageCounts = []
+    FakeXhr.defer = false
+    FakeXhr.instances = []
     // @ts-expect-error - test double stands in for the real constructor
     globalThis.XMLHttpRequest = FakeXhr
   })
@@ -214,9 +231,12 @@ describe('useBulkCreateItems', () => {
   let originalXhr: typeof XMLHttpRequest
 
   beforeEach(() => {
+    setActiveSession('user-a', 'token-a')
     originalXhr = globalThis.XMLHttpRequest
     FakeXhr.queue = []
     FakeXhr.sentImageCounts = []
+    FakeXhr.defer = false
+    FakeXhr.instances = []
     // @ts-expect-error - test double stands in for the real constructor
     globalThis.XMLHttpRequest = FakeXhr
   })
@@ -230,6 +250,19 @@ describe('useBulkCreateItems', () => {
       React.createElement(QueryClientProvider, { client }, children)
     return renderHook(() => useBulkCreateItems(), { wrapper })
   }
+
+  it('aborts the non-durable fallback on account change without sending a new-owner request', async () => {
+    FakeXhr.defer = true
+    const { result } = renderWith(clientWithFeatures())
+    let outcome!: Promise<unknown>
+    act(() => { outcome = result.current.mutateAsync({ files: [new File(['x'], 'private.jpg')] }).catch((error) => error) })
+    await waitFor(() => expect(FakeXhr.sentImageCounts).toEqual([1]))
+    setActiveSession('user-b', 'token-b')
+    await act(async () => { expect(await outcome).toBeInstanceOf(Error) })
+    expect(FakeXhr.instances[0].aborted).toBe(true)
+    expect(FakeXhr.instances[0].headers.Authorization).toBe('Bearer token-a')
+    expect(FakeXhr.sentImageCounts).toEqual([1])
+  })
 
   it('chunks by the limit the features endpoint reports, without a rejected request first', async () => {
     const client = clientWithFeatures({ background_removal: false, max_bulk_upload_count: 2 })

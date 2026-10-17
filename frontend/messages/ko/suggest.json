@@ -140,6 +140,14 @@
       "completed": "코디가 준비되었어요",
       "error": "코디를 완성하지 못했어요",
       "cancelled": "추천이 취소되었어요"
+    },
+    "errors": {
+      "interrupted": "작업이 중단되었습니다. 다시 시도할 수 있어요.",
+      "insufficientWardrobe": "사용 가능한 옷을 추가하거나 선택을 변경하세요.",
+      "aiDisabled": "현재 AI 추천이 비활성화되어 있어요.",
+      "invalidRequest": "선택한 옷, 위치 및 날씨 설정을 확인하세요.",
+      "timeout": "코디 생성 시간이 초과되었습니다. 다시 시도하세요.",
+      "unavailable": "추천 서비스를 일시적으로 이용할 수 없어요."
     }
   }
 }

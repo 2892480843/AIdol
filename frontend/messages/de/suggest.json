@@ -140,6 +140,14 @@
       "completed": "Deine Looks sind bereit",
       "error": "Looks konnten nicht erstellt werden",
       "cancelled": "Empfehlung abgebrochen"
+    },
+    "errors": {
+      "interrupted": "Die Aufgabe wurde unterbrochen. Du kannst es erneut versuchen.",
+      "insufficientWardrobe": "Füge weitere verfügbare Kleidung hinzu oder passe deine Auswahl an.",
+      "aiDisabled": "KI-Empfehlungen sind derzeit deaktiviert.",
+      "invalidRequest": "Prüfe Kleidungsauswahl, Standort und Wettereinstellungen.",
+      "timeout": "Die Erstellung hat zu lange gedauert. Bitte erneut versuchen.",
+      "unavailable": "Der Empfehlungsdienst ist vorübergehend nicht verfügbar."
     }
   }
 }

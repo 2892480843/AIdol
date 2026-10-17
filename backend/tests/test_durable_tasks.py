@@ -4,7 +4,18 @@ from unittest.mock import AsyncMock, patch
 from uuid import uuid4
 
 import pytest
-from sqlalchemy import select
+import pytest_asyncio
+from sqlalchemy import delete, select
+
+
+@pytest_asyncio.fixture(autouse=True)
+async def isolated_task_queue(db_session):
+    # The suite deliberately exercises a global relay batch. Old records from a
+    # previous run must not fill its 50-row batch ahead of this test's event.
+    from app.models.task import DurableTask
+
+    await db_session.execute(delete(DurableTask))
+    await db_session.commit()
 
 
 @pytest.mark.asyncio

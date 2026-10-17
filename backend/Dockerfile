@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-COPY requirements.txt requirements-extras.txt ./
+COPY requirements.txt requirements-extras.txt requirements-architecture.txt ./
 RUN pip install --no-cache-dir -r requirements.txt -r requirements-extras.txt
 
 # REMBG_HOME is outside /root because the app runs as non-root uids. The model is baked into

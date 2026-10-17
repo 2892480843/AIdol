@@ -2,6 +2,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import type { DrainState, TerminalRecord } from '@/lib/upload-manager'
+import { setActiveSession } from '@/lib/api'
 
 const manager = vi.hoisted(() => ({
   init: vi.fn(),
@@ -13,6 +14,8 @@ const manager = vi.hoisted(() => ({
   dismiss: vi.fn(),
   dismissAll: vi.fn(),
   cancelAll: vi.fn(),
+  claimLegacy: vi.fn(),
+  shutdown: vi.fn(),
 }))
 
 vi.mock('@/lib/upload-manager', () => manager)
@@ -46,10 +49,13 @@ function failure(overrides: Partial<TerminalRecord>): TerminalRecord {
 
 function renderWith(terminalRecords: TerminalRecord[]) {
   const state: DrainState = {
+    ownerId: 'user-a',
     draining: false,
     remaining: 0,
     terminalRecords,
     storagePersisted: true,
+    legacyRecords: [],
+    parkedCount: 0,
   }
   manager.getState.mockResolvedValue(state)
   render(
@@ -61,9 +67,23 @@ function renderWith(terminalRecords: TerminalRecord[]) {
 
 beforeEach(() => {
   vi.clearAllMocks()
+  setActiveSession('user-a', 'token-a')
 })
 
 describe('UploadQueueIndicator failures', () => {
+  it('keeps unowned files parked until the current account explicitly confirms a claim', async () => {
+    manager.getState.mockResolvedValue({ ownerId: 'user-a', draining: false, remaining: 0, terminalRecords: [], storagePersisted: true, legacyRecords: [{ id: 'legacy', filename: 'old.jpg', size: MB }], parkedCount: 1 });
+    render(<QueryClientProvider client={new QueryClient()}><UploadQueueIndicator /></QueryClientProvider>);
+    await screen.findByText('legacyReview {"count":1}');
+    expect(manager.claimLegacy).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByText('review'));
+    expect(await screen.findByRole('alertdialog')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('keepParked'));
+    expect(manager.claimLegacy).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByText('review'));
+    fireEvent.click(await screen.findByText('claimAndUpload'));
+    expect(manager.claimLegacy).toHaveBeenCalledWith('legacy', 'user-a');
+  });
   it('names each failed file with a translated reason instead of the server text', async () => {
     renderWith([
       failure({ filename: 'big.jpg', size: 30 * MB, errorCode: 'too_large', retryable: false }),

@@ -1,0 +1,7 @@
+{
+  "request_traces": true,
+  "model_traces": true,
+  "duration_metrics": true,
+  "token_metrics": true,
+  "task_correlation": true
+}

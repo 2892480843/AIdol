@@ -12,6 +12,7 @@ from app.config import get_settings
 from app.logging_config import configure_logging
 from app.models.task import DurableTask, TaskOutbox
 from app.tasks.service import add_outbox
+from app.tasks.tagging import dispatch_tagging, recover_tagging
 from app.workers.db import close_db, get_db_session, init_db
 from app.workers.settings import get_redis_settings
 
@@ -138,6 +139,8 @@ async def run_dispatcher() -> None:
                     ctx["redis"] = await create_pool(get_redis_settings())
                 await recover_tasks(ctx)
                 await dispatch_pending(ctx)
+                await recover_tagging(ctx)
+                await dispatch_tagging(ctx)
             except Exception as error:
                 logger.warning("Outbox relay will retry (error_type=%s)", type(error).__name__)
             await asyncio.sleep(2)

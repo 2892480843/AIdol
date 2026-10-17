@@ -270,7 +270,16 @@
       "unsupportedFormat": "{name} non è in un formato supportato (JPEG, PNG, WebP o HEIC)",
       "duplicate": "{name} è già nel tuo guardaroba",
       "generic": "Impossibile caricare {name}"
-    }
+    },
+    "otherAccountPaused": "{count} caricamenti di un altro account sono in pausa. Accedi a quell’account per riprenderli.",
+    "legacyReview": "Controlla {count} foto salvate in precedenza",
+    "legacyHint": "Queste foto non hanno un account associato. Controlla ogni foto prima di aggiungerla all’account attuale. Le foto non confermate restano salvate.",
+    "review": "Controlla",
+    "claimTitle": "Aggiungere questa foto al tuo account?",
+    "claimDescription": "Aggiungere {name} a {account}? Conferma solo se questa foto appartiene a questo account.",
+    "currentAccount": "l’account attualmente connesso",
+    "keepParked": "Mantieni salvata",
+    "claimAndUpload": "Conferma e carica"
   },
   "wearCount": "{count, plural, one {Indossato # volta} other {Indossato # volte}}",
   "wornAgo": {

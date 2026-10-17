@@ -60,11 +60,12 @@ from app.schemas.item import (
 )
 from app.services.image_service import ImageService
 from app.services.item_service import ItemService
+from app.tasks.tagging import publish_tagging_now, stage_tagging
 from app.utils.auth import get_current_user
 from app.utils.signed_urls import sign_optional
 from app.utils.timezone import get_user_today
 from app.utils.uploads import UploadTooLargeError, read_upload_within_limit
-from app.workers.queues import IMAGE_QUEUE, TAGGING_QUEUE, queue_for_kind
+from app.workers.queues import IMAGE_QUEUE, queue_for_kind
 from app.workers.settings import get_redis_settings
 
 logger = logging.getLogger(__name__)
@@ -266,28 +267,14 @@ async def create_item(
     do_auto_tag = settings.effective_ai_vision_enabled and not skip_ai
 
     if do_auto_tag:
-        # Commit before enqueuing: the worker runs in another process on its own
-        # connection, so a job handed over while this transaction is still open
-        # dequeues against a row it cannot see.
+        event = await stage_tagging(
+            db, item, image_service.get_job_image_path(item.image_path)
+        )
         await db.commit()
-        try:
-            redis = await create_pool(get_redis_settings())
-            try:
-                full_image_path = image_service.get_job_image_path(image_paths["image_path"])
-                job = await redis.enqueue_job(
-                    "tag_item_image",
-                    str(item.id),
-                    full_image_path,
-                    _queue_name=TAGGING_QUEUE,
-                )
-                item.ai_job_id = job.job_id
-                await db.commit()
-                await db.refresh(item, attribute_names=["updated_at"])
-                logger.info(f"Queued AI tagging job for item {item.id}")
-            finally:
-                await redis.aclose()
-        except Exception as e:
-            logger.error(f"Failed to queue AI tagging job: {e}")
+        await db.refresh(item, attribute_names=["updated_at"])
+        await publish_tagging_now(
+            db, [event.job_id], connect=lambda: create_pool(get_redis_settings())
+        )
     else:
         item = await item_service.mark_pending(item, set_ready=True)
 
@@ -339,12 +326,7 @@ async def bulk_create_items(
 
     do_auto_tag = settings.effective_ai_vision_enabled and not skip_ai
 
-    redis = None
-    if do_auto_tag:
-        try:
-            redis = await create_pool(get_redis_settings())
-        except Exception as e:
-            logger.error(f"Failed to connect to Redis for bulk upload: {e}")
+    tagging_job_ids: list[str] = []
 
     try:
         for idx, upload_file in enumerate(images):
@@ -435,28 +417,18 @@ async def bulk_create_items(
 
                 if not do_auto_tag:
                     item = await item_service.mark_pending(item, set_ready=True)
-                elif redis:
-                    # Commit per item before handing the job over. Batching the
-                    # commit to the end of the loop leaves every row invisible to
-                    # the worker for the whole upload, which strands the batch in
-                    # `processing` whenever the AI is fast enough to win the race.
+                    # Each success survives a later iteration's rollback, also
+                    # when tagging is disabled and no outbox entry is needed.
                     await db.commit()
-                    try:
-                        full_image_path = str(
-                            image_service.get_job_image_path(image_paths["image_path"])
-                        )
-                        job = await redis.enqueue_job(
-                            "tag_item_image",
-                            str(item.id),
-                            full_image_path,
-                            _queue_name=TAGGING_QUEUE,
-                        )
-                        item.ai_job_id = job.job_id
-                        await db.commit()
-                        await db.refresh(item, attribute_names=["updated_at"])
-                        logger.info(f"Queued AI tagging for bulk item {item.id}")
-                    except Exception as e:
-                        logger.error(f"Failed to queue AI tagging for {item.id}: {e}")
+                else:
+                    # The item and its delivery intent become durable together;
+                    # a later queue outage or upload-key conflict cannot lose it.
+                    event = await stage_tagging(
+                        db, item, image_service.get_job_image_path(item.image_path)
+                    )
+                    await db.commit()
+                    tagging_job_ids.append(event.job_id)
+                    await db.refresh(item, attribute_names=["updated_at"])
 
                 results.append(
                     BulkUploadResult(
@@ -468,6 +440,7 @@ async def bulk_create_items(
                 successful += 1
 
             except ValueError as e:
+                await db.rollback()
                 results.append(
                     BulkUploadResult(
                         filename=filename,
@@ -505,6 +478,7 @@ async def bulk_create_items(
                 )
                 successful += 1
             except Exception as e:
+                await db.rollback()
                 logger.error(f"Error processing {filename}: {e}")
                 results.append(
                     BulkUploadResult(
@@ -516,8 +490,9 @@ async def bulk_create_items(
                 )
                 failed += 1
     finally:
-        if redis:
-            await redis.aclose()
+        await publish_tagging_now(
+            db, tagging_job_ids, connect=lambda: create_pool(get_redis_settings())
+        )
 
     return BulkUploadResponse(
         total=len(images),
@@ -658,78 +633,25 @@ async def bulk_analyze_items(
         cooldown_count = len(cooling_down)
         if cooling_down:
             cooldown_retry_after = max(cooling_down.values())
-        await db.commit()
 
-    for item in to_queue:
-        item.status = ItemStatus.processing
-        item.ai_started_at = None
-        item.processing_kind = None
-    await db.commit()
-
-    # Unified enqueue worklist: regular to_queue items get an arq-assigned job
-    # id (read back after enqueue); claimed error items already have their job
-    # id atomically assigned by the claim above and must reuse it via `_job_id`
-    # (see the single-item retry endpoint for why - it closes the same
-    # ai_job_id-ambiguity window this claim mechanism exists to prevent).
+    # Error claims and ordinary analysis requests share one durable publication
+    # transaction; queue availability never undoes an accepted user request.
     to_enqueue: list[tuple[ClothingItem, str | None]] = [(item, None) for item in to_queue]
     to_enqueue += [
         (item, claimed_job_ids[item.id]) for item in error_candidates if item.id in claimed_job_ids
     ]
-
-    # Queue AI jobs
-    redis = None
-    try:
-        redis = await create_pool(get_redis_settings())
-    except Exception as e:
-        logger.error(f"Failed to connect to Redis for bulk analyze: {e}")
-        # Roll back status changes for items this call actually touched - not the
-        # full item list, or a transient outage would error out items that were
-        # already processing with a live job untouched by this request.
-        for item in to_queue:
-            item.status = ItemStatus.error
-        await db.commit()
-        for item, job_id in to_enqueue:
-            if job_id is not None:
-                # Infra failure, not an AI failure - release without starting a
-                # fresh cooldown (mirrors the single-item retry endpoint).
-                await item_service.release_failed_claim(item.id, job_id)
-        await db.commit()
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to connect to job queue",
-        ) from None
-
     image_service = ImageService()
-    try:
-        for item, job_id in to_enqueue:
-            try:
-                full_image_path = image_service.get_job_image_path(item.image_path)
-                job = await redis.enqueue_job(
-                    "tag_item_image",
-                    str(item.id),
-                    full_image_path,
-                    _job_id=job_id,
-                    _queue_name=TAGGING_QUEUE,
-                )
-                if job is None:
-                    raise RuntimeError("enqueue_job returned None")
-                if job_id is None:
-                    item.ai_job_id = job.job_id
-                logger.info(f"Queued AI re-analysis for item {item.id}")
-                queued += 1
-            except Exception as e:
-                logger.error(f"Failed to queue AI analysis for {item.id}: {e}")
-                errors.append(f"Failed to queue analysis for item {item.id}")
-                if job_id is not None:
-                    await item_service.release_failed_claim(item.id, job_id)
-                else:
-                    item.status = ItemStatus.error
-                failed += 1
-
-        await db.commit()
-    finally:
-        if redis:
-            await redis.aclose()
+    job_ids: list[str] = []
+    for item, job_id in to_enqueue:
+        event = await stage_tagging(
+            db, item, image_service.get_job_image_path(item.image_path), job_id=job_id
+        )
+        job_ids.append(event.job_id)
+        queued += 1
+    await db.commit()
+    await publish_tagging_now(
+        db, job_ids, connect=lambda: create_pool(get_redis_settings())
+    )
 
     return BulkAnalyzeResponse(
         queued=queued,
@@ -778,37 +700,12 @@ async def bulk_cancel_analysis(
             has_more=has_more,
         )
 
-    redis = None
-    try:
-        redis = await create_pool(get_redis_settings())
-
-        async def abort_job(item: ClothingItem) -> None:
-            if not item.ai_job_id:
-                return
-            try:
-                job = Job(item.ai_job_id, redis, _queue_name=queue_for_kind(item.processing_kind))
-                await job.abort(timeout=5)
-            except Exception as e:
-                # The guarded UPDATE below protects against a stray worker
-                # finishing after we've flipped status, so a failed/slow abort
-                # here must not block the bulk status flip.
-                logger.warning(f"Failed to abort AI job for item {item.id}: {e}")
-
-        await asyncio.gather(*(abort_job(item) for item in processing_items))
-    except Exception as e:
-        logger.error(f"Failed to connect to job queue for bulk cancel-analysis: {e}")
-        errors.append("Failed to connect to job queue; item statuses were not changed")
-        return BulkCancelAnalysisResponse(
-            cancelled=0,
-            skipped=skipped,
-            errors=errors,
-            next_cursor=next_cursor,
-            has_more=has_more,
-        )
-    finally:
-        if redis:
-            await redis.aclose()
-
+    # Capture queue references before the UPDATE clears their ORM attributes.
+    jobs_to_abort = [
+        (item.id, item.ai_job_id, queue_for_kind(item.processing_kind))
+        for item in processing_items
+        if item.ai_job_id
+    ]
     processing_ids = [item.id for item in processing_items]
     result = await db.execute(
         update(ClothingItem)
@@ -820,10 +717,40 @@ async def bulk_cancel_analysis(
             processing_kind=None,
         )
     )
+    cancelled = result.rowcount
     await db.commit()
 
+    redis = None
+    try:
+        async with asyncio.timeout(1.0):
+            redis = await create_pool(get_redis_settings())
+
+        async def abort_job(item_id: UUID, job_id: str, queue_name: str) -> None:
+            try:
+                job = Job(job_id, redis, _queue_name=queue_name)
+                await job.abort(timeout=5)
+            except Exception as e:
+                logger.warning(
+                    "Queue abort failed for item %s (error_type=%s)", item_id, type(e).__name__
+                )
+
+        async with asyncio.timeout(5.0):
+            await asyncio.gather(*(abort_job(*job) for job in jobs_to_abort))
+    except Exception as e:
+        # Database cancellation is authoritative; a disconnected queue cannot
+        # revive this generation or undo an already accepted cancellation.
+        logger.warning(
+            "Bulk cancellation saved; queue abort unavailable (error_type=%s)", type(e).__name__
+        )
+    finally:
+        if redis:
+            try:
+                await asyncio.wait_for(redis.aclose(), timeout=0.1)
+            except Exception:
+                logger.warning("Bulk cancellation queue connection cleanup failed")
+
     return BulkCancelAnalysisResponse(
-        cancelled=result.rowcount,
+        cancelled=cancelled,
         skipped=skipped,
         errors=errors,
         next_cursor=next_cursor,
@@ -1294,6 +1221,12 @@ async def update_item(
         item.tagging_status = TaggingStatus.tagged
         item.tagged_by = TaggedBy.manual
         item.tagged_at = datetime.now(UTC)
+        if item.processing_kind is None:
+            # A completed manual classification supersedes AI immediately,
+            # including when no worker is available to observe the write-back.
+            item.status = ItemStatus.ready
+            item.ai_job_id = None
+            item.ai_started_at = None
 
     item = await item_service.update(item, item_data)
     return ItemResponse.model_validate(item)
@@ -1584,60 +1517,23 @@ async def trigger_ai_analysis(
                 "job_id": current.ai_job_id if current else None,
             }
 
+        event = await stage_tagging(
+            db, item, image_service.get_job_image_path(image_path), job_id=job_id
+        )
         await db.commit()
-        try:
-            redis = await create_pool(get_redis_settings())
-            try:
-                full_image_path = image_service.get_job_image_path(image_path)
-                enqueued = await redis.enqueue_job(
-                    "tag_item_image",
-                    str(item_id),
-                    full_image_path,
-                    _job_id=job_id,
-                    _queue_name=TAGGING_QUEUE,
-                )
-                if enqueued is None:
-                    raise RuntimeError("enqueue_job returned None")
-                logger.info(f"Queued AI re-analysis job for item {item_id}")
-                return {"status": "queued", "job_id": job_id}
-            finally:
-                await redis.aclose()
-        except Exception as e:
-            logger.error(f"Failed to queue AI analysis job: {e}")
-            await item_service.release_failed_claim(item_id, job_id)
-            await db.commit()
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Failed to queue AI analysis",
-            ) from None
+        await publish_tagging_now(
+            db, [event.job_id], connect=lambda: create_pool(get_redis_settings())
+        )
+        return {"status": "queued", "job_id": event.job_id}
 
-    try:
-        item.status = ItemStatus.processing
-        item.ai_started_at = None
-        item.processing_kind = None
-        await db.commit()
-
-        redis = await create_pool(get_redis_settings())
-        try:
-            full_image_path = image_service.get_job_image_path(item.image_path)
-            job = await redis.enqueue_job(
-                "tag_item_image",
-                str(item.id),
-                full_image_path,
-                _queue_name=TAGGING_QUEUE,
-            )
-            item.ai_job_id = job.job_id
-            await db.commit()
-            logger.info(f"Queued AI re-analysis job for item {item.id}")
-            return {"status": "queued", "job_id": job.job_id}
-        finally:
-            await redis.aclose()
-    except Exception as e:
-        logger.error(f"Failed to queue AI analysis job: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail="Failed to queue AI analysis",
-        ) from None
+    event = await stage_tagging(
+        db, item, image_service.get_job_image_path(item.image_path)
+    )
+    await db.commit()
+    await publish_tagging_now(
+        db, [event.job_id], connect=lambda: create_pool(get_redis_settings())
+    )
+    return {"status": "queued", "job_id": event.job_id}
 
 
 @router.post("/{item_id}/retag", response_model=ItemResponse)

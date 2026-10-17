@@ -1,0 +1,23 @@
+{
+  "started_at": "2026-10-17T07:04:10.689048",
+  "passed": true,
+  "test_user_id": "5869ebd6-54bc-4e23-a2dc-94cfb0da3083",
+  "upload_seconds_during_outage": 1.44,
+  "durable_before_recovery": {
+    "item_id": "c86cf334-c878-4cfe-a733-aaaf814fa3bf",
+    "job_id": "cef57c47-5ac5-4b9f-9ca2-d56978925d28",
+    "published": false,
+    "completed": false
+  },
+  "after_recovery": {
+    "item_id": "c86cf334-c878-4cfe-a733-aaaf814fa3bf",
+    "job_id": "cef57c47-5ac5-4b9f-9ca2-d56978925d28",
+    "published": true,
+    "completed": true
+  },
+  "recovery_seconds": 21.72,
+  "recognized_type": "t-shirt",
+  "recognized_color": "green",
+  "chinese_description": true,
+  "signed_s3_image": true
+}

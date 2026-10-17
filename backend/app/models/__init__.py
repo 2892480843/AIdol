@@ -11,12 +11,14 @@ from app.models.notification import Notification, NotificationSettings
 from app.models.outfit import FamilyOutfitRating, Outfit, OutfitItem, UserFeedback
 from app.models.preference import UserPreference
 from app.models.schedule import Schedule
-from app.models.user import User
+from app.models.tagging_outbox import TaggingOutbox
 from app.models.task import DurableTask, TaskOutbox
+from app.models.user import User
 
 __all__ = [
     "DurableTask",
     "TaskOutbox",
+    "TaggingOutbox",
     "Family",
     "FamilyInvite",
     "User",

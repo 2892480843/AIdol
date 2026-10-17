@@ -270,7 +270,16 @@
       "unsupportedFormat": "{name} はサポートされていない形式です（JPEG、PNG、WebP、HEIC に対応）",
       "duplicate": "{name} はすでにワードローブにあります",
       "generic": "{name} をアップロードできませんでした"
-    }
+    },
+    "otherAccountPaused": "別のアカウントの {count} 件のアップロードは一時停止中です。元のアカウントでログインして再開してください。",
+    "legacyReview": "以前保存した写真 {count} 件を確認",
+    "legacyHint": "これらの写真にはアカウント情報がありません。現在のアカウントに追加する前に、写真を1枚ずつ確認してください。未確認の写真は保存されます。",
+    "review": "確認",
+    "claimTitle": "この写真をアカウントに追加しますか？",
+    "claimDescription": "{name} を {account} に追加しますか？このアカウントの写真である場合のみ確認してください。",
+    "currentAccount": "現在ログイン中のアカウント",
+    "keepParked": "保存したままにする",
+    "claimAndUpload": "確認してアップロード"
   },
   "wearCount": "{count, plural, one {# 回着用} other {# 回着用}}",
   "wornAgo": {

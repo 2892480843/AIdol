@@ -3,11 +3,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { AlertCircle, Sparkles } from 'lucide-react';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { api, getErrorMessage } from '@/lib/api';
 import { applySessionToken } from '@/lib/hooks/use-session-token';
+import { invalidateOutfitCaches } from '@/lib/hooks/cache-invalidation';
 import { useItem } from '@/lib/hooks/use-items';
 import { useWeather } from '@/lib/hooks/use-weather';
 import { usePreferences } from '@/lib/hooks/use-preferences';
@@ -37,6 +39,7 @@ function weatherFromTask(task: RecommendationTask): WeatherOverride | null {
 export function RecommendationWorkspace() {
   const t = useTranslations('suggest');
   const { data: session } = useSession();
+  const queryClient = useQueryClient();
   const searchParams = useSearchParams();
   const preselectedItemId = searchParams.get('item');
   const tasks = useRecommendationTasks();
@@ -137,6 +140,11 @@ export function RecommendationWorkspace() {
     restoredTask.current = null;
   }
 
+  async function discardCurrentAlternatives(keepId?: string) {
+    await discardAlternatives(outfits, keepId);
+    invalidateOutfitCaches(queryClient);
+  }
+
   async function handleAccept(target?: Outfit) {
     const chosen = target ?? outfits[activeOptionIndex];
     if (!chosen || responseInFlight.current) return;
@@ -147,7 +155,7 @@ export function RecommendationWorkspace() {
     try {
       await api.post(`/outfits/${chosen.id}/accept`);
       if (!mounted.current) return;
-      await discardAlternatives(outfits, chosen.id);
+      await discardCurrentAlternatives(chosen.id);
       clearResults();
       setSelectedOccasion(null);
     } catch (err) {
@@ -162,7 +170,7 @@ export function RecommendationWorkspace() {
     setError(null);
     applySessionToken(session);
     try {
-      await discardAlternatives(outfits);
+      await discardCurrentAlternatives();
       if (mounted.current) await handleGenerate();
     } catch (err) {
       setError(getErrorMessage(err, t('tasks.actionError')));
@@ -178,6 +186,7 @@ export function RecommendationWorkspace() {
     setError(null);
     try {
       await api.post(`/outfits/${rejected.id}/reject`);
+      invalidateOutfitCaches(queryClient);
       if (!mounted.current) return;
       const remaining = outfits.filter((outfit) => outfit.id !== rejected.id);
       setOutfits(remaining);
@@ -195,7 +204,7 @@ export function RecommendationWorkspace() {
     setError(null);
     applySessionToken(session);
     try {
-      await discardAlternatives(outfits);
+      await discardCurrentAlternatives();
       if (!mounted.current) return;
       clearResults();
       setSelectedOccasion(null);

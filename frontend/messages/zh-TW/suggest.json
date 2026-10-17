@@ -140,6 +140,14 @@
       "completed": "搭配已準備好",
       "error": "搭配產生未完成",
       "cancelled": "推薦已取消"
+    },
+    "errors": {
+      "interrupted": "任務曾被中斷，可以重新嘗試。",
+      "insufficientWardrobe": "請新增更多可用衣物，或調整所選單品。",
+      "aiDisabled": "目前未啟用 AI 推薦。",
+      "invalidRequest": "請檢查所選衣物、位置和天氣設定。",
+      "timeout": "產生搭配耗時過長，請重新嘗試。",
+      "unavailable": "推薦服務暫時無法使用，請稍後重試。"
     }
   }
 }

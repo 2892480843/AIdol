@@ -50,7 +50,9 @@ export function subscribeActiveSession(listener: () => void): () => void {
 export function setAccessToken(token: string | null, expectedUserId?: string) {
   // Detached hooks may still hold an old session after a provider remount.
   if (expectedUserId !== undefined && activeSessionKnown && expectedUserId !== activeUserId) return;
+  if (accessToken === token) return;
   accessToken = token;
+  if (activeSessionKnown) sessionListeners.forEach((listener) => listener());
 }
 
 export function getAccessToken(): string | null {

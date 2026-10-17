@@ -140,6 +140,14 @@
       "completed": "I tuoi look sono pronti",
       "error": "Impossibile creare i look",
       "cancelled": "Consiglio annullato"
+    },
+    "errors": {
+      "interrupted": "La richiesta è stata interrotta. Puoi riprovare.",
+      "insufficientWardrobe": "Aggiungi altri capi disponibili o modifica la selezione.",
+      "aiDisabled": "I consigli IA sono attualmente disabilitati.",
+      "invalidRequest": "Controlla i capi selezionati, la posizione e il meteo.",
+      "timeout": "La creazione ha richiesto troppo tempo. Riprova.",
+      "unavailable": "Il servizio di consigli non è al momento disponibile."
     }
   }
 }

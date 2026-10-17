@@ -270,7 +270,16 @@
       "unsupportedFormat": "{name} is not a supported format (JPEG, PNG, WebP or HEIC)",
       "duplicate": "{name} is already in your wardrobe",
       "generic": "{name} could not be uploaded"
-    }
+    },
+    "otherAccountPaused": "{count} uploads for another account are paused. Sign in to that account to resume them.",
+    "legacyReview": "Review {count} photos from an earlier version",
+    "legacyHint": "These photos have no account recorded. Review each photo before adding it to your current account. They will stay saved until you decide.",
+    "review": "Review",
+    "claimTitle": "Add this photo to your account?",
+    "claimDescription": "Add {name} to {account}? Confirm only if this photo belongs to this account.",
+    "currentAccount": "the current signed-in account",
+    "keepParked": "Keep saved",
+    "claimAndUpload": "Confirm and upload"
   },
   "wearCount": "{count, plural, one {Worn # time} other {Worn # times}}",
   "wornAgo": {

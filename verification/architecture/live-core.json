@@ -1,0 +1,154 @@
+{
+  "started_at": "2026-10-17T06:21:06.443996",
+  "scope": "deployed frontend proxy, API, database, Redis workers and real AI; synthetic data only",
+  "checks": [
+    {
+      "name": "Unauthenticated access is refused",
+      "passed": true,
+      "detail": "Not authenticated",
+      "seconds": 0.25
+    },
+    {
+      "name": "Test account/profile/onboarding and 3 uploads",
+      "passed": true,
+      "detail": {
+        "created_items": 3,
+        "test_account": "wardrowbe-verify-owner-e491bdd5@example.com"
+      },
+      "seconds": 1.37
+    },
+    {
+      "name": "AI image upload queue",
+      "passed": true,
+      "detail": {
+        "type": "t-shirt",
+        "primary_color": "blue",
+        "status": "ready",
+        "tagging_status": "tagged",
+        "ai_description": "一件纯蓝色短袖圆领T恤,设计简洁无图案。"
+      },
+      "seconds": 17.62
+    },
+    {
+      "name": "Signed image via frontend proxy",
+      "passed": true,
+      "detail": {
+        "image_bytes": 8775,
+        "type": "image/jpeg"
+      },
+      "seconds": 0.18
+    },
+    {
+      "name": "Wardrobe management",
+      "passed": true,
+      "detail": "edit, search, filter, archive and restore passed",
+      "seconds": 0.13
+    },
+    {
+      "name": "Wear and wash tracking",
+      "passed": true,
+      "detail": "wear count, history, wash reset and wash history passed",
+      "seconds": 0.05
+    },
+    {
+      "name": "Image rotation",
+      "passed": true,
+      "detail": "clockwise/counterclockwise rotations passed",
+      "seconds": 0.13
+    },
+    {
+      "name": "Background removal and undo",
+      "passed": true,
+      "detail": "image worker completed background removal and original restore",
+      "seconds": 11.93
+    },
+    {
+      "name": "Preferences and exclusions",
+      "passed": true,
+      "detail": "preferences and recommendation exclusions saved",
+      "seconds": 0.53
+    },
+    {
+      "name": "Manual outfit and feedback",
+      "passed": true,
+      "detail": "manual outfit create/edit, wear-today and feedback passed",
+      "seconds": 1.48
+    },
+    {
+      "name": "Real AI recommendation",
+      "passed": true,
+      "detail": {
+        "item_count": 2,
+        "reasoning": "午后休闲黑白配"
+      },
+      "seconds": 41.31
+    },
+    {
+      "name": "Multiple recommendations and reject",
+      "passed": true,
+      "detail": {
+        "options": 3,
+        "reject_test": true
+      },
+      "seconds": 19.75
+    },
+    {
+      "name": "Manual and AI pairings",
+      "passed": true,
+      "detail": {
+        "ai_generated": 1
+      },
+      "seconds": 5.08
+    },
+    {
+      "name": "Analytics, history and learning",
+      "passed": true,
+      "detail": {
+        "wardrobe": {
+          "total_items": 3,
+          "items_by_status": {
+            "ready": 3,
+            "processing": 0,
+            "archived": 0,
+            "error": 0
+          },
+          "total_outfits": 8,
+          "outfits_this_week": 8,
+          "outfits_this_month": 8,
+          "acceptance_rate": 50.0,
+          "average_rating": 4.0,
+          "total_wears": 4
+        }
+      },
+      "seconds": 0.11
+    },
+    {
+      "name": "Family and access isolation",
+      "passed": true,
+      "detail": "create, join, member isolation, family rating and leave passed",
+      "seconds": 0.1
+    },
+    {
+      "name": "Notification and schedules",
+      "passed": true,
+      "detail": "local ntfy delivery plus disabled channel/schedule CRUD passed; no external recipient",
+      "seconds": 0.54
+    },
+    {
+      "name": "Real weather and forecast",
+      "passed": true,
+      "detail": {
+        "condition": "cloudy",
+        "temperature": 30.5,
+        "forecast_days": 7
+      },
+      "seconds": 2.56
+    }
+  ],
+  "test_account": {
+    "email": "wardrowbe-verify-owner-e491bdd5@example.com",
+    "user_id": "47c5c439-e413-4c81-99fa-be973421a264"
+  },
+  "passed": 17,
+  "failed": 0
+}

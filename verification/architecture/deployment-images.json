@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-10-17T07:18:45.220187+00:00",
+  "image_ids": {
+    "backend": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+    "frontend": "sha256:4d785dd117bfc1178c861ca5fa86bf9a0647a5c90962c34c4ae667c818aa122e"
+  },
+  "running_image_ids": {
+    "backend": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+    "frontend": "sha256:4d785dd117bfc1178c861ca5fa86bf9a0647a5c90962c34c4ae667c818aa122e",
+    "image-worker": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+    "worker": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+    "task-dispatcher": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db",
+    "task-worker": "sha256:487e6f0610f6f04ca71204209e62ef4a0a69f62093a0fa0e55e99e4f97f8d1db"
+  },
+  "backend_source_files_compared": 157,
+  "backend_source_mismatches": [],
+  "git_head_observed": "2ff3224b2995bc3d616e863b99f09dbe6ba85c8b"
+}

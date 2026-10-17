@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useQueries, useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
-import { api, API_BASE_PATH, getAccessToken, ApiError, NetworkError } from '@/lib/api';
+import { api, API_BASE_PATH, getAccessToken, getActiveUserId, subscribeActiveSession, ApiError, NetworkError } from '@/lib/api';
 import { useSetTokenIfAvailable, applySessionToken } from '@/lib/hooks/use-session-token';
 import { Item, ItemListResponse, ItemFilter, WashHistoryEntry, ItemImage, TaggingProgress } from '@/lib/types';
 import { chunkArray } from '@/lib/utils';
@@ -679,23 +679,57 @@ function bulkActionLimitFrom(error: unknown): number | null {
   return match ? Number(match[1]) : null;
 }
 
+interface BulkActionSession {
+  ownerId: string;
+  token: string | null;
+  controller: AbortController;
+}
+
+function assertBulkActionSession(context: BulkActionSession): void {
+  if (context.controller.signal.aborted || context.ownerId !== getActiveUserId() || context.token !== getAccessToken()) {
+    throw new Error('Bulk action stopped after session change');
+  }
+}
+
+async function requestBulkBatch<T>(
+  path: string,
+  params: BulkOperationParams & { after_id?: string | null },
+  context: BulkActionSession
+): Promise<T> {
+  assertBulkActionSession(context);
+  try {
+    // No await separates the check from api.post's synchronous token capture.
+    const response = await api.post<T>(path, params, { signal: context.controller.signal });
+    assertBulkActionSession(context);
+    return response;
+  } catch (error) {
+    assertBulkActionSession(context);
+    throw error;
+  }
+}
+
 async function drainIdList<T extends BulkBatchResponse>(
   path: string,
   params: BulkOperationParams,
   ids: string[],
-  sumKeys: (keyof T)[]
+  sumKeys: (keyof T)[],
+  context: BulkActionSession
 ): Promise<T> {
+  assertBulkActionSession(context);
   const chunks = learnedBulkActionLimit ? chunkArray(ids, learnedBulkActionLimit) : [ids];
   const results: T[] = [];
 
   for (const chunk of chunks) {
     try {
-      results.push(await api.post<T>(path, { ...params, item_ids: chunk }));
+      results.push(await requestBulkBatch<T>(path, { ...params, item_ids: chunk }, context));
+      assertBulkActionSession(context);
     } catch (error) {
+      assertBulkActionSession(context);
       const limit = bulkActionLimitFrom(error);
       if (limit === null || limit >= chunk.length) throw error;
       learnedBulkActionLimit = limit;
-      results.push(await drainIdList<T>(path, params, chunk, sumKeys));
+      results.push(await drainIdList<T>(path, params, chunk, sumKeys, context));
+      assertBulkActionSession(context);
     }
   }
 
@@ -705,13 +739,16 @@ async function drainIdList<T extends BulkBatchResponse>(
 async function drainCursor<T extends BulkBatchResponse>(
   path: string,
   params: BulkOperationParams,
-  sumKeys: (keyof T)[]
+  sumKeys: (keyof T)[],
+  context: BulkActionSession
 ): Promise<T> {
-  let batch = await api.post<T>(path, params);
+  let batch = await requestBulkBatch<T>(path, params, context);
+  assertBulkActionSession(context);
   let merged = batch;
 
   for (let i = 0; batch.has_more && batch.next_cursor && i < MAX_BULK_BATCHES; i++) {
-    batch = await api.post<T>(path, { ...params, after_id: batch.next_cursor });
+    batch = await requestBulkBatch<T>(path, { ...params, after_id: batch.next_cursor }, context);
+    assertBulkActionSession(context);
     merged = mergeBulkBatches(merged, batch, sumKeys);
   }
 
@@ -721,12 +758,26 @@ async function drainCursor<T extends BulkBatchResponse>(
 export async function drainBulkAction<T extends BulkBatchResponse>(
   path: string,
   params: BulkOperationParams,
-  sumKeys: (keyof T)[]
+  sumKeys: (keyof T)[],
+  expectedOwnerId?: string | null
 ): Promise<T> {
-  if (params.item_ids?.length) {
-    return drainIdList<T>(path, params, params.item_ids, sumKeys);
+  const ownerId = getActiveUserId();
+  if (!ownerId || (expectedOwnerId !== undefined && expectedOwnerId !== ownerId)) {
+    throw new Error('Bulk action stopped after session change');
   }
-  return drainCursor<T>(path, params, sumKeys);
+  const context: BulkActionSession = { ownerId, token: getAccessToken(), controller: new AbortController() };
+  const unsubscribe = subscribeActiveSession(() => {
+    // The abort remains set through sign-out and back into the same account.
+    if (context.ownerId !== getActiveUserId() || context.token !== getAccessToken()) context.controller.abort();
+  });
+  try {
+    if (params.item_ids?.length) {
+      return await drainIdList<T>(path, params, params.item_ids, sumKeys, context);
+    }
+    return await drainCursor<T>(path, params, sumKeys, context);
+  } finally {
+    unsubscribe();
+  }
 }
 
 export function useBulkDeleteItems() {
@@ -739,7 +790,7 @@ export function useBulkDeleteItems() {
       return drainBulkAction<BulkDeleteResponse>('/items/bulk/delete', params, [
         'deleted',
         'failed',
-      ]);
+      ], session?.user.id ?? null);
     },
     onMutate: async (params) => {
       // Cancel outgoing refetches
@@ -811,7 +862,7 @@ export function useBulkReanalyzeItems() {
         'failed',
         'skipped',
         'cooldown',
-      ]);
+      ], session?.user.id ?? null);
       // retry_after_seconds is a wait, not a tally: summing batches would tell
       // the user to wait far longer than any single item actually needs.
       return result;
@@ -884,7 +935,8 @@ export function useBulkCancelAnalysis() {
       return drainBulkAction<BulkCancelAnalysisResponse>(
         '/items/bulk/cancel-analysis',
         params,
-        ['cancelled', 'skipped']
+        ['cancelled', 'skipped'],
+        session?.user.id ?? null
       );
     },
     onSettled: () => {
@@ -911,7 +963,7 @@ export function useBulkRotateItems() {
         'queued',
         'failed',
         'skipped',
-      ]);
+      ], session?.user.id ?? null);
     },
     onMutate: async (params) => {
       await queryClient.cancelQueries({ queryKey: queryKeys.items.all });
@@ -970,7 +1022,8 @@ export function useBulkRemoveBackgroundItems() {
       return drainBulkAction<BulkRemoveBackgroundResponse>(
         '/items/bulk/remove-background',
         params,
-        ['queued', 'failed', 'skipped', 'already_done']
+        ['queued', 'failed', 'skipped', 'already_done'],
+        session?.user.id ?? null
       );
     },
     onMutate: async (params) => {
@@ -1038,7 +1091,8 @@ function uploadBulkItemsChunk(
   files: File[],
   skipAi: boolean,
   token: string | null | undefined,
-  onProgress: (percent: number) => void
+  onProgress: (percent: number) => void,
+  signal?: AbortSignal
 ): Promise<BulkUploadResponse> {
   const formData = new FormData();
   files.forEach((file) => {
@@ -1047,7 +1101,14 @@ function uploadBulkItemsChunk(
   formData.append('skip_ai', String(skipAi));
 
   return new Promise<BulkUploadResponse>((resolve, reject) => {
+    if (signal?.aborted) {
+      reject(new NetworkError('Upload was cancelled.'));
+      return;
+    }
     const xhr = new XMLHttpRequest();
+    const abort = () => xhr.abort();
+    signal?.addEventListener('abort', abort, { once: true });
+    xhr.addEventListener('loadend', () => signal?.removeEventListener('abort', abort));
 
     xhr.upload.addEventListener('progress', (event) => {
       if (event.lengthComputable) {
@@ -1115,10 +1176,11 @@ export async function uploadFilesWithinServerLimit(
   files: File[],
   skipAi: boolean,
   token: string | null | undefined,
-  onProgress: (percent: number) => void
+  onProgress: (percent: number) => void,
+  signal?: AbortSignal
 ): Promise<BulkUploadResponse> {
   try {
-    return await uploadBulkItemsChunk(files, skipAi, token, onProgress);
+    return await uploadBulkItemsChunk(files, skipAi, token, onProgress, signal);
   } catch (error) {
     const limit =
       error instanceof ApiError && error.status === 400
@@ -1128,7 +1190,7 @@ export async function uploadFilesWithinServerLimit(
       const responses: BulkUploadResponse[] = [];
       for (let i = 0; i < files.length; i += limit) {
         responses.push(
-          await uploadFilesWithinServerLimit(files.slice(i, i + limit), skipAi, token, onProgress)
+          await uploadFilesWithinServerLimit(files.slice(i, i + limit), skipAi, token, onProgress, signal)
         );
       }
       return mergeBulkUploadResponses(responses);
@@ -1247,37 +1309,51 @@ export function useBulkCreateItems() {
       files: File[];
       skipAi?: boolean;
     }): Promise<BulkStageResult> => {
-      const { staged, unprotected: unprotectedFiles } = await enqueueFiles(files, skipAi);
-      if (staged.length > 0) {
-        void startDrain();
-      }
-
-      let unprotected: BulkUploadResponse | null = null;
-      if (unprotectedFiles.length > 0) {
-        const token = session?.accessToken || getAccessToken();
-        const serverLimit = await fetchBulkUploadLimit(queryClient);
-        const chunkSize = Math.min(BULK_UPLOAD_CHUNK_SIZE, serverLimit ?? BULK_UPLOAD_CHUNK_SIZE);
-        const chunks = chunkArray(unprotectedFiles, chunkSize);
-        const responses: BulkUploadResponse[] = [];
-
-        for (let i = 0; i < chunks.length; i++) {
-          const chunkFiles = chunks[i];
-          try {
-            const response = await uploadFilesWithinServerLimit(chunkFiles, skipAi, token, (chunkPercent) => {
-              const overall = ((i + chunkPercent / 100) / chunks.length) * 100;
-              setUploadProgress(Math.round(overall));
-            });
-            responses.push(response);
-          } catch (error) {
-            responses.push(failedChunkResponse(chunkFiles, error));
-          }
-          setUploadProgress(Math.round(((i + 1) / chunks.length) * 100));
+      const ownerId = session?.user.id;
+      const token = session?.accessToken || getAccessToken();
+      if (!ownerId || ownerId !== getActiveUserId()) throw new Error('Authentication required to upload');
+      const controller = new AbortController();
+      const current = () => !controller.signal.aborted && ownerId === getActiveUserId() && token === getAccessToken();
+      const unsubscribe = subscribeActiveSession(() => {
+        if (!current()) controller.abort();
+      });
+      try {
+        const { staged, unprotected: unprotectedFiles } = await enqueueFiles(files, skipAi, ownerId);
+        if (!current()) throw new Error('Upload paused after session change');
+        if (staged.length > 0) {
+          void startDrain();
         }
 
-        unprotected = mergeBulkUploadResponses(responses);
-      }
+        let unprotected: BulkUploadResponse | null = null;
+        if (unprotectedFiles.length > 0) {
+          const serverLimit = await fetchBulkUploadLimit(queryClient);
+          if (!current()) throw new Error('Upload paused after session change');
+          const chunkSize = Math.min(BULK_UPLOAD_CHUNK_SIZE, serverLimit ?? BULK_UPLOAD_CHUNK_SIZE);
+          const chunks = chunkArray(unprotectedFiles, chunkSize);
+          const responses: BulkUploadResponse[] = [];
 
-      return { staged: staged.length, unprotected };
+          for (let i = 0; i < chunks.length; i++) {
+            if (!current()) throw new Error('Upload paused after session change');
+            const chunkFiles = chunks[i];
+            try {
+              const response = await uploadFilesWithinServerLimit(chunkFiles, skipAi, token, (chunkPercent) => {
+                const overall = ((i + chunkPercent / 100) / chunks.length) * 100;
+                setUploadProgress(Math.round(overall));
+              }, controller.signal);
+              if (!current()) throw new Error('Upload paused after session change');
+              responses.push(response);
+            } catch (error) {
+              if (!current()) throw new Error('Upload paused after session change');
+              responses.push(failedChunkResponse(chunkFiles, error));
+            }
+            setUploadProgress(Math.round(((i + 1) / chunks.length) * 100));
+          }
+
+          unprotected = mergeBulkUploadResponses(responses);
+        }
+
+        return { staged: staged.length, unprotected };
+      } finally { unsubscribe(); }
     },
     onMutate: () => {
       setUploadProgress(0);

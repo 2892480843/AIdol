@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import SuggestPage from '@/app/dashboard/suggest/page';
 import type { RecommendationRequest, RecommendationTask } from '@/lib/recommendations/types';
+import { queryKeys } from '@/lib/hooks/query-keys';
 
 const transport = vi.hoisted(() => ({ get: vi.fn(), post: vi.fn() }));
 const account = vi.hoisted(() => ({ id: 'user-a' }));
@@ -24,8 +25,10 @@ function task(overrides: Partial<RecommendationTask> = {}): RecommendationTask {
     result: null, error: null, error_code: null, ...overrides,
   };
 }
+let activeClient: QueryClient;
 function wrapper() {
   const client = new QueryClient({ defaultOptions: { queries: { retry: false }, mutations: { retry: false } } });
+  activeClient = client;
   return ({ children }: { children: React.ReactNode }) => <QueryClientProvider client={client}>{children}</QueryClientProvider>;
 }
 
@@ -62,8 +65,10 @@ describe('recommendation page task flow', () => {
       occasion: 'casual', count: 1, include_items: ['base-1'],
       weather_override: expect.objectContaining({ temperature: 26, condition: 'sunny' }),
     }), expect.objectContaining({ headers: { 'Idempotency-Key': expect.any(String) } }));
+    activeClient.setQueryData(queryKeys.pendingOutfits.list(3), { outfits: [{ id: 'look-1' }] });
     fireEvent.click(screen.getByRole('button', { name: 'loveIt' }));
     await waitFor(() => expect(transport.post).toHaveBeenCalledWith('/outfits/look-1/accept'));
+    await waitFor(() => expect(activeClient.getQueryState(queryKeys.pendingOutfits.list(3))?.isInvalidated).toBe(true));
   });
 
   it('submits three looks by default, compares them and skips unchosen alternatives after acceptance', async () => {
@@ -141,12 +146,13 @@ describe('recommendation page task flow', () => {
   });
 
   it('opens a failed historical request and retries it explicitly', async () => {
-    const failed = task({ status: 'failed', stage: 'error', error: 'The provider timed out' });
+    const failed = task({ status: 'failed', stage: 'error', error: 'The provider timed out', error_code: 'timeout' });
     transport.get.mockImplementation(async (path: string) => path === '/tasks' ? { tasks: [failed] } : failed);
     transport.post.mockResolvedValue(task());
     render(<SuggestPage />, { wrapper: wrapper() });
     fireEvent.click((await screen.findByText('status.failed')).closest('button')!);
-    await screen.findByText('The provider timed out');
+    await screen.findByText('errors.timeout');
+    expect(screen.queryByText('The provider timed out')).not.toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'retry' }));
     await waitFor(() => expect(transport.post).toHaveBeenCalledWith('/tasks/task-1/retry'));
     expect(transport.post).toHaveBeenCalledTimes(1);

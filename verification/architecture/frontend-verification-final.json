@@ -1,0 +1,50 @@
+{
+  "platform": "darwin",
+  "checked_at": "2026-10-17T06:45:43.585626+00:00",
+  "results": [
+    {
+      "name": "tests",
+      "command": [
+        "npm",
+        "test",
+        "--",
+        "--maxWorkers=2",
+        "--reporter=default",
+        "--reporter=json",
+        "--outputFile=../verification/architecture/frontend-tests-final.json"
+      ],
+      "exit_code": 0,
+      "log": "../verification/architecture/frontend-tests-final.log"
+    },
+    {
+      "name": "typecheck",
+      "command": [
+        "npx",
+        "tsc",
+        "--noEmit"
+      ],
+      "exit_code": 0,
+      "log": "../verification/architecture/frontend-typecheck-final.log"
+    },
+    {
+      "name": "i18n",
+      "command": [
+        "npm",
+        "run",
+        "i18n:check"
+      ],
+      "exit_code": 0,
+      "log": "../verification/architecture/frontend-i18n-final.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "npm",
+        "run",
+        "build"
+      ],
+      "exit_code": 0,
+      "log": "../verification/architecture/frontend-build-final.log"
+    }
+  ]
+}
