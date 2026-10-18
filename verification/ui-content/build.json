@@ -1,0 +1,8 @@
+{
+  "base": "wardrowbe-frontend:ui-content-20261018-r3-base",
+  "image": "wardrowbe-frontend:ui-content-20261018-r3",
+  "image_id": "sha256:5ffccf377554d9f402874c4a37427a0473a5542314dc5d41457f15ec39d41d01",
+  "manifest_sha256": "e2085dc6798b1cc0271e9eb08387f271e5ebb3c3388736acd93a098c00db6d77",
+  "public_files": 68,
+  "public_archive_bytes": 171195510
+}

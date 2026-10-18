@@ -22,8 +22,6 @@ const avatarRevision = avatarHash.digest('hex');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  // Keep build workers within local Docker resources; these settings do not affect request handling.
-  staticPageGenerationTimeout: 300,
   env: { NEXT_PUBLIC_AVATAR_ASSET_REVISION: avatarRevision },
   async headers() {
     return [{
@@ -33,7 +31,6 @@ const nextConfig = {
     }];
   },
   experimental: {
-    cpus: 2,
     instrumentationHook: true,
     // Disable automatic static optimization for pages using client-side context
     missingSuspenseWithCSRBailout: false,

@@ -117,7 +117,7 @@ export function OutfitCalendar({
               aria-current={isDayToday ? 'date' : undefined}
               aria-pressed={!!isSelected}
               className={cn(
-                'relative h-11 w-full rounded-none text-sm transition-colors motion-reduce:transition-none',
+                'relative h-11 w-full rounded-[10px] text-sm transition-colors motion-reduce:transition-none',
                 'hover:bg-accent hover:text-accent-foreground',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
                 !isCurrentMonth && 'text-muted-foreground/50',
@@ -132,7 +132,7 @@ export function OutfitCalendar({
                   {hasScheduled && (
                     <span
                       className={cn(
-                        'w-1.5 h-1.5 rounded-none',
+                        'w-1.5 h-1.5 rounded-full',
                         isSelected ? 'bg-primary-foreground' : 'bg-primary'
                       )}
                     />
@@ -140,7 +140,7 @@ export function OutfitCalendar({
                   {hasOnDemand && (
                     <span
                       className={cn(
-                        'w-1.5 h-1.5 rounded-none',
+                        'w-1.5 h-1.5 rounded-full',
                         isSelected ? 'bg-primary-foreground' : 'bg-orange-500'
                       )}
                     />
@@ -155,11 +155,11 @@ export function OutfitCalendar({
       {/* Legend */}
       <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-4 text-xs text-muted-foreground">
         <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-none bg-primary" />
+          <span className="w-2 h-2 rounded-full bg-primary" />
           <span>{t('legendScheduled')}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-none bg-orange-500" />
+          <span className="w-2 h-2 rounded-full bg-orange-500" />
           <span>{t('legendOnDemand')}</span>
         </div>
       </div>

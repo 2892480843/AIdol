@@ -2,7 +2,7 @@
 
 ## 直接体验
 
-公网入口：<http://124.70.96.183:6780/dashboard>。浏览器弹出身份框时使用私下提交的测试账号和密码，认证后自动登录。桌面 Chrome / Edge 优先。公网环境与管理命令见 [ops/server-6780/README.md](../../ops/server-6780/README.md)。
+公网入口：<https://124.70.96.183:6780/dashboard>。浏览器弹出身份框时使用私下提交的测试账号和密码，认证后自动登录。桌面 Chrome / Edge 优先。公网环境与管理命令见 [ops/server-6780/README.md](../../ops/server-6780/README.md)。
 
 ## 新电脑本机运行
 

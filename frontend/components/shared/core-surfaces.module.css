@@ -13,7 +13,7 @@
 .toolbar {
   padding: 18px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 16px;
   background: hsl(var(--card));
   box-shadow: var(--surface-shadow);
   display: flex;
@@ -37,7 +37,7 @@
   gap: 10px;
   padding: 14px 18px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--tone-sky));
 }
 
@@ -52,7 +52,7 @@
   min-width: 0;
   overflow: hidden;
   border: 1px solid hsl(var(--border) / 0.75);
-  border-radius: 0;
+  border-radius: 16px;
   background: hsl(var(--card));
   box-shadow: var(--surface-shadow);
   transition:
@@ -90,7 +90,7 @@
   min-height: 280px;
   padding: 40px 24px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 16px;
   background: hsl(var(--tone-lavender) / 0.45);
   display: flex;
   flex-direction: column;
@@ -105,7 +105,7 @@
   place-items: center;
   width: 64px;
   height: 64px;
-  border-radius: 0;
+  border-radius: 20px;
   color: hsl(var(--primary));
   background: hsl(var(--card));
   margin-bottom: 12px;
@@ -133,7 +133,7 @@
 }
 
 .collage > div {
-  border-radius: 0;
+  border-radius: 14px;
 }
 
 .collage img {
@@ -147,7 +147,7 @@
   bottom: 28px;
   width: 36px;
   height: 36px;
-  border-radius: 0 !important;
+  border-radius: 50% !important;
   background: hsl(var(--background) / 0.94) !important;
   box-shadow: 0 2px 10px hsl(var(--foreground) / 0.1);
 }
@@ -195,7 +195,7 @@
 
 .formCard {
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 16px;
   background: hsl(var(--card));
 }
 
@@ -220,7 +220,7 @@
 }
 
 .choice {
-  border-radius: 0;
+  border-radius: 12px;
   padding: 15px;
   border: 1px solid hsl(var(--border));
   background: hsl(var(--card));
@@ -237,7 +237,7 @@
 }
 
 .occasion {
-  border-radius: 0;
+  border-radius: 14px;
   height: auto;
   min-height: 46px;
   border: 1px solid hsl(var(--border));
@@ -262,13 +262,13 @@
 
 .taskPanel {
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 16px;
   background: hsl(var(--card));
 }
 
 .taskActive {
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 14px;
   padding: 20px;
   background: hsl(var(--tone-sky) / 0.5);
 }
@@ -283,7 +283,7 @@
 
 .taskHistory > button {
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 14px;
   padding: 14px;
   min-width: 0;
 }
@@ -293,7 +293,7 @@
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 16px;
   border: 1px solid hsl(var(--border));
 }
 
@@ -311,7 +311,7 @@
 
 .resultItems > a {
   min-width: 0;
-  border-radius: 0;
+  border-radius: 14px;
 }
 
 .resultItems > a > div:first-child {
@@ -327,7 +327,7 @@
   padding: 14px;
   border: 1px solid hsl(var(--border));
   background: hsl(var(--tone-blush) / 0.55);
-  border-radius: 0;
+  border-radius: 14px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -358,7 +358,7 @@
   padding: 20px 24px;
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 16px;
 }
 
 .studioHeader h1 {
@@ -379,7 +379,7 @@
   min-width: 0;
   padding: 24px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 16px;
   background: hsl(var(--card));
   box-shadow: var(--surface-shadow);
 }
@@ -394,7 +394,7 @@
 .canvasEmpty {
   min-height: 310px;
   border: 1px dashed hsl(var(--input));
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--tone-lavender) / 0.5);
   display: flex;
   align-items: center;
@@ -408,7 +408,7 @@
   background: hsl(var(--tone-lavender) / 0.5);
   border: 1px solid hsl(var(--border));
   padding: 24px;
-  border-radius: 0;
+  border-radius: 14px;
   min-height: 310px;
 }
 
@@ -427,7 +427,7 @@
 .canvasItem > div {
   aspect-ratio: 4 / 5;
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--card));
   overflow: hidden;
 }
@@ -457,7 +457,7 @@
 
 .pickerItem {
   aspect-ratio: 4 / 5;
-  border-radius: 0;
+  border-radius: 14px;
   border-width: 1px;
   position: relative;
   overflow: hidden;
@@ -473,7 +473,7 @@
 }
 
 .dialog {
-  border-radius: 0;
+  border-radius: 14px;
 }
 
 .dialogHeader {
@@ -484,7 +484,7 @@
 
 .detailDialog {
   width: min(100%, 1000px);
-  border-radius: 0;
+  border-radius: 14px;
 }
 
 .detailGrid {
@@ -495,13 +495,13 @@
 }
 
 .detailPhoto {
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--tone-lavender) / 0.5);
 }
 
 .uploadZone {
   min-height: 220px;
-  border-radius: 0;
+  border-radius: 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -513,7 +513,7 @@
   width: 100%;
   height: 260px;
   object-fit: contain;
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--muted));
 }
 
@@ -523,20 +523,20 @@
   gap: 14px;
   border: 1px solid hsl(var(--border));
   padding: 14px;
-  border-radius: 0;
+  border-radius: 14px;
 }
 
 .queueMetrics {
   padding: 18px;
   background: hsl(var(--tone-sky) / 0.5);
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 14px;
 }
 
 .bulkToolbar {
   flex-wrap: wrap;
   justify-content: center;
-  border-radius: 0;
+  border-radius: 14px;
   border: 1px solid hsl(var(--primary) / 0.2);
   box-shadow: 0 12px 36px hsl(var(--foreground) / 0.14);
   padding: 12px 16px;
@@ -551,7 +551,7 @@
   padding: 16px;
   background: hsl(var(--tone-mint) / 0.65);
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 14px;
 }
 
 .pairingSourcePhoto {
@@ -560,7 +560,7 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--card));
 }
 
@@ -581,7 +581,7 @@
   width: 100%;
   height: auto;
   aspect-ratio: 4 / 5;
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--muted));
 }
 
@@ -591,7 +591,7 @@
 }
 
 .lineage {
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--muted) / 0.5);
   border-color: hsl(var(--border));
 }
@@ -607,14 +607,14 @@
   min-height: 90px;
   height: auto;
   padding: 18px;
-  border-radius: 0;
+  border-radius: 14px;
 }
 
 .colorStage {
   min-height: 260px;
   padding: 16px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--muted));
 }
 
@@ -626,7 +626,7 @@
   justify-content: space-between;
   padding: 18px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--card));
 }
 
@@ -636,7 +636,7 @@
   justify-content: center;
   width: 30px;
   height: 30px;
-  border-radius: 0;
+  border-radius: 10px;
   background: hsl(var(--tone-lavender));
   color: hsl(var(--tone-lavender-foreground));
 }
@@ -644,7 +644,7 @@
 .ratingButton {
   display: inline-flex;
   padding: 6px;
-  border-radius: 0;
+  border-radius: 14px;
   background: hsl(var(--muted) / 0.55);
 }
 

@@ -108,7 +108,7 @@ function ColorPicker({
               key={color.value}
               type="button"
               onClick={() => toggleColor(color.value)}
-              className={`w-10 h-10 rounded-none border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
+              className={`w-10 h-10 rounded-full border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                 isSelected
                   ? 'border-primary ring-2 ring-primary/30 scale-110'
                   : 'border-muted-foreground/20 hover:border-muted-foreground/40'
@@ -138,7 +138,7 @@ function ColorPicker({
             return (
               <Badge key={color} variant="secondary" className="gap-1">
                 <div
-                  className="w-2 h-2 rounded-none"
+                  className="w-2 h-2 rounded-full"
                   style={{ backgroundColor: colorInfo?.hex }}
                 />
                 {colorInfo?.name}
@@ -1038,7 +1038,7 @@ export default function SettingsPage() {
                 {(formData.ai_endpoints || []).map((endpoint, index) => (
                   <div
                     key={index}
-                    className={`rounded-none border p-5 space-y-4 ${
+                    className={`rounded-2xl border p-5 space-y-4 ${
                       !endpoint.enabled ? 'opacity-60 bg-muted/50' : ''
                     }`}
                   >

@@ -1,0 +1,8 @@
+{
+  "confirmed_by": "team leader in delivery conversation",
+  "confirmed_at_date": "2026-10-18",
+  "server_and_model_quota_covered_through": "2026-11-10",
+  "services": "six dedicated systemd services enabled, restart on failure",
+  "certificate_renewal": "existing med-insight-cert-renew.timer enabled and active; most recent result success",
+  "external_provider_zero_downtime_guaranteed": false
+}

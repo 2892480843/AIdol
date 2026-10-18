@@ -21,7 +21,7 @@ export default function GlobalError({
   return (
     <div className="min-h-[100dvh] flex items-center justify-center bg-background p-6">
       <div className="error-surface">
-        <div className="mx-auto w-16 h-16 rounded-none bg-destructive/10 flex items-center justify-center mb-6">
+        <div className="mx-auto w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center mb-6">
           <AlertTriangle className="w-8 h-8 text-destructive" />
         </div>
         <h1 className="text-2xl font-bold mb-2">{t('somethingWentWrong')}</h1>
@@ -35,7 +35,7 @@ export default function GlobalError({
           <Button onClick={reset}>{t('tryAgain')}</Button>
         </div>
         {process.env.NODE_ENV === 'development' && (
-          <pre className="mt-6 p-4 bg-muted rounded-none text-left text-xs overflow-auto max-h-48">
+          <pre className="mt-6 p-4 bg-muted rounded-lg text-left text-xs overflow-auto max-h-48">
             {error.message}
             {error.stack && `\n\n${error.stack}`}
           </pre>

@@ -19,6 +19,7 @@ export function InspirationTeasers() {
     >
       <div className={styles.editorialHeading}>
         <div>
+          <p className={styles.kicker}>{t("inspiration.eyebrow")}</p>
           <h2 id="home-style-notes">{t("editorial.methods")}</h2>
         </div>
         <Link href="/dashboard/inspiration">
@@ -45,9 +46,8 @@ export function InspirationTeasers() {
           <Link
             key={formula.id}
             href={`/dashboard/inspiration?formula=${formula.id}`}
-            className={`${styles.teaser} group collage-lift ${["-rotate-[1deg]", "rotate-[1.3deg]", "-rotate-[0.5deg]"][index]}`}
+            className={styles.teaser}
           >
-            <span aria-hidden="true" className="collage-tape rotate-[-4deg] transition-transform duration-200 ease-out group-hover:rotate-[6deg] group-hover:-translate-y-1" />
             <span className={styles.teaserNumber}>
               {String(index + 1).padStart(2, "0")}
             </span>

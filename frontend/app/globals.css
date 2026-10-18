@@ -175,18 +175,18 @@
     flex-shrink: 0;
     color: hsl(var(--primary));
     background: hsl(var(--tone-blush));
-    border-radius: 0;
+    border-radius: 14px;
   }
   .surface-panel {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
-    border-radius: 0;
+    border-radius: var(--radius);
     padding: 1.5rem;
   }
   .metric-card {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
-    border-radius: 0;
+    border-radius: 16px;
     padding: 1.5rem;
     box-shadow: var(--surface-shadow);
   }
@@ -242,7 +242,7 @@
     flex-shrink: 0;
     width: 34px;
     height: 34px;
-    border-radius: 0;
+    border-radius: 12px;
     background: transparent;
   }
   .app-brand-mark img {
@@ -263,7 +263,7 @@
     gap: 0;
     min-height: 46px;
     padding: 0.55rem 0.65rem;
-    border-radius: 0;
+    border-radius: 14px;
     color: hsl(var(--muted-foreground));
     font-size: 13px;
     font-weight: 500;
@@ -338,7 +338,7 @@
     padding: 0.35rem 0.35rem calc(0.35rem + env(safe-area-inset-bottom));
     background: hsl(var(--card));
     border-top: 1px solid hsl(var(--border));
-    box-shadow: 3px 3px 0 #2d2d2d;
+    box-shadow: 0 -4px 20px rgb(52 29 66 / 0.025);
   }
   .mobile-bottom-nav-inner {
     display: grid;
@@ -354,7 +354,7 @@
     min-height: 54px;
     color: hsl(var(--muted-foreground));
     font-size: 11px;
-    border-radius: 0;
+    border-radius: 12px;
   }
   .mobile-nav-link svg {
     width: 20px;
@@ -401,7 +401,7 @@
   .welcome-image {
     position: relative;
     min-height: 200px;
-    border-radius: 0;
+    border-radius: 1rem;
     overflow: hidden;
   }
   .welcome-image img {
@@ -424,7 +424,7 @@
     min-height: 560px;
     overflow: hidden;
     background: hsl(var(--tone-lavender));
-    border-radius: 0;
+    border-radius: 16px;
   }
   .auth-visual > img {
     object-fit: cover;
@@ -436,7 +436,12 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 3rem;
-    background: #f5f0e8;
+    background: linear-gradient(
+      180deg,
+      rgb(38 30 22 / 0.03),
+      rgb(38 30 22 / 0.02) 55%,
+      rgb(38 30 22 / 0.62)
+    );
   }
   .auth-visual .app-brand {
     color: #26221e;
@@ -476,7 +481,7 @@
     padding: 3rem 2rem;
     text-align: center;
     border: 1px solid hsl(var(--border));
-    border-radius: 0;
+    border-radius: 16px;
     background: hsl(var(--card));
     box-shadow: var(--surface-shadow);
   }
@@ -507,7 +512,7 @@
     background: hsl(var(--card));
   }
   .design-toast {
-    border-radius: 0 !important;
+    border-radius: 14px !important;
     font-family: inherit !important;
   }
 }
@@ -573,7 +578,7 @@
   .auth-visual {
     min-height: 210px;
     max-height: 260px;
-    border-radius: 0;
+    border-radius: 10px;
   }
   .auth-visual-overlay {
     padding: 1.5rem;
@@ -612,7 +617,7 @@
   top: 0.6rem;
   left: 50%;
   transform: translate(-50%, -200%);
-  border-radius: 0;
+  border-radius: 10px;
   background: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
   padding: 0.6rem 1rem;
@@ -755,7 +760,7 @@ body.app-body {
   white-space: nowrap;
 }
 .app-nav-link.mantine-NavLink-root {
-  border-radius: 0;
+  border-radius: 14px;
   color: hsl(var(--muted-foreground));
 }
 .app-nav-link.mantine-NavLink-root[data-active] {
@@ -780,7 +785,7 @@ body.app-body {
   border-color: hsl(var(--input));
 }
 .design-dialog.mantine-Modal-content {
-  border-radius: 0;
+  border-radius: 16px;
   background: hsl(var(--card));
   color: hsl(var(--foreground));
 }
@@ -844,7 +849,7 @@ body.app-body {
   place-items: center;
   width: 30px;
   height: 30px;
-  border-radius: 0;
+  border-radius: 10px;
   background: hsl(var(--tone-blush));
   color: hsl(var(--tone-blush-foreground));
 }

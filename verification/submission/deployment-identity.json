@@ -1,0 +1,7 @@
+{
+  "frontend_files": 600,
+  "frontend_mismatches": [],
+  "public_build_id": "I4OpIdl-f6d4D0yC4hjV5",
+  "collage_excluded": true,
+  "notes": "Exact deployed-source recovery from pre-style backups and recorded inverse edits; every file verified against original release SHA256."
+}

@@ -104,7 +104,7 @@ export function OutfitPreviewDialog({ outfit, open, onClose, isOwner = true }: O
               </span>
             </div>
           </div>
-          <Button variant="ghost" size="icon" onClick={onClose} className="rounded-none -mr-2">
+          <Button variant="ghost" size="icon" onClick={onClose} className="rounded-full -mr-2">
             <X className="h-5 w-5" />
           </Button>
         </div>
@@ -140,7 +140,7 @@ export function OutfitPreviewDialog({ outfit, open, onClose, isOwner = true }: O
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background/90 rounded-none"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background/90 rounded-full"
                   onClick={goToPrev}
                 >
                   <ChevronLeft className="h-6 w-6" />
@@ -148,7 +148,7 @@ export function OutfitPreviewDialog({ outfit, open, onClose, isOwner = true }: O
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background/90 rounded-none"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 bg-background/80 hover:bg-background/90 rounded-full"
                   onClick={goToNext}
                 >
                   <ChevronRight className="h-6 w-6" />
@@ -278,7 +278,7 @@ export function OutfitPreviewDialog({ outfit, open, onClose, isOwner = true }: O
                 </ul>
               )}
               {outfit.style_notes && (
-                <div className="p-3 bg-muted rounded-none border">
+                <div className="p-3 bg-muted rounded-lg border">
                   <p className="text-sm text-muted-foreground break-words">
                     <span className="font-medium text-foreground">{ts('tip')}</span> {outfit.style_notes}
                   </p>

@@ -5,8 +5,12 @@
   scroll-margin-top: 92px;
   padding: 22px;
   border: 1px solid hsl(var(--border));
-  border-radius: 0;
-  background: #f5f0e8;
+  border-radius: 16px;
+  background: linear-gradient(
+    115deg,
+    hsl(var(--tone-blush) / 0.65),
+    hsl(var(--card)) 65%
+  );
 }
 .heading {
   display: flex;
@@ -22,7 +26,7 @@
   flex-shrink: 0;
   width: 42px;
   height: 42px;
-  border-radius: 0;
+  border-radius: 13px;
   background: hsl(var(--tone-blush));
   color: hsl(var(--tone-blush-foreground));
 }
@@ -60,7 +64,7 @@
   gap: 14px;
   min-width: 0;
   padding: 12px 14px;
-  border-radius: 0;
+  border-radius: 13px;
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
 }
@@ -72,7 +76,7 @@
   width: 64px;
   height: 76px;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 9px;
   background: hsl(var(--tone-lavender));
   color: hsl(var(--tone-lavender-foreground));
 }

@@ -166,7 +166,7 @@ export default function OutfitDetailPage() {
                 href={`/dashboard/wardrobe?item=${item.id}`}
                 className="group"
               >
-                <div className={`${styles.garmentPhoto} rounded-none overflow-hidden border`}>
+                <div className={`${styles.garmentPhoto} rounded-2xl overflow-hidden border`}>
                   {item.thumbnail_url || item.image_url ? (
                     <Image
                       src={(item.thumbnail_url || item.image_url)!}
@@ -239,7 +239,7 @@ export default function OutfitDetailPage() {
                 <Link
                   key={wear.id}
                   href={`/dashboard/outfits/${wear.id}`}
-                  className="flex items-center justify-between rounded-none border px-3 py-2 hover:bg-muted/50"
+                  className="flex items-center justify-between rounded-lg border px-3 py-2 hover:bg-muted/50"
                 >
                   <span className="text-sm">
                     {wear.scheduled_for

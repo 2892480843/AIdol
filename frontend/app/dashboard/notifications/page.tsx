@@ -95,7 +95,7 @@ function ScheduleCard({
     : day;
 
   return (
-    <div className="space-y-4 rounded-none border border-border bg-primary/[.025] p-4 sm:p-5">
+    <div className="space-y-4 rounded-2xl border border-border bg-primary/[.025] p-4 sm:p-5">
       {/* Top row: Day info and main toggle */}
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
@@ -256,7 +256,7 @@ function AddScheduleDialog({
                 </SelectContent>
               </Select>
             </div>
-            <div className="flex items-start justify-between gap-4 rounded-none border bg-muted/30 p-4">
+            <div className="flex items-start justify-between gap-4 rounded-2xl border bg-muted/30 p-4">
               <div className="space-y-0.5">
                 <Label htmlFor="notify-day-before">{t('schedule.notifyDayBefore')}</Label>
                 <p className="text-xs text-muted-foreground">
@@ -411,7 +411,7 @@ export default function NotificationsPage() {
               <CardTitle className="flex items-center gap-2">
                 <Settings2 className="h-5 w-5" />
                 {t('channels.title')}
-                {!loadingSettings && <span className="rounded-none bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">{settings?.length ?? 0}</span>}
+                {!loadingSettings && <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">{settings?.length ?? 0}</span>}
               </CardTitle>
               <CardDescription>
                 {t('channels.description')}
@@ -457,7 +457,7 @@ export default function NotificationsPage() {
               <CardTitle className="flex items-center gap-2">
                 <Clock className="h-5 w-5" />
                 {t('schedule.title')}
-                {!loadingSchedules && <span className="rounded-none bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">{schedules?.length ?? 0}</span>}
+                {!loadingSchedules && <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary">{schedules?.length ?? 0}</span>}
               </CardTitle>
               <CardDescription>
                 {t('schedule.description')}

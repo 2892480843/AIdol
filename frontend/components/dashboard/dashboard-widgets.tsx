@@ -133,7 +133,7 @@ export function OverviewMetrics({
     <section aria-label={t("overview.title")} className={styles.metrics}>
       {values.map(
         ({ label, value, loading, error, icon: Icon, href }, index) => (
-          <Link href={href} className={`${styles.metric} collage-lift ${["-rotate-[0.8deg]", "rotate-[0.7deg]", "-rotate-[0.5deg]", "rotate-[1deg]"][index]}`} key={label}>
+          <Link href={href} className={styles.metric} key={label}>
             <div className={styles.metricLabel}>
               {label}
               <Icon size={18} aria-hidden="true" />

@@ -189,12 +189,12 @@ function ItemPairCard({ pair }: { pair: ItemPair }) {
     : 0;
 
   return (
-    <div className="flex flex-wrap items-center gap-4 rounded-none border border-border/70 bg-muted/30 p-4">
+    <div className="flex flex-wrap items-center gap-4 rounded-2xl border border-border/70 bg-muted/30 p-4">
       <div className="flex items-center gap-2 flex-1">
         {/* Item 1 */}
         <Link
           href={`/dashboard/wardrobe?item=${pair.item1.id}`}
-          className="w-16 h-20 rounded-none bg-background overflow-hidden relative flex-shrink-0 hover:ring-2 ring-primary transition-all"
+          className="w-16 h-20 rounded-[10px] bg-background overflow-hidden relative flex-shrink-0 hover:ring-2 ring-primary transition-all"
         >
           {pair.item1.thumbnail_url ? (
             <Image
@@ -217,7 +217,7 @@ function ItemPairCard({ pair }: { pair: ItemPair }) {
         {/* Item 2 */}
         <Link
           href={`/dashboard/wardrobe?item=${pair.item2.id}`}
-          className="w-16 h-20 rounded-none bg-background overflow-hidden relative flex-shrink-0 hover:ring-2 ring-primary transition-all"
+          className="w-16 h-20 rounded-[10px] bg-background overflow-hidden relative flex-shrink-0 hover:ring-2 ring-primary transition-all"
         >
           {pair.item2.thumbnail_url ? (
             <Image
@@ -281,10 +281,10 @@ function InsightCard({
   const borderColor = typeColors[insight.insight_type] || 'border-muted';
 
   return (
-    <div className={`relative rounded-none border p-5 ${borderColor}`}>
+    <div className={`relative rounded-2xl border p-5 ${borderColor}`}>
       <UnstyledButton
         onClick={() => onAcknowledge(insight.id)}
-        type="button" aria-label={t('dismiss')} className="absolute right-3 top-3 rounded-none p-2 transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
+        type="button" aria-label={t('dismiss')} className="absolute right-3 top-3 rounded-[10px] p-2 transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring"
         title={t('dismiss')}
       >
         <X className="h-4 w-4 text-muted-foreground" />
@@ -575,7 +575,7 @@ export default function LearningPage() {
               <CardContent>
                 <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                   {profile.occasion_patterns.map((pattern) => (
-                    <div key={pattern.occasion} className="rounded-none border border-border/70 bg-muted/30 p-5">
+                    <div key={pattern.occasion} className="rounded-2xl border border-border/70 bg-muted/30 p-5">
                       <div className="flex items-center justify-between mb-2">
                         <h4 className="font-medium">{occasionLabel(pattern.occasion)}</h4>
                         <Badge variant="outline">
@@ -617,7 +617,7 @@ export default function LearningPage() {
               <CardContent>
                 <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
                   {profile.weather_preferences.map((pref) => (
-                    <div key={pref.weather_type} className="rounded-none border border-border/70 bg-muted/30 p-5 text-center">
+                    <div key={pref.weather_type} className="rounded-2xl border border-border/70 bg-muted/30 p-5 text-center">
                       <div className="text-2xl mb-1">
                         {pref.weather_type === 'cold' && '❄️'}
                         {pref.weather_type === 'cool' && '🍂'}

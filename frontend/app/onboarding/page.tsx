@@ -96,7 +96,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
   return (
     <div className="text-center space-y-6">
       <div className="flex justify-center">
-        <div className="w-24 h-24 bg-primary/10 rounded-none flex items-center justify-center">
+        <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
           <Shirt className="w-12 h-12 text-primary" />
         </div>
       </div>
@@ -114,7 +114,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
       </div>
       <div className="grid gap-4 text-left max-w-md mx-auto">
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 bg-primary/10 rounded-none flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
             <Camera className="w-4 h-4 text-primary" />
           </div>
           <div>
@@ -125,7 +125,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
           </div>
         </div>
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 bg-primary/10 rounded-none flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
             <Palette className="w-4 h-4 text-primary" />
           </div>
           <div>
@@ -136,7 +136,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
           </div>
         </div>
         <div className="flex items-start gap-3">
-          <div className="w-8 h-8 bg-primary/10 rounded-none flex items-center justify-center shrink-0">
+          <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
             <Users className="w-4 h-4 text-primary" />
           </div>
           <div>
@@ -546,7 +546,7 @@ function PreferencesStep({
                   key={color.value}
                   type="button"
                   onClick={() => toggleColor(color.value, "favorite")}
-                  className={`w-10 h-10 rounded-none border-2 transition-all ${
+                  className={`w-10 h-10 rounded-full border-2 transition-all ${
                     isSelected
                       ? "border-primary ring-2 ring-primary/30 scale-110"
                       : "border-muted-foreground/20 hover:border-muted-foreground/40"
@@ -589,7 +589,7 @@ function PreferencesStep({
                   key={color.value}
                   type="button"
                   onClick={() => toggleColor(color.value, "avoid")}
-                  className={`w-10 h-10 rounded-none border-2 transition-all ${
+                  className={`w-10 h-10 rounded-full border-2 transition-all ${
                     isSelected
                       ? "border-destructive ring-2 ring-destructive/30 scale-110"
                       : "border-muted-foreground/20 hover:border-muted-foreground/40"
@@ -729,7 +729,7 @@ function UploadStep({
         <CardContent className="pt-6 space-y-4">
           {preview ? (
             <div className="space-y-4">
-              <div className="relative aspect-square rounded-none overflow-hidden bg-muted">
+              <div className="relative aspect-square rounded-lg overflow-hidden bg-muted">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={preview}
@@ -742,7 +742,7 @@ function UploadStep({
               </Button>
             </div>
           ) : (
-            <label className="flex flex-col items-center justify-center w-full aspect-square border-2 border-dashed rounded-none cursor-pointer hover:bg-muted/50 transition-colors">
+            <label className="flex flex-col items-center justify-center w-full aspect-square border-2 border-dashed rounded-lg cursor-pointer hover:bg-muted/50 transition-colors">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <Camera className="w-12 h-12 text-muted-foreground mb-4" />
                 <p className="mb-2 text-sm font-medium">
@@ -814,7 +814,7 @@ function CompleteStep({
   return (
     <div className="text-center space-y-6">
       <div className="flex justify-center">
-        <div className="w-24 h-24 bg-green-100 dark:bg-green-900 rounded-none flex items-center justify-center">
+        <div className="w-24 h-24 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
           <Check className="w-12 h-12 text-green-600 dark:text-green-400" />
         </div>
       </div>

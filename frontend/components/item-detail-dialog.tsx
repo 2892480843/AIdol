@@ -498,7 +498,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
               variant="ghost"
               size="icon"
               onClick={() => onOpenChange(false)}
-              className="rounded-none flex-shrink-0"
+              className="rounded-full flex-shrink-0"
               title={tc('close')}
             >
               <X className="h-5 w-5" />
@@ -531,14 +531,14 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                         <>
                           <UnstyledButton
                             aria-label={tc('previous')} type="button"
-                            className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-none p-1 hover:bg-black/70"
+                            className="absolute left-1 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-1 hover:bg-black/70"
                             onClick={() => setActiveImageIndex((i) => (i - 1 + allImages.length) % allImages.length)}
                           >
                             <ChevronLeft className="h-4 w-4" />
                           </UnstyledButton>
                           <UnstyledButton
                             aria-label={tc('next')} type="button"
-                            className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-none p-1 hover:bg-black/70"
+                            className="absolute right-1 top-1/2 -translate-y-1/2 bg-black/50 text-white rounded-full p-1 hover:bg-black/70"
                             onClick={() => setActiveImageIndex((i) => (i + 1) % allImages.length)}
                           >
                             <ChevronRight className="h-4 w-4" />
@@ -548,7 +548,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                               <UnstyledButton
                                 key={idx}
                                 type="button" aria-label={`${tc('open')} ${idx + 1}`} aria-pressed={idx === activeImageIndex}
-                                className={`w-1.5 h-1.5 rounded-none ${idx === activeImageIndex ? 'bg-white' : 'bg-white/50'}`}
+                                className={`w-1.5 h-1.5 rounded-full ${idx === activeImageIndex ? 'bg-white' : 'bg-white/50'}`}
                                 onClick={() => setActiveImageIndex(idx)}
                               />
                             ))}
@@ -587,7 +587,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                       {isEditing && (
                         <div className="absolute -top-1 -right-1 flex gap-0.5">
                           <UnstyledButton
-                            className="bg-primary text-primary-foreground rounded-none p-0.5 hover:bg-primary/90"
+                            className="bg-primary text-primary-foreground rounded-full p-0.5 hover:bg-primary/90"
                             title={t('titles.setAsPrimary')}
                             onClick={() => {
                               setPrimary.mutate({ itemId: item.id, imageId: img.id });
@@ -597,7 +597,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                             <Star className="h-2.5 w-2.5" />
                           </UnstyledButton>
                           <UnstyledButton
-                            className="bg-destructive text-destructive-foreground rounded-none p-0.5 hover:bg-destructive/90"
+                            className="bg-destructive text-destructive-foreground rounded-full p-0.5 hover:bg-destructive/90"
                             title={t('titles.deleteImage')}
                             onClick={() => {
                               deleteImage.mutate({ itemId: item.id, imageId: img.id });
@@ -714,7 +714,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                             <SelectItem key={c.value} value={c.value}>
                               <div className="flex items-center gap-2">
                                 <div
-                                  className="w-3 h-3 rounded-none border"
+                                  className="w-3 h-3 rounded-full border"
                                   style={{ backgroundColor: c.hex }}
                                 />
                                 {c.name}
@@ -801,7 +801,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                       <div className="flex items-center gap-2 text-sm">
                         <Palette className="h-4 w-4 text-muted-foreground" />
                         <div
-                          className="w-4 h-4 rounded-none border"
+                          className="w-4 h-4 rounded-full border"
                           style={{ backgroundColor: colorInfo.hex }}
                         />
                         <span>{colorInfo.name}</span>
@@ -975,7 +975,7 @@ export function ItemDetailDialog({ item, open, onOpenChange }: ItemDetailDialogP
                                     {entry.outfit.items.slice(0, 3).map((oi) => (
                                       <div
                                         key={oi.id}
-                                        className="w-5 h-5 rounded-none bg-muted border-2 border-background overflow-hidden"
+                                        className="w-5 h-5 rounded-full bg-muted border-2 border-background overflow-hidden"
                                         title={oi.name || typeLabel(oi.type)}
                                       >
                                         {oi.thumbnail_url && (
