@@ -26,13 +26,8 @@ export function LookPhoto({ look }: { look: LookSlide }) {
           <p>{t("switcher.imageUnavailable")}</p>
         </div>
       ) : (
-        <Image
-          src={look.src}
-          alt={look.name}
-          fill
-          sizes="(min-width: 1000px) 480px, (min-width: 600px) 45vw, 90vw"
-          unoptimized={look.src.startsWith("blob:")}
-          className={styles.image}
+        <div
+          className={styles.imageFrame}
           style={
             look.frame
               ? {
@@ -43,12 +38,21 @@ export function LookPhoto({ look }: { look: LookSlide }) {
                   left: `${-look.frame.column * 100}%`,
                   right: "auto",
                   bottom: "auto",
-                  objectFit: "fill",
                 }
               : undefined
           }
-          onError={() => setFailed(true)}
-        />
+        >
+          <Image
+            src={look.src}
+            alt={look.name}
+            fill
+            sizes="(min-width: 1000px) 480px, (min-width: 600px) 45vw, 90vw"
+            unoptimized={look.src.startsWith("blob:")}
+            className={styles.image}
+            style={look.frame ? { objectFit: "fill" } : undefined}
+            onError={() => setFailed(true)}
+          />
+        </div>
       )}
     </div>
   );

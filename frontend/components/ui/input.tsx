@@ -9,7 +9,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     <TextInput
       ref={ref}
       data-ui="input"
-      classNames={{ input: cn("design-input", className) }}
+      classNames={{ input: cn("design-input rounded-none border-2 border-[#2d2d2d] bg-[#f5f0e8] focus:outline-none", className) }}
       styles={{ input: style }}
       {...props}
     />

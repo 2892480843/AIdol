@@ -25,7 +25,7 @@ export default function DashboardError({
       <Card className="border-destructive/50">
         <CardContent className="pt-6">
           <div className="flex flex-col items-center text-center py-8">
-            <div className="rounded-full bg-destructive/10 p-4 mb-4">
+            <div className="rounded-none bg-destructive/10 p-4 mb-4">
               <AlertTriangle className="w-8 h-8 text-destructive" />
             </div>
             <h2 className="text-xl font-semibold mb-2">
@@ -39,7 +39,7 @@ export default function DashboardError({
               {tc('tryAgain')}
             </Button>
             {process.env.NODE_ENV === 'development' && (
-              <pre className="mt-6 p-4 bg-muted rounded-lg text-left text-xs overflow-auto max-h-48 w-full">
+              <pre className="mt-6 p-4 bg-muted rounded-none text-left text-xs overflow-auto max-h-48 w-full">
                 {error.message}
               </pre>
             )}

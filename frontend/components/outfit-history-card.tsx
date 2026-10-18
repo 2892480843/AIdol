@@ -136,7 +136,7 @@ export function OutfitHistoryCard({ outfit, onFeedback, onPreview }: OutfitHisto
                     key={item.id}
                     type="button"
                     onClick={() => setPreviewItem(item)}
-                    className="w-14 h-14 rounded-lg bg-muted overflow-hidden relative border hover:ring-2 ring-primary transition-all"
+                    className="w-14 h-14 rounded-none bg-muted overflow-hidden relative border hover:ring-2 ring-primary transition-all"
                     title={item.name || typeLabel(item.type)}
                   >
                     {item.thumbnail_url ? (

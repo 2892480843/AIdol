@@ -51,7 +51,8 @@ export default function DashboardPage() {
   return (
     <div className={styles.dashboard}>
       <section className={styles.cover}>
-        <div className={styles.coverCopy}>
+        <div className={`${styles.coverCopy} group -rotate-[0.7deg]`}>
+          <span aria-hidden="true" className="collage-tape rotate-[-5deg] transition-transform duration-200 ease-out group-hover:rotate-[3deg] group-hover:-translate-y-1" />
           <p className={styles.kicker}>{t("editorial.eyebrow")}</p>
           <h1>{t("editorial.headline")}</h1>
           <p className={styles.coverSummary}>{t("editorial.summary")}</p>
@@ -86,7 +87,8 @@ export default function DashboardPage() {
             })}
           </p>
         </div>
-        <div className={styles.coverModel}>
+        <div className={`${styles.coverModel} group rotate-[2deg]`}>
+          <span aria-hidden="true" className="collage-tape collage-tape-blue rotate-[7deg] transition-transform duration-200 ease-out group-hover:rotate-[-3deg] group-hover:-translate-y-1" />
           <LookSwitcher
             compact
             looks={featuredLooks.map((look) => ({

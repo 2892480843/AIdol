@@ -201,7 +201,7 @@ function NoFamilyState() {
       <PageHeader title={t('feed.title')} description={t('feed.subtitle')} icon={<Users className="h-5 w-5" />} />
 
       <div className={styles.emptyState}>
-        <div className="rounded-full bg-muted p-6 mb-4">
+        <div className="rounded-none bg-muted p-6 mb-4">
           <Users className="h-12 w-12 text-muted-foreground" />
         </div>
         <h3 className="text-lg font-semibold mb-2">{t('feed.noFamily.title')}</h3>
@@ -271,7 +271,7 @@ function FeedContent() {
           </Button>} />
 
         <div className={styles.emptyState}>
-          <div className="rounded-full bg-muted p-6 mb-4">
+          <div className="rounded-none bg-muted p-6 mb-4">
             <Users className="h-12 w-12 text-muted-foreground" />
           </div>
           <h3 className="text-lg font-semibold mb-2">{t('feed.noMembers.title')}</h3>
@@ -299,15 +299,15 @@ function FeedContent() {
         </Button>} />
 
       {/* Member selector */}
-      <div className="flex gap-3 overflow-x-auto rounded-[20px] border border-border bg-card p-3">
+      <div className="flex gap-3 overflow-x-auto rounded-none border border-border bg-card p-3">
         {otherMembers.map((member) => (
           <UnstyledButton
             key={member.id}
             type="button"
             aria-pressed={activeMemberId === member.id} onClick={() => setSelectedMember(member.id)}
-            className={`flex flex-col items-center gap-1.5 p-3 rounded-xl border-2 transition-all flex-shrink-0 min-w-[80px] ${
+            className={`flex flex-col items-center gap-1.5 p-3 rounded-none border-2 transition-all flex-shrink-0 min-w-[80px] ${
               activeMemberId === member.id
-                ? 'border-primary bg-primary/5 shadow-sm'
+                ? 'border-primary bg-primary/5 shadow-[3px_3px_0px_#2d2d2d]'
                 : 'border-transparent hover:border-muted-foreground/20 hover:bg-muted/50'
             }`}
           >
@@ -335,9 +335,9 @@ function FeedContent() {
                   <Skeleton className="h-5 w-16" />
                 </div>
                 <div className="flex gap-2">
-                  <Skeleton className="h-20 w-20 rounded-lg" />
-                  <Skeleton className="h-20 w-20 rounded-lg" />
-                  <Skeleton className="h-20 w-20 rounded-lg" />
+                  <Skeleton className="h-20 w-20 rounded-none" />
+                  <Skeleton className="h-20 w-20 rounded-none" />
+                  <Skeleton className="h-20 w-20 rounded-none" />
                 </div>
                 <Skeleton className="h-9 w-full" />
               </CardContent>

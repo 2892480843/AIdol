@@ -45,14 +45,14 @@ export function CanvasPanel({ items, onRemove }: CanvasPanelProps) {
               type="button"
               onClick={() => onRemove(item.id)}
               className={cn(
-                'absolute -top-2 -right-2 z-10 rounded-full bg-destructive text-destructive-foreground',
-                'p-1 shadow-md hover:bg-destructive/90 focus:outline-none focus:ring-2 focus:ring-destructive/50'
+                'absolute -top-2 -right-2 z-10 rounded-none bg-destructive text-destructive-foreground',
+                'p-1 shadow-[3px_3px_0px_#2d2d2d] hover:bg-destructive/90 focus:outline-none focus:ring-2 focus:ring-destructive/50'
               )}
               aria-label={t('removeItem', { name: item.name || typeLabel(item.type) })}
             >
               <X className="h-3 w-3" />
             </Button>
-            <div className="aspect-square rounded-lg overflow-hidden border-2 border-primary/50 bg-background">
+            <div className="aspect-square rounded-none overflow-hidden border-2 border-primary/50 bg-background">
               {item.thumbnail_url || item.image_url ? (
                 <Image
                   src={(item.thumbnail_url || item.image_url)!}

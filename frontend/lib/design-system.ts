@@ -13,39 +13,23 @@ import {
 } from "@mantine/core";
 
 const raspberry = [
-  "#fff0f3",
-  "#ffe1e7",
-  "#ffc7d1",
-  "#ffabbc",
-  "#f78aa1",
-  "#e66c86",
-  "#da526d",
-  "#c84356",
-  "#ad3046",
-  "#90243b",
+  "#fdf0e8", "#faddd2", "#f4b9a6", "#ee927b", "#e9745c",
+  "#e85b44", "#e74c3c", "#b7382b", "#942c21", "#702017",
 ] as const;
 
 export const wardrobeTheme = createTheme({
   primaryColor: "raspberry",
-  primaryShade: { light: 7, dark: 3 },
+  primaryShade: { light: 7, dark: 7 },
   white: "#ffffff",
-  black: "#2c2833",
+  black: "#171717",
   colors: {
     raspberry,
     // Existing status badges use this name; keep their API on the current palette.
     forest: raspberry,
     terracotta: raspberry,
     gray: [
-      "#fcfbfd",
-      "#f6f3f8",
-      "#ece6f0",
-      "#d9d0e0",
-      "#b8adbf",
-      "#95899e",
-      "#716978",
-      "#5a5161",
-      "#423a4a",
-      "#2c2833",
+      "#fcfaf5", "#f5f0e8", "#ebe4d8", "#d9d0c2", "#bfb3a1",
+      "#9b8f7f", "#746b60", "#59534b", "#403c36", "#2d2d2d",
     ],
     dark: [
       "#ebe5f2",
@@ -64,16 +48,19 @@ export const wardrobeTheme = createTheme({
     'ui-sans-serif, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif',
   headings: {
     fontFamily:
-      'ui-sans-serif, system-ui, -apple-system, "PingFang SC", sans-serif',
-    fontWeight: "650",
+      'Georgia, "Songti SC", "STSong", "Noto Serif CJK SC", serif',
+    fontWeight: "800",
   },
   fontSizes: { xs: "13px", sm: "14px", md: "15px", lg: "17px", xl: "20px" },
   shadows: {
-    xs: "0 3px 18px rgba(52, 29, 66, 0.045)",
-    sm: "0 5px 24px rgba(52, 29, 66, 0.07)",
+    xs: "3px 3px 0 #2d2d2d",
+    sm: "5px 5px 0 #2d2d2d",
+    md: "5px 5px 0 #2d2d2d",
+    lg: "7px 7px 0 #2d2d2d",
+    xl: "9px 9px 0 #2d2d2d",
   },
   defaultRadius: "md",
-  radius: { xs: "6px", sm: "10px", md: "12px", lg: "16px", xl: "20px" },
+  radius: { xs: "0", sm: "2px", md: "0", lg: "0", xl: "0" },
   components: {
     Button: Button.extend({
       defaultProps: { radius: "md", autoContrast: true },

@@ -282,7 +282,7 @@ export function StyleDiscovery() {
         title={t("previewTitle")}
         closeButtonProps={{ "aria-label": t("close") }}
         size="xl"
-        radius={20}
+        radius={0}
         centered
         returnFocus
         transitionProps={{ duration: reducedMotion ? 0 : 150 }}

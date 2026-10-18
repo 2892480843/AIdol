@@ -5,6 +5,9 @@ test -f "$release/frontend/server.js"
 test -f "$release/backend/alembic.ini"
 test -x /opt/dada-6780/venv/bin/uvicorn
 
+install -m 644 "$release/ops/90-dada-6780-memory.conf" /etc/sysctl.d/
+sysctl -p /etc/sysctl.d/90-dada-6780-memory.conf
+
 if ! id dada6780 >/dev/null 2>&1; then
   useradd --system --home-dir /var/lib/dada-6780 --shell /usr/sbin/nologin dada6780
 fi

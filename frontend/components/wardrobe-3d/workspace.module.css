@@ -76,7 +76,7 @@
 .groups button {
   flex-shrink: 0;
   border: 1px solid hsl(var(--border));
-  border-radius: 24px;
+  border-radius: 0;
   padding: 10px 18px;
   color: hsl(var(--muted-foreground));
   background: hsl(var(--card));
@@ -127,7 +127,7 @@
 .stageSection {
   min-width: 0;
   border: 1px solid hsl(var(--border));
-  border-radius: 22px;
+  border-radius: 0;
   padding: 18px;
   background: hsl(var(--card));
 }
@@ -155,7 +155,7 @@
   width: 100%;
   height: clamp(390px, 52svh, 590px);
   margin: 12px 0;
-  border-radius: 14px;
+  border-radius: 0;
   background: #eeeae1;
   overflow: hidden;
   isolation: isolate;
@@ -175,7 +175,7 @@
   color: #595850;
   background: #f5f2eaad;
   padding: 5px 9px;
-  border-radius: 14px;
+  border-radius: 0;
   letter-spacing: 0.08em;
 }
 .rendering {
@@ -208,7 +208,7 @@
   min-height: 34px;
   border: 1px solid hsl(var(--border));
   background: hsl(var(--background));
-  border-radius: 9px;
+  border-radius: 0;
   font-size: 11px;
   padding: 6px 8px;
 }
@@ -270,7 +270,7 @@
 .selection {
   min-width: 0;
   border: 1px solid hsl(var(--border));
-  border-radius: 22px;
+  border-radius: 0;
   overflow: hidden;
   background: hsl(var(--card));
 }
@@ -293,7 +293,7 @@
   aspect-ratio: 1;
   background: #f5f4f0;
   overflow: hidden;
-  border-radius: 12px;
+  border-radius: 0;
 }
 .itemPhoto img {
   object-fit: contain;
@@ -388,7 +388,7 @@
   text-align: left;
   padding: 9px;
   border: 1px solid hsl(var(--border));
-  border-radius: 14px;
+  border-radius: 0;
   background: hsl(var(--card));
 }
 .inventoryList button[aria-pressed="true"] {
@@ -399,7 +399,7 @@
   width: 48px;
   height: 59px;
   flex-shrink: 0;
-  border-radius: 7px;
+  border-radius: 0;
 }
 .inventoryList button > span {
   min-width: 0;
@@ -422,7 +422,7 @@
   display: inline-block;
   width: 12px;
   height: 12px;
-  border-radius: 50%;
+  border-radius: 0;
   border: 1px solid #00000012;
   flex-shrink: 0;
 }
@@ -473,7 +473,7 @@
   grid-template-columns: 85px minmax(0, 1fr) 22px;
   gap: 14px;
   align-items: center;
-  border-radius: 16px;
+  border-radius: 0;
   border: 1px solid hsl(var(--border));
   padding: 14px;
   background: hsl(var(--card));
@@ -509,7 +509,7 @@
   gap: 9px;
   padding: 6px 10px 6px 6px;
   border: 1px solid hsl(var(--border));
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 11px;
   min-width: 0;
   max-width: 100%;
@@ -521,7 +521,7 @@
   width: 44px;
   height: 52px;
   flex-shrink: 0;
-  border-radius: 7px;
+  border-radius: 0;
 }
 .tray > button,
 .tray > a {
@@ -538,7 +538,7 @@
   min-height: 300px;
   padding: 30px;
   border: 1px dashed hsl(var(--border));
-  border-radius: 22px;
+  border-radius: 0;
   text-align: center;
 }
 .state h2 {
@@ -565,7 +565,7 @@
   gap: 12px;
   padding: 12px 16px;
   border: 1px solid hsl(var(--border));
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 12px;
 }
 .workspace button:focus-visible,
@@ -690,7 +690,7 @@
   padding: 0;
   text-align: left;
   color: inherit;
-  border-radius: 12px;
+  border-radius: 0;
   overflow: hidden;
 }
 .inspectPhoto .itemPhoto {
@@ -724,7 +724,7 @@
   flex-shrink: 0;
   color: hsl(var(--muted-foreground));
   background: hsl(var(--muted));
-  border-radius: 7px;
+  border-radius: 0;
 }
 .draftActions {
   display: flex;
@@ -762,7 +762,7 @@
 .photoRail {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 50% 30%, #fffdf8, #e5dfd2);
+  background: #f5f0e8;
   /* Focused neighboring buttons must not scroll a transformed photo rail. */
   overflow: clip;
 }
@@ -775,8 +775,8 @@
   left: 0;
   right: 0;
   height: 7px;
-  background: linear-gradient(#b0aaa0, #514b43 55%, #999084);
-  box-shadow: 0 7px 10px #211b2020;
+  background: #f5f0e8;
+  box-shadow: 3px 3px 0 #2d2d2d;
 }
 .photoRailPiece {
   position: absolute;
@@ -801,16 +801,16 @@
   width: 85%;
   height: 68px;
   flex: 0 0 68px;
-  filter: drop-shadow(0 3px 2px #30271615);
+  filter: drop-shadow(2px 2px 0 #2d2d2d);
 }
 .photoRailPiece .itemPhoto {
   width: 100%;
   min-height: 0;
   flex: 1;
   margin-top: -5px;
-  border-radius: 12px;
+  border-radius: 0;
   background: #faf9f5;
-  box-shadow: 0 15px 25px #30271622;
+  box-shadow: 3px 3px 0 #2d2d2d;
   border: 1px solid #d7d0c4;
 }
 .photoRailPiece .itemPhoto img {
@@ -819,8 +819,7 @@
 }
 .photoRailPiece[aria-pressed="true"] .itemPhoto {
   box-shadow:
-    0 18px 30px #30271630,
-    0 0 0 2px #b85d6e;
+    3px 3px 0 #2d2d2d;
 }
 .photoRailName {
   display: block;
@@ -849,3 +848,8 @@
       filter 0.3s;
   }
 }
+:global(.collage-theme) .pageHeader { border-bottom: 1px dashed #2d2d2d; padding-bottom: 22px; }
+:global(.collage-theme) .pageHeader h1 { font-family: var(--font-editorial); }
+:global(.collage-theme) .eyebrow { font-family: ui-monospace, monospace; color: #2d2d2d; }
+:global(.collage-theme) .showroom { border: 2px solid #2d2d2d; box-shadow: 6px 6px 0 #2d2d2d; }
+:global(.collage-theme) .groups button { border: 2px solid #2d2d2d; }

@@ -63,7 +63,7 @@
   aspect-ratio: 3/2;
   margin: 0;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 0;
   background: hsl(var(--secondary));
 }
 .coverPhoto img {
@@ -76,7 +76,7 @@
   font-size: 9px;
   letter-spacing: 0.1em;
   color: #fff;
-  text-shadow: 0 1px 3px #0008;
+  text-shadow: none;
   background: #28221d45;
   padding: 3px 7px;
 }
@@ -125,7 +125,7 @@
 }
 .missingValue {
   font-size: 13px;
-  color: hsl(var(--muted-foreground));
+  color: inherit;
 }
 .metricCaption {
   font-size: 10px;
@@ -326,7 +326,7 @@
   gap: 5px;
   padding: 10px;
   background: hsl(var(--secondary) / 0.7);
-  border-radius: 4px;
+  border-radius: 0;
 }
 .lookPhotos > div {
   position: relative;
@@ -336,7 +336,7 @@
   min-width: 0;
   padding: 7px;
   background: hsl(var(--card) / 0.45);
-  border-radius: 2px;
+  border-radius: 0;
 }
 .lookPhotos > div:only-child {
   grid-column: 1/-1;
@@ -521,7 +521,7 @@
   flex-shrink: 0;
   color: hsl(var(--primary));
   background: hsl(var(--secondary));
-  border-radius: 4px;
+  border-radius: 0;
 }
 .taggingRows .careRow:last-child {
   padding-bottom: 0;
@@ -610,7 +610,7 @@
   width: 25px;
   height: 20px;
   flex-shrink: 0;
-  border-radius: 2px;
+  border-radius: 0;
   border: 1px solid hsl(var(--border));
 }
 .insightsCopy ul {
@@ -679,7 +679,7 @@
   gap: 12px;
   padding: 20px;
   border: 1px dashed hsl(var(--border));
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 11px;
   color: hsl(var(--muted-foreground));
 }
@@ -1057,7 +1057,7 @@
   gap: 28px;
 }
 .cover {
-  border-radius: 22px;
+  border-radius: 0;
   overflow: hidden;
   background: hsl(var(--tone-lavender));
   gap: 22px;
@@ -1111,7 +1111,7 @@
 }
 .metric {
   border: 1px solid hsl(var(--border)) !important;
-  border-radius: 14px;
+  border-radius: 0;
   padding: 18px 20px !important;
   background: hsl(var(--card));
   gap: 12px;
@@ -1162,7 +1162,7 @@
   gap: 14px;
   padding: 24px !important;
   border: 0 !important;
-  border-radius: 16px;
+  border-radius: 0;
   background: hsl(var(--tone-blush));
   overflow: hidden;
   min-height: 183px;
@@ -1183,7 +1183,7 @@
   place-items: center;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 0;
   padding: 0;
   color: hsl(var(--foreground));
 }
@@ -1205,7 +1205,7 @@
 .teaserPalette i {
   height: 12px;
   width: 30px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .workspace {
   grid-template-columns: minmax(0, 1fr) 270px;
@@ -1214,7 +1214,7 @@
 .aside {
   padding: 21px;
   border: 1px solid hsl(var(--border));
-  border-radius: 18px;
+  border-radius: 0;
   background: hsl(var(--card));
 }
 .asideHeading h2 {
@@ -1251,7 +1251,7 @@
 .rowIcon {
   width: 32px;
   height: 32px;
-  border-radius: 10px;
+  border-radius: 0;
   background: hsl(var(--tone-mint));
 }
 .sectionHeading h2 {
@@ -1266,7 +1266,7 @@
 }
 .lookCard {
   border: 1px solid hsl(var(--border)) !important;
-  border-radius: 16px !important;
+  border-radius: 0 !important;
   background: hsl(var(--card)) !important;
 }
 .lookPhotos {
@@ -1278,7 +1278,7 @@
   background: hsl(var(--tone-lavender));
 }
 .lookPhotos > div {
-  border-radius: 9px;
+  border-radius: 0;
   background: hsl(var(--card) / 0.55);
 }
 .lookBody {
@@ -1295,12 +1295,12 @@
   font-size: 11px;
 }
 .emptyLook {
-  border-radius: 16px !important;
+  border-radius: 0 !important;
   padding-block: 25px !important;
 }
 .insightsPanel {
   border: 1px solid hsl(var(--border)) !important;
-  border-radius: 18px !important;
+  border-radius: 0 !important;
   background: hsl(var(--card)) !important;
 }
 .palette {
@@ -1321,7 +1321,7 @@
 }
 .swatch {
   height: 25px;
-  border-radius: 7px;
+  border-radius: 0;
 }
 .insightsCopy li {
   font-size: 13px;
@@ -1337,7 +1337,7 @@
 .shortcuts a {
   border: 1px solid hsl(var(--border)) !important;
   padding: 20px 16px !important;
-  border-radius: 14px;
+  border-radius: 0;
   background: hsl(var(--card));
   font-size: 13px;
   font-weight: 650;
@@ -1438,7 +1438,7 @@
     display: flex;
     flex-direction: column;
     gap: 0;
-    border-radius: 18px;
+    border-radius: 0;
   }
   .coverCopy {
     padding: 26px 24px;
@@ -1482,7 +1482,7 @@
   .metric {
     padding: 17px !important;
     border: 1px solid hsl(var(--border)) !important;
-    border-radius: 13px;
+    border-radius: 0;
     gap: 12px;
   }
   .metricLabel {
@@ -1595,7 +1595,7 @@
   .rowIcon {
     width: 25px;
     height: 28px;
-    border-radius: 8px;
+    border-radius: 0;
   }
   .palette {
     padding: 22px;
@@ -1628,7 +1628,7 @@
   margin: 0 0 18px;
   background: hsl(var(--primary) / 0.06);
   border: 1px solid hsl(var(--primary) / 0.17);
-  border-radius: 18px;
+  border-radius: 0;
   color: hsl(var(--foreground));
 }
 .anchorEntry > svg {
@@ -1681,7 +1681,7 @@
 .modelEntry:focus-visible {
   outline: 2px solid hsl(var(--primary));
   outline-offset: 2px;
-  border-radius: 8px;
+  border-radius: 0;
 }
 
 .studioEntries {
@@ -1698,7 +1698,7 @@
   min-width: 0;
   padding: 12px;
   border: 1px solid hsl(var(--border));
-  border-radius: 16px;
+  border-radius: 0;
   background: hsl(var(--card));
   font-size: 13px;
   font-weight: 600;
@@ -1736,4 +1736,152 @@
     flex-basis: 100%;
     padding: 12px 14px;
   }
+}
+
+/* The shared collage skin owns material; this module owns the home composition. */
+:global(.collage-theme) .dashboard { gap: 34px; padding: 4px 6px 18px; }
+:global(.collage-theme) .cover {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  background: transparent;
+  border: 0;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
+  gap: 42px;
+  padding: 12px 8px 16px;
+}
+:global(.collage-theme) .cover::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 35%;
+  height: 150px;
+  left: 42%;
+  top: 28px;
+  background: #e74c3c;
+  clip-path: polygon(3% 0, 100% 5%, 96% 25%, 100% 30%, 96% 35%, 99% 40%, 97% 60%, 100% 70%, 95% 100%, 0 95%);
+}
+:global(.collage-theme) .coverCopy {
+  position: relative;
+  background: #f5f0e8;
+  border: 2px solid #2d2d2d;
+  box-shadow: 7px 7px 0 #2d2d2d;
+  padding: 32px 28px;
+  min-width: 0;
+}
+:global(.collage-theme) .coverCopy h1 {
+  font-family: var(--font-editorial);
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 900;
+  line-height: 1.2;
+  color: #2d2d2d;
+  letter-spacing: -0.055em;
+}
+:global(.collage-theme) .kicker {
+  font-family: ui-monospace, "SFMono-Regular", monospace;
+  color: #2d2d2d;
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+:global(.collage-theme) .coverSummary { color: #2d2d2d; margin: 20px 0 24px; font-size: 14px; }
+:global(.collage-theme) .coverModel {
+  position: relative;
+  border: 2px solid #2d2d2d;
+  background: #fffdf7;
+  box-shadow: 8px 8px 0 #3498db;
+  max-width: 270px;
+  padding: 14px 14px 8px;
+}
+:global(.collage-theme) .coverModel :global([data-compact]) { background: transparent; border: 0; padding: 0; }
+:global(.collage-theme) .coverModel figure { border: 0; }
+:global(.collage-theme) .coverModel figcaption { font-family: var(--font-editorial); font-weight: 800; color: #2d2d2d; }
+:global(.collage-theme) .coverGreeting { font-family: ui-monospace, monospace; color: #4d4d4d; margin-top: 22px; }
+:global(.collage-theme) .modelEntry { color: #2d2d2d; border-top: 1px dashed #2d2d2d; font-weight: 750; padding-top: 12px; }
+:global(.collage-theme) .studioEntries { gap: 10px; margin-top: 22px; }
+:global(.collage-theme) .studioEntries a {
+  border: 2px solid #2d2d2d;
+  box-shadow: 3px 3px 0 #2d2d2d;
+  background: #f39c12;
+  color: #2d2d2d;
+  font-size: 13px;
+  padding: 11px 9px;
+  gap: 8px;
+  flex-basis: 125px;
+}
+:global(.collage-theme) .studioEntries a > svg { color: inherit; }
+:global(.collage-theme) .studioEntries a:nth-child(2) { background: #3498db; color: #171717; }
+:global(.collage-theme) .studioEntries a:nth-child(3) { background: #9b59b6; color: #fff; }
+:global(.collage-theme) .metrics { gap: 20px; grid-template-columns: 1.05fr 0.95fr 1.1fr 0.9fr; padding: 8px 0; }
+:global(.collage-theme) .metric {
+  border: 2px solid #2d2d2d !important;
+  box-shadow: 4px 4px 0 #2d2d2d;
+  background: #f5f0e8;
+  color: #2d2d2d;
+  padding: 20px 18px !important;
+}
+:global(.collage-theme) .metric:nth-child(2) { background: #f39c12; margin-top: 9px; }
+:global(.collage-theme) .metric:nth-child(3) { background: #3498db; color: #171717; }
+:global(.collage-theme) .metric:nth-child(4) { background: #9b59b6; color: #fff; margin-top: 6px; }
+:global(.collage-theme) .metricLabel,
+:global(.collage-theme) .metricLabel svg,
+:global(.collage-theme) .metricCaption { color: inherit; }
+:global(.collage-theme) .metricValue { font-family: ui-monospace, monospace; font-size: 30px; }
+:global(.collage-theme) .editorialHeading h2,
+:global(.collage-theme) .sectionHeading h2 { font-family: var(--font-editorial); font-weight: 800; font-size: 28px; }
+:global(.collage-theme) .editorialHeading > a,
+:global(.collage-theme) .textLink { color: #2d2d2d; text-decoration: underline; text-underline-offset: 5px; }
+:global(.collage-theme) .editorialDescription { color: #4d4d4d; margin-bottom: 20px; }
+:global(.collage-theme) .anchorEntry {
+  border: 1px dashed #2d2d2d;
+  background: #ebe4d8;
+  color: #2d2d2d;
+  box-shadow: none;
+}
+:global(.collage-theme) .anchorEntry > svg { color: #2d2d2d; }
+:global(.collage-theme) .teaserGrid { gap: 24px; margin-top: 28px; padding: 0 3px 10px; }
+:global(.collage-theme) .teaser {
+  border: 2px solid #2d2d2d !important;
+  background: #f5f0e8;
+  box-shadow: 5px 5px 0 #2d2d2d;
+  padding: 26px 20px 20px !important;
+  min-height: 225px;
+  overflow: visible;
+  color: #2d2d2d;
+}
+:global(.collage-theme) .teaser:nth-child(2) { background: #f39c12; margin-top: 14px; }
+:global(.collage-theme) .teaser:nth-child(3) { background: #3498db; color: #171717; margin-top: 5px; }
+:global(.collage-theme) .teaser p,
+:global(.collage-theme) .teaserSource,
+:global(.collage-theme) .teaser > svg { color: inherit; }
+:global(.collage-theme) .teaserNumber { font-family: ui-monospace, monospace; background: transparent; border-bottom: 2px solid currentColor; width: auto; height: auto; color: inherit; }
+:global(.collage-theme) .teaser h3 { font-family: var(--font-editorial); font-size: 19px; font-weight: 800; }
+:global(.collage-theme) .aside { background: transparent; border: 0; box-shadow: none; }
+:global(.collage-theme) .asideHeading .kicker { display: none; }
+:global(.collage-theme) .sidePanel { background: transparent; border-bottom: 1px dashed #2d2d2d; }
+:global(.collage-theme) .rowIcon { background: transparent; color: #2d2d2d; }
+:global(.collage-theme) .lookCard { border: 2px solid #2d2d2d; box-shadow: 4px 4px 0 #2d2d2d; }
+:global(.collage-theme) .palette,
+:global(.collage-theme) .insightsCopy { border: 2px solid #2d2d2d; background: #f5f0e8; box-shadow: 4px 4px 0 #2d2d2d; }
+:global(.collage-theme) .pageFootnote { border-top: 1px dashed #2d2d2d; font-family: ui-monospace, monospace; }
+@media (max-width: 850px) {
+  :global(.collage-theme) .cover { gap: 28px; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); padding-inline: 0; }
+  :global(.collage-theme) .coverCopy { padding: 26px 20px; }
+  :global(.collage-theme) .coverCopy h1 { font-size: 38px; }
+}
+@media (max-width: 600px) {
+  :global(.collage-theme) .dashboard { padding-inline: 2px; gap: 30px; }
+  :global(.collage-theme) .cover { display: flex; gap: 30px; padding: 8px 0; }
+  :global(.collage-theme) .coverCopy { width: 100%; padding: 26px 18px; }
+  :global(.collage-theme) .coverCopy h1 { font-size: 38px; }
+  :global(.collage-theme) .coverSummary { font-size: 13px; }
+  :global(.collage-theme) .coverModel { max-width: 250px; margin-bottom: 8px; }
+  :global(.collage-theme) .studioEntries a { flex-basis: 100%; padding: 12px; }
+  :global(.collage-theme) .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+  :global(.collage-theme) .metric { padding: 17px 12px !important; }
+  :global(.collage-theme) .teaserGrid { gap: 24px; padding-inline: 0; }
+  :global(.collage-theme) .teaser { min-height: auto; padding: 25px 18px !important; }
+  :global(.collage-theme) .teaser:nth-child(n) { margin-top: 0; }
+  :global(.collage-theme) .aside { padding: 20px; }
 }

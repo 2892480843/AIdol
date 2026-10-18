@@ -62,7 +62,7 @@
   align-items: center;
   gap: 10px;
   padding: 14px 16px;
-  border-radius: 14px;
+  border-radius: 0;
   background: hsl(var(--muted) / 0.65);
   min-width: 0;
 }
@@ -72,7 +72,7 @@
   flex-shrink: 0;
   width: 26px;
   height: 26px;
-  border-radius: 50%;
+  border-radius: 0;
   background: hsl(var(--card));
   color: hsl(var(--primary));
   font-size: 12px;
@@ -101,7 +101,7 @@
 .mirrorPanel {
   padding: 18px;
   border: 1px solid hsl(var(--border));
-  border-radius: 24px;
+  border-radius: 0;
   background: hsl(var(--card));
   min-width: 0;
 }
@@ -137,7 +137,7 @@
   appearance: none;
   border: 1px solid hsl(var(--border));
   background: hsl(var(--background));
-  border-radius: 20px;
+  border-radius: 0;
   padding: 8px 12px;
   font-size: 11px;
   color: hsl(var(--muted-foreground));
@@ -157,9 +157,9 @@
   width: 100%;
   aspect-ratio: 3/4;
   max-height: 630px;
-  border-radius: 80px 80px 18px 18px;
+  border-radius: 0;
   overflow: hidden;
-  background: linear-gradient(155deg, #f3e9e4, #e8e9df);
+  background: #f5f0e8;
 }
 .mirror img {
   object-fit: contain;
@@ -175,7 +175,7 @@
   bottom: 0;
   width: 2px;
   background: white;
-  box-shadow: 0 0 8px #0005;
+  box-shadow: 3px 3px 0 #2d2d2d;
   pointer-events: none;
 }
 .emptyMirror {
@@ -194,7 +194,7 @@
   padding: 16px;
   box-sizing: content-box;
   border: 1px solid #a58f8730;
-  border-radius: 50%;
+  border-radius: 0;
 }
 .emptyMirror h3 {
   font-size: 20px;
@@ -245,7 +245,7 @@
   bottom: 20px;
   padding: 12px;
   background: #ffffffe8;
-  border-radius: 10px;
+  border-radius: 0;
   font-size: 12px;
   color: #4a423e;
 }
@@ -279,7 +279,7 @@
   font-size: 12px;
   line-height: 1.7;
   padding: 12px 16px;
-  border-radius: 12px;
+  border-radius: 0;
   background: hsl(var(--tone-blush));
   color: hsl(var(--primary));
 }
@@ -302,7 +302,7 @@
   color: hsl(var(--primary));
   padding: 9px 14px;
   min-height: 40px;
-  border-radius: 10px;
+  border-radius: 0;
   font-size: 13px;
   cursor: pointer;
 }
@@ -322,7 +322,7 @@
   display: grid;
   gap: 20px;
   padding: 22px;
-  border-radius: 24px;
+  border-radius: 0;
   border: 1px solid hsl(var(--border));
   background: hsl(var(--card));
 }
@@ -337,7 +337,7 @@
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 14px;
+  border-radius: 0;
   background: hsl(var(--tone-blush));
   color: hsl(var(--primary));
   flex-shrink: 0;
@@ -356,7 +356,7 @@
 }
 .command {
   padding: 16px;
-  border-radius: 14px;
+  border-radius: 0;
   background: hsl(var(--muted) / 0.55);
   min-width: 0;
 }
@@ -376,7 +376,7 @@
   border: 1px solid hsl(var(--border));
   background: hsl(var(--background));
   color: hsl(var(--foreground));
-  border-radius: 9px;
+  border-radius: 0;
   padding: 10px 12px;
   font-size: 12px;
 }
@@ -432,7 +432,7 @@
   text-align: left;
   width: 100%;
   border: 1px solid hsl(var(--border));
-  border-radius: 12px;
+  border-radius: 0;
   background: hsl(var(--background));
   padding: 6px;
   overflow: hidden;
@@ -556,7 +556,7 @@
   gap: 10px;
   padding: 18px;
   border: 1px solid hsl(var(--border));
-  border-radius: 15px;
+  border-radius: 0;
   width: 100%;
   background: hsl(var(--card));
 }
@@ -653,7 +653,7 @@
     gap: 7px;
   }
   .mirror {
-    border-radius: 50px 50px 14px 14px;
+    border-radius: 0;
   }
 }
 @media (max-width: 600px) {
@@ -679,7 +679,7 @@
   margin-top: 18px;
   padding: 18px;
   border: 1px solid hsl(var(--border));
-  border-radius: 22px;
+  border-radius: 0;
   background: hsl(var(--card));
 }
 .deckHeading,
@@ -708,7 +708,7 @@
 }
 .deckControls button {
   border: 1px solid hsl(var(--border));
-  border-radius: 50%;
+  border-radius: 0;
   width: 34px;
   height: 34px;
   display: grid;
@@ -727,7 +727,7 @@
   flex: 0 0 72px;
   border: 2px solid transparent;
   background: hsl(var(--muted));
-  border-radius: 13px;
+  border-radius: 0;
   overflow: hidden;
   scroll-snap-align: start;
 }
@@ -744,7 +744,7 @@
   position: absolute;
   left: 5px;
   bottom: 5px;
-  border-radius: 5px;
+  border-radius: 0;
   background: #fffd;
   color: #333;
   padding: 2px 5px;
@@ -798,7 +798,7 @@
   height: auto;
   aspect-ratio: 3/4;
   object-fit: contain;
-  border-radius: 10px;
+  border-radius: 0;
   background: hsl(var(--muted));
 }
 @media (min-width: 761px) {
@@ -813,3 +813,19 @@
       box-shadow 0.18s;
   }
 }
+:global(.collage-theme) .header { border-bottom: 1px dashed #2d2d2d; padding-bottom: 22px; }
+:global(.collage-theme) .header h1 { font-family: var(--font-editorial); font-weight: 900; }
+:global(.collage-theme) .header .eyebrow { font-family: ui-monospace, monospace; font-size: 12px; color: #2d2d2d; letter-spacing: 0.04em; }
+:global(.collage-theme) .steps li { border: 2px solid #2d2d2d; box-shadow: 3px 3px 0 #2d2d2d; background: #f5f0e8; }
+:global(.collage-theme) .steps li:first-child { background: #f39c12; }
+:global(.collage-theme) .steps li:nth-child(2) { background: #3498db; color: #171717; }
+:global(.collage-theme) .steps li > span { background: transparent; color: inherit; font-family: ui-monospace, monospace; font-weight: 800; border-right: 1px dashed #2d2d2d; }
+:global(.collage-theme) .mirrorPanel { border: 2px solid #2d2d2d; box-shadow: 6px 6px 0 #2d2d2d; background: #fffdf7; }
+:global(.collage-theme) .wardrobePanel { border: 0; padding-top: 0; background: transparent; }
+:global(.collage-theme) .command { border: 1px dashed #2d2d2d; background: #ebe4d8; }
+:global(.collage-theme) .notice { border: 1px dashed #2d2d2d; background: #ebe4d8; color: #2d2d2d; }
+:global(.collage-theme) .uploadButton { border: 2px solid #2d2d2d; background: #f39c12; color: #2d2d2d; box-shadow: 3px 3px 0 #2d2d2d; font-weight: 750; }
+:global(.collage-theme) .sectionHeading > span { border: 2px solid #2d2d2d; background: #f39c12; color: #2d2d2d; }
+:global(.collage-theme) .garments button { border: 2px solid #2d2d2d; background: #f5f0e8; }
+:global(.collage-theme) .history { border-top: 2px dashed #2d2d2d; }
+:global(.collage-theme) .history li button { border: 2px solid #2d2d2d; }

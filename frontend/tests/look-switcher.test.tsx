@@ -6,11 +6,18 @@ vi.mock("next-intl", () => ({
   useTranslations: () => (key: string, values?: Record<string, unknown>) =>
     values ? `${key}:${JSON.stringify(values)}` : key,
 }));
-vi.mock("next/image", () => ({
-  default: ({ fill, priority, ...props }: Record<string, unknown>) => (
-    <img {...props} />
-  ),
-}));
+vi.mock("next/image", async (importOriginal) => {
+  const original = await importOriginal<typeof import("next/image")>();
+  return {
+    default: (props: Parameters<typeof original.getImageProps>[0]) => {
+      // Keep the real framework validation: invalid fill sizing must fail here too.
+      const { props: validated } = original.getImageProps(props);
+      const { fill, priority, unoptimized, ...imageProps } = props;
+      // eslint-disable-next-line @next/next/no-img-element -- Validate Next image props before native DOM assertions.
+      return <img {...imageProps} src={validated.src} alt={props.alt} />;
+    },
+  };
+});
 
 const looks = [
   {

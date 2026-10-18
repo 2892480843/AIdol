@@ -21,6 +21,12 @@ systemctl restart dada-6780@frontend
 发布目录保留在 `releases/`，`current` 指向当前版本。回滚须先核对数据库迁移兼容性；不能只切换软链接来撤销数据库变更。
 入口已配置 HTTPS，HTTP 自动跳转；使用独立演示账号，不使用服务器 root 凭据登录应用。
 
+2026-10-19 实测更新：五项 AI 功能真实验收见 `verification/server-6780/ai-full-check/`。
+去背景模型首次加载曾触发全局内存不足；主机已有 2 GiB 交换空间，但
+`vm.swappiness=0` 时未有效参与回收。现通过 `90-dada-6780-memory.conf`
+持久设置为 40，去背景及恢复原图复测通过。该设置影响整台主机的换页策略；
+服务仍适用于低并发演示。
+
 ## 公共预设模型与认证
 
 三维预设模型已随公开源码分发，浏览器模型加载器使用 `credentials: omit`。`/models/avatar/` 清除 Cookie、Authorization 与身份转发头；配置片段为 `public-model-assets.nginx.conf`，provision 会将其合入私有入口配置。修改私有配置后须同步安装到 `/etc/nginx/conf.d/dada-6780.conf`，通过 `nginx -t` 后 reload。
@@ -37,4 +43,4 @@ systemctl restart dada-6780@frontend
 
 ## 参赛版本固定
 
-`submission-freeze.conf` 是仅针对 `dada-6780@frontend` 的 systemd drop-in，将工作目录与启动文件固定到 `releases/20261018-server/frontend`，避免并行开发切换 `current` 后无意改变参赛入口。新拼贴发布目录保留，不覆盖本次选择。后续正式升级时应明确移除该 drop-in、`systemctl daemon-reload`，再执行受控发布；不要误认为切换 `current` 已更新参赛入口。
+`submission-freeze.conf` 是仅针对 `dada-6780@frontend` 的 systemd drop-in（服务配置覆盖文件）。最新配置将工作目录与启动文件固定到 `releases/20261018-latest-collage-r4/frontend`，对应拼贴界面；历史冻结配置曾指向 `releases/20261018-server/frontend`。切换发布版本时须同时核对 `current` 与此配置，再执行 `systemctl daemon-reload` 和受控重启；只切换 `current` 不会改变被固定的启动目录。`aidol-final-20261018` 标签及其附件仍保留原冻结版本。

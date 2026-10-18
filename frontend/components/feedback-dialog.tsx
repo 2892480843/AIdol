@@ -187,7 +187,7 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
                 className="h-16 justify-start gap-3"
                 onClick={() => handleWearAnswer(true)}
               >
-                <div className="rounded-full bg-green-100 dark:bg-green-900/30 p-2">
+                <div className="rounded-none bg-green-100 dark:bg-green-900/30 p-2">
                   <Check className="h-5 w-5 text-green-600 dark:text-green-400" />
                 </div>
                 <div className="text-left">
@@ -201,7 +201,7 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
                 className="h-16 justify-start gap-3"
                 onClick={() => handleWearAnswer(false)}
               >
-                <div className="rounded-full bg-orange-100 dark:bg-orange-900/30 p-2">
+                <div className="rounded-none bg-orange-100 dark:bg-orange-900/30 p-2">
                   <X className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                 </div>
                 <div className="text-left">
@@ -298,7 +298,7 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
                       aria-pressed={selectedItems.includes(item.id)}
                       aria-label={item.name || typeLabel(item.type)}
                       className={cn(
-                        'relative aspect-square rounded-lg overflow-hidden border-2 transition-all',
+                        'relative aspect-square rounded-none overflow-hidden border-2 transition-all',
                         selectedItems.includes(item.id)
                           ? 'border-primary ring-2 ring-primary/20'
                           : 'border-border hover:border-muted-foreground/50'
@@ -314,12 +314,12 @@ export function FeedbackDialog({ outfit, open, onClose }: FeedbackDialogProps) {
                       />
                       {selectedItems.includes(item.id) && (
                         <div className="absolute inset-0 bg-primary/30 flex items-center justify-center">
-                          <div className="rounded-full bg-primary p-1.5 shadow-lg">
+                          <div className="rounded-none bg-primary p-1.5 shadow-[3px_3px_0px_#2d2d2d]">
                             <Check className="h-4 w-4 text-primary-foreground" />
                           </div>
                         </div>
                       )}
-                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-1.5">
+                      <div className="absolute bottom-0 left-0 right-0 bg-[#f5f0e8] from-black/70 to-transparent p-1.5">
                         <span className="text-[10px] sm:text-xs text-white font-medium truncate block">
                           {item.name || typeLabel(item.type)}
                         </span>

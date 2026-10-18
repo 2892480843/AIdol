@@ -122,7 +122,7 @@ export function OutfitCard({ outfit, onClick, selectMode, selected, onSelect }: 
       className={cn(
         styles.photoCard,
         handleCardClick && 'cursor-pointer',
-        selectMode && selected && 'ring-2 ring-primary shadow-md'
+        selectMode && selected && 'ring-2 ring-primary shadow-[3px_3px_0px_#2d2d2d]'
       )}
       onClick={handleCardClick}
     >
@@ -136,7 +136,7 @@ export function OutfitCard({ outfit, onClick, selectMode, selected, onSelect }: 
               <Checkbox
                 checked={!!selected}
                 onCheckedChange={(checked) => onSelect?.(outfit.id, checked === true)}
-                className="bg-background/80 backdrop-blur-sm"
+                className="bg-background/80 backdrop-filter-none"
               />
             </div>
           )}
@@ -175,7 +175,7 @@ export function OutfitCard({ outfit, onClick, selectMode, selected, onSelect }: 
           {badge && (
             <div
               className={cn(
-                'absolute top-2 right-2 inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium',
+                'absolute top-2 right-2 inline-flex items-center gap-1 rounded-none border px-2 py-0.5 text-[10px] font-medium',
                 badge.className
               )}
             >

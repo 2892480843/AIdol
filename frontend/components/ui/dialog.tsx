@@ -274,7 +274,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
         onClose={() => ctx.change(false)}
         centered
         size="lg"
-        radius={20}
+        radius={0}
         padding="lg"
         zIndex={300 + layer * 10}
         trapFocus={ctx.modal && top}
@@ -289,7 +289,7 @@ const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
         <Modal.Overlay
           data-ui="dialog-overlay"
           backgroundOpacity={0.42}
-          blur={3}
+          blur={0}
           onClick={(event) => {
             if (!top) return;
             onPointerDownOutside?.(event.nativeEvent);

@@ -4,6 +4,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { ColorSchemeScript } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "./globals.css";
+import "./collage.css";
 import { Providers } from "./providers";
 import { LOCALE_METADATA, type SupportedLocale } from "@/lib/i18n/locales";
 import { BRAND_NAME, BRAND_LOGO_URL, BRAND_ASSET_VERSION } from "@/lib/brand";
@@ -72,7 +73,7 @@ export default async function RootLayout({
       <head>
         <ColorSchemeScript defaultColorScheme="auto" />
       </head>
-      <body className="font-sans app-body">
+      <body className="font-sans app-body collage-theme">
         <NextIntlClientProvider messages={messages} locale={locale}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>

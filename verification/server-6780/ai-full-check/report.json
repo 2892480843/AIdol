@@ -1,0 +1,136 @@
+{
+  "started_at": "2026-10-18T15:56:36.910202+00:00",
+  "checks": {
+    "connectivity": {
+      "status": "passed",
+      "seconds": 2.07,
+      "detail": {
+        "health": {
+          "status": "healthy",
+          "endpoints": [
+            {
+              "name": "default",
+              "status": "healthy"
+            }
+          ]
+        },
+        "capabilities": {
+          "vision": true,
+          "text": true
+        }
+      }
+    },
+    "tryon": {
+      "status": "passed",
+      "seconds": 30.86,
+      "detail": {
+        "task_id": "e7f73c5d-e422-4a14-a846-80e7b04d3a87",
+        "status": "succeeded",
+        "model": "Doubao-Seedream-5.0-lite",
+        "garment_count": 3,
+        "image": {
+          "width": 1365,
+          "height": 2048,
+          "format": "JPEG",
+          "bytes": 244156,
+          "sha256": "c99d6203377d3f03e22e33463302fa04969d124bdc3acbcabb35a07daf1ac6ff"
+        }
+      }
+    },
+    "extraction": {
+      "status": "passed",
+      "seconds": 5.64,
+      "detail": {
+        "model": "schp-atr18-int8",
+        "pieces": [
+          {
+            "type": "top",
+            "confidence": 0.981,
+            "image": {
+              "width": 293,
+              "height": 225,
+              "format": "PNG",
+              "bytes": 66542,
+              "sha256": "057c6de1b74220d3b0d0510b35c156aac3e496ca8687cd86085faad36be9886b"
+            }
+          },
+          {
+            "type": "pants",
+            "confidence": 0.9833,
+            "image": {
+              "width": 223,
+              "height": 605,
+              "format": "PNG",
+              "bytes": 201235,
+              "sha256": "6ca48cb43c17b47663c819d216e50f135cb69fda84cb22f50771bf912c98c98f"
+            }
+          },
+          {
+            "type": "shoes",
+            "confidence": 0.9794,
+            "image": {
+              "width": 150,
+              "height": 77,
+              "format": "PNG",
+              "bytes": 19924,
+              "sha256": "bcdbdbde20286c19508e49392ab3f456dcdefbc465b21da7fb3fa884aca9667c"
+            }
+          }
+        ]
+      }
+    },
+    "tagging": {
+      "status": "passed",
+      "seconds": 15.36,
+      "detail": {
+        "id": "84ec76fc-5f88-4216-ba8d-50eb875890b3",
+        "status": "ready",
+        "type": "t-shirt",
+        "colors": [
+          "white"
+        ],
+        "ai_processed": true,
+        "ai_confidence": "1.00",
+        "tagging_status": "tagged",
+        "tagged_by": "auto"
+      }
+    },
+    "recommendation": {
+      "status": "passed",
+      "seconds": 79.33,
+      "detail": {
+        "id": "1ff1ae18-47c4-4eb4-8472-c77a21362d0c",
+        "status": "succeeded",
+        "attempts": 1,
+        "result": {
+          "outfit_ids": [
+            "769dac4a-b308-4ca2-b67a-44ca6a3f8972"
+          ]
+        },
+        "error_code": null
+      }
+    },
+    "background": {
+      "status": "passed",
+      "seconds": 11.37,
+      "detail": {
+        "item_id": "84ec76fc-5f88-4216-ba8d-50eb875890b3",
+        "image": {
+          "width": 293,
+          "height": 225,
+          "format": "JPEG",
+          "bytes": 12628,
+          "sha256": "a9a143a7245bf36e481f12dba93efff051f2002f453801010caffdc29275bc2e"
+        },
+        "original_restored": true,
+        "restored_pixel_mean_difference": 0.062
+      }
+    }
+  },
+  "build_id": "I4OpIdl-f6d4D0yC4hjV5",
+  "updated_at": "2026-10-18T16:05:57.645109+00:00",
+  "tryon_task_id": "e7f73c5d-e422-4a14-a846-80e7b04d3a87",
+  "tagging_item_id": "84ec76fc-5f88-4216-ba8d-50eb875890b3",
+  "recommendation_task_id": "1ff1ae18-47c4-4eb4-8472-c77a21362d0c",
+  "status": "passed"
+}

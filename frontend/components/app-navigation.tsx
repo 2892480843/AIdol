@@ -57,7 +57,7 @@ export function currentNavigation(pathname: string) {
 export function BrandLink({ onNavigate }: { onNavigate?: () => void }) {
   const t = useTranslations("nav");
   return (
-    <Link href="/dashboard" className="app-brand" onClick={onNavigate}>
+    <Link href="/dashboard" className="app-brand -rotate-[1.5deg]" onClick={onNavigate}>
       <span className="app-brand-mark" aria-hidden="true">
         <Image src={BRAND_LOGO_URL} alt="" width={34} height={34} priority />
       </span>

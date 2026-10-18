@@ -176,13 +176,13 @@ function PanelBody({
         {Array.from({ length: variant === "recent" ? 6 : 4 }, (_, index) =>
           variant === "recent" ? (
             <div key={index} aria-hidden="true">
-              <Skeleton className={styles.recentSkeleton} radius={14} />
+              <Skeleton className={styles.recentSkeleton} radius={0} />
               <Skeleton height={12} width="70%" mt={12} />
               <Skeleton height={9} width="40%" mt={8} />
             </div>
           ) : (
             <div key={index} className={styles.skeletonRow} aria-hidden="true">
-              <Skeleton width={56} height={70} radius={10} />
+              <Skeleton width={56} height={70} radius={0} />
               <div>
                 <Skeleton height={12} width="65%" />
                 <Skeleton height={10} width="40%" mt={10} />
@@ -206,7 +206,7 @@ function PanelBody({
         <Button
           variant="light"
           size="xs"
-          radius={10}
+          radius={0}
           leftSection={<RefreshCw size={14} aria-hidden="true" />}
           onClick={() => onRetry()}
         >
@@ -233,7 +233,7 @@ function PanelBody({
           href="/dashboard/wardrobe"
           variant="light"
           size="xs"
-          radius={10}
+          radius={0}
           leftSection={<Plus size={14} aria-hidden="true" />}
         >
           {tw("actions.addItem")}
@@ -260,7 +260,7 @@ export function RecentWardrobePanel({
     <Paper
       component="section"
       withBorder
-      radius={20}
+      radius={0}
       className={styles.panel}
       aria-labelledby={titleId}
     >
@@ -283,7 +283,7 @@ export function RecentWardrobePanel({
           href="/dashboard/wardrobe"
           variant="subtle"
           size="compact-xs"
-          radius={10}
+          radius={0}
           rightSection={<ArrowRight size={14} aria-hidden="true" />}
           className={styles.viewAll}
         >
@@ -383,7 +383,7 @@ export function RediscoverPanel({
     <Paper
       component="section"
       withBorder
-      radius={20}
+      radius={0}
       className={`${styles.panel} ${styles.rediscoverPanel}`}
       aria-labelledby={titleId}
     >

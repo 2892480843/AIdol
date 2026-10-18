@@ -153,12 +153,12 @@ export function ItemPicker({
                 )}
                 {isSelected && (
                   <div className="absolute inset-0 bg-primary/30 flex items-center justify-center">
-                    <div className="rounded-full bg-primary p-1.5 shadow-lg">
+                    <div className="rounded-none bg-primary p-1.5 shadow-[3px_3px_0px_#2d2d2d]">
                       <Check className="h-4 w-4 text-primary-foreground" />
                     </div>
                   </div>
                 )}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-1.5">
+                <div className="absolute bottom-0 left-0 right-0 bg-[#f5f0e8] from-black/70 to-transparent p-1.5">
                   <span className="text-[10px] sm:text-xs text-white font-medium truncate block">
                     {item.name ?? item.type}
                   </span>

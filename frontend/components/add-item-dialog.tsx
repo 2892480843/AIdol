@@ -357,7 +357,7 @@ export function AddItemDialog({ open, onOpenChange }: AddItemDialogProps) {
                           <SelectItem key={c.value} value={c.value}>
                             <div className="flex items-center gap-2">
                               <div
-                                className="w-3 h-3 rounded-full border"
+                                className="w-3 h-3 rounded-none border"
                                 style={{ backgroundColor: c.hex }}
                               />
                               {c.name}
@@ -407,7 +407,7 @@ export function AddItemDialog({ open, onOpenChange }: AddItemDialogProps) {
               <>
                 <div
                   {...getBulkRootProps()}
-                  className={`border-2 border-dashed rounded-lg p-6 text-center cursor-pointer transition-colors ${
+                  className={`border-2 border-dashed rounded-none p-6 text-center cursor-pointer transition-colors ${
                     isBulkDragActive
                       ? 'border-primary bg-primary/5'
                       : 'border-muted-foreground/25 hover:border-primary/50'
@@ -445,7 +445,7 @@ export function AddItemDialog({ open, onOpenChange }: AddItemDialogProps) {
                             <img
                               src={f.preview}
                               alt={f.file.name}
-                              className="w-full aspect-[4/5] object-contain bg-muted rounded-xl"
+                              className="w-full aspect-[4/5] object-contain bg-muted rounded-none"
                             />
                             <Button
                               type="button"

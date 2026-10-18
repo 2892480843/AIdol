@@ -2,7 +2,7 @@
   display: grid;
   gap: 14px;
   min-width: 0;
-  border-radius: 16px;
+  border-radius: 0;
   outline-offset: 5px;
 }
 .stage {
@@ -25,13 +25,17 @@
   width: 100%;
   aspect-ratio: 2 / 3;
   overflow: hidden;
-  border-radius: 14px;
+  border-radius: 0;
   background: #fff;
   border: 1px solid hsl(var(--border));
   animation: enter 180ms ease-out;
 }
 .image {
   object-fit: contain;
+}
+.imageFrame {
+  position: absolute;
+  inset: 0;
 }
 .figure figcaption {
   margin-top: 10px;
@@ -66,7 +70,7 @@
   width: 38px;
   height: 38px;
   border: 1px solid hsl(var(--border));
-  border-radius: 10px;
+  border-radius: 0;
   background: hsl(var(--card));
   color: hsl(var(--muted-foreground));
   font-size: 12px;
@@ -112,7 +116,7 @@
   color: hsl(var(--muted-foreground));
   text-align: center;
   border: 1px dashed hsl(var(--border));
-  border-radius: 14px;
+  border-radius: 0;
 }
 .switcher[data-compact] {
   gap: 12px;
@@ -121,7 +125,7 @@
   max-width: 100%;
 }
 .switcher[data-compact] .photo {
-  border-radius: 14px;
+  border-radius: 0;
 }
 @keyframes enter {
   from {

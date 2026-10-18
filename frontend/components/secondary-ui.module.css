@@ -10,7 +10,7 @@
   gap: 0.75rem;
   padding: 1rem;
   border: 1px solid hsl(var(--border));
-  border-radius: 16px;
+  border-radius: 0;
   background: hsl(var(--card));
   box-shadow: var(--surface-shadow);
 }
@@ -23,14 +23,14 @@
   padding: 3rem 1.5rem;
   text-align: center;
   border: 1px solid hsl(var(--border));
-  border-radius: 16px;
+  border-radius: 0;
   background: hsl(var(--tone-lavender) / 0.4);
 }
 .statCard {
   background: hsl(var(--tone-blush) / 0.6);
   min-width: 0;
   border: 1px solid hsl(var(--border));
-  border-radius: 16px;
+  border-radius: 0;
 }
 .statCard > :last-child {
   padding-top: 0.5rem;
@@ -43,7 +43,7 @@
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 12px;
+  border-radius: 0;
   background: hsl(var(--card));
   color: hsl(var(--primary));
 }
@@ -61,7 +61,7 @@
   gap: 0.4rem;
   padding: 0.65rem;
   border: 1px solid hsl(var(--border));
-  border-radius: 16px;
+  border-radius: 0;
   background: hsl(var(--card));
 }
 .settingsNav a {
@@ -70,7 +70,7 @@
   gap: 0.7rem;
   min-height: 44px;
   padding: 0.75rem 0.7rem;
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 13px;
   white-space: nowrap;
   color: hsl(var(--muted-foreground));
@@ -96,7 +96,7 @@
   scroll-margin-top: 6rem;
   min-width: 0;
   border: 1px solid hsl(var(--border));
-  border-radius: 16px;
+  border-radius: 0;
   background: hsl(var(--card));
   box-shadow: var(--surface-shadow);
 }
@@ -117,7 +117,7 @@
   margin-left: auto;
   padding: 0.8rem;
   border: 1px solid hsl(var(--border));
-  border-radius: 14px;
+  border-radius: 0;
   background: hsl(var(--card) / 0.96);
   box-shadow: 0 8px 32px hsl(var(--foreground) / 0.08);
 }
@@ -134,7 +134,7 @@
   gap: 1rem;
   padding: 1rem;
   border: 1px solid hsl(var(--border));
-  border-radius: 14px;
+  border-radius: 0;
   min-width: 0;
   background: hsl(var(--tone-mint) / 0.35);
 }
@@ -151,7 +151,7 @@
   gap: 0.65rem;
   width: 100%;
   padding: 0.75rem;
-  border-radius: 14px;
+  border-radius: 0;
   background: hsl(var(--tone-lavender) / 0.5);
   text-align: left;
 }
@@ -162,7 +162,7 @@
 .outfitTile {
   position: relative;
   aspect-ratio: 3 / 4;
-  border-radius: 14px;
+  border-radius: 0;
   overflow: hidden;
   background: hsl(var(--background));
 }
@@ -170,7 +170,7 @@
   height: 100%;
   background: hsl(var(--card));
   border: 1px solid hsl(var(--border));
-  border-radius: 16px;
+  border-radius: 0;
 }
 .chart {
   min-width: 0;
