@@ -23,7 +23,37 @@
 
 ## 当前界面
 
-![搭搭最新拼贴风格首页](verification/server-6780/ui-current-fix/after.png)
+以下图片于 **2026-10-19** 从当前公网演示版实拍，点击图片可查看原图。
+
+### 穿搭日常
+
+![搭搭拼贴风格首页](docs/images/latest/home.png)
+
+### 衣橱与推荐搭配
+
+| 我的衣橱 | 已完成的推荐搭配 |
+|---|---|
+| ![衣物管理与分类](docs/images/latest/wardrobe.png) | ![已保存的穿搭推荐](docs/images/latest/recommendations.png) |
+
+### 穿搭灵感与风格发现
+
+| 穿搭灵感 | 风格发现 |
+|---|---|
+| ![一件多搭与衣橱练习入口](docs/images/latest/inspiration.png) | ![风格分类与原创模特示范](docs/images/latest/styles.png) |
+
+### 照片试穿与三维衣柜
+
+| 照片试穿 | 三维衣柜 |
+|---|---|
+| ![演示账号已生成的照片试穿结果](docs/images/latest/tryon.png) | ![立体衣柜与衣物查看](docs/images/latest/wardrobe-3d.png) |
+
+### 衣橱数据
+
+![衣物数量、配色与类型统计](docs/images/latest/analytics.png)
+
+### 手机端
+
+<img src="docs/images/latest/mobile.png" alt="390 像素宽度的手机端首页" width="320" />
 
 ## 模型、API 与开源组件
 

@@ -1,0 +1,71 @@
+{
+  "captured_date": "2026-10-19",
+  "timezone": "Asia/Shanghai",
+  "source": "https://124.70.96.183:6780",
+  "method": "Browser screenshots of the public demo; existing recommendation and try-on results were viewed without generating new tasks.",
+  "images": [
+    {
+      "file": "home.png",
+      "route": "/dashboard",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "8b3d8ad7cf8997f8ee032c6551ea47c007cbc40405d6e146f0b29d447e802b24"
+    },
+    {
+      "file": "wardrobe.png",
+      "route": "/dashboard/wardrobe",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "f81a0e7b205e66875ab2bb0f4775ca37e4592aed84c066e1b86cda8f5910ae9f"
+    },
+    {
+      "file": "recommendations.png",
+      "route": "/dashboard/suggest",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "ba68166f2500b59deb3146098380890f8c611ec543bab88fb66d1a25b5bf728a"
+    },
+    {
+      "file": "inspiration.png",
+      "route": "/dashboard/inspiration",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "321cb46488b06e4b172c3b3d71d7d711a18beeebae4edf2370fdc7426ef3b45e"
+    },
+    {
+      "file": "styles.png",
+      "route": "/dashboard/looks",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "a6f2c2c13af8107e1321e809b53761a7d69f7bb3549fd60872121c83b01acad8"
+    },
+    {
+      "file": "tryon.png",
+      "route": "/dashboard/wardrobe/tryon",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "cb05471375d83899e29899cda5d83a6c55c5f87d4a5da30c1b9c8194fe936364"
+    },
+    {
+      "file": "wardrobe-3d.png",
+      "route": "/dashboard/wardrobe/3d",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "2b6b67de95ccf93a84f8263bdfb8b53f991403e79c760c71386f30b6e35ed2d9"
+    },
+    {
+      "file": "analytics.png",
+      "route": "/dashboard/analytics",
+      "width": 1440,
+      "height": 1000,
+      "sha256": "8d857b7b71428747acfb6f67e797819e393f53bae7a6570ce113f108309a3480"
+    },
+    {
+      "file": "mobile.png",
+      "route": "/dashboard",
+      "width": 390,
+      "height": 844,
+      "sha256": "944ca014339fd6c9e617c4eadaf9d687f3510e821b0d9bf8512b9c7e55230a1f"
+    }
+  ]
+}
