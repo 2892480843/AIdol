@@ -52,7 +52,7 @@ function LoadingSkeleton() {
               <Skeleton className="h-5 w-24" />
               <Skeleton className="h-5 w-5" />
             </div>
-            <div className="flex items-center gap-2 p-2 rounded-lg bg-muted mb-3">
+            <div className="flex items-center gap-2 p-2 rounded-none bg-muted mb-3">
               <Skeleton className="w-12 h-12 rounded-md" />
               <div className="flex-1">
                 <Skeleton className="h-4 w-20 mb-1" />

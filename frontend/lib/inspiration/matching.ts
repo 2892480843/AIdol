@@ -22,6 +22,7 @@ export type FormulaMatch = {
     item: Item | null;
     candidates: Item[];
     colorSatisfied: boolean | null;
+    skipped: boolean;
   }[];
   matched: number;
   required: number;
@@ -85,6 +86,7 @@ export function matchFormula(
   formula: OutfitFormula,
   items: Item[],
   overrides: Record<string, string> = {},
+  skippedOptionalSlots: ReadonlySet<string> = new Set(),
 ): FormulaMatch {
   const unique = new Map<string, Item>();
   for (const item of items) {
@@ -94,13 +96,19 @@ export function matchFormula(
   const selected = new Map<number, Item>();
   const owners = new Map<string, number>();
   const locked = new Set<number>();
-  const baseCandidates = formula.slots.map((slot) =>
-    Array.from(unique.values()).filter((item) =>
-      slot.types.includes(item.type),
-    ),
+  const skipped = formula.slots.map(
+    (slot) => slot.optional === true && skippedOptionalSlots.has(slot.id),
+  );
+  const baseCandidates = formula.slots.map((slot, index) =>
+    skipped[index]
+      ? []
+      : Array.from(unique.values()).filter((item) =>
+          slot.types.includes(item.type),
+        ),
   );
   // Reserve manual choices first so an earlier automatic slot cannot steal them.
   formula.slots.forEach((slot, index) => {
+    if (skipped[index]) return;
     const item = unique.get(overrides[slot.id]);
     if (item && slot.types.includes(item.type) && !owners.has(item.id)) {
       selected.set(index, item);
@@ -142,7 +150,7 @@ export function matchFormula(
         Number(!!formula.slots[b].optional),
     );
   for (const index of ordered)
-    if (!selected.has(index)) assign(index, new Set());
+    if (!skipped[index] && !selected.has(index)) assign(index, new Set());
   const first = selected.get(0) ?? null;
   const slots = formula.slots.map((slot, index) => ({
     slot,
@@ -151,6 +159,7 @@ export function matchFormula(
       (item) => !owners.has(item.id) || owners.get(item.id) === index,
     ),
     colorSatisfied: colorSatisfied(slot, selected.get(index) ?? null, first),
+    skipped: skipped[index],
   }));
   const required = slots.filter(({ slot }) => !slot.optional).length;
   const matched = slots.filter(

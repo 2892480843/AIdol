@@ -21,5 +21,11 @@
   "toggleTheme": "Changer de thème",
   "userFallback": "Utilisateur",
   "wardrobe": "Garde-robe",
-  "inspiration": "Carnet de style"
+  "inspiration": "Carnet de style",
+  "looks": "Changer de tenue",
+  "tryOn": "Essayage photo",
+  "closet3d": "Dressing 3D",
+  "avatarStudio": "Studio avatar",
+  "dailySection": "Au quotidien",
+  "exploreSection": "Explorer et retrouver"
 }

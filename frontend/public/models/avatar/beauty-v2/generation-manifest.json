@@ -1,0 +1,12 @@
+{
+  "generated": "2026-10-18",
+  "selected_tasks": {
+    "male": "e7a33901-4773-42f3-8d47-1a560aa20662",
+    "female": "f2abfe45-da21-43dc-ba30-a02c648600bd"
+  },
+  "inputs": "Original fictional adult AI-authored references",
+  "settings": "Tripo H3.1 ultra geometry; 8K/PBR/delight; single-image 3D enhancement",
+  "presentation": "fixed-pose complete outfits",
+  "material_finish": "Non-metallic surface; generated roughness green channel clamped to at least 174/255, metallic factor 0. Base-color not repainted.",
+  "limits": "Generated hair strands and fingertips still have local artifacts; no claim of reference-video equivalence, rigging or modular garments."
+}

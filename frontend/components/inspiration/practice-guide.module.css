@@ -1,0 +1,86 @@
+.guide {
+  min-width: 0;
+  margin-block: 20px;
+  padding: 20px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 0;
+  background: hsl(var(--card));
+  color: hsl(var(--foreground));
+  font-family: inherit;
+}
+.heading h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.heading p {
+  max-width: 72ch;
+  margin: 6px 0 16px;
+  color: hsl(var(--muted-foreground));
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.step {
+  --step-background: var(--tone-blush);
+  --step-foreground: var(--tone-blush-foreground);
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  min-width: 0;
+  padding: 14px;
+  border-radius: 0;
+  background: hsl(var(--step-background));
+}
+.step:nth-child(3n + 2) {
+  --step-background: var(--tone-lavender);
+  --step-foreground: var(--tone-lavender-foreground);
+}
+.step:nth-child(3n + 3) {
+  --step-background: var(--tone-mint);
+  --step-foreground: var(--tone-mint-foreground);
+}
+.number {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 0;
+  background: hsl(var(--card));
+  color: hsl(var(--step-foreground));
+  font-size: 13px;
+  font-weight: 750;
+}
+.copy h4 {
+  margin: 2px 0 6px;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.copy p {
+  margin: 0;
+  color: hsl(var(--foreground));
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 720px) {
+  .guide {
+    padding: 16px;
+  }
+  .steps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

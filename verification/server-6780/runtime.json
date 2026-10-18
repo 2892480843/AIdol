@@ -1,0 +1,69 @@
+{
+  "health": {
+    "status": "healthy",
+    "checks": {
+      "database": "healthy"
+    }
+  },
+  "services": {
+    "dada-6780@api.service": {
+      "NRestarts": "0",
+      "MemoryCurrent": "199168000",
+      "MemoryHigh": "891289600",
+      "MemoryMax": "1310720000",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled"
+    },
+    "dada-6780@frontend.service": {
+      "NRestarts": "0",
+      "MemoryCurrent": "92069888",
+      "MemoryHigh": "891289600",
+      "MemoryMax": "1310720000",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled"
+    },
+    "dada-6780@worker.service": {
+      "NRestarts": "0",
+      "MemoryCurrent": "89399296",
+      "MemoryHigh": "891289600",
+      "MemoryMax": "1310720000",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled"
+    },
+    "dada-6780@images.service": {
+      "NRestarts": "0",
+      "MemoryCurrent": "82579456",
+      "MemoryHigh": "891289600",
+      "MemoryMax": "1310720000",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled"
+    },
+    "dada-6780@tasks.service": {
+      "NRestarts": "0",
+      "MemoryCurrent": "89870336",
+      "MemoryHigh": "891289600",
+      "MemoryMax": "1310720000",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled"
+    },
+    "dada-6780@dispatcher.service": {
+      "NRestarts": "0",
+      "MemoryCurrent": "72413184",
+      "MemoryHigh": "891289600",
+      "MemoryMax": "1310720000",
+      "ActiveState": "active",
+      "SubState": "running",
+      "UnitFileState": "enabled"
+    }
+  },
+  "existing_containers": [
+    "yuecheng-app-1 Up 12 days (healthy)"
+  ],
+  "database_migration": "b2c3d4e5f6a8",
+  "memory": "               total        used        free      shared  buff/cache   available\nMem:            1775        1267         257          32         445         507\nSwap:           2047           0        2047\n"
+}

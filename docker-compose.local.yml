@@ -7,7 +7,7 @@ services:
     image: redis@sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499
     ports: !reset []
   backend:
-    image: wardrowbe-backend:ui-20261017
+    image: wardrowbe-backend:loading-performance-20261018-r2
     build:
       context: ./backend
       dockerfile: Dockerfile.local
@@ -15,8 +15,9 @@ services:
       - "127.0.0.1:${BACKEND_PORT:-18000}:8000"
     environment:
       CORS_ORIGINS: '["http://localhost:3000", "http://127.0.0.1:3000"]'
+      CLOTHING_EXTRACTION_MODEL_PATH: /data/wardrobe/.models/schp-atr-18-int8-static.onnx
   frontend:
-    image: wardrowbe-frontend:dada-20261017
+    image: wardrowbe-frontend:ui-content-20261018-r3
     build:
       context: ./frontend
     ports: !override

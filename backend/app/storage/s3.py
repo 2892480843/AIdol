@@ -1,4 +1,8 @@
 import hashlib
+import os
+import threading
+from dataclasses import dataclass, field
+from functools import lru_cache
 from typing import Any
 
 from app.storage.base import ObjectStorage, StorageUnavailableError, StoredObject, validate_key
@@ -22,6 +26,59 @@ class _PrivateBody:
         self.body.close()
 
 
+@dataclass(frozen=True)
+class _ClientConfig:
+    process_id: int
+    endpoint: str | None
+    access_key: str | None = field(repr=False)
+    secret_key: str | None = field(repr=False)
+    region: str
+    secure: bool
+    addressing_style: str
+    connect_timeout: int
+    read_timeout: int
+    max_attempts: int
+
+
+_client_lock = threading.Lock()
+
+
+def _after_fork() -> None:
+    # A child must inherit neither a live connection pool nor a locked constructor.
+    global _client_lock
+    _client_lock = threading.Lock()
+    _client_for_config.cache_clear()
+
+
+@lru_cache(maxsize=8)
+def _client_for_config(config: _ClientConfig):
+    import boto3.session
+    from botocore.config import Config
+
+    # Separate sessions avoid boto3's shared default-session initialization races.
+    return boto3.session.Session().client(
+        "s3",
+        endpoint_url=config.endpoint,
+        aws_access_key_id=config.access_key,
+        aws_secret_access_key=config.secret_key,
+        region_name=config.region,
+        use_ssl=config.secure,
+        config=Config(
+            signature_version="s3v4",
+            s3={"addressing_style": config.addressing_style},
+            connect_timeout=config.connect_timeout,
+            read_timeout=config.read_timeout,
+            retries={"mode": "standard", "total_max_attempts": config.max_attempts},
+            request_checksum_calculation="when_required",
+            response_checksum_validation="when_required",
+        ),
+    )
+
+
+if hasattr(os, "register_at_fork"):
+    os.register_at_fork(after_in_child=_after_fork)
+
+
 class S3Storage(ObjectStorage):
     def __init__(self, *, bucket: str, client: Any):
         if not bucket:
@@ -33,34 +90,19 @@ class S3Storage(ObjectStorage):
     def from_settings(cls, settings):
         if not settings.s3_bucket:
             raise ValueError("S3_BUCKET must be configured for S3 storage")
-        # Filesystem deployments do not import or initialize an AWS SDK client.
-        import boto3
-        from botocore.config import Config
-
         if bool(settings.s3_access_key) != bool(settings.s3_secret_key):
             raise ValueError("S3_ACCESS_KEY and S3_SECRET_KEY must be set together")
         endpoint = settings.s3_endpoint_url
         if endpoint and "://" not in endpoint:
             endpoint = f"{'https' if settings.s3_secure else 'http'}://{endpoint}"
-        client = boto3.client(
-            "s3",
-            endpoint_url=endpoint,
-            aws_access_key_id=settings.s3_access_key,
-            aws_secret_access_key=settings.s3_secret_key,
-            region_name=settings.s3_region,
-            use_ssl=settings.s3_secure,
-            config=Config(
-                signature_version="s3v4",
-                s3={"addressing_style": settings.s3_addressing_style},
-                connect_timeout=settings.s3_connect_timeout,
-                read_timeout=settings.s3_read_timeout,
-                retries={"mode": "standard", "total_max_attempts": settings.s3_max_attempts},
-                # Keep requests compatible with S3 providers without AWS's new
-                # optional checksum/trailer extensions.
-                request_checksum_calculation="when_required",
-                response_checksum_validation="when_required",
-            ),
+        config = _ClientConfig(
+            os.getpid(), endpoint, settings.s3_access_key, settings.s3_secret_key,
+            settings.s3_region, settings.s3_secure, settings.s3_addressing_style,
+            settings.s3_connect_timeout, settings.s3_read_timeout, settings.s3_max_attempts,
         )
+        # Serialize cache misses: lru_cache alone permits concurrent duplicate construction.
+        with _client_lock:
+            client = _client_for_config(config)
         return cls(bucket=settings.s3_bucket, client=client)
 
     def open(self, key: str) -> StoredObject:

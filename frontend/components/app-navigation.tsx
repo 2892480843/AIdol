@@ -20,14 +20,18 @@ import {
   Bell,
   HeartHandshake,
   Compass,
+  GalleryVertical,
+  ScanLine,
 } from "lucide-react";
 
 export const appNavigation = [
   { key: "dashboard", href: "/dashboard", icon: Home },
   { key: "wardrobe", href: "/dashboard/wardrobe", icon: Shirt },
   { key: "suggestOutfit", href: "/dashboard/suggest", icon: Sparkles },
-  { key: "outfits", href: "/dashboard/outfits", icon: LayoutGrid },
+  { key: "tryOn", href: "/dashboard/wardrobe/tryon", icon: ScanLine },
   { key: "inspiration", href: "/dashboard/inspiration", icon: Compass },
+  { key: "looks", href: "/dashboard/looks", icon: GalleryVertical },
+  { key: "outfits", href: "/dashboard/outfits", icon: LayoutGrid },
   { key: "pairings", href: "/dashboard/pairings", icon: Layers },
   { key: "history", href: "/dashboard/history", icon: History },
   { key: "familyFeed", href: "/dashboard/family/feed", icon: HeartHandshake },
@@ -53,7 +57,7 @@ export function currentNavigation(pathname: string) {
 export function BrandLink({ onNavigate }: { onNavigate?: () => void }) {
   const t = useTranslations("nav");
   return (
-    <Link href="/dashboard" className="app-brand" onClick={onNavigate}>
+    <Link href="/dashboard" className="app-brand -rotate-[1.5deg]" onClick={onNavigate}>
       <span className="app-brand-mark" aria-hidden="true">
         <Image src={BRAND_LOGO_URL} alt="" width={34} height={34} priority />
       </span>
@@ -92,9 +96,13 @@ export function AppNavigation({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <nav className="app-navigation" aria-label={t("brandName")}>
       <div className="app-nav-group">
-        {renderLinks(appNavigation.slice(0, 5))}
+        <div className="app-nav-section">{t("dailySection")}</div>
+        {renderLinks(appNavigation.slice(0, 4))}
       </div>
-      <div className="app-nav-group">{renderLinks(appNavigation.slice(5))}</div>
+      <div className="app-nav-group">
+        <div className="app-nav-section">{t("exploreSection")}</div>
+        {renderLinks(appNavigation.slice(4))}
+      </div>
       <div className="app-nav-footer">
         <div className="app-nav-section">{t("settingsSection")}</div>
         {renderLinks(settingsNavigation)}

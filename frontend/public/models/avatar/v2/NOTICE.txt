@@ -1,0 +1,23 @@
+Wardrowbe adult fashion avatars v2 / CC0-1.0
+
+Original virtual adult templates assembled and fitted locally with MakeHuman/MPFB.
+These avatars are not real-person scans or reconstructions of uploaded photographs.
+Garments are sample style meshes; they do not reconstruct the exact uploaded clothes.
+
+Authors: MakeHuman / MPFB Community; Data Collection AB; Joel Palmius;
+Jonas Hauquier; Margaret Toigo (MRT); Cortu Johnstone; Elvaerwyn (French braid and male tee); namuhekam (polo).
+The official asset pack pages list each asset as CC0. The French braid author page also explicitly grants CC0; its MHCLO file retains a legacy AGPL3 export-template header. That discrepancy and author-page evidence are documented in PROVENANCE.json. Original author/license comments
+are retained in the offline source files; checksums and source URLs are in PROVENANCE.json.
+MPFB program software is GPL-3.0; it is an offline authoring tool and is not bundled in
+this web runtime. The graphical assets and this output are separately CC0-1.0.
+
+Integration contract: extras.avatarLayer identifies the slot; extras.avatarVariant
+identifies a real cut. Body material extras.avatarHiddenByVariants lists active slot:variant keys to hide only under the actual visible garment. Knit source has no delete_verts, so coverage follows fully covered arm/chest bone regions bounded by the fitted hem/collar; closed boots use authored delete groups. Head, neck and hands remain protected. Show exactly one variant per active slot. Dress replaces top
+and bottom. Closed blazer contains its own shirt/tie and replaces independent top.
+Body, base, eyes, brows, lashes and hair remain protected. The female tailored trouser
+OuterwearLayerFit morph applies only while closed outerwear is shown. Materials with
+avatarHiddenByOuterwear are conditionally hidden only with closed blazer.
+
+CC0 text: LICENSE-CC0.txt
+Models and official-source checksums: PROVENANCE.json
+Six preset slot mappings: catalogue.json

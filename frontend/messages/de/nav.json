@@ -21,5 +21,11 @@
   "toggleTheme": "Design wechseln",
   "userFallback": "Benutzer",
   "wardrobe": "Kleiderschrank",
-  "inspiration": "Stilnotizen"
+  "inspiration": "Stilnotizen",
+  "looks": "Outfits wechseln",
+  "tryOn": "Foto-Anprobe",
+  "closet3d": "3D-Kleiderschrank",
+  "avatarStudio": "Avatar-Studio",
+  "dailySection": "Tägliche Outfits",
+  "exploreSection": "Entdecken & sammeln"
 }

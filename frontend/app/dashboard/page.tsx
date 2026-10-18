@@ -1,14 +1,15 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useTranslations } from "next-intl";
-import { ArrowRight, Plus } from "lucide-react";
+import { ArrowRight, Plus, ScanLine, Shirt, UserRound } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAnalytics } from "@/lib/hooks/use-analytics";
 import { useItems, useTaggingProgress } from "@/lib/hooks/use-items";
 import { InspirationTeasers } from "@/components/dashboard/inspiration-teasers";
+import { LookSwitcher } from "@/components/looks/look-switcher";
+import { STYLE_LOOKS } from "@/lib/style-discovery";
 import { RecommendationTaskBanner } from "@/components/recommendations/task-banner";
 import {
   RecentWardrobePanel,
@@ -26,9 +27,14 @@ import {
 } from "@/components/dashboard/dashboard-widgets";
 import styles from "@/components/dashboard/dashboard-home.module.css";
 
+const featuredLooks = STYLE_LOOKS.filter((look) =>
+  ["streetBomber", "sportTrack", "retroArgyle", "frenchStripe"].includes(look.key),
+);
+
 export default function DashboardPage() {
   const { data: session } = useSession();
   const t = useTranslations("dashboard");
+  const nav = useTranslations("nav");
   const analytics = useAnalytics();
   const recent = useItems(
     { is_archived: false, sort_by: "created_at", sort_order: "desc" },
@@ -45,7 +51,8 @@ export default function DashboardPage() {
   return (
     <div className={styles.dashboard}>
       <section className={styles.cover}>
-        <div className={styles.coverCopy}>
+        <div className={`${styles.coverCopy} group -rotate-[0.7deg]`}>
+          <span aria-hidden="true" className="collage-tape rotate-[-5deg] transition-transform duration-200 ease-out group-hover:rotate-[3deg] group-hover:-translate-y-1" />
           <p className={styles.kicker}>{t("editorial.eyebrow")}</p>
           <h1>{t("editorial.headline")}</h1>
           <p className={styles.coverSummary}>{t("editorial.summary")}</p>
@@ -61,22 +68,40 @@ export default function DashboardPage() {
               <ArrowRight size={14} aria-hidden="true" />
             </Link>
           </div>
+          <nav className={styles.studioEntries} aria-label={nav("dailySection")}>
+            {[
+              { href: "/dashboard/wardrobe/tryon", label: nav("tryOn"), icon: ScanLine },
+              { href: "/dashboard/wardrobe/3d", label: nav("closet3d"), icon: Shirt },
+              { href: "/dashboard/wardrobe/avatar", label: nav("avatarStudio"), icon: UserRound },
+            ].map(({ href, label, icon: Icon }) => (
+              <Link href={href} key={href}>
+                <Icon size={20} aria-hidden="true" />
+                <span>{label}</span>
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+            ))}
+          </nav>
           <p className={styles.coverGreeting}>
             {t("welcomeBack", {
               name: session?.user?.name?.split(" ")[0] || t("userFallback"),
             })}
           </p>
         </div>
-        <figure className={styles.coverPhoto}>
-          <Image
-            src="/images/style-editorial-20261017.webp"
-            alt=""
-            fill
-            priority
-            sizes="(min-width: 1200px) 600px, (min-width: 600px) 55vw, 100vw"
+        <div className={`${styles.coverModel} group rotate-[2deg]`}>
+          <span aria-hidden="true" className="collage-tape collage-tape-blue rotate-[7deg] transition-transform duration-200 ease-out group-hover:rotate-[-3deg] group-hover:-translate-y-1" />
+          <LookSwitcher
+            compact
+            looks={featuredLooks.map((look) => ({
+              ...look,
+              name: t(`looks.discovery.lookNames.${look.key}`),
+            }))}
+            notice={t("looks.modelNotice")}
           />
-          <figcaption>{t("editorial.sampleImage")}</figcaption>
-        </figure>
+          <Link href="/dashboard/looks" className={styles.modelEntry}>
+            {t("looks.tabs.model")}
+            <ArrowRight size={15} aria-hidden="true" />
+          </Link>
+        </div>
       </section>
       <OverviewMetrics
         inventory={recent.data?.total}

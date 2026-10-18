@@ -1,0 +1,189 @@
+{
+  "generated": "2026-10-18",
+  "generator": "Tripo Studio H3.1",
+  "geometry": "150k triangles, fixed-pose complete outfits, embedded PBR textures",
+  "notice": "Original 8K dopamine outfit source assets retained privately in verification/dopamine-avatar/originals; web base-color textures 8K desktop / 4K compact. Original rest-surface geometry, UVs and normals are unchanged. These generated assets are complete, unrigged outfits; they do not support articulated pose changes or individual garment replacement.",
+  "license_source": "https://www.tripo3d.ai/terms",
+  "license_section": "5.2.2 Paid Users; project-owned generated outputs, no CC0 claim",
+  "models": {
+    "female": {
+      "source": "dada-dopamine-face-projected.glb",
+      "source_sha256": "7cc52e2072df1fd042e57b97eba4c256dcc173b6fabcad2cf75c33aabd8bda21",
+      "variants": {
+        "female.glb": {
+          "bytes": 19977536,
+          "sha256": "e232577bfc74f89277bc7ac8317c0aaad56927c252fa9054f8f65e724532c4fd",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                8192,
+                8192
+              ],
+              "bytes": 11186413,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 2942325,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1310182,
+              "mime": "image/jpeg"
+            }
+          ]
+        },
+        "female-mobile.glb": {
+          "bytes": 11983416,
+          "sha256": "42d96fa8df4d14e299eb51ab22b01dc34a394da55799738eea37b516818792a2",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 5068996,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1065633,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1310182,
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "selected_tasks": {
+    "head": "19f64c66-752d-4ff7-9738-80cb71f29a3a",
+    "body": "0db30909-c71d-43f7-8c19-a6cb16250f55"
+  },
+  "reference_sha256": {
+    "user-reference.png": "b410cc815cfda76e936b12821766b71b3f82b2380a5648214137b9e0e8cdfda5",
+    "face-reference.png": "5f2c9da9f17c0da95e88bc774caff134bd7593c5a496593267e5c1bdc26ea5de",
+    "dopamine-reference.png": "4b04caf542e5d29cc0ba6cbfbb71fe0943d3566b24550bf4e7a8d7db03dc3046"
+  },
+  "portrait_source": "dada-dopamine-head-150k-8k.glb",
+  "portrait_source_sha256": "2c340b07d9fad82c1d67e7877bde29b9099ae51321374bfeb15333d606b59043",
+  "presentation": "coherent fixed-pose full-body reconstruction; portrait base-color projection",
+  "face_projection": {
+    "projection": "frontal portrait-to-body base-color bake",
+    "projected_texels": 900887,
+    "geometry": "source body geometry, UVs and normals unchanged",
+    "ellipse": {
+      "center_y": 2.905,
+      "radius_x": 0.155,
+      "radius_y": 0.183
+    },
+    "landmarks_body": [
+      [
+        331.0,
+        486.0,
+        1.0
+      ],
+      [
+        600.0,
+        454.0,
+        1.0
+      ],
+      [
+        496.0,
+        720.0,
+        1.0
+      ]
+    ],
+    "landmarks_portrait": [
+      [
+        443.0,
+        451.0
+      ],
+      [
+        691.0,
+        426.0
+      ],
+      [
+        599.0,
+        685.0
+      ]
+    ],
+    "body_to_portrait_affine": [
+      [
+        0.9237534077917512,
+        0.02400844252924098
+      ],
+      [
+        0.015302084249406434,
+        0.9830709700114328
+      ],
+      [
+        129.8008090757188,
+        -34.71928590273512
+      ]
+    ],
+    "limits": "Appearance transfer; does not change facial geometry or certify exact identity"
+  },
+  "rejected_experiments": "Separate portrait/head mesh splices failed hairline/neck close-up inspection and are not in the shipped model.",
+  "geometry_source": "dada-dopamine-body-150k-8k.glb",
+  "original_geometry_views": {
+    "POSITION": "24b8d69a6cf2fd2a47db7c3ead86e138f7b82a53fab2b9e5aa330a5c9e5c31c5",
+    "NORMAL": "15e93599057f7bb043e2aa1c4a08189b45c565b1694706a68ede1817002daa13",
+    "TEXCOORD_0": "3e4284622cdb18de21b95ae50b8340761f9acb03f6bec13527c5017632bd1ba1",
+    "indices": "07927abeb883c52c475f87b2c14c5e8b26a510e275a2700e099a40195366ccad"
+  },
+  "original_body_sha256": "a42b945e000a19b5f0046fa81aa4d09ec3e4adae96c442f8bf006b7a90066950"
+}

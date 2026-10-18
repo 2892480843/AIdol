@@ -1,0 +1,29 @@
+{
+  "url": "http://124.70.96.183:6780",
+  "checks": [
+    "unauthenticated pages and private API denied",
+    "public Basic login -> NextAuth -> backend identity",
+    "demo profile and onboarding persist",
+    "three synthetic garments upload, list, and signed thumbnails"
+  ],
+  "items": [
+    {
+      "id": "fdf10e97-5927-4dfc-9aa6-0472fb0e13f2",
+      "type": "shoes",
+      "status": "ready"
+    },
+    {
+      "id": "078ccf1d-9885-4052-a251-2762045d9ba1",
+      "type": "pants",
+      "status": "ready"
+    },
+    {
+      "id": "d4abd967-331c-4eb7-adfd-a468670e93a1",
+      "type": "shirt",
+      "status": "ready"
+    }
+  ],
+  "user_id": "683374ef-307a-40c3-b4a2-f8e5d9167803",
+  "status": "failed",
+  "error": "timed out"
+}

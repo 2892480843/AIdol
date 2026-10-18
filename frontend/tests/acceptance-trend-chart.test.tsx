@@ -4,10 +4,29 @@ import { AcceptanceTrendChart } from '@/components/acceptance-trend-chart'
 
 vi.mock('next-intl', () => ({
   useLocale: () => 'de',
-  useTranslations: () => (key: string) => key,
+  useTranslations: () => (key: string, values?: {value: number | string}) => key === 'percent' ? `${values?.value}%` : key,
 }))
 
 describe('AcceptanceTrendChart', () => {
+  it('uses responded recommendations as the tooltip denominator when most are pending', () => {
+    const {container} = render(<AcceptanceTrendChart data={[
+      {period: 'Oct 06', period_start: '2026-10-06', total: 15, accepted: 1, rejected: 0, rate: 100},
+    ]} />)
+    expect(container.querySelector('circle title')).toHaveTextContent('100% (1/1)')
+    expect(container.querySelector('circle title')).not.toHaveTextContent('(1/15)')
+  })
+  it('leaves a gap for a pending-only week while retaining an observed zero-percent week', () => {
+    const {container} = render(<AcceptanceTrendChart data={[
+      {period: 'a', period_start: '2026-10-06', total: 15, accepted: 1, rejected: 0, rate: 100},
+      {period: 'b', period_start: '2026-10-13', total: 14, accepted: 0, rejected: 0, rate: 0},
+      {period: 'c', period_start: '2026-10-20', total: 1, accepted: 0, rejected: 1, rate: 0},
+    ]} />)
+    expect(container.querySelectorAll('circle[data-rate]')).toHaveLength(2)
+    expect(container.querySelectorAll('polyline')).toHaveLength(2)
+    const labels = container.querySelectorAll('figcaption strong')
+    expect(labels[1]).toHaveTextContent('—')
+    expect(labels[2]).toHaveTextContent('0%')
+  })
   it('labels each week from its ISO start date on the app locale', () => {
     render(
       <AcceptanceTrendChart

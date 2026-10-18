@@ -126,7 +126,7 @@
     "currentIssue": "MA GARDE-ROBE",
     "sampleImage": "Illustration de style",
     "methods": "Votre prochaine tenue préférée commence ici",
-    "methodsSubtitle": "Six petits exercices inspirés de conseils de style publics. Commencez avec vos propres vêtements.",
+    "methodsSubtitle": "Trouvez un petit exercice parmi les idées de style publiques et commencez avec les vêtements que vous possédez.",
     "allMethods": "Découvrir plus d’idées",
     "serviceTitle": "Les choses pratiques",
     "serviceSubtitle": "Une garde-robe bien entretenue est une garde-robe que l’on porte.",
@@ -140,7 +140,7 @@
   "inspiration": {
     "eyebrow": "À LA DÉCOUVERTE DU STYLE",
     "title": "Trouvez l’inspiration. Réinventez-la à votre façon.",
-    "description": "Explorez des méthodes de style publiques, puis créez votre version avec les pièces que vous possédez déjà.",
+    "description": "Trouvez une idée dans une chronique ou sur Douyin, puis essayez-la pas à pas avec vos propres vêtements.",
     "search": "Rechercher une idée ou une personnalité",
     "all": "Découvrir",
     "savedOnly": "Enregistrés",
@@ -170,7 +170,7 @@
     "bookmarksLocal": "Les idées enregistrées restent sur cet appareil, associées à votre compte.",
     "bookmarkError": "Ce navigateur n’a pas pu enregistrer vos idées. Veuillez vérifier les paramètres de stockage local.",
     "creatorsTitle": "Des créateurs et créatrices pour vous inspirer",
-    "sourcesNote": "Ces exercices sont nos adaptations de conseils publics. Les liens citent leurs auteurs sans signifier qu’ils recommandent cette application.",
+    "sourcesNote": "Dada conçoit ces exercices et renvoie vers des sources publiques à lire ou à regarder. Les créateurs et créatrices ne sont pas partenaires de cette application et ne l’ont pas recommandée.",
     "viewSource": "Lire l’original",
     "resetSelections": "Réinitialiser les choix",
     "colorHint": "Vérifiez les conseils de couleur avant de porter la tenue.",
@@ -190,32 +190,92 @@
       "everyday": {
         "title": "Les favoris familiers",
         "summary": "Un haut, un bas, des chaussures. Offrez une nouvelle sortie à une bonne association de basiques.",
-        "tip": "Choisissez des pièces confortables que vous aimez déjà porter. Changez un seul détail, puis enregistrez ce qui vous convient."
+        "tip": "Choisissez des pièces confortables que vous aimez déjà porter. Changez un seul détail, puis enregistrez ce qui vous convient.",
+        "steps": {
+          "pick": "Commencez par un haut que vous aimez, un bas confortable et des chaussures.",
+          "adjust": "Gardez la base et changez seulement les chaussures ou la façon de placer l’ourlet. Laissez le sac de côté si vous n’en avez pas besoin.",
+          "review": "Marchez un peu dans cette tenue, puis emportez la version qui vous plaît dans le studio."
+        }
       },
       "layer": {
         "title": "Une superposition bien pensée",
         "summary": "Une base simple, complétée par un vêtement de dessus utile.",
-        "tip": "Gardez une base facile à reprendre. Choisissez la superposition selon vos projets et la météo, puis vérifiez la silhouette dans un miroir."
+        "tip": "Gardez une base facile à reprendre. Choisissez la superposition selon vos projets et la météo, puis vérifiez la silhouette dans un miroir.",
+        "steps": {
+          "pick": "Partez d’une base familière et choisissez une veste ou un vêtement à superposer comme pièce maîtresse.",
+          "adjust": "Vérifiez l’aisance et la longueur de l’ourlet une fois la couche ajoutée, en gardant assez de liberté de mouvement.",
+          "review": "Avant d’enregistrer votre version, vérifiez si cet exercice avec une couche supplémentaire convient à la météo."
+        }
       },
       "balance": {
         "title": "Une forme au premier plan",
         "summary": "Essayez une pièce ample avec une autre plus structurée.",
-        "tip": "Choisissez une pièce centrale. Ajustez un rentré de haut, un ourlet ou une manche et voyez quelles proportions vous semblent confortables."
+        "tip": "Choisissez une pièce centrale. Ajustez un rentré de haut, un ourlet ou une manche et voyez quelles proportions vous semblent confortables.",
+        "steps": {
+          "pick": "Choisissez une pièce à mettre en valeur et associez-la à des vêtements familiers.",
+          "adjust": "Ajustez un ourlet, un bas de pantalon ou une manche, en ne changeant qu’un détail à la fois.",
+          "review": "Regardez-vous dans un miroir et bougez avant d’enregistrer une silhouette qui vous plaît."
+        }
       },
       "accent": {
         "title": "Une petite touche de couleur",
         "summary": "Une base sobre avec, si vous le souhaitez, un détail final plus vif.",
-        "tip": "Essayez une touche de couleur sur un sac, un foulard ou une ceinture. Reprenez une nuance que vous aimez sans acheter une nouvelle pièce."
+        "tip": "Essayez une touche de couleur sur un sac, un foulard ou une ceinture. Reprenez une nuance que vous aimez sans acheter une nouvelle pièce.",
+        "steps": {
+          "pick": "Gardez une base familière et choisissez un accessoire que vous possédez déjà.",
+          "adjust": "Comparez la tenue avec et sans cet accessoire ; laissez-le de côté si vous préférez.",
+          "review": "Choisissez le détail à souligner et affinez l’ensemble dans le studio."
+        }
       },
       "dress": {
         "title": "Deux pièces pour commencer simplement",
         "summary": "Une robe ou une combinaison et une paire de chaussures ; ajoutez une superposition si vous le souhaitez.",
-        "tip": "Partez d’une robe ou d’une combinaison que vous aimez porter. Regardez l’ourlet avec les chaussures, puis ajustez un détail ou le vêtement de dessus."
+        "tip": "Partez d’une robe ou d’une combinaison que vous aimez porter. Regardez l’ourlet avec les chaussures, puis ajustez un détail ou le vêtement de dessus.",
+        "steps": {
+          "pick": "Choisissez une robe ou une combinaison que vous avez envie de porter, avec des chaussures confortables.",
+          "adjust": "Ne changez que les chaussures, l’ourlet ou les manches ; laissez la veste de côté si elle n’est pas nécessaire.",
+          "review": "Vérifiez que vous pouvez marcher et vous asseoir confortablement, puis enregistrez votre version."
+        }
       },
       "tonal": {
         "title": "Des couleurs douces, plus de profondeur",
         "summary": "Explorez une même famille de couleurs avec un peu de contraste entre clair et foncé.",
-        "tip": "Comparez les pièces réelles à la lumière du jour. Des étiquettes de couleur proches ne sont qu’un point de départ ; textures et nuances apportent de l’intérêt."
+        "tip": "Comparez les pièces réelles à la lumière du jour. Des étiquettes de couleur proches ne sont qu’un point de départ ; textures et nuances apportent de l’intérêt.",
+        "steps": {
+          "pick": "Placez votre haut et votre bas côte à côte et cherchez des couleurs proches.",
+          "adjust": "Comparez les nuances claires et foncées ainsi que les matières, en ne remplaçant qu’une pièce à la fois.",
+          "review": "Vérifiez les couleurs réelles à la lumière du jour, puis enregistrez une association confortable qui vous plaît."
+        }
+      },
+      "colorPlay": {
+        "steps": {
+          "pick": "Choisissez un haut dans une couleur que vous avez envie de porter et gardez un bas et des chaussures confortables.",
+          "adjust": "Changez seulement le haut ou un accessoire et observez ce qui attire votre regard.",
+          "review": "Regardez les pièces à la lumière du jour, puis emportez l’association dans le studio pour l’affiner."
+        },
+        "title": "Laissez une couleur s’exprimer",
+        "summary": "Choisissez un haut coloré qui vous plaît et gardez d’abord les autres pièces simples.",
+        "tip": "C’est un exercice de couleur, pas une règle fixe. Comparez les pièces réelles et ajoutez d’autres couleurs si cela vous plaît."
+      },
+      "easyLayers": {
+        "steps": {
+          "pick": "Composez une base confortable avec un haut, un bas et des chaussures, qui fonctionne aussi sans veste.",
+          "adjust": "Comparez votre liberté de mouvement avec et sans la couche supplémentaire. Laissez-la de côté si elle n’est pas utile.",
+          "review": "Gardez les couches que vous souhaitez porter aujourd’hui et enregistrez votre propre version dans le studio."
+        },
+        "title": "Une couche au rythme de la météo",
+        "summary": "Commencez par un haut, un bas et des chaussures. La couche supplémentaire est facultative : laissez-la de côté si vous n’en avez pas besoin.",
+        "tip": "Prenez la superposition comme point de départ de votre propre exercice. Température, liberté de mouvement et confort comptent plus que le nombre de couches."
+      },
+      "detailEcho": {
+        "steps": {
+          "pick": "Choisissez un haut dont une couleur vous plaît et ajoutez un bas familier.",
+          "adjust": "Changez seulement les chaussures ou un accessoire pour rappeler une couleur du haut. Laissez l’accessoire de côté si vous préférez.",
+          "review": "Comparez les pièces réelles et leur confort, puis enregistrez une association à affiner."
+        },
+        "title": "Faites écho à un détail",
+        "summary": "Cherchez une couleur proche entre vos chaussures, votre haut ou un accessoire.",
+        "tip": "Rappeler une petite touche de couleur est un essai facultatif. Les étiquettes de couleur ne permettent pas de juger les motifs, les matières ou le rendu sur vous."
       }
     },
     "creators": {
@@ -224,7 +284,211 @@
       "imogen": "Explorer les couleurs et les contrastes",
       "jamie": "Construire la tenue autour d’une pièce centrale",
       "becky": "Des idées de proportions et de couleurs au quotidien",
-      "jean": "Soigner les ourlets et les finitions"
+      "jean": "Soigner les ourlets et les finitions",
+      "yanbaiwan": "Partez du thème de la couleur pour essayer une pièce colorée que vous possédez.",
+      "xiebao": "Explorez la superposition en décidant selon la température si une veste est utile.",
+      "changxin": "Essayez un petit rappel de couleur dans votre propre expérience de style."
+    },
+    "sourceFilter": "Plateforme source",
+    "allSources": "Toutes les sources",
+    "platforms": {
+      "douyin": "Douyin",
+      "article": "Chroniques indépendantes"
+    },
+    "creatorFilter": "Créateur ou créatrice",
+    "allCreators": "Tous les créateurs et créatrices",
+    "viewPractice": "Essayer l’exercice",
+    "viewProfile": "Profil du créateur ou de la créatrice",
+    "viewVideo": "Voir la vidéo originale",
+    "videoNote": "Cette vidéo sert de référence thématique à notre propre exercice. Consultez l’œuvre complète sur Douyin ; il ne s’agit pas ici d’une transcription ni d’une reproduction de toute la vidéo.",
+    "skipOptional": "Passer {name}",
+    "restoreOptional": "Rétablir {name}",
+    "skippedOptional": "Laisser cette pièce de côté",
+    "skippedNote": "Cette pièce facultative a été laissée de côté. Vous pouvez la rétablir à tout moment.",
+    "guideTitle": "Essayez l’idée en trois étapes",
+    "guideDescription": "Commencez avec vos propres vêtements, puis adaptez la tenue à la météo, à vos projets et à vos préférences.",
+    "stepTitles": {
+      "pick": "Choisir une pièce de départ",
+      "adjust": "Changer un détail",
+      "review": "Essayer, puis enregistrer"
+    },
+    "anchor": {
+      "title": "Une pièce, plus d’idées",
+      "description": "Choisissez un vêtement que vous possédez et essayez-le dans différents exercices de style.",
+      "choose": "Choisir une pièce de départ",
+      "allItems": "Aucune pièce de départ choisie",
+      "clear": "Retirer la pièce de départ",
+      "locked": "Cette pièce reste dans la tenue. Choisissez une autre pièce de départ pour la remplacer.",
+      "compatibleCount": "Exercices compatibles : {count}",
+      "empty": "Aucune pièce disponible trouvée.",
+      "loading": "Chargement des pièces disponibles…",
+      "partial": "{loaded} pièces chargées sur {total}. Vous pouvez en charger davantage.",
+      "unavailable": "Cette pièce n’est pas disponible pour ces exercices. Veuillez en choisir une autre.",
+      "creatorReset": "La pièce de départ a été retirée pour afficher les exercices liés à ce créateur ou à cette créatrice.",
+      "resetHint": "La réinitialisation efface les autres choix et les pièces laissées de côté, tout en conservant votre pièce de départ."
+    }
+  },
+  "looks": {
+    "title": "Changer de tenue",
+    "description": "Comparez des looks complets, vos photos portées et un aperçu IA pour un vêtement.",
+    "tabs": {
+      "model": "Explorer les styles",
+      "worn": "Mes tenues portées",
+      "tryon": "Essayage IA"
+    },
+    "modelNotice": "Exemples originaux de mannequin générés par IA. Ils ne montrent pas vos propres vêtements essayés.",
+    "switcher": {
+      "previous": "Tenue précédente",
+      "next": "Tenue suivante",
+      "select": "Choisir la tenue {index}",
+      "position": "{current} / {total}",
+      "compare": "Comparer deux tenues",
+      "compareWith": "Comparer avec",
+      "imageUnavailable": "Image indisponible",
+      "empty": "Aucune tenue à afficher."
+    },
+    "modelNames": {
+      "casual": "T-shirt blanc et jean",
+      "office": "Chemise bleue au bureau",
+      "layer": "Superposition avec gilet",
+      "outer": "Veste olive du week-end"
+    },
+    "worn": {
+      "title": "Mes photos de tenues",
+      "description": "Ajoutez des photos en pied et associez les vêtements portés si vous le souhaitez.",
+      "localOnly": "Les photos sont stockées par compte dans ce navigateur. Effacer les données du site les supprime.",
+      "photos": "Photos de tenues (JPEG, PNG ou WebP)",
+      "name": "Nom de la photo {index}",
+      "associate": "Associer des vêtements",
+      "add": "Enregistrer les photos",
+      "adding": "Enregistrement…",
+      "empty": "Ajoutez votre première photo de tenue.",
+      "delete": "Supprimer la photo",
+      "deleteTitle": "Supprimer cette photo de tenue ?",
+      "deleteDescription": "« {name} » sera définitivement supprimée de ce navigateur.",
+      "confirmDelete": "Supprimer définitivement",
+      "cancel": "Annuler",
+      "error": "Impossible d’enregistrer la photo. Réessayez.",
+      "partialError": "{count} photos n’ont pas été enregistrées. Les autres sont conservées.",
+      "limit": "20 photos maximum, 10 Mo par photo.",
+      "errors": {
+        "invalid-photo": "Choisissez une photo JPEG, PNG ou WebP valide.",
+        "photo-too-large": "Chaque photo doit faire au maximum 10 Mo.",
+        "invalid-name": "Saisissez un nom de 1 à 100 caractères.",
+        "invalid-items": "Choisissez jusqu’à 12 vêtements valides.",
+        "limit-reached": "La limite de 20 photos est atteinte.",
+        "storage-unavailable": "Le stockage du navigateur est indisponible. Autorisez-le pour ce site.",
+        "quota-exceeded": "Le stockage du navigateur est plein. Libérez de l’espace.",
+        "not-found": "Cette photo n’est plus disponible.",
+        "session-changed": "Votre compte a changé. Sélectionnez à nouveau la photo.",
+        "invalid-record": "La photo enregistrée est invalide. Ajoutez-la à nouveau."
+      }
+    },
+    "tryon": {
+      "title": "Essayage IA",
+      "description": "Importez une photo de personne et choisissez un vêtement pour simuler un essayage. Pour une tenue complète, utilisez la cabine d’essayage.",
+      "loading": "Vérification du service…",
+      "unavailable": "L’essayage n’est pas activé. Terminez d’abord la configuration.",
+      "loadError": "Impossible de vérifier le service. Réessayez.",
+      "retry": "Réessayer",
+      "personPhoto": "Photo de personne",
+      "garment": "Un vêtement de votre garde-robe",
+      "chooseGarment": "Choisir un vêtement",
+      "sendNotice": "Le lancement envoie les photos sélectionnées à {provider} pour générer l’image d’essayage.",
+      "consent": "J’ai le droit d’utiliser cette photo et j’accepte l’envoi des images pour la génération.",
+      "start": "Générer l’essayage",
+      "starting": "Génération…",
+      "result": "Résultat de l’essayage",
+      "generatedNotice": "Simulation IA. Les détails et la coupe peuvent différer de l’essayage réel.",
+      "empty": "Aucun résultat d’essayage pour le moment.",
+      "error": "L’essayage n’a pas abouti. Vérifiez la tâche avant de relancer.",
+      "queued": "En attente",
+      "running": "Génération",
+      "failed": "Échec",
+      "succeeded": "Terminé",
+      "unsupported": "Choisissez un vêtement disponible, propre, non archivé et pris en charge par le service."
+    },
+    "discovery": {
+      "eyebrow": "STYLE PLAYGROUND",
+      "title": "Aujourd’hui, changez de style.",
+      "description": "Du streetwear au quotidien, appropriez-vous les styles qui vous plaisent.",
+      "all": "Tous les styles",
+      "searchLabel": "Rechercher un style ou une tenue",
+      "searchPlaceholder": "Rayures, utilitaire, superpositions…",
+      "reset": "Réinitialiser les filtres",
+      "clearSearch": "Effacer la recherche",
+      "count": "{count, plural, one {# tenue} other {# tenues}}",
+      "styleCount": "{count, plural, one {# style} other {# styles}}",
+      "preview": "Voir la tenue",
+      "previewTitle": "Aperçu de la tenue",
+      "close": "Fermer l’aperçu",
+      "allTitle": "Le style, en toute liberté.",
+      "allDescription": "Six idées de style, douze exemples originaux. Choisissez une direction ou créez votre propre mélange.",
+      "formulaTitle": "La combinaison",
+      "tipTitle": "À essayer devant le miroir",
+      "paletteTitle": "Palette de couleurs",
+      "practice": "Essayer avec ma garde-robe",
+      "emptyTitle": "Aucune tenue trouvée",
+      "emptyDescription": "Essayez un autre mot-clé ou effacez les filtres pour découvrir d’autres styles.",
+      "filtersLabel": "Filtres de style",
+      "styles": {
+        "street": {
+          "name": "Streetwear utilitaire",
+          "description": "Des volumes amples, une allure affirmée.",
+          "formula": "Haut ample + bas simple + chaussures",
+          "tip": "Choisissez une pièce forte et gardez le reste sobre. Vérifiez l’aisance en l’essayant.",
+          "keywords": "streetwear urbain gris anthracite bomber olive veste utilitaire ample Streetwear utilitaire"
+        },
+        "sport": {
+          "name": "Sport décontracté",
+          "description": "À l’aise pour bouger comme pour sortir.",
+          "formula": "Haut confortable + bas aux lignes nettes + baskets",
+          "tip": "Marchez et levez les bras pour vérifier le confort, puis ajustez les ourlets.",
+          "keywords": "sport décontracté bordeaux crème jaune pâle survêtement zippé baskets Sport décontracté"
+        },
+        "cityboy": {
+          "name": "Cityboy japonais",
+          "description": "Des superpositions décontractées pour la ville.",
+          "formula": "Haut basique + bas ample + chaussures + veste en option",
+          "tip": "Composez d’abord une base qui fonctionne seule, puis ajoutez une couche selon la météo.",
+          "keywords": "cityboy urbain superpositions ample chemise veste Cityboy japonais"
+        },
+        "clean": {
+          "name": "Minimalisme épuré",
+          "description": "Des couleurs simples et des lignes épurées.",
+          "formula": "Haut basique + bas du quotidien + chaussures confortables",
+          "tip": "Ajustez l’ourlet ou les poignets, puis changez un seul détail pour comparer.",
+          "keywords": "minimaliste épuré basique tee-shirt blanc chemise jean quotidien Minimalisme épuré"
+        },
+        "retro": {
+          "name": "Preppy rétro",
+          "description": "Des textures familières, à porter à votre façon.",
+          "formula": "Haut et bas basiques + veste texturée + chaussures",
+          "tip": "Mettez la maille ou le cuir à l’honneur et gardez les autres pièces simples.",
+          "keywords": "rétro vintage losanges maille cuir marron classique Preppy rétro"
+        },
+        "french": {
+          "name": "Décontracté à la française",
+          "description": "Des lignes souples et une touche spontanée.",
+          "formula": "Haut et bas dans des tons proches + chaussures neutres",
+          "tip": "Comparez les vraies nuances et textures, puis jouez avec les rayures ou l’encolure.",
+          "keywords": "français parisien rayures blouse marine beige décontracté Décontracté à la française"
+        }
+      },
+      "lookNames": {
+        "casual": "Tee-shirt blanc et jean",
+        "office": "Chemise bleue au bureau",
+        "layer": "Maille en superposition",
+        "outer": "Une veste légère",
+        "streetBomber": "Bomber gris anthracite",
+        "streetShell": "Veste olive",
+        "sportTrack": "Survêtement bordeaux et crème",
+        "sportZip": "Veste zippée jaune pâle",
+        "retroArgyle": "Maille à losanges bordeaux",
+        "retroLeather": "Veste marron effet cuir",
+        "frenchStripe": "Rayures et ballerines rouges",
+        "frenchBlouse": "Blouse crème et pantalon beige"
+      }
     }
   }
 }

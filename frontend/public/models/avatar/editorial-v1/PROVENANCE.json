@@ -1,0 +1,214 @@
+{
+  "generated": "2026-10-18",
+  "generator": "Tripo Studio H3.1",
+  "geometry": "100k triangles, fixed-pose complete outfits, embedded PBR textures",
+  "notice": "Original 8K source assets retained privately in verification/tripo-quality/originals; web base-color textures 4K desktop / 2K compact. Original rest-surface geometry, UVs and normals are unchanged. Invalid upstream rig data is excluded; these web assets do not support articulated pose changes or individual garment replacement.",
+  "license_source": "https://www.tripo3d.ai/terms",
+  "license_section": "5.2.2 Paid Users; project-owned generated outputs, no CC0 claim",
+  "models": {
+    "female": {
+      "source": "dada-female-rigged-100k-8k.glb",
+      "source_sha256": "c71a8347b58879257bc2cb7ea6fb2c6ba35e696f886b60fdb3e4a122ec45c7c5",
+      "variants": {
+        "female.glb": {
+          "bytes": 13092544,
+          "sha256": "2dd2e3c9343d4978272c77e54a372cff8702837591492ba12731ca2a3a9afd41",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 5142130,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 3379759,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1446235,
+              "mime": "image/jpeg"
+            }
+          ]
+        },
+        "female-mobile.glb": {
+          "bytes": 6672204,
+          "sha256": "a7980255b05e7e3325dfee87c87dff7f588bc2047ca07d3826994513221ce31d",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1897798,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 1074570,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 575417,
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      }
+    },
+    "male": {
+      "source": "dada-male-rigged-100k-8k.glb",
+      "source_sha256": "ac33aa3110fd08d3de57fc494754d6d7d350f93cd24c5c6ae15a5d998e7edab2",
+      "variants": {
+        "male.glb": {
+          "bytes": 9894764,
+          "sha256": "24bb93947063cde0b2d3f8c36b9e4c0edfced84bc20c34818a47cdf339b2cea6",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 3533998,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 2604259,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 740417,
+              "mime": "image/jpeg"
+            }
+          ]
+        },
+        "male-mobile.glb": {
+          "bytes": 5329516,
+          "sha256": "506517fbcf1b4cfc9d6b3f2050003aef675db4735ea035b02e1b069968bfdef6",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1148221,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 861600,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 303605,
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -18,6 +18,11 @@ const WEAR_STATS = ['wear-stats'] as const;
 const WEAR_HISTORY = ['wear-history'] as const;
 
 export const queryKeys = {
+  wardrobe3D: (ownerId: string | null) => ['wardrobe-3d', ownerId] as const,
+  tryOn: {
+    capabilities: (ownerId: string | null, epoch = 0) => ['tryon-capabilities', ownerId, epoch] as const,
+    list: (ownerId: string | null, epoch = 0) => ['tryon-tasks', ownerId, epoch] as const,
+  },
   inspirationWardrobe: (ownerId: string | null) =>
     ['inspiration-wardrobe', ownerId] as const,
   inspirationSeed: (ownerId: string | null, seedParams: string) =>

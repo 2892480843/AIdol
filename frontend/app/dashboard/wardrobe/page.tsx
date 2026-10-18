@@ -6,6 +6,7 @@ import styles from '@/components/shared/core-surfaces.module.css';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Plus, Search, Heart, Grid3X3, Loader2, AlertCircle, RefreshCw, Droplets, ArrowUpDown, SlidersHorizontal, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -104,7 +105,7 @@ function ItemCard({
   return (
     <Card
       className={`${styles.photoCard} group cursor-pointer ${
-        selected ? 'ring-2 ring-primary shadow-md' : 'hover:shadow-md'
+        selected ? 'ring-2 ring-primary shadow-[3px_3px_0px_#2d2d2d]' : 'hover:shadow-[3px_3px_0px_#2d2d2d]'
       }`}
       onClick={onClick}
     >
@@ -133,7 +134,7 @@ function ItemCard({
             checked={selected}
             aria-label={item.name || typeLabel(item.type)}
             onCheckedChange={(checked) => onSelect(item.id, checked === true)}
-            className="bg-background/80 backdrop-blur-sm"
+            className="bg-background/80 backdrop-filter-none"
           />
         </div>
         {item.favorite && (
@@ -143,7 +144,7 @@ function ItemCard({
         )}
         {item.needs_wash && (
           <div className="absolute bottom-2 right-2 z-10">
-            <div className="bg-amber-500/90 text-white rounded-full p-1" title={t('needsWash')}>
+            <div className="bg-amber-500/90 text-white rounded-none p-1" title={t('needsWash')}>
               <Droplets className="h-3.5 w-3.5" />
             </div>
           </div>
@@ -265,7 +266,7 @@ function ItemCard({
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div
-                    className="w-4 h-4 rounded-full border shrink-0"
+                    className="w-4 h-4 rounded-none border shrink-0"
                     style={{ backgroundColor: colorSwatch(item.primary_color) }}
                   />
                 </TooltipTrigger>
@@ -666,7 +667,7 @@ export default function WardrobePage() {
     <div className={`page-container ${styles.page}`}>
       <PageHeader title={t('title')} description={t('itemCount', { count: total })}
         icon={<Grid3X3 className="h-5 w-5" />}
-        actions={<Button onClick={() => setAddDialogOpen(true)}><Plus className="mr-2 h-4 w-4" />{t('actions.addItem')}</Button>} />
+        actions={<div className="flex flex-wrap gap-2"><Button variant="outline" asChild><Link href="/dashboard/wardrobe/extract">{t('extraction.title')}</Link></Button><Button variant="outline" asChild><Link href="/dashboard/wardrobe/3d">{t('rack.entry')}</Link></Button><Button variant="outline" asChild><Link href="/dashboard/wardrobe/avatar">{t('avatar.modelLabel')}</Link></Button><Button onClick={() => setAddDialogOpen(true)}><Plus className="mr-2 h-4 w-4" />{t('actions.addItem')}</Button></div>} />
           {(queuedCount > 0 || analyzingCount > 0 || errorCount > 0) && (
             <div className={styles.statusStrip}>
               {analyzingCount > 0 && (
@@ -718,6 +719,7 @@ export default function WardrobePage() {
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
+              aria-label={t('search')}
               placeholder={t('search')}
               value={search}
               onChange={(e) => {
@@ -757,7 +759,7 @@ export default function WardrobePage() {
             >
               <SlidersHorizontal className="h-4 w-4" />
               {activeFilterCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
+                <span className="absolute -top-1.5 -right-1.5 h-4 w-4 rounded-none bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
                   {activeFilterCount}
                 </span>
               )}
@@ -767,7 +769,7 @@ export default function WardrobePage() {
 
         {/* Expandable filter row */}
         {showFilters && (
-          <div className="flex flex-wrap gap-2 items-center p-3 rounded-lg border bg-muted/30">
+          <div className="flex flex-wrap gap-2 items-center p-3 rounded-none border bg-muted/30">
             <Select
               value={typeFilter}
               onValueChange={(value) => {

@@ -26,12 +26,15 @@ describe('expected empty state queries', () => {
     { useHook: useWeather, key: queryKeys.weather, path: '/weather/current', status: 400 },
   ])('keeps $path error state without a raw global toast for $status', async ({ useHook, key, path, status }) => {
     const client = createQueryClient()
-    vi.mocked(api.get).mockRejectedValue(new ApiError('Raw server empty state', status, {}))
+    vi.mocked(api.get).mockImplementation(async (url) => {
+      if (url === '/users/me') return { id: 'weather-owner', location_lat: 0, location_lon: 0 } as never
+      throw new ApiError('Raw server empty state', status, {})
+    })
     const wrapper = ({ children }: { children: ReactNode }) => <QueryClientProvider client={client}>{children}</QueryClientProvider>
     const { result, unmount } = renderHook(() => useHook(), { wrapper })
     await waitFor(() => expect(result.current.isError).toBe(true))
     expect(api.get).toHaveBeenCalledWith(path)
-    expect(client.getQueryCache().find({ queryKey: key })?.meta).toEqual({ quietErrorStatuses: [status] })
+    expect(client.getQueryCache().find({ queryKey: key, exact: false })?.meta).toEqual({ quietErrorStatuses: [status] })
     expect(toast.error).not.toHaveBeenCalled()
     unmount()
     client.clear()

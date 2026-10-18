@@ -21,5 +21,11 @@
   "toggleTheme": "テーマ切替",
   "userFallback": "ユーザー",
   "wardrobe": "ワードローブ",
-  "inspiration": "着こなしノート"
+  "inspiration": "着こなしノート",
+  "looks": "コーデ切り替え",
+  "tryOn": "写真で試着",
+  "closet3d": "3Dクローゼット",
+  "avatarStudio": "アバター",
+  "dailySection": "毎日のコーデ",
+  "exploreSection": "発見と記録"
 }

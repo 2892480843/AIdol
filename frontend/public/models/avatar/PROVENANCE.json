@@ -1,0 +1,634 @@
+{
+  "version": 1,
+  "createdDate": "2026-10-18",
+  "generator": "Blender 5.1.2 + MPFB2 3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+  "description": "Custom assembled adult fashion avatars. No personal photographs, scans, identity reconstruction or remote inference. Built-in clothing layers are authored templates, not automatic reconstruction of uploaded wardrobe photos.",
+  "assetLicense": "CC0-1.0",
+  "sourceCodeLicenseNote": "MPFB2 is GPL-3.0 software used only at offline build time; its graphical assets and output are CC0 according to the upstream split license. MPFB is not bundled into the web runtime.",
+  "upstream": {
+    "repository": "https://github.com/makehumancommunity/mpfb2/tree/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+    "archiveUrl": "https://codeload.github.com/makehumancommunity/mpfb2/zip/refs/heads/master",
+    "resolvedArchiveCommit": "3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+    "immutableArchiveUrl": "https://codeload.github.com/makehumancommunity/mpfb2/zip/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+    "archiveSha256": "19a58071b985c416c4a5a127b791dd52b2c159d62870cfec7d846b892bd90aab",
+    "license": "https://github.com/makehumancommunity/mpfb2/blob/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf/LICENSE.md",
+    "assetLicense": "https://github.com/makehumancommunity/mpfb2/blob/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf/LICENSE.ASSETS.md",
+    "licenseConfirmation": "https://static.makehumancommunity.org/about/license.html",
+    "assetPacks": [
+      "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+      "https://static.makehumancommunity.org/assets/assetpacks/shirts01.html",
+      "https://static.makehumancommunity.org/assets/assetpacks/pants01.html",
+      "https://static.makehumancommunity.org/assets/assetpacks/dress01.html",
+      "https://static.makehumancommunity.org/assets/assetpacks/suits01.html"
+    ]
+  },
+  "credits": [
+    "MakeHuman / MPFB Community",
+    "Data Collection AB",
+    "Joel Palmius",
+    "Jonas Hauquier",
+    "Margaret Toigo (camisole, sweater, wool trousers, halter dress, suits)"
+  ],
+  "modifications": [
+    "Custom adult female/male macro shape and subtle facial target combination",
+    "Game-engine rig and skinning",
+    "Fitted independent clothing parts with smooth radial ease",
+    "Removed redundant pants from suit mesh to create separate blazer layer",
+    "Removed high sock geometry; styled clean opaque low shoes",
+    "Dark brown hair PBR factor, explicit alpha and reduced specular",
+    "Female rear hair refitted against closed blazer while preserving front and scalp",
+    "Female authored covered-body faces retain geometry and normals with conditional avatarHiddenByOuterwear material visibility",
+    "Female original trousers preserved as Basis with conditional OuterwearLayerFit native morph beneath closed blazer",
+    "Opaque always-on torso/pelvis privacy cover",
+    "Subdivision and shape baking; all texture resources embedded",
+    "Web texture sizes bounded; JPEG quality 92 for opaque albedo, PNG for alpha",
+    "Authoring previews use relaxed upper arms; exported GLBs retain the binding pose and application runtime owns arm posture"
+  ],
+  "models": [
+    {
+      "file": "female.glb",
+      "bytes": 10906708,
+      "sha256": "2f42454d5a21d39e3005416f6d4e952843686c4f80a2b8060e0e8c85be876f4a",
+      "layers": [
+        "base",
+        "body",
+        "bottoms",
+        "dresses",
+        "hair",
+        "outerwear",
+        "shoes",
+        "tops"
+      ],
+      "rigBones": 53,
+      "sourceVertices": 131691,
+      "meshCount": 11,
+      "materialCount": 13,
+      "embeddedImages": [
+        {
+          "name": "young_lightskinned_female_diffuse3",
+          "mimeType": "image/jpeg"
+        },
+        {
+          "name": "eyebrow001",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "eyelashes01",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "brown_eye",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "long01_diffuse",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "Fsuit2",
+          "mimeType": "image/jpeg"
+        }
+      ],
+      "extensionsUsed": [
+        "KHR_materials_specular",
+        "KHR_materials_ior"
+      ]
+    },
+    {
+      "file": "male.glb",
+      "bytes": 9474732,
+      "sha256": "e805df1a0ab1dc94d0e94dc83327b7561ea003b112b9d0e1739682ae59fa380a",
+      "layers": [
+        "base",
+        "body",
+        "bottoms",
+        "hair",
+        "outerwear",
+        "shoes",
+        "tops"
+      ],
+      "rigBones": 53,
+      "sourceVertices": 112314,
+      "meshCount": 10,
+      "materialCount": 11,
+      "embeddedImages": [
+        {
+          "name": "young_lightskinned_male_diffuse3",
+          "mimeType": "image/jpeg"
+        },
+        {
+          "name": "eyebrow001",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "eyelashes01",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "brown_eye",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "short04_diffuse",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "NewSuit3",
+          "mimeType": "image/jpeg"
+        }
+      ],
+      "extensionsUsed": [
+        "KHR_materials_specular",
+        "KHR_materials_ior"
+      ]
+    }
+  ],
+  "sourceAssetFiles": [
+    {
+      "path": "skins/young_asian_female/young_asian_female.mhmat",
+      "bytes": 1459,
+      "sha256": "2baeded5fdfd31acc187e83b278f9c4e4cbb59a7ffedf50ebcffcc44e4eab220"
+    },
+    {
+      "path": "skins/young_asian_female/young_asian_female.thumb",
+      "bytes": 79011,
+      "sha256": "736d4ed1967431c989c5629655aa65f162a3e325d5aed7cd75ca3c2cc8f91a8d"
+    },
+    {
+      "path": "skins/young_asian_female/young_lightskinned_female_diffuse3.png",
+      "bytes": 3884420,
+      "sha256": "1d82f782b7d2da732229633bd2d14754d873fff53cdb1d088977bcf67ae19dde"
+    },
+    {
+      "path": "skins/young_asian_male/young_asian_male.mhmat",
+      "bytes": 1452,
+      "sha256": "9fdfc9863cd15d1359311435f2da7de3906f81d6eea549fba6bf14cd82ceb6a0"
+    },
+    {
+      "path": "skins/young_asian_male/young_asian_male.thumb",
+      "bytes": 79327,
+      "sha256": "21245c121a4efc96d18cb64a2fc7d95bfcc768f7b333d59b7a471708551ed13d"
+    },
+    {
+      "path": "skins/young_asian_male/young_lightskinned_male_diffuse3.png",
+      "bytes": 3593099,
+      "sha256": "f50016a5507fc687dc8df06599c8ea48de950cd185de33a71cafc1319ddab4d5"
+    },
+    {
+      "path": "eyes/high-poly/high-poly.mhclo",
+      "bytes": 72490,
+      "sha256": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d"
+    },
+    {
+      "path": "eyes/high-poly/high-poly.obj",
+      "bytes": 100882,
+      "sha256": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1"
+    },
+    {
+      "path": "eyes/high-poly/high-poly.thumb",
+      "bytes": 21076,
+      "sha256": "97730eb579e1a81a63f38f53125ad8d375556f222882704fbec7dd83d4f24916"
+    },
+    {
+      "path": "eyes/materials/blue.mhmat",
+      "bytes": 1243,
+      "sha256": "bd9cab4d2f6ca54df6253c1adfbb1c82e0ee61057361d95449ade06a1b5669c4"
+    },
+    {
+      "path": "eyes/materials/blue.thumb",
+      "bytes": 33300,
+      "sha256": "5d7474af291a83b4b122ccd276b5ad10f9a4554efa940aad1d515363e22d7b6b"
+    },
+    {
+      "path": "eyes/materials/blue_eye.png",
+      "bytes": 666029,
+      "sha256": "572ddc93ab3e177100619ec7c00b2574540cfb382805afc2e450788117f6140c"
+    },
+    {
+      "path": "eyes/materials/bluegreen.mhmat",
+      "bytes": 1250,
+      "sha256": "2dfb910b48da0e0739b44a8fa4728b3b351bf9b408034c6402a1b9c07915b884"
+    },
+    {
+      "path": "eyes/materials/bluegreen.thumb",
+      "bytes": 36549,
+      "sha256": "d6fcfe5b57d7b05f2f9453e11cefb7cb68352746a36613b030e069442e2eadcc"
+    },
+    {
+      "path": "eyes/materials/bluegreen_eye.png",
+      "bytes": 697879,
+      "sha256": "653b3154e67f67e118c22acd19c472aa7543e0c229209f687c3f7f669f191fd9"
+    },
+    {
+      "path": "eyes/materials/brown.mhmat",
+      "bytes": 1247,
+      "sha256": "4abad93ce50541c08127721e77bce035640c9f16bed16cd0f5524b1cd5908465"
+    },
+    {
+      "path": "eyes/materials/brown.thumb",
+      "bytes": 29627,
+      "sha256": "5bd2de12f0c04d423ab00fa13f691a1879b944e63947e228117ddcce31f9cff9"
+    },
+    {
+      "path": "eyes/materials/brown_eye.png",
+      "bytes": 610817,
+      "sha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b"
+    },
+    {
+      "path": "eyes/materials/brownlight.mhmat",
+      "bytes": 1256,
+      "sha256": "75ae6903fe51134ee6f10147dadad3cb1b355aecf8218213431fb6ddbb3ba71d"
+    },
+    {
+      "path": "eyes/materials/brownlight.thumb",
+      "bytes": 34947,
+      "sha256": "32722c2f00ea29b7cee7bc2b140db165ec724cd20d10d073e906b21b278bde26"
+    },
+    {
+      "path": "eyes/materials/brownlight_eye.png",
+      "bytes": 680577,
+      "sha256": "3f43a4de70e446186dac1760cfa01dfe36d530ed7564208455395b0ebcdf788a"
+    },
+    {
+      "path": "eyes/materials/deepblue.mhmat",
+      "bytes": 1252,
+      "sha256": "08f7a30d8cd8d264d21d755afcfdca3d28386e780b9e9fea11a662337e99d3a3"
+    },
+    {
+      "path": "eyes/materials/deepblue.thumb",
+      "bytes": 32356,
+      "sha256": "10b1fa542476d35dee4ac92b6f1a654ecf391d849231727a591820b895d8d815"
+    },
+    {
+      "path": "eyes/materials/deepblue_eye.png",
+      "bytes": 658984,
+      "sha256": "55ec9e3d06c8193e74fbbcea32ea474c100feaccef96556d9181e796fe2a7ea6"
+    },
+    {
+      "path": "eyes/materials/green.mhmat",
+      "bytes": 1246,
+      "sha256": "b3b512120d9f87f91cd34879ac17ad9f26eb6a250d92be52df8b19df5cc90113"
+    },
+    {
+      "path": "eyes/materials/green.thumb",
+      "bytes": 32775,
+      "sha256": "525ffdef4adb5a82ffe07814b1a46d017014fad571ae206bfeda970531560c10"
+    },
+    {
+      "path": "eyes/materials/green_eye.png",
+      "bytes": 662241,
+      "sha256": "b9864ac4f4fa484b24e18f6aba030d70dbc8820cbbacfbe63a974c76772c2009"
+    },
+    {
+      "path": "eyes/materials/grey.mhmat",
+      "bytes": 1244,
+      "sha256": "65c536157ef0550b2f8461a9526c726707533dc7cfe8a65abb9b9db0b4e6b25e"
+    },
+    {
+      "path": "eyes/materials/grey.thumb",
+      "bytes": 32862,
+      "sha256": "add8c7bd15edeccaa7612cb33d8311ae849d884b6ea062e18fa78de54128805d"
+    },
+    {
+      "path": "eyes/materials/grey_eye.png",
+      "bytes": 669883,
+      "sha256": "ecb05613126036a3d017880fabbd570501c5f14032c186462d8f6e2d719f6c4f"
+    },
+    {
+      "path": "eyes/materials/ice.mhmat",
+      "bytes": 1242,
+      "sha256": "4b2d2d10d9d887dc6f4dd2f66ff252a85b60ca2a30bc2b57672f83b758db776b"
+    },
+    {
+      "path": "eyes/materials/ice.thumb",
+      "bytes": 34110,
+      "sha256": "a8e150fb9fb901051a0dd6e753ec68d501ad5dc20e01adcdf6ac1f81657c5df9"
+    },
+    {
+      "path": "eyes/materials/ice_eye.png",
+      "bytes": 676501,
+      "sha256": "a5903596fe033371ba7130b5c8b2c09ce2f5d282d77557c21060ab8a778bf03d"
+    },
+    {
+      "path": "eyes/materials/lightblue.mhmat",
+      "bytes": 1254,
+      "sha256": "3bb470d56dfdf40b16e499578bf6ea2c4e0e7e27db4c5bd2adb47f760f5c5f34"
+    },
+    {
+      "path": "eyes/materials/lightblue.thumb",
+      "bytes": 36919,
+      "sha256": "4e70a6c6530469ead049980969944cf1c2860700907c9dfee0fbc87af7965c68"
+    },
+    {
+      "path": "eyes/materials/lightblue_eye.png",
+      "bytes": 701486,
+      "sha256": "687c8f6d95a8550bcd4a34158f415d6bb376c0bb32e67d127bbb51e5fa469eef"
+    },
+    {
+      "path": "eyebrows/eyebrow001/eyebrow001.mhclo",
+      "bytes": 9141,
+      "sha256": "54c8892c2ba577f4152d779ce1f20f7cd323beb8cbd9cb701796165c221b4f5b"
+    },
+    {
+      "path": "eyebrows/eyebrow001/eyebrow001.mhmat",
+      "bytes": 1098,
+      "sha256": "976e5f4f1d3922d7a11c6e2db233f8b4584b068d00619d5749687e81c92d61fc"
+    },
+    {
+      "path": "eyebrows/eyebrow001/eyebrow001.obj",
+      "bytes": 8227,
+      "sha256": "88b13146395133f3901715e11706cdfd293e5d6087ad7c5e01efe1485a26b513"
+    },
+    {
+      "path": "eyebrows/eyebrow001/eyebrow001.png",
+      "bytes": 89619,
+      "sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b"
+    },
+    {
+      "path": "eyebrows/eyebrow001/eyebrow001.thumb",
+      "bytes": 137534,
+      "sha256": "98b68eccf50977ff00242a33eb1dc6e3eaf4cc262e1f6c4ceca5c1c564f6c745"
+    },
+    {
+      "path": "eyelashes/eyelashes01/eyelashes01.mhclo",
+      "bytes": 2265,
+      "sha256": "5a86b29c15649273d723084954b7fa7bf199112571d4f58539b46734d397ee6b"
+    },
+    {
+      "path": "eyelashes/eyelashes01/eyelashes01.mhmat",
+      "bytes": 1074,
+      "sha256": "8029c99d94f3d87a1e81825fad6b90eec773ae6955a5b2592222ef237377e190"
+    },
+    {
+      "path": "eyelashes/eyelashes01/eyelashes01.obj",
+      "bytes": 18832,
+      "sha256": "f78f5b93fea1946fcae103d32c4f082dd9612a1ec2e7e2f90b03ebe59b0baf20"
+    },
+    {
+      "path": "eyelashes/eyelashes01/eyelashes01.png",
+      "bytes": 91600,
+      "sha256": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35"
+    },
+    {
+      "path": "eyelashes/eyelashes01/eyelashes01.thumb",
+      "bytes": 140641,
+      "sha256": "34ab06601745c2b74fcfa6f63a374fcea58cb4501e728a3c6935a3a1ed794aa3"
+    },
+    {
+      "path": "hair/long01/long01.mhclo",
+      "bytes": 220891,
+      "sha256": "94ecbebfd834da2cbee2ce90b730972590eb22a252ecd9592038ea736e063646"
+    },
+    {
+      "path": "hair/long01/long01.mhmat",
+      "bytes": 1297,
+      "sha256": "74ec88267e679d316f8037a074511ffc887b27e198ea381d0ae4a3f180f96760"
+    },
+    {
+      "path": "hair/long01/long01.obj",
+      "bytes": 215324,
+      "sha256": "7f1d6dadbdf9e96435251955d6657e77ea5433c9bc7c85a5c5f5e4eae0cb9a8c"
+    },
+    {
+      "path": "hair/long01/long01.thumb",
+      "bytes": 35530,
+      "sha256": "4cb13248134980fc69fdbe298e2bdde58864aec764243cb3c50cb0da7dc0ed98"
+    },
+    {
+      "path": "hair/long01/long01_diffuse.png",
+      "bytes": 2915253,
+      "sha256": "e8dc25d90f8f62467e8630420e1240a400d070054fb7c3f1d3f7bf3e457d6c2c"
+    },
+    {
+      "path": "hair/short04/short04.mhclo",
+      "bytes": 59195,
+      "sha256": "d60640aa4c4ffce1aa269647ba436b6ee0bb21bb948f927b84e27a48d2107157"
+    },
+    {
+      "path": "hair/short04/short04.mhmat",
+      "bytes": 1316,
+      "sha256": "7a3ac74db8478aa0afdb8a596c6fe3997d1a8a09d12211d70e8f1e9f0b7e0e97"
+    },
+    {
+      "path": "hair/short04/short04.obj",
+      "bytes": 55152,
+      "sha256": "676964a133ee35ffcea1195382bf75542da7a298931e4001bc7b0d7b707225de"
+    },
+    {
+      "path": "hair/short04/short04.thumb",
+      "bytes": 41792,
+      "sha256": "a7db8f3db6e2a53194993de73b875d000f928b66a8ac4d6efab51bfd8e6664fd"
+    },
+    {
+      "path": "hair/short04/short04_diffuse.png",
+      "bytes": 2308132,
+      "sha256": "0bef7fc0e403db5a40fabb2111ebfa6f7e8158e204c6e56b8da98e9ef527846e"
+    },
+    {
+      "path": "clothes/toigo_camisole_top/CamisoleTop.png",
+      "bytes": 4827382,
+      "sha256": "9277a2c8bbd15c379302b8f08f33420e87e8df4cfb234a83b698856c595a8385"
+    },
+    {
+      "path": "clothes/toigo_camisole_top/camisole_top.mhmat",
+      "bytes": 502,
+      "sha256": "c12632e85622cc6b64a6e8f81fbbfc6862d6a56c1df332fb3c8644dbccba4bdc"
+    },
+    {
+      "path": "clothes/toigo_camisole_top/camisole_top.obj",
+      "bytes": 352621,
+      "sha256": "2f4377c34c55608299ebae72717073b258b12f0ba1783d10db1fc037601be377"
+    },
+    {
+      "path": "clothes/toigo_camisole_top/toigo_camisole_top.mhclo",
+      "bytes": 287125,
+      "sha256": "2954430d051b9707acdb9fee2aebdc8a250aab473f32452ef6b86684e8c26ffc"
+    },
+    {
+      "path": "clothes/toigo_camisole_top/toigo_camisole_top.thumb",
+      "bytes": 70987,
+      "sha256": "b1f9b8b1859023189791d87de44eef4f1c176675a5568d435a5ee479076eaac7"
+    },
+    {
+      "path": "clothes/toigo_fisherman_sweater/shirt-knit-NORM.png",
+      "bytes": 598273,
+      "sha256": "c3458d9b5174d7c34beed74618828c26f479200512d691a6bada34e7ea5d9a62"
+    },
+    {
+      "path": "clothes/toigo_fisherman_sweater/shirt-knit.png",
+      "bytes": 2316765,
+      "sha256": "a7d526797da4cdc1a79603a35abebf41e577277267f36db6641cdb6cebe6ffb1"
+    },
+    {
+      "path": "clothes/toigo_fisherman_sweater/sweater_fisherman.mhmat",
+      "bytes": 509,
+      "sha256": "254c011b3edae8cbab7adb2d082de670dd41b26324bf5772318b7557a127fd64"
+    },
+    {
+      "path": "clothes/toigo_fisherman_sweater/sweater_fisherman.obj",
+      "bytes": 172798,
+      "sha256": "2844465f4e798666a90f631ea4a89ae30d3e526ef045a978d338908750d21d09"
+    },
+    {
+      "path": "clothes/toigo_fisherman_sweater/toigo_fisherman_sweater.mhclo",
+      "bytes": 144016,
+      "sha256": "b454960bdd61985f246e88e547a127a75d590dc87d6c1a4062fb7c7c281d8999"
+    },
+    {
+      "path": "clothes/toigo_fisherman_sweater/toigo_fisherman_sweater.thumb",
+      "bytes": 75154,
+      "sha256": "a64cdf427b565eb72d69c4e3b93cd6021df66fe4a7e30c14c55fbced8c3df391"
+    },
+    {
+      "path": "clothes/toigo_wool_pants/Pants_wool.png",
+      "bytes": 1355120,
+      "sha256": "a820b0dc4f9f881956a068f26889ca677b696dbdccfdbf2a168e7b327b390ab6"
+    },
+    {
+      "path": "clothes/toigo_wool_pants/pants_wool.mhmat",
+      "bytes": 473,
+      "sha256": "fedf31e98ea92b57c8f45e10ec167d420f5eb11b9410feb075c321c3798fdb53"
+    },
+    {
+      "path": "clothes/toigo_wool_pants/pants_wool.obj",
+      "bytes": 108902,
+      "sha256": "e02cd1e417ca3365e4dafc033f415c5186739df535d98810075cface0ce59c96"
+    },
+    {
+      "path": "clothes/toigo_wool_pants/toigo_wool_pants.mhclo",
+      "bytes": 93219,
+      "sha256": "ac1a57a817976d80ece8a88698873d54de7f252d01ba3dca5e361693621fcf22"
+    },
+    {
+      "path": "clothes/toigo_wool_pants/toigo_wool_pants.thumb",
+      "bytes": 36834,
+      "sha256": "23dfe8875ee2fbdaef1e705871d2054868198fc415188ec177bebf96a09b944c"
+    },
+    {
+      "path": "clothes/toigo_halter_dress_knee_length/DressCloth3UV.png",
+      "bytes": 668702,
+      "sha256": "45ec64abbb9346751de8059f7c77bc719c9a7d5186c895168f1a8432ea0ec26a"
+    },
+    {
+      "path": "clothes/toigo_halter_dress_knee_length/dress_knee_halter.mhmat",
+      "bytes": 513,
+      "sha256": "ccdb35f08daf4b4896e6f7a655c89eee39170793fe3d095482ab326056dfa64b"
+    },
+    {
+      "path": "clothes/toigo_halter_dress_knee_length/dress_knee_halter.obj",
+      "bytes": 160743,
+      "sha256": "b7edb42f6a8087c46ea79c011669f2207c5f5656a6c17ff1d9435c8a05dfa4f6"
+    },
+    {
+      "path": "clothes/toigo_halter_dress_knee_length/toigo_halter_dress_knee_length.mhclo",
+      "bytes": 138176,
+      "sha256": "043447253bdb06272eb2565cc7fb484f5cf1c010d0e251314135b72287a5c374"
+    },
+    {
+      "path": "clothes/toigo_halter_dress_knee_length/toigo_halter_dress_knee_length.thumb",
+      "bytes": 42034,
+      "sha256": "42c018aa5b55248c3e49143b0267b083b3c5e085ef007a5cd7ad4c84b3c5a131"
+    },
+    {
+      "path": "clothes/toigo_female_suit_2/Fsuit2-norm.png",
+      "bytes": 2583270,
+      "sha256": "2ce673245d1fb62b6aec0e785bb498268aaeef25a2576612393cc4ddc7cfc8bd"
+    },
+    {
+      "path": "clothes/toigo_female_suit_2/Fsuit2-spec.png",
+      "bytes": 21439,
+      "sha256": "da7de2e179f4c06e35b6453232edc9c0aac752cda13e218b9ace54ef0cbbca51"
+    },
+    {
+      "path": "clothes/toigo_female_suit_2/Fsuit2.png",
+      "bytes": 2611873,
+      "sha256": "b3f0a27b957783696a6b9bed71ba73779831515418a72d3f4680cdc972ce990a"
+    },
+    {
+      "path": "clothes/toigo_female_suit_2/fem_suit2.mhmat",
+      "bytes": 543,
+      "sha256": "c6cd9227461acb3bdcb1bd3ea4784f3af23a83185b51b321fe1101321e1823d9"
+    },
+    {
+      "path": "clothes/toigo_female_suit_2/fem_suit2.obj",
+      "bytes": 703468,
+      "sha256": "a322ac52ac113b08e5436dea787768180740c86db7e0a2b07b274b36a16467b3"
+    },
+    {
+      "path": "clothes/toigo_female_suit_2/toigo_female_suit_2.mhclo",
+      "bytes": 576417,
+      "sha256": "3156c2113c18028dd8d12f3d4ad77b29008cd982a444f86f5d18be003240929c"
+    },
+    {
+      "path": "clothes/toigo_female_suit_2/toigo_female_suit_2.thumb",
+      "bytes": 36633,
+      "sha256": "de9751f760d8d54cdf40c9506d1c67f5ed99ce5827ebd3408415727001d39fd3"
+    },
+    {
+      "path": "clothes/toigo_male_suit_3/NewSuit3-norm.png",
+      "bytes": 2834770,
+      "sha256": "118115b7ecd7254e3f0da718ac728ca9113ae602ba6e77f59b7272490eb87f95"
+    },
+    {
+      "path": "clothes/toigo_male_suit_3/NewSuit3-spec.png",
+      "bytes": 31606,
+      "sha256": "a08f5774194f56770cc9fecb117667554b0769fdbb74dd87ecd3ac3df9da110b"
+    },
+    {
+      "path": "clothes/toigo_male_suit_3/NewSuit3.png",
+      "bytes": 2396683,
+      "sha256": "7a3fa6cf10d3fcc2946469efcf066e2f5898d1a9dfa10a3df4a1ff2495dc17dc"
+    },
+    {
+      "path": "clothes/toigo_male_suit_3/suit3.mhmat",
+      "bytes": 559,
+      "sha256": "be7be987fa5aede1aee34112cbbc1ff5a803240f21ee16f40655efb6161cd92e"
+    },
+    {
+      "path": "clothes/toigo_male_suit_3/suit3.obj",
+      "bytes": 704735,
+      "sha256": "1412a998988f19696e00637afd69e64499d727a0c6ab7527f8713129990f0e43"
+    },
+    {
+      "path": "clothes/toigo_male_suit_3/toigo_male_suit_3.mhclo",
+      "bytes": 577386,
+      "sha256": "e5457dffafce4a5f44e179278c712e64a040b5e5e3aa41f15ed8100be5694c01"
+    },
+    {
+      "path": "clothes/toigo_male_suit_3/toigo_male_suit_3.thumb",
+      "bytes": 36626,
+      "sha256": "cbba6702cb0ba9b78e2e57308007a7fd519aade72c8e97542e0ee782649cdb58"
+    },
+    {
+      "path": "clothes/shoes02/shoes02.mhclo",
+      "bytes": 110217,
+      "sha256": "0d447fd6b7415d6b2603e91697336ee51ac2f00ef85878d6667e9acfb45a20fe"
+    },
+    {
+      "path": "clothes/shoes02/shoes02.mhmat",
+      "bytes": 1184,
+      "sha256": "7f2cb19506784fbe22ba3f766f94bb13d1eee1712dd29ed10b926c5905bab924"
+    },
+    {
+      "path": "clothes/shoes02/shoes02.mhw",
+      "bytes": 309023,
+      "sha256": "dba34894b93f102ea64d7ad21968894a9788c7a0770c066584a66a536a3e92b6"
+    },
+    {
+      "path": "clothes/shoes02/shoes02.obj",
+      "bytes": 125457,
+      "sha256": "5726aabac42ff489998d0a769545dea013961bbb71b9c6024d75170181a98818"
+    },
+    {
+      "path": "clothes/shoes02/shoes02.thumb",
+      "bytes": 43978,
+      "sha256": "0e41c095f5ff5a13c0d2b12a6c96d65d907137e1ae3fb120ff14300fc818015d"
+    },
+    {
+      "path": "clothes/shoes02/shoes02_diffuse.png",
+      "bytes": 1282057,
+      "sha256": "efef94ea34b0e0c2283095cb47a9e0389b55449c61a4f4972d0ad4d2bf06b4f0"
+    }
+  ],
+  "buildScriptSha256": "937a61680dcc3745f5324a5ba30c3ed63777aeb1bdca2fe4918c32d520f0c856"
+}

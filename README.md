@@ -1,100 +1,41 @@
-<p align="center">
-  <img src="./frontend/public/logo.svg" alt="wardrowbe" width="120" height="120">
-</p>
+# 搭搭 · AI 衣橱与穿搭助手
 
-<h1 align="center">wardrowbe</h1>
+云上码术队 · 京东 Aidol 创造营 S2 冒险季 · AI 应用
 
-<p align="center">
-  Put your wardrobe in rows. Snap. Organize. Wear.
-</p>
-<p align="center">
-  <a href="https://claude.ai/code"><img src="https://img.shields.io/badge/Built%20with%20Claude%20Code-D97757?style=for-the-badge&logo=claude&logoColor=white" alt="Built with Claude Code"></a>
-  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white" alt="Next.js"></a>
-  <a href="https://fastapi.tiangolo.com/"><img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI"></a>
-  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"></a>
-  <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"></a>
-</p>
+整理已有衣物，按天气和场合获得搭配建议，探索风格、试穿照片并查看预设三维造型。项目在比赛期间引入开源 [Wardrowbe](https://github.com/Anyesh/wardrowbe) 继续开发，保留上游 [MIT 许可证](LICENSE)。
 
-<p align="center">
-  <a href="#features">Features</a> •
-  <a href="#quick-start">Quick Start</a> •
-  <a href="#ai-configuration">AI</a> •
-  <a href="#deployment">Deployment</a> •
-  <a href="#configuration">Configuration</a> •
-  <a href="#contributing">Contributing</a>
-</p>
+## 作品体验与交付
 
-<p align="center">
-  <a href="https://buymeacoffee.com/anyesh">
-    <img src="https://img.shields.io/badge/Buy%20Me%20A%20Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy Me A Coffee">
-  </a>
-</p>
+| 项目 | 内容 |
+|---|---|
+| 产品地址 | [公网体验入口](http://124.70.96.183:6780/dashboard) |
+| 测试账号 | 专用演示账号与密码随组委会提交表单私下提供；浏览器弹窗认证后自动进入应用，详见[体验说明](docs/submission/README.md) |
+| 运行环境 | 公网 Ubuntu 24.04 x86_64、Node.js 22、Python 3.12；桌面 Chrome / Edge；本机 macOS + Docker Desktop |
+| 可访问期限 | 队长已确认服务器与云桥模型额度保障至 **2026-11-10**；服务开机启动并异常自动重启 |
+| 公开仓库 | [2892480843/AIdol](https://github.com/2892480843/AIdol) |
+| 冻结版本 | `aidol-final-20261018`；完整提交号、源码包、演示视频与校验值见[同名 Release](https://github.com/2892480843/AIdol/releases/tag/aidol-final-20261018) |
+| 从源码启动 | [运行说明](docs/submission/RUNNING.md)；既有本机发布记录见 [LOCAL-DEPLOYMENT.md](LOCAL-DEPLOYMENT.md) |
+| 成果认定 | [赛前状态与48小时新增](docs/submission/BASELINE-AND-CHANGES.md) |
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Google%20Play-Coming%20Soon-34A853?style=for-the-badge&logo=googleplay&logoColor=white" alt="Google Play - Coming Soon">
-  &nbsp;
-  <a href="https://apps.apple.com/us/app/wardrowbe/id6759947671">
-    <img src="https://img.shields.io/badge/App%20Store-0D96F6?style=for-the-badge&logo=appstore&logoColor=white" alt="App Store">
-  </a>
-</p>
+公网入口当前使用 HTTP，需密码认证；摄像头/麦克风演示使用本机 localhost，公网可选择文件上传。专用演示数据是合成衣物，不包含本机私人数据库。完整提交资料索引见 [docs/submission/README.md](docs/submission/README.md)。
 
-Self-hosted wardrobe management with AI-powered outfit recommendations. Take photos of your clothes, let AI tag them, and get daily outfit suggestions based on weather and occasion.
+## 模型、API 与开源组件
 
-## 京东 Aidol 创造营 S2 冒险季参赛说明
+- 衣物识别：`Qwen3.8-max`；穿搭推荐：`Doubao-Seed-2.0-Mini`；照片试穿：`Doubao-Seedream-5.0-lite`。
+- 当前云端接口：`https://aistore.gsiig.cn/v1`，采用 OpenAI 兼容 API（同类模型请求格式），依赖网络和额度；真实密钥不随源码交付。
+- 服务器本地模型：SCHP ATR18 INT8 ONNX 进行衣物可见区域提取，u2net / rembg 进行去背景，不在请求期间下载权重。
+- 主要组件：Next.js / React / TypeScript / Mantine（网页）、Three.js（三维）、FastAPI（后端）、PostgreSQL / SQLAlchemy（数据）、Redis / ARQ（任务）、可选 RustFS / S3（对象存储）与 OpenTelemetry（运行观测）。
+- 完整版本、模型部署、来源与边界见[依赖清单](docs/submission/DEPENDENCIES.md)和[运行说明](docs/submission/RUNNING.md)。
 
-本仓库用于「云上码术」队参加京东 Aidol 创造营 S2 冒险季，作品为 **Wardrowbe 智能衣橱与穿搭助手**：拍照整理已有衣物，根据天气、场合与个人偏好生成穿搭建议，帮助用户决定今天穿什么。
+## 赛前已有与48小时新增
 
-| 项目 | 说明 |
-| --- | --- |
-| 队伍 | 云上码术 |
-| 队长 | 陈帅 |
-| 队员 | 阮虹、翊元乘壹 |
-| 作品形态 | 浏览器访问的智能衣橱应用 |
-| 建议赛道 | AI 应用；正式赛道及特别挑战以团队报名记录为准 |
-| 代码仓库 | [2892480843/AIdol](https://github.com/2892480843/AIdol) |
-| 比赛手册 | [选手通关手册](https://aidol-handbook.apps.waytoagi.me/#overview) |
+**队长确认赛前团队成果为零。** 比赛期间引入 Wardrowbe，上游基础为 `cfbb5a9`；上游已经具备衣橱、识衣、推荐、家庭、统计、通知等能力，不计作团队原创。团队在其基础上完成搭搭品牌及界面、云桥适配、持久任务、私有存储与账号隔离改进、风格发现、一件多搭、三维衣柜与造型、照片试穿、衣物提取及公网交付集成。详见[逐项对照及可复现差异](docs/submission/BASELINE-AND-CHANGES.md)。
 
-### 用户问题与使用流程
+当前未提供组委会赛前存档回执；团队声明不等于主办方认证。预设三维人物不是用户本人照片重建，照片试穿是二维生成，衣物提取不补画遮挡部分。
 
-面向希望整理个人衣橱、减少日常搭配决策负担的用户。衣物分散、记不清已有单品，以及天气和场合变化，是本作品关注的使用场景；实际节省时间与用户满意度仍需通过用户试用衡量。
+## 本机运行与验证
 
-1. 上传衣物照片，AI 提取衣物类型、颜色等信息，用户可以检查和修改。
-2. 选择天气、出行场合和偏好，也可以指定想穿的单品。
-3. 提交推荐任务，查看进度并获得最多三套搭配及中文说明。
-4. 选择喜欢的搭配，记录穿着或反馈，供后续管理与推荐使用。
-
-### AI 的作用与运行分工
-
-| 环节 | 输入与输出 | 运行位置与依赖 |
-| --- | --- | --- |
-| 衣物识别 | 衣物照片 → 衣物属性和描述 | 当前本机配置通过云端接口调用 `Qwen3.8-max` |
-| 穿搭生成 | 衣橱单品、天气、场合和偏好 → 单品组合及搭配理由 | 当前本机配置通过云端接口调用 `Doubao-Seed-2.0-Mini` |
-| 数据与任务管理 | 保存衣物、任务进度、搭配结果及反馈 | 本机 Docker 服务，使用 PostgreSQL 数据库、Redis 队列和私有图片存储 |
-
-当前模型接口为 `https://aistore.gsiig.cn/v1`，采用 OpenAI 兼容 API（遵循同类请求格式的模型接口）。模型名称和可用额度以实际账号配置为准；本机部署仍需联网调用模型。接口密钥保存在被 Git 忽略的环境文件中，仓库不包含真实密钥。
-
-### 开源基础与本仓库改进
-
-项目基于 [Anyesh/wardrowbe](https://github.com/Anyesh/wardrowbe) 继续开发，保留上游 [MIT 许可证与版权声明](LICENSE)。所引入的上游提交为 [`cfbb5a9`](https://github.com/Anyesh/wardrowbe/commit/cfbb5a9)，原项目已包含衣橱管理、AI 识衣与推荐、穿着记录、家庭、统计和通知等功能。
-
-主要开源组件包括 Next.js / React / TypeScript（网页界面）、FastAPI（后端接口）、SQLAlchemy / PostgreSQL（数据存取）、ARQ / Redis（后台任务）、RustFS（兼容 S3 的对象存储）与 OpenTelemetry（运行指标和调用追踪）。
-
-| 功能 | 上游已有能力 | 本仓库中的扩展或修复 | 对应代码 |
-| --- | --- | --- | --- |
-| 模型接入 | AI 识衣与穿搭生成 | 兼容当前云端接口响应，集中处理模型请求与重试 | [模型调用模块](backend/app/services/model_gateway.py) |
-| 推荐任务 | 穿搭推荐 | 保存任务进度，支持刷新恢复、取消、失败重试及重复请求复用 | [任务接口](backend/app/api/tasks.py)、[任务执行](backend/app/tasks/execution.py) |
-| 推荐页面 | 推荐条件与结果展示 | 拆分操作区域，增加任务状态与历史任务恢复 | [推荐工作区](frontend/components/recommendations/recommendation-workspace.tsx) |
-| 图片存储 | 本地文件存储 | 增加私有对象存储适配，以及迁移和校验工具 | [存储模块](backend/app/storage/)、[迁移脚本](backend/scripts/migrate_storage.py) |
-| 运行诊断 | 日志记录 | 增加请求与任务关联、模型调用指标 | [运行观测模块](backend/app/observability.py) |
-| 账号切换与上传 | 登录、上传和数据缓存 | 加强账号切换时的状态清理与上传归属检查 | [页面状态管理](frontend/app/providers.tsx)、[上传管理](frontend/lib/upload-manager.ts) |
-
-**本表区分上游功能与当前仓库改动；比赛期间新增成果的认定，须对照实际赛前存档、GitHub 推送记录与关卡记录。**赛前存档提交状态尚未在本仓库确认，不能仅凭本地提交时间认定新增成果。
-
-### 本机体验与演示
-
-当前演示环境为 macOS 上的 Docker Desktop，网页地址为 `http://localhost:3000`，后端就绪检查为 `http://localhost:18000/api/v1/health/ready`。这些地址仅适用于运行服务的电脑。
-
-已配置的本机环境可运行：
+请先按[运行说明](docs/submission/RUNNING.md)准备私有配置、构建镜像、初始化数据库及模型。已配置电脑可运行：
 
 ```bash
 ./local.sh up -d
@@ -102,34 +43,13 @@ Self-hosted wardrobe management with AI-powered outfit recommendations. Take pho
 curl -fsS http://localhost:18000/api/v1/health/ready
 ```
 
-启动前需配置 `.env`、`.env.ai.local` 和 `.env.architecture.local` 中的数据库、模型与对象存储参数，并构建本项目镜像；新环境不能仅克隆仓库后直接运行上述命令。配置与初始化说明见 [本机部署文档](LOCAL-DEPLOYMENT.md)，服务定义见 [本地配置](docker-compose.local.yml) 和 [扩展服务配置](docker-compose.architecture.yml)。
+本机网页为 `http://localhost:3000`，开发演示邮箱可用 `demo@wardrowbe.local`；该邮箱不是公网入口认证账号。
 
-打开网页后使用本地开发登录；可使用 `demo@wardrowbe.local` 作为演示邮箱。全新环境需先添加衣物，再演示「上传 → 识别 → 推荐 → 选择搭配」的完整流程。当前未提供公网体验地址，最终交付需补充可访问的体验入口，或按手册要求采用现场演示与视频。
+验收记录见 [verification/submission](verification/submission/)、[公网部署](ops/server-6780/README.md)和[功能矩阵](verification/full-function/FEATURE-MATRIX.md)。历史报告仅反映记录时的版本；本次新检查与结果单独留存。材料准备与 GitHub 发布不代表组委会最终表单已提交，仍须以表单成功回执为准。
 
-已有测试与演示记录见 [功能验收报告](verification/REPORT.md)、[结果汇总](verification/SUMMARY.json) 和 [任务验收脚本](verification/architecture/live_tasks.py)。报告反映其记录版本，最终提交前需针对冻结版本重新确认。
+---
 
-### 已知限制
-
-- 当前为本机 Web 演示；正式公网部署、外部统一登录和手机端体验尚未完成验收。
-- 识别与推荐依赖模型服务、网络和额度；结果需要用户核对，有限样例不能代表所有衣物和场景的效果。
-- 邮件、Mattermost 和手机推送需要额外服务配置；现有本机通知测试不代表外部投递已完成。
-- 项目基于已有开源软件开发，最终材料需如实说明第三方基础与团队完成的改进。
-
-### 最终交付待办
-
-依据[手册交付规则](https://aidol-handbook.apps.waytoagi.me/#submit)，最终提交截止为 **2026 年 10 月 18 日 23:59:59（北京时间）**。规则以主办方最新通知为准。
-
-- [ ] 核对赛前存档回执、完整成员名单和分工，确认正式赛道。
-- [ ] 将作品说明补入[官方模板副本](https://waytoagi.feishu.cn/docx/ATKBdB9iroVmq0xyPCocG2jhne4)，按实际存档填写已有与新增成果对照。
-- [ ] 提供不超过 3 分钟、与提交版本一致的真实操作演示视频。
-- [ ] 汇总至少 4 篇比赛期间发布的小红书日志链接；话题及账号要求见[手册日志章节](https://aidol-handbook.apps.waytoagi.me/#coins)。
-- [ ] 提供评委可访问的体验方式和测试账号；软件体验入口需按规则维护至结果公示。
-- [x] 代码仓库已公开，可直接访问源代码；其他材料链接仍需在最终提交前逐项检查。
-- [ ] 比赛过程中按手册要求至少每 6 小时推送一次进展。
-- [ ] 交付前建立 `final` 标签，填写对应完整 40 位提交编号，并使作品、视频和说明对应同一版本；冻结后另开分支迭代。
-- [ ] 在截止前通过[最终作品提交表单](https://waytoagi.feishu.cn/share/base/shrcnaQxjHwjFVFbJhZ0M3dFEVc)提交，并保存回执。
-
-以上待办尚未代表已完成正式提交；本 README 作为仓库说明，不能替代表单存档与交付。
+以下保留上游功能说明与通用配置参考；其中上游镜像、默认模型和安装方式不代表本次参赛冻结版本，应优先遵循上方交付与运行说明。
 
 ## Features
 

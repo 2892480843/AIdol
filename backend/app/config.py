@@ -108,6 +108,12 @@ class Settings(BaseSettings):
     ai_max_tokens: int = Field(default=8000)
     ai_reasoning_effort: str | None = Field(default="none")
 
+    # Explicit image edits use the existing server-side AI gateway credentials.
+    # This capability never falls back to chat completions or retries a paid edit.
+    tryon_enabled: bool = True
+    tryon_model: str = Field(default="Doubao-Seedream-5.0-lite", min_length=1, max_length=140)
+    tryon_timeout_seconds: float = Field(default=90, ge=5, le=90)
+
     @field_validator("ai_reasoning_effort", mode="before")
     @classmethod
     def normalize_reasoning_effort(cls, v: str | None) -> str | None:

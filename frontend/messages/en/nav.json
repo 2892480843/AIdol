@@ -21,5 +21,11 @@
   "toggleTheme": "Toggle theme",
   "userFallback": "User",
   "wardrobe": "Wardrobe",
-  "inspiration": "Style notes"
+  "inspiration": "Style notes",
+  "looks": "Outfit switcher",
+  "tryOn": "Photo try-on",
+  "closet3d": "3D closet",
+  "avatarStudio": "Avatar studio",
+  "dailySection": "Everyday dressing",
+  "exploreSection": "Explore & collect"
 }

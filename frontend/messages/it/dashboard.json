@@ -126,7 +126,7 @@
     "currentIssue": "IL MIO GUARDAROBA",
     "sampleImage": "Illustrazione di stile",
     "methods": "Il tuo prossimo abbinamento preferito inizia qui",
-    "methodsSubtitle": "Sei piccoli esercizi ispirati a consigli di stile pubblici. Inizia dai tuoi vestiti.",
+    "methodsSubtitle": "Trova un piccolo esercizio nelle idee di stile pubbliche e inizia con i vestiti che hai già.",
     "allMethods": "Scopri di più",
     "serviceTitle": "Le cose pratiche",
     "serviceSubtitle": "Un guardaroba curato è un guardaroba che indossi.",
@@ -140,7 +140,7 @@
   "inspiration": {
     "eyebrow": "ALLA SCOPERTA DELLO STILE",
     "title": "Trova la tua ispirazione. Falla tua.",
-    "description": "Esplora metodi di stile pubblici, poi prova la tua versione con i capi che possiedi già.",
+    "description": "Trova un’idea in una rubrica o su Douyin, poi provala passo dopo passo con i vestiti che hai già.",
     "search": "Cerca idee o autori",
     "all": "Scopri",
     "savedOnly": "Salvati",
@@ -170,7 +170,7 @@
     "bookmarksLocal": "Le idee salvate restano su questo dispositivo, associate al tuo account.",
     "bookmarkError": "Questo browser non ha potuto salvare le tue idee. Controlla le impostazioni di archiviazione locale.",
     "creatorsTitle": "Autori e autrici da cui trarre ispirazione",
-    "sourcesNote": "Questi esercizi sono nostri adattamenti di consigli pubblici. I collegamenti citano gli autori delle fonti senza implicare il loro sostegno a questa app.",
+    "sourcesNote": "Dada crea questi esercizi e rimanda a fonti pubbliche da leggere o guardare. Gli autori e le autrici non collaborano con questa app e non l’hanno raccomandata.",
     "viewSource": "Leggi l’originale",
     "resetSelections": "Reimposta le scelte",
     "colorHint": "Prima di indossare l’abbinamento, controlla la nota sui colori.",
@@ -190,32 +190,92 @@
       "everyday": {
         "title": "I preferiti di sempre",
         "summary": "Un capo sopra, uno sotto e le scarpe. Concedi un’altra uscita a un buon abbinamento di base.",
-        "tip": "Scegli capi comodi che indossi già volentieri. Cambia un solo dettaglio, poi salva ciò che funziona."
+        "tip": "Scegli capi comodi che indossi già volentieri. Cambia un solo dettaglio, poi salva ciò che funziona.",
+        "steps": {
+          "pick": "Inizia con un capo preferito per la parte superiore, un pantalone o una gonna comodi e le scarpe.",
+          "adjust": "Mantieni la base e cambia solo le scarpe o il modo di sistemare l’orlo. Lascia da parte la borsa se non serve.",
+          "review": "Cammina un po’ con l’abbinamento, poi porta nello studio la versione che ti piace."
+        }
       },
       "layer": {
         "title": "Uno strato pensato bene",
         "summary": "Una base semplice, completata da uno strato esterno utile.",
-        "tip": "Mantieni una base facile da ripetere. Scegli lo strato esterno in base ai tuoi programmi e al meteo, poi controlla la silhouette allo specchio."
+        "tip": "Mantieni una base facile da ripetere. Scegli lo strato esterno in base ai tuoi programmi e al meteo, poi controlla la silhouette allo specchio.",
+        "steps": {
+          "pick": "Parti da una base che conosci e scegli un capo da sovrapporre come protagonista.",
+          "adjust": "Con lo strato aggiunto, controlla la vestibilità e la lunghezza dell’orlo, lasciando spazio per muoverti.",
+          "review": "Prima di salvare la tua versione, valuta se questo esercizio con uno strato in più è adatto al tempo."
+        }
       },
       "balance": {
         "title": "Lascia spazio a una forma",
         "summary": "Prova un capo più ampio con uno dalle linee più definite.",
-        "tip": "Scegli un capo protagonista. Sistema il bordo infilato, un orlo o una manica e osserva quali proporzioni ti fanno sentire a tuo agio."
+        "tip": "Scegli un capo protagonista. Sistema il bordo infilato, un orlo o una manica e osserva quali proporzioni ti fanno sentire a tuo agio.",
+        "steps": {
+          "pick": "Scegli un capo da mettere in risalto e abbinalo a vestiti che usi spesso.",
+          "adjust": "Sistema un orlo, il fondo dei pantaloni o una manica, cambiando una sola cosa alla volta.",
+          "review": "Guardati allo specchio e muoviti prima di salvare una silhouette che ti piace."
+        }
       },
       "accent": {
         "title": "Una piccola nota di colore",
         "summary": "Una base sobria con un dettaglio finale più vivace, se ti va.",
-        "tip": "Prova un po’ di colore in una borsa, una sciarpa o una cintura. Riprendi una tonalità che ami, senza dover comprare un nuovo capo."
+        "tip": "Prova un po’ di colore in una borsa, una sciarpa o una cintura. Riprendi una tonalità che ami, senza dover comprare un nuovo capo.",
+        "steps": {
+          "pick": "Mantieni una base familiare e scegli un accessorio che possiedi già.",
+          "adjust": "Confronta l’abbinamento con e senza l’accessorio; lascialo da parte se preferisci.",
+          "review": "Scegli il dettaglio da valorizzare e perfeziona l’insieme nello studio."
+        }
       },
       "dress": {
         "title": "Due pezzi per iniziare con facilità",
         "summary": "Un abito o una tuta intera e un paio di scarpe; aggiungi uno strato se vuoi.",
-        "tip": "Inizia con un capo intero che ami indossare. Valuta l’orlo insieme alle scarpe, poi modifica un dettaglio o lo strato esterno."
+        "tip": "Inizia con un capo intero che ami indossare. Valuta l’orlo insieme alle scarpe, poi modifica un dettaglio o lo strato esterno.",
+        "steps": {
+          "pick": "Scegli un vestito o una tuta che vuoi indossare e un paio di scarpe comode.",
+          "adjust": "Cambia solo le scarpe, l’orlo o le maniche; lascia da parte lo strato esterno se non serve.",
+          "review": "Controlla di poter camminare e sederti comodamente, poi salva la tua versione."
+        }
       },
       "tonal": {
         "title": "Colori discreti, più profondità",
         "summary": "Esplora una famiglia di colori simili con un po’ di contrasto tra chiaro e scuro.",
-        "tip": "Confronta i capi reali alla luce del giorno. Etichette di colore simili sono solo un punto di partenza; trame e sfumature aggiungono interesse."
+        "tip": "Confronta i capi reali alla luce del giorno. Etichette di colore simili sono solo un punto di partenza; trame e sfumature aggiungono interesse.",
+        "steps": {
+          "pick": "Metti vicini il capo superiore e quello inferiore e cerca colori affini.",
+          "adjust": "Confronta le tonalità chiare e scure e i tessuti, sostituendo un solo capo alla volta.",
+          "review": "Controlla i colori reali alla luce del giorno, poi salva un abbinamento comodo che ti piace."
+        }
+      },
+      "colorPlay": {
+        "steps": {
+          "pick": "Scegli un capo superiore in un colore che vuoi indossare, mantenendo comodi il capo inferiore e le scarpe.",
+          "adjust": "Cambia solo il capo superiore o un accessorio e nota cosa attira la tua attenzione.",
+          "review": "Osserva i capi alla luce del giorno e porta l’abbinamento nello studio per perfezionarlo."
+        },
+        "title": "Lascia spazio a un colore",
+        "summary": "Scegli un capo superiore colorato che ami e mantieni inizialmente semplici gli altri capi.",
+        "tip": "È un esercizio di colore, non una regola fissa. Confronta i capi reali e aggiungi altri colori se ti piace."
+      },
+      "easyLayers": {
+        "steps": {
+          "pick": "Crea una base comoda con un capo superiore, uno inferiore e le scarpe, che funzioni anche da sola.",
+          "adjust": "Confronta la libertà di movimento con e senza lo strato esterno. Lascialo da parte se non serve.",
+          "review": "Mantieni gli strati che vuoi indossare oggi e salva la tua versione nello studio."
+        },
+        "title": "Lo strato giusto per il tempo",
+        "summary": "Inizia con un capo superiore, uno inferiore e le scarpe. Lo strato esterno è facoltativo: saltalo quando non serve.",
+        "tip": "Usa la sovrapposizione come tema del tuo esercizio. Temperatura, libertà di movimento e comfort contano più del numero di strati."
+      },
+      "detailEcho": {
+        "steps": {
+          "pick": "Scegli un capo superiore con un colore che ami e aggiungi un capo inferiore familiare.",
+          "adjust": "Cambia solo le scarpe o un accessorio per richiamare un colore del capo superiore. Puoi lasciare da parte l’accessorio.",
+          "review": "Confronta i capi reali e come li senti addosso, poi salva un abbinamento da perfezionare."
+        },
+        "title": "Un dettaglio che si richiama",
+        "summary": "Cerca un colore affine tra scarpe, capo superiore e accessori.",
+        "tip": "Riprendere un piccolo tocco di colore è un esperimento facoltativo. Le etichette dei colori non possono valutare fantasie, tessuti o l’effetto su di te."
       }
     },
     "creators": {
@@ -224,7 +284,211 @@
       "imogen": "Esplorare colori e contrasti",
       "jamie": "Costruire l’abbinamento attorno a un capo protagonista",
       "becky": "Idee quotidiane su proporzioni e colori",
-      "jean": "Curare gli orli e i dettagli finali"
+      "jean": "Curare gli orli e i dettagli finali",
+      "yanbaiwan": "Parti dal tema del colore per provare un capo colorato che possiedi.",
+      "xiebao": "Esplora gli strati e decidi se aggiungerne uno in base alla temperatura.",
+      "changxin": "Prova un piccolo richiamo di colore come esperimento di stile personale."
+    },
+    "sourceFilter": "Piattaforma di origine",
+    "allSources": "Tutte le fonti",
+    "platforms": {
+      "douyin": "Douyin",
+      "article": "Rubriche indipendenti"
+    },
+    "creatorFilter": "Autore o autrice",
+    "allCreators": "Tutti gli autori e le autrici",
+    "viewPractice": "Prova l’esercizio",
+    "viewProfile": "Profilo dell’autore o dell’autrice",
+    "viewVideo": "Guarda il video originale",
+    "videoNote": "Questo video è un riferimento tematico per il nostro esercizio. Su Douyin trovi l’opera completa; qui non viene trascritto né ricreato l’intero video.",
+    "skipOptional": "Salta {name}",
+    "restoreOptional": "Ripristina {name}",
+    "skippedOptional": "Lascia fuori questo capo",
+    "skippedNote": "Questo capo facoltativo è stato escluso. Puoi ripristinarlo in qualsiasi momento.",
+    "guideTitle": "Prova l’idea in tre passi",
+    "guideDescription": "Inizia con i vestiti che hai già, poi adatta l’abbinamento al tempo, ai tuoi programmi e alle tue preferenze.",
+    "stepTitles": {
+      "pick": "Scegli un capo di partenza",
+      "adjust": "Cambia un dettaglio",
+      "review": "Prova, poi salva"
+    },
+    "anchor": {
+      "title": "Un capo, più idee",
+      "description": "Scegli un capo che possiedi e provalo in diversi esercizi di stile.",
+      "choose": "Scegli un capo di partenza",
+      "allItems": "Nessun capo di partenza selezionato",
+      "clear": "Deseleziona il capo di partenza",
+      "locked": "Questo capo rimane nell’abbinamento. Scegli un altro capo di partenza per sostituirlo.",
+      "compatibleCount": "Esercizi compatibili: {count}",
+      "empty": "Nessun capo disponibile trovato.",
+      "loading": "Caricamento dei capi disponibili…",
+      "partial": "Caricati {loaded} capi su {total}. Puoi caricarne altri.",
+      "unavailable": "Questo capo non è disponibile per gli esercizi. Scegline un altro.",
+      "creatorReset": "Il capo di partenza è stato rimosso per mostrare gli esercizi collegati a questo autore o a questa autrice.",
+      "resetHint": "Il ripristino cancella le altre scelte e i capi esclusi, mantenendo il capo di partenza."
+    }
+  },
+  "looks": {
+    "title": "Cambia outfit",
+    "description": "Confronta look interi, foto dei tuoi outfit e un’anteprima IA per un capo.",
+    "tabs": {
+      "model": "Scopri gli stili",
+      "worn": "I miei outfit",
+      "tryon": "Prova IA"
+    },
+    "modelNotice": "Esempi originali con modella generati dall’IA. Non sono prove dei tuoi vestiti.",
+    "switcher": {
+      "previous": "Look precedente",
+      "next": "Look successivo",
+      "select": "Seleziona il look {index}",
+      "position": "{current} / {total}",
+      "compare": "Confronta due look",
+      "compareWith": "Confronta con",
+      "imageUnavailable": "Immagine non disponibile",
+      "empty": "Nessun look da mostrare."
+    },
+    "modelNames": {
+      "casual": "T-shirt bianca e denim",
+      "office": "Camicia blu per l’ufficio",
+      "layer": "Strati con gilet in maglia",
+      "outer": "Giacca oliva per il weekend"
+    },
+    "worn": {
+      "title": "Le mie foto outfit",
+      "description": "Aggiungi foto a figura intera e collega, se vuoi, i capi indossati.",
+      "localOnly": "Le foto sono salvate per account in questo browser. Cancellando i dati del sito verranno rimosse.",
+      "photos": "Foto outfit (JPEG, PNG o WebP)",
+      "name": "Nome della foto {index}",
+      "associate": "Collega capi del guardaroba",
+      "add": "Salva le foto outfit",
+      "adding": "Salvataggio…",
+      "empty": "Aggiungi la tua prima foto outfit.",
+      "delete": "Elimina foto",
+      "deleteTitle": "Eliminare questa foto outfit?",
+      "deleteDescription": "“{name}” verrà eliminata definitivamente da questo browser.",
+      "confirmDelete": "Elimina definitivamente",
+      "cancel": "Annulla",
+      "error": "Impossibile salvare la foto. Riprova.",
+      "partialError": "{count} foto non sono state salvate. Le altre sono conservate.",
+      "limit": "Massimo 20 foto, fino a 10 MB ciascuna.",
+      "errors": {
+        "invalid-photo": "Scegli una foto JPEG, PNG o WebP valida.",
+        "photo-too-large": "Ogni foto deve essere di massimo 10 MB.",
+        "invalid-name": "Inserisci un nome da 1 a 100 caratteri.",
+        "invalid-items": "Scegli fino a 12 capi validi.",
+        "limit-reached": "Hai raggiunto il limite di 20 foto.",
+        "storage-unavailable": "Lo spazio del browser non è disponibile. Consenti l’archiviazione per il sito.",
+        "quota-exceeded": "Lo spazio del browser è pieno. Libera spazio e riprova.",
+        "not-found": "Questa foto non è più disponibile.",
+        "session-changed": "L’account è cambiato. Seleziona di nuovo la foto.",
+        "invalid-record": "Il record della foto non è valido. Aggiungila di nuovo."
+      }
+    },
+    "tryon": {
+      "title": "Prova IA",
+      "description": "Carica una foto della persona e scegli un capo per una prova simulata. Per un outfit completo, usa il camerino.",
+      "loading": "Verifica del servizio…",
+      "unavailable": "La prova non è attiva. Completa prima la configurazione.",
+      "loadError": "Impossibile verificare il servizio. Riprova.",
+      "retry": "Riprova",
+      "personPhoto": "Foto della persona",
+      "garment": "Un capo dal guardaroba",
+      "chooseGarment": "Scegli un capo",
+      "sendNotice": "Avviando la prova, le foto selezionate vengono inviate a {provider} per generare l’immagine.",
+      "consent": "Ho il diritto di usare questa foto e acconsento all’invio delle immagini per la generazione.",
+      "start": "Genera la prova",
+      "starting": "Generazione…",
+      "result": "Risultato della prova",
+      "generatedNotice": "Simulazione IA. Dettagli e vestibilità possono differire dalla prova reale.",
+      "empty": "Nessun risultato di prova al momento.",
+      "error": "La prova non è stata completata. Controlla l’attività prima di riprovare.",
+      "queued": "In attesa",
+      "running": "Generazione",
+      "failed": "Non riuscita",
+      "succeeded": "Completata",
+      "unsupported": "Scegli un capo disponibile, pulito, non archiviato e supportato dal servizio."
+    },
+    "discovery": {
+      "eyebrow": "STYLE PLAYGROUND",
+      "title": "Oggi, prova un altro stile.",
+      "description": "Dallo streetwear al quotidiano, fai tuoi gli stili che ti piacciono.",
+      "all": "Tutti gli stili",
+      "searchLabel": "Cerca stili e look",
+      "searchPlaceholder": "Prova righe, utility o strati",
+      "reset": "Reimposta i filtri",
+      "clearSearch": "Cancella la ricerca",
+      "count": "{count, plural, one {# look} other {# look}}",
+      "styleCount": "{count, plural, one {# stile} other {# stili}}",
+      "preview": "Vedi il look",
+      "previewTitle": "Anteprima del look",
+      "close": "Chiudi anteprima",
+      "allTitle": "Lo stile, in libertà.",
+      "allDescription": "Sei idee di stile, dodici esempi originali. Scegli una direzione o crea la tua combinazione.",
+      "formulaTitle": "La combinazione",
+      "tipTitle": "Consigli per la prova",
+      "paletteTitle": "Palette di colori",
+      "practice": "Prova con il mio guardaroba",
+      "emptyTitle": "Nessun look trovato",
+      "emptyDescription": "Prova un’altra parola o cancella i filtri per esplorare altri stili.",
+      "filtersLabel": "Filtri di stile",
+      "styles": {
+        "street": {
+          "name": "Street utility",
+          "description": "Volumi morbidi con un accento deciso.",
+          "formula": "Top ampio + pantaloni o gonna semplici + scarpe",
+          "tip": "Scegli un capo protagonista e lascia semplice il resto. Controlla la vestibilità indossandolo.",
+          "keywords": "streetwear urbano antracite bomber oliva giacca utility oversize Street utility"
+        },
+        "sport": {
+          "name": "Athleisure",
+          "description": "Libertà di movimento, anche tutti i giorni.",
+          "formula": "Top comodo + pantaloni dal taglio pulito + sneakers",
+          "tip": "Cammina e alza le braccia per verificare la comodità, poi sistema gli orli.",
+          "keywords": "sport casual bordeaux crema giallo chiaro tuta zip sneakers Athleisure"
+        },
+        "cityboy": {
+          "name": "Cityboy giapponese",
+          "description": "Strati rilassati per vivere la città.",
+          "formula": "Top basic + pantaloni ampi + scarpe + strato facoltativo",
+          "tip": "Parti da una combinazione che funziona anche da sola, poi aggiungi uno strato secondo il meteo.",
+          "keywords": "cityboy urbano strati oversize camicia giacca rilassato Cityboy giapponese"
+        },
+        "clean": {
+          "name": "Minimal pulito",
+          "description": "Colori semplici e linee pulite.",
+          "formula": "Top basic + pantaloni o gonna quotidiani + scarpe comode",
+          "tip": "Sistema l’orlo o i polsini, poi cambia un solo dettaglio e confronta.",
+          "keywords": "essenziale minimal basic maglietta bianca camicia jeans quotidiano Minimal pulito"
+        },
+        "retro": {
+          "name": "Preppy rétro",
+          "description": "Texture e colori familiari, da portare a modo tuo.",
+          "formula": "Top e pantaloni basic + strato materico + scarpe",
+          "tip": "Metti al centro la maglia o la pelle e mantieni semplici gli altri capi.",
+          "keywords": "rétro vintage rombi maglia pelle marrone classico Preppy rétro"
+        },
+        "french": {
+          "name": "Relax alla francese",
+          "description": "Linee morbide e un tocco spontaneo.",
+          "formula": "Top e pantaloni in toni simili + scarpe neutre",
+          "tip": "Confronta dal vivo tonalità e materiali, poi aggiungi un dettaglio con righe o scollatura.",
+          "keywords": "francese parigino righe blusa blu navy beige disinvolto Relax alla francese"
+        }
+      },
+      "lookNames": {
+        "casual": "Maglietta bianca e jeans",
+        "office": "Camicia blu in ufficio",
+        "layer": "Maglia a strati",
+        "outer": "Uno strato leggero",
+        "streetBomber": "Bomber antracite",
+        "streetShell": "Giacca verde oliva",
+        "sportTrack": "Tuta bordeaux e crema",
+        "sportZip": "Giacca con zip giallo chiaro",
+        "retroArgyle": "Maglia a rombi bordeaux",
+        "retroLeather": "Giacca marrone effetto pelle",
+        "frenchStripe": "Righe e ballerine rosse",
+        "frenchBlouse": "Blusa crema e pantaloni beige"
+      }
     }
   }
 }

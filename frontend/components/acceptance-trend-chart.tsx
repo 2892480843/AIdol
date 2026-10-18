@@ -20,11 +20,12 @@ export function AcceptanceTrendChart({ data }: { data: AcceptanceRateTrend[] }) 
   const plotHeight = baseline - top;
   const x = (index: number) => left + (index / Math.max(data.length - 1, 1)) * (width - left - 20);
   const y = (rate: number) => baseline - (Math.min(100, Math.max(0, rate)) / 100) * plotHeight;
-  // A week without suggestions has no observed rate; leave a gap in the curve.
+  const hasResponses = (week: AcceptanceRateTrend) => week.accepted + week.rejected > 0;
+  // Pending suggestions have no observed acceptance rate; leave a gap in the curve.
   const segments: { index: number; week: AcceptanceRateTrend }[][] = [];
   data.forEach((week, index) => {
-    if (week.total <= 0) return;
-    if (index === 0 || data[index - 1].total <= 0) segments.push([]);
+    if (!hasResponses(week)) return;
+    if (index === 0 || !hasResponses(data[index - 1])) segments.push([]);
     segments[segments.length - 1].push({ index, week });
   });
 
@@ -52,7 +53,7 @@ export function AcceptanceTrendChart({ data }: { data: AcceptanceRateTrend[] }) 
               <polyline points={points} fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
               {segment.map(({ index, week }) => (
                 <circle key={week.period_start} data-rate={week.rate} cx={x(index)} cy={y(week.rate)} r="4.5" fill="currentColor" stroke="hsl(var(--card))" strokeWidth="2">
-                  <title>{formatDate(week.period_start, locale, PERIOD_OPTIONS)}: {t('percent', { value: week.rate.toFixed(0) })} ({week.accepted}/{week.total})</title>
+                  <title>{formatDate(week.period_start, locale, PERIOD_OPTIONS)}: {t('percent', { value: week.rate.toFixed(0) })} ({week.accepted}/{week.accepted + week.rejected})</title>
                 </circle>
               ))}
             </g>
@@ -64,7 +65,7 @@ export function AcceptanceTrendChart({ data }: { data: AcceptanceRateTrend[] }) 
         {data.map((week) => (
           <div key={week.period_start}>
             <span>{formatDate(week.period_start, locale, PERIOD_OPTIONS)}</span>
-            <strong className="font-medium text-foreground">{week.total > 0 ? t('percent', { value: week.rate.toFixed(0) }) : '—'}</strong>
+            <strong className="font-medium text-foreground">{hasResponses(week) ? t('percent', { value: week.rate.toFixed(0) }) : '—'}</strong>
           </div>
         ))}
       </figcaption>

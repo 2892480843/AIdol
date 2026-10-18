@@ -1,3 +1,4 @@
+import asyncio
 from collections import Counter
 from datetime import UTC, date, datetime, timedelta
 from uuid import UUID, uuid4
@@ -15,6 +16,8 @@ from app.models.item import (
     WashHistory,
 )
 from app.schemas.item import DEFAULT_WASH_INTERVALS, ItemCreate, ItemFilter, ItemUpdate
+from app.services.image_service import ImageService
+from app.services.tryon import cleanup_item_results
 
 
 class ItemService:
@@ -410,7 +413,34 @@ class ItemService:
 
         return claimed, cooling_down
 
-    async def delete(self, item: ClothingItem) -> None:
+    async def delete(
+        self, item: ClothingItem, *, image_service: ImageService | None = None
+    ) -> None:
+        # Match submission's item -> task lock order. The provider call itself
+        # never holds either lock, and its late result handles a deleted task.
+        current = (
+            await self.db.execute(
+                select(ClothingItem)
+                .where(ClothingItem.id == item.id, ClothingItem.user_id == item.user_id)
+                .with_for_update()
+                .execution_options(populate_existing=True)
+            )
+        ).scalar_one_or_none()
+        if current is None:
+            return
+        await cleanup_item_results(
+            self.db, current, storage=image_service.storage if image_service else None
+        )
+        if image_service:
+            await asyncio.to_thread(
+                image_service.delete_images,
+                {
+                    "image_path": current.image_path,
+                    "medium_path": current.medium_path,
+                    "thumbnail_path": current.thumbnail_path,
+                    "original_backup_path": current.original_image_path,
+                },
+            )
         await self.db.delete(item)
         await self.db.flush()
 

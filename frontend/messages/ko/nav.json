@@ -21,5 +21,11 @@
   "toggleTheme": "테마 전환",
   "userFallback": "사용자",
   "wardrobe": "옷장",
-  "inspiration": "스타일 노트"
+  "inspiration": "스타일 노트",
+  "looks": "코디 전환",
+  "tryOn": "사진으로 입어보기",
+  "closet3d": "3D 옷장",
+  "avatarStudio": "아바타 스튜디오",
+  "dailySection": "매일의 코디",
+  "exploreSection": "탐색과 기록"
 }

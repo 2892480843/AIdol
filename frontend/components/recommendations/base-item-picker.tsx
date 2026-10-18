@@ -42,10 +42,10 @@ export function BaseItemPicker({ selectedItem, onChange }: { selectedItem: Item 
           <Button
             type="button"
             variant="outline"
-            className="w-full min-h-24 h-auto p-4 border-dashed border flex items-center justify-start gap-4 rounded-2xl hover:border-primary/60 hover:bg-primary/5 text-muted-foreground whitespace-normal"
+            className="w-full min-h-24 h-auto p-4 border-dashed border flex items-center justify-start gap-4 rounded-none hover:border-primary/60 hover:bg-primary/5 text-muted-foreground whitespace-normal"
             onClick={() => setIsItemPickerOpen(true)}
           >
-            <div className="p-2 rounded-full bg-muted">
+            <div className="p-2 rounded-none bg-muted">
               <Plus className="h-4 w-4" />
             </div>
             <div className="text-left">
@@ -58,9 +58,9 @@ export function BaseItemPicker({ selectedItem, onChange }: { selectedItem: Item 
             </div>
           </Button>
         ) : (
-          <div className="flex items-center justify-between p-3 rounded-xl border bg-card/80 shadow-sm gap-3">
+          <div className="flex items-center justify-between p-3 rounded-none border bg-card/80 shadow-[3px_3px_0px_#2d2d2d] gap-3">
             <div className="flex items-center gap-3 min-w-0">
-              <div className="relative w-20 h-24 rounded-xl overflow-hidden border bg-muted flex-shrink-0">
+              <div className="relative w-20 h-24 rounded-none overflow-hidden border bg-muted flex-shrink-0">
                 {selectedItem.thumbnail_url || selectedItem.image_url ? (
                   <Image
                     src={(selectedItem.thumbnail_url || selectedItem.image_url)!}
@@ -143,7 +143,7 @@ export function BaseItemPicker({ selectedItem, onChange }: { selectedItem: Item 
                 type="button"
                 variant={filterType === cat.value ? 'default' : 'outline'}
                 size="sm"
-                className="text-xs h-7 px-2.5 rounded-full flex-shrink-0"
+                className="text-xs h-7 px-2.5 rounded-none flex-shrink-0"
                 onClick={() => setFilterType(cat.value)}
               >
                 {cat.label}

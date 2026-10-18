@@ -13,12 +13,14 @@ from app.models.preference import UserPreference
 from app.models.schedule import Schedule
 from app.models.tagging_outbox import TaggingOutbox
 from app.models.task import DurableTask, TaskOutbox
+from app.models.tryon import TryOnTask
 from app.models.user import User
 
 __all__ = [
     "DurableTask",
     "TaskOutbox",
     "TaggingOutbox",
+    "TryOnTask",
     "Family",
     "FamilyInvite",
     "User",

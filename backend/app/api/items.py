@@ -519,6 +519,15 @@ async def bulk_delete_items(
         item_service, current_user.id, request, "delete"
     )
 
+    # Match try-on submission/finalization's UUID lock order before deleting any
+    # files. A caller-ordered batch otherwise keeps B locked while waiting on A.
+    await db.execute(
+        select(ClothingItem.id)
+        .where(ClothingItem.id.in_(item_ids), ClothingItem.user_id == current_user.id)
+        .order_by(ClothingItem.id)
+        .with_for_update()
+    )
+
     for item_id in item_ids:
         try:
             item = await item_service.get_by_id(item_id, current_user.id)
@@ -527,18 +536,11 @@ async def bulk_delete_items(
                 failed += 1
                 continue
 
-            await asyncio.to_thread(
-                image_service.delete_images,
-                {
-                    "image_path": item.image_path,
-                    "medium_path": item.medium_path,
-                    "thumbnail_path": item.thumbnail_path,
-                    "original_backup_path": item.original_image_path,
-                },
-            )
-
-            await item_service.delete(item)
+            await item_service.delete(item, image_service=image_service)
             deleted += 1
+        except HTTPException:
+            await db.rollback()
+            raise
         except Exception as e:
             logger.error(f"Failed to delete item {item_id}: {e}")
             errors.append(f"Failed to delete item {item_id}")
@@ -1248,17 +1250,7 @@ async def delete_item(
         )
 
     image_service = ImageService()
-    await asyncio.to_thread(
-        image_service.delete_images,
-        {
-            "image_path": item.image_path,
-            "medium_path": item.medium_path,
-            "thumbnail_path": item.thumbnail_path,
-            "original_backup_path": item.original_image_path,
-        },
-    )
-
-    await item_service.delete(item)
+    await item_service.delete(item, image_service=image_service)
 
 
 @router.post("/{item_id}/archive", response_model=ItemResponse)

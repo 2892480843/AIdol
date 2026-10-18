@@ -1,0 +1,1469 @@
+{
+  "upstream": {
+    "repository": "https://github.com/makehumancommunity/mpfb2/tree/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+    "archiveUrl": "https://codeload.github.com/makehumancommunity/mpfb2/zip/refs/heads/master",
+    "resolvedArchiveCommit": "3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+    "immutableArchiveUrl": "https://codeload.github.com/makehumancommunity/mpfb2/zip/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+    "archiveSha256": "19a58071b985c416c4a5a127b791dd52b2c159d62870cfec7d846b892bd90aab",
+    "license": "https://github.com/makehumancommunity/mpfb2/blob/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf/LICENSE.md",
+    "assetLicense": "https://github.com/makehumancommunity/mpfb2/blob/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf/LICENSE.ASSETS.md",
+    "licenseConfirmation": "https://static.makehumancommunity.org/about/license.html",
+    "assetPacks": [
+      "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+      "https://static.makehumancommunity.org/assets/assetpacks/shirts01.html",
+      "https://static.makehumancommunity.org/assets/assetpacks/pants01.html",
+      "https://static.makehumancommunity.org/assets/assetpacks/dress01.html",
+      "https://static.makehumancommunity.org/assets/assetpacks/suits01.html"
+    ]
+  },
+  "authoringScriptSha256": "d6b720eb8581f02f8177df9ce08c3bd35e7bbbe0e6fcc5558aa4fcb1564034bd",
+  "fitScriptSha256": "54b0975ead982529c56a3b66fb6407e106a22a1b6e4726e2477d71676fb8266d",
+  "coverageScriptSha256": "f51bc47038f1e31775f55822662402a5306b5b82a94645b553e043d7c56c9d79",
+  "necklineRefinementScriptSha256": "22f842351f9e3a433e217985177ddc53fff12d036ddb29a01361fabb9cd8992e",
+  "conditionalCoverage": {
+    "female": {
+      "faces": {
+        "tops:knit": 9356,
+        "shoes:ankle-boots": 8656
+      },
+      "knitCoverageMethod": "Source sweater has no delete_verts; fully covered shoulder/chest/arm bone regions bounded by actual fitted hem and collar, excluding head/neck/hands",
+      "shoeMaskUpperBoundsM": {
+        "tops:knit": null,
+        "shoes:ankle-boots": 0.12531645321846008
+      },
+      "materialGroups": 5,
+      "protectedBones": [
+        "head",
+        "neck",
+        "hand",
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "pinky"
+      ],
+      "bodyVerticesRetained": 53514,
+      "bodyPolygonsRetained": 53512,
+      "necklineRefinement": {
+        "sex": "female",
+        "restoredTriangles": 264,
+        "openingRule": "abs(x)<0.055m, front>0.005m, height>fitted collar maximum minus 0.050m; any vertex restores triangle",
+        "collarMaxM": 1.4005364179611206,
+        "preserved": "all positions, weights, normals, UVs, shoe masks and conditional outerwear flags",
+        "sha256": "8817471e3f5fe71b96fcd8eb15c246a523b33b0b3b22a575d8d93e389ec5e458"
+      }
+    },
+    "male": {
+      "faces": {
+        "tops:knit": 9356,
+        "shoes:ankle-boots": 8816
+      },
+      "knitCoverageMethod": "Source sweater has no delete_verts; fully covered shoulder/chest/arm bone regions bounded by actual fitted hem and collar, excluding head/neck/hands",
+      "shoeMaskUpperBoundsM": {
+        "tops:knit": null,
+        "shoes:ankle-boots": 0.17867913568019866
+      },
+      "materialGroups": 3,
+      "protectedBones": [
+        "head",
+        "neck",
+        "hand",
+        "thumb",
+        "index",
+        "middle",
+        "ring",
+        "pinky"
+      ],
+      "bodyVerticesRetained": 53514,
+      "bodyPolygonsRetained": 53512
+    }
+  },
+  "license": "CC0-1.0",
+  "generated": "2026-10-18",
+  "generator": "Blender 5.1.2 / MPFB2 local offline",
+  "hairLicenseEvidence": {
+    "asset": "Elvaerwyn French braid 01 variation",
+    "authorPage": "http://www.makehumancommunity.org/clothes/french_braid_01_variation.html",
+    "authorPageSha256": "df44b7c59ce2a0858085a0d93361035ff6502a55966de088eba6fc79c208cc32",
+    "authorAndOfficialPackLicense": "CC0 - Creative Commons Zero",
+    "legacyHeaderDiscrepancy": "MHCLO retains an old AGPL3 export-template header; both the author asset listing and official checked pack explicitly grant CC0. Original source header is retained unchanged."
+  },
+  "sources": [
+    "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/shirts01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/pants01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/dress01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/suits01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/skirts01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/shoes01.html",
+    "https://static.makehumancommunity.org/assets/assetpacks/hair01.html"
+  ],
+  "models": [
+    {
+      "file": "female.glb",
+      "bytes": 18729540,
+      "sha256": "8817471e3f5fe71b96fcd8eb15c246a523b33b0b3b22a575d8d93e389ec5e458",
+      "boneCount": 53,
+      "meshCount": 18,
+      "materialCount": 23,
+      "imageCount": 15,
+      "normalMapCount": 4,
+      "layers": {
+        "bottoms": [
+          "cargo",
+          "mini-skirt",
+          "tailored"
+        ],
+        "dresses": [
+          "halter",
+          "shift"
+        ],
+        "outerwear": [
+          "blazer"
+        ],
+        "shoes": [
+          "ankle-boots",
+          "ballet-flats",
+          "sneakers"
+        ],
+        "tops": [
+          "camisole",
+          "cropped-tee",
+          "knit"
+        ]
+      }
+    },
+    {
+      "file": "male.glb",
+      "bytes": 11790748,
+      "sha256": "da18c1d0e28ad9ab5407e1625d88c28c36d19184c28baaa59dcfc977c266b303",
+      "boneCount": 53,
+      "meshCount": 14,
+      "materialCount": 17,
+      "imageCount": 12,
+      "normalMapCount": 2,
+      "layers": {
+        "bottoms": [
+          "cargo",
+          "tailored"
+        ],
+        "outerwear": [
+          "blazer"
+        ],
+        "shoes": [
+          "ankle-boots",
+          "sneakers"
+        ],
+        "tops": [
+          "knit",
+          "polo",
+          "tee"
+        ]
+      }
+    }
+  ],
+  "sourceFiles": [
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/toigo_inverted_bob/toigo_inverted_bob.mhclo",
+      "bytes": 102805,
+      "sha256": "af32890eb389dd536afcb8f6cd5cbf1f57fd42be6a7c1ab2bcb56e0b383473c5"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/toigo_inverted_bob/BakedHairNORMAL.png",
+      "bytes": 10260549,
+      "sha256": "f0b761f31129ef5f808394a4f71b04e902fbd5eadfcad0f3ae0c8d89f87a73cb"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/toigo_inverted_bob/bob_inverted.mhmat",
+      "bytes": 566,
+      "sha256": "ad2abc59a0e16f2c2ac08b5210df83b6322f85a10183f95a7b68b96b53218033"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/toigo_inverted_bob/toigo_inverted_bob.thumb",
+      "bytes": 46634,
+      "sha256": "2ff925c23dca8ecd5f6792fbc4a7b1a7c041b1503d430ee029304c8e61b3002e"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/toigo_inverted_bob/GoldenBlondHair.png",
+      "bytes": 7877907,
+      "sha256": "0d839379f85e757aa8d5cd92281efe830beba1e34f1ffd93954eac704d729378"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/toigo_inverted_bob/BakedHair_spec.png",
+      "bytes": 5464748,
+      "sha256": "57889d479bc327d3854c7f12689c6c53ce3ef8c445bb7da4dda0ffde9cf5f9b8"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/toigo_inverted_bob/bob_inverted.obj",
+      "bytes": 118025,
+      "sha256": "a6b7c685b8558b9983cb8a883ebacf0272a238931ca20482671fe5da64a31c10"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/o4saken_long01/o4saken_long01.obj",
+      "bytes": 907650,
+      "sha256": "3b58e92dae179dd6d0d9b0be07d5996827d8a8dd4158579d6bcc2e48ebd60c17"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/o4saken_long01/o4saken_long01.mhmat",
+      "bytes": 884,
+      "sha256": "f954943466c9c1ff92348ee9241594ec6e1380abe557bf4316059c83f427e05c"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/o4saken_long01/o4saken_long01.mhclo",
+      "bytes": 1016141,
+      "sha256": "581d190f38086aba1c47cd4e589fee469a3cc0157f98fc74ce7bcb76a1caa646"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/o4saken_long01/o4saken_long01.png",
+      "bytes": 4139233,
+      "sha256": "436f34ddbd3d27275ecbfb7ea3e3159dc16ff8039313c003fdea30bcbdcefb10"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/o4saken_long01/o4saken_long01_nrm.png",
+      "bytes": 3467551,
+      "sha256": "e529aa236fdb858e78d86476be956565d5c0bad8ac461946bf2a15be70f91d12"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/o4saken_long01/o4saken_long01.thumb",
+      "bytes": 56566,
+      "sha256": "85bca7a042d786ebbec7c519ac57327cc0d6a84d11775b1b5bfa5c0759c0c8f2"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/cortu_short_messy_hair/short_messy.mhmat",
+      "bytes": 854,
+      "sha256": "28e4ba6df3f1af7a3b68ffde131509be4add84f397409d26b8fc6f8d6efd475d"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/cortu_short_messy_hair/cortu_short_messy_hair.mhclo",
+      "bytes": 56368,
+      "sha256": "868ae0221ba97b23c3c5d1d1c5757e6fd01ddad4a2992affffb6fd7880e3cda7"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/cortu_short_messy_hair/short_messy_objnorm.png",
+      "bytes": 364140,
+      "sha256": "22f397b8ffd19f4a8036034650defc6c964ab9a664c96f8a2db124a956d8a212"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/cortu_short_messy_hair/short_messy.obj",
+      "bytes": 52093,
+      "sha256": "d6dd3d11d44424e8dcd63d98b15763f1c3bb754be8eb02a527ec5f04724a54b1"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/cortu_short_messy_hair/short_messy_diff.png",
+      "bytes": 530185,
+      "sha256": "ddf92030eeefe80fdc12703ef44624ba4dd690f458042def549f2853b0daa0dc"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/cortu_short_messy_hair/cortu_short_messy_hair.thumb",
+      "bytes": 55988,
+      "sha256": "b83505f7464a504cd25838b56c5f4c309e5702db9158aac695cb598d359ac9dc"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/elvs_french_braid_variation/braid01_diffuse_mahogany.png",
+      "bytes": 3258198,
+      "sha256": "0da05671e97c74bed8091aac68d34b30d2992e1b577ca6038667f3c1b5e86cb8"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/elvs_french_braid_variation/elvs_french_braid_variation.mhclo",
+      "bytes": 440039,
+      "sha256": "61ea506301f39cff5079485597aac6bf876689c1922c0ae2386d45226578d340"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/elvs_french_braid_variation/frenchbraid1mh01.obj",
+      "bytes": 440567,
+      "sha256": "708f019f2cbcc11f883890aa6c0b5a98209e6f1fc45833851c160b9385d89a34"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/elvs_french_braid_variation/elvs_french_braid_variation.thumb",
+      "bytes": 28524,
+      "sha256": "88549ffb80057d2944227e384f90cbbdb7e0d4645a5a6f9d9463f9599436ffd4"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/hair/elvs_french_braid_variation/frenchbraid1mh01.mhmat",
+      "bytes": 761,
+      "sha256": "a7086f921beb8509eeeb67a36f2f92edc66254a1fd4d3ca127627e0be47de815"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/namuhekam_male_polo_shirt/namuhekam_male_polo_shirt.mhclo",
+      "bytes": 135942,
+      "sha256": "1639239b0d6d16ef2ca98f1f5af1af447d1e9e6950cd0fad9ecf774fa597434b"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/namuhekam_male_polo_shirt/Polo_Roughness.png",
+      "bytes": 562396,
+      "sha256": "b7205361068df100f8f63256a265d052dfa4bbec96d826e7999b23fcf17c95c2"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/namuhekam_male_polo_shirt/Polo_t-shirt.mhmat",
+      "bytes": 427,
+      "sha256": "fb47735dab1f3aacf39b9aea7e9c8343ea47c39f8a13fab559ba505b7c28356c"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/namuhekam_male_polo_shirt/Polo_Base_Color.png",
+      "bytes": 1255797,
+      "sha256": "d8e74dbcc3e79227dd7f6d8b1e0ed6c614eb11d4dc3cfeb935222783c23ae64b"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/namuhekam_male_polo_shirt/Polo_Normal_OpenGL.png",
+      "bytes": 5311773,
+      "sha256": "1428ecac615cf45d409f42167b3d4cba70ea77a14a0c4f06ff5d01b75e7a8b5c"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/namuhekam_male_polo_shirt/namuhekam_male_polo_shirt.thumb",
+      "bytes": 57437,
+      "sha256": "c5343f1f6282963d05d4f16ed2799b8441d75f676ad3045b5f329c21bf0fa8ed"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/namuhekam_male_polo_shirt/Polo_Height.png",
+      "bytes": 1036116,
+      "sha256": "f69d99fab6b30ad1972ac27e260f6e59129f7e3dcb988ed4c75d64cca29c386e"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/namuhekam_male_polo_shirt/Polo_t-shirt.obj",
+      "bytes": 181381,
+      "sha256": "aaee5f49077a8bacb8b1077910e4b9cc7946d587c75e367273f4ecaf94abd627"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_tiered_mini_skirt/tier_skirt_mini.obj",
+      "bytes": 477983,
+      "sha256": "f81fde12201f188ba2390362a00bdec1d297f953b9c599008b719b7751cca615"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_tiered_mini_skirt/toigo_tiered_mini_skirt.thumb",
+      "bytes": 51443,
+      "sha256": "71b64cb56b8866dc499e5b57f17d27e04c6446ad717b1fc763c883bf77de9da4"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_tiered_mini_skirt/SkirtMini-blackLeather-NORM.png",
+      "bytes": 1299368,
+      "sha256": "1080d7bcf8992fe63d348a5e29027c57e814df7fa13cc7721977b50ba8db1aa5"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_tiered_mini_skirt/SkirtMini-blackLeather.png",
+      "bytes": 942609,
+      "sha256": "76f515076ec14b8c77889c0dcbc7b29676e3737909c7f70ec5edb2490c46cf5e"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_tiered_mini_skirt/toigo_tiered_mini_skirt.mhclo",
+      "bytes": 369147,
+      "sha256": "48fdcaedcbbfdf49c023818bc765ae2fb1054bc3db45bb15c88e965e4c6204bd"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_tiered_mini_skirt/tier_skirt_mini.mhmat",
+      "bytes": 588,
+      "sha256": "a610f5b1261f5086566db8ad51d6b755fb785baf459460797c171ff52f1f0d7f"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_tiered_mini_skirt/SkirtMini-blackLeather-spec.png",
+      "bytes": 21361,
+      "sha256": "28c9c3811af457ed274c4065268c69f8446f6f76c59a5a90a72db42c5b22e0e4"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ballet_flats/flats_ballet.obj",
+      "bytes": 389505,
+      "sha256": "80fd320014dacaa1a58740ae5ee8a37ab32bac05c6f68ddebf1ad1b4a1c86b8c"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ballet_flats/flats_ballet.mhmat",
+      "bytes": 565,
+      "sha256": "5964fab9d98a254515c356cb0ec619fcc58470df8d9340734dedcd5f0a59b783"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ballet_flats/toigo_ballet_flats.mhclo",
+      "bytes": 310209,
+      "sha256": "9c7336e6b07c7fb004e8c7bb0bd6bc6c49208d7e9fdf09ae5702d1f279d96e4a"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ballet_flats/BalletFlats.png",
+      "bytes": 2744843,
+      "sha256": "f72c35c56b670e0936b548090e1f362220e6abbb2cec210674c1c86a5864ef12"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ballet_flats/BalletFlatsPlainNorm.png",
+      "bytes": 4168452,
+      "sha256": "2162a61c88fdd2b85e7bfea8c1e260cdd679838a66c0c6ed79b77188a02f7b94"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ballet_flats/BalletFlatsSPEC.png",
+      "bytes": 21460,
+      "sha256": "94b7f68f2b13623e6dc8708d0fa037c2f8527eb439d44b245ed003ef737e6bfa"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ballet_flats/toigo_ballet_flats.thumb",
+      "bytes": 19013,
+      "sha256": "7f3cbd195f5acae9efdae162eae26238a2f7314d17853627c11ebe3b0acbea31"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/joepal_crude_t-shirt_female/crudefemaletshirt.mhmat",
+      "bytes": 494,
+      "sha256": "69749cb47afa4184ea3978153f34e1160a61675cf6ad7dce4f650a4bf1cacc1c"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/joepal_crude_t-shirt_female/crudefemaletshirt.obj",
+      "bytes": 80936,
+      "sha256": "83d20bb41bd5335d020c7e8b6bf5f969dd6cd93a5d5e84bac63cb222a135e9b4"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/joepal_crude_t-shirt_female/joepal_crude_t-shirt_female.mhclo",
+      "bytes": 74804,
+      "sha256": "4feb91f93f9228d0ba3c030cf325f5896143583d81025311ae37b1c9c2dc04a7"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/joepal_crude_t-shirt_female/joepal_crude_t-shirt_female.thumb",
+      "bytes": 29174,
+      "sha256": "5176ce8eccb6539d531d77e2e2088ca1ba26142f63db3750c9b4c0bb7c2c28f1"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/joepal_crude_t-shirt_female/CrudeFemaleTshirtDiffuse.png",
+      "bytes": 244290,
+      "sha256": "a9783054a946e51f2fde74cda2e9dc313d04ad1ddde811fe67f7a1616da0fc94"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/frankyaye_mini_skirt_01/frankyaye_mini_skirt_01.thumb",
+      "bytes": 54516,
+      "sha256": "b908edc7d2f530e798028d14e9d3dc9d6f503b1d3cb83ae46c15f220620b7200"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/frankyaye_mini_skirt_01/mini_skirt_01.obj",
+      "bytes": 71328,
+      "sha256": "289fecdd56a58da3f71648ab847b2576c9e93fa0cd9599222552a4a8e9cc6a11"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/frankyaye_mini_skirt_01/mini_skirt_01.mhmat",
+      "bytes": 509,
+      "sha256": "d9d8ad20b073ce69854765ddf1ca86651eac083fa93be77f8c22b10303cb3585"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/frankyaye_mini_skirt_01/mini_skirt_01_normal.png",
+      "bytes": 1549042,
+      "sha256": "ae3650bce6678cd67d025ab70e68b22683176aeaabc06d8e5b2129af99c762e9"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/frankyaye_mini_skirt_01/mini_skirt_01_diffuse.png",
+      "bytes": 2080991,
+      "sha256": "e9b7c8ee33c7ec216f92d237bad54025bc21e4032ca1c090d8b354ef74a19a46"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/frankyaye_mini_skirt_01/frankyaye_mini_skirt_01.mhclo",
+      "bytes": 61534,
+      "sha256": "1371920e0f8850b4bea413bddd4ba1621409c230f1365743e1928246db5f1be0"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_female/BootsAnkle-spec.png",
+      "bytes": 291316,
+      "sha256": "30e2ce35ab197a55f43f2cdae248940445b5fe14de30eebe4f3c2aed96a80802"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_female/toigo_ankle_boots_female.thumb",
+      "bytes": 25405,
+      "sha256": "aae8049c104fe4f56bf711cc090c8c12b935b6037af38801e74cf77390d1a9b5"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_female/boots_ankle.mhmat",
+      "bytes": 551,
+      "sha256": "89cf13d01cbfbc261782572c13aa8cc0b6ff1a4f60131f33136ecc6b720b647a"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_female/toigo_ankle_boots_female.mhclo",
+      "bytes": 141995,
+      "sha256": "a1ada0a96d7085ed60293e1b4aac1dabc80ed3ee50647aaff6d68b6c23b82967"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_female/boots_ankle.obj",
+      "bytes": 170892,
+      "sha256": "dfceab7514940456f7ecf5879cc6c686192e7c24d64e1c5356c7a9f09c5ae6c9"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_female/BootsAnkle-norm.png",
+      "bytes": 2155003,
+      "sha256": "d4bbc26383a8c191be31a645c5ddfdea4c3ba27d56140305271c4553dbaae8a3"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_female/BootsAnkle.png",
+      "bytes": 1429014,
+      "sha256": "2d915244856deb7220e067564aafb2fbbdf00002482dee99d38ca666d239aa98"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_male/BootsAnkle-spec.png",
+      "bytes": 291316,
+      "sha256": "30e2ce35ab197a55f43f2cdae248940445b5fe14de30eebe4f3c2aed96a80802"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_male/boots_ankle_male.mhmat",
+      "bytes": 554,
+      "sha256": "0731fd75bc7333f83010e64d9d5ff7441a0067bc79e3baf489f9ec7abcb47aba"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_male/toigo_ankle_boots_male.mhclo",
+      "bytes": 142277,
+      "sha256": "0143dbcfdac444a42af339bcc65352af8ad6d8d2519457aa1aff89a639dd554a"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_male/boots_ankle_male.obj",
+      "bytes": 171260,
+      "sha256": "b23f306d072e5ec89b5958242111e647a76db374a8ff219b006010ff2e504294"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_male/BootsAnkleM.png",
+      "bytes": 1545946,
+      "sha256": "0e476df27c5ddebca2c55ce889abd46387ba405f34833de81db466d1a4b1ca5b"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_male/BootsAnkle-norm.png",
+      "bytes": 2155003,
+      "sha256": "d4bbc26383a8c191be31a645c5ddfdea4c3ba27d56140305271c4553dbaae8a3"
+    },
+    {
+      "file": "verification/video-quality/asset-work/sources/clothes/toigo_ankle_boots_male/toigo_ankle_boots_male.thumb",
+      "bytes": 36133,
+      "sha256": "96306005c0346eeb670fc2f66cf2b831f520a53668290f3abdc380ffadee610f"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short02/short02.mhmat",
+      "bytes": 1323,
+      "sha256": "2ed04c8aad9c1a35d858ca72091525d32b1da3b61b5a031634dd528fd8530f6d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short02/short02.mhclo",
+      "bytes": 119240,
+      "sha256": "625736cdb73e6d094df6e5a2df18f371781f1d2cd37b0ae15795c5d7051c3ec2"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short02/short02_diffuse.png",
+      "bytes": 3553543,
+      "sha256": "47fe33831a3929567c733356dd66243116e05df2ace1f884ddca0080b728229f"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short02/short02.obj",
+      "bytes": 139742,
+      "sha256": "48f979114adfa712165a69cc55c45a70831af1fb3cba8e2a89120f0c87407b64"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short02/short02_normal.png",
+      "bytes": 1626745,
+      "sha256": "2cfac7619f8eec77dd90df979d912415058f4f0fc16940cba40a8eb1ae6d74b5"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short02/short02.thumb",
+      "bytes": 41127,
+      "sha256": "af21a0e84bfcc294b9840d90a04f1b6655ad909bc09328251886adffbc0727e8"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short04/short04.mhmat",
+      "bytes": 1316,
+      "sha256": "7a3ac74db8478aa0afdb8a596c6fe3997d1a8a09d12211d70e8f1e9f0b7e0e97"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short04/short04.mhclo",
+      "bytes": 59195,
+      "sha256": "d60640aa4c4ffce1aa269647ba436b6ee0bb21bb948f927b84e27a48d2107157"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short04/short04.obj",
+      "bytes": 55152,
+      "sha256": "676964a133ee35ffcea1195382bf75542da7a298931e4001bc7b0d7b707225de"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short04/short04.thumb",
+      "bytes": 41792,
+      "sha256": "a7db8f3db6e2a53194993de73b875d000f928b66a8ac4d6efab51bfd8e6664fd"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/short04/short04_diffuse.png",
+      "bytes": 2308132,
+      "sha256": "0bef7fc0e403db5a40fabb2111ebfa6f7e8158e204c6e56b8da98e9ef527846e"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/long01/long01.mhmat",
+      "bytes": 1297,
+      "sha256": "74ec88267e679d316f8037a074511ffc887b27e198ea381d0ae4a3f180f96760"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/long01/long01.obj",
+      "bytes": 215324,
+      "sha256": "7f1d6dadbdf9e96435251955d6657e77ea5433c9bc7c85a5c5f5e4eae0cb9a8c"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/long01/long01.mhclo",
+      "bytes": 220891,
+      "sha256": "94ecbebfd834da2cbee2ce90b730972590eb22a252ecd9592038ea736e063646"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/long01/long01.thumb",
+      "bytes": 35530,
+      "sha256": "4cb13248134980fc69fdbe298e2bdde58864aec764243cb3c50cb0da7dc0ed98"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/hair/long01/long01_diffuse.png",
+      "bytes": 2915253,
+      "sha256": "e8dc25d90f8f62467e8630420e1240a400d070054fb7c3f1d3f7bf3e457d6c2c"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyelashes/eyelashes01/eyelashes01.mhmat",
+      "bytes": 1074,
+      "sha256": "8029c99d94f3d87a1e81825fad6b90eec773ae6955a5b2592222ef237377e190"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyelashes/eyelashes01/eyelashes01.png",
+      "bytes": 91600,
+      "sha256": "4b69c0fff2648874460e9caf80c31413c444218a5c50afebc425aeaa65484a35"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyelashes/eyelashes01/eyelashes01.obj",
+      "bytes": 18832,
+      "sha256": "f78f5b93fea1946fcae103d32c4f082dd9612a1ec2e7e2f90b03ebe59b0baf20"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyelashes/eyelashes01/eyelashes01.mhclo",
+      "bytes": 2265,
+      "sha256": "5a86b29c15649273d723084954b7fa7bf199112571d4f58539b46734d397ee6b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyelashes/eyelashes01/eyelashes01.thumb",
+      "bytes": 140641,
+      "sha256": "34ab06601745c2b74fcfa6f63a374fcea58cb4501e728a3c6935a3a1ed794aa3"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/high-poly/high-poly.mhclo",
+      "bytes": 72490,
+      "sha256": "b183cfe37120ab726f9b3f2ea6cd3a64c44ce7b4bd91a77c841cf70c04f83a0d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/high-poly/high-poly.obj",
+      "bytes": 100882,
+      "sha256": "da2493215b708a344c33dc72f2a9a5b8fa985dcc5a70ad3b208995cf871da8e1"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/high-poly/high-poly.thumb",
+      "bytes": 21076,
+      "sha256": "97730eb579e1a81a63f38f53125ad8d375556f222882704fbec7dd83d4f24916"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/grey.thumb",
+      "bytes": 32862,
+      "sha256": "add8c7bd15edeccaa7612cb33d8311ae849d884b6ea062e18fa78de54128805d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/bluegreen.mhmat",
+      "bytes": 1250,
+      "sha256": "2dfb910b48da0e0739b44a8fa4728b3b351bf9b408034c6402a1b9c07915b884"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/deepblue.mhmat",
+      "bytes": 1252,
+      "sha256": "08f7a30d8cd8d264d21d755afcfdca3d28386e780b9e9fea11a662337e99d3a3"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/lightblue.mhmat",
+      "bytes": 1254,
+      "sha256": "3bb470d56dfdf40b16e499578bf6ea2c4e0e7e27db4c5bd2adb47f760f5c5f34"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/deepblue_eye.png",
+      "bytes": 658984,
+      "sha256": "55ec9e3d06c8193e74fbbcea32ea474c100feaccef96556d9181e796fe2a7ea6"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/ice_eye.png",
+      "bytes": 676501,
+      "sha256": "a5903596fe033371ba7130b5c8b2c09ce2f5d282d77557c21060ab8a778bf03d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/ice.thumb",
+      "bytes": 34110,
+      "sha256": "a8e150fb9fb901051a0dd6e753ec68d501ad5dc20e01adcdf6ac1f81657c5df9"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/brown.mhmat",
+      "bytes": 1247,
+      "sha256": "4abad93ce50541c08127721e77bce035640c9f16bed16cd0f5524b1cd5908465"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/grey_eye.png",
+      "bytes": 669883,
+      "sha256": "ecb05613126036a3d017880fabbd570501c5f14032c186462d8f6e2d719f6c4f"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/brownlight.mhmat",
+      "bytes": 1256,
+      "sha256": "75ae6903fe51134ee6f10147dadad3cb1b355aecf8218213431fb6ddbb3ba71d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/green.thumb",
+      "bytes": 32775,
+      "sha256": "525ffdef4adb5a82ffe07814b1a46d017014fad571ae206bfeda970531560c10"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/blue.mhmat",
+      "bytes": 1243,
+      "sha256": "bd9cab4d2f6ca54df6253c1adfbb1c82e0ee61057361d95449ade06a1b5669c4"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/green_eye.png",
+      "bytes": 662241,
+      "sha256": "b9864ac4f4fa484b24e18f6aba030d70dbc8820cbbacfbe63a974c76772c2009"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/bluegreen_eye.png",
+      "bytes": 697879,
+      "sha256": "653b3154e67f67e118c22acd19c472aa7543e0c229209f687c3f7f669f191fd9"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/brown_eye.png",
+      "bytes": 610817,
+      "sha256": "4659691c7295ad6206c78b003e5fd0e5f91dcd53032fa914a229bb48cabe424b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/brown.thumb",
+      "bytes": 29627,
+      "sha256": "5bd2de12f0c04d423ab00fa13f691a1879b944e63947e228117ddcce31f9cff9"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/ice.mhmat",
+      "bytes": 1242,
+      "sha256": "4b2d2d10d9d887dc6f4dd2f66ff252a85b60ca2a30bc2b57672f83b758db776b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/brownlight_eye.png",
+      "bytes": 680577,
+      "sha256": "3f43a4de70e446186dac1760cfa01dfe36d530ed7564208455395b0ebcdf788a"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/blue_eye.png",
+      "bytes": 666029,
+      "sha256": "572ddc93ab3e177100619ec7c00b2574540cfb382805afc2e450788117f6140c"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/blue.thumb",
+      "bytes": 33300,
+      "sha256": "5d7474af291a83b4b122ccd276b5ad10f9a4554efa940aad1d515363e22d7b6b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/green.mhmat",
+      "bytes": 1246,
+      "sha256": "b3b512120d9f87f91cd34879ac17ad9f26eb6a250d92be52df8b19df5cc90113"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/brownlight.thumb",
+      "bytes": 34947,
+      "sha256": "32722c2f00ea29b7cee7bc2b140db165ec724cd20d10d073e906b21b278bde26"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/deepblue.thumb",
+      "bytes": 32356,
+      "sha256": "10b1fa542476d35dee4ac92b6f1a654ecf391d849231727a591820b895d8d815"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/lightblue_eye.png",
+      "bytes": 701486,
+      "sha256": "687c8f6d95a8550bcd4a34158f415d6bb376c0bb32e67d127bbb51e5fa469eef"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/bluegreen.thumb",
+      "bytes": 36549,
+      "sha256": "d6fcfe5b57d7b05f2f9453e11cefb7cb68352746a36613b030e069442e2eadcc"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/grey.mhmat",
+      "bytes": 1244,
+      "sha256": "65c536157ef0550b2f8461a9526c726707533dc7cfe8a65abb9b9db0b4e6b25e"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/materials/lightblue.thumb",
+      "bytes": 36919,
+      "sha256": "4e70a6c6530469ead049980969944cf1c2860700907c9dfee0fbc87af7965c68"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/low-poly/low-poly.thumb",
+      "bytes": 15938,
+      "sha256": "27b09c5a2bd792671c99a00016ec836855278f199bc4753c3018f1ac73068c72"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/low-poly/low-poly.obj",
+      "bytes": 6604,
+      "sha256": "783fe1e6331162c876520b4c2bed7a8ca06354ca15497e8ebd68bb1b59f4d3de"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyes/low-poly/low-poly.mhclo",
+      "bytes": 1344,
+      "sha256": "68582e28e9176cba7cfcf35208f671b6201b8d1bc95c32decff61a3160ec34d8"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_caucasian_male/young_caucasian_male.mhmat",
+      "bytes": 1462,
+      "sha256": "6eda60b07ff2afbde078a2535ef3913593d84e9de92b2eb76c30f396a181fe2e"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_caucasian_male/young_caucasian_male.thumb",
+      "bytes": 79031,
+      "sha256": "9ea46d1b5c4230bcff248b1262eaf4f5b4b14bbffd8fc09d2c20c6058f02e12d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_caucasian_male/young_lightskinned_male_diffuse.png",
+      "bytes": 3693828,
+      "sha256": "862a26e335e958b70534cb5f0d7c47ef30ab148a56c42b3e9da969cf76f12963"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_caucasian_female/young_caucasian_female.mhmat",
+      "bytes": 1464,
+      "sha256": "0bdea7786201f0b1132a24088336a97496ccdc54e9984db65d253a6a6d66f24f"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_caucasian_female/young_lightskinned_female_diffuse.png",
+      "bytes": 4391156,
+      "sha256": "b2a6ac8cd4f9febdb447368e29c76cd68410bb66e46d9dcfa2d5f75126eea8fc"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_caucasian_female/young_caucasian_female.thumb",
+      "bytes": 78304,
+      "sha256": "4bacaa13c1f58321221822e6f9ce1b222eb0e328e5015d9518c8a7184fb34b34"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_asian_female/young_asian_female.mhmat",
+      "bytes": 1459,
+      "sha256": "2baeded5fdfd31acc187e83b278f9c4e4cbb59a7ffedf50ebcffcc44e4eab220"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_asian_female/young_lightskinned_female_diffuse3.png",
+      "bytes": 3884420,
+      "sha256": "1d82f782b7d2da732229633bd2d14754d873fff53cdb1d088977bcf67ae19dde"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_asian_female/young_asian_female.thumb",
+      "bytes": 79011,
+      "sha256": "736d4ed1967431c989c5629655aa65f162a3e325d5aed7cd75ca3c2cc8f91a8d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_asian_male/young_asian_male.mhmat",
+      "bytes": 1452,
+      "sha256": "9fdfc9863cd15d1359311435f2da7de3906f81d6eea549fba6bf14cd82ceb6a0"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_asian_male/young_lightskinned_male_diffuse3.png",
+      "bytes": 3593099,
+      "sha256": "f50016a5507fc687dc8df06599c8ea48de950cd185de33a71cafc1319ddab4d5"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/skins/young_asian_male/young_asian_male.thumb",
+      "bytes": 79327,
+      "sha256": "21245c121a4efc96d18cb64a2fc7d95bfcc768f7b333d59b7a471708551ed13d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_halter_dress_knee_length/DressCloth3UV.png",
+      "bytes": 668702,
+      "sha256": "45ec64abbb9346751de8059f7c77bc719c9a7d5186c895168f1a8432ea0ec26a"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_halter_dress_knee_length/dress_knee_halter.mhmat",
+      "bytes": 513,
+      "sha256": "ccdb35f08daf4b4896e6f7a655c89eee39170793fe3d095482ab326056dfa64b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_halter_dress_knee_length/toigo_halter_dress_knee_length.thumb",
+      "bytes": 42034,
+      "sha256": "42c018aa5b55248c3e49143b0267b083b3c5e085ef007a5cd7ad4c84b3c5a131"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_halter_dress_knee_length/dress_knee_halter.obj",
+      "bytes": 160743,
+      "sha256": "b7edb42f6a8087c46ea79c011669f2207c5f5656a6c17ff1d9435c8a05dfa4f6"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_halter_dress_knee_length/toigo_halter_dress_knee_length.mhclo",
+      "bytes": 138176,
+      "sha256": "043447253bdb06272eb2565cc7fb484f5cf1c010d0e251314135b72287a5c374"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_wool_pants/toigo_wool_pants.thumb",
+      "bytes": 36834,
+      "sha256": "23dfe8875ee2fbdaef1e705871d2054868198fc415188ec177bebf96a09b944c"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_wool_pants/toigo_wool_pants.mhclo",
+      "bytes": 93219,
+      "sha256": "ac1a57a817976d80ece8a88698873d54de7f252d01ba3dca5e361693621fcf22"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_wool_pants/pants_wool.mhmat",
+      "bytes": 473,
+      "sha256": "fedf31e98ea92b57c8f45e10ec167d420f5eb11b9410feb075c321c3798fdb53"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_wool_pants/pants_wool.obj",
+      "bytes": 108902,
+      "sha256": "e02cd1e417ca3365e4dafc033f415c5186739df535d98810075cface0ce59c96"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_wool_pants/Pants_wool.png",
+      "bytes": 1355120,
+      "sha256": "a820b0dc4f9f881956a068f26889ca677b696dbdccfdbf2a168e7b327b390ab6"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes02/shoes02_diffuse.png",
+      "bytes": 1282057,
+      "sha256": "efef94ea34b0e0c2283095cb47a9e0389b55449c61a4f4972d0ad4d2bf06b4f0"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes02/shoes02.mhmat",
+      "bytes": 1184,
+      "sha256": "7f2cb19506784fbe22ba3f766f94bb13d1eee1712dd29ed10b926c5905bab924"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes02/shoes02.mhclo",
+      "bytes": 110217,
+      "sha256": "0d447fd6b7415d6b2603e91697336ee51ac2f00ef85878d6667e9acfb45a20fe"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes02/shoes02.obj",
+      "bytes": 125457,
+      "sha256": "5726aabac42ff489998d0a769545dea013961bbb71b9c6024d75170181a98818"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes02/shoes02.thumb",
+      "bytes": 43978,
+      "sha256": "0e41c095f5ff5a13c0d2b12a6c96d65d907137e1ae3fb120ff14300fc818015d"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes02/shoes02.mhw",
+      "bytes": 309023,
+      "sha256": "dba34894b93f102ea64d7ad21968894a9788c7a0770c066584a66a536a3e92b6"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit02/female_casualsuit02_diffuse.png",
+      "bytes": 4340869,
+      "sha256": "23bd3c8e4df3993fe3bdb849daba7a4dd0476f3a28fd8402cd28abbb26666f49"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit02/female_casualsuit02.thumb",
+      "bytes": 52518,
+      "sha256": "2a1e6d7c47961d3e8a3471ae7322d920f0265d91a54c2d43d518392414f1ad4c"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit02/female_casualsuit02.mhmat",
+      "bytes": 1404,
+      "sha256": "d44cdca8e96ce4f78b79b5a92e15d6c607820ea5c5e8c30fe0104188635cfc9a"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit02/female_casualsuit02_ao.png",
+      "bytes": 1653679,
+      "sha256": "8605b461e6179447908906352f7678bef914d7c48bbdbe2cf92af1791416ada4"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit02/female_casualsuit02_normal.png",
+      "bytes": 1646961,
+      "sha256": "37143dabd78647ca37689f0b65d969c958a962d728dffd94e60c9beacf76a3df"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit02/female_casualsuit02.obj",
+      "bytes": 231599,
+      "sha256": "569ce1a79f61c1a213fd813d14da656863e6832badaa41225543fcba93bbe1ce"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit02/female_casualsuit02.mhclo",
+      "bytes": 196616,
+      "sha256": "dbbce782dcb95f2dc9d9b70fe66629c9a177fe0a8d14fd546961ed01eeb556c8"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit04/male_casualsuit04.mhclo",
+      "bytes": 116682,
+      "sha256": "8c1a2d3272cd51ba03f0840d593eddc6325d3d2c4c8529f8203d2c2cad3d0cef"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit04/male_casualsuit04.mhmat",
+      "bytes": 1396,
+      "sha256": "0408dea995c10e078ab79a3b68fa3092bdf18d3241b74fa35d48fe5397b42430"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit04/male_casualsuit04_normal.png",
+      "bytes": 6112410,
+      "sha256": "006c0c0dfecaeda1a749f737ac15bfc228ebb76dbbcbf9871993e267a545ca69"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit04/male_casualsuit04.thumb",
+      "bytes": 32838,
+      "sha256": "1424bac2dc95c2d6906bc0435b8de77ce71c25a35c97eece9c6c589944a2c683"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit04/male_casualsuit04.obj",
+      "bytes": 133848,
+      "sha256": "9a56b7b1cb27589233dc048e8ccf1fd93d03f3a5c01a668f0e8a189ebdea7a34"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit04/male_casualsuit04_ao.png",
+      "bytes": 1755179,
+      "sha256": "0776e137bc8f37647c949b12384067d311df5fc7504d15af736e0647713c2754"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit04/male_casualsuit04_diffuse.png",
+      "bytes": 2742499,
+      "sha256": "eb33337f43b006159773ab2fdff1293f51f72c3d0d24c132c2272b4deff9bcbe"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit03/male_casualsuit03_diffuse.png",
+      "bytes": 3439064,
+      "sha256": "d9079ed2e52d23e1ccce53ddc3d4397e48883729f9324c97c2737f4f79af5153"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit03/male_casualsuit03.mhmat",
+      "bytes": 1396,
+      "sha256": "5fbf673d1db072aecb850ced389201ae729794deee851c0668e810e6ad082e5b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit03/male_casualsuit03_normal.png",
+      "bytes": 9610278,
+      "sha256": "412c4610d3b2ea1cb04aa3c0715e747a7c9f61d865133b7d69f70eaa738cf99b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit03/male_casualsuit03.mhclo",
+      "bytes": 170546,
+      "sha256": "ce796e4cc6ac312e0426d793ccc874d0d94c085e1c06764fe096ec8d59ae94c5"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit03/male_casualsuit03_ao.png",
+      "bytes": 2214964,
+      "sha256": "b29aebd42545b874599be527c4ec8f89b851ba76613347b0475fac5188de7aea"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit03/male_casualsuit03.obj",
+      "bytes": 200956,
+      "sha256": "c55e02caa1f04126606eee5ac704637e9d3461bd527f26ade65e01973dc7aabb"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit03/male_casualsuit03.thumb",
+      "bytes": 40578,
+      "sha256": "ea180cea474eeba10ed73b13920adee4e87ea12c84f96a7d58b02caef90caf72"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_turtleneck_halter_top/toigo_turtleneck_halter_top.mhclo",
+      "bytes": 195859,
+      "sha256": "f9768a84dabe755ef6b50ca2e1763f2cbedc7e09ce4133bd2520c2430832582e"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_turtleneck_halter_top/ShadesTex-PINK.png",
+      "bytes": 1775694,
+      "sha256": "cd981ab28ff1916e168f64c7933a82a022fae670b6b301f0c307a1807f4a7b3a"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_turtleneck_halter_top/turtleneck_halter.mhmat",
+      "bytes": 479,
+      "sha256": "faaf69214ad10fd23fe2ebbb07a886999f86a8fc6775ae00629ba5605307987c"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_turtleneck_halter_top/toigo_turtleneck_halter_top.thumb",
+      "bytes": 42271,
+      "sha256": "ef374556db27bf8afaf22d4aa5f760d4c8cecab81ec9e21f297a93ad0544cf3b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_turtleneck_halter_top/turtleneck_halter.obj",
+      "bytes": 235957,
+      "sha256": "de2bb66a761c74b90f4f289d244b5c49a566c7755f8fb7281a3c5e2c1d0ad64c"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_fisherman_sweater/toigo_fisherman_sweater.thumb",
+      "bytes": 75154,
+      "sha256": "a64cdf427b565eb72d69c4e3b93cd6021df66fe4a7e30c14c55fbced8c3df391"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_fisherman_sweater/sweater_fisherman.mhmat",
+      "bytes": 509,
+      "sha256": "254c011b3edae8cbab7adb2d082de670dd41b26324bf5772318b7557a127fd64"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_fisherman_sweater/shirt-knit.png",
+      "bytes": 2316765,
+      "sha256": "a7d526797da4cdc1a79603a35abebf41e577277267f36db6641cdb6cebe6ffb1"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_fisherman_sweater/shirt-knit-NORM.png",
+      "bytes": 598273,
+      "sha256": "c3458d9b5174d7c34beed74618828c26f479200512d691a6bada34e7ea5d9a62"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_fisherman_sweater/sweater_fisherman.obj",
+      "bytes": 172798,
+      "sha256": "2844465f4e798666a90f631ea4a89ae30d3e526ef045a978d338908750d21d09"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_fisherman_sweater/toigo_fisherman_sweater.mhclo",
+      "bytes": 144016,
+      "sha256": "b454960bdd61985f246e88e547a127a75d590dc87d6c1a4062fb7c7c281d8999"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/cortu_cargo_pants/cargo_pants_diff.png",
+      "bytes": 2570421,
+      "sha256": "b091229d558aed8ad41f31235265e98164a2f709158f4113d0ce0e072f680197"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/cortu_cargo_pants/cortu_cargo_pants.mhclo",
+      "bytes": 14553,
+      "sha256": "5bc0c7282a5a2694d55b6df2ed5642a382d89d0b77bd98703dac7e110e51fada"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/cortu_cargo_pants/cargo_pants.mhmat",
+      "bytes": 803,
+      "sha256": "f0718c17a792c56d947525d0fb49ad3b7f9bb33b27acb8353dd94827096f497e"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/cortu_cargo_pants/cortu_cargo_pants.thumb",
+      "bytes": 41389,
+      "sha256": "8974f0ee1b057c4bb11b44d98816aa0f3b9260c845ee27e79c40caee7ecaddde"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/cortu_cargo_pants/cargo_pants.obj",
+      "bytes": 15154,
+      "sha256": "705467843e1136ca9bc91736efe9601a9cd7243abdeaa9752d69ea53f0974089"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/cortu_cargo_pants/cargo_pants_norm.png",
+      "bytes": 4344852,
+      "sha256": "0851011ad2fd36f6ad2bd1bdd6202bad32fb555b7d6cdb6b474811ba5a5fe7a6"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/elvs_crude_t-shirt_male/crude_male_tex.png",
+      "bytes": 9204,
+      "sha256": "0704c69ec9ebaf4a9ab0ba04a103a9350939971ca8222f130f4e3defecdc2231"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/elvs_crude_t-shirt_male/elvs_crude_t-shirt_male.thumb",
+      "bytes": 32748,
+      "sha256": "0507fb8a0c2aea8e5e3ce861334780a94eafe15550478df2df6d557fe494d692"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/elvs_crude_t-shirt_male/elvs_crude_t-shirt_male.mhclo",
+      "bytes": 75660,
+      "sha256": "64dd3e6e2fbba39cc792854e0ae3e2c4829a37fa4e4b690f463c2956476294da"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/elvs_crude_t-shirt_male/crude_male_shirt.mhmat",
+      "bytes": 794,
+      "sha256": "4e456f7b85ff3023b2ec3b4ed58b0ccceac621f3a02f4887d04eaa2a781b229a"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/elvs_crude_t-shirt_male/crude_male_shirt.obj",
+      "bytes": 80940,
+      "sha256": "3389b981a826396213cce2e69f40b3d9eca6cdfadcfcbee2774acb1dfb322fa7"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes01/shoes01.mhclo",
+      "bytes": 119049,
+      "sha256": "7994e38f7cdcee0bd5f55101660badcce0162fcdfc7f432218dd1eb301626252"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes01/shoes01.mhmat",
+      "bytes": 1161,
+      "sha256": "db1711e2dfea4dd8c24459643603a190d9a9da603fd26da5542002a73d740be8"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes01/shoes01_diffuse.png",
+      "bytes": 1335772,
+      "sha256": "50c9a406a7f1cb6aa7b42912348e78f09d0252aa3963c8229cf18dfe8353cdbf"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes01/shoes01.obj",
+      "bytes": 136910,
+      "sha256": "eac355a842a8eb8ae2f09fac8dd18a877a24ef2521ed2d6bf38559b42ce4b49a"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes01/shoes01_normal.png",
+      "bytes": 875473,
+      "sha256": "a9bfd7223e98b8f93100e89596135e3a94e6044f9db11b4d23cec625c37a4599"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes01/shoes01.thumb",
+      "bytes": 40319,
+      "sha256": "a118291fe3e83e3c616febf52fdb480186c816e7cd4d77d331adffd457421cbb"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/shoes01/shoes01.mhw",
+      "bytes": 324727,
+      "sha256": "b377d91e6d0264521f672c3990c366b2631103accba4921fc3965c2ed5ce395b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_elegantsuit01/female_elegantsuit01.thumb",
+      "bytes": 50008,
+      "sha256": "ea5a3491d544888a7187ace16da98f093b498a19220b19a8c317f78fbf2697c6"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_elegantsuit01/female_elegantsuit01_diffuse.png",
+      "bytes": 1996561,
+      "sha256": "ebe6f2afcbaadbe56d5cee6e00bab45e97ce482f0be0e34491d16ca5f98b38ac"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_elegantsuit01/female_elegantsuit01_normal.png",
+      "bytes": 1549042,
+      "sha256": "ae3650bce6678cd67d025ab70e68b22683176aeaabc06d8e5b2129af99c762e9"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_elegantsuit01/female_elegantsuit01_ao.png",
+      "bytes": 1350953,
+      "sha256": "0f89546c63ab16e2c1ba0556da7e07264b98b58e6200b043491f92f796b87673"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_elegantsuit01/female_elegantsuit01.mhclo",
+      "bytes": 151008,
+      "sha256": "8ed657dbc49466e6a485993cfdcfd7b6ac30a0f44408dfd38de7a649477d8928"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_elegantsuit01/female_elegantsuit01.obj",
+      "bytes": 174924,
+      "sha256": "3b46cef6d63968954dc00c39ede649d76c05e5d36fe9f9c677349c88fd424de9"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_elegantsuit01/female_elegantsuit01.mhmat",
+      "bytes": 1408,
+      "sha256": "a0b1708efbff3c4ad96f8e7d8cc27fb1652719549455ce94b89bcf6294cfbed0"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_male_suit_3/toigo_male_suit_3.thumb",
+      "bytes": 36626,
+      "sha256": "cbba6702cb0ba9b78e2e57308007a7fd519aade72c8e97542e0ee782649cdb58"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_male_suit_3/NewSuit3-norm.png",
+      "bytes": 2834770,
+      "sha256": "118115b7ecd7254e3f0da718ac728ca9113ae602ba6e77f59b7272490eb87f95"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_male_suit_3/NewSuit3-spec.png",
+      "bytes": 31606,
+      "sha256": "a08f5774194f56770cc9fecb117667554b0769fdbb74dd87ecd3ac3df9da110b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_male_suit_3/suit3.mhmat",
+      "bytes": 559,
+      "sha256": "be7be987fa5aede1aee34112cbbc1ff5a803240f21ee16f40655efb6161cd92e"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_male_suit_3/NewSuit3.png",
+      "bytes": 2396683,
+      "sha256": "7a3fa6cf10d3fcc2946469efcf066e2f5898d1a9dfa10a3df4a1ff2495dc17dc"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_male_suit_3/suit3.obj",
+      "bytes": 704735,
+      "sha256": "1412a998988f19696e00637afd69e64499d727a0c6ab7527f8713129990f0e43"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_male_suit_3/toigo_male_suit_3.mhclo",
+      "bytes": 577386,
+      "sha256": "e5457dffafce4a5f44e179278c712e64a040b5e5e3aa41f15ed8100be5694c01"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit01/female_casualsuit01.thumb",
+      "bytes": 31184,
+      "sha256": "138a4bfb756f0cdfc8116d3f0ebcc14e1e20472bb225ead986b0cc3a8b291212"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit01/female_casualsuit01_ao.png",
+      "bytes": 2153148,
+      "sha256": "f97a31fb02b5f36802a08bfe22bffb1961240d4ecb20059540eec6516d753424"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit01/female_casualsuit01_normal.png",
+      "bytes": 5744103,
+      "sha256": "7bff7afbbc3f068e06f69abcddc8c2c9ce667ec181e0f2a918f8af78eba12610"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit01/female_casualsuit01_diffuse.png",
+      "bytes": 3019656,
+      "sha256": "414d46afa55fba09ad0913484d57df2ba6b597dc8193595a13a12436137dc21b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit01/female_casualsuit01.mhclo",
+      "bytes": 150568,
+      "sha256": "8a17e4edceeb22ef30ce102ed05fb3463ca0eeb61addc7811f4867fde5963fa4"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit01/female_casualsuit01.mhmat",
+      "bytes": 1404,
+      "sha256": "7bef35aade88daf9f4597f3b3c9a45be51cc51caf44012d12ac4e005c8087689"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/female_casualsuit01/female_casualsuit01.obj",
+      "bytes": 175427,
+      "sha256": "b6cfaf08b291fe10ea312d37e98d5e328eced5828bdb6f96ecac6bf4ababe652"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_camisole_top/camisole_top.obj",
+      "bytes": 352621,
+      "sha256": "2f4377c34c55608299ebae72717073b258b12f0ba1783d10db1fc037601be377"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_camisole_top/toigo_camisole_top.thumb",
+      "bytes": 70987,
+      "sha256": "b1f9b8b1859023189791d87de44eef4f1c176675a5568d435a5ee479076eaac7"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_camisole_top/camisole_top.mhmat",
+      "bytes": 502,
+      "sha256": "c12632e85622cc6b64a6e8f81fbbfc6862d6a56c1df332fb3c8644dbccba4bdc"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_camisole_top/toigo_camisole_top.mhclo",
+      "bytes": 287125,
+      "sha256": "2954430d051b9707acdb9fee2aebdc8a250aab473f32452ef6b86684e8c26ffc"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_camisole_top/CamisoleTop.png",
+      "bytes": 4827382,
+      "sha256": "9277a2c8bbd15c379302b8f08f33420e87e8df4cfb234a83b698856c595a8385"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_shift_dress/dress_shift.obj",
+      "bytes": 576997,
+      "sha256": "b7607930f54a7444bee1077f0d97a9d835131d206e777a1d132fac924a23ad50"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_shift_dress/ShiftDress.png",
+      "bytes": 1624432,
+      "sha256": "ea7f1d0a2009702745a8cf99190bbdb9dee523486f9c7a53be2ddeb4c01d9fc8"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_shift_dress/dress_shift.mhmat",
+      "bytes": 500,
+      "sha256": "9abee1654f3f7cf3b2ead5d15e1a72497a137a2d426a10fbb495af5eae70ef82"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_shift_dress/toigo_shift_dress.mhclo",
+      "bytes": 467384,
+      "sha256": "fb6587b7775b6fc11251772117c6e16f4f78c43b5987d69d560df32d648d8bff"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_shift_dress/toigo_shift_dress.thumb",
+      "bytes": 31312,
+      "sha256": "e08d74f06520f7b890ee9e1c0d891ec6126aba5f22977bd2435b5ac4cb4c1172"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_female_suit_2/toigo_female_suit_2.thumb",
+      "bytes": 36633,
+      "sha256": "de9751f760d8d54cdf40c9506d1c67f5ed99ce5827ebd3408415727001d39fd3"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_female_suit_2/Fsuit2.png",
+      "bytes": 2611873,
+      "sha256": "b3f0a27b957783696a6b9bed71ba73779831515418a72d3f4680cdc972ce990a"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_female_suit_2/Fsuit2-norm.png",
+      "bytes": 2583270,
+      "sha256": "2ce673245d1fb62b6aec0e785bb498268aaeef25a2576612393cc4ddc7cfc8bd"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_female_suit_2/Fsuit2-spec.png",
+      "bytes": 21439,
+      "sha256": "da7de2e179f4c06e35b6453232edc9c0aac752cda13e218b9ace54ef0cbbca51"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_female_suit_2/fem_suit2.obj",
+      "bytes": 703468,
+      "sha256": "a322ac52ac113b08e5436dea787768180740c86db7e0a2b07b274b36a16467b3"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_female_suit_2/toigo_female_suit_2.mhclo",
+      "bytes": 576417,
+      "sha256": "3156c2113c18028dd8d12f3d4ad77b29008cd982a444f86f5d18be003240929c"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/toigo_female_suit_2/fem_suit2.mhmat",
+      "bytes": 543,
+      "sha256": "c6cd9227461acb3bdcb1bd3ea4784f3af23a83185b51b321fe1101321e1823d9"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit01/male_casualsuit01.mhmat",
+      "bytes": 1345,
+      "sha256": "043b25cefd398261b893d3dae58c81fc3e9633a25a01eafe66963591f5ad6eb6"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit01/male_casualsuit01.mhclo",
+      "bytes": 570419,
+      "sha256": "78503ed7f56c149843d85e06e1164bc6871ce7319b2ef689237046352cc90de4"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit01/male_casualsuit01_ao.png",
+      "bytes": 785596,
+      "sha256": "9402d75d71318ef3ad90ee59f8b8688effefd13b3ec56423330e005bed5cd6c0"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit01/male_casualsuit01_normal.png",
+      "bytes": 1738660,
+      "sha256": "ff029fc5a3350ebc72813cdf050afcffd23064c7701d99e664572713cfa98a5f"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit01/male_casualsuit01.obj",
+      "bytes": 699545,
+      "sha256": "001921d237e408c35103720d046aa37f9c5512db1a179a5ede6a065cd504ba89"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit01/male_casualsuit01_diffuse.png",
+      "bytes": 5531728,
+      "sha256": "3fd0bba5dcbdea0ac427f644a6c7c298938f7369b8f96626621ce1e88989394e"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/clothes/male_casualsuit01/male_casualsuit01.thumb",
+      "bytes": 39401,
+      "sha256": "cd8a8c9461b164542d8660b9beaae17636040c9199020b65755a03559809cfc1"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow002/eyebrow002.png",
+      "bytes": 96277,
+      "sha256": "1de4e4cb69b3f4324390219ffbeb17a0b2555104d3211d1ac667655b69b64038"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow002/eyebrow002.thumb",
+      "bytes": 137855,
+      "sha256": "4acd972e24cb3dec29a72391d08fb0a88afc1b8ad7ec1dd903e017558c9a1e20"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow002/eyebrow002.obj",
+      "bytes": 8227,
+      "sha256": "7fe4e036311c41802bd6889acb02d1b06184a0dd759ac72e1d9fba1037243667"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow002/eyebrow002.mhmat",
+      "bytes": 1098,
+      "sha256": "57fc4d1f089be90b2ab4774bdc7c077b5a519f33a293e57ee74762c7714a3b34"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow002/eyebrow002.mhclo",
+      "bytes": 9132,
+      "sha256": "550781113f5c3971e7e200450d7d94e2290d43e9449a42667d2bf972c1eb0593"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow001/eyebrow001.png",
+      "bytes": 89619,
+      "sha256": "9940f7d0b1b223709a19b05156ba6f6e9e4dbdbced02d7574f4d51d72c58967b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow001/eyebrow001.thumb",
+      "bytes": 137534,
+      "sha256": "98b68eccf50977ff00242a33eb1dc6e3eaf4cc262e1f6c4ceca5c1c564f6c745"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow001/eyebrow001.obj",
+      "bytes": 8227,
+      "sha256": "88b13146395133f3901715e11706cdfd293e5d6087ad7c5e01efe1485a26b513"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow001/eyebrow001.mhclo",
+      "bytes": 9141,
+      "sha256": "54c8892c2ba577f4152d779ce1f20f7cd323beb8cbd9cb701796165c221b4f5b"
+    },
+    {
+      "file": "verification/avatar-studio/research-assets/system-assets/eyebrows/eyebrow001/eyebrow001.mhmat",
+      "bytes": 1098,
+      "sha256": "976e5f4f1d3922d7a11c6e2db233f8b4584b068d00619d5749687e81c92d61fc"
+    }
+  ],
+  "downloadManifestSha256": "79aca49ea66a672d7d13ba3dc1c6c57ed2d998dd57d6b062e5236c7a991923a4",
+  "modifications": [
+    "adult fashion proportions and facial target combinations",
+    "new fitted short-sleeve, tiered mini skirt, cargo trousers, polo, knit, two dresses, boots and ballet flat meshes",
+    "neutralized authored fabric diffuse maps preserving texture detail and normal maps",
+    "plane-bisected cropped tee hem",
+    "pelvis-only opaque fallback coverage kept beneath fitted garments",
+    "clean French braid and textured cropped male hair",
+    "intact conditional closed-blazer coverage and authored trouser fit morph",
+    "per-variant conditional skin coverage for fully covered knit sleeves and closed ankle boots; intact face/neck/hands and complete geometry retained",
+    "embedded textures and 53 joint game-engine skinning"
+  ]
+}

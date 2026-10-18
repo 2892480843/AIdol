@@ -5,7 +5,7 @@ import pytest
 
 from app.config import Settings
 from app.storage import FileSystemStorage, InvalidStorageKey, StorageUnavailableError
-from app.storage.s3 import S3Storage
+from app.storage.s3 import S3Storage, _client_for_config, _after_fork
 
 
 class S3Error(Exception):
@@ -126,7 +126,7 @@ def test_s3_sdk_is_bounded_and_does_not_probe_or_create_buckets_on_startup():
         s3_secret_key="test-secret",
         s3_max_attempts=4,
     )
-    with patch("boto3.client") as constructor:
+    with patch("boto3.session.Session.client") as constructor:
         S3Storage.from_settings(settings)
     arguments = constructor.call_args.kwargs
     assert arguments["endpoint_url"] == "http://object-store:9000"
@@ -154,3 +154,62 @@ def test_s3_stream_failure_is_sanitized_and_closed():
         S3Storage(bucket="wardrobe", client=client).read("user/photo.jpg")
     assert client.body.closed
     assert "credential-value" not in str(error.value)
+
+
+def test_s3_reuses_connection_client_for_equivalent_settings():
+    settings = Settings(s3_bucket="perf-test", s3_endpoint_url="http://perf-s3:9000",
+                        s3_access_key="perf-access", s3_secret_key="perf-secret", s3_secure=False)
+    with patch("boto3.session.Session.client") as constructor:
+        first = S3Storage.from_settings(settings)
+        second = S3Storage.from_settings(settings.model_copy())
+    assert first.client is second.client
+    assert constructor.call_count == 1
+
+
+@pytest.fixture(autouse=True)
+def clear_sdk_clients():
+    _client_for_config.cache_clear()
+    yield
+    _client_for_config.cache_clear()
+
+
+@pytest.mark.parametrize("field,value", [
+    ("s3_endpoint_url", "http://different-store:9000"),
+    ("s3_access_key", "new-access"), ("s3_secret_key", "new-secret"),
+    ("s3_region", "other-region"), ("s3_secure", True),
+    ("s3_addressing_style", "virtual"), ("s3_connect_timeout", 7),
+    ("s3_read_timeout", 45), ("s3_max_attempts", 5),
+])
+def test_s3_connection_reuse_isolates_every_connection_setting(field, value):
+    settings = Settings(s3_bucket="wardrobe", s3_endpoint_url="http://test-store:9000",
+                        s3_access_key="access", s3_secret_key="secret", s3_secure=False)
+    with patch("boto3.session.Session.client", side_effect=lambda *a, **kw: object()) as constructor:
+        first = S3Storage.from_settings(settings)
+        second = S3Storage.from_settings(settings.model_copy(update={field: value}))
+    assert first.client is not second.client
+    assert constructor.call_count == 2
+
+
+def test_s3_shared_client_keeps_buckets_separate_and_resets_after_fork():
+    settings = Settings(s3_bucket="one", s3_endpoint_url="http://test-store:9000",
+                        s3_access_key="access", s3_secret_key="secret", s3_secure=False)
+    with patch("boto3.session.Session.client", side_effect=lambda *a, **kw: object()) as constructor:
+        first = S3Storage.from_settings(settings)
+        second = S3Storage.from_settings(settings.model_copy(update={"s3_bucket": "two"}))
+        assert first.client is second.client
+        assert (first.bucket, second.bucket) == ("one", "two")
+        _after_fork()
+        third = S3Storage.from_settings(settings)
+        assert third.client is not first.client
+        assert constructor.call_count == 2
+
+
+def test_s3_concurrent_initialization_constructs_only_one_client():
+    from concurrent.futures import ThreadPoolExecutor
+    settings = Settings(s3_bucket="one", s3_endpoint_url="http://test-store:9000",
+                        s3_access_key="access", s3_secret_key="secret", s3_secure=False)
+    with patch("boto3.session.Session.client", side_effect=lambda *a, **kw: object()) as constructor:
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            stores = list(executor.map(lambda _: S3Storage.from_settings(settings), range(20)))
+    assert all(store.client is stores[0].client for store in stores)
+    assert constructor.call_count == 1

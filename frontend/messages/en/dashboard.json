@@ -126,7 +126,7 @@
     "currentIssue": "MY WARDROBE",
     "sampleImage": "Style illustration",
     "methods": "Your next favorite look starts here",
-    "methodsSubtitle": "Six small exercises, inspired by public styling advice. Start with your own clothes.",
+    "methodsSubtitle": "Find a small exercise in public styling ideas and start with clothes you own.",
     "allMethods": "Discover more",
     "serviceTitle": "The practical things",
     "serviceSubtitle": "A well-cared-for wardrobe is a wardrobe you wear.",
@@ -140,7 +140,7 @@
   "inspiration": {
     "eyebrow": "STYLE DISCOVERY",
     "title": "Find your inspiration. Make it yours.",
-    "description": "Explore public styling methods, then try your own version with the pieces you already own.",
+    "description": "Find an idea in a column or on Douyin, then try it step by step with your own clothes.",
     "search": "Search ideas or creators",
     "all": "Discover",
     "savedOnly": "Saved",
@@ -170,7 +170,7 @@
     "bookmarksLocal": "Saved ideas stay on this device for your account.",
     "bookmarkError": "This browser could not save your ideas. Please check local storage settings.",
     "creatorsTitle": "Creators to find inspiration from",
-    "sourcesNote": "These exercises are our adaptations of public advice. Source links credit the creators; they have not endorsed this app.",
+    "sourcesNote": "Dada creates these exercises and links public sources for further reading or viewing. Creators have not partnered with or endorsed this app.",
     "viewSource": "Read the original",
     "resetSelections": "Reset choices",
     "colorHint": "Check the color note before wearing.",
@@ -190,32 +190,92 @@
       "everyday": {
         "title": "The familiar favorites",
         "summary": "A top, a bottom, shoes. Give a good basic combination another day out.",
-        "tip": "Choose comfortable pieces you already reach for. Change just one detail, then save what works."
+        "tip": "Choose comfortable pieces you already reach for. Change just one detail, then save what works.",
+        "steps": {
+          "pick": "Start with a favourite top, comfortable bottoms and shoes.",
+          "adjust": "Keep the base and change only the shoes or hem styling. Skip the bag if you do not need it.",
+          "review": "Walk around in the outfit, then take the version you like to the studio."
+        }
       },
       "layer": {
         "title": "A layer of intention",
         "summary": "A simple base, finished with a useful outer layer.",
-        "tip": "Keep the base easy to repeat. Choose the outer layer for your plans and the weather, then check the shape in a mirror."
+        "tip": "Keep the base easy to repeat. Choose the outer layer for your plans and the weather, then check the shape in a mirror.",
+        "steps": {
+          "pick": "Start with a familiar base and choose an outer layer as the focus.",
+          "adjust": "Check the room and hem length with the layer on, leaving space to move.",
+          "review": "Decide whether this layer-based exercise suits the weather before saving your version."
+        }
       },
       "balance": {
         "title": "Let one shape lead",
         "summary": "Try a fuller piece with a more defined one.",
-        "tip": "Choose one focal piece. Adjust a tuck, a hem or a sleeve, and see which proportions feel comfortable to you."
+        "tip": "Choose one focal piece. Adjust a tuck, a hem or a sleeve, and see which proportions feel comfortable to you.",
+        "steps": {
+          "pick": "Choose one piece to highlight and pair it with familiar clothes.",
+          "adjust": "Adjust a hem, trouser cuff or sleeve, changing only one thing at a time.",
+          "review": "Look in a mirror and move around before saving the silhouette you enjoy."
+        }
       },
       "accent": {
         "title": "A small note of color",
         "summary": "A calm base with an optional brighter finishing detail.",
-        "tip": "Try a little color in a bag, scarf or belt. Repeat a shade you enjoy, without needing to buy a new piece."
+        "tip": "Try a little color in a bag, scarf or belt. Repeat a shade you enjoy, without needing to buy a new piece.",
+        "steps": {
+          "pick": "Keep a familiar base and choose one accessory you already own.",
+          "adjust": "Compare the outfit with and without it; skip the accessory if you prefer.",
+          "review": "Choose the detail you want to emphasise and refine it in the studio."
+        }
       },
       "dress": {
         "title": "The easy two-piece start",
         "summary": "A dress or jumpsuit and a pair of shoes; add a layer if you want.",
-        "tip": "Start with a full-length look you enjoy. Check the hem and shoes together, then adjust one detail or an outer layer."
+        "tip": "Start with a full-length look you enjoy. Check the hem and shoes together, then adjust one detail or an outer layer.",
+        "steps": {
+          "pick": "Pick a dress or jumpsuit you want to wear and comfortable shoes.",
+          "adjust": "Change only the shoes, hem or sleeves; skip the outer layer when it is not needed.",
+          "review": "Check that you can walk and sit comfortably, then save your version."
+        }
       },
       "tonal": {
         "title": "Quiet colors, more depth",
         "summary": "Explore a similar color family with a little light-and-dark contrast.",
-        "tip": "Compare the actual pieces in daylight. Similar color tags are only a starting point; texture and shade add interest."
+        "tip": "Compare the actual pieces in daylight. Similar color tags are only a starting point; texture and shade add interest.",
+        "steps": {
+          "pick": "Put your top and bottoms together and look for related colours.",
+          "adjust": "Compare lightness and texture, changing just one piece at a time.",
+          "review": "Check the real colours in daylight, then save a comfortable combination you like."
+        }
+      },
+      "colorPlay": {
+        "title": "Give one colour a moment",
+        "summary": "Choose a colourful top you like and start with simpler supporting pieces.",
+        "tip": "This is a colour exercise, not a fixed rule. Compare the actual pieces and use more colour if you enjoy it.",
+        "steps": {
+          "pick": "Choose a colour from a top you own, keeping comfortable bottoms and shoes.",
+          "adjust": "Change only the top or one accessory and notice what draws your attention.",
+          "review": "Check the pieces in daylight and take the combination to the studio to refine it."
+        }
+      },
+      "easyLayers": {
+        "title": "Let the weather choose the layer",
+        "summary": "Start with a top, bottoms and shoes. An outer layer is optional; skip it when you do not need it.",
+        "tip": "Use layering as a topic for your own exercise. Temperature, movement and comfort matter more than the number of layers.",
+        "steps": {
+          "pick": "Build a comfortable base of top, bottoms and shoes that works on its own.",
+          "adjust": "Compare how you move with and without the outer layer. Skip it if it is not needed.",
+          "review": "Keep the layers you want to wear today and save your own version in the studio."
+        }
+      },
+      "detailEcho": {
+        "title": "Let one detail echo",
+        "summary": "Look for a related colour between your shoes, top or an accessory.",
+        "tip": "Repeating a small colour is an optional experiment. Colour labels cannot judge patterns, fabrics or how an outfit looks on you.",
+        "steps": {
+          "pick": "Choose a top with a colour you enjoy and add familiar bottoms.",
+          "adjust": "Change only the shoes or one accessory to echo part of the top. Skip the accessory if you prefer.",
+          "review": "Compare the real pieces and how they feel, then save a combination to refine."
+        }
       }
     },
     "creators": {
@@ -224,7 +284,211 @@
       "imogen": "Explore color and contrast",
       "jamie": "Build around a focal piece",
       "becky": "Everyday proportion and color ideas",
-      "jean": "Pay attention to hems and finishing details"
+      "jean": "Pay attention to hems and finishing details",
+      "yanbaiwan": "Use colour as a starting topic for one piece you own",
+      "xiebao": "Explore layering while choosing an outer layer for the weather",
+      "changxin": "Try a small colour echo as your own styling experiment"
+    },
+    "sourceFilter": "Source platform",
+    "allSources": "All sources",
+    "platforms": {
+      "douyin": "Douyin",
+      "article": "Independent columns"
+    },
+    "creatorFilter": "Creator",
+    "allCreators": "All creators",
+    "viewPractice": "Try their exercise",
+    "viewProfile": "Creator profile",
+    "viewVideo": "Watch original video",
+    "videoNote": "This video is a topic reference for our own exercise. Visit Douyin for the full work; this is not a transcript or recreation of the entire video.",
+    "skipOptional": "Skip {name}",
+    "restoreOptional": "Restore {name}",
+    "skippedOptional": "Leave this piece out",
+    "skippedNote": "This optional piece is skipped. You can bring it back at any time.",
+    "guideTitle": "Try the idea in three steps",
+    "guideDescription": "Start with clothes you own, then adjust for your weather, plans and preferences.",
+    "stepTitles": {
+      "pick": "Pick a starting piece",
+      "adjust": "Change one detail",
+      "review": "Try it on, then save"
+    },
+    "anchor": {
+      "title": "One piece, more ideas",
+      "description": "Choose one piece you own and try it in different styling exercises.",
+      "choose": "Choose a starting piece",
+      "allItems": "No starting piece selected",
+      "clear": "Clear starting piece",
+      "locked": "This piece stays in the look. Choose a different starting piece to replace it.",
+      "compatibleCount": "Compatible exercises: {count}",
+      "empty": "No available pieces found.",
+      "loading": "Loading available pieces…",
+      "partial": "Loaded {loaded} of {total} pieces. You can load more.",
+      "unavailable": "This piece is unavailable for these exercises. Please choose another.",
+      "creatorReset": "The starting piece was cleared to show exercises linked to this creator.",
+      "resetHint": "Reset clears other choices and skipped pieces while keeping your starting piece."
+    }
+  },
+  "looks": {
+    "title": "Outfit switcher",
+    "description": "See full looks, compare your outfit photos, and preview a single garment with AI.",
+    "tabs": {
+      "model": "Style discovery",
+      "worn": "My outfit photos",
+      "tryon": "AI try-on"
+    },
+    "modelNotice": "Original AI-generated model examples. These are not try-on results for your wardrobe.",
+    "switcher": {
+      "previous": "Previous look",
+      "next": "Next look",
+      "select": "Select look {index}",
+      "position": "{current} / {total}",
+      "compare": "Compare two looks",
+      "compareWith": "Compare with",
+      "imageUnavailable": "Image unavailable",
+      "empty": "No looks to display."
+    },
+    "modelNames": {
+      "casual": "White tee & denim",
+      "office": "Blue shirt for work",
+      "layer": "Knit vest layers",
+      "outer": "Olive jacket weekend"
+    },
+    "worn": {
+      "title": "My outfit photos",
+      "description": "Add full outfit photos and optionally link the clothes you wore.",
+      "localOnly": "Photos are stored by account in this browser. Clearing site data removes them.",
+      "photos": "Outfit photos (JPEG, PNG or WebP)",
+      "name": "Name for photo {index}",
+      "associate": "Link wardrobe items",
+      "add": "Save outfit photos",
+      "adding": "Saving…",
+      "empty": "No outfit photos yet. Add your first full look.",
+      "delete": "Delete photo",
+      "deleteTitle": "Delete this outfit photo?",
+      "deleteDescription": "“{name}” will be permanently removed from this browser.",
+      "confirmDelete": "Delete permanently",
+      "cancel": "Cancel",
+      "error": "Unable to save the photo. Please try again.",
+      "partialError": "{count} photos could not be saved. Successful photos are kept.",
+      "limit": "Up to 20 photos, 10 MB per image.",
+      "errors": {
+        "invalid-photo": "Choose a valid JPEG, PNG or WebP photo.",
+        "photo-too-large": "Each photo must be 10 MB or less.",
+        "invalid-name": "Enter a name of 1–100 characters.",
+        "invalid-items": "Choose up to 12 valid wardrobe items.",
+        "limit-reached": "The 20-photo limit has been reached.",
+        "storage-unavailable": "Browser storage is unavailable. Enable site storage and try again.",
+        "quota-exceeded": "Browser storage is full. Free some space and try again.",
+        "not-found": "This photo is no longer available.",
+        "session-changed": "Your account changed. Select the photo again.",
+        "invalid-record": "The saved photo record is invalid."
+      }
+    },
+    "tryon": {
+      "title": "AI try-on",
+      "description": "Upload a person photo and choose one item for a simulated try-on. Use the fitting room for a complete outfit.",
+      "loading": "Checking try-on service…",
+      "unavailable": "Try-on is not enabled. Complete the service setup first.",
+      "loadError": "Unable to check the service. Try again.",
+      "retry": "Try again",
+      "personPhoto": "Person photo",
+      "garment": "One item from your wardrobe",
+      "chooseGarment": "Choose an item",
+      "sendNotice": "Starting sends the selected person and garment photos to {provider} to generate a try-on image.",
+      "consent": "I have permission to use this photo and agree to send the selected images for generation.",
+      "start": "Generate try-on",
+      "starting": "Generating…",
+      "result": "Try-on result",
+      "generatedNotice": "AI simulation. Garment details and fit may differ from wearing the item.",
+      "empty": "No try-on results yet.",
+      "error": "Try-on did not complete. Review the task status before starting again.",
+      "queued": "Queued",
+      "running": "Generating",
+      "failed": "Failed",
+      "succeeded": "Ready",
+      "unsupported": "Choose an available, clean, unarchived item supported by this service."
+    },
+    "discovery": {
+      "eyebrow": "STYLE PLAYGROUND",
+      "title": "Today, try a different style.",
+      "description": "From streetwear to everyday looks, make the styles you love your own.",
+      "all": "All styles",
+      "searchLabel": "Search styles and looks",
+      "searchPlaceholder": "Try stripes, utility or layers",
+      "reset": "Reset filters",
+      "clearSearch": "Clear search",
+      "count": "{count, plural, one {# look} other {# looks}}",
+      "styleCount": "{count, plural, one {# style} other {# styles}}",
+      "preview": "View look",
+      "previewTitle": "Look preview",
+      "close": "Close preview",
+      "allTitle": "Style, on your terms.",
+      "allDescription": "Six styling ideas, twelve original examples. Pick a direction or mix your own version.",
+      "formulaTitle": "Outfit formula",
+      "tipTitle": "Try it on your way",
+      "paletteTitle": "Color palette",
+      "practice": "Try with my wardrobe",
+      "emptyTitle": "No looks found",
+      "emptyDescription": "Try another keyword or clear the filters to explore more styles.",
+      "filtersLabel": "Style filters",
+      "styles": {
+        "street": {
+          "name": "Utility street",
+          "description": "Relaxed shapes with a sharp edge.",
+          "formula": "Relaxed top + simple bottoms + shoes",
+          "tip": "Choose one focal piece and keep the rest simple. Check the actual fit as you go.",
+          "keywords": "streetwear street charcoal bomber olive jacket utility oversized Utility street"
+        },
+        "sport": {
+          "name": "Athleisure",
+          "description": "Easy to move in, easy to wear every day.",
+          "formula": "Comfortable top + streamlined bottoms + sneakers",
+          "tip": "Walk around and raise your arms to check comfort, then adjust the hems.",
+          "keywords": "sport casual burgundy cream pale yellow tracksuit zip sneakers Athleisure"
+        },
+        "cityboy": {
+          "name": "Cityboy",
+          "description": "Relaxed layers for days around town.",
+          "formula": "Everyday top + loose bottoms + shoes + optional layer",
+          "tip": "Start with a base that works on its own, then add a layer for the weather.",
+          "keywords": "cityboy urban layers oversized shirt jacket relaxed Cityboy"
+        },
+        "clean": {
+          "name": "Clean Fit",
+          "description": "Simple colors and clear, easy lines.",
+          "formula": "Basic top + everyday bottoms + comfortable shoes",
+          "tip": "Adjust the hem or cuffs, then change just one detail and compare.",
+          "keywords": "clean minimal basics white tee shirt denim everyday Clean Fit"
+        },
+        "retro": {
+          "name": "Retro prep",
+          "description": "Familiar textures and colors, worn your way.",
+          "formula": "Basic top and bottoms + textured layer + shoes",
+          "tip": "Let knitwear or leather take the lead and keep the other pieces simple.",
+          "keywords": "retro vintage argyle knit leather brown classic Retro prep"
+        },
+        "french": {
+          "name": "French ease",
+          "description": "Easy lines with a little spontaneity.",
+          "formula": "Tonal top and bottoms + neutral shoes",
+          "tip": "Compare the real shades and textures, then add interest with a stripe or neckline.",
+          "keywords": "french parisian stripe blouse navy beige effortless French ease"
+        }
+      },
+      "lookNames": {
+        "casual": "White tee and denim",
+        "office": "Blue-shirt workday",
+        "layer": "Knitwear layers",
+        "outer": "A light outer layer",
+        "streetBomber": "Charcoal bomber",
+        "streetShell": "Olive jacket",
+        "sportTrack": "Burgundy and cream tracksuit",
+        "sportZip": "Pale yellow zip jacket",
+        "retroArgyle": "Burgundy argyle knit",
+        "retroLeather": "Brown leather-look jacket",
+        "frenchStripe": "Stripes and red flats",
+        "frenchBlouse": "Cream blouse and beige trousers"
+      }
     }
   }
 }

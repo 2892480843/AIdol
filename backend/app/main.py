@@ -1,3 +1,4 @@
+import asyncio
 import logging
 from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
@@ -27,6 +28,12 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         logger.error("Configuration: %s", warning)
     logger.info("Auth mode: %s", settings.get_auth_mode())
     try:
+        if settings.storage_backend == "s3":
+            from app.storage import create_storage
+
+            # Initialize the shared SDK pool before readiness, not on the first user's request.
+            # Construction does not probe/create buckets or read any private object.
+            await asyncio.to_thread(create_storage, settings)
         yield
     finally:
         await engine.dispose()

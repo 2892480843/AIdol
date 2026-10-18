@@ -112,6 +112,10 @@ class StudioService:
         notes: str | None = None,
     ) -> Outfit:
         items = await validate_item_ownership(self.db, user.id, item_ids)
+        # A source is an independent foreign key, so validating selected garments
+        # alone must not permit references to a missing or another owner's item.
+        if source_item_id is not None and source_item_id not in {item.id for item in items}:
+            await validate_item_ownership(self.db, user.id, [source_item_id])
         ordered = self._order_items_canonically(items)
 
         # Marking an undated outfit worn means it was worn today, as wear_today assumes.

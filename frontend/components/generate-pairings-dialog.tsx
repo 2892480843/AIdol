@@ -135,7 +135,7 @@ export function GeneratePairingsDialog({
         ) : (
           // Success state
           <div className="py-6 text-center space-y-4">
-            <div className="w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mx-auto flex items-center justify-center">
+            <div className="w-16 h-16 rounded-none bg-green-100 dark:bg-green-900/30 mx-auto flex items-center justify-center">
               <Check className="h-8 w-8 text-green-600 dark:text-green-400" />
             </div>
             <div>
@@ -152,7 +152,7 @@ export function GeneratePairingsDialog({
               {generatedPairings.slice(0, 3).map((pairing) => (
                 <div
                   key={pairing.id}
-                  className="flex gap-1 p-1 rounded-lg bg-muted border"
+                  className="flex gap-1 p-1 rounded-none bg-muted border"
                 >
                   {pairing.items.slice(0, 3).map((pairingItem) => (
                     <div

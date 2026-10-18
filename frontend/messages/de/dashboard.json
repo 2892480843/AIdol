@@ -126,7 +126,7 @@
     "currentIssue": "MEIN KLEIDERSCHRANK",
     "sampleImage": "Stilillustration",
     "methods": "Hier beginnt dein nächstes Lieblingsoutfit",
-    "methodsSubtitle": "Sechs kleine Übungen, inspiriert von öffentlich zugänglichen Stylingtipps. Fang mit deinen eigenen Kleidern an.",
+    "methodsSubtitle": "Entdecke kleine Übungen in öffentlichen Styling-Ideen und beginne mit den Kleidern, die du schon hast.",
     "allMethods": "Mehr entdecken",
     "serviceTitle": "Die praktischen Dinge",
     "serviceSubtitle": "Eine gut gepflegte Garderobe wird auch getragen.",
@@ -140,7 +140,7 @@
   "inspiration": {
     "eyebrow": "STIL ENTDECKEN",
     "title": "Finde deine Inspiration. Mach deinen Stil daraus.",
-    "description": "Entdecke öffentlich zugängliche Stylingmethoden und probiere deine eigene Version mit den Kleidern aus, die du schon hast.",
+    "description": "Finde eine Idee in einer Kolumne oder auf Douyin und probiere sie Schritt für Schritt mit deinen eigenen Kleidern aus.",
     "search": "Ideen oder Kreative suchen",
     "all": "Entdecken",
     "savedOnly": "Gespeichert",
@@ -170,7 +170,7 @@
     "bookmarksLocal": "Gespeicherte Ideen bleiben auf diesem Gerät deinem Konto zugeordnet.",
     "bookmarkError": "Dieser Browser konnte deine Ideen nicht speichern. Bitte prüfe die Einstellungen für den lokalen Speicher.",
     "creatorsTitle": "Kreative, die dich inspirieren",
-    "sourcesNote": "Diese Übungen sind unsere Übertragungen öffentlich zugänglicher Tipps. Die Quellen nennen die Urheberinnen und Urheber; daraus ergibt sich keine Empfehlung dieser App durch sie.",
+    "sourcesNote": "Dada entwickelt diese Übungen und verlinkt öffentliche Quellen zum Weiterlesen oder Anschauen. Die Kreativen sind keine Partner dieser App und haben sie nicht empfohlen.",
     "viewSource": "Original lesen",
     "resetSelections": "Auswahl zurücksetzen",
     "colorHint": "Prüfe vor dem Tragen noch einmal den Farbhinweis.",
@@ -190,32 +190,92 @@
       "everyday": {
         "title": "Vertraute Lieblingsteile",
         "summary": "Ein Oberteil, ein Unterteil, Schuhe. Gib einer bewährten Kombination einen weiteren Tag draußen.",
-        "tip": "Wähle bequeme Teile, die du ohnehin gern trägst. Ändere nur ein Detail und speichere, was funktioniert."
+        "tip": "Wähle bequeme Teile, die du ohnehin gern trägst. Ändere nur ein Detail und speichere, was funktioniert.",
+        "steps": {
+          "pick": "Beginne mit einem Lieblingsteil als Oberteil, einer bequemen Hose oder einem Rock und passenden Schuhen.",
+          "adjust": "Behalte die Basis bei und ändere nur die Schuhe oder den Sitz des Saums. Lass die Tasche weg, wenn du sie nicht brauchst.",
+          "review": "Geh in dem Outfit ein wenig umher und nimm die Variante, die dir gefällt, mit ins Studio."
+        }
       },
       "layer": {
         "title": "Eine Lage mit Absicht",
         "summary": "Eine einfache Basis, ergänzt durch eine praktische äußere Lage.",
-        "tip": "Die Basis sollte leicht zu wiederholen sein. Wähle die äußere Lage passend zu deinen Plänen und zum Wetter und prüfe die Silhouette im Spiegel."
+        "tip": "Die Basis sollte leicht zu wiederholen sein. Wähle die äußere Lage passend zu deinen Plänen und zum Wetter und prüfe die Silhouette im Spiegel.",
+        "steps": {
+          "pick": "Beginne mit einer vertrauten Kombination und wähle ein Kleidungsstück zum Darüberziehen als Blickfang.",
+          "adjust": "Prüfe mit der zusätzlichen Schicht die Weite und Saumlänge und lass genug Bewegungsfreiheit.",
+          "review": "Prüfe vor dem Speichern, ob diese Übung mit zusätzlicher Schicht zum Wetter passt."
+        }
       },
       "balance": {
         "title": "Eine Silhouette im Mittelpunkt",
         "summary": "Kombiniere ein voluminöseres Teil mit einem klarer geschnittenen.",
-        "tip": "Wähle ein Teil als Mittelpunkt. Passe eingesteckten Saum, Hosenlänge oder Ärmel an und schau, welche Proportionen sich für dich gut anfühlen."
+        "tip": "Wähle ein Teil als Mittelpunkt. Passe eingesteckten Saum, Hosenlänge oder Ärmel an und schau, welche Proportionen sich für dich gut anfühlen.",
+        "steps": {
+          "pick": "Wähle ein Kleidungsstück, das du hervorheben möchtest, und kombiniere es mit vertrauten Teilen.",
+          "adjust": "Passe Saum, Hosenbein oder Ärmel an und ändere immer nur eine Sache.",
+          "review": "Schau in den Spiegel und bewege dich, bevor du eine Silhouette speicherst, die dir gefällt."
+        }
       },
       "accent": {
         "title": "Ein kleiner Farbakzent",
         "summary": "Eine ruhige Basis mit einem optionalen, kräftigeren Detail zum Abschluss.",
-        "tip": "Probiere etwas Farbe an Tasche, Schal oder Gürtel. Greife einen Farbton auf, den du magst, ohne etwas Neues kaufen zu müssen."
+        "tip": "Probiere etwas Farbe an Tasche, Schal oder Gürtel. Greife einen Farbton auf, den du magst, ohne etwas Neues kaufen zu müssen.",
+        "steps": {
+          "pick": "Behalte eine vertraute Basis und wähle ein Accessoire, das du schon besitzt.",
+          "adjust": "Vergleiche das Outfit mit und ohne Accessoire. Lass es weg, wenn dir das besser gefällt.",
+          "review": "Entscheide, welches Detail du betonen möchtest, und verfeinere die Kombination im Studio."
+        }
       },
       "dress": {
         "title": "Mit zwei Teilen entspannt starten",
         "summary": "Ein Kleid oder Jumpsuit und ein Paar Schuhe; ergänze bei Bedarf eine äußere Lage.",
-        "tip": "Beginne mit einem einteiligen Look, den du gern trägst. Prüfe Saum und Schuhe zusammen und ändere dann ein Detail oder die äußere Lage."
+        "tip": "Beginne mit einem einteiligen Look, den du gern trägst. Prüfe Saum und Schuhe zusammen und ändere dann ein Detail oder die äußere Lage.",
+        "steps": {
+          "pick": "Wähle ein Kleid oder einen Jumpsuit, den du tragen möchtest, und bequeme Schuhe.",
+          "adjust": "Ändere nur Schuhe, Saum oder Ärmel. Lass die zusätzliche Schicht weg, wenn du sie nicht brauchst.",
+          "review": "Prüfe, ob du bequem gehen und sitzen kannst, und speichere dann deine Variante."
+        }
       },
       "tonal": {
         "title": "Ruhige Farben, mehr Tiefe",
         "summary": "Entdecke eine ähnliche Farbfamilie mit etwas Hell-Dunkel-Kontrast.",
-        "tip": "Vergleiche die echten Teile im Tageslicht. Ähnliche Farbetiketten sind nur ein Ausgangspunkt; Struktur und Nuancen sorgen für Abwechslung."
+        "tip": "Vergleiche die echten Teile im Tageslicht. Ähnliche Farbetiketten sind nur ein Ausgangspunkt; Struktur und Nuancen sorgen für Abwechslung.",
+        "steps": {
+          "pick": "Lege Oberteil und Hose oder Rock zusammen und suche nach verwandten Farben.",
+          "adjust": "Vergleiche Helligkeit und Material und tausche jeweils nur ein Kleidungsstück aus.",
+          "review": "Prüfe die echten Farben bei Tageslicht und speichere eine bequeme Kombination, die dir gefällt."
+        }
+      },
+      "colorPlay": {
+        "steps": {
+          "pick": "Wähle ein Oberteil in einer Farbe, die du tragen möchtest, und behalte bequeme Unterteile und Schuhe bei.",
+          "adjust": "Ändere nur das Oberteil oder ein Accessoire und achte darauf, was deinen Blick zuerst anzieht.",
+          "review": "Betrachte die Kleidungsstücke bei Tageslicht und nimm die Kombination zum Verfeinern mit ins Studio."
+        },
+        "title": "Eine Farbe im Mittelpunkt",
+        "summary": "Wähle ein farbiges Oberteil, das dir gefällt, und halte die übrigen Teile zunächst schlicht.",
+        "tip": "Dies ist eine Farbübung, keine feste Regel. Vergleiche die echten Kleidungsstücke und kombiniere ruhig mehr Farben, wenn du magst."
+      },
+      "easyLayers": {
+        "steps": {
+          "pick": "Stelle aus Oberteil, Hose oder Rock und Schuhen eine bequeme Basis zusammen, die auch allein funktioniert.",
+          "adjust": "Vergleiche deine Bewegungsfreiheit mit und ohne zusätzliche Schicht. Lass sie weg, wenn du sie nicht brauchst.",
+          "review": "Behalte die Schichten, die du heute tragen möchtest, und speichere deine eigene Variante im Studio."
+        },
+        "title": "Die Schicht passend zum Wetter",
+        "summary": "Beginne mit Oberteil, Hose oder Rock und Schuhen. Eine zusätzliche Schicht ist optional; lass sie weg, wenn du sie nicht brauchst.",
+        "tip": "Nutze das Schichten als Thema für deine eigene Übung. Temperatur, Bewegungsfreiheit und Komfort zählen mehr als die Anzahl der Schichten."
+      },
+      "detailEcho": {
+        "steps": {
+          "pick": "Wähle ein Oberteil mit einer Farbe, die dir gefällt, und ergänze eine vertraute Hose oder einen Rock.",
+          "adjust": "Ändere nur die Schuhe oder ein Accessoire, um eine Farbe des Oberteils aufzugreifen. Lass das Accessoire bei Bedarf weg.",
+          "review": "Vergleiche die echten Kleidungsstücke und ihren Tragekomfort und speichere eine Kombination zum Weiterentwickeln."
+        },
+        "title": "Ein Detail findet seinen Widerhall",
+        "summary": "Suche nach einer verwandten Farbe in Schuhen, Oberteil oder einem Accessoire.",
+        "tip": "Eine kleine Farbe aufzugreifen ist ein freiwilliges Experiment. Farbangaben können weder Muster und Stoffe noch die Wirkung an dir beurteilen."
       }
     },
     "creators": {
@@ -224,7 +284,211 @@
       "imogen": "Farbe und Kontrast entdecken",
       "jamie": "Ein Outfit um ein zentrales Teil aufbauen",
       "becky": "Ideen zu Proportionen und Farben im Alltag",
-      "jean": "Auf Säume und abschließende Details achten"
+      "jean": "Auf Säume und abschließende Details achten",
+      "yanbaiwan": "Nimm das Thema Farbe zum Anlass, eines deiner farbigen Kleidungsstücke auszuprobieren.",
+      "xiebao": "Entdecke das Schichten und entscheide je nach Temperatur, ob du eine zusätzliche Schicht brauchst.",
+      "changxin": "Probiere als eigenes Styling-Experiment aus, eine Farbe in einem kleinen Detail aufzugreifen."
+    },
+    "sourceFilter": "Quellplattform",
+    "allSources": "Alle Quellen",
+    "platforms": {
+      "douyin": "Douyin",
+      "article": "Unabhängige Kolumnen"
+    },
+    "creatorFilter": "Kreative",
+    "allCreators": "Alle Kreativen",
+    "viewPractice": "Übung ausprobieren",
+    "viewProfile": "Profil ansehen",
+    "viewVideo": "Originalvideo ansehen",
+    "videoNote": "Dieses Video dient als Themenreferenz für unsere eigene Übung. Das vollständige Werk findest du auf Douyin; hier wird weder das gesamte Video transkribiert noch nachgebildet.",
+    "skipOptional": "{name} weglassen",
+    "restoreOptional": "{name} wieder hinzufügen",
+    "skippedOptional": "Dieses Teil weglassen",
+    "skippedNote": "Dieses optionale Teil wurde weggelassen. Du kannst es jederzeit wieder hinzufügen.",
+    "guideTitle": "Probiere die Idee in drei Schritten aus",
+    "guideDescription": "Beginne mit deinen eigenen Kleidern und passe die Kombination an Wetter, Pläne und Vorlieben an.",
+    "stepTitles": {
+      "pick": "Ein Ausgangsteil wählen",
+      "adjust": "Ein Detail ändern",
+      "review": "Anprobieren, dann speichern"
+    },
+    "anchor": {
+      "title": "Ein Teil, mehr Ideen",
+      "description": "Wähle ein eigenes Kleidungsstück und probiere es in verschiedenen Styling-Übungen aus.",
+      "choose": "Ausgangsteil wählen",
+      "allItems": "Kein Ausgangsteil ausgewählt",
+      "clear": "Ausgangsteil abwählen",
+      "locked": "Dieses Teil bleibt gesetzt. Wähle ein anderes Ausgangsteil, um es zu ersetzen.",
+      "compatibleCount": "Passende Übungen: {count}",
+      "empty": "Keine verfügbaren Kleidungsstücke gefunden.",
+      "loading": "Verfügbare Kleidungsstücke werden geladen…",
+      "partial": "{loaded} von {total} Teilen geladen. Du kannst weitere laden.",
+      "unavailable": "Dieses Teil ist für die Übungen nicht verfügbar. Bitte wähle ein anderes.",
+      "creatorReset": "Das Ausgangsteil wurde abgewählt. Du siehst jetzt die Übungen zu diesem Profil.",
+      "resetHint": "Beim Zurücksetzen werden andere Auswahlen und ausgelassene Teile zurückgesetzt. Dein Ausgangsteil bleibt erhalten."
+    }
+  },
+  "looks": {
+    "title": "Outfits wechseln",
+    "description": "Ganze Looks, eigene Outfitfotos und eine KI-Vorschau für ein Kleidungsstück vergleichen.",
+    "tabs": {
+      "model": "Stile entdecken",
+      "worn": "Meine Outfitfotos",
+      "tryon": "KI-Anprobe"
+    },
+    "modelNotice": "Originale KI-generierte Modelbeispiele. Keine Anprobe deiner eigenen Kleidung.",
+    "switcher": {
+      "previous": "Vorheriger Look",
+      "next": "Nächster Look",
+      "select": "Look {index} wählen",
+      "position": "{current} / {total}",
+      "compare": "Zwei Looks vergleichen",
+      "compareWith": "Vergleichen mit",
+      "imageUnavailable": "Bild nicht verfügbar",
+      "empty": "Keine Looks vorhanden."
+    },
+    "modelNames": {
+      "casual": "Weißes T-Shirt & Denim",
+      "office": "Blaues Hemd fürs Büro",
+      "layer": "Lagen mit Strickweste",
+      "outer": "Olive Jacke fürs Wochenende"
+    },
+    "worn": {
+      "title": "Meine Outfitfotos",
+      "description": "Füge Ganzkörperfotos hinzu und verknüpfe optional die getragenen Kleidungsstücke.",
+      "localOnly": "Fotos werden pro Konto in diesem Browser gespeichert. Beim Löschen der Websitedaten gehen sie verloren.",
+      "photos": "Outfitfotos (JPEG, PNG oder WebP)",
+      "name": "Name für Foto {index}",
+      "associate": "Kleidung verknüpfen",
+      "add": "Outfitfotos speichern",
+      "adding": "Wird gespeichert…",
+      "empty": "Füge dein erstes Outfitfoto hinzu.",
+      "delete": "Foto löschen",
+      "deleteTitle": "Dieses Outfitfoto löschen?",
+      "deleteDescription": "„{name}“ wird dauerhaft aus diesem Browser entfernt.",
+      "confirmDelete": "Dauerhaft löschen",
+      "cancel": "Abbrechen",
+      "error": "Foto konnte nicht gespeichert werden. Bitte erneut versuchen.",
+      "partialError": "{count} Fotos wurden nicht gespeichert. Erfolgreiche Fotos bleiben erhalten.",
+      "limit": "Bis zu 20 Fotos mit jeweils maximal 10 MB.",
+      "errors": {
+        "invalid-photo": "Wähle ein gültiges JPEG-, PNG- oder WebP-Foto.",
+        "photo-too-large": "Jedes Foto darf maximal 10 MB groß sein.",
+        "invalid-name": "Gib einen Namen mit 1–100 Zeichen ein.",
+        "invalid-items": "Wähle bis zu 12 gültige Kleidungsstücke.",
+        "limit-reached": "Das Limit von 20 Fotos ist erreicht.",
+        "storage-unavailable": "Browserspeicher nicht verfügbar. Erlaube das Speichern für diese Website.",
+        "quota-exceeded": "Browserspeicher ist voll. Bitte Speicherplatz freigeben.",
+        "not-found": "Dieses Foto ist nicht mehr verfügbar.",
+        "session-changed": "Dein Konto wurde gewechselt. Wähle das Foto erneut.",
+        "invalid-record": "Der gespeicherte Fotodatensatz ist ungültig. Bitte erneut hinzufügen."
+      }
+    },
+    "tryon": {
+      "title": "KI-Anprobe",
+      "description": "Lade ein Personenfoto hoch und wähle ein Kleidungsstück für eine simulierte Anprobe. Für ein ganzes Outfit nutze die Umkleide.",
+      "loading": "Anprobedienst wird geprüft…",
+      "unavailable": "Die Anprobe ist noch nicht aktiviert. Bitte zuerst einrichten.",
+      "loadError": "Dienst nicht erreichbar. Bitte erneut versuchen.",
+      "retry": "Erneut versuchen",
+      "personPhoto": "Personenfoto",
+      "garment": "Ein Kleidungsstück aus deinem Kleiderschrank",
+      "chooseGarment": "Kleidungsstück wählen",
+      "sendNotice": "Beim Start werden die gewählten Personen- und Kleidungsfotos zur Bilderzeugung an {provider} gesendet.",
+      "consent": "Ich darf dieses Foto verwenden und stimme der Übertragung zur Bilderzeugung zu.",
+      "start": "Anprobebild erzeugen",
+      "starting": "Wird erzeugt…",
+      "result": "Anprobeergebnis",
+      "generatedNotice": "KI-Simulation. Details und Passform können vom tatsächlichen Tragen abweichen.",
+      "empty": "Noch keine Anprobeergebnisse.",
+      "error": "Anprobe nicht abgeschlossen. Prüfe den Aufgabenstatus vor einem neuen Versuch.",
+      "queued": "Wartet",
+      "running": "Wird erzeugt",
+      "failed": "Fehlgeschlagen",
+      "succeeded": "Fertig",
+      "unsupported": "Wähle ein verfügbares, sauberes und nicht archiviertes Kleidungsstück, das der Dienst unterstützt."
+    },
+    "discovery": {
+      "eyebrow": "STYLE PLAYGROUND",
+      "title": "Heute mal ein anderer Stil.",
+      "description": "Von Streetwear bis Alltag: Mach die Stile, die dir gefallen, zu deinen eigenen.",
+      "all": "Alle Stile",
+      "searchLabel": "Stile und Looks suchen",
+      "searchPlaceholder": "Zum Beispiel Streifen, Utility oder Lagen",
+      "reset": "Filter zurücksetzen",
+      "clearSearch": "Suche löschen",
+      "count": "{count, plural, one {# Look} other {# Looks}}",
+      "styleCount": "{count, plural, one {# Stil} other {# Stile}}",
+      "preview": "Look ansehen",
+      "previewTitle": "Look-Vorschau",
+      "close": "Vorschau schließen",
+      "allTitle": "Stil kennt viele Wege.",
+      "allDescription": "Sechs Stylingideen, zwölf eigene Beispiele. Wähle eine Richtung oder kombiniere deine eigene Version.",
+      "formulaTitle": "Die Kombination",
+      "tipTitle": "Tipps zum Anprobieren",
+      "paletteTitle": "Farbpalette",
+      "practice": "Mit meinem Kleiderschrank ausprobieren",
+      "emptyTitle": "Keine Looks gefunden",
+      "emptyDescription": "Versuche ein anderes Suchwort oder lösche die Filter, um weitere Stile zu sehen.",
+      "filtersLabel": "Stilfilter",
+      "styles": {
+        "street": {
+          "name": "Utility-Streetwear",
+          "description": "Lockere Formen mit einer markanten Note.",
+          "formula": "Lockeres Oberteil + schlichtes Unterteil + Schuhe",
+          "tip": "Wähle ein Teil als Blickfang und halte den Rest schlicht. Prüfe die Weite am echten Outfit.",
+          "keywords": "Streetwear Straße Anthrazit Bomber Oliv Jacke Utility Oversize Utility-Streetwear"
+        },
+        "sport": {
+          "name": "Athleisure",
+          "description": "Bewegungsfreiheit, die auch im Alltag passt.",
+          "formula": "Bequemes Oberteil + klar geschnittenes Unterteil + Sneaker",
+          "tip": "Geh ein paar Schritte und hebe die Arme. Wenn alles bequem sitzt, passe die Säume an.",
+          "keywords": "Sport Freizeit Bordeaux Creme Hellgelb Trainingsanzug Reißverschluss Sneaker Athleisure"
+        },
+        "cityboy": {
+          "name": "Japanischer Cityboy",
+          "description": "Entspannte Lagen für den Tag in der Stadt.",
+          "formula": "Basic-Oberteil + weites Unterteil + Schuhe + optionale Jacke",
+          "tip": "Beginne mit einer Kombination, die allein funktioniert, und ergänze je nach Wetter eine Schicht.",
+          "keywords": "Cityboy urban Lagenlook Oversize Hemd Jacke entspannt Japanischer Cityboy"
+        },
+        "clean": {
+          "name": "Clean Fit",
+          "description": "Einfache Farben und klare Linien.",
+          "formula": "Basic-Oberteil + Alltagsunterteil + bequeme Schuhe",
+          "tip": "Richte Saum oder Ärmel, ändere dann nur ein Detail und vergleiche.",
+          "keywords": "schlicht minimalistisch Basics weißes T-Shirt Hemd Jeans Alltag Clean Fit"
+        },
+        "retro": {
+          "name": "Retro-College",
+          "description": "Vertraute Farben und Strukturen, neu getragen.",
+          "formula": "Basic-Oberteil und Unterteil + strukturierte Jacke + Schuhe",
+          "tip": "Lass Strick oder Leder im Mittelpunkt stehen und halte die übrigen Teile schlicht.",
+          "keywords": "Retro Vintage Rauten Strick Leder Braun klassisch Retro-College"
+        },
+        "french": {
+          "name": "Französische Lässigkeit",
+          "description": "Lockere Linien mit einer beiläufigen Note.",
+          "formula": "Oberteil und Unterteil in ähnlichen Tönen + neutrale Schuhe",
+          "tip": "Vergleiche die echten Farbtöne und Materialien. Setze dann mit Streifen oder dem Ausschnitt einen Akzent.",
+          "keywords": "französisch Paris Streifen Bluse Marineblau Beige lässig Französische Lässigkeit"
+        }
+      },
+      "lookNames": {
+        "casual": "Weißes T-Shirt und Jeans",
+        "office": "Mit blauem Hemd ins Büro",
+        "layer": "Strick im Lagenlook",
+        "outer": "Eine leichte Außenschicht",
+        "streetBomber": "Bomberjacke in Anthrazit",
+        "streetShell": "Olivfarbene Jacke",
+        "sportTrack": "Trainingsanzug in Bordeaux und Creme",
+        "sportZip": "Hellgelbe Jacke mit Reißverschluss",
+        "retroArgyle": "Rautenstrick in Bordeaux",
+        "retroLeather": "Braune Jacke in Lederoptik",
+        "frenchStripe": "Streifen und rote Ballerinas",
+        "frenchBlouse": "Cremefarbene Bluse und beige Hose"
+      }
     }
   }
 }

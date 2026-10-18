@@ -1,0 +1,84 @@
+{
+  "female": {
+    "sweet": {
+      "tops": "cropped-tee",
+      "bottoms": "mini-skirt",
+      "dresses": "shift",
+      "shoes": "ballet-flats",
+      "outerwear": "blazer"
+    },
+    "minimal": {
+      "tops": "camisole",
+      "bottoms": "tailored",
+      "dresses": "shift",
+      "shoes": "ballet-flats",
+      "outerwear": "blazer"
+    },
+    "street": {
+      "tops": "cropped-tee",
+      "bottoms": "cargo",
+      "dresses": "shift",
+      "shoes": "ankle-boots",
+      "outerwear": "blazer"
+    },
+    "relaxed": {
+      "tops": "knit",
+      "bottoms": "tailored",
+      "dresses": "shift",
+      "shoes": "sneakers",
+      "outerwear": "blazer"
+    },
+    "elegant": {
+      "tops": "camisole",
+      "bottoms": "tailored",
+      "dresses": "halter",
+      "shoes": "ballet-flats",
+      "outerwear": "blazer"
+    },
+    "sport": {
+      "tops": "cropped-tee",
+      "bottoms": "cargo",
+      "dresses": "shift",
+      "shoes": "sneakers",
+      "outerwear": "blazer"
+    }
+  },
+  "male": {
+    "sweet": {
+      "tops": "polo",
+      "bottoms": "tailored",
+      "shoes": "sneakers",
+      "outerwear": "blazer"
+    },
+    "minimal": {
+      "tops": "polo",
+      "bottoms": "tailored",
+      "shoes": "ankle-boots",
+      "outerwear": "blazer"
+    },
+    "street": {
+      "tops": "tee",
+      "bottoms": "cargo",
+      "shoes": "ankle-boots",
+      "outerwear": "blazer"
+    },
+    "relaxed": {
+      "tops": "knit",
+      "bottoms": "tailored",
+      "shoes": "sneakers",
+      "outerwear": "blazer"
+    },
+    "elegant": {
+      "tops": "polo",
+      "bottoms": "tailored",
+      "shoes": "ankle-boots",
+      "outerwear": "blazer"
+    },
+    "sport": {
+      "tops": "tee",
+      "bottoms": "cargo",
+      "shoes": "sneakers",
+      "outerwear": "blazer"
+    }
+  }
+}

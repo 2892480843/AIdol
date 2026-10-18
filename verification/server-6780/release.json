@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-18",
+  "platform": "Ubuntu 24.04 x86_64",
+  "runtime": "Node.js v22.23.2 / Python 3.12",
+  "frontend_build_id": "I4OpIdl-f6d4D0yC4hjV5",
+  "source_manifest_sha256": "494e07784895e37234bfeed6e3ebf6da8117fcbc2beaf6c322383a52045c45a2",
+  "model_hashes": {
+    "u2net.onnx": "8d10d2f3bb75ae3b6d527c77944fc5e7dcd94b29809d47a739a7a728a912b491",
+    "schp-atr-18-int8-static.onnx": "4420d8db8c1f266967c89485786b01209f6d405f320fc0f87e8ced49392cefb5"
+  },
+  "source_manifest_files": 2572,
+  "requirements_sha256": "bed45ed761e7f6760f99393426b58ee587e279074cc05ecfe25c75249392dfde"
+}

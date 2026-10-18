@@ -39,6 +39,34 @@ const STRIPPED_RESPONSE_HEADERS = new Set([
 
 const METHODS_WITHOUT_BODY = new Set(['GET', 'HEAD']);
 
+// A long-lived container reuses keep-alive sockets to the backend. When the backend or the
+// Docker network drops an idle one, the next request on it fails as "fetch failed" even though
+// the backend is healthy, which surfaces as a sporadic 502 in the browser. Only idempotent
+// methods are retried: a POST body may already have reached the backend, so repeating it could
+// duplicate a write.
+const IDEMPOTENT_METHODS = new Set(['GET', 'HEAD', 'OPTIONS']);
+
+async function fetchUpstream(
+  url: string,
+  init: RequestInit & { duplex?: 'half' }
+): Promise<Response> {
+  const attempts = IDEMPOTENT_METHODS.has(init.method ?? 'GET') ? 2 : 1;
+  let lastError: unknown;
+
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    try {
+      return await fetch(url, init);
+    } catch (error) {
+      lastError = error;
+      if (attempt + 1 < attempts) {
+        await new Promise((resolve) => setTimeout(resolve, 20));
+      }
+    }
+  }
+
+  throw lastError;
+}
+
 function buildRequestHeaders(request: NextRequest): Headers {
   const headers = new Headers();
   request.headers.forEach((value, key) => {
@@ -87,7 +115,7 @@ async function proxy(request: NextRequest): Promise<NextResponse> {
 
   let upstream: Response;
   try {
-    upstream = await fetch(url, init);
+    upstream = await fetchUpstream(url, init);
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
     console.error(`Proxy to ${url} failed: ${reason}`);

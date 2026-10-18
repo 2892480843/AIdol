@@ -407,7 +407,7 @@ function OutfitsPageContent() {
       <PageHeader title={t('title')} description={t('subtitle')} icon={<ListIcon className="h-5 w-5" />} actions={
         <div className="flex items-center gap-3 flex-wrap">
           <div
-            className="inline-flex rounded-full border-2 border-muted overflow-hidden"
+            className="inline-flex rounded-none border-2 border-muted overflow-hidden"
             role="group"
             aria-label={t('viewToggle')}
           >
@@ -468,7 +468,7 @@ function OutfitsPageContent() {
               onClick={() => handleChipClick(c)}
               aria-pressed={chip === c}
               className={cn(
-                'inline-flex items-center rounded-full border-2 px-4 py-1.5 text-sm font-medium transition-all',
+                'inline-flex items-center rounded-none border-2 px-4 py-1.5 text-sm font-medium transition-all',
                 chip === c
                   ? 'border-primary bg-primary/10 text-primary'
                   : 'border-muted bg-background hover:border-muted-foreground/50',
@@ -483,6 +483,7 @@ function OutfitsPageContent() {
           <div className="relative w-full sm:ml-auto sm:max-w-sm">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <Input
+              aria-label={t('search')}
               placeholder={t('search')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -506,7 +507,7 @@ function OutfitsPageContent() {
           ) : listLoading ? (
             <div className={styles.collection}>
               {Array.from({ length: 6 }).map((_, i) => (
-                <Skeleton key={i} className="aspect-[5/4] rounded-lg" />
+                <Skeleton key={i} className="aspect-[5/4] rounded-none" />
               ))}
             </div>
           ) : outfits.length === 0 ? (
@@ -589,7 +590,7 @@ function OutfitsPageContent() {
             ) : calendarLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {Array.from({ length: 4 }).map((_, i) => (
-                  <Skeleton key={i} className="aspect-[5/4] rounded-lg" />
+                  <Skeleton key={i} className="aspect-[5/4] rounded-none" />
                 ))}
               </div>
             ) : selectedDate && selectedDayOutfits.length === 0 ? (
@@ -652,7 +653,7 @@ export default function OutfitsPage() {
           <Skeleton className="h-10 w-48" />
           <div className={styles.collection}>
             {Array.from({ length: 6 }).map((_, i) => (
-              <Skeleton key={i} className="aspect-[5/4] rounded-lg" />
+              <Skeleton key={i} className="aspect-[5/4] rounded-none" />
             ))}
           </div>
         </div>

@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { Slot } from "./slot";
 
-const buttonVariants = cva("design-button", {
+const buttonVariants = cva("design-button rounded-sm font-bold uppercase border-2 border-[#2d2d2d] transition-all duration-200 ease-in-out", {
   variants: {
     variant: {
       default: "",

@@ -1,0 +1,41 @@
+搭搭 3D 人物素材说明 / 3D Avatar Asset Notice
+
+These custom assembled adult female and male avatars use CC0-1.0 graphical assets
+from the official MakeHuman / MPFB project and official CC0 clothing packs.
+
+Credits: MakeHuman / MPFB Community; Data Collection AB; Joel Palmius;
+Jonas Hauquier; Margaret Toigo (camisole, sweater, wool trousers, halter dress,
+and suits). Attribution is provided for provenance although CC0 does not require it.
+
+Asset license and output rights:
+https://github.com/makehumancommunity/mpfb2/blob/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf/LICENSE.md
+https://github.com/makehumancommunity/mpfb2/blob/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf/LICENSE.ASSETS.md
+https://static.makehumancommunity.org/about/license.html
+
+Official source packs (CC0; files carry author/license metadata):
+https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html
+https://static.makehumancommunity.org/assets/assetpacks/shirts01.html
+https://static.makehumancommunity.org/assets/assetpacks/pants01.html
+https://static.makehumancommunity.org/assets/assetpacks/dress01.html
+https://static.makehumancommunity.org/assets/assetpacks/suits01.html
+
+The upstream MPFB program is GPL-3.0 software used only during local offline
+asset generation. MPFB program code is not included in the web runtime.
+Its graphical assets and output are separately licensed CC0-1.0.
+
+Changes: adult shape and facial target combination; subdivision and shape baking;
+53-bone game-engine skinning; fitted independent wardrobe layers; closed blazer
+with builtin shirt/tie; opaque torso/pelvis coverage; clean low shoes; dark hair
+PBR and alpha tuning; web texture optimization; relaxed arm authoring previews. Exported GLBs retain the binding pose;
+the application runtime owns arm posture. Female rear hair is refitted around the
+closed blazer without changing front/scalp. Covered body faces retain geometry and
+normals in a conditional avatarHiddenByOuterwear material. Female trousers preserve
+their original Basis and use the native OuterwearLayerFit morph only with outerwear.
+
+人物为成年虚拟模板，并非用户照片重建、真人扫描或独占角色。所有模型与纹理均
+在本地托管。衣物层是内置的 3D 风格模板，不能据此判断尺码，不能保证自动复原
+用户上传衣物的版型。男模特不含连衣裙层；外套为内含衬衫的闭合西装，显示外套
+时应隐藏独立上装，同时保留 BaseCoverage。
+
+Full asset checksums, source version, authors and modifications: PROVENANCE.json
+Full CC0 text: LICENSE-CC0.txt

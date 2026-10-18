@@ -1,0 +1,23 @@
+搭搭 · 多巴胺·粉蓝心情
+
+Original fictional adult reference-derived character generated with the project
+account in Tripo Studio H3.1, 2026-10-18. Rose-pink knit, mint pleated skirt and
+yellow accents. The portrait reference comes from the user's supplied image;
+the outfit reference was edited with imagegen while preserving that character.
+
+The web asset uses one coherent full-body reconstruction, preserving its original
+surface geometry, UVs and normals. The separately reconstructed high-detail
+portrait supplies a frontal facial base-color projection with a soft edge blend.
+Separate portrait/head mesh splices were rejected because their hairline/neck
+joins failed close-up visual inspection; those spliced meshes are not shipped.
+All geometry is real three-dimensional mesh data, with embedded PBR textures.
+Desktop uses up to 8K base color; compact devices use up to 4K base color.
+
+Presentation: fixed-pose complete outfit, unrigged. Rotation, zoom and rendered
+photo/video capture are supported. This asset does not provide articulated body
+animation, cloth simulation or individual garment replacement. Single-image
+reconstruction cannot guarantee exact identity or unseen back/side details.
+
+Generated output rights follow the project account's Tripo agreement; no CC0
+claim is made. Existing license reference: https://www.tripo3d.ai/terms
+Source hashes, packaging hashes and geometry details: PROVENANCE.json.

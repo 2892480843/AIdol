@@ -1,0 +1,30 @@
+[Unit]
+Description=Dada 6780 %i
+After=network-online.target postgresql.service redis-server.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=dada6780
+Group=dada6780
+EnvironmentFile=/etc/dada-6780/%i.env
+ExecStart=/opt/dada-6780/current/ops/run-service.sh %i
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=45
+KillMode=mixed
+UMask=0027
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/dada-6780 /opt/dada-6780/current/frontend/.next
+LimitNOFILE=65536
+# The extraction subprocess belongs to the API cgroup too. A 450M high
+# threshold made model loading stall in memory reclaim before its timeout.
+MemoryHigh=850M
+MemoryMax=1250M
+TasksMax=128
+
+[Install]
+WantedBy=multi-user.target

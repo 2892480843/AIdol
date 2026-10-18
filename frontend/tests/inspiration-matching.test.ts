@@ -26,6 +26,47 @@ const formula: OutfitFormula = {
 };
 
 describe("honest wardrobe formula matching", () => {
+  it("ignores attempts to skip required slots", () => {
+    const requiredOnly: OutfitFormula = {
+      id: "required",
+      occasion: "casual",
+      slots: [{ id: "top", types: ["shirt"] }],
+    };
+    const result = matchFormula(
+      requiredOnly,
+      [item("top")],
+      {},
+      new Set(["top"]),
+    );
+    expect(result).toMatchObject({ matched: 1, required: 1, complete: true });
+    expect(result.slots[0]).toMatchObject({
+      skipped: false,
+      item: { id: "top" },
+    });
+  });
+  it("releases an optional override so the skipped garment can fill another compatible slot", () => {
+    const overlap: OutfitFormula = {
+      id: "overlap",
+      occasion: "casual",
+      slots: [
+        { id: "extra", types: ["shirt"], optional: true },
+        { id: "top", types: ["shirt"] },
+      ],
+    };
+    const result = matchFormula(
+      overlap,
+      [item("only")],
+      { extra: "only" },
+      new Set(["extra"]),
+    );
+    expect(result).toMatchObject({ matched: 1, required: 1, complete: true });
+    expect(result.slots[0]).toMatchObject({
+      skipped: true,
+      item: null,
+      candidates: [],
+    });
+    expect(result.slots[1].item?.id).toBe("only");
+  });
   it("counts only required categories and preserves an honestly missing slot", () => {
     const result = matchFormula(formula, [item("top"), item("bag", "bag")]);
     expect(result).toMatchObject({ matched: 1, required: 2, complete: false });

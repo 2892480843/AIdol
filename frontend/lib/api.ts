@@ -26,6 +26,11 @@ class NetworkError extends Error {
 let accessToken: string | null = null;
 let activeUserId: string | null = null;
 let activeSessionKnown = false;
+let activeSessionRevision = 0;
+
+export function getActiveSessionRevision(): number {
+  return activeSessionRevision;
+}
 const sessionListeners = new Set<() => void>();
 
 export function getActiveUserId(): string | null {
@@ -37,6 +42,7 @@ export function getActiveUserId(): string | null {
 export function setActiveSession(userId: string | null, token: string | null) {
   activeSessionKnown = true;
   if (activeUserId === userId && accessToken === token) return;
+  activeSessionRevision += 1;
   activeUserId = userId;
   accessToken = token;
   sessionListeners.forEach((listener) => listener());
@@ -52,6 +58,7 @@ export function setAccessToken(token: string | null, expectedUserId?: string) {
   if (expectedUserId !== undefined && activeSessionKnown && expectedUserId !== activeUserId) return;
   if (accessToken === token) return;
   accessToken = token;
+  activeSessionRevision += 1;
   if (activeSessionKnown) sessionListeners.forEach((listener) => listener());
 }
 

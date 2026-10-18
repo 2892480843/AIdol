@@ -4,6 +4,7 @@ from fastapi import APIRouter
 
 from app.api.analytics import router as analytics_router
 from app.api.auth import router as auth_router
+from app.api.clothing_extraction import router as clothing_extraction_router
 from app.api.families import router as families_router
 from app.api.health import router as health_router
 from app.api.images import router as images_router
@@ -13,9 +14,10 @@ from app.api.notifications import router as notifications_router
 from app.api.outfits import router as outfits_router
 from app.api.pairings import router as pairings_router
 from app.api.preferences import router as preferences_router
+from app.api.tasks import router as tasks_router
+from app.api.tryon import router as tryon_router
 from app.api.users import router as users_router
 from app.api.weather import router as weather_router
-from app.api.tasks import router as tasks_router
 
 api_router = APIRouter()
 
@@ -34,3 +36,5 @@ api_router.include_router(notifications_router, prefix="/notifications", tags=["
 api_router.include_router(analytics_router)
 api_router.include_router(learning_router)
 api_router.include_router(tasks_router)
+api_router.include_router(tryon_router)
+api_router.include_router(clothing_extraction_router)

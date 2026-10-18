@@ -1,0 +1,8 @@
+{
+  "files": 2572,
+  "mismatches": [],
+  "model_hashes": {
+    "schp-atr-18-int8-static.onnx": "4420d8db8c1f266967c89485786b01209f6d405f320fc0f87e8ced49392cefb5",
+    "u2net.onnx": "8d10d2f3bb75ae3b6d527c77944fc5e7dcd94b29809d47a739a7a728a912b491"
+  }
+}

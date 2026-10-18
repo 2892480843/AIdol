@@ -1,0 +1,26 @@
+搭搭 · 精致人物 / Editorial Avatars
+
+Original fictional adult female and male fashion characters generated from original
+AI-authored reference images with Tripo Studio H3.1 on 2026-10-18 for the project
+account. No private user photograph or supplied video was uploaded to generate them.
+
+Generated in ultra geometry quality with 8K base-color texture, PBR and delight.
+Retopologized to approximately 100,000 triangles. The source exports include
+54 Mixamo joints, but contain invalid rig data. Web models deliberately use the
+fixed-pose rest surface and exclude articulated rigging.
+Web packaging preserves the rest-surface geometry, UV and normals byte-for-byte.
+Desktop base-color texture: 4096px. Compact base-color texture: 2048px.
+Original 8192px source GLBs are retained in the local project verification archive.
+
+These are complete outfit models. Clothing geometry is currently fused with the
+person; these assets do not claim independent garment replacement or a personal
+photo-to-3D reconstruction. The separate sample mode supports garment mixing.
+
+Source service: https://studio.tripo3d.ai/
+Terms: https://www.tripo3d.ai/terms , section 5.2.2 (Paid Users).
+Generated for use by the project account under the applicable service terms.
+These generated assets are not the CC0 MakeHuman assets used in sample mode.
+No independent CC0 or public-domain license is asserted for these models.
+See PROVENANCE.json for original and packaged artifact hashes and dimensions.
+
+Additional street outfits generated 2026-10-18 with Tripo Studio H3.1, 8K PBR. See PROVENANCE-STREET.json for original source and packaged hashes. Each is a separately generated complete 3D outfit, not separable scanned clothing.

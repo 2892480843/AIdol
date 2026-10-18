@@ -1,0 +1,25 @@
+搭搭 · 精修时装人物 / Refined Fashion Characters
+
+Original fictional adult female and male fashion characters, created from original
+AI-authored reference images with Tripo Studio H3.1 on 2026-10-18 for the project
+account. No private user photograph or supplied video was uploaded.
+
+Generation: ultra geometry quality, 8K textures, PBR, delight.
+Web geometry: approximately 150,000 triangles per character. These exports are
+unrigged, fixed-pose complete outfits. Their source geometry, UVs and normals
+are preserved byte-for-byte during web packaging.
+Desktop base-color texture: 8192px; other maps preserved up to 4096px.
+Compact base-color texture: 4096px; other maps preserved up to 2048px.
+Metallic factor is zero and roughness is clamped to at least 174/255 to reduce
+plastic-like highlights on knit, fabric and skin. Base color is not repainted.
+Original high-poly and 8K GLBs are retained in the local verification archive.
+
+These complete surfaces do not support independent garment replacement, skeletal
+animation, or a personal photo-to-3D reconstruction. The separate sample mode
+supports garment mixing. A high polygon count is not an aesthetic certification.
+
+Source service: https://studio.tripo3d.ai/
+Terms: https://www.tripo3d.ai/terms , section 5.2.2 (Paid Users).
+Generated for use by the project account under applicable service terms.
+No CC0 or public-domain license is asserted. See PROVENANCE.json for artifact
+hashes and texture dimensions, and generation-manifest.json for Studio tasks.

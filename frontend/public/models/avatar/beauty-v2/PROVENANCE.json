@@ -1,0 +1,219 @@
+{
+  "generated": "2026-10-18",
+  "generator": "Tripo Studio H3.1",
+  "geometry": "150k triangles, fixed-pose complete outfits, embedded PBR textures",
+  "notice": "Original 8K beauty outfit source assets retained privately in verification/avatar-beauty/originals; web base-color textures 8K desktop / 4K compact. Original rest-surface geometry, UVs and normals are unchanged. These generated assets are complete, unrigged outfits; they do not support articulated pose changes or individual garment replacement.",
+  "license_source": "https://www.tripo3d.ai/terms",
+  "license_section": "5.2.2 Paid Users; project-owned generated outputs, no CC0 claim",
+  "models": {
+    "female": {
+      "source": "dada-female-beauty-b-150k-8k.glb",
+      "source_sha256": "e00956f8d465a43a7f372d92f3860608374d0c5ed5248032783c9de77e710bac",
+      "variants": {
+        "female.glb": {
+          "bytes": 18641192,
+          "sha256": "4a9c2f209b6c1d520551d0f99376c087b5beb32b227508d83e127512f1262575",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                8192,
+                8192
+              ],
+              "bytes": 10391094,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 2261756,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1377267,
+              "mime": "image/jpeg"
+            }
+          ]
+        },
+        "female-mobile.glb": {
+          "bytes": 11711220,
+          "sha256": "2438a4b535d7dae8c03b7583435a01b4575932b126a97520f261c25e784331f1",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 4912856,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 810031,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1377267,
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      }
+    },
+    "male": {
+      "source": "dada-male-beauty-150k-8k.glb",
+      "source_sha256": "15d37e285aac4245f7e663ae78c01558060da5bc0c0349bd9d528dbc14e9eda9",
+      "variants": {
+        "male.glb": {
+          "bytes": 16293768,
+          "sha256": "9f9fa5150e964ad00a58ad4ebd1adf05649b2ee7fad4cb8e5200ec5ee05432dc",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                8192,
+                8192
+              ],
+              "bytes": 8927591,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 1994184,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 901878,
+              "mime": "image/jpeg"
+            }
+          ]
+        },
+        "male-mobile.glb": {
+          "bytes": 10544880,
+          "sha256": "c21fd481ad626880dec029331c3d8991f7d05bcde2d4a432413b75f8e5741736",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 4429676,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 743214,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 901878,
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "material_finish": "Non-metallic surface; generated roughness green channel clamped to at least 174/255, metallic factor 0. Base-color not repainted.",
+  "selected_tasks": {
+    "male": "e7a33901-4773-42f3-8d47-1a560aa20662",
+    "female": "f2abfe45-da21-43dc-ba30-a02c648600bd"
+  }
+}

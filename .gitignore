@@ -67,3 +67,16 @@ testing/
 *.review.yml
 backups/
 *-test.yml
+
+# Browser sessions and delivery artifacts (credentials stay in ignored backups/)
+.playwright-cli/
+frontend/verification/
+verification/submission/raw/
+verification/submission/*.mp4
+verification/submission/*.webm
+# Publish source/media via a GitHub Release, not Git history.
+verification/**/build-cache.tar
+verification/**/release/public-assets.part-*
+verification/**/release/public-assets.tar*
+verification/**/asset-release/public-assets.part-*
+*.blend1

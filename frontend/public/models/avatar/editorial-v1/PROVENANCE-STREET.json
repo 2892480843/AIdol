@@ -1,0 +1,214 @@
+{
+  "generated": "2026-10-18",
+  "generator": "Tripo Studio H3.1",
+  "geometry": "100k triangles, fixed-pose complete outfits, embedded PBR textures",
+  "notice": "Original 8K street outfit source assets retained privately in verification/tripo-series/originals; web base-color textures 4K desktop / 2K compact. Original rest-surface geometry, UVs and normals are unchanged. These generated assets are complete, unrigged outfits; they do not support articulated pose changes or individual garment replacement.",
+  "license_source": "https://www.tripo3d.ai/terms",
+  "license_section": "5.2.2 Paid Users; project-owned generated outputs, no CC0 claim",
+  "models": {
+    "female": {
+      "source": "dada-female-street-100k-8k.glb",
+      "source_sha256": "43c38c20da2ce3bebada627fab1b973c8105f747b95c49235dc884a8309c2fc4",
+      "variants": {
+        "female-street.glb": {
+          "bytes": 12205872,
+          "sha256": "87ae74bbb6755b33861b9faca372a92d22fd22ffd03e4fafc5aab6e499eba35d",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 3990550,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 3551976,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1467559,
+              "mime": "image/jpeg"
+            }
+          ]
+        },
+        "female-street-mobile.glb": {
+          "bytes": 6354192,
+          "sha256": "bc4473e8bcd0756275b2da65ae474dae66ba3cfb6e28409666bcfa510e1bc777",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1461687,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 1131180,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 565542,
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      }
+    },
+    "male": {
+      "source": "dada-male-street-100k-8k.glb",
+      "source_sha256": "69a5c9931637724c5cedcc1a77b986887e84bc3ff453281742d153e4d9d92b7a",
+      "variants": {
+        "male-street.glb": {
+          "bytes": 10069840,
+          "sha256": "b9c5c890934b1f6fd29f64018f974729533132d508a8b09a0ae16e6ac6c5e2a4",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                4096,
+                4096
+              ],
+              "bytes": 3141524,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 2836145,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1050372,
+              "mime": "image/jpeg"
+            }
+          ]
+        },
+        "male-street-mobile.glb": {
+          "bytes": 5441820,
+          "sha256": "22496cbb2c7c5a7d83f2330a528397127aef50641a9af9c61af0cce85af70747",
+          "presentation": "fixed-pose-complete-outfit",
+          "bones": 0,
+          "unchanged_geometry_views": 4,
+          "images": [
+            {
+              "index": 0,
+              "source_size": [
+                8192,
+                8192
+              ],
+              "size": [
+                2048,
+                2048
+              ],
+              "bytes": 1047432,
+              "mime": "image/jpeg"
+            },
+            {
+              "index": 1,
+              "source_size": [
+                4096,
+                4096
+              ],
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 933122,
+              "mime": "image/png"
+            },
+            {
+              "index": 2,
+              "source_size": [
+                2048,
+                2048
+              ],
+              "size": [
+                1024,
+                1024
+              ],
+              "bytes": 419467,
+              "mime": "image/jpeg"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

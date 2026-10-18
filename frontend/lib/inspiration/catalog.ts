@@ -4,7 +4,9 @@ export interface StyleCreator {
   id: string;
   name: string;
   publication: string;
+  platform: "article" | "douyin";
   url: string;
+  profileUrl?: string;
 }
 export interface EditorialFormula extends OutfitFormula {
   key: string;
@@ -18,37 +20,70 @@ export const STYLE_CREATORS: StyleCreator[] = [
     id: "alyssa",
     name: "Alyssa Beltempo",
     publication: "Shop your closet",
+    platform: "article",
     url: "https://alyssabeltempo.substack.com/p/decluttering-doesnt-have-to-be-scary",
   },
   {
     id: "caroline",
     name: "Caroline Joy",
     publication: "Un-Fancy",
+    platform: "article",
     url: "https://www.un-fancy.com/capsule-wardrobe-101/how-to-build-a-capsule-wardrobe/",
   },
   {
     id: "imogen",
     name: "Imogen Lamport",
     publication: "Inside Out Style",
+    platform: "article",
     url: "https://insideoutstyleblog.com/2020/02/getting-the-balance-right-with-your-colour-contrast.html",
   },
   {
     id: "jamie",
     name: "Jamie-Lee",
     publication: "Mademoiselle",
+    platform: "article",
     url: "https://www.mademois-elle.com/three-ways-to-create-balance-in-an-outfit/",
   },
   {
     id: "becky",
     name: "黎贝卡团队",
     publication: "Becky’s Fantasy",
+    platform: "article",
     url: "https://www.beckysfantasy.com/n_10252",
   },
   {
     id: "jean",
     name: "Jean Wang",
     publication: "Extra Petite",
+    platform: "article",
     url: "https://www.extrapetite.com/2021/07/how-to-style-straight-leg-jeans-everlane-levis-petite-outfits.html",
+  },
+  {
+    id: "yanbaiwan",
+    name: "盐百万",
+    publication: "Douyin",
+    platform: "douyin",
+    url: "https://www.douyin.com/video/7655584129869688177",
+    profileUrl:
+      "https://www.douyin.com/user/MS4wLjABAAAArqPU_WLvIM5pin6_H_Ck1kKuptKwqDy2zKbApxwuRuX0ea6o3WXo762no-rFQlTO",
+  },
+  {
+    id: "xiebao",
+    name: "蟹煲",
+    publication: "Douyin",
+    platform: "douyin",
+    url: "https://www.douyin.com/video/7694687869555022479",
+    profileUrl:
+      "https://www.douyin.com/user/MS4wLjABAAAATqlQR24F8_lSDuHzETTXT9ntS9DtyulEVvrMcTTJQVoUTY3QfD3l_8uIaGYB1scB",
+  },
+  {
+    id: "changxin",
+    name: "常鑫",
+    publication: "Douyin",
+    platform: "douyin",
+    url: "https://www.douyin.com/video/7687539904575090600",
+    profileUrl:
+      "https://www.douyin.com/user/MS4wLjABAAAA9hCZ4YkAyenvy0zXpQ0lmqMX6kpQhucEC-xIpFdNFqru9g_q4YnmL6tMJg2VQLgU",
   },
 ];
 const tops = [
@@ -152,6 +187,53 @@ export const STYLE_FORMULAS: EditorialFormula[] = [
       {
         id: "layer",
         types: ["blazer", "jacket", "coat", "cardigan"],
+        optional: true,
+      },
+    ],
+  },
+  {
+    id: "color-play",
+    key: "colorPlay",
+    creatorId: "yanbaiwan",
+    occasion: "casual",
+    palette: ["#6683bd", "#eee9df", "#33353a"],
+    slots: [
+      { id: "top", types: tops, color: "accent" },
+      { id: "bottom", types: bottoms, color: "neutral" },
+      { id: "shoes", types: shoes, color: "neutral" },
+      { id: "bag", types: ["bag"], optional: true },
+    ],
+  },
+  {
+    id: "easy-layers",
+    key: "easyLayers",
+    creatorId: "xiebao",
+    occasion: "office",
+    palette: ["#ddd6c7", "#5d6570", "#faf7ef"],
+    slots: [
+      { id: "top", types: tops },
+      { id: "bottom", types: bottoms },
+      { id: "shoes", types: shoes },
+      {
+        id: "layer",
+        types: ["blazer", "jacket", "cardigan", "coat", "vest"],
+        optional: true,
+      },
+    ],
+  },
+  {
+    id: "detail-echo",
+    key: "detailEcho",
+    creatorId: "changxin",
+    occasion: "casual",
+    palette: ["#759a82", "#e5dfd1", "#353a36"],
+    slots: [
+      { id: "top", types: tops },
+      { id: "bottom", types: bottoms },
+      { id: "shoes", types: shoes, color: "same-as-first" },
+      {
+        id: "accent",
+        types: ["bag", "scarf", "hat", "belt", "accessories"],
         optional: true,
       },
     ],

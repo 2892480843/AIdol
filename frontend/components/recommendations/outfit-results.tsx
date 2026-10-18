@@ -74,13 +74,13 @@ function OutfitCard({
                 key={item.id}
                 href={`/dashboard/wardrobe?item=${item.id}`}
                 className={cn(
-                  'group relative rounded-xl border overflow-hidden bg-muted/30 hover:shadow-md transition-all',
+                  'group relative rounded-none border overflow-hidden bg-muted/30 hover:shadow-[3px_3px_0px_#2d2d2d] transition-all',
                   isBase && 'border-primary/60 ring-2 ring-primary/20'
                 )}
               >
                 <div className="aspect-square relative">
                   {isBase && (
-                    <Badge className="absolute top-2 left-2 z-10 bg-primary/95 text-primary-foreground text-[10px] px-2 py-0.5 shadow-sm">
+                    <Badge className="absolute top-2 left-2 z-10 bg-primary/95 text-primary-foreground text-[10px] px-2 py-0.5 shadow-[3px_3px_0px_#2d2d2d]">
                       {t('baseItem.basePiece')}
                     </Badge>
                   )}
@@ -114,7 +114,7 @@ function OutfitCard({
         </div>
 
         {outfit.style_notes && (
-          <div className="p-2.5 bg-muted/60 rounded-lg border text-xs text-muted-foreground">
+          <div className="p-2.5 bg-muted/60 rounded-none border text-xs text-muted-foreground">
             <span className="font-semibold text-foreground">{t('tip')}</span> {outfit.style_notes}
           </div>
         )}
@@ -203,7 +203,7 @@ export function OutfitResultsView({
 
       {/* Weather info */}
       {currentOutfit?.weather && (
-        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground p-3 rounded-lg bg-muted/50">
+        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground p-3 rounded-none bg-muted/50">
           <div className="flex items-center gap-1.5">
             <Thermometer className="h-4 w-4" />
             <span>{formatTemp(currentOutfit.weather.temperature, temperatureUnit)}</span>
@@ -230,9 +230,9 @@ export function OutfitResultsView({
                 onClick={() => onSelectOption(idx)}
                 aria-pressed={!isCompareAll && activeOptionIndex === idx}
                 className={cn(
-                  'px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 flex-shrink-0',
+                  'px-3 py-1.5 rounded-none text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 flex-shrink-0',
                   !isCompareAll && activeOptionIndex === idx
-                    ? 'bg-background text-foreground shadow-sm'
+                    ? 'bg-background text-foreground shadow-[3px_3px_0px_#2d2d2d]'
                     : 'text-muted-foreground hover:text-foreground hover:bg-background/50'
                 )}
               >
