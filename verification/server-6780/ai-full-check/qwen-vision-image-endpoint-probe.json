@@ -1,0 +1,6 @@
+{
+  "checked_at": "2026-10-18T16:07:30.027116+00:00",
+  "model": "Qwen3.8-max",
+  "http_status": 400,
+  "error": "{\"error\":{\"message\":\"status_code=400, url error, please check url！ For details, see: https://\\u003credacted-url\\u003e (request id: 20261019000730764108994Kig1ccpo)\",\"type\":\"invalid_request_error\",\"code\":\"invalid_parameter_error\"}}"
+}

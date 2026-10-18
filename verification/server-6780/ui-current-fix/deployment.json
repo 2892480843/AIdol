@@ -1,0 +1,15 @@
+{
+  "corrected_at": "2026-10-18T16:06:42.904311+00:00",
+  "previous_release": "/opt/dada-6780/releases/20261018-server",
+  "active_release": "/opt/dada-6780/releases/20261018-latest-collage-r4",
+  "frontend_build_id": "PEQRW1j-iBdLB73DZbCPA",
+  "frontend_process_cwd": "/opt/dada-6780/releases/20261018-latest-collage-r4/frontend",
+  "frontend_pin_updated": true,
+  "frontend_files_verified": 2303,
+  "backend_files_unchanged": 265,
+  "public_assets_unchanged": 68,
+  "api_not_restarted": true,
+  "nginx_public_access_unchanged": true,
+  "https_root_status": 200,
+  "collage_body_class": true
+}

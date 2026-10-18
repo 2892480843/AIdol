@@ -1,0 +1,15 @@
+{
+  "api": {
+    "NRestarts": "1",
+    "MemoryCurrent": "515293184",
+    "MemoryPeak": "893362176",
+    "MemorySwapCurrent": "443863040"
+  },
+  "swappiness": "40",
+  "memory_events": "low 0\nhigh 1814\nmax 0\noom 0\noom_kill 0\noom_group_kill 0\n",
+  "memory_info": [
+    "MemAvailable:     758376 kB",
+    "SwapTotal:       2097148 kB",
+    "SwapFree:        1019324 kB"
+  ]
+}

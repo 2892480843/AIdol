@@ -1,0 +1,6 @@
+{
+  "checked_at": "2026-10-18T16:06:33.022420+00:00",
+  "model": "qwen-image-2.1-pro",
+  "http_status": 400,
+  "error": "{\"error\":{\"code\":\"10001005\",\"message\":\"无效的模型\",\"type\":\"invalie_model\"}}"
+}
