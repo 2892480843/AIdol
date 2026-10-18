@@ -25,7 +25,6 @@
 - 公开仓库：<https://github.com/2892480843/AIdol>。
 - 冻结标签：`aidol-final-20261018`；完整提交编号及源码包校验值以同名 GitHub Release 和交付清单为准。
 - 构建和运行：[从源码启动](RUNNING.md)。模型、接口及组件：[依赖与边界](DEPENDENCIES.md)。
-- 赛前与新增：[成果对照](BASELINE-AND-CHANGES.md)。
 - 演示视频、源码包及 SHA256（用于检查文件是否完整的摘要）在同名 GitHub Release 中提供。
 - 交付凭据保存在开发电脑原工作目录中被忽略的 `backups/submission-private/评委体验与提交信息.md`，随组委会表单私下提交；公开源码不包含登录密码、模型密钥或数据库密码。
 
