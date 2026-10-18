@@ -8,7 +8,6 @@
 - 3D 悬挂衣橱：[http://localhost:3000/dashboard/wardrobe/3d](http://localhost:3000/dashboard/wardrobe/3d)，[本轮验收](verification/wardrobe-3d/REPORT.md)。
 - 推荐：[http://localhost:3000/dashboard/suggest](http://localhost:3000/dashboard/suggest)
 - 健康检查：[http://localhost:18000/api/v1/health/ready](http://localhost:18000/api/v1/health/ready)
-- 上游基础版本：`cfbb5a9`；当前代码通过项目自己的镜像运行，实际镜像与源码摘要以验收报告为准。
 - 数据库迁移版本：`a1b2c3d4e5f7`。本轮只新增私有试衣任务表；此前任务表、发件箱和请求关联字段保留。
 
 ## 当前架构
