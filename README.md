@@ -79,10 +79,6 @@
 curl -fsS http://localhost:18000/api/v1/health/ready
 ```
 
-本机网页为 `http://localhost:3000`，开发演示邮箱可用 `demo@wardrowbe.local`；该邮箱不是公网入口认证账号。
+本机网页为 `http://localhost:3000`。
 
 验收记录见 [verification/submission](verification/submission/)、[公网部署](ops/server-6780/README.md)和[功能矩阵](verification/full-function/FEATURE-MATRIX.md)。历史报告仅反映记录时的版本；本次新检查与结果单独留存。材料准备与 GitHub 发布不代表组委会最终表单已提交，仍须以表单成功回执为准。
-
-## 开源许可
-
-本项目基于开源 Wardrowbe 继续开发，遵循 [MIT 许可证](LICENSE)。上游来源与团队新增范围见[成果对照](docs/submission/BASELINE-AND-CHANGES.md)。
