@@ -35,7 +35,7 @@ import { useUserToday } from '@/lib/hooks/use-user';
 function EmptyHistory({ t }: { t: (key: string) => string }) {
   return (
     <div className={styles.emptyState}>
-      <div className="rounded-none bg-muted p-6 mb-4">
+      <div className="rounded-full bg-muted p-6 mb-4">
         <Calendar className="h-12 w-12 text-muted-foreground" />
       </div>
       <h3 className="text-lg font-semibold mb-2">{t('empty.title')}</h3>

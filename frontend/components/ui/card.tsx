@@ -10,7 +10,7 @@ const Card = React.forwardRef<
     ref={ref}
     shadow="xs"
     data-ui="card"
-    className={cn("design-card rounded-none bg-[#f5f0e8] border-2 border-[#2d2d2d]", className)}
+    className={cn("design-card", className)}
     {...props}
   />
 ));
@@ -34,7 +34,7 @@ const CardTitle = React.forwardRef<
     order={3}
     size="h4"
     data-ui="card-title"
-    className={cn("font-serif font-bold", className)}
+    className={className}
     {...props}
   />
 ));

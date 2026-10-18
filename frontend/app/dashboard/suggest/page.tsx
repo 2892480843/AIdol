@@ -20,7 +20,7 @@ export default function SuggestPage() {
     <Suspense fallback={
       <div className={`page-container ${styles.page}`}>
         <div className="space-y-2"><Skeleton className="h-8 w-48" /><Skeleton className="h-4 w-64" /></div>
-        <Card><CardContent className="p-6 space-y-4"><Skeleton className="h-24 w-full rounded-none" /><Skeleton className="h-10 w-full" /></CardContent></Card>
+        <Card><CardContent className="p-6 space-y-4"><Skeleton className="h-24 w-full rounded-lg" /><Skeleton className="h-10 w-full" /></CardContent></Card>
       </div>
     }>
       <SuggestContent />

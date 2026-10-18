@@ -50,7 +50,7 @@
   gap: 7px;
   padding: 11px 14px;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 12px;
   font-size: 12px;
   text-decoration: none;
 }
@@ -68,7 +68,7 @@
 .showroom {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 24px;
   overflow: hidden;
   position: sticky;
   top: 88px;
@@ -102,7 +102,7 @@
   min-height: 40px;
   padding: 9px 16px;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 12px;
   background: transparent;
   color: var(--muted);
   font-size: 12px;
@@ -126,13 +126,13 @@
   display: flex;
   gap: 3px;
   padding: 3px;
-  border-radius: 0;
+  border-radius: 20px;
   background: #f1eee9;
 }
 .segment button {
   border: 0;
   background: transparent;
-  border-radius: 0;
+  border-radius: 18px;
   padding: 7px 11px;
   font-size: 11px;
   color: var(--muted);
@@ -141,7 +141,7 @@
 .segment button[aria-pressed="true"] {
   background: var(--paper);
   color: var(--ink);
-  box-shadow: 3px 3px 0 #2d2d2d;
+  box-shadow: 0 1px 5px #0000000a;
 }
 .stage {
   height: 590px;
@@ -150,7 +150,7 @@
   background: #eeece6;
   overflow: hidden;
   margin: 0 14px;
-  border-radius: 0;
+  border-radius: 18px;
 }
 .scene {
   position: absolute;
@@ -180,17 +180,17 @@
   align-items: center;
   gap: 7px;
   background: #ffffffe6;
-  backdrop-filter: none;
+  backdrop-filter: blur(8px);
   padding: 9px 13px;
-  border-radius: 0;
+  border-radius: 20px;
   font-size: 11px;
-  box-shadow: 3px 3px 0 #2d2d2d;
+  box-shadow: 0 3px 16px #19191906;
   pointer-events: none;
 }
 .stageBadge span {
   width: 6px;
   height: 6px;
-  border-radius: 0;
+  border-radius: 50%;
   background: var(--accent);
 }
 .orbitButtons {
@@ -207,9 +207,9 @@
   width: 37px;
   height: 37px;
   border: 1px solid #ffffff80;
-  border-radius: 0;
+  border-radius: 50%;
   background: #ffffffe6;
-  backdrop-filter: none;
+  backdrop-filter: blur(6px);
   color: #383632;
 }
 .orbitButtons button[aria-pressed="true"] {
@@ -235,7 +235,7 @@
   border: 1px solid var(--accent);
   color: var(--accent);
   padding: 8px 20px;
-  border-radius: 0;
+  border-radius: 9px;
 }
 .spinner {
   animation: spin 1s linear infinite;
@@ -298,7 +298,7 @@
   font-size: 11px;
   padding: 6px 10px;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 7px;
   background: transparent;
   color: var(--muted);
 }
@@ -336,14 +336,14 @@
   margin: 0 20px 20px;
   padding: 12px;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 12px;
   background: #f5f2ed;
 }
 .exportPreview img {
   width: 80px;
   height: 110px;
   object-fit: contain;
-  border-radius: 0;
+  border-radius: 8px;
 }
 .exportPreview p {
   font-size: 12px;
@@ -368,7 +368,7 @@
   border: 1px solid var(--line);
   background: var(--paper);
   padding: 22px;
-  border-radius: 0;
+  border-radius: 20px;
   min-width: 0;
 }
 .panel h2 {
@@ -389,7 +389,7 @@
   position: relative;
   padding: 12px 10px;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 11px;
   background: #fffefc;
   text-align: left;
   font-size: 11px;
@@ -417,10 +417,10 @@
 .swatchRow i {
   width: 15px;
   height: 15px;
-  border-radius: 0;
+  border-radius: 50%;
   border: 2px solid white;
   margin-right: -5px;
-  box-shadow: 3px 3px 0 #2d2d2d;
+  box-shadow: 0 0 0 1px #25252508;
 }
 .toggles {
   display: flex;
@@ -466,7 +466,7 @@
   padding: 0;
 }
 .palette input::-webkit-color-swatch {
-  border-radius: 0;
+  border-radius: 50%;
   border: 2px solid white;
   box-shadow: 0 0 0 1px var(--line);
 }
@@ -484,7 +484,7 @@
   width: 100%;
   min-width: 0;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 9px;
   background: #fffefa;
   padding: 10px 11px;
   font-size: 12px;
@@ -498,7 +498,7 @@
 }
 .categoryTabs button {
   border: 1px solid transparent;
-  border-radius: 0;
+  border-radius: 20px;
   background: #f4f1ed;
   padding: 5px 9px;
   font-size: 10px;
@@ -525,7 +525,7 @@
   text-align: left;
   background: #fffefb;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 11px;
   padding: 5px;
   min-width: 0;
   color: var(--ink);
@@ -541,7 +541,7 @@
   width: 100%;
   height: 94px;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 7px;
   background: #f0ede7;
 }
 .itemImage > div {
@@ -596,7 +596,7 @@
   line-height: 1.5;
   border: 1px solid var(--line);
   background: #f7f3ef;
-  border-radius: 0;
+  border-radius: 6px;
   padding: 5px 7px;
   overflow-wrap: anywhere;
 }
@@ -611,7 +611,7 @@
   justify-content: center;
   gap: 7px;
   border: 1px solid var(--accent);
-  border-radius: 0;
+  border-radius: 10px;
   min-height: 39px;
   padding: 9px 15px;
   font-size: 12px;
@@ -635,7 +635,7 @@
 .error {
   font-size: 12px;
   line-height: 1.7;
-  border-radius: 0;
+  border-radius: 10px;
   padding: 12px 16px;
   margin: 18px 0;
   background: #eaf3ec;
@@ -665,7 +665,7 @@
   position: relative;
   border: 1px solid var(--line);
   background: var(--paper);
-  border-radius: 0;
+  border-radius: 14px;
   overflow: hidden;
 }
 .restore {
@@ -684,7 +684,7 @@
 }
 .journalColors span {
   flex: 1;
-  border-radius: 0;
+  border-radius: 9px;
 }
 .restore time {
   font-size: 10px;
@@ -707,7 +707,7 @@
   width: 30px;
   height: 30px;
   border: 0;
-  border-radius: 0;
+  border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--paper);
@@ -900,7 +900,7 @@
     font-size: 11px;
   }
   .showroom {
-    border-radius: 0;
+    border-radius: 20px;
   }
   .stageTop {
     padding: 17px 16px 12px;
@@ -916,7 +916,7 @@
   .stage {
     height: 520px;
     margin: 0 8px;
-    border-radius: 0;
+    border-radius: 14px;
   }
   .stageWord {
     font-size: 90px;
@@ -1085,12 +1085,12 @@
   place-items: center;
   height: 42px;
   width: 42px;
-  border-radius: 0;
+  border-radius: 50%;
   border: 1px solid #ffffffaa;
   color: #393635;
   background: #ffffffcf;
-  backdrop-filter: none;
-  box-shadow: 3px 3px 0 #2d2d2d;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 3px 15px #29212708;
 }
 .lookPrevious {
   left: 16px;
@@ -1123,7 +1123,7 @@
   aspect-ratio: 8 / 11;
   background: #eeebe6;
   border: 1px solid transparent;
-  border-radius: 0;
+  border-radius: 10px;
   overflow: hidden;
   margin-bottom: 6px;
 }
@@ -1155,7 +1155,7 @@
   bottom: 4px;
   background: var(--accent);
   color: white;
-  border-radius: 0;
+  border-radius: 50%;
   padding: 2px;
   width: 17px;
   height: 17px;
@@ -1180,7 +1180,7 @@
   width: 100%;
   min-width: 0;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 9px;
   padding: 9px 8px;
   color: var(--ink);
   background: var(--paper);
@@ -1236,18 +1236,23 @@
   width: 100%;
   height: 205px;
   object-fit: contain;
-  border-radius: 0;
+  border-radius: 9px;
   background: #eee9e2;
   margin-bottom: 14px;
 }
 .stage {
-  background: #f5f0e8;
+  background: radial-gradient(
+    ellipse at 22% 14%,
+    #fffdf9 0,
+    #eeebe8 65%,
+    #e7e4e0 100%
+  );
 }
 .stage.warm {
-  background: #e6d4c0;
+  background: radial-gradient(ellipse at 22% 14%, #fff6e8 0, #e6d4c0 100%);
 }
 .stage.night {
-  background: #272b3d;
+  background: radial-gradient(ellipse at 22% 14%, #45435c 0, #272b3d 100%);
 }
 .stageWord {
   top: 59px;
@@ -1281,20 +1286,11 @@
   display: grid;
   place-items: center;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: 50%;
   color: var(--ink);
   background: var(--paper);
 }
 
 .editorialRail > button { flex: 0 0 96px; }
 
-.videoPreview { width: 160px; max-width: 100%; height: 200px; object-fit: contain; background: #eeebe8; border-radius: 0; }
-:global(.collage-theme) .workspace { --ink: #2d2d2d; --muted: #4d4d4d; --line: #2d2d2d; --paper: #f5f0e8; --accent: #b03c2e; padding-inline: 0; }
-:global(.collage-theme) .header { border-bottom: 1px dashed #2d2d2d; padding-bottom: 22px; }
-:global(.collage-theme) .header h1 { font-family: var(--font-editorial); font-weight: 900; }
-:global(.collage-theme) .eyebrow { font-family: ui-monospace, monospace; font-size: 12px !important; letter-spacing: 0.04em; }
-:global(.collage-theme) .showroom { border: 2px solid #2d2d2d; box-shadow: 7px 7px 0 #2d2d2d; }
-:global(.collage-theme) .panel { border: 0; border-top: 1px dashed #2d2d2d; background: transparent; }
-:global(.collage-theme) .headerLinks a { border: 2px solid #2d2d2d; box-shadow: 3px 3px 0 #2d2d2d; }
-:global(.collage-theme) .headerLinks .primaryLink { background: #e74c3c; color: #171717; }
-:global(.collage-theme) .notice { color: #2d2d2d; background: #ebe4d8; }
+.videoPreview { width: 160px; max-width: 100%; height: 200px; object-fit: contain; background: #eeebe8; border-radius: 10px; }

@@ -373,7 +373,7 @@ function FamilyView() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap items-center gap-3">
-            <code className="min-w-0 flex-1 rounded-none border border-primary/15 bg-primary/5 px-4 py-4 font-mono text-2xl tracking-widest break-all">
+            <code className="min-w-0 flex-1 rounded-xl border border-primary/15 bg-primary/5 px-4 py-4 font-mono text-2xl tracking-widest break-all">
               {family.invite_code}
             </code>
             <Button variant="outline" size="icon" aria-label={t('inviteCode')} onClick={copyInviteCode}>
@@ -534,7 +534,7 @@ function FamilyView() {
                   className={styles.memberRow}
                 >
                   <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-none bg-muted flex items-center justify-center">
+                    <div className="h-10 w-10 rounded-full bg-muted flex items-center justify-center">
                       <Mail className="h-5 w-5 text-muted-foreground" />
                     </div>
                     <div>

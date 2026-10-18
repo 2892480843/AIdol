@@ -1,0 +1,8 @@
+{
+  "requested_frozen_interface": "original public ui-content release",
+  "restored_release": "/opt/dada-6780/releases/20261018-server",
+  "build_id": "I4OpIdl-f6d4D0yC4hjV5",
+  "later_collage_release_preserved": "/opt/dada-6780/releases/20261018-latest-collage-r4",
+  "reason": "team leader explicitly excluded the concurrent collage redesign from this submission",
+  "database_changes": false
+}

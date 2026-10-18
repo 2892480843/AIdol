@@ -8,7 +8,7 @@
 
 | 项目 | 内容 |
 |---|---|
-| 产品地址 | [公网体验入口](http://124.70.96.183:6780/dashboard) |
+| 产品地址 | [公网体验入口](https://124.70.96.183:6780/dashboard) |
 | 测试账号 | 专用演示账号与密码随组委会提交表单私下提供；浏览器弹窗认证后自动进入应用，详见[体验说明](docs/submission/README.md) |
 | 运行环境 | 公网 Ubuntu 24.04 x86_64、Node.js 22、Python 3.12；桌面 Chrome / Edge；本机 macOS + Docker Desktop |
 | 可访问期限 | 队长已确认服务器与云桥模型额度保障至 **2026-11-10**；服务开机启动并异常自动重启 |
@@ -17,7 +17,7 @@
 | 从源码启动 | [运行说明](docs/submission/RUNNING.md)；既有本机发布记录见 [LOCAL-DEPLOYMENT.md](LOCAL-DEPLOYMENT.md) |
 | 成果认定 | [赛前状态与48小时新增](docs/submission/BASELINE-AND-CHANGES.md) |
 
-公网入口当前使用 HTTP，需密码认证；摄像头/麦克风演示使用本机 localhost，公网可选择文件上传。专用演示数据是合成衣物，不包含本机私人数据库。完整提交资料索引见 [docs/submission/README.md](docs/submission/README.md)。
+公网入口已启用可信 HTTPS，需密码认证；摄像头和麦克风仍须浏览器授权，未将硬件权限检查当作实际设备效果验收。专用演示数据是合成衣物，不包含本机私人数据库。完整提交资料索引见 [docs/submission/README.md](docs/submission/README.md)。
 
 ## 模型、API 与开源组件
 

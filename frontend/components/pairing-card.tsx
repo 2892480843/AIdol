@@ -118,7 +118,7 @@ export function PairingCard({ pairing, onFeedback, onPreview }: PairingCardProps
           {otherItems.map((item) => (
             <div
               key={item.id}
-              className="w-14 h-14 rounded-none bg-muted overflow-hidden relative border shadow-[3px_3px_0px_#2d2d2d] group-hover:shadow-[3px_3px_0px_#2d2d2d] transition-shadow"
+              className="w-14 h-14 rounded-lg bg-muted overflow-hidden relative border shadow-sm group-hover:shadow-md transition-shadow"
             >
               {item.thumbnail_url ? (
                 <Image

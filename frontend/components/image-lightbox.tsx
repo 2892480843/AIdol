@@ -58,7 +58,7 @@ export function ImageLightbox() {
                 marginRight: 8,
                 backgroundColor: "rgba(255,255,255,0.95)",
                 color: "#000",
-                borderRadius: 0,
+                borderRadius: 10,
                 fontSize: 13,
                 fontWeight: 600,
                 textDecoration: "none",

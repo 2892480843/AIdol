@@ -1,0 +1,22 @@
+{
+  "programs": [],
+  "stream_groups": [],
+  "streams": [
+    {
+      "codec_name": "h264",
+      "width": 1440,
+      "height": 1000
+    }
+  ],
+  "format": {
+    "duration": "36.560000",
+    "size": "2250210"
+  },
+  "sha256": "00df7e14691601b02615eebc72afff12ab359991043fd9654118563a93578c45",
+  "verified_key_frames": [
+    "8s wardrobe",
+    "16s actual persisted recommendation",
+    "24s style discovery"
+  ],
+  "content": "Real HTTPS browser interactions using synthetic demo clothes; recovery of actual successful cloud task. No fabricated results, no voiceover."
+}

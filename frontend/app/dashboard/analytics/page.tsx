@@ -126,9 +126,9 @@ function ItemCard({ item }: { item: { id: string; name: string | null; type: str
   return (
     <Link
       href={`/dashboard/wardrobe?item=${item.id}`}
-      className="flex items-center gap-3 rounded-none p-2.5 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      className="flex items-center gap-3 rounded-xl p-2.5 transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
     >
-      <div className="relative h-16 w-14 shrink-0 overflow-hidden rounded-none bg-muted">
+      <div className="relative h-16 w-14 shrink-0 overflow-hidden rounded-[10px] bg-muted">
         {item.thumbnail_url ? (
           <Image
             src={item.thumbnail_url}
@@ -224,7 +224,7 @@ export default function AnalyticsPage() {
             <ul className="space-y-2">
               {insights.map((insight, i) => (
                 <li key={i} className="flex items-start gap-2 text-sm">
-                  <div className="h-1.5 w-1.5 rounded-none bg-primary mt-2 flex-shrink-0" />
+                  <div className="h-1.5 w-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
                   <span>{insight}</span>
                 </li>
               ))}

@@ -67,7 +67,7 @@ export function WeatherCard({ weather, isLoading, temperatureUnit, t }: { weathe
       <Card className="border-muted">
         <CardContent className="p-6">
           <div className="flex items-center gap-4">
-            <Skeleton className="h-16 w-16 rounded-none" />
+            <Skeleton className="h-16 w-16 rounded-full" />
             <div className="space-y-2">
               <Skeleton className="h-8 w-24" />
               <Skeleton className="h-4 w-32" />
@@ -83,7 +83,7 @@ export function WeatherCard({ weather, isLoading, temperatureUnit, t }: { weathe
       <Card className="border-dashed">
         <CardContent className="p-6">
           <div className="flex items-center gap-4">
-            <div className="h-14 w-14 rounded-none bg-muted flex items-center justify-center">
+            <div className="h-14 w-14 rounded-full bg-muted flex items-center justify-center">
               <MapPin className="h-6 w-6 text-muted-foreground" />
             </div>
             <div>
@@ -103,7 +103,7 @@ export function WeatherCard({ weather, isLoading, temperatureUnit, t }: { weathe
       <CardContent className="p-6">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <div className="flex items-center gap-4">
-            <div className="h-14 w-14 rounded-none bg-muted flex items-center justify-center text-foreground">
+            <div className="h-14 w-14 rounded-full bg-muted flex items-center justify-center text-foreground">
               {getWeatherIcon(weather.condition, weather.is_day)}
             </div>
             <div>
@@ -174,7 +174,7 @@ export function WeatherOverrideSection({
         </Button>
       </CollapsibleTrigger>
       <CollapsibleContent className="pt-4">
-        <div className="space-y-4 p-4 rounded-none bg-muted/50">
+        <div className="space-y-4 p-4 rounded-lg bg-muted/50">
           <div className="flex items-center justify-between">
             <span className="text-sm font-medium">{t('weatherOverride.condition')}</span>
             {weather && (
@@ -196,7 +196,7 @@ export function WeatherOverrideSection({
                   })
                 }
                 className={cn(
-                  'flex items-center gap-2 px-3 py-2 rounded-none border transition-all',
+                  'flex items-center gap-2 px-3 py-2 rounded-lg border transition-all',
                   weather?.condition === c.value
                     ? 'border-primary bg-primary/10 text-primary'
                     : 'border-muted bg-background hover:border-primary/50'

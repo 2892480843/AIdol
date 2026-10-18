@@ -1,0 +1,4 @@
+ExecStart={ path=/opt/node-v22.23.2-linux-x64/bin/node ; argv[]=/opt/node-v22.23.2-linux-x64/bin/node /opt/dada-6780/releases/20261018-server/frontend/server.js ; ignore_errors=no ; start_time=[Sun 2026-10-18 23:39:28 CST] ; stop_time=[n/a] ; pid=3058253 ; code=(null) ; status=0/0 }
+WorkingDirectory=/opt/dada-6780/releases/20261018-server/frontend
+ActiveState=active
+{"status":"healthy","checks":{"database":"healthy"}}
