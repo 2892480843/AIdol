@@ -1,0 +1,13 @@
+{
+  "frontend/lib/fitting-room.ts": "ca66498574e155a9fe77fa6590f6e290fc6e2a88b4f988140365a83cdce33307",
+  "frontend/components/fitting-room/workspace.tsx": "585c3283d58f69852d6277b6923495409080dd4a0e09ece5ed7fe542380d2d7e",
+  "frontend/components/avatar-studio/workspace.tsx": "a744443520d07ebfad1e0ede2fa15c5041207836e1402bc67adcd932cf032b37",
+  "frontend/components/avatar-studio/workspace.module.css": "70bf83447381ec09291c9a2a56cc1fea00e122c27460c4c4c9f6f9609807a4b8",
+  "frontend/lib/avatar-journal.ts": "ff1ef6e3293dc2eb0947f19d85c6383a3d34e246cefde924fb0618643f33c2dc",
+  "frontend/lib/hooks/use-avatar-journal.ts": "1df223c801441f9bf13a8d639bbab1a7b9a9f1a5f5c08c2d3620983b33ff510b",
+  "frontend/tests/fitting-room.test.ts": "74651c21924ef67eebe2c2e558b185c66caf227984be67597054632b8cecdc6c",
+  "frontend/tests/fitting-workspace.test.tsx": "b71f4555d8e6662b0133a02d4ab60d0d3dcc7069deaa3834e68d84890767d462",
+  "frontend/tests/avatar-journal.test.ts": "26bce8ae27875d41583f21b1936b488ad54a3363bddafcf8427029d630f8496e",
+  "frontend/tests/avatar-journal-hook.test.tsx": "48203c2605a816dca19db2079e87f25b43c71db6f8928c44828c9917c564c800",
+  "frontend/tests/avatar-workspace.test.tsx": "071944c52f5d02b565ed4be4950f8b1169125b8bbaf3814329793f0acea58292"
+}

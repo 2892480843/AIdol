@@ -1,0 +1,11 @@
+{
+  "platform": "Darwin arm64",
+  "account": "existing local demonstration account",
+  "profile_http_status": 200,
+  "location_name_present": false,
+  "latitude_present": false,
+  "longitude_present": false,
+  "weather_http_status": 400,
+  "detail": "Location not set. Please provide coordinates or set your location in settings.",
+  "read_only": true
+}

@@ -1,0 +1,10 @@
+{
+  "dialog": {
+    "borderRadius": "0px",
+    "boxShadow": "rgb(45, 45, 45) 5px 5px 0px 0px",
+    "padding": "20px 16px"
+  },
+  "overlay": {
+    "backdropFilter": "none"
+  }
+}

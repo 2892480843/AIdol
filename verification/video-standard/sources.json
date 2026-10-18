@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "path": "/Users/a111/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_1pxffivxac2522_3256/msg/video/2026-10/8aec2800fd4b4681ea936d26331c6f2c_raw.mp4",
+    "duration": 27.2,
+    "width": 1080,
+    "height": 1080,
+    "fps": "30/1"
+  },
+  {
+    "id": 2,
+    "path": "/Users/a111/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_1pxffivxac2522_3256/msg/video/2026-10/c71a7019eb25443acb69603eb79e6b27.mp4",
+    "duration": 55.1,
+    "width": 1080,
+    "height": 1440,
+    "fps": "30/1"
+  },
+  {
+    "id": 3,
+    "path": "/Users/a111/Library/Containers/com.tencent.xinWeChat/Data/Documents/xwechat_files/wxid_1pxffivxac2522_3256/msg/video/2026-10/61ab32453f1fe34882f0c91d7ea07dec.mp4",
+    "duration": 31.252993,
+    "width": 960,
+    "height": 720,
+    "fps": "30/1"
+  }
+]

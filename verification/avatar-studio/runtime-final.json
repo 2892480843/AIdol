@@ -1,0 +1,17 @@
+{
+  "files": 526,
+  "mismatches": [],
+  "manifest_sha256": "ce9058862daf3e0d524fad9255190d58aa0741a501066532ac63834f49fe5bb3",
+  "runtime_label": "ce9058862daf3e0d524fad9255190d58aa0741a501066532ac63834f49fe5bb3",
+  "frontend_image": "wardrowbe-frontend:avatar-studio-20261018-r2",
+  "frontend_image_id": "sha256:ca7cabf5578bab727a7b317a0a0be1607955dc9a6861da224625525d6eee9f71",
+  "backend_image": "wardrowbe-backend:direct-tryon-20261018-r2 sha256:f9fafecbc6b859d688b066139f05086f1e1956a90b96048885bf65828aa99905",
+  "build_id": "nGo6LEP5MMiVXdCNaq2TV",
+  "running_services": 10,
+  "health": {
+    "backend": "healthy",
+    "postgres": "healthy",
+    "redis": "healthy"
+  },
+  "label_matches": true
+}

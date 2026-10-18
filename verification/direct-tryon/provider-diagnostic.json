@@ -1,0 +1,19 @@
+{
+  "kind": "one_multi_reference_compatibility_diagnostic",
+  "reference_failed_ui_task_id": "90108093-6396-46ef-97b7-04a17d0e936d",
+  "model": "Doubao-Seedream-5.0-lite",
+  "input_person": "original fictional adult fixture",
+  "input_garment": "four existing owned demo garments from referenced task",
+  "ui_task_created_or_updated": false,
+  "automatic_retries": 0,
+  "timestamp_utc": "2026-10-17T18:24:15.641061+00:00",
+  "status": "failed",
+  "error_type": "TryOnProviderError",
+  "network_post_count": 1,
+  "provider_diagnostic": {
+    "http_status": 552,
+    "error_code": 10002001,
+    "error_param": null,
+    "sanitized_message": "Connection prematurely closed BEFORE response"
+  }
+}

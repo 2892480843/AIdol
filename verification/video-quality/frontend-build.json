@@ -1,0 +1,18 @@
+{
+  "command": "docker build --label com.dada.source-manifest-sha256=<manifest SHA256> --tag wardrowbe-frontend:video-quality-20261018 frontend",
+  "exit_code": 0,
+  "next": "14.2.35",
+  "image": "wardrowbe-frontend:video-quality-20261018-r2",
+  "image_id": "sha256:482c78615e3048703434096dc418d1818659961458e020a75b512ec6b87e6dde",
+  "manifest_sha256": "f3b3d307cb9b69815d117aa026613ac46372349d9b3d228c94c8882824eabb35",
+  "compiled": true,
+  "types_validated": true,
+  "routes_include": [
+    "/dashboard/wardrobe/avatar",
+    "/dashboard/wardrobe/extract"
+  ],
+  "existing_warnings": "Existing dependency warnings in outfits/add-item-dialog/item-detail-dialog and legacy ENV Dockerfile syntax; no compilation/type errors.",
+  "base_image": "wardrowbe-frontend:video-quality-20261018",
+  "base_image_id": "sha256:e1e9abe5b1d5c29efe884f7cd9107374a4da653071c6508c3adab28fb7d634f7",
+  "verified_asset_overlay": "asset-release/Dockerfile; complete GLB gzip and SHA256 checked during build"
+}

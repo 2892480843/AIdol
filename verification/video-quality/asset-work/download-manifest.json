@@ -1,0 +1,499 @@
+[
+  {
+    "file": "sources/clothes/namuhekam_male_polo_shirt/Polo_Base_Color.png",
+    "sha256": "d8e74dbcc3e79227dd7f6d8b1e0ed6c614eb11d4dc3cfeb935222783c23ae64b",
+    "bytes": 1255797,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/namuhekam_male_polo_shirt/Polo_t-shirt.obj",
+    "sha256": "aaee5f49077a8bacb8b1077910e4b9cc7946d587c75e367273f4ecaf94abd627",
+    "bytes": 181381,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/namuhekam_male_polo_shirt/namuhekam_male_polo_shirt.thumb",
+    "sha256": "c5343f1f6282963d05d4f16ed2799b8441d75f676ad3045b5f329c21bf0fa8ed",
+    "bytes": 57437,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/namuhekam_male_polo_shirt/Polo_Normal_OpenGL.png",
+    "sha256": "1428ecac615cf45d409f42167b3d4cba70ea77a14a0c4f06ff5d01b75e7a8b5c",
+    "bytes": 5311773,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/namuhekam_male_polo_shirt/Polo_t-shirt.mhmat",
+    "sha256": "fb47735dab1f3aacf39b9aea7e9c8343ea47c39f8a13fab559ba505b7c28356c",
+    "bytes": 427,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/namuhekam_male_polo_shirt/Polo_Roughness.png",
+    "sha256": "b7205361068df100f8f63256a265d052dfa4bbec96d826e7999b23fcf17c95c2",
+    "bytes": 562396,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/namuhekam_male_polo_shirt/Polo_Height.png",
+    "sha256": "f69d99fab6b30ad1972ac27e260f6e59129f7e3dcb988ed4c75d64cca29c386e",
+    "bytes": 1036116,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/namuhekam_male_polo_shirt/namuhekam_male_polo_shirt.mhclo",
+    "sha256": "1639239b0d6d16ef2ca98f1f5af1af447d1e9e6950cd0fad9ecf774fa597434b",
+    "bytes": 135942,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/joepal_crude_t-shirt_female/CrudeFemaleTshirtDiffuse.png",
+    "sha256": "a9783054a946e51f2fde74cda2e9dc313d04ad1ddde811fe67f7a1616da0fc94",
+    "bytes": 244290,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/joepal_crude_t-shirt_female/crudefemaletshirt.mhmat",
+    "sha256": "69749cb47afa4184ea3978153f34e1160a61675cf6ad7dce4f650a4bf1cacc1c",
+    "bytes": 494,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/joepal_crude_t-shirt_female/crudefemaletshirt.obj",
+    "sha256": "83d20bb41bd5335d020c7e8b6bf5f969dd6cd93a5d5e84bac63cb222a135e9b4",
+    "bytes": 80936,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/joepal_crude_t-shirt_female/joepal_crude_t-shirt_female.mhclo",
+    "sha256": "4feb91f93f9228d0ba3c030cf325f5896143583d81025311ae37b1c9c2dc04a7",
+    "bytes": 74804,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/joepal_crude_t-shirt_female/joepal_crude_t-shirt_female.thumb",
+    "sha256": "5176ce8eccb6539d531d77e2e2088ca1ba26142f63db3750c9b4c0bb7c2c28f1",
+    "bytes": 29174,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shirts01/shirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/frankyaye_mini_skirt_01/mini_skirt_01_diffuse.png",
+    "sha256": "e9b7c8ee33c7ec216f92d237bad54025bc21e4032ca1c090d8b354ef74a19a46",
+    "bytes": 2080991,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/frankyaye_mini_skirt_01/frankyaye_mini_skirt_01.mhclo",
+    "sha256": "1371920e0f8850b4bea413bddd4ba1621409c230f1365743e1928246db5f1be0",
+    "bytes": 61534,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/frankyaye_mini_skirt_01/mini_skirt_01.mhmat",
+    "sha256": "d9d8ad20b073ce69854765ddf1ca86651eac083fa93be77f8c22b10303cb3585",
+    "bytes": 509,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/frankyaye_mini_skirt_01/mini_skirt_01.obj",
+    "sha256": "289fecdd56a58da3f71648ab847b2576c9e93fa0cd9599222552a4a8e9cc6a11",
+    "bytes": 71328,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/frankyaye_mini_skirt_01/mini_skirt_01_normal.png",
+    "sha256": "ae3650bce6678cd67d025ab70e68b22683176aeaabc06d8e5b2129af99c762e9",
+    "bytes": 1549042,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/frankyaye_mini_skirt_01/frankyaye_mini_skirt_01.thumb",
+    "sha256": "b908edc7d2f530e798028d14e9d3dc9d6f503b1d3cb83ae46c15f220620b7200",
+    "bytes": 54516,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_tiered_mini_skirt/tier_skirt_mini.obj",
+    "sha256": "f81fde12201f188ba2390362a00bdec1d297f953b9c599008b719b7751cca615",
+    "bytes": 477983,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_tiered_mini_skirt/toigo_tiered_mini_skirt.thumb",
+    "sha256": "71b64cb56b8866dc499e5b57f17d27e04c6446ad717b1fc763c883bf77de9da4",
+    "bytes": 51443,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_tiered_mini_skirt/SkirtMini-blackLeather-NORM.png",
+    "sha256": "1080d7bcf8992fe63d348a5e29027c57e814df7fa13cc7721977b50ba8db1aa5",
+    "bytes": 1299368,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_tiered_mini_skirt/tier_skirt_mini.mhmat",
+    "sha256": "a610f5b1261f5086566db8ad51d6b755fb785baf459460797c171ff52f1f0d7f",
+    "bytes": 588,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_tiered_mini_skirt/SkirtMini-blackLeather-spec.png",
+    "sha256": "28c9c3811af457ed274c4065268c69f8446f6f76c59a5a90a72db42c5b22e0e4",
+    "bytes": 21361,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_tiered_mini_skirt/SkirtMini-blackLeather.png",
+    "sha256": "76f515076ec14b8c77889c0dcbc7b29676e3737909c7f70ec5edb2490c46cf5e",
+    "bytes": 942609,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_tiered_mini_skirt/toigo_tiered_mini_skirt.mhclo",
+    "sha256": "48fdcaedcbbfdf49c023818bc765ae2fb1054bc3db45bb15c88e965e4c6204bd",
+    "bytes": 369147,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/skirts01/skirts01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ballet_flats/flats_ballet.mhmat",
+    "sha256": "5964fab9d98a254515c356cb0ec619fcc58470df8d9340734dedcd5f0a59b783",
+    "bytes": 565,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ballet_flats/flats_ballet.obj",
+    "sha256": "80fd320014dacaa1a58740ae5ee8a37ab32bac05c6f68ddebf1ad1b4a1c86b8c",
+    "bytes": 389505,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ballet_flats/BalletFlatsPlainNorm.png",
+    "sha256": "2162a61c88fdd2b85e7bfea8c1e260cdd679838a66c0c6ed79b77188a02f7b94",
+    "bytes": 4168452,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ballet_flats/BalletFlatsSPEC.png",
+    "sha256": "94b7f68f2b13623e6dc8708d0fa037c2f8527eb439d44b245ed003ef737e6bfa",
+    "bytes": 21460,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ballet_flats/BalletFlats.png",
+    "sha256": "f72c35c56b670e0936b548090e1f362220e6abbb2cec210674c1c86a5864ef12",
+    "bytes": 2744843,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ballet_flats/toigo_ballet_flats.thumb",
+    "sha256": "7f3cbd195f5acae9efdae162eae26238a2f7314d17853627c11ebe3b0acbea31",
+    "bytes": 19013,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ballet_flats/toigo_ballet_flats.mhclo",
+    "sha256": "9c7336e6b07c7fb004e8c7bb0bd6bc6c49208d7e9fdf09ae5702d1f279d96e4a",
+    "bytes": 310209,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_male/boots_ankle_male.mhmat",
+    "sha256": "0731fd75bc7333f83010e64d9d5ff7441a0067bc79e3baf489f9ec7abcb47aba",
+    "bytes": 554,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_male/BootsAnkle-norm.png",
+    "sha256": "d4bbc26383a8c191be31a645c5ddfdea4c3ba27d56140305271c4553dbaae8a3",
+    "bytes": 2155003,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_male/toigo_ankle_boots_male.thumb",
+    "sha256": "96306005c0346eeb670fc2f66cf2b831f520a53668290f3abdc380ffadee610f",
+    "bytes": 36133,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_male/toigo_ankle_boots_male.mhclo",
+    "sha256": "0143dbcfdac444a42af339bcc65352af8ad6d8d2519457aa1aff89a639dd554a",
+    "bytes": 142277,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_male/BootsAnkleM.png",
+    "sha256": "0e476df27c5ddebca2c55ce889abd46387ba405f34833de81db466d1a4b1ca5b",
+    "bytes": 1545946,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_male/boots_ankle_male.obj",
+    "sha256": "b23f306d072e5ec89b5958242111e647a76db374a8ff219b006010ff2e504294",
+    "bytes": 171260,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_male/BootsAnkle-spec.png",
+    "sha256": "30e2ce35ab197a55f43f2cdae248940445b5fe14de30eebe4f3c2aed96a80802",
+    "bytes": 291316,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_female/boots_ankle.obj",
+    "sha256": "dfceab7514940456f7ecf5879cc6c686192e7c24d64e1c5356c7a9f09c5ae6c9",
+    "bytes": 170892,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_female/BootsAnkle-norm.png",
+    "sha256": "d4bbc26383a8c191be31a645c5ddfdea4c3ba27d56140305271c4553dbaae8a3",
+    "bytes": 2155003,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_female/toigo_ankle_boots_female.thumb",
+    "sha256": "aae8049c104fe4f56bf711cc090c8c12b935b6037af38801e74cf77390d1a9b5",
+    "bytes": 25405,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_female/toigo_ankle_boots_female.mhclo",
+    "sha256": "a1ada0a96d7085ed60293e1b4aac1dabc80ed3ee50647aaff6d68b6c23b82967",
+    "bytes": 141995,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_female/boots_ankle.mhmat",
+    "sha256": "89cf13d01cbfbc261782572c13aa8cc0b6ff1a4f60131f33136ecc6b720b647a",
+    "bytes": 551,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_female/BootsAnkle.png",
+    "sha256": "2d915244856deb7220e067564aafb2fbbdf00002482dee99d38ca666d239aa98",
+    "bytes": 1429014,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/clothes/toigo_ankle_boots_female/BootsAnkle-spec.png",
+    "sha256": "30e2ce35ab197a55f43f2cdae248940445b5fe14de30eebe4f3c2aed96a80802",
+    "bytes": 291316,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/shoes01/shoes01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/toigo_inverted_bob/BakedHairNORMAL.png",
+    "sha256": "f0b761f31129ef5f808394a4f71b04e902fbd5eadfcad0f3ae0c8d89f87a73cb",
+    "bytes": 10260549,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/toigo_inverted_bob/bob_inverted.mhmat",
+    "sha256": "ad2abc59a0e16f2c2ac08b5210df83b6322f85a10183f95a7b68b96b53218033",
+    "bytes": 566,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/toigo_inverted_bob/toigo_inverted_bob.mhclo",
+    "sha256": "af32890eb389dd536afcb8f6cd5cbf1f57fd42be6a7c1ab2bcb56e0b383473c5",
+    "bytes": 102805,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/toigo_inverted_bob/toigo_inverted_bob.thumb",
+    "sha256": "2ff925c23dca8ecd5f6792fbc4a7b1a7c041b1503d430ee029304c8e61b3002e",
+    "bytes": 46634,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/toigo_inverted_bob/bob_inverted.obj",
+    "sha256": "a6b7c685b8558b9983cb8a883ebacf0272a238931ca20482671fe5da64a31c10",
+    "bytes": 118025,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/toigo_inverted_bob/BakedHair_spec.png",
+    "sha256": "57889d479bc327d3854c7f12689c6c53ce3ef8c445bb7da4dda0ffde9cf5f9b8",
+    "bytes": 5464748,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/toigo_inverted_bob/GoldenBlondHair.png",
+    "sha256": "0d839379f85e757aa8d5cd92281efe830beba1e34f1ffd93954eac704d729378",
+    "bytes": 7877907,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/cortu_short_messy_hair/short_messy.mhmat",
+    "sha256": "28e4ba6df3f1af7a3b68ffde131509be4add84f397409d26b8fc6f8d6efd475d",
+    "bytes": 854,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/cortu_short_messy_hair/short_messy_diff.png",
+    "sha256": "ddf92030eeefe80fdc12703ef44624ba4dd690f458042def549f2853b0daa0dc",
+    "bytes": 530185,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/cortu_short_messy_hair/short_messy.obj",
+    "sha256": "d6dd3d11d44424e8dcd63d98b15763f1c3bb754be8eb02a527ec5f04724a54b1",
+    "bytes": 52093,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/cortu_short_messy_hair/cortu_short_messy_hair.mhclo",
+    "sha256": "868ae0221ba97b23c3c5d1d1c5757e6fd01ddad4a2992affffb6fd7880e3cda7",
+    "bytes": 56368,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/cortu_short_messy_hair/short_messy_objnorm.png",
+    "sha256": "22f397b8ffd19f4a8036034650defc6c964ab9a664c96f8a2db124a956d8a212",
+    "bytes": 364140,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/cortu_short_messy_hair/cortu_short_messy_hair.thumb",
+    "sha256": "b83505f7464a504cd25838b56c5f4c309e5702db9158aac695cb598d359ac9dc",
+    "bytes": 55988,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/o4saken_long01/o4saken_long01.mhclo",
+    "sha256": "581d190f38086aba1c47cd4e589fee469a3cc0157f98fc74ce7bcb76a1caa646",
+    "bytes": 1016141,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/o4saken_long01/o4saken_long01.thumb",
+    "sha256": "85bca7a042d786ebbec7c519ac57327cc0d6a84d11775b1b5bfa5c0759c0c8f2",
+    "bytes": 56566,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/o4saken_long01/o4saken_long01_nrm.png",
+    "sha256": "e529aa236fdb858e78d86476be956565d5c0bad8ac461946bf2a15be70f91d12",
+    "bytes": 3467551,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/o4saken_long01/o4saken_long01.png",
+    "sha256": "436f34ddbd3d27275ecbfb7ea3e3159dc16ff8039313c003fdea30bcbdcefb10",
+    "bytes": 4139233,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/o4saken_long01/o4saken_long01.mhmat",
+    "sha256": "f954943466c9c1ff92348ee9241594ec6e1380abe557bf4316059c83f427e05c",
+    "bytes": 884,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/o4saken_long01/o4saken_long01.obj",
+    "sha256": "3b58e92dae179dd6d0d9b0be07d5996827d8a8dd4158579d6bcc2e48ebd60c17",
+    "bytes": 907650,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/elvs_french_braid_variation/elvs_french_braid_variation.mhclo",
+    "sha256": "61ea506301f39cff5079485597aac6bf876689c1922c0ae2386d45226578d340",
+    "bytes": 440039,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/elvs_french_braid_variation/elvs_french_braid_variation.thumb",
+    "sha256": "88549ffb80057d2944227e384f90cbbdb7e0d4645a5a6f9d9463f9599436ffd4",
+    "bytes": 28524,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/elvs_french_braid_variation/frenchbraid1mh01.obj",
+    "sha256": "708f019f2cbcc11f883890aa6c0b5a98209e6f1fc45833851c160b9385d89a34",
+    "bytes": 440567,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/elvs_french_braid_variation/frenchbraid1mh01.mhmat",
+    "sha256": "a7086f921beb8509eeeb67a36f2f92edc66254a1fd4d3ca127627e0be47de815",
+    "bytes": 761,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  },
+  {
+    "file": "sources/hair/elvs_french_braid_variation/braid01_diffuse_mahogany.png",
+    "sha256": "0da05671e97c74bed8091aac68d34b30d2992e1b577ca6038667f3c1b5e86cb8",
+    "bytes": 3258198,
+    "archive": "https://files2.makehumancommunity.org/asset_packs/hair01/hair01_cc0.zip",
+    "license": "CC0-1.0"
+  }
+]

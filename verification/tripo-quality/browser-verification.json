@@ -1,0 +1,40 @@
+{
+  "desktop": {
+    "width": 1280,
+    "height": 960,
+    "defaultModel": "new female complete outfit",
+    "maleSwitch": true,
+    "sideAndBack": true,
+    "autoRotate": true,
+    "exportPreview": {
+      "decoded": true,
+      "width": 490,
+      "height": 590,
+      "downloadLink": true,
+      "fileSaveVerified": false
+    }
+  },
+  "mobile": {
+    "phone390": {
+      "error": "",
+      "loading": false,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    "phone320": {
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 844,
+      "loading": false,
+      "error": "",
+      "fullBodyAtDefaultZoomReviewed": true
+    }
+  },
+  "continuity": {
+    "priorGarmentVisible": true,
+    "priorSavedLookVisible": true,
+    "newBookmark": "Tripo高模验收 · 奶油格纹",
+    "sampleModeAndRestore": true
+  },
+  "boundary": "New detailed models are fixed-pose complete outfits; articulated poses and garment mixing remain outside this mode."
+}

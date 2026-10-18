@@ -1,0 +1,2 @@
+/wardrobe-frontend wardrowbe-frontend:direct-tryon-20261018-r3 sha256:20603470d5c7d1cd4a75792d6a0934c8324a288d92e5c2e60ab91e307434fb42
+/wardrobe-backend wardrowbe-backend:direct-tryon-20261018-r2 sha256:f9fafecbc6b859d688b066139f05086f1e1956a90b96048885bf65828aa99905

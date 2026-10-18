@@ -1,0 +1,134 @@
+.panel {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  scroll-margin-top: 92px;
+  padding: 22px;
+  border: 1px solid hsl(var(--border));
+  border-radius: 16px;
+  background: linear-gradient(
+    115deg,
+    hsl(var(--tone-blush) / 0.65),
+    hsl(var(--card)) 65%
+  );
+}
+.heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.heading > div {
+  min-width: 0;
+}
+.icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 13px;
+  background: hsl(var(--tone-blush));
+  color: hsl(var(--tone-blush-foreground));
+}
+.heading h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.5;
+}
+.heading p,
+.notes p {
+  margin: 4px 0 0;
+  color: hsl(var(--muted-foreground));
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.select {
+  flex: 1;
+  min-width: 0;
+  max-width: 520px;
+}
+.controls > button {
+  flex-shrink: 0;
+  margin-bottom: 1px;
+}
+.selected {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 12px 14px;
+  border-radius: 13px;
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+}
+.photo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 76px;
+  overflow: hidden;
+  border-radius: 9px;
+  background: hsl(var(--tone-lavender));
+  color: hsl(var(--tone-lavender-foreground));
+}
+.photo img {
+  object-fit: contain;
+}
+.selectedCopy {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.selectedCopy strong {
+  display: block;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.selectedCopy > span {
+  display: block;
+  margin-top: 2px;
+  color: hsl(var(--muted-foreground));
+  font-size: 12px;
+}
+.selectedCopy p {
+  margin: 5px 0 0;
+  color: hsl(var(--primary));
+  font-size: 12px;
+  line-height: 1.6;
+}
+.notes:empty {
+  display: none;
+}
+.inlineNotice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 12px;
+}
+.notes .unavailable {
+  color: hsl(var(--destructive));
+}
+@media (max-width: 540px) {
+  .panel {
+    padding: 16px;
+  }
+  .controls {
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .select {
+    flex-basis: 100%;
+  }
+  .controls > button {
+    justify-self: start;
+    margin: 0;
+  }
+}

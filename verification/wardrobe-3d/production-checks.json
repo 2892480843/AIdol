@@ -1,0 +1,17 @@
+{
+  "url": "http://localhost:3000/dashboard/wardrobe/3d",
+  "desktop": {
+    "canvasCount": 1,
+    "items": 5,
+    "scrollWidth": 1280,
+    "width": 1280
+  },
+  "oldWardrobeEntry": true,
+  "mobile": {
+    "canvasCount": 1,
+    "items": 5,
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "consoleErrors": []
+}

@@ -1,0 +1,73 @@
+{
+  "base_url": "http://localhost:3000",
+  "release": "video-quality-20261018-r2",
+  "desktop": {
+    "width": 1280,
+    "height": 960,
+    "female_ready": true,
+    "male_ready": true,
+    "preset_cycle_preserves_two_owned_items": true,
+    "tryon_link_preserves_same_ids": true
+  },
+  "journal": {
+    "dates": [
+      "2026-10-18",
+      "2026-10-19"
+    ],
+    "actual_webp_thumbnails": true,
+    "survives_reload": true,
+    "previous_next_restores_scene_and_date": true,
+    "old_record_preserved": true
+  },
+  "export": {
+    "png_preview_decoded": true,
+    "width": 490,
+    "height": 590,
+    "download_link_visible": true,
+    "native_download_file_verified": false,
+    "limitation": "In-app browser media extraction/download event timed out; no disk PNG obtained; actual preview and export unit tests passed."
+  },
+  "extraction": {
+    "synthetic_cc0_input": "asset-work/renders/female-sweet-front.png",
+    "actual_candidates": [
+      "top",
+      "skirt",
+      "shoes"
+    ],
+    "selected_for_save": [
+      "top"
+    ],
+    "saved_name": "视频验收提取 · 粉色上衣",
+    "saved_count": 1,
+    "wardrobe_count_before": 5,
+    "wardrobe_count_after": 6,
+    "survives_wardrobe_reload": true,
+    "cloud_ai_called": false,
+    "viewport_widths_without_horizontal_overflow": [
+      390,
+      320
+    ]
+  },
+  "avatar_responsive": [
+    {
+      "canvas": true,
+      "modelError": false,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "canvas": true,
+      "modelError": false,
+      "scrollWidth": 320,
+      "width": 320
+    }
+  ],
+  "test_records_retained": {
+    "local_journal": 2,
+    "wardrobe_items": 1,
+    "reason": "Clearly named verification data; no deletion of user records performed."
+  },
+  "not_implemented": [
+    "Photo-to-personal-360 reconstruction; current 3D figures are virtual preset avatars."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "since": "2026-10-18T11:43:05.924Z",
+  "until": "2026-10-18T11:43:16.960Z",
+  "backToAllFiveResultsMs": 154,
+  "nextAndPrevious": true,
+  "server_requests": {
+    "GET /tryon/capabilities 200": 1,
+    "GET /tryon/tasks 200": 1
+  },
+  "server_duration_ms": {
+    "GET /tryon/capabilities 200": [
+      724.63
+    ],
+    "GET /tryon/tasks 200": [
+      722.13
+    ]
+  }
+}

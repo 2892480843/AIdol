@@ -1,0 +1,107 @@
+[
+  {
+    "source": "female-minimal-front",
+    "pieces": [
+      {
+        "type": "top",
+        "pixels": 16454,
+        "bbox": [
+          215,
+          260,
+          487,
+          527
+        ]
+      },
+      {
+        "type": "bottom",
+        "pixels": 17795,
+        "bbox": [
+          239,
+          518,
+          459,
+          893
+        ]
+      },
+      {
+        "type": "shoes",
+        "pixels": 1010,
+        "bbox": [
+          237,
+          887,
+          462,
+          930
+        ]
+      }
+    ]
+  },
+  {
+    "source": "female-elegant-front",
+    "pieces": [
+      {
+        "type": "dress",
+        "pixels": 25284,
+        "bbox": [
+          219,
+          227,
+          476,
+          652
+        ]
+      },
+      {
+        "type": "shoes",
+        "pixels": 706,
+        "bbox": [
+          238,
+          900,
+          461,
+          932
+        ]
+      }
+    ]
+  },
+  {
+    "source": "female-sweet-front",
+    "pieces": [
+      {
+        "type": "top",
+        "pixels": 6535,
+        "bbox": [
+          282,
+          227,
+          418,
+          389
+        ]
+      },
+      {
+        "type": "bottom",
+        "pixels": 14512,
+        "bbox": [
+          226,
+          387,
+          469,
+          908
+        ]
+      },
+      {
+        "type": "dress",
+        "pixels": 716,
+        "bbox": [
+          276,
+          225,
+          416,
+          389
+        ]
+      },
+      {
+        "type": "shoes",
+        "pixels": 993,
+        "bbox": [
+          237,
+          895,
+          462,
+          937
+        ]
+      }
+    ]
+  }
+]

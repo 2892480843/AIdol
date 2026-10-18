@@ -1,0 +1,98 @@
+{
+  "generated": "2026-10-18",
+  "platform": "macOS arm64",
+  "credits_before": 20825,
+  "credits_after": 20615,
+  "credits_used": 210,
+  "new_purchase": false,
+  "private_photo_upload": false,
+  "records": [
+    {
+      "model": "female",
+      "candidate": "beauty",
+      "task": "a7ac2801-7910-444b-baab-cb0aeec4b8fc",
+      "input": "generated-front-left-right-back",
+      "studio_original_triangles": 1945274,
+      "studio_original_vertices": 1006484,
+      "geometry": "H3.1 ultra, requested 2M",
+      "texture": "8K + PBR + delight",
+      "generation_credits": 65,
+      "retopology_credits": 5,
+      "artifacts": {
+        "source-8k": {
+          "name": "dada-female-beauty-source-8k.glb",
+          "bytes": 69416340,
+          "sha256": "5e032ca8f60a24a73c1a13dbbee71bb464f515c95aba2e921feeb6259042f486",
+          "triangles": 1945274
+        },
+        "150k-8k": {
+          "name": "dada-female-beauty-150k-8k.glb",
+          "bytes": 21761984,
+          "sha256": "e1c51ca0ad67a52476c126fe2157bafa1188f45a16b13cfa2e4a14f10b8c1468",
+          "triangles": 149998
+        }
+      }
+    },
+    {
+      "model": "male",
+      "candidate": "beauty",
+      "task": "e7a33901-4773-42f3-8d47-1a560aa20662",
+      "input": "single-image-with-AI-3D-enhancement",
+      "studio_original_triangles": 1950720,
+      "studio_original_vertices": 1000670,
+      "geometry": "H3.1 ultra, requested 2M",
+      "texture": "8K + PBR + delight",
+      "generation_credits": 65,
+      "retopology_credits": 5,
+      "artifacts": {
+        "source-8k": {
+          "name": "dada-male-beauty-source-8k.glb",
+          "bytes": 72770108,
+          "sha256": "3610868a17fa58e30af11ee29ba2cc91a7bd317275fc691ee22d36359690e006",
+          "triangles": 1950720
+        },
+        "150k-8k": {
+          "name": "dada-male-beauty-150k-8k.glb",
+          "bytes": 21036284,
+          "sha256": "15d37e285aac4245f7e663ae78c01558060da5bc0c0349bd9d528dbc14e9eda9",
+          "triangles": 150000
+        }
+      }
+    },
+    {
+      "model": "female",
+      "candidate": "beauty-b",
+      "task": "f2abfe45-da21-43dc-ba30-a02c648600bd",
+      "input": "single-image-with-AI-3D-enhancement",
+      "studio_original_triangles": 1987208,
+      "studio_original_vertices": 1029913,
+      "geometry": "H3.1 ultra, requested 2M",
+      "texture": "8K + PBR + delight",
+      "generation_credits": 65,
+      "retopology_credits": 5,
+      "artifacts": {
+        "source-8k": {
+          "name": "dada-female-beauty-b-source-8k.glb",
+          "bytes": 73119152,
+          "sha256": "20b2c5e780ee087b022eef2ec6089cebb5097bfe0f703c9610424b878594cc3a",
+          "triangles": 1987208
+        },
+        "150k-8k": {
+          "name": "dada-female-beauty-b-150k-8k.glb",
+          "bytes": 23976224,
+          "sha256": "e00956f8d465a43a7f372d92f3860608374d0c5ed5248032783c9de77e710bac",
+          "triangles": 150000
+        }
+      }
+    }
+  ],
+  "selection": {
+    "female": "beauty-b",
+    "male": "beauty"
+  },
+  "visual_review": {
+    "female": "Selected single-image enhancement B: cleaner eye contour and lips than multiview A. Matte material removed skirt plastic sheen.",
+    "male": "Selected enhanced relaxed polo character.",
+    "limits": "Generated hair strands and fingertips still have local artifacts; no claim of reference-video equivalence, rigging or modular garments."
+  }
+}

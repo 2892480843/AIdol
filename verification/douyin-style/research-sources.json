@@ -1,0 +1,93 @@
+{
+  "recorded_on": "2026-10-17",
+  "timezone": "Asia/Shanghai",
+  "scope": "public Douyin creator pages, captions and selected visible frames",
+  "observation_channels": {
+    "browser-observed": "Root agent opened the user-supplied search, creator profiles and selected videos in the browser; no full-video analysis claimed.",
+    "official-index-only": "Research agent read an indexed official Douyin result; direct page body or playback was unavailable."
+  },
+  "accounts": [
+    {
+      "display_name": "盐百万",
+      "profile_url": "https://www.douyin.com/user/MS4wLjABAAAArqPU_WLvIM5pin6_H_Ck1kKuptKwqDy2zKbApxwuRuX0ea6o3WXo762no-rFQlTO",
+      "profile_check": "browser heading and pinned video link matched",
+      "videos": [
+        {
+          "url": "https://www.douyin.com/video/7655584129869688177",
+          "caption_topic": "穿搭配色公式",
+          "date_displayed": "6月26日",
+          "exact_date": null,
+          "channel": "browser-observed",
+          "visible_text": "上浅下深",
+          "limit": "Only one selected frame and caption observed; year and complete method unverified."
+        },
+        {
+          "url": "https://www.douyin.com/video/7627787722651958459",
+          "caption_topic": "小个子女生怎么在春夏穿出少女感",
+          "exact_date": null,
+          "channel": "browser-observed",
+          "limit": "Profile link and title only; video not watched."
+        }
+      ]
+    },
+    {
+      "display_name": "蟹煲",
+      "profile_url": "https://www.douyin.com/user/MS4wLjABAAAATqlQR24F8_lSDuHzETTXT9ntS9DtyulEVvrMcTTJQVoUTY3QfD3l_8uIaGYB1scB",
+      "profile_check": "browser heading and own video list matched",
+      "videos": [
+        {
+          "url": "https://www.douyin.com/video/7694687869555022479",
+          "caption_topic": "秋冬穿搭技巧：5个懒人搭配口诀",
+          "date_displayed": "1周前",
+          "exact_date": null,
+          "channel": "browser-observed",
+          "visible_text": "外套越浅",
+          "limit": "Incomplete phrase from one selected frame; no completion of the sentence or five rules asserted."
+        },
+        {
+          "url": "https://www.douyin.com/video/7696909782707709858",
+          "caption_topic": "穿搭法则之洋葱穿衣法",
+          "exact_date": null,
+          "channel": "browser-observed",
+          "limit": "Profile link and title only; video not watched."
+        }
+      ]
+    },
+    {
+      "display_name": "常鑫",
+      "profile_url": "https://www.douyin.com/user/MS4wLjABAAAA9hCZ4YkAyenvy0zXpQ0lmqMX6kpQhucEC-xIpFdNFqru9g_q4YnmL6tMJg2VQLgU",
+      "profile_check": "browser heading matched the author reached from actual search result",
+      "videos": [
+        {
+          "url": "https://www.douyin.com/video/7549497179594001702",
+          "caption_topic": "穿搭技巧二十课：穿搭4大原则",
+          "date_displayed": "2025年9月13日",
+          "exact_date": "2025-09-13",
+          "channel": "browser-observed",
+          "limit": "Caption and author checked; playback auto-continued before pausing. Four principles not verified."
+        },
+        {
+          "url": "https://www.douyin.com/video/7687539904575090600",
+          "caption_topic": "穿搭技巧二百三十五课：局部取色法",
+          "date_displayed": "2026-09-20 17:01",
+          "exact_date": "2026-09-20",
+          "channel": "browser-observed",
+          "date_channel": "official-index-only",
+          "limit": "Root browser directly confirmed title and both author links pointing to this profile; date remains indexed metadata only. No full-video viewing or analysis claimed."
+        }
+      ]
+    }
+  ],
+  "product_inferences": [
+    "Optional light/dark color contrast exercise using owned clothing",
+    "Optional outer layer chosen for activity, weather and comfort",
+    "User-selected detail color echo with shoes or accessories"
+  ],
+  "boundaries": [
+    "Profile matching does not establish real-world identity, expertise, copyright originality or endorsement.",
+    "No full-video viewing or analysis claimed; no inferred missing rules or precise dates.",
+    "No follower counts, popularity ranking, copied media or downloaded thumbnails.",
+    "Exercises are our own adaptations; category coverage is not aesthetic quality or body assessment.",
+    "No creator cooperation, authorization, endorsement or AI training claimed."
+  ]
+}

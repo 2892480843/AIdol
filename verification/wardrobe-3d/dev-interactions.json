@@ -1,0 +1,16 @@
+{
+  "canvasClickSelected": "验收样例-shirt",
+  "drag": {
+    "before": -16,
+    "after": 29
+  },
+  "frontViewRotation": 0,
+  "resetRotation": -16,
+  "zoomMaximumDisabled": true,
+  "studioLightToggle": true,
+  "photoModeCanvasCount": 0,
+  "detailLoaded": true,
+  "studioSeedItems": 2,
+  "inventory": 5,
+  "noApiGenerationSubmitted": true
+}

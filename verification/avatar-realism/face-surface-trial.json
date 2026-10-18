@@ -1,0 +1,15 @@
+{
+  "status": "rejected_not_released",
+  "changed_vertices": 1839,
+  "maximum_displacement_at_3_2_height": 0.055,
+  "depth_offset": 0.07758949113200155,
+  "preserved": [
+    "triangle topology",
+    "UV bytes",
+    "all embedded image bytes",
+    "non-facial vertex positions"
+  ],
+  "bytes": 19977536,
+  "sha256": "3b29d3524b78b5b49c7396a063bbd06bd1c78e8de57c38635f57e37f21de7c81",
+  "rejection_reason": "Facial projection/geometry alignment still insufficient; depth transfer does not meet natural-face acceptance."
+}

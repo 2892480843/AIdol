@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-18",
+  "tasks": {
+    "head": "19f64c66-752d-4ff7-9738-80cb71f29a3a",
+    "body": "0db30909-c71d-43f7-8c19-a6cb16250f55"
+  },
+  "settings": {
+    "model": "H3.1",
+    "geometry": "ultra 2M requested",
+    "texture": "8K PBR delight",
+    "ai_enhancement": false,
+    "retopology": "triangles 150K, smartmesh off"
+  },
+  "credits": {
+    "start": 20615,
+    "end": 20475,
+    "used": 140
+  },
+  "references": {
+    "user-reference.png": "b410cc815cfda76e936b12821766b71b3f82b2380a5648214137b9e0e8cdfda5",
+    "face-reference.png": "5f2c9da9f17c0da95e88bc774caff134bd7593c5a496593267e5c1bdc26ea5de",
+    "dopamine-reference.png": "4b04caf542e5d29cc0ba6cbfbb71fe0943d3566b24550bf4e7a8d7db03dc3046"
+  },
+  "limits": [
+    "Static unrigged complete outfit",
+    "Single-image inference of unseen sides",
+    "Not exact identity certification"
+  ]
+}

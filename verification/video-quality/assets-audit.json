@@ -1,0 +1,294 @@
+{
+  "female": {
+    "bytes": 18729540,
+    "sha256": "8817471e3f5fe71b96fcd8eb15c246a523b33b0b3b22a575d8d93e389ec5e458",
+    "boneCount": 53,
+    "meshCount": 18,
+    "materialCount": 23,
+    "imageCount": 15,
+    "normalMapCount": 4,
+    "variantMasks": [
+      {
+        "material": "Body_tops_knit",
+        "variants": [
+          "tops:knit"
+        ]
+      },
+      {
+        "material": "Body_Outerwear_tops_knit",
+        "variants": [
+          "tops:knit"
+        ]
+      },
+      {
+        "material": "Body_shoes_ankle_boots",
+        "variants": [
+          "shoes:ankle-boots"
+        ]
+      }
+    ],
+    "layers": {
+      "bottoms": [
+        "cargo",
+        "mini-skirt",
+        "tailored"
+      ],
+      "dresses": [
+        "halter",
+        "shift"
+      ],
+      "outerwear": [
+        "blazer"
+      ],
+      "shoes": [
+        "ankle-boots",
+        "ballet-flats",
+        "sneakers"
+      ],
+      "tops": [
+        "camisole",
+        "cropped-tee",
+        "knit"
+      ]
+    },
+    "meshes": [
+      {
+        "name": "BaseCoverage",
+        "layer": "base",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Body",
+        "layer": "body",
+        "variant": null,
+        "primitives": 7
+      },
+      {
+        "name": "Bottoms_cargo",
+        "layer": "bottoms",
+        "variant": "cargo",
+        "primitives": 1
+      },
+      {
+        "name": "Bottoms_mini-skirt",
+        "layer": "bottoms",
+        "variant": "mini-skirt",
+        "primitives": 1
+      },
+      {
+        "name": "Bottoms_tailored",
+        "layer": "bottoms",
+        "variant": "tailored",
+        "primitives": 1
+      },
+      {
+        "name": "Dresses_halter",
+        "layer": "dresses",
+        "variant": "halter",
+        "primitives": 1
+      },
+      {
+        "name": "Dresses_shift",
+        "layer": "dresses",
+        "variant": "shift",
+        "primitives": 1
+      },
+      {
+        "name": "Eyebrows",
+        "layer": "base",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Eyelashes",
+        "layer": "base",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Eyes",
+        "layer": "base",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Hair",
+        "layer": "hair",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Outerwear_blazer",
+        "layer": "outerwear",
+        "variant": "blazer",
+        "primitives": 2
+      },
+      {
+        "name": "Shoes_ankle-boots",
+        "layer": "shoes",
+        "variant": "ankle-boots",
+        "primitives": 1
+      },
+      {
+        "name": "Shoes_ballet-flats",
+        "layer": "shoes",
+        "variant": "ballet-flats",
+        "primitives": 1
+      },
+      {
+        "name": "Shoes_sneakers",
+        "layer": "shoes",
+        "variant": "sneakers",
+        "primitives": 1
+      },
+      {
+        "name": "Tops_camisole",
+        "layer": "tops",
+        "variant": "camisole",
+        "primitives": 1
+      },
+      {
+        "name": "Tops_cropped-tee",
+        "layer": "tops",
+        "variant": "cropped-tee",
+        "primitives": 1
+      },
+      {
+        "name": "Tops_knit",
+        "layer": "tops",
+        "variant": "knit",
+        "primitives": 1
+      }
+    ],
+    "checks": "GLB2, embedded-only, budget,53+joints, skinning, layer metadata, unique variants, no duplicate draw instance, finite binary floats, triangle index bounds, every catalogue entry exists"
+  },
+  "male": {
+    "bytes": 11790748,
+    "sha256": "da18c1d0e28ad9ab5407e1625d88c28c36d19184c28baaa59dcfc977c266b303",
+    "boneCount": 53,
+    "meshCount": 14,
+    "materialCount": 17,
+    "imageCount": 12,
+    "normalMapCount": 2,
+    "variantMasks": [
+      {
+        "material": "Body_tops_knit",
+        "variants": [
+          "tops:knit"
+        ]
+      },
+      {
+        "material": "Body_shoes_ankle_boots",
+        "variants": [
+          "shoes:ankle-boots"
+        ]
+      }
+    ],
+    "layers": {
+      "bottoms": [
+        "cargo",
+        "tailored"
+      ],
+      "outerwear": [
+        "blazer"
+      ],
+      "shoes": [
+        "ankle-boots",
+        "sneakers"
+      ],
+      "tops": [
+        "knit",
+        "polo",
+        "tee"
+      ]
+    },
+    "meshes": [
+      {
+        "name": "BaseCoverage",
+        "layer": "base",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Body",
+        "layer": "body",
+        "variant": null,
+        "primitives": 3
+      },
+      {
+        "name": "Bottoms_cargo",
+        "layer": "bottoms",
+        "variant": "cargo",
+        "primitives": 1
+      },
+      {
+        "name": "Bottoms_tailored",
+        "layer": "bottoms",
+        "variant": "tailored",
+        "primitives": 1
+      },
+      {
+        "name": "Eyebrows",
+        "layer": "base",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Eyelashes",
+        "layer": "base",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Eyes",
+        "layer": "base",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Hair",
+        "layer": "hair",
+        "variant": null,
+        "primitives": 1
+      },
+      {
+        "name": "Outerwear_blazer",
+        "layer": "outerwear",
+        "variant": "blazer",
+        "primitives": 2
+      },
+      {
+        "name": "Shoes_ankle-boots",
+        "layer": "shoes",
+        "variant": "ankle-boots",
+        "primitives": 1
+      },
+      {
+        "name": "Shoes_sneakers",
+        "layer": "shoes",
+        "variant": "sneakers",
+        "primitives": 1
+      },
+      {
+        "name": "Tops_knit",
+        "layer": "tops",
+        "variant": "knit",
+        "primitives": 1
+      },
+      {
+        "name": "Tops_polo",
+        "layer": "tops",
+        "variant": "polo",
+        "primitives": 1
+      },
+      {
+        "name": "Tops_tee",
+        "layer": "tops",
+        "variant": "tee",
+        "primitives": 1
+      }
+    ],
+    "checks": "GLB2, embedded-only, budget,53+joints, skinning, layer metadata, unique variants, no duplicate draw instance, finite binary floats, triangle index bounds, every catalogue entry exists"
+  }
+}

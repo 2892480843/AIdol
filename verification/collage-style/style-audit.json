@@ -1,0 +1,46 @@
+{
+  "filesChecked": 146,
+  "violations": [],
+  "paletteContrast": [
+    {
+      "background": "#f5f0e8",
+      "foreground": "#2d2d2d",
+      "contrast": 12.14,
+      "passesAA": true
+    },
+    {
+      "background": "#e74c3c",
+      "foreground": "#171717",
+      "contrast": 4.69,
+      "passesAA": true
+    },
+    {
+      "background": "#3498db",
+      "foreground": "#171717",
+      "contrast": 5.69,
+      "passesAA": true
+    },
+    {
+      "background": "#f39c12",
+      "foreground": "#2d2d2d",
+      "contrast": 6.28,
+      "passesAA": true
+    },
+    {
+      "background": "#9b59b6",
+      "foreground": "#ffffff",
+      "contrast": 4.67,
+      "passesAA": true
+    }
+  ],
+  "renderers": [
+    {
+      "file": "frontend/components/avatar-studio/scene.tsx",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/components/wardrobe-3d/scene.tsx",
+      "unchanged": true
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "timestamp_utc": "2026-10-17T23:19:21.138453+00:00",
+  "platform": {
+    "system": "Darwin",
+    "release": "25.6.0",
+    "machine": "arm64",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]"
+  },
+  "disk_free_bytes": 54766129152,
+  "torch_present_in_audit_interpreter": false,
+  "commands": {
+    "physical_memory": {
+      "exit_code": 0,
+      "output": "17179869184"
+    },
+    "swap": {
+      "exit_code": 0,
+      "output": "vm.swapusage: total = 16384.00M  used = 15589.62M  free = 794.38M  (encrypted)"
+    },
+    "memory_pressure": {
+      "exit_code": 0,
+      "output": "The system has 17179869184 (1048576 pages with a page size of 16384).\nSystem-wide memory free percentage: 31%"
+    },
+    "vm_stat": {
+      "exit_code": 0,
+      "output": "Mach Virtual Memory Statistics: (page size of 16384 bytes)\nPages free:                                     3660.\nPages active:                                 153368.\nPages inactive:                               146953.\nPages speculative:                              5096.\nPages throttled:                                   0.\nPages wired down:                             253834.\nPages purgeable:                                   0.\n\"Translation faults\":                     6954735322.\nPages copy-on-write:                        67585318.\nPages zero filled:                        2456378799.\nPages reactivated:                        3685637927.\nPages purged:                              161807878.\nFile-backed pages:                            108527.\nAnonymous pages:                              196889.\nPages stored in compressor:                  2563456.\nPages occupied by compressor:                 428957.\nDecompressions:                           4240807308.\nCompressions:                             4401284381.\nPageins:                                    93640189.\nPageouts:                                    1675483.\nSwapins:                                   179565329.\nSwapouts:                                  185918152.\nPages tagged:                                 119643.\nPages tagged resident:                         92637.\nPages tagged compressed:                       27006.\nPages tag-storage:                             32768.\nPages tag-storage holding tags:                 4609.\nPages tag-storage free:                          255.\nPages tag-storage non-tag pageable:            27795.\nPages tag-storage non-tag wired:                 109.\nBytes of compressed tags:                    4644032.\nTagged compressions:                        58839888.\nTagged decompressions:                      58171782."
+    },
+    "blender": {
+      "exit_code": 0,
+      "output": "Blender 5.1.2\n\tbuild date: 2026-05-19\n\tbuild time: 01:30:33\n\tbuild commit date: 2026-05-18\n\tbuild commit time: 13:43\n\tbuild hash: ec6e62d40fa9\n\tbuild branch: blender-v5.1-release\n\tbuild platform: Darwin\n\tbuild type: Release\n\tbuild c flags:  -Wall -Werror=implicit-function-declaration -Werror=return-type -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wstrict-prototypes -Wmissing-prototypes -Wunused-parameter -Wundef -Wundef-prefix -Werror=unguarded-availability-new  -mmacosx-version-min=11.2  -std=gnu11  -pipe -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild c++ flags:  -Wall -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wno-overloaded-virtual -Wno-sign-compare -Wno-invalid-offsetof -Wno-suggest-override -Wundef -Wundef-prefix -Wunused-parameter -Wmismatched-tags -Werror=unguarded-availability-new  -mmacosx-version-min=11.2 -ftemplate-depth=1024   -pipe -funsigned-char -fno-strict-aliasing -ffp-contract=off  \n\tbuild link flags: -fexceptions -framework CoreServices -framework Foundation -framework IOKit -framework AppKit -framework Cocoa -framework Carbon -framework AudioUnit -framework AudioToolbox -framework CoreAudio -framework Metal -framework QuartzCore -framework CoreImage -framework OpenGL -framework Accelerate -liconv -Wl,-unexported_symbols_list,'/Users/blender/git/blender-v510/blender.git/source/creator/symbols_apple.map' -Xlinker -no_warn_duplicate_libraries\n\tbuild system: CMake"
+    }
+  },
+  "public_sources": [
+    {
+      "name": "triposr-readme",
+      "url": "https://raw.githubusercontent.com/VAST-AI-Research/TripoSR/main/README.md",
+      "bytes": 5419,
+      "sha256": "ed40f078c5e451c58eae716187e0128f0ce8575e467aab2440b4ed9c75e490b9",
+      "file": "sources/triposr-readme.txt"
+    },
+    {
+      "name": "triposr-run",
+      "url": "https://raw.githubusercontent.com/VAST-AI-Research/TripoSR/main/run.py",
+      "bytes": 6292,
+      "sha256": "bc1c124b3439f8ceb00ebd441848487ae7650af71053a80b266ae5db15784282",
+      "file": "sources/triposr-run.txt"
+    },
+    {
+      "name": "triposr-system",
+      "url": "https://raw.githubusercontent.com/VAST-AI-Research/TripoSR/main/tsr/system.py",
+      "bytes": 6608,
+      "sha256": "7aec93e421394ad7c746b6d63a0189532b57b26af9a199fc75ac3bb7c993c94f",
+      "file": "sources/triposr-system.txt"
+    },
+    {
+      "name": "triposr-config",
+      "url": "https://huggingface.co/stabilityai/TripoSR/raw/main/config.yaml",
+      "bytes": 987,
+      "sha256": "74ca708ce086bf68e97709ea6b3d91f14717921c04691e84043f0eb8fcc68e62",
+      "file": "sources/triposr-config.txt"
+    },
+    {
+      "name": "triposr-metadata",
+      "url": "https://huggingface.co/api/models/stabilityai/TripoSR?blobs=true",
+      "bytes": 4181,
+      "sha256": "9d7840fef8739e5a12bc68f04e1803de9f6485bf90e42d759add5743b8540175",
+      "file": "sources/triposr-metadata.json"
+    },
+    {
+      "name": "sf3d-readme",
+      "url": "https://raw.githubusercontent.com/Stability-AI/stable-fast-3d/main/README.md",
+      "bytes": 6083,
+      "sha256": "830acf3c0c9776f2ccf8d3edc41c1e85972e993b38b65eee06e6663a91ebaa7b",
+      "file": "sources/sf3d-readme.txt"
+    },
+    {
+      "name": "sf3d-metadata",
+      "url": "https://huggingface.co/api/models/stabilityai/stable-fast-3d?blobs=true",
+      "bytes": 4861,
+      "sha256": "82e6ab7caa5b83eb44df26d08dc6af1329b76ea9a4ad84f67a1a41882f988154",
+      "file": "sources/sf3d-metadata.json"
+    },
+    {
+      "name": "pshuman-readme",
+      "url": "https://raw.githubusercontent.com/pengHTYX/PSHuman/main/README.md",
+      "bytes": 4564,
+      "sha256": "70a81c924532eaf34cec21247ef9970e5f3d7318005becce67b3a9482be6cdf5",
+      "file": "sources/pshuman-readme.txt"
+    },
+    {
+      "name": "sith-readme",
+      "url": "https://raw.githubusercontent.com/SiTH-Diffusion/SiTH/main/README.md",
+      "bytes": 9867,
+      "sha256": "cf1c4707627e2569d3dbac3883428d3fb2fdaacc8f8eccd26bc0c080311356e9",
+      "file": "sources/sith-readme.txt"
+    },
+    {
+      "name": "sam-body-install",
+      "url": "https://raw.githubusercontent.com/facebookresearch/sam-3d-body/main/INSTALL.md",
+      "bytes": 1807,
+      "sha256": "63a732dadcbabc444d480fbb9fd229e191308dda8b64edf24476cdd55577c3a8",
+      "file": "sources/sam-body-install.txt"
+    },
+    {
+      "name": "hunyuan-readme",
+      "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/Hunyuan3D-2/main/README.md",
+      "bytes": 18798,
+      "sha256": "edc4d006b977c8e28a0d3135ffc22b0dcad8e8dcb31fc9152c906eb21e29a886",
+      "file": "sources/hunyuan-readme.txt"
+    },
+    {
+      "name": "hunyuan-rasterizer",
+      "url": "https://raw.githubusercontent.com/Tencent-Hunyuan/Hunyuan3D-2/main/hy3dgen/texgen/custom_rasterizer/setup.py",
+      "bytes": 692,
+      "sha256": "96f658cb17dedcc4c165c7d16e49c2eb7440362cc8daff7b1d5bb83d4419cb68",
+      "file": "sources/hunyuan-rasterizer.txt"
+    },
+    {
+      "name": "hunyuan-swift-readme",
+      "url": "https://raw.githubusercontent.com/ZimengXiong/Hunyuan3D-Swift/main/README.md",
+      "bytes": 2713,
+      "sha256": "5dd1b84e56b987208d5f4e70ce6adb977555b925342ebe3c47797ee4fb6c1c2b",
+      "file": "sources/hunyuan-swift-readme.txt"
+    },
+    {
+      "name": "modelr-manifest",
+      "url": "https://raw.githubusercontent.com/ZimengXiong/Modelr/main/model_manifest.json",
+      "bytes": 3912,
+      "sha256": "7119e7d9f6b14d56be92dc6822a225a9810557a2f1e15f74ad52431a9a0fa57f",
+      "file": "sources/modelr-manifest.json"
+    },
+    {
+      "name": "apple-session",
+      "url": "https://developer.apple.com/documentation/realitykit/photogrammetrysession.md",
+      "bytes": 5261,
+      "sha256": "0beea85b77959e1ec04723300cda795a63985ab39022ade86771f3275ad74a0c",
+      "file": "sources/apple-session.txt"
+    },
+    {
+      "name": "apple-capture",
+      "url": "https://developer.apple.com/documentation/realitykit/capturing-photographs-for-realitykit-object-capture.md",
+      "bytes": 7432,
+      "sha256": "819bec081c7b70e5d2f552690baa2bb4897864fc586ffc499da32dbbfaaacf49",
+      "file": "sources/apple-capture.txt"
+    }
+  ],
+  "model_weight_download_bytes": 0,
+  "private_photos_read": false,
+  "production_configuration_read": false,
+  "generation_api_requests": 0,
+  "inference_run": false,
+  "mesh_produced": false
+}

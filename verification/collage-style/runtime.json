@@ -1,0 +1,11 @@
+{
+  "files": 601,
+  "mismatches": [],
+  "manifest_sha256": "6f6245b7b27295105cd7eb7cb733a0c6e01101e58fc579364d4cb63415ed3884",
+  "image": "wardrowbe-frontend:collage-style-20261018-r4",
+  "image_id": "sha256:631b3ed3e0b71b61751332e7bbf14240861a36cba41e9d19d32156310e24ec96",
+  "label": "6f6245b7b27295105cd7eb7cb733a0c6e01101e58fc579364d4cb63415ed3884",
+  "mounts": [],
+  "build_id": "PEQRW1j-iBdLB73DZbCPA",
+  "label_matches": true
+}

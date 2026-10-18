@@ -1,0 +1,350 @@
+{
+  "sex": "male",
+  "macro": {
+    "gender": 1.0,
+    "age": 0.32,
+    "muscle": 0.64,
+    "weight": 0.39,
+    "proportions": 0.84,
+    "height": 0.79,
+    "cupsize": 0.32,
+    "firmness": 0.65,
+    "race": {
+      "asian": 0.88,
+      "caucasian": 0.12,
+      "african": 0.0
+    }
+  },
+  "faceTargets": [
+    [
+      "mouth/mouth-angles-up",
+      0.13
+    ],
+    [
+      "chin/chin-jaw-drop-decr",
+      0.05
+    ],
+    [
+      "torso/measure-shoulder-dist-decr",
+      0.0
+    ],
+    [
+      "head/head-oval",
+      0.12
+    ],
+    [
+      "chin/chin-width-decr",
+      0.04
+    ],
+    [
+      "head/head-fat-decr",
+      0.13
+    ],
+    [
+      "nose/nose-scale-horiz-decr",
+      0.06
+    ],
+    [
+      "mouth/mouth-upperlip-volume-incr",
+      0.04
+    ],
+    [
+      "mouth/mouth-lowerlip-volume-incr",
+      0.08
+    ],
+    [
+      "eyes/l-eye-scale-incr",
+      0.025
+    ],
+    [
+      "eyes/l-eye-corner2-up",
+      0.08
+    ],
+    [
+      "cheek/l-cheek-bones-incr",
+      0.14
+    ],
+    [
+      "eyes/r-eye-scale-incr",
+      0.025
+    ],
+    [
+      "eyes/r-eye-corner2-up",
+      0.08
+    ],
+    [
+      "cheek/r-cheek-bones-incr",
+      0.14
+    ],
+    [
+      "chin/chin-width-incr",
+      0.12
+    ],
+    [
+      "chin/chin-bones-incr",
+      0.1
+    ]
+  ],
+  "meshes": [
+    {
+      "name": "Body",
+      "avatarLayer": "body",
+      "avatarVariant": null,
+      "verts": 53514,
+      "faces": 53512,
+      "materials": [
+        "Body_Material"
+      ]
+    },
+    {
+      "name": "Eyes",
+      "avatarLayer": "base",
+      "avatarVariant": null,
+      "verts": 4164,
+      "faces": 4080,
+      "materials": [
+        "Eyes_Material"
+      ]
+    },
+    {
+      "name": "Eyebrows",
+      "avatarLayer": "base",
+      "avatarVariant": null,
+      "verts": 438,
+      "faces": 384,
+      "materials": [
+        "Eyebrows_Material.001"
+      ]
+    },
+    {
+      "name": "Eyelashes",
+      "avatarLayer": "base",
+      "avatarVariant": null,
+      "verts": 864,
+      "faces": 736,
+      "materials": [
+        "Eyelashes_Material.001"
+      ]
+    },
+    {
+      "name": "Hair",
+      "avatarLayer": "hair",
+      "avatarVariant": null,
+      "verts": 6853,
+      "faces": 6688,
+      "materials": [
+        "Hair_Material.001"
+      ]
+    },
+    {
+      "name": "Tops_knit",
+      "avatarLayer": "tops",
+      "avatarVariant": "knit",
+      "verts": 8419,
+      "faces": 8328,
+      "materials": [
+        "Tops_knit_Material.001"
+      ]
+    },
+    {
+      "name": "Bottoms_tailored",
+      "avatarLayer": "bottoms",
+      "avatarVariant": "tailored",
+      "verts": 5421,
+      "faces": 5348,
+      "materials": [
+        "Bottoms_tailored_Material.001"
+      ]
+    },
+    {
+      "name": "Shoes_sneakers",
+      "avatarLayer": "shoes",
+      "avatarVariant": "sneakers",
+      "verts": 6028,
+      "faces": 5904,
+      "materials": [
+        "Shoes_sneakers_Material.001"
+      ]
+    },
+    {
+      "name": "Outerwear_blazer",
+      "avatarLayer": "outerwear",
+      "avatarVariant": "blazer",
+      "verts": 25175,
+      "faces": 24468,
+      "materials": [
+        "Outerwear_blazer_Material.001",
+        "Outerwear_Fabric"
+      ]
+    },
+    {
+      "name": "Bottoms_cargo",
+      "avatarLayer": "bottoms",
+      "avatarVariant": "cargo",
+      "verts": 815,
+      "faces": 784,
+      "materials": [
+        "Bottoms_cargo_Material.001"
+      ]
+    },
+    {
+      "name": "Tops_tee",
+      "avatarLayer": "tops",
+      "avatarVariant": "tee",
+      "verts": 4260,
+      "faces": 4136,
+      "materials": [
+        "Tops_tee_Material.001"
+      ]
+    },
+    {
+      "name": "Shoes_ankle-boots",
+      "avatarLayer": "shoes",
+      "avatarVariant": "ankle-boots",
+      "verts": 8286,
+      "faces": 8240,
+      "materials": [
+        "Shoes_ankle-boots_Material.001"
+      ]
+    },
+    {
+      "name": "Tops_polo",
+      "avatarLayer": "tops",
+      "avatarVariant": "polo",
+      "verts": 8482,
+      "faces": 8212,
+      "materials": [
+        "Tops_polo_Material.001"
+      ]
+    },
+    {
+      "name": "BaseCoverage",
+      "avatarLayer": "base",
+      "avatarVariant": null,
+      "verts": 1228,
+      "faces": 1222,
+      "materials": [
+        "BaseCoverage_Material"
+      ]
+    }
+  ],
+  "bones": [
+    "Root",
+    "pelvis",
+    "spine_01",
+    "spine_02",
+    "spine_03",
+    "clavicle_l",
+    "upperarm_l",
+    "lowerarm_l",
+    "hand_l",
+    "index_01_l",
+    "index_02_l",
+    "index_03_l",
+    "middle_01_l",
+    "middle_02_l",
+    "middle_03_l",
+    "pinky_01_l",
+    "pinky_02_l",
+    "pinky_03_l",
+    "ring_01_l",
+    "ring_02_l",
+    "ring_03_l",
+    "thumb_01_l",
+    "thumb_02_l",
+    "thumb_03_l",
+    "clavicle_r",
+    "upperarm_r",
+    "lowerarm_r",
+    "hand_r",
+    "index_01_r",
+    "index_02_r",
+    "index_03_r",
+    "middle_01_r",
+    "middle_02_r",
+    "middle_03_r",
+    "pinky_01_r",
+    "pinky_02_r",
+    "pinky_03_r",
+    "ring_01_r",
+    "ring_02_r",
+    "ring_03_r",
+    "thumb_01_r",
+    "thumb_02_r",
+    "thumb_03_r",
+    "neck_01",
+    "head",
+    "thigh_l",
+    "calf_l",
+    "foot_l",
+    "ball_l",
+    "thigh_r",
+    "calf_r",
+    "foot_r",
+    "ball_r"
+  ],
+  "file": "/Users/a111/chen/\u7ade\u8d5b/\u4eac\u4e1c Aidol \u521b\u9020\u8425 S2 \u5192\u9669\u5b63/wardrowbe/verification/video-quality/asset-work/generated/male.glb",
+  "bytes": 11790748,
+  "sha256": "da18c1d0e28ad9ab5407e1625d88c28c36d19184c28baaa59dcfc977c266b303",
+  "clearanceFits": [
+    {
+      "name": "Tops_knit",
+      "adjustedVertices": 142,
+      "maxClearanceShiftM": 0.011091772874621389
+    },
+    {
+      "name": "Bottoms_tailored",
+      "adjustedVertices": 51,
+      "maxClearanceShiftM": 0.002232506199223458
+    },
+    {
+      "name": "Shoes_sneakers",
+      "adjustedVertices": 270,
+      "maxClearanceShiftM": 0.008258263765269436
+    },
+    {
+      "name": "Bottoms_cargo",
+      "adjustedVertices": 0,
+      "maxClearanceShiftM": 0
+    },
+    {
+      "name": "Tops_tee",
+      "adjustedVertices": 4,
+      "maxClearanceShiftM": 0.002215351586805792
+    },
+    {
+      "name": "Shoes_ankle-boots",
+      "adjustedVertices": 489,
+      "maxClearanceShiftM": 0.008900400982316809
+    },
+    {
+      "name": "Tops_polo",
+      "adjustedVertices": 19,
+      "maxClearanceShiftM": 0.0029396243774675724
+    }
+  ],
+  "conditionalCoverage": {
+    "faces": {
+      "tops:knit": 9356,
+      "shoes:ankle-boots": 8816
+    },
+    "knitCoverageMethod": "Source sweater has no delete_verts; fully covered shoulder/chest/arm bone regions bounded by actual fitted hem and collar, excluding head/neck/hands",
+    "shoeMaskUpperBoundsM": {
+      "tops:knit": null,
+      "shoes:ankle-boots": 0.17867913568019866
+    },
+    "materialGroups": 3,
+    "protectedBones": [
+      "head",
+      "neck",
+      "hand",
+      "thumb",
+      "index",
+      "middle",
+      "ring",
+      "pinky"
+    ],
+    "bodyVerticesRetained": 53514,
+    "bodyPolygonsRetained": 53512
+  }
+}

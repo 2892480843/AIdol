@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-18T15:34:33.551872+00:00",
+  "url": "https://124.70.96.183:6780",
+  "checks": [
+    "unauthenticated private routes denied",
+    "public login and API identity",
+    "existing inventory and signed thumbnails preserved",
+    "six authenticated production pages",
+    "production JS/CSS assets and latest collage stylesheet"
+  ],
+  "inventory_count": 3,
+  "pages": {
+    "/dashboard": 125162,
+    "/dashboard/wardrobe": 125524,
+    "/dashboard/suggest": 125050,
+    "/dashboard/wardrobe/avatar": 125038,
+    "/dashboard/wardrobe/tryon": 125111,
+    "/dashboard/looks": 125626
+  },
+  "static_assets_checked": 65,
+  "build_id": "PEQRW1j-iBdLB73DZbCPA",
+  "status": "passed"
+}

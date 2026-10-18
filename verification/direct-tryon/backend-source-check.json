@@ -1,0 +1,21 @@
+{
+  "checks": {
+    "utf8NoBom": true,
+    "pythonAst": true,
+    "migrationHead": [
+      "b2c3d4e5f6a8"
+    ],
+    "migrationExecuted": false,
+    "liveProviderRequested": false
+  },
+  "files": {
+    "backend/app/api/tryon.py": "740154180caf294a28f1198c2878115ab6aadb9e2ca18886b7bbcfda3a1304f4",
+    "backend/app/api/items.py": "244c57f29dd1deebcd22d6dc4d558dfe9499a0e264222b902f5a4b27afe5e3d1",
+    "backend/app/models/tryon.py": "baccec606e1a7eb998e5dcb462a3bf80b2a6132afe56dfb5dfc0ab984a12dabd",
+    "backend/app/schemas/tryon.py": "198ccc67ef21fb2046c316183709153e4d3dc7dbf2a8ff88b72ab697215bfc71",
+    "backend/app/services/tryon.py": "ce69f36558d4ff51026d015cde8292f64b55ee905799524a235e7a9de7cedf42",
+    "backend/tests/test_tryon.py": "d517a1a1980fcb40bd23f89fd832c41a03974cf8025c1c1b6bb83614b26969ca",
+    "backend/tests/test_tryon_multi.py": "fbdcdf7c1632e05559dd2e1ad918e4bce4606bd0c50a41562761f73899c5c937",
+    "backend/migrations/versions/b2c3d4e5f6a8_tryon_item_references.py": "ffcd510b2a1ebacc34eb9025d5c620fed001812493706299a477827ba040caaa"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "photogrammetry_supported": null,
+  "reconstruction_run": false,
+  "probe_status": "not_verified",
+  "reason": "Cold Swift SDK import was still compiling after 180 seconds under high existing memory pressure; own probe stopped to bound resource use. This is not an unsupported-hardware result and not a compiler failure.",
+  "swift_exit_code": 143,
+  "module_cache_removed": true
+}

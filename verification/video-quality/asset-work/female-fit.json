@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Tops_camisole",
+    "adjustedVertices": 120,
+    "maxClearanceShiftM": 0.00383213459634089
+  },
+  {
+    "name": "Bottoms_tailored",
+    "adjustedVertices": 74,
+    "maxClearanceShiftM": 0.0023270727400536424
+  },
+  {
+    "name": "Shoes_sneakers",
+    "adjustedVertices": 416,
+    "maxClearanceShiftM": 0.01207942043005128
+  },
+  {
+    "name": "Dresses_halter",
+    "adjustedVertices": 700,
+    "maxClearanceShiftM": 0.007514035857504885
+  },
+  {
+    "name": "Bottoms_cargo",
+    "adjustedVertices": 0,
+    "maxClearanceShiftM": 0
+  },
+  {
+    "name": "Tops_cropped-tee",
+    "adjustedVertices": 231,
+    "maxClearanceShiftM": 0.002201842858427963
+  },
+  {
+    "name": "Shoes_ankle-boots",
+    "adjustedVertices": 1517,
+    "maxClearanceShiftM": 0.015250661294626907
+  },
+  {
+    "name": "Tops_knit",
+    "adjustedVertices": 364,
+    "maxClearanceShiftM": 0.026334585127195036
+  },
+  {
+    "name": "Bottoms_mini-skirt",
+    "adjustedVertices": 90,
+    "maxClearanceShiftM": 0.005521937023657235
+  },
+  {
+    "name": "Dresses_shift",
+    "adjustedVertices": 387,
+    "maxClearanceShiftM": 0.004489013564172028
+  },
+  {
+    "name": "Shoes_ballet-flats",
+    "adjustedVertices": 6498,
+    "maxClearanceShiftM": 0.00340661671501488
+  }
+]

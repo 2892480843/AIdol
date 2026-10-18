@@ -1,0 +1,722 @@
+[
+  {
+    "module": "backend/app/api/analytics.py",
+    "method": "GET",
+    "path": "",
+    "handler": "get_analytics"
+  },
+  {
+    "module": "backend/app/api/auth.py",
+    "method": "GET",
+    "path": "/mobile-callback",
+    "handler": "mobile_oidc_callback"
+  },
+  {
+    "module": "backend/app/api/auth.py",
+    "method": "GET",
+    "path": "/config",
+    "handler": "get_auth_config"
+  },
+  {
+    "module": "backend/app/api/auth.py",
+    "method": "GET",
+    "path": "/status",
+    "handler": "auth_status"
+  },
+  {
+    "module": "backend/app/api/auth.py",
+    "method": "POST",
+    "path": "/sync",
+    "handler": "sync_user"
+  },
+  {
+    "module": "backend/app/api/auth.py",
+    "method": "GET",
+    "path": "/session",
+    "handler": "get_session"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "GET",
+    "path": "/me",
+    "handler": "get_my_family"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "POST",
+    "path": "",
+    "handler": "create_family"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "PATCH",
+    "path": "/me",
+    "handler": "update_family"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "POST",
+    "path": "/me/regenerate-code",
+    "handler": "regenerate_invite_code"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "POST",
+    "path": "/join",
+    "handler": "join_family"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "POST",
+    "path": "/join-by-token",
+    "handler": "join_family_by_token"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "POST",
+    "path": "/me/leave",
+    "handler": "leave_family"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "POST",
+    "path": "/me/invite",
+    "handler": "invite_member"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "DELETE",
+    "path": "/me/invites/{invite_id}",
+    "handler": "cancel_invite"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "PATCH",
+    "path": "/me/members/{member_id}",
+    "handler": "update_member_role"
+  },
+  {
+    "module": "backend/app/api/families.py",
+    "method": "DELETE",
+    "path": "/me/members/{member_id}",
+    "handler": "remove_member"
+  },
+  {
+    "module": "backend/app/api/health.py",
+    "method": "GET",
+    "path": "/health",
+    "handler": "health_check"
+  },
+  {
+    "module": "backend/app/api/health.py",
+    "method": "GET",
+    "path": "/capabilities",
+    "handler": "capabilities"
+  },
+  {
+    "module": "backend/app/api/health.py",
+    "method": "GET",
+    "path": "/health/ready",
+    "handler": "readiness_check"
+  },
+  {
+    "module": "backend/app/api/health.py",
+    "method": "GET",
+    "path": "/health/features",
+    "handler": "feature_check"
+  },
+  {
+    "module": "backend/app/api/health.py",
+    "method": "GET",
+    "path": "/health/ai",
+    "handler": "ai_health_check"
+  },
+  {
+    "module": "backend/app/api/images.py",
+    "method": "GET",
+    "path": "/{user_id}/{filename}",
+    "handler": "get_image"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "GET",
+    "path": "",
+    "handler": "list_items"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "",
+    "handler": "create_item"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/bulk",
+    "handler": "bulk_create_items"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/bulk/delete",
+    "handler": "bulk_delete_items"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/bulk/analyze",
+    "handler": "bulk_analyze_items"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/bulk/cancel-analysis",
+    "handler": "bulk_cancel_analysis"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/bulk/rotate",
+    "handler": "bulk_rotate_items"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/bulk/remove-background",
+    "handler": "bulk_remove_background_items"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "GET",
+    "path": "/types",
+    "handler": "get_item_types"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "GET",
+    "path": "/colors",
+    "handler": "get_color_distribution"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "GET",
+    "path": "/tagging-progress",
+    "handler": "get_tagging_progress"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "GET",
+    "path": "/{item_id}",
+    "handler": "get_item"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "PATCH",
+    "path": "/{item_id}",
+    "handler": "update_item"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "DELETE",
+    "path": "/{item_id}",
+    "handler": "delete_item"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/archive",
+    "handler": "archive_item"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/restore",
+    "handler": "restore_item"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/wear",
+    "handler": "log_item_wear"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "GET",
+    "path": "/{item_id}/history",
+    "handler": "get_item_history"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "GET",
+    "path": "/{item_id}/wear-stats",
+    "handler": "get_item_wear_stats"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/wash",
+    "handler": "log_item_wash"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "GET",
+    "path": "/{item_id}/wash-history",
+    "handler": "get_item_wash_history"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/analyze",
+    "handler": "trigger_ai_analysis"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/retag",
+    "handler": "retag_item"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/cancel-analysis",
+    "handler": "cancel_item_analysis"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/rotate",
+    "handler": "rotate_item_image"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/remove-background",
+    "handler": "remove_item_background"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/restore-original",
+    "handler": "restore_item_original"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "PUT",
+    "path": "/{item_id}/image",
+    "handler": "replace_item_image"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/images",
+    "handler": "add_item_image"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "DELETE",
+    "path": "/{item_id}/images/{image_id}",
+    "handler": "delete_item_image"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "PATCH",
+    "path": "/{item_id}/images/reorder",
+    "handler": "reorder_item_images"
+  },
+  {
+    "module": "backend/app/api/items.py",
+    "method": "POST",
+    "path": "/{item_id}/images/{image_id}/set-primary",
+    "handler": "set_primary_image"
+  },
+  {
+    "module": "backend/app/api/learning.py",
+    "method": "GET",
+    "path": "",
+    "handler": "get_learning_insights"
+  },
+  {
+    "module": "backend/app/api/learning.py",
+    "method": "POST",
+    "path": "/recompute",
+    "handler": "recompute_learning_profile"
+  },
+  {
+    "module": "backend/app/api/learning.py",
+    "method": "POST",
+    "path": "/generate-insights",
+    "handler": "generate_insights"
+  },
+  {
+    "module": "backend/app/api/learning.py",
+    "method": "POST",
+    "path": "/insights/{insight_id}/acknowledge",
+    "handler": "acknowledge_insight"
+  },
+  {
+    "module": "backend/app/api/learning.py",
+    "method": "GET",
+    "path": "/item-pairs/{item_id}",
+    "handler": "get_item_pair_suggestions"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "GET",
+    "path": "/defaults/ntfy",
+    "handler": "get_ntfy_defaults"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "GET",
+    "path": "/settings",
+    "handler": "list_notification_settings"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "POST",
+    "path": "/settings",
+    "handler": "create_notification_setting"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "GET",
+    "path": "/settings/{setting_id}",
+    "handler": "get_notification_setting"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "PATCH",
+    "path": "/settings/{setting_id}",
+    "handler": "update_notification_setting"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "DELETE",
+    "path": "/settings/{setting_id}",
+    "handler": "delete_notification_setting"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "POST",
+    "path": "/settings/{setting_id}/test",
+    "handler": "test_notification_setting"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "POST",
+    "path": "/push-token",
+    "handler": "register_push_token"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "GET",
+    "path": "/schedules",
+    "handler": "list_schedules"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "POST",
+    "path": "/schedules",
+    "handler": "create_schedule"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "GET",
+    "path": "/schedules/{schedule_id}",
+    "handler": "get_schedule"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "PATCH",
+    "path": "/schedules/{schedule_id}",
+    "handler": "update_schedule"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "DELETE",
+    "path": "/schedules/{schedule_id}",
+    "handler": "delete_schedule"
+  },
+  {
+    "module": "backend/app/api/notifications.py",
+    "method": "GET",
+    "path": "/history",
+    "handler": "list_notification_history"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/suggest",
+    "handler": "suggest_outfit"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/suggest-options",
+    "handler": "suggest_outfit_options"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/suggestions",
+    "handler": "create_external_suggestion"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "GET",
+    "path": "",
+    "handler": "list_outfits"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/bulk/delete",
+    "handler": "bulk_delete_outfits"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "GET",
+    "path": "/{outfit_id}",
+    "handler": "get_outfit"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/{outfit_id}/accept",
+    "handler": "accept_outfit"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/{outfit_id}/reject",
+    "handler": "reject_outfit"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/{outfit_id}/skip",
+    "handler": "skip_outfit"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "DELETE",
+    "path": "/{outfit_id}",
+    "handler": "delete_outfit"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/{outfit_id}/feedback",
+    "handler": "submit_feedback"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "GET",
+    "path": "/{outfit_id}/feedback",
+    "handler": "get_feedback"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/{outfit_id}/family-rating",
+    "handler": "submit_family_rating"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "GET",
+    "path": "/{outfit_id}/family-ratings",
+    "handler": "get_family_ratings"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/studio",
+    "handler": "create_studio_outfit"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/{outfit_id}/wore-instead",
+    "handler": "create_wore_instead_outfit"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/{outfit_id}/clone-to-lookbook",
+    "handler": "clone_outfit_to_lookbook"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "POST",
+    "path": "/{outfit_id}/wear-today",
+    "handler": "wear_outfit_today"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "PATCH",
+    "path": "/{outfit_id}",
+    "handler": "patch_outfit_endpoint"
+  },
+  {
+    "module": "backend/app/api/outfits.py",
+    "method": "DELETE",
+    "path": "/{outfit_id}/family-rating",
+    "handler": "delete_family_rating"
+  },
+  {
+    "module": "backend/app/api/pairings.py",
+    "method": "POST",
+    "path": "/generate/{item_id}",
+    "handler": "generate_pairings"
+  },
+  {
+    "module": "backend/app/api/pairings.py",
+    "method": "GET",
+    "path": "",
+    "handler": "list_pairings"
+  },
+  {
+    "module": "backend/app/api/pairings.py",
+    "method": "GET",
+    "path": "/item/{item_id}",
+    "handler": "list_item_pairings"
+  },
+  {
+    "module": "backend/app/api/pairings.py",
+    "method": "POST",
+    "path": "/item/{item_id}",
+    "handler": "create_external_pairing"
+  },
+  {
+    "module": "backend/app/api/pairings.py",
+    "method": "DELETE",
+    "path": "/{pairing_id}",
+    "handler": "delete_pairing"
+  },
+  {
+    "module": "backend/app/api/preferences.py",
+    "method": "GET",
+    "path": "",
+    "handler": "get_preferences"
+  },
+  {
+    "module": "backend/app/api/preferences.py",
+    "method": "PATCH",
+    "path": "",
+    "handler": "update_preferences"
+  },
+  {
+    "module": "backend/app/api/preferences.py",
+    "method": "POST",
+    "path": "/reset",
+    "handler": "reset_preferences"
+  },
+  {
+    "module": "backend/app/api/preferences.py",
+    "method": "POST",
+    "path": "/excluded-items/{item_id}",
+    "handler": "add_excluded_item"
+  },
+  {
+    "module": "backend/app/api/preferences.py",
+    "method": "DELETE",
+    "path": "/excluded-items/{item_id}",
+    "handler": "remove_excluded_item"
+  },
+  {
+    "module": "backend/app/api/preferences.py",
+    "method": "POST",
+    "path": "/test-ai-endpoint",
+    "handler": "test_ai_endpoint"
+  },
+  {
+    "module": "backend/app/api/tasks.py",
+    "method": "POST",
+    "path": "/recommendations",
+    "handler": "submit_recommendation"
+  },
+  {
+    "module": "backend/app/api/tasks.py",
+    "method": "GET",
+    "path": "",
+    "handler": "list_tasks"
+  },
+  {
+    "module": "backend/app/api/tasks.py",
+    "method": "GET",
+    "path": "/{task_id}",
+    "handler": "get_task"
+  },
+  {
+    "module": "backend/app/api/tasks.py",
+    "method": "POST",
+    "path": "/{task_id}/cancel",
+    "handler": "cancel"
+  },
+  {
+    "module": "backend/app/api/tasks.py",
+    "method": "POST",
+    "path": "/{task_id}/retry",
+    "handler": "retry"
+  },
+  {
+    "module": "backend/app/api/tryon.py",
+    "method": "GET",
+    "path": "/capabilities",
+    "handler": "capabilities"
+  },
+  {
+    "module": "backend/app/api/tryon.py",
+    "method": "POST",
+    "path": "/tasks",
+    "handler": "submit"
+  },
+  {
+    "module": "backend/app/api/tryon.py",
+    "method": "GET",
+    "path": "/tasks",
+    "handler": "tasks"
+  },
+  {
+    "module": "backend/app/api/tryon.py",
+    "method": "GET",
+    "path": "/tasks/{task_id}",
+    "handler": "task"
+  },
+  {
+    "module": "backend/app/api/tryon.py",
+    "method": "GET",
+    "path": "/tasks/{task_id}/image",
+    "handler": "image"
+  },
+  {
+    "module": "backend/app/api/users.py",
+    "method": "GET",
+    "path": "",
+    "handler": "get_profile"
+  },
+  {
+    "module": "backend/app/api/users.py",
+    "method": "PATCH",
+    "path": "",
+    "handler": "update_profile"
+  },
+  {
+    "module": "backend/app/api/users.py",
+    "method": "POST",
+    "path": "/onboarding/complete",
+    "handler": "complete_onboarding"
+  },
+  {
+    "module": "backend/app/api/weather.py",
+    "method": "GET",
+    "path": "/current",
+    "handler": "get_current_weather"
+  },
+  {
+    "module": "backend/app/api/weather.py",
+    "method": "GET",
+    "path": "/forecast",
+    "handler": "get_weather_forecast"
+  }
+]

@@ -1,0 +1,24 @@
+{
+  "since": "2026-10-18T13:51:07.188931+00:00",
+  "observed_at": "2026-10-18T13:52:16.303066+00:00",
+  "weather_requests_without_location": 0,
+  "pages": {
+    "/dashboard": 200,
+    "/dashboard/wardrobe/tryon": 200
+  },
+  "browser_checks": {
+    "desktop_home": "three direct entries visible in main cover; navigation to try-on succeeds",
+    "tryon_navigation_aria_current": "page",
+    "tryon_choose_and_undo": "selected count 0 -> 1 -> 0; generate remains disabled without photo/consent",
+    "console_errors": 0,
+    "mobile_iframe_home": {
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    "mobile_iframe_tryon": {
+      "clientWidth": 390,
+      "scrollWidth": 390
+    },
+    "mobile_interactions": "mobile drawer automated regression passes; iframe click automation unavailable; visual layout checked"
+  }
+}

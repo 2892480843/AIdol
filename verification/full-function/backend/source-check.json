@@ -1,0 +1,14 @@
+{
+  "backend/app/services/studio_service.py": {
+    "utf8": true,
+    "bom": false,
+    "sha256": "62d2efa3c9fe3300bc266136b6bb40400da282afcf24f847a850f2b4df8b9062"
+  },
+  "backend/tests/test_studio_source_ownership.py": {
+    "utf8": true,
+    "bom": false,
+    "sha256": "7c4e5edd52fd052888d4a6c6af852f9d0bf92356fb569b9a742171b0763b8e4b"
+  },
+  "ruff_exit_code": 0,
+  "diff_check_exit_code": 0
+}

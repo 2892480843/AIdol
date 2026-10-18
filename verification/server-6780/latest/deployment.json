@@ -1,0 +1,9 @@
+{
+  "deployed_at": "2026-10-18T15:33:34.034584+00:00",
+  "previous_release": "/opt/dada-6780/releases/20261018-server",
+  "release": "/opt/dada-6780/releases/20261018-latest-collage-r4",
+  "frontend_build_id": "PEQRW1j-iBdLB73DZbCPA",
+  "frontend_source_manifest_sha256": "6f6245b7b27295105cd7eb7cb733a0c6e01101e58fc579364d4cb63415ed3884",
+  "frontend_image": "sha256:631b3ed3e0b71b61751332e7bbf14240861a36cba41e9d19d32156310e24ec96",
+  "frontend_source_files": 601
+}

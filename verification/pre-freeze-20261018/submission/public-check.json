@@ -1,0 +1,69 @@
+{
+  "checked_at": "2026-10-18T23:17:35.189923+08:00",
+  "url": "http://124.70.96.183:6780",
+  "read_only_business_check": true,
+  "checks": [
+    {
+      "name": "unauthenticated denied",
+      "status": 401
+    },
+    {
+      "name": "dedicated reviewer browser login",
+      "status": "passed"
+    },
+    {
+      "path": "/dashboard",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/wardrobe",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/suggest",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/outfits",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/looks",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/wardrobe/avatar",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/wardrobe/extract",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/wardrobe/tryon",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/items",
+      "status": 200,
+      "count": 3
+    },
+    {
+      "path": "/api/v1/outfits",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "path": "/api/v1/tasks",
+      "status": 200,
+      "count": null
+    }
+  ],
+  "health": {
+    "status": "healthy",
+    "checks": {
+      "database": "healthy"
+    }
+  },
+  "status": "passed"
+}

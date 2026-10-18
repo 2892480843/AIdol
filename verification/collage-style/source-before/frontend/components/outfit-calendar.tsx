@@ -1,0 +1,168 @@
+'use client';
+
+import { UnstyledButton } from '@mantine/core';
+
+import { useMemo } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn, formatDate, formatDateKey } from '@/lib/utils';
+import { useUserToday } from '@/lib/hooks/use-user';
+import {
+  startOfMonth,
+  endOfMonth,
+  startOfWeek,
+  endOfWeek,
+  eachDayOfInterval,
+  isSameMonth,
+  isSameDay,
+  addMonths,
+  subMonths,
+} from 'date-fns';
+import type { Outfit } from '@/lib/hooks/use-outfits';
+import { buildCalendarIndicators } from '@/lib/outfits/calendar-indicators';
+import { useLocale, useTranslations } from 'next-intl';
+
+const WEEKDAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as const;
+
+interface OutfitCalendarProps {
+  year: number;
+  month: number;
+  outfits: Outfit[];
+  selectedDate: Date | null;
+  onSelectDate: (date: Date) => void;
+  onMonthChange: (year: number, month: number) => void;
+}
+
+export function OutfitCalendar({
+  year,
+  month,
+  outfits,
+  selectedDate,
+  onSelectDate,
+  onMonthChange,
+}: OutfitCalendarProps) {
+  const t = useTranslations('outfits.calendar');
+  const tc = useTranslations('common');
+  const locale = useLocale();
+  const currentMonth = useMemo(() => new Date(year, month - 1, 1), [year, month]);
+
+  const outfitsByDate = useMemo(() => buildCalendarIndicators(outfits), [outfits]);
+  const todayKey = useUserToday()();
+
+  // Generate calendar days
+  const calendarDays = useMemo(() => {
+    const monthStart = startOfMonth(currentMonth);
+    const monthEnd = endOfMonth(currentMonth);
+    const calendarStart = startOfWeek(monthStart, { weekStartsOn: 0 });
+    const calendarEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
+
+    return eachDayOfInterval({ start: calendarStart, end: calendarEnd });
+  }, [currentMonth]);
+
+  const handlePrevMonth = () => {
+    const prev = subMonths(currentMonth, 1);
+    onMonthChange(prev.getFullYear(), prev.getMonth() + 1);
+  };
+
+  const handleNextMonth = () => {
+    const next = addMonths(currentMonth, 1);
+    onMonthChange(next.getFullYear(), next.getMonth() + 1);
+  };
+
+  const weekDays = WEEKDAY_KEYS.map((key) => ({ key, label: t(`weekDays.${key}`) }));
+
+  return (
+    <div className="w-full">
+      {/* Month navigation */}
+      <div className="mb-5 flex items-center justify-between gap-2">
+        <Button variant="ghost" size="icon" aria-label={tc('previous')} onClick={handlePrevMonth}>
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        <h3 className="font-semibold text-lg">
+          {formatDate(currentMonth, locale, { month: 'long', year: 'numeric' })}
+        </h3>
+        <Button variant="ghost" size="icon" aria-label={tc('next')} onClick={handleNextMonth}>
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
+
+      {/* Weekday headers */}
+      <div className="grid grid-cols-7 mb-2">
+        {weekDays.map((day) => (
+          <div
+            key={day.key}
+            className="text-center text-xs text-muted-foreground font-medium py-1"
+          >
+            {day.label}
+          </div>
+        ))}
+      </div>
+
+      {/* Calendar grid */}
+      <div className="grid grid-cols-7 gap-1">
+        {calendarDays.map((day) => {
+          const dateKey = formatDateKey(day);
+          const indicators = outfitsByDate.get(dateKey);
+          const hasScheduled = indicators?.scheduled;
+          const hasOnDemand = indicators?.onDemand;
+          const isSelected = selectedDate && isSameDay(day, selectedDate);
+          const isCurrentMonth = isSameMonth(day, currentMonth);
+          const isDayToday = dateKey === todayKey;
+
+          return (
+            <UnstyledButton
+              key={dateKey}
+              type="button"
+              onClick={() => onSelectDate(day)}
+              aria-current={isDayToday ? 'date' : undefined}
+              aria-pressed={!!isSelected}
+              className={cn(
+                'relative h-11 w-full rounded-[10px] text-sm transition-colors motion-reduce:transition-none',
+                'hover:bg-accent hover:text-accent-foreground',
+                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                !isCurrentMonth && 'text-muted-foreground/50',
+                isSelected && 'bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground',
+                isDayToday && !isSelected && 'bg-accent font-semibold'
+              )}
+            >
+              <span>{day.getDate()}</span>
+              {/* Outfit indicators */}
+              {(hasScheduled || hasOnDemand) && (
+                <div className="absolute bottom-1 left-1/2 -translate-x-1/2 flex gap-0.5">
+                  {hasScheduled && (
+                    <span
+                      className={cn(
+                        'w-1.5 h-1.5 rounded-full',
+                        isSelected ? 'bg-primary-foreground' : 'bg-primary'
+                      )}
+                    />
+                  )}
+                  {hasOnDemand && (
+                    <span
+                      className={cn(
+                        'w-1.5 h-1.5 rounded-full',
+                        isSelected ? 'bg-primary-foreground' : 'bg-orange-500'
+                      )}
+                    />
+                  )}
+                </div>
+              )}
+            </UnstyledButton>
+          );
+        })}
+      </div>
+
+      {/* Legend */}
+      <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 border-t pt-4 text-xs text-muted-foreground">
+        <div className="flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-primary" />
+          <span>{t('legendScheduled')}</span>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="w-2 h-2 rounded-full bg-orange-500" />
+          <span>{t('legendOnDemand')}</span>
+        </div>
+      </div>
+    </div>
+  );
+}

@@ -1,0 +1,11 @@
+{
+  "files": 600,
+  "mismatches": [],
+  "manifest_sha256": "e2085dc6798b1cc0271e9eb08387f271e5ebb3c3388736acd93a098c00db6d77",
+  "image": "wardrowbe-frontend:ui-content-20261018-r3",
+  "image_id": "sha256:5ffccf377554d9f402874c4a37427a0473a5542314dc5d41457f15ec39d41d01",
+  "label": "e2085dc6798b1cc0271e9eb08387f271e5ebb3c3388736acd93a098c00db6d77",
+  "mounts": [],
+  "build_id": "I4OpIdl-f6d4D0yC4hjV5",
+  "label_matches": true
+}

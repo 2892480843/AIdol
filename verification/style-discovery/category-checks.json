@@ -1,0 +1,32 @@
+[
+  {
+    "style": "street",
+    "cards": 2,
+    "selected": "true"
+  },
+  {
+    "style": "sport",
+    "cards": 2,
+    "selected": "true"
+  },
+  {
+    "style": "cityboy",
+    "cards": 2,
+    "selected": "true"
+  },
+  {
+    "style": "clean",
+    "cards": 2,
+    "selected": "true"
+  },
+  {
+    "style": "retro",
+    "cards": 2,
+    "selected": "true"
+  },
+  {
+    "style": "french",
+    "cards": 2,
+    "selected": "true"
+  }
+]

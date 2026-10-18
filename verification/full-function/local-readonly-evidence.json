@@ -1,0 +1,63 @@
+{
+  "collectedAt": "2026-10-18T04:17:46.106204+08:00",
+  "platform": {
+    "os": "macOS",
+    "arch": "arm64",
+    "shell": "zsh",
+    "memoryBytes": 17179869184,
+    "blenderVersion": "5.1.2"
+  },
+  "requests": {
+    "/api/v1/health/ready": {
+      "status": 200,
+      "body": {
+        "status": "healthy",
+        "checks": {
+          "database": "healthy"
+        }
+      }
+    },
+    "/api/v1/capabilities": {
+      "status": 200,
+      "body": {
+        "ai": {
+          "vision": true,
+          "text": true
+        },
+        "features": {
+          "external_tagging": true,
+          "external_suggestions": true,
+          "external_pairings": true
+        },
+        "version": "1.0.0"
+      }
+    }
+  },
+  "sourceCounts": {
+    "frontendPageFiles": 23,
+    "backendRouteDecorators": 120
+  },
+  "scope": "Read-only local capabilities and non-secret model setting whitelist. No model generation, personal media, credentials or external request.",
+  "nonSecretModelEnvironment": {
+    "AI_BASE_URL": "https://aistore.gsiig.cn/v1",
+    "AI_VISION_MODEL": "Qwen3.8-max",
+    "AI_TEXT_MODEL": "Doubao-Seed-2.0-Mini",
+    "TRYON_MODEL": null,
+    "TRYON_ENABLED": null,
+    "AI_INTERNAL_ENABLED": "true",
+    "AI_VISION_ENABLED": "true",
+    "AI_TEXT_ENABLED": "true",
+    "STUDIO_DISABLED": null,
+    "BG_REMOVAL_PROVIDER": null,
+    "BG_REMOVAL_MODEL": null,
+    "OIDC_ISSUER_URL": "",
+    "DEBUG": "true"
+  },
+  "unsetDefaultsFromSource": {
+    "tryon_model": "Doubao-Seedream-5.0-lite",
+    "tryon_enabled": true,
+    "studio_disabled": false,
+    "bg_removal_provider": "rembg",
+    "bg_removal_model": "u2net"
+  }
+}

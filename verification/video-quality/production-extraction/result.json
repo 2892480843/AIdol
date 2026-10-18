@@ -1,0 +1,61 @@
+{
+  "model": "schp-atr18-int8",
+  "image_width": 700,
+  "image_height": 1000,
+  "pieces": [
+    {
+      "id": "top",
+      "type": "top",
+      "category": "top",
+      "bbox": {
+        "x": 0.34714285714285714,
+        "y": 0.202,
+        "width": 0.30857142857142855,
+        "height": 0.192
+      },
+      "confidence": 0.9278,
+      "png_sha256": "8a57b18bac22dac929fa9a7b449e028a62cbf9915a94b3886f0a72f4c6f22f77"
+    },
+    {
+      "id": "skirt",
+      "type": "skirt",
+      "category": "bottom",
+      "bbox": {
+        "x": 0.32571428571428573,
+        "y": 0.403,
+        "width": 0.30714285714285716,
+        "height": 0.17
+      },
+      "confidence": 0.9428,
+      "png_sha256": "c237647353960ca46be58082b741c137822c93cc021bf10b31725857838942e0"
+    },
+    {
+      "id": "shoes",
+      "type": "shoes",
+      "category": "shoes",
+      "bbox": {
+        "x": 0.33714285714285713,
+        "y": 0.903,
+        "width": 0.32285714285714284,
+        "height": 0.035
+      },
+      "confidence": 0.9641,
+      "png_sha256": "76efb4f960420257c4704307e4101e5c0b1d79510ddf87431af97b91fba4f5de"
+    }
+  ],
+  "warnings": [
+    "请核对分类与边缘；仅提取照片中可见区域，被遮挡的衣物部分无法还原。"
+  ],
+  "verification": {
+    "platform": "aarch64",
+    "seconds": 20.29,
+    "capabilities": {
+      "available": true,
+      "model": "schp-atr18-int8",
+      "max_bytes": 12582912,
+      "max_pixels": 16000000
+    }
+  },
+  "source_sha256": "21c639d7580e6a3d82d54ca6d498872b9b6d004ba9f9a242975cf09987d4a491",
+  "wall_seconds": 31.893
+}

@@ -1,0 +1,11 @@
+{
+  "files": 578,
+  "mismatches": [],
+  "manifest_sha256": "16dc34a35e3e35e39c7443472cf5385b3f2b1bd1c8ac88b3714709793088d830",
+  "image": "wardrowbe-frontend:tripo-series-20261018-r3",
+  "image_id": "sha256:08873a28b64594d5c8dc0242e6ec5678c9f1e1076d1c787d4bbdbc7ab1b95ff1",
+  "label": "16dc34a35e3e35e39c7443472cf5385b3f2b1bd1c8ac88b3714709793088d830",
+  "mounts": [],
+  "build_id": "UzwcnhKW-bCDGgvHmGEZr",
+  "label_matches": true
+}

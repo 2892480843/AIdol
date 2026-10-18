@@ -1,0 +1,16 @@
+{
+  "source_files": 489,
+  "source_mismatches": [],
+  "manifest_sha256": "31abb009c54a3eb28abf67f23081df5b279746dd215052d829952992481bd9d6",
+  "runtime_label_matches": true,
+  "test_files": 101,
+  "passed_tests": 998,
+  "failed_tests": 0,
+  "skipped_tests": 0,
+  "services_running": 10,
+  "configured_health_checks": {
+    "backend": "healthy",
+    "postgres": "healthy",
+    "redis": "healthy"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "files": {
+    "app/main.py": "b2bb012a3a1cc628e7b09b9caac86365a9a0d9e8c278bc1e4e9d5584e8726d29",
+    "app/storage/s3.py": "2c094833a75aadeba576b9005e74d64f8003f49eaa34be017206916e2b9f9530"
+  },
+  "manifest_sha256": "8d000e905fbf8a36c754c7fa894990f5839ce2d9d6ad309f1b6bb13e384ba6da"
+}

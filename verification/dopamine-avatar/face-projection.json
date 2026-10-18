@@ -1,0 +1,56 @@
+{
+  "projection": "frontal portrait-to-body base-color bake",
+  "projected_texels": 900887,
+  "geometry": "source body geometry, UVs and normals unchanged",
+  "ellipse": {
+    "center_y": 2.905,
+    "radius_x": 0.155,
+    "radius_y": 0.183
+  },
+  "landmarks_body": [
+    [
+      331.0,
+      486.0,
+      1.0
+    ],
+    [
+      600.0,
+      454.0,
+      1.0
+    ],
+    [
+      496.0,
+      720.0,
+      1.0
+    ]
+  ],
+  "landmarks_portrait": [
+    [
+      443.0,
+      451.0
+    ],
+    [
+      691.0,
+      426.0
+    ],
+    [
+      599.0,
+      685.0
+    ]
+  ],
+  "body_to_portrait_affine": [
+    [
+      0.9237534077917512,
+      0.02400844252924098
+    ],
+    [
+      0.015302084249406434,
+      0.9830709700114328
+    ],
+    [
+      129.8008090757188,
+      -34.71928590273512
+    ]
+  ],
+  "limits": "Appearance transfer; does not change facial geometry or certify exact identity"
+}

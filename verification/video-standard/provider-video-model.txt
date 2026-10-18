@@ -1,0 +1,738 @@
+Browser tab: 17, Title: "运河启源 · AI STORE", URL: "https://aistore.gsiig.cn/model-market".
+1 AXWebArea 运河启源 · AI STORE, URL: aistore.gsiig.cn/model-market
+	2 container app
+		3 container
+			4 image logo
+			5 link Description: 首页, Value: javascript:void(0)
+			6 link Description: 算力中心, Value: javascript:void(0)
+			7 link Description: 模型聚合中心, Value: javascript:void(0)
+			8 link Description: 应用中心, Value: javascript:void(0)
+			9 link Description: 服务与支持, Value: javascript:void(0)
+			10 text 立即登录
+		11 container
+			12 heading 模型聚合中心, Value: 1
+				13 text 模型聚合中心
+			14 text 热门模型免费领，所有模型限额体验！
+			15 text field (settable)
+			16 button 搜索
+			17 text 模型类别
+			18 button 全部
+			55 button 文本生成
+			56 button 多模态
+			57 button 代码生成
+			58 button 视频生成
+			59 button 图像生成
+			19 text 模型服务商
+			20 button 全部
+			60 button 天翼云
+			21 text 模型系列
+			22 button 全部
+			61 button 新品上架
+			62 button 热门使用
+			63 button Deepseek
+			64 button Kimi
+			65 button GLM
+			66 button MiniMax
+			67 button Seedance
+			68 button 阿里AIGC
+			69 button 豆包
+			70 button 万相
+			71 button 千问
+			23 text 原始模型
+			24 button 全部
+			25 button 重置
+			72 text 为您展示 65 款模型
+			73 container
+				74 image Deepseek-v4.1-flash
+				75 heading Deepseek-v4.1-flash, Value: 3
+					76 text Deepseek-v4.1-flash
+				77 text 天翼云 文本生成 代码生成 DeepSeek‑V4.1‑Flash 是深度求索 2026 年 9 月 10 日发布的新一代 MoE 大模型，总参数 552B，采用全新 CED 因果编码器‑解码器非对称架构，输入预填充阶段仅激活 8B 参数、输出生成阶段激活 16B 参数，精准适配 Agent 场景读多写少的业务负载，原生支持**100 万 token 超长上下文窗口**，最大单次输出可达 384K token，同时完成 KV‑Cache 深度压缩，单 token 缓存仅 890 字节，HBM 显存需求降至前代 V4 Flash 的 1/4、SSD 存储占用降至 1/8，大幅压低百万级长文档、完整代码库解析、多轮智能体持续会话的硬件开销与调用成本，模型具备原生统一多模态能力，图像与文本共用一套底座推理，不再依赖外挂视觉编码器，在 Agent 基准、代码、数学、工具调用评测上整体超越 DeepSeek V4 Pro，推理吞吐显著提升，实测生成速度可达数百 token/s，支持思考 / 非思考双模式，API 并发上限更高，兼顾长上下文记忆、复杂逻辑推理、识图理解、大规模代码审计、长周期智能体任务，在性能提升的同时实现定价大幅下探，适合 RAG 知识库、完整项目代码分析、企业长文档处理、多模态 Agent 等高并发、大输入体量的生产落地场景DeepSeek。 输入:
+				78 text ¥2.000
+				79 text /M 输出:
+				80 text ¥8.000
+				81 text /M
+				82 button 详情
+				83 button 立即体验
+			84 container
+				85 image kimi-k3
+				86 heading kimi-k3, Value: 3
+					87 text kimi-k3
+				88 text 天翼云 代码生成 Kimi K3 是月之暗面（Moonshot AI）于 2026 年 7 月发布并开源的新一代旗舰模型，总参数规模达 2.8 万亿，是目前全球参数最大的开源模型，综合智能水平接近全球前沿闭源模型。采用稀疏混合专家（MoE）架构，结合 Stable LatentMoE 框架，可在 896 个专家中高效激活 16 个；依托自研 KDA 混合线性注意力机制，将长文本处理计算量从平方级增长降至接近线性增长，配合注意力残差（Attention Residuals）技术改进深层网络间信息传递，使 2.8 万亿参数的训练与推理稳定高效，整体扩展效率较 K2 提升约 2.5 倍。模型原生支持视觉理解，具备 100 万 token 上下文窗口，面向软件工程、知识工作、深度研究、多模态理解等复杂任务场景优化，在长程编程、知识工作和复杂推理等场景中表现尤为突出。2026 年 7 月 27 日正式开放模型权重与技术报告，并同步开源 MoonEP、FlashKDA、AgentEnv 等训练关键 Infra 技术，可自由用于内部研发或嵌入终端产品。 输入:
+				89 text ¥20.000
+				90 text /M 输出:
+				91 text ¥100.000
+				92 text /M
+				93 button 详情
+				94 button 立即体验
+			95 container
+				96 image GLM-5.3
+				97 heading GLM-5.3, Value: 3
+					98 text GLM-5.3
+				99 text 天翼云 代码生成 GLM-5.3是智谱AI于2026年8月推出的旗舰大模型。它采用MoE架构，总参数量7530亿，上下文窗口为100万Token，最大可输出128K Token。 输入:
+				100 text ¥8.000
+				101 text /M 输出:
+				102 text ¥28.000
+				103 text /M
+				104 button 详情
+				105 button 立即体验
+			106 container
+				107 image GLM-5.3-flash
+				108 heading GLM-5.3-flash, Value: 3
+					109 text GLM-5.3-flash
+				110 text 天翼云 多模态 GLM-5.3-Flash是智谱AI于2026年8月推出的GLM-5系列首个原生多模态模型。它采用混合架构，总参数量3200亿，但激活参数量仅180亿，实现了高效推理。该模型支持高达100万Token的超长上下文，可以同时处理文本、图像、视频和文件输入。 输入:
+				111 text ¥0.800
+				112 text /M 输出:
+				113 text ¥2.800
+				114 text /M
+				115 button 详情
+				116 button 立即体验
+			117 container
+				118 image Qwen3.8-flash
+				119 heading Qwen3.8-flash, Value: 3
+					120 text Qwen3.8-flash
+				121 text 天翼云 多模态 Qwen3.8-Flash是阿里云于2026年8月26日推出的千问系列最新多模态模型。它采用MoE架构，总参数量1250亿，每次仅激活60亿参数，实现了高性能与低成本的平衡。模型原生支持100万Token上下文窗口，能一次性处理超长文档、完整代码库和复杂对话。在编程辅助、智能体协作和视觉理解等场景表现出色。 输入:
+				122 text ¥0.800
+				123 text /M 输出:
+				124 text ¥2.700
+				125 text /M
+				126 button 详情
+				127 button 立即体验
+			128 container
+				129 image Qwen3.8-max
+				130 heading Qwen3.8-max, Value: 3
+					131 text Qwen3.8-max
+				132 text 天翼云 多模态 Qwen3.8-Max是阿里云于2026年8月3日推出的千问系列旗舰模型。它基于MoE架构，总参数量达2.4万亿，实际推理时仅激活950亿参数，兼顾了超大规模与高效推理。模型原生支持100万Token上下文窗口，最大可输出128K Token。它具备原生多模态理解能力，在编程、办公、科研等长周期任务中表现卓越。 输入:
+				133 text ¥12.000
+				134 text /M 输出:
+				135 text ¥36.000
+				136 text /M
+				137 button 详情
+				138 button 立即体验
+			139 container
+				140 image minimax-m3
+				141 heading minimax-m3, Value: 3
+					142 text minimax-m3
+				143 text 天翼云 代码生成 文本生成 MiniMax M3 是 MiniMax 于 2026 年 6 月发布的新一代开源前沿模型，同时具备前沿 Coding 能力、1M 超长上下文、原生多模态三项核心能力，是目前唯一将三者集齐的开源模型。采用自研全新稀疏注意力架构 MSA（MiniMax Sparse Attention），将上下文窗口提升至 100 万 token，百万上下文下单 token 计算量仅为上代模型的约 1/20，prefilling 阶段加速超 9 倍、decoding 阶段加速超 15 倍。模型从 Step 0 即进行文本、图像、视频混合的 interleaved 原生多模态训练，支持图片和视频输入，并能操作电脑桌面（Computer Use）。Coding 能力较 M2 显著增强，在 bugfix、前后端开发、性能优化等方面接近海外顶尖闭源模型，SWE-Bench Pro 59.0%、Terminal-Bench 2.1 66.0%、MCP Atlas 74.2%；Agentic 能力在搜索、Office 办公等常用工作流上表现突出，并在金融领域初步可用。训练中创新引入交互式用户模拟器框架，模拟真实开发者协作行为（需求澄清、方案讨论、反馈修正、多轮迭代），使模型从被动执行指令升级为可主动协作的伙伴。支持 thinking 与 non-thinking 两种模式按需切换，可通过 MiniMax Code、API 服务使用。 输入:
+				144 text ¥2.100
+				145 text /M 输出:
+				146 text ¥8.400
+				147 text /M
+				148 button 详情
+				149 button 立即体验
+			150 container
+				151 image qwen3.7-plus
+				152 heading qwen3.7-plus, Value: 3
+					153 text qwen3.7-plus
+				154 text 天翼云 文本生成 qwen3.7-plus 是阿里云通义千问 Qwen3.7 系列高性价比 Plus 模型，由阿里云百炼提供推理服务。在强大文本能力的基础上全面升级视觉-语言能力，同时保持编码、工具使用和生产力工作流方面的完整智能体能力，核心特色是多模态交互混合智能体能力：能够感知真实世界场景、读取屏幕并操作 GUI、基于视觉参考生成代码、端到端导航移动应用。作为全能型编码智能体与生产力助手，统一处理图像、视频、屏幕、网页和文本输入，可在 GUI/CLI/工具环境中完成任务；从图像或视频生成 SVG、网页和交互式前端，实现视觉参考到代码的端到端转化；理解移动端与桌面端界面，进行控件定位、任务规划和多步操作；覆盖文档图表、OCR、视频及驾驶场景等真实世界感知与推理。纯文本能力接近 Max 级别，在 Terminal-Bench 2.0、SWE-bench 系列、MCP-Mark 等编码与智能体基准上表现强劲，在 Vision Arena 全球视觉模型榜单中跻身前五、中国第一。上下文窗口 1M（最大输出 131K，思考模式下最大思维链 262K），支持深度思考、函数调用、结构化输出、联网搜索、前缀续写与上下文缓存，并具备跨智能体框架泛化能力（Claude Code、OpenClaw、Qwen Code 等框架下均稳定发挥）。 输入:
+				155 text ¥2.000
+				156 text /M 输出:
+				157 text ¥8.000
+				158 text /M
+				159 button 详情
+				160 button 立即体验
+			161 container
+				162 image DeepSeek-V3.2
+				163 heading DeepSeek-V3.2, Value: 3
+					164 text DeepSeek-V3.2
+				165 text 天翼云 文本生成 代码生成 DeepSeek-V3.2 是一款兼具高计算效率与卓越推理和 Agent 性能的模型。其方法建立在三大关键技术突破之上：DeepSeek 稀疏注意力（DSA），一种高效的注意力机制，在保持模型性能的同时显著降低了计算复杂性，并特别针对长上下文场景进行了优化；可扩展的强化学习框架，通过该框架，模型性能可与 GPT-5 相媲美，其高算力版本在推理能力上可与 Gemini-3.0-Pro 匹敌；以及大规模 Agent 任务合成管线，旨在将推理能力整合到工具使用场景中，从而提高在复杂交互环境中的指令遵循和泛化能力。该模型在 2025 年国际数学奥林匹克（IMO）和国际信息学奥林匹克（IOI）中取得了金牌表现。 输入:
+				166 text ¥2.000
+				167 text /M 输出:
+				168 text ¥3.000
+				169 text /M
+				170 button 详情
+				171 button 立即体验
+			172 container
+				173 image DeepSeek-V3.1-Terminus
+				174 heading DeepSeek-V3.1-Terminus, Value: 3
+					175 text DeepSeek-V3.1-Terminus
+				176 text 天翼云 文本生成 代码生成 DeepSeek-V3.1-Terminus 是由深度求索（DeepSeek）发布的 V3.1 模型的更新版本，定位为混合智能体大语言模型。此次更新在保持模型原有能力的基础上，专注于修复用户反馈的问题并提升稳定性。它显著改善了语言一致性，减少了中英文混用和异常字符的出现。模型集成了“思考模式”（Thinking Mode）和“非思考模式”（Non-thinking Mode），用户可通过聊天模板灵活切换以适应不同任务。作为一个重要的优化，V3.1-Terminus 增强了代码智能体（Code Agent）和搜索智能体（Search Agent）的性能，使其在工具调用和执行多步复杂任务方面更加可靠。 输入:
+				177 text ¥4.000
+				178 text /M 输出:
+				179 text ¥12.000
+				180 text /M
+				181 button 详情
+				182 button 立即体验
+			183 container
+				184 image DeepSeek-V3.1
+				185 heading DeepSeek-V3.1, Value: 3
+					186 text DeepSeek-V3.1
+				187 text 天翼云 文本生成 代码生成 DeepSeek-V3.1 是DeepSeek-AI于 2025-08-20 发布的聊天大模型。支持文本输入和文本输出，上下文窗口为 128K，主要能力包括推理大模型、多语言。页面已收录官方资料、API 定价、公开评测，便于核对规格和使用成本。 输入:
+				188 text ¥4.000
+				189 text /M 输出:
+				190 text ¥12.000
+				191 text /M
+				192 button 详情
+				193 button 立即体验
+			194 container
+				195 image kimi-k2.7-code
+				196 heading kimi-k2.7-code, Value: 3
+					197 text kimi-k2.7-code
+				198 text 天翼云 文本生成 代码生成 Kimi K2.7 Code 是月之暗面（Moonshot AI）于 2026 年 6 月发布并开源的编程专用智能体模型，专为长程软件工程任务打造。采用混合专家（MoE）架构，总参数 1T、每 token 激活参数 32B，使用多头潜在注意力（MLA），内置 400M 参数 MoonViT 视觉编码器，支持多模态输入，上下文窗口 256K。相较 K2.6，模型在长上下文编程场景的指令遵循更可靠，长程编程任务性能显著提升（Kimi Code Bench v2 +21.8%、Program Bench +11.0%、MLS Bench Lite +31.5%），复杂软件工程工作流的端到端任务成功率更高；自主 Agent 任务执行能力（Kimi Claw 24/7 Bench、MCP Atlas、MCP Mark Verified）提升约 10%。同时优化推理效率，缓解过度思考问题，思考 token 用量较 K2.6 平均降低约 30%，交互响应更快、生产成本更低。模型权重开放下载，另有输出速度提升 5-6 倍的高速版，适用于代码重构、多文件功能开发、长时间 Agent 调试等编程场景（非编程任务官方建议使用 K2.6）。 输入:
+				199 text ¥6.500
+				200 text /M 输出:
+				201 text ¥27.000
+				202 text /M
+				203 button 详情
+				204 button 立即体验
+			205 container
+				206 image kimi-k2.6
+				207 heading kimi-k2.6, Value: 3
+					208 text kimi-k2.6
+				209 text 天翼云 代码生成 Kimi K2.6 是月之暗面（Moonshot AI）于 2026 年 4 月发布并开源的大语言模型，是该系列迄今最强的代码模型。采用混合专家（MoE）架构，总参数 1T、激活参数 32B，上下文长度支持 256K。模型在代码编写、长程任务执行和 Agent 集群（Agent Swarm）能力上达到行业领先水平，多项基准测试表现优于或持平 GPT-5.4、Claude Opus 4.6、Gemini 3.1 Pro 等主流闭源模型。长程编码能力显著提升，可不间断执行复杂的代码重构与优化任务，并具备代码驱动设计能力；Agent 集群架构全面升级，基于 PARL（并行智能体强化学习）训练，单次任务可调度最多 300 个子智能体并行工作、执行超过 4000 次工具调用，相比单 Agent 顺序执行速度最高提升 4.5 倍。指令遵循、任务可靠性与长时间运行的稳定性均进一步增强，多智能体可高效并行协同，端到端交付文档、网站、幻灯片与表格等成果，支持将高质量文档转化为可复用技能。模型权重已在 HuggingFace 与 GitHub 开放，适用于全栈开发、复杂工作流编排、智能体集群等场景。 输入:
+				210 text ¥6.500
+				211 text /M 输出:
+				212 text ¥27.000
+				213 text /M
+				214 button 详情
+				215 button 立即体验
+			216 container
+				217 image kimi-k2.5
+				218 heading kimi-k2.5, Value: 3
+					219 text kimi-k2.5
+				220 text 天翼云 文本生成 代码生成 Kimi K2.5 是月之暗面（Moonshot AI）于 2026 年 1 月发布并开源的新一代全能型多模态大模型。基于原生多模态架构，采用万亿参数混合专家（MoE）设计，总参数 1T、激活参数 32B，使用约 15 万亿视觉与文本混合 Token 联合预训练，将视觉理解、逻辑推理、编程及 Agent 能力深度集成于同一模型。支持文本、图像、视频多模态输入，输出文本，上下文窗口 256K，并提供 Instant（快速）、Thinking（深度思考）、Agent、Agent Swarm 四种运行模式。代码能力实现从“生成功能性代码”到“兼具设计审美”的飞跃，可从自然语言或界面截图/录屏直接生成完整前端界面，支持交互式布局与滚动触发等动态效果；推出 Agent 集群架构，可自主调度最多 100 个专业子智能体并行执行、支持 1500 次工具调用，任务效率较单 Agent 提升最高 4.5 倍。在 HLE、BrowseComp、DeepSearchQA 等多项 Agent 评测中取得全球开源模型最佳成绩，多项基准达到或超越 GPT-5.2、Claude Opus 4.5 等主流闭源模型。同时深度掌握 Word、Excel、PPT 等办公软件技能，可交付准专业级文档、表格与演示文稿，模型权重以 MIT 许可证开放商用。 输入:
+				221 text ¥4.000
+				222 text /M 输出:
+				223 text ¥21.000
+				224 text /M
+				225 button 详情
+				226 button 立即体验
+			227 container
+				228 image Kimi-K2-Thinking
+				229 heading Kimi-K2-Thinking, Value: 3
+					230 text Kimi-K2-Thinking
+				231 text 天翼云 文本生成 代码生成 Kimi-K2-Thinking 是月之暗面（Moonshot AI）于 2025 年 11 月发布并开源的旗舰思考模型，发布时是能力最强的开源思考模型。基于 Kimi-K2 底座，采用混合专家（MoE）架构，总参数 1T、每 token 激活 32B；采用后训练阶段量化感知训练（QAT）实现原生 INT4 量化，在无损精度的情况下推理速度提升约 2 倍、显存占用显著降低。模型定位“模型即 Agent”，核心特色是交错思考（Interleaved Thinking）：将思维链推理与工具调用端到端联合训练，可边思考边动态调用工具，在 200-300 次连续工具调用中保持目标连贯不漂移（此前模型通常 30-50 步后即退化），形成“思考→搜索→浏览→编码”的动态循环，逼近人类解决问题的方式。上下文窗口 256K、最大输出 256K，在 Humanity's Last Exam（带工具 44.9%）、SWE-bench Verified（71.3%）、BrowseComp（60.2%）等评测中刷新 SOTA，发布时多项成绩超越 GPT-5、Claude Sonnet 4.5 等闭源模型，适用于自主研究、长程编程、复杂数学推理与多工具协同等场景。模型权重以 Modified MIT 许可证在 HuggingFace 开放，兼容 vLLM、SGLang 等推理框架，仅支持文本输入输出。 输入:
+				232 text ¥4.000
+				233 text /M 输出:
+				234 text ¥16.000
+				235 text /M
+				236 button 详情
+				237 button 立即体验
+			238 container
+				239 image Kimi-K2
+				240 heading Kimi-K2, Value: 3
+					241 text Kimi-K2
+				242 text 天翼云 文本生成 代码生成 Kimi K2 是月之暗面（Moonshot AI）于 2025 年 7 月发布并开源的旗舰基础模型，也是月之暗面首款开源的万亿参数模型，主打更强代码能力与通用 Agent 任务。采用混合专家（MoE）架构，总参数 1T、每 token 激活 32B，基于 15.5T Token 预训练；预训练阶段使用自研 MuonClip 优化器，实现万亿参数模型全程零训练不稳定的稳定高效训练，在人类高质量数据成为瓶颈的背景下有效提升 Token 利用效率，找到新的 Scaling 空间。结合大规模 Agentic 数据合成与通用强化学习，模型在 SWE-bench Verified、Tau2、AceBench 等基准中取得开源模型 SOTA 成绩，在自主编程、工具调用与数学推理三大维度表现领先：前端开发擅长生成兼具设计感与视觉表现力的代码，支持粒子系统、可视化与 3D 场景；可将复杂需求自动拆解为格式规范、可直接执行的 ToolCall 结构，无缝接入各类 Agent/Coding 框架；同时具备突出的风格化写作与语境保持能力。上下文窗口 128K，支持工具调用、JSON Mode、流式输出、联网搜索，提供兼容 OpenAI 与 Anthropic 的 API。系列开源两个版本：Kimi-K2-Base（未经指令微调的基础预训练模型，适合科研与自定义微调）与 Kimi-K2-Instruct（通用指令微调版，非思考模型，适合开箱即用的问答与 Agent 任务），权重以 Modified MIT 许可证在 HuggingFace、ModelScope 开放下载。 输入:
+				243 text ¥4.000
+				244 text /M 输出:
+				245 text ¥16.000
+				246 text /M
+				247 button 详情
+				248 button 立即体验
+			249 container
+				250 image GLM-5.2
+				251 heading GLM-5.2, Value: 3
+					252 text GLM-5.2
+				253 text 天翼云 代码生成 GLM-5.2 是智谱（Z.ai）于 2026 年 6 月发布并开源的新一代旗舰大模型，主攻 Coding 与长程任务，由智谱 BigModel 开放平台与 Z.ai 提供推理服务。实现 Solid 1M（100 万 Token）无损长上下文，可一口气阅读数百万字长篇、数百页复杂 PDF 或整个中大型代码库，并在一轮连续任务中处理 88 万以上 Token，自主完成开发、联调、测试到打包上线的完整软件交付流程，数小时内产出覆盖网页端、移动端与小程序的完整应用。在 Artificial Analysis 综合榜单取得 51 分位列开源 SOTA，与 Anthropic、OpenAI 形成榜单“新御三家”格局；在 Code Arena 全球百万用户盲测中位列全球可用模型第一；FrontierSWE、Terminal-Bench 等代码与长程任务基准与 Claude Opus 4.8 差距收窄至 1%-4%。Infra 层面提出 IndexShare 技术，在每四层稀疏注意力层间复用同一索引器，大幅降低 1M 上下文单位 token 计算量，并改进 MTP 投机解码层使接受长度最多提升 20%；引入 effort level 思考档位控制，可在能力、速度与成本间灵活平衡。线上推理 Day 0 完成华为昇腾、平头哥、摩尔线程、寒武纪、昆仑芯、沐曦、海光、壁仞等国产算力平台全适配，模型权重以 MIT 许可证在 HuggingFace 与 ModelScope 开放，支持免费商用。 输入:
+				254 text ¥8.000
+				255 text /M 输出:
+				256 text ¥28.000
+				257 text /M
+				258 button 详情
+				259 button 立即体验
+			260 container
+				261 image GLM-5.1
+				262 heading GLM-5.1, Value: 3
+					263 text GLM-5.1
+				264 text 天翼云 代码生成 文本生成 GLM-5.1 是智谱（Z.ai）于 2026 年 4 月发布并开源的新一代旗舰基座模型，面向复杂代码与长程任务场景，由智谱 BigModel 开放平台与 Z.ai 提供推理服务。采用混合专家（MoE）架构结合稀疏注意力（DSA），总参数 754B、每 token 激活 40B，256 个路由专家 + 1 个共享专家，全部训练流程在约 10 万卡华为昇腾 910B 芯片上完成，是首个纯国产算力全流程训练的顶级大模型。综合与 Coding 能力整体对齐 Claude Opus 4.6，SWE-Bench Pro 取得 58.4 超越 GPT-5.4、Claude Opus 4.6 与 Gemini 3.1 Pro 刷新全球最佳；长程任务能力大幅提升，单次任务可持续自主工作长达 8 小时，完成规划、执行、测试、修复到交付的完整闭环，曾实现 8 小时从零构建完整 Linux 桌面系统、655 轮迭代将向量数据库查询吞吐提升至 6.9 倍。上下文窗口 200K、最大输出 128K，支持思考模式、流式输出、Function Call、上下文缓存、结构化输出与 MCP 工具调用，广泛适配 Claude Code、OpenClaw 等 Agentic Coding 场景。权重以 MIT 许可证在 HuggingFace、ModelScope 开放，兼容 vLLM、SGLang 等推理框架。 输入:
+				265 text ¥6.000
+				266 text /M 输出:
+				267 text ¥24.000
+				268 text /M
+				269 button 详情
+				270 button 立即体验
+			271 container
+				272 image GLM-5.0
+				273 heading GLM-5.0, Value: 3
+					274 text GLM-5.0
+				275 text 天翼云 文本生成 代码生成 GLM-5.0 是智谱（Z.ai）于 2026 年 2 月发布的第五代旗舰基座大模型（GLM-5 系列基础版），主攻复杂系统工程与长程 Agent 任务。采用混合专家（MoE）架构，总参数约 745B（256 个专家、每 token 激活 8 个，稀疏率 5.9%）、每 token 激活约 44B，规模约为前代 GLM-4.5 的两倍，基于 28.5T Token 预训练，全程在华为昇腾芯片上完成训练。首次集成 DSA 稀疏注意力机制，根据 Token 重要性动态分配注意力资源，在不折损长上下文理解与推理深度的前提下大幅降低训练与推理成本；采用多 token 预测（MTP）技术提升生成效率。上下文窗口 200K，在 SWE-bench Verified（77.8）、Terminal Bench 2.0 等智能体编程核心榜单取得开源模型 SOTA，真实编程体验逼近 Claude Opus 4.5；在 BrowseComp、MCP-Atlas、τ²-Bench 等 Agent 评测中均为开源最优，具备连续运行超 24 小时、执行数百次工具调用的长程任务能力，可将文本或素材直接输出为 docx、pdf、xlsx 等办公文档。模型权重以 MIT 许可证在 HuggingFace、ModelScope 开源，并深度适配华为昇腾、摩尔线程、寒武纪等国产算力平台，适用于 Agentic Coding、复杂系统工程、智能体工作流等场景。 输入:
+				276 text ¥4.000
+				277 text /M 输出:
+				278 text ¥18.000
+				279 text /M
+				280 button 详情
+				281 button 立即体验
+			282 container
+				283 image qwen3.7-max
+				284 heading qwen3.7-max, Value: 3
+					285 text qwen3.7-max
+				286 text 天翼云 文本生成 代码生成 Qwen3.7-Max 是阿里巴巴通义千问 Qwen3.7 系列中规模最大、综合能力最强的旗舰模型，由阿里云百炼提供推理服务，是面向智能体（Agent）时代的新一代旗舰大模型。核心优势在于智能体能力的广度与深度：作为前沿编程智能体，可覆盖从前端原型开发到复杂多文件软件工程的全流程，能自主编写代码创造工具、完成复杂编程的自我纠错迭代，SWE-Pro、SWE-Multilingual、Terminal Bench 2.0 等测评领先，超越 Claude Opus 4.6、Kimi-K2.6、DeepSeek-v4-Pro 等模型；作为办公与生产力助手，通过 MCP 集成与多智能体协作实现工作流自动化，办公自动化基准 SpreadSheetBench-v1 达 87 分顶尖水平；具备超长程自主执行能力，曾全自主连续运行 35 小时、完成超 1000 次工具调用，在陌生芯片平台上将推理内核优化至 10 倍加速；具备跨智能体框架泛化能力，在 Claude Code、OpenClaw、Qwen Code 等框架下均能稳定发挥。推理能力上，GPQA Diamond、HLE、HMMT 2026 等核心测评全面领先；在 Arena 全球大模型盲测总榜中位列国产模型第一。支持 1M 上下文窗口，支持深度思考、函数调用、结构化输出、联网搜索、前缀续写、批量任务与微调。 输入:
+				287 text ¥12.000
+				288 text /M 输出:
+				289 text ¥36.000
+				290 text /M
+				291 button 详情
+				292 button 立即体验
+			293 container
+				294 image qwen3.6-plus
+				295 heading qwen3.6-plus, Value: 3
+					296 text qwen3.6-plus
+				297 text 天翼云 文本生成 qwen3.6-plus 是阿里云通义千问 Qwen3.6 原生视觉语言系列 Plus 模型，由阿里云百炼提供推理服务。模型展现出与当前顶尖前沿模型相媲美的性能，综合效果相较 Qwen3.5 系列显著提升。在 Agentic Coding、前端编程、Vibe Coding 等代码能力上显著增强，可自主拆解任务、规划路径、测试修改直至完成仓库级复杂编程任务，在 SWE-bench 系列、Terminal-Bench 2、长程编程任务 NL2Repo 及 Claw-Eval 等真实世界 Agent 评测中表现领先；多模态方面在万物识别、OCR、物体定位、复杂文档理解、视频推理与视觉编码等能力上同步增强，可基于界面截图、设计稿或自然图文描述完成前端页面生成、代码补全与交互修改。支持文本、图像、视频多模态输入，输出文本；上下文窗口 1M（最大输出 65K，思考模式下最大思维链 82K），支持深度思考、函数调用、结构化输出、联网搜索、前缀续写、上下文缓存与批量推理，是深度适配主流 Agent 框架、适合复杂开发与智能体工作流的全能型模型。 输入:
+				298 text ¥2.000
+				299 text /M 输出:
+				300 text ¥12.000
+				301 text /M
+				302 button 详情
+				303 button 立即体验
+			304 container
+				305 image Qwen3.5-35B-A3B
+				306 heading Qwen3.5-35B-A3B, Value: 3
+					307 text Qwen3.5-35B-A3B
+				308 text 天翼云 文本生成 Qwen3.5-35B-A3B 是通义千问团队推出的原生多模态大语言模型，总参数量 35B，激活参数量仅 3B。该模型采用门控 Delta 网络与稀疏混合专家（MoE）相结合的高效混合架构，原生支持 256K 上下文长度，并可扩展至约 100 万 tokens。模型通过早期融合训练实现了统一的视觉语言基础能力，支持文本、图像和视频理解，在推理、编程、智能体和视觉理解等多项基准测试中表现优异。模型默认启用思考模式（Thinking Mode），支持工具调用，并覆盖 201 种语言和方言 输入:
+				309 text ¥0.400
+				310 text /M 输出:
+				311 text ¥3.200
+				312 text /M
+				313 button 详情
+				314 button 立即体验
+			315 container
+				316 image Qwen3.5-122B-A10B
+				317 heading Qwen3.5-122B-A10B, Value: 3
+					318 text Qwen3.5-122B-A10B
+				319 text 天翼云 文本生成 Qwen3.5-122B-A10B 是阿里通义千问 Qwen3.5 系列 122B-A10B 原生视觉语言模型。采用混合架构设计，融合门控 DeltaNet 线性注意力机制与稀疏混合专家（MoE），总参数 122B、每 token 激活约 10B，兼顾高性能与高推理效率。支持文本、图像、视频多模态输入，输出文本；综合表现仅次于 Qwen3.5-397B-A17B，文本能力显著优于 Qwen3-235B-2507，视觉能力超越 Qwen3-VL-235B，在推理、编码、智能体（Agent）与视觉理解等基准上实现跨代提升。原生上下文窗口 262K（可通过 YaRN 扩展至约 1M），支持思考模式（最大思维链 81K）、函数调用、结构化输出、联网搜索及前缀续写，语言覆盖扩展至 201 种语言与方言，适用于多模态推理、代码生成、工具调用、智能体工作流及图像/视频理解等场景。 输入:
+				320 text ¥0.800
+				321 text /M 输出:
+				322 text ¥6.400
+				323 text /M
+				324 button 详情
+				325 button 立即体验
+			326 container
+				327 image Cdance2.0-fast-0611
+				328 heading Cdance2.0-fast-0611, Value: 3
+					329 text Cdance2.0-fast-0611
+				330 text 天翼云 视频生成 cdance2.0-fast-0611是 Seedance 2.0 的快速档位，为本平台在标准版之下拆分的低成本档位，官方未单独公开该型号规格。沿用同一多模态音视频联合生成架构，支持文字、图片、音频、视频四模态输入，覆盖文生视频、图生视频与参考生视频，面向快速出片与批量创意测试。按本平台价格配置，分辨率提供 480P 与 720P 两档，价格低于标准版 cdance2.0。 分段计价，请查看详情
+				331 button 详情
+				332 button 立即体验
+			333 container
+				334 image Cdance2.0-mini-0611
+				335 heading Cdance2.0-mini-0611, Value: 3
+					336 text Cdance2.0-mini-0611
+				337 text 天翼云 视频生成 cdance2.0-mini-0611 是 Seedance 2.0 的轻量档位，为本系列最低成本档位，官方未单独公开该型号规格，档位划分来自本平台渠道侧配置。沿用同一多模态音视频联合生成架构与四模态输入能力，支持文生视频、图生视频与参考生视频，面向高并发、成本敏感的批量生成与草稿迭代。按本平台价格配置，分辨率提供 480P 与 720P 两档。 分段计价，请查看详情
+				338 button 详情
+				339 button 立即体验
+			340 container
+				341 image Cdance2.0-fast-0807
+				342 heading Cdance2.0-fast-0807, Value: 3
+					343 text Cdance2.0-fast-0807
+				344 text 天翼云 视频生成 cdance2.0-fast-0807 是 Seedance 2.0 的快速档位，为本平台在标准版之下拆分的低成本档位，官方未单独公开该型号规格。沿用同一多模态音视频联合生成架构，支持文字、图片、音频、视频四模态输入，覆盖文生视频、图生视频与参考生视频，面向快速出片与批量创意测试。按本平台价格配置，分辨率提供 480P 与 720P 两档，价格低于标准版 cdance2.0。 分段计价，请查看详情
+				345 button 详情
+				346 button 立即体验
+			347 container
+				348 image Cdance2.0-mini-0807
+				349 heading Cdance2.0-mini-0807, Value: 3
+					350 text Cdance2.0-mini-0807
+				351 text 天翼云 视频生成 cdance2.0-mini-0807 是 Seedance 2.0 的轻量档位，为本系列最低成本档位，官方未单独公开该型号规格，档位划分来自本平台渠道侧配置。沿用同一多模态音视频联合生成架构与四模态输入能力，支持文生视频、图生视频与参考生视频，面向高并发、成本敏感的批量生成与草稿迭代。按本平台价格配置，分辨率提供 480P 与 720P 两档。 分段计价，请查看详情
+				352 button 详情
+				353 button 立即体验
+			354 container
+				355 image Cdance2.0-0611
+				356 heading Cdance2.0-0611, Value: 3
+					357 text Cdance2.0-0611
+				358 text 天翼云 视频生成 cdance2.0-0611 即 Seedance 2.0，采用统一的多模态音视频联合生成架构，支持文字、图片、音频、视频四种模态输入，覆盖文生视频、图生视频、参考生视频与视频编辑。可参考图像、视频、音频控制人物表演、光影与运镜，并原生同步生成对白、音效与音乐。官方未公开输出分辨率、帧率与单段时长上限，第三方平台多标称最高 2K。 分段计价，请查看详情
+				359 button 详情
+				360 button 立即体验
+			361 container
+				362 image Cdance2.0-0807
+				363 heading Cdance2.0-0807, Value: 3
+					364 text Cdance2.0-0807
+				365 text 天翼云 视频生成 cdance2.0-0807 即 Seedance 2.0，采用统一的多模态音视频联合生成架构，支持文字、图片、音频、视频四种模态输入，覆盖文生视频、图生视频、参考生视频与视频编辑。可参考图像、视频、音频控制人物表演、光影与运镜，并原生同步生成对白、音效与音乐。官方未公开输出分辨率、帧率与单段时长上限，第三方平台多标称最高 2K。 分段计价，请查看详情
+				366 button 详情
+				367 button 立即体验
+			368 container
+				369 image Cdance2.0-0813
+				370 heading Cdance2.0-0813, Value: 3
+					371 text Cdance2.0-0813
+				372 text 天翼云 视频生成 cdance2.0-0813 即 Seedance 2.0，采用统一的多模态音视频联合生成架构，支持文字、图片、音频、视频四种模态输入，覆盖文生视频、图生视频、参考生视频与视频编辑。可参考图像、视频、音频控制人物表演、光影与运镜，并原生同步生成对白、音效与音乐。官方未公开输出分辨率、帧率与单段时长上限，第三方平台多标称最高 2K。 分段计价，请查看详情
+				373 button 详情
+				374 button 立即体验
+			375 container
+				376 image minimax-h3
+				377 heading minimax-h3, Value: 3
+					378 text minimax-h3
+				379 text 天翼云 视频生成 minimax-h3 是新一代开源通用多模态视频生成模型，统一理解文本、图像、视频与音频输入，支持文生视频、首尾帧图生视频、参考生成与视频编辑。输出支持 768P 与 2K 分辨率，时长 4 至 15 秒，帧率 24 帧，并可原生生成与画面同步的立体声音频，人声、音效与音乐由同一模型联合建模。参考输入最多支持 9 张图片、3 段视频和 3 段音频。
+				380 button 详情
+				381 button 立即体验
+			382 container
+				383 image deepseek-v4-flash（原厂）
+				384 heading deepseek-v4-flash（原厂）, Value: 3
+					385 text deepseek-v4-flash（原厂）
+				386 text 天翼云 文本生成 代码生成 deepseek-v4-flash 为 284B 总参数、13B 激活参数的 MoE，支持 1M 上下文与思考/非思考双模式，主打快速、低成本与智能体任务。该模型已停用，调用此模型名时请求由 DeepSeek-V4.1-Flash 承接并按 Flash 价格计费，实际上下文 1M、最大输出 384K，属兼容性保留别名。 输入:
+				387 text ¥3.000
+				388 text /M 输出:
+				389 text ¥9.000
+				390 text /M
+				391 button 详情
+				392 button 立即体验
+			393 container
+				394 image wan2.7-image
+				395 heading wan2.7-image, Value: 3
+					396 text wan2.7-image
+				397 text 天翼云 图像生成 wan2.7-image 是通义万相 2.7 文生图模型，支持文生图、文生组图、图生组图、图像编辑与多图参考生成，出图速度较快。输出为 PNG，分辨率支持 1K、2K 两档，默认 2K，不支持 4K，也可直接指定宽高像素，总像素范围约 768×768 至 2048×2048，宽高比 1:8 至 8:1。可输入 0 至 9 张图片，单图最多框选 2 个区域，关闭组图时单次生成 1 至 4 张。
+				398 button 详情
+				399 button 立即体验
+			400 container
+				401 image Doubao-Seedance-1.0-pro
+				402 heading Doubao-Seedance-1.0-pro, Value: 3
+					403 text Doubao-Seedance-1.0-pro
+				404 text 天翼云 视频生成 Doubao-Seedance-1.0-pro 为音视频联合生成模型，支持文生视频与图生视频，可同步生成配套叙事音频，中文语音自然、覆盖部分方言，通过音画同步提升口型与动作对齐。支持复杂运镜与特写情绪表达，画面具影视质感，适用于短剧、广告及社交媒体内容。官方未公布分辨率与时长上限。 分段计价，请查看详情
+				405 button 详情
+				406 button 立即体验
+				684 container
+					685 container
+						686 button 关闭
+						687 image Doubao-Seedance-1.0-pro
+						688 heading Doubao-Seedance-1.0-pro, Value: 2
+							689 text Doubao-Seedance-1.0-pro
+						690 text 天翼云 视频生成 i
+						691 heading 模型信息, Value: 3
+							692 text 模型信息
+						693 text 模型基础能力说明
+						694 text Doubao-Seedance-1.0-pro 为音视频联合生成模型，支持文生视频与图生视频，可同步生成配套叙事音频，中文语音自然、覆盖部分方言，通过音画同步提升口型与动作对齐。支持复杂运镜与特写情绪表达，画面具影视质感，适用于短剧、广告及社交媒体内容。官方未公布分辨率与时长上限。
+						695 button 模型体验
+						696 text A
+						697 heading API 端点, Value: 3
+							698 text API 端点
+						699 text 模型接入支持的接口调用信息
+						700 text OpenAI
+						701 text /v1/chat/completions
+						702 text POST OpenAI
+						703 text /v1/contents/generations/tasks
+						704 text POST ¥
+						705 heading 模型价格, Value: 3
+							706 text 模型价格
+						707 text 按输出分辨率档计价，相同分辨率仅可配置一档价格
+						708 table
+							709 row
+								710 cell
+									711 text 服务商
+								712 cell
+									713 text 模型名称
+								714 cell
+									715 text 有输入素材价格（积分）
+								716 cell
+									717 text 无输入素材价格（积分）
+							718 row
+								719 cell
+									720 button (expanded) Description: 展开分段定价, Secondary Actions: Collapse
+								721 cell
+									722 text 天翼云
+								723 cell
+									724 button Doubao-Seedance-1.0-pro
+									725 text 分辨率x1
+								726 cell
+									727 text ¥15.000
+								728 cell
+									729 text ¥15.000
+							730 row
+								731 cell
+									732 text 480P
+								733 cell
+									734 text ¥15.000
+								735 cell
+									736 text ¥15.000
+			407 container
+				408 image happyhorse-1.0-i2v
+				409 heading happyhorse-1.0-i2v, Value: 3
+					410 text happyhorse-1.0-i2v
+				411 text 天翼云 视频生成 happyhorse-1.0-i2v 是 HappyHorse 1.0 的图生视频版本，以首帧图片为基础，配合可选文本提示词生成视频，强调物理真实的动态渲染，画面流畅自然、细节丰富，能准确理解文本与图像语义。输出支持 720P 与 1080P，默认 1080P，时长 3 至 15 秒，默认 5 秒，宽高比自动跟随输入首帧。
+				412 button 详情
+				413 button 立即体验
+			414 container
+				415 image wan2.7-image-pro
+				416 heading wan2.7-image-pro, Value: 3
+					417 text wan2.7-image-pro
+				418 text 天翼云 图像生成 wan2.7-image-pro 是通义万相 2.7 文生图专业版，支持文生图、文生组图、图生组图、图像编辑、多图参考生成与交互式编辑，在文字渲染、主体一致性和复杂指令遵循上表现更强。输出为 PNG；文生图非组图场景支持 1K、2K、4K 三档，默认 2K，图像编辑与组图生成最高 2K。可输入 0 至 9 张图片，单图最多框选 2 个区域，组图模式单次最多 12 张。
+				419 button 详情
+				420 button 立即体验
+			421 container
+				422 image minimax-h3-max
+				423 heading minimax-h3-max, Value: 3
+					424 text minimax-h3-max
+				425 text 天翼云 视频生成 minimax-h3-max 是与 fal.ai 联合发布的高速视频生成模型，基于 MiniMax H3 后训练，主打更快的生成速度。支持文生视频与首尾帧图生视频，输出分辨率为 480P 与 768P，视频时长 5 至 15 秒，帧率 24 帧。
+				426 button 详情
+				427 button 立即体验
+			428 container
+				429 image deepseek-v4-pro
+				430 heading deepseek-v4-pro, Value: 3
+					431 text deepseek-v4-pro
+				432 text 天翼云 文本生成 deepseek-v4-pro 为2026 年 8 月发布的正式版，采用 1.6T 总参数、49B 激活参数的 MoE 架构，面向复杂推理与生产级智能体场景，Agent 能力与世界知识突出。上下文长度 1M，最大输出 384K，支持思考模式与 low/high/max 推理强度，原生支持 Responses API 并适配 Codex，但不支持图像理解。 输入:
+				433 text ¥9.000
+				434 text /M 输出:
+				435 text ¥27.000
+				436 text /M
+				437 button 详情
+				438 button 立即体验
+			439 container
+				440 image happyhorse-1.1-t2v
+				441 heading happyhorse-1.1-t2v, Value: 3
+					442 text happyhorse-1.1-t2v
+				443 text 天翼云 视频生成 happyhorse-1.1-t2v 是 HappyHorse 1.1 的文生视频版本，输入文本提示词生成视频，语义理解、电影级镜头控制与动态渲染较 1.0 提升，运动更平滑、细节更丰富、视觉一致性更强，人物动作、场景氛围与物理动态更自然。输出支持 480P、720P 与 1080P，默认 1080P，时长 3 至 15 秒，默认 5 秒，宽高比默认 16:9
+				444 button 详情
+				445 button 立即体验
+			446 container
+				447 image Doubao-seedream-4.0
+				448 heading Doubao-seedream-4.0, Value: 3
+					449 text Doubao-seedream-4.0
+				450 text 天翼云 图像生成 Doubao-seedream-4.0 即 Seedream 4.0，将图像生成与编辑整合至统一架构，支持文生图、图生图、多图组合与指令式编辑，新增知识生图、复杂推理和参考图一致性能力，推理速度较前代大幅提升。支持最高 4K 高清图像生成，适配海报、电商与专业设计成稿。
+				451 button 详情
+				452 button 立即体验
+			453 container
+				454 image happyhorse-1.1-r2v
+				455 heading happyhorse-1.1-r2v, Value: 3
+					456 text happyhorse-1.1-r2v
+				457 text 天翼云 视频生成 happyhorse-1.1-r2v 是 HappyHorse 1.1 的参考生视频版本，支持最多 9 张参考图，在主体、场景风格与视觉一致性上较 1.0 明显提升，能更准确理解并保持创作意图，在角色、场景、风格与电影级运镜上可控性和表现力更强。输出支持 480P、720P 和 1080P，默认 1080P，时长 3 至 15 秒，默认 5 秒，宽高比可指定。
+				458 button 详情
+				459 button 立即体验
+			460 container
+				461 image happyhorse-1.0-video-edit
+				462 heading happyhorse-1.0-video-edit, Value: 3
+					463 text happyhorse-1.0-video-edit
+				464 text 天翼云 视频生成 happyhorse-1.0-video-edit 是 HappyHorse 1.0 的视频编辑版本，输入一段待编辑视频与参考图，结合文本指令完成风格变换、局部替换等编辑任务，并尽量保留原视频的运动动态。输入视频时长 3 至 60 秒，输出 3 至 15 秒；输出分辨率支持 720P 与 1080P，默认 1080P，可传入最多 5 张参考图，并按需保留原声或由模型重新生成音频。
+				465 button 详情
+				466 button 立即体验
+			467 container
+				468 image Doubao-seedream-4.5
+				469 heading Doubao-seedream-4.5, Value: 3
+					470 text Doubao-seedream-4.5
+				471 text 天翼云 图像生成 Doubao-seedream-4.5 在 4.0 基础上全面提升，在多图组合中可精准识别并稳定锁定主体，最大化保持原图人脸、光影、色调与细节质感，并强化海报等密集文字的排版渲染能力。支持文生图与参考图编辑，输出高一致性、高保真图像，最高 4K 分辨率。官方页面未给出更多尺寸细节。
+				472 button 详情
+				473 button 立即体验
+			474 container
+				475 image GLM-4.6V
+				476 heading GLM-4.6V, Value: 3
+					477 text GLM-4.6V
+				478 text 天翼云 多模态 文本生成 GLM-4.6V 是视觉推理大模型，106B 总参数、12B 激活，原生支持图像、视频、文件与文本输入。上下文窗口 128K，约等于 150 页复杂文档或 1 小时视频，支持开关思考模式。首次将 Function Calling 原生融入视觉模型，图像可直接作为工具参数，打通视觉感知到可执行行动的闭环，同参数规模视觉理解达 SOTA，适用于 OCR、复杂表格与长视频理解。 输入:
+				479 text ¥1.000
+				480 text /M 输出:
+				481 text ¥3.000
+				482 text /M
+				483 button 详情
+				484 button 立即体验
+			485 container
+				486 image deepseek-v4-flash-vision
+				487 heading deepseek-v4-flash-vision, Value: 3
+					488 text deepseek-v4-flash-vision
+				489 text 天翼云 文本生成 代码生成 deepseek-v4-flash-vision 是 2026 年 8 月发布的实验性多模态模型 DeepSeek-V4-Flash-Vision-Exp 的旧版模型名，纯文本能力与 V4-Flash 持平，视觉理解与视觉类智能体表现大幅提升。该模型已下线，请求由具备原生视觉能力的 DeepSeek-V4.1-Flash 承接，上下文 1M、最大输出 384K，按 Flash 价格计费。 输入:
+				490 text ¥3.000
+				491 text /M 输出:
+				492 text ¥9.000
+				493 text /M
+				494 button 详情
+				495 button 立即体验
+			496 container
+				497 image happyhorse-1.0-r2v
+				498 heading happyhorse-1.0-r2v, Value: 3
+					499 text happyhorse-1.0-r2v
+				500 text 天翼云 视频生成 happyhorse-1.0-r2v 是 HappyHorse 1.0 的参考生视频版本，可传入多张参考图像，通过文本提示词描述场景，把图像中的主体角色融合成一段连贯视频，在主体与场景参考上较为稳定。参考图最多 9 张，提示词中用 [Image 1] 等形式指代。输出支持 720P 与 1080P，默认 1080P，时长 3 至 15 秒，默认 5 秒，宽高比可指定。
+				501 button 详情
+				502 button 立即体验
+			503 container
+				504 image cdance2.5
+				505 heading cdance2.5, Value: 3
+					506 text cdance2.5
+				507 text 天翼云 视频生成 cdance2.5 即 Seedance 2.5，新一代音视频联合生成模型，单段视频时长提升至 30 秒并支持两次视频延长，可完成长叙事。支持图片、视频、音频参考，更好理解参考视频的镜头语言，从动态迁移升级为创意演绎，编辑任务响应与可用率提升；提供白模控制、绿幕编辑等进阶能力。分辨率与帧率官方未公开。 分段计价，请查看详情
+				508 button 详情
+				509 button 立即体验
+			510 container
+				511 image happyhorse-1.0-t2v
+				512 heading happyhorse-1.0-t2v, Value: 3
+					513 text happyhorse-1.0-t2v
+				514 text 天翼云 视频生成 happyhorse-1.0-t2v 是 HappyHorse 1.0 的文生视频版本，输入文本提示词直接生成视频，强调高真实感的动态渲染，画面流畅自然、细节丰富，能准确理解文本语义。输出支持 720P 与 1080P，默认 1080P，时长 3 至 15 秒，默认 5 秒，宽高比支持 16:9、9:16、1:1、4:3、3:4 等，默认 16:9。
+				515 button 详情
+				516 button 立即体验
+			517 container
+				518 image wan2.7-r2v
+				519 heading wan2.7-r2v, Value: 3
+					520 text wan2.7-r2v
+				521 text 天翼云 视频生成 wan2.7-r2v 是通义万相 2.7 参考生视频模型，支持图像、视频、音频多模态参考，可保持角色形象与音色一致性，适用于单角色表演与多角色互动。参考图像加参考视频合计不超过 5 个，另可传入最多 1 张首帧图，提示词中通过图 1、视频 1 等标识指定参考对象。输出支持 720P 与 1080P，默认 1080P；时长默认 5 秒，含参考视频时可设 2 至 10 秒，否则 2 至 15 秒。
+				522 button 详情
+				523 button 立即体验
+			524 container
+				525 image deepseek-v4-flash
+				526 heading deepseek-v4-flash, Value: 3
+					527 text deepseek-v4-flash
+				528 text 天翼云 文本生成 代码生成 deepseek-v4-flash 为 284B 总参数、13B 激活参数的 MoE，支持 1M 上下文与思考/非思考双模式，主打快速、低成本与智能体任务。该模型已停用，调用此模型名时请求由 DeepSeek-V4.1-Flash 承接并按 Flash 价格计费，实际上下文 1M、最大输出 384K，属兼容性保留别名。 输入:
+				529 text ¥3.000
+				530 text /M 输出:
+				531 text ¥9.000
+				532 text /M
+				533 button 详情
+				534 button 立即体验
+			535 container
+				536 image wan2.7-t2v
+				537 heading wan2.7-t2v, Value: 3
+					538 text wan2.7-t2v
+				539 text 天翼云 视频生成 wan2.7-t2v 是通义万相 2.7 文生视频模型，输入文本提示词生成视频，支持多镜头叙事，可用自然语言或时间戳描述分镜，无需额外镜头参数。输出支持 720P 与 1080P，默认 1080P，宽高比支持 16:9、9:16、1:1、4:3、3:4，时长 2 至 15 秒，默认 5 秒。可传入音频作为配音，不传音频时模型自动生成匹配的背景音乐或音效，默认开启 prompt 智能改写。
+				540 button 详情
+				541 button 立即体验
+			542 container
+				543 image Doubao-Seedream-5.0-lite
+				544 heading Doubao-Seedream-5.0-lite, Value: 3
+					545 text Doubao-Seedream-5.0-lite
+				546 text 天翼云 图像生成 Doubao-Seedream-5.0-lite 即 Seedream 5.0 Lite，具备深度思考与实时检索增强能力的统一多模态图像生成模型，理解、推理与生成能力全面提升。支持文生图、图生图与参考图编辑，可结合实时网络信息生成画面，覆盖专业排版、信息图与商业设计。最高 4K 分辨率输出。
+				547 button 详情
+				548 button 立即体验
+			549 container
+				550 image wan2.7-i2v
+				551 heading wan2.7-i2v, Value: 3
+					552 text wan2.7-i2v
+				553 text 天翼云 视频生成 wan2.7-i2v 是通义万相 2.7 图生视频模型，支持文本、图像、音频、视频多模态输入，可完成首帧生视频、首尾帧生视频与视频续写三类任务。输出支持 720P 与 1080P，默认 1080P，时长 2 至 15 秒，默认 5 秒，宽高比跟随输入素材自动适配。传入音频可驱动口型与动作卡点，不传音频时模型自动生成匹配的背景音乐或音效。
+				554 button 详情
+				555 button 立即体验
+			556 container
+				557 image happyhorse-1.1-i2v
+				558 heading happyhorse-1.1-i2v, Value: 3
+					559 text happyhorse-1.1-i2v
+				560 text 天翼云 视频生成 happyhorse-1.1-i2v 是 HappyHorse 1.1 的图生视频版本，以首帧图片配合文本提示生成视频，较 1.0 提升画面质量、动态表现与跨片段一致性，人物肤质更真实、角色一致性和运动平滑度更好、文字渲染更稳定并改善音画同步。输出支持 480P、720P 与 1080P，默认 1080P，时长 3 至 15 秒，默认 5 秒，宽高比跟随首帧。
+				561 button 详情
+				562 button 立即体验
+			563 container
+				564 image deepseek-v4-pro（原厂）
+				565 heading deepseek-v4-pro（原厂）, Value: 3
+					566 text deepseek-v4-pro（原厂）
+				567 text 天翼云 文本生成 代码生成 deepseek-v4-pro 为2026 年 8 月发布的正式版，采用 1.6T 总参数、49B 激活参数的 MoE 架构，面向复杂推理与生产级智能体场景，Agent 能力与世界知识突出。上下文长度 1M，最大输出 384K，支持思考模式与 low/high/max 推理强度，原生支持 Responses API 并适配 Codex，但不支持图像理解。 输入:
+				568 text ¥9.000
+				569 text /M 输出:
+				570 text ¥27.000
+				571 text /M
+				572 button 详情
+				573 button 立即体验
+			574 container
+				575 image DeepSeek-V3
+				576 heading DeepSeek-V3, Value: 3
+					577 text DeepSeek-V3
+				578 text 天翼云 文本生成 代码生成 暂无描述 输入:
+				579 text ¥2.000
+				580 text /M 输出:
+				581 text ¥8.000
+				582 text /M
+				583 button 详情
+				584 button 立即体验
+			585 container
+				586 image DeepSeek-R1
+				587 heading DeepSeek-R1, Value: 3
+					588 text DeepSeek-R1
+				589 text 天翼云 文本生成 代码生成 暂无描述 输入:
+				590 text ¥4.000
+				591 text /M 输出:
+				592 text ¥16.000
+				593 text /M
+				594 button 详情
+				595 button 立即体验
+			596 container
+				597 image qwen3.6-flash
+				598 heading qwen3.6-flash, Value: 3
+					599 text qwen3.6-flash
+				600 text 天翼云 暂无描述 输入:
+				601 text ¥1.200
+				602 text /M 输出:
+				603 text ¥7.200
+				604 text /M
+				605 button 详情
+				606 button 立即体验
+			607 container
+				608 image qwen3.5-397b-a17b
+				609 heading qwen3.5-397b-a17b, Value: 3
+					610 text qwen3.5-397b-a17b
+				611 text 天翼云 暂无描述 输入:
+				612 text ¥1.200
+				613 text /M 输出:
+				614 text ¥7.200
+				615 text /M
+				616 button 详情
+				617 button 立即体验
+			618 container
+				619 image minimax-m2.7
+				620 heading minimax-m2.7, Value: 3
+					621 text minimax-m2.7
+				622 text 天翼云 代码生成 文本生成 MiniMax M2.7 是 MiniMax 于 2026 年 3 月发布的 M 系列开源权重智能体大模型。采用稀疏混合专家（MoE）架构，总参数 230B、每 token 激活约 10B（激活率 4.3%），256 个本地专家、每 token 激活 8 个专家，62 层 Transformer，配备多头因果自注意力并采用 RoPE 位置编码与 QK RMSNorm 归一化，在大规模训练下保持稳定。模型定位为首个深度参与自身训练与优化的“自我进化”模型，可自主构建和改进 Agent Harness，在内部测评集上效果提升约 30%，自主迭代循环超过 100 轮。在编码与复杂智能体任务上达到业界顶尖水平，SWE-Pro 得分 56.2%，擅长实时调试、根因分析、多步工具调用及端到端文档生成，支持 200K 上下文窗口，单次最大输出 131K tokens，适合长代码库与多文件重构场景。模型权重已在 HuggingFace 开放下载，深度集成 vLLM、SGLang 推理生态，吞吐量提升 2.5-2.7 倍，提供标准版与 highspeed 极速版（约 100 tokens/s）两种规格，能力完全一致。 输入:
+				623 text ¥2.100
+				624 text /M 输出:
+				625 text ¥8.400
+				626 text /M
+				627 button 详情
+				628 button 立即体验
+			629 container
+				630 image minimax-m2.5
+				631 heading minimax-m2.5, Value: 3
+					632 text minimax-m2.5
+				633 text 天翼云 文本生成 代码生成 MiniMax M2.5 是 MiniMax 于 2026 年 2 月发布并开源的 M 系列智能体大语言模型。采用稀疏混合专家（MoE）架构，总参数 229B、每 token 激活约 10B，上下文窗口约 200K，提供标准版与推理速度更快的 M2.5-Lightning 极速版（约 100 tokens/s）两种规格，能力完全一致。模型基于自研 Forge 强化学习框架，在 20 万+ 真实软件环境与数字工作场景中大规模训练，在编码、智能体工具调用与搜索、办公场景等任务上达到业界领先水平：SWE-Bench Verified 80.2%、Multi-SWE-Bench 51.3%、BrowseComp 76.3%；具备“架构师式”规划能力，写代码前会先从软件架构视角分解功能、结构与 UI 设计，覆盖从系统设计、开发迭代到代码评审与系统测试的完整开发生命周期，智能体任务分解效率较前代 M2.1 提升 37%。原生支持工具调用与深度思考输出，token 效率极高，同时支持 Word、PowerPoint、Excel 等办公文档场景的高质量交付输出，权重已在 HuggingFace 开放下载（商用需署名的修改版 MIT 许可证）。 输入:
+				634 text ¥2.100
+				635 text /M 输出:
+				636 text ¥8.400
+				637 text /M
+				638 button 详情
+				639 button 立即体验
+			640 container
+				641 image Doubao-Seed-2.0-Pro
+				642 heading Doubao-Seed-2.0-Pro, Value: 3
+					643 text Doubao-Seed-2.0-Pro
+				644 text 天翼云 文本生成 代码生成 Doubao-Seed-2.0-Pro 是字节跳动豆包大模型团队于 2026 年 2 月发布的豆包大模型 2.0 系列旗舰级全能通用模型，由火山引擎提供推理服务，面向 Agent 时代的复杂推理与长链路任务执行场景，全面对标 GPT-5.2 与 Gemini 3 Pro。模型重点强化多模态理解、长上下文推理、结构化生成与工具增强执行能力，复杂指令与多约束执行能力突出，可稳定应对多步复杂规划、复杂图文推理、视频内容理解与高难度分析等场景。多模态方面，视觉理解达到业界顶尖水平，在空间理解（MMSIBench）、运动理解（MotionBench）、视频理解（VideoMME）等测评上领先 Gemini 3 Pro，EgoTempo 基准超过人类分数；推理方面，AIME 2025 得分 98.3%，GPQA Diamond 88.9%，SWE-Bench Verified 76.5%，HLE-text 54.2 分全球领先，SuperGPQA、HealthBench 等专业领域测评表现优异。上下文窗口 256K（最大输出 128K），支持文本、图片、视频输入，支持深度思考（thinking/reasoning_effort 档位调节）、结构化输出、Function Call、联网搜索、MCP、上下文缓存与批量推理，擅长“查找信息—归纳总结—得出结论”的长链路连续工作流及数据处理、内容创作、图表生成等端到端任务。 输入:
+				645 text ¥3.200
+				646 text /M 输出:
+				647 text ¥16.000
+				648 text /M
+				649 button 详情
+				650 button 立即体验
+			651 container
+				652 image Doubao-Seed-2.0-Mini
+				653 heading Doubao-Seed-2.0-Mini, Value: 3
+					654 text Doubao-Seed-2.0-Mini
+				655 text 天翼云 文本生成 代码生成 Doubao-Seed-2.0-Mini 是字节跳动豆包大模型团队于 2026 年 2 月发布的豆包大模型 2.0 系列轻量级通用模型，由火山引擎提供推理服务，面向低时延、高并发与成本敏感场景，强调快速响应与灵活的推理部署。模型基于 Seed 2.0 Pro 底座深度蒸馏优化，在保留系列核心能力的同时大幅压缩推理延迟与使用成本，模型效果与上一代主力模型 Doubao-Seed-1.6 相当，是系列中性价比最高的规模部署选择。支持 256K 上下文窗口、四档思考长度（极简/低/中/高）推理强度调节，具备多模态理解能力（文本、图像输入）与工具调用能力，支持结构化输出，兼容 OpenAI API 格式。适合成本和速度优先的轻量级任务，广泛应用于批量分类、内容审核、意图识别、摘要生成、高并发对话等规模化生产场景。 输入:
+				656 text ¥0.200
+				657 text /M 输出:
+				658 text ¥2.000
+				659 text /M
+				660 button 详情
+				661 button 立即体验
+			662 container
+				663 image Doubao-Seed-2.0-Lite
+				664 heading Doubao-Seed-2.0-Lite, Value: 3
+					665 text Doubao-Seed-2.0-Lite
+				666 text 天翼云 文本生成 代码生成 Doubao-Seed-2.0-Lite 是字节跳动豆包大模型团队于 2026 年 2 月发布的豆包大模型 2.0 系列均衡型通用模型，由火山引擎提供推理服务，面向高频企业场景兼顾性能与成本，综合能力超越上一代主力模型 Doubao-Seed-1.8，同时对 Token 消耗更少，是系列中的高性价比主力之选。模型胜任非结构化信息处理、内容创作、搜索推荐、数据分析等生产型工作，支持长上下文、多源信息融合、多步指令执行与高保真结构化输出，并具备工具调用能力，在保障稳定效果的同时显著优化成本。2026 年 5 月升级的新版本是豆包大模型家族首款全模态理解模型，实现文本、图像、音频、视频四种模态的原生统一理解：视觉理解在物理（HiPhO）、医疗（MedXpertQA）等高阶学科推理上大幅提升，细粒度感知与具身理解达到 SOTA 水平；音频支持 19 个语种语音转写与多语种互译，可捕捉语音情绪与环境背景声；视频可联合分析画面与音频、精准定位事件时间点并跨时段追踪人物事件。Agent、Coding 与 GUI 能力同步升级，支持最长 25 小时长程任务、前后端深度开发，并将界面理解与点击、输入、拖拽等操作执行打通为闭环，适配 OpenClaw 等 Agent 框架，支持 256K 上下文窗口（最大输出 128K），是企业大规模、批量化部署全模态推理任务的更优性价比选择。 输入:
+				667 text ¥0.600
+				668 text /M 输出:
+				669 text ¥3.600
+				670 text /M
+				671 button 详情
+				672 button 立即体验
+			673 container
+				674 image Doubao-Seed-2.0-Code
+				675 heading Doubao-Seed-2.0-Code, Value: 3
+					676 text Doubao-Seed-2.0-Code
+				677 text 天翼云 代码生成 Doubao-Seed-2.0-Code 是字节跳动豆包大模型团队于 2026 年 2 月发布的豆包大模型 2.0 系列编程专用模型，由火山引擎提供推理服务，并作为内置模型首发接入 TRAE（IDE + SOLO 模式）。模型在 Seed 2.0 优秀的 Agent 与视觉语言（VLM）能力基础上面向企业级编程需求专项优化：强化代码库解读与应用生成能力，特别提升 Agent 工作流中的纠错能力，可稳定调用主流 IDE 工具链，对任务计划的拆解和更新更加合理；前端能力表现出众，并对企业常见的多语言编码需求（Python、C/C++、Java、JavaScript、Go、Rust、ArkTS 等）做了特别优化，支持自定义技能扩展。在 SWE-Bench Verified 基准中结合 TRAE Agent 取得 78.80% 的得分，位居国内模型前列。模型具备推理与图片理解能力，擅长复杂前端交互、场景状态管理、多步开发工作流等任务，实测仅需 5 轮提示词即可完成“TRAE 春节小镇”级别的复杂互动 Web 应用开发，适合接入各类 AI 编程工具使用，适用于企业级代码生成、调试、优化与逆向分析场景。 输入:
+				678 text ¥3.200
+				679 text /M 输出:
+				680 text ¥16.000
+				681 text /M
+				682 button 详情
+				683 button 立即体验
+		27 container home-support
+			28 image logo
+			29 container
+				30 text 企业级一站式 AI 服务平台 · 算力 + 模型 + 应用
+				31 text 全栈整合 · 本地安全服务。
+			32 heading 产品, Value: 3
+				33 text 产品
+			34 text 算力中心
+			35 text 模型聚合中心
+			36 text 应用中心
+			37 heading 解决方案, Value: 3
+				38 text 解决方案
+			39 text 政务服务
+			40 text 智慧金融
+			41 text 教育科研
+			42 text 智能客服
+			43 heading 关于, Value: 3
+				44 text 关于
+			45 text 关于我们
+			46 text 最新动态
+			47 text 企业合作
+			48 text 加入我们
+			49 heading 联系方式, Value: 3
+				50 text 联系方式
+			51 text 服务热线 18069773619
+			52 text 杭州市拱墅区文晖路1号 · 拱墅行政中心
+			53 text 定制方案咨询
+			54 text Copyright © 2026 运河启源 · AI STORE 运营管理平台 浙ICP备2026065346号-1
+
+The focused UI element is 720 button (expanded) Description: 展开分段定价, Secondary Actions: Collapse

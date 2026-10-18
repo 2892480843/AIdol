@@ -1,0 +1,32 @@
+{
+  "host": {
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "images": {
+    "backend": "sha256:f9fafecbc6b859d688b066139f05086f1e1956a90b96048885bf65828aa99905",
+    "postgres": "sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81",
+    "redis": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499"
+  },
+  "isolation": {
+    "network_internal": true,
+    "production_data_volumes": false,
+    "production_credentials": false,
+    "postgres_storage": "temporary memory filesystem",
+    "redis_storage": "disposable container filesystem",
+    "external_ai_calls": "blocked by internal Docker network and loopback test endpoint"
+  },
+  "paths": [
+    "tests/test_studio_source_ownership.py"
+  ],
+  "source_manifest_sha256": "f55944be4bbf848123b737f58092e16e6f05dd3cf5ba8779b24e0f2e71d7b459",
+  "exit_code": 1,
+  "elapsed_seconds": 3.985,
+  "result": {
+    "tests": 4,
+    "failures": 2,
+    "errors": 0,
+    "skipped": 0
+  },
+  "fixtures_removed": true
+}

@@ -1,0 +1,21 @@
+[
+  "frontend/components/dashboard/dashboard-home.module.css",
+  "frontend/components/dashboard/inspiration-teasers.tsx",
+  "frontend/components/inspiration/anchor-picker.module.css",
+  "frontend/components/inspiration/anchor-picker.tsx",
+  "frontend/components/inspiration/inspiration-workspace.tsx",
+  "frontend/components/inspiration/inspiration.module.css",
+  "frontend/lib/hooks/use-inspiration-anchor.ts",
+  "frontend/lib/inspiration/anchor.ts",
+  "frontend/messages/de/dashboard.json",
+  "frontend/messages/en/dashboard.json",
+  "frontend/messages/fr/dashboard.json",
+  "frontend/messages/it/dashboard.json",
+  "frontend/messages/ja/dashboard.json",
+  "frontend/messages/ko/dashboard.json",
+  "frontend/messages/zh-CN/dashboard.json",
+  "frontend/messages/zh-TW/dashboard.json",
+  "frontend/tests/inspiration-anchor-hook.test.tsx",
+  "frontend/tests/inspiration-anchor.test.ts",
+  "frontend/tests/inspiration-workspace.test.tsx"
+]

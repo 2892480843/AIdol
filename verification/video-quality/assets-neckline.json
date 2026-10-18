@@ -1,0 +1,8 @@
+{
+  "sex": "female",
+  "restoredTriangles": 264,
+  "openingRule": "abs(x)<0.055m, front>0.005m, height>fitted collar maximum minus 0.050m; any vertex restores triangle",
+  "collarMaxM": 1.4005364179611206,
+  "preserved": "all positions, weights, normals, UVs, shoe masks and conditional outerwear flags",
+  "sha256": "8817471e3f5fe71b96fcd8eb15c246a523b33b0b3b22a575d8d93e389ec5e458"
+}

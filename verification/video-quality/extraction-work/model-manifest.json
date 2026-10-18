@@ -1,0 +1,9 @@
+{
+  "repo": "pirocheto/schp-atr-18",
+  "revision": "61f4ff3c508b899904e495cefbbaff9cacadeb45",
+  "file": "schp-atr-18-int8-static.onnx",
+  "bytes": 69141996,
+  "sha256": "4420d8db8c1f266967c89485786b01209f6d405f320fc0f87e8ced49392cefb5",
+  "license_declared": "MIT",
+  "source": "https://huggingface.co/pirocheto/schp-atr-18/resolve/61f4ff3c508b899904e495cefbbaff9cacadeb45/onnx/schp-atr-18-int8-static.onnx"
+}

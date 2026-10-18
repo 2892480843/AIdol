@@ -1,0 +1,59 @@
+{
+  "production_url": "http://localhost:3000/dashboard/wardrobe/avatar",
+  "observed_checks": {
+    "default_female_look": "多巴胺·粉蓝心情",
+    "female_look_count": 4,
+    "male_dopamine_options": 0,
+    "male_fallback": "精修·都市绅士",
+    "legacy_bookmark_restored": true,
+    "new_bookmark_saved_and_restored": "多巴胺 · 粉蓝心情",
+    "new_bookmark_persisted_after_reload": true,
+    "production_image_preview": {
+      "complete": true,
+      "width": 490,
+      "height": 590
+    },
+    "production_video_preview": {
+      "readyState": 4,
+      "width": 490,
+      "height": 590,
+      "error": null
+    },
+    "controls_disabled_while_recording": true,
+    "responsive": [
+      {
+        "viewport": 390,
+        "scrollWidth": 390,
+        "canvasCount": 1
+      },
+      {
+        "viewport": 320,
+        "scrollWidth": 320
+      }
+    ],
+    "temporary_viewport_reset": true
+  },
+  "actual_capture": {
+    "path": "actual-turntable.webm",
+    "codec": "vp9",
+    "width": 857,
+    "height": 1120,
+    "frames": 172,
+    "bytes": 2043321
+  },
+  "verification": {
+    "test_files": 123,
+    "tests_passed": 1270,
+    "source_files_matched": 593,
+    "public_files_matched": 68,
+    "types": "passed",
+    "i18n": "8 locales, 2138 keys, passed",
+    "lint": "passed with pre-existing hook warnings"
+  },
+  "limitations": [
+    "Not photo-identical or film-quality facial geometry",
+    "Generated hair sheets and hands still need artist refinement",
+    "Fixed-pose complete outfit; no articulated rig or individual garment replacement",
+    "Production preview generation verified; download-link completion was not separately verified"
+  ]
+}

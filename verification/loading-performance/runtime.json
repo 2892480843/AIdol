@@ -1,0 +1,11 @@
+{
+  "files": 599,
+  "mismatches": [],
+  "manifest_sha256": "b9223ca356b351725b20d212f9a60dc746e1086b56c5f646119afa887deb5722",
+  "image": "wardrowbe-frontend:loading-performance-20261018-r1",
+  "image_id": "sha256:c1b3ffd244fc8eddb89f0432c0e1a97e41a6305c4d8e367944469679f665fa3b",
+  "label": "b9223ca356b351725b20d212f9a60dc746e1086b56c5f646119afa887deb5722",
+  "mounts": [],
+  "build_id": "hQKnodnKqXiHfxDxl1Oqy",
+  "label_matches": true
+}

@@ -1,0 +1,102 @@
+{
+  "published": "/Users/a111/chen/\u7ade\u8d5b/\u4eac\u4e1c Aidol \u521b\u9020\u8425 S2 \u5192\u9669\u5b63/wardrowbe/frontend/public/models/avatar",
+  "models": [
+    {
+      "file": "female.glb",
+      "bytes": 10906708,
+      "sha256": "2f42454d5a21d39e3005416f6d4e952843686c4f80a2b8060e0e8c85be876f4a",
+      "layers": [
+        "base",
+        "body",
+        "bottoms",
+        "dresses",
+        "hair",
+        "outerwear",
+        "shoes",
+        "tops"
+      ],
+      "rigBones": 53,
+      "sourceVertices": 131691,
+      "meshCount": 11,
+      "materialCount": 13,
+      "embeddedImages": [
+        {
+          "name": "young_lightskinned_female_diffuse3",
+          "mimeType": "image/jpeg"
+        },
+        {
+          "name": "eyebrow001",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "eyelashes01",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "brown_eye",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "long01_diffuse",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "Fsuit2",
+          "mimeType": "image/jpeg"
+        }
+      ],
+      "extensionsUsed": [
+        "KHR_materials_specular",
+        "KHR_materials_ior"
+      ]
+    },
+    {
+      "file": "male.glb",
+      "bytes": 9474732,
+      "sha256": "e805df1a0ab1dc94d0e94dc83327b7561ea003b112b9d0e1739682ae59fa380a",
+      "layers": [
+        "base",
+        "body",
+        "bottoms",
+        "hair",
+        "outerwear",
+        "shoes",
+        "tops"
+      ],
+      "rigBones": 53,
+      "sourceVertices": 112314,
+      "meshCount": 10,
+      "materialCount": 11,
+      "embeddedImages": [
+        {
+          "name": "young_lightskinned_male_diffuse3",
+          "mimeType": "image/jpeg"
+        },
+        {
+          "name": "eyebrow001",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "eyelashes01",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "brown_eye",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "short04_diffuse",
+          "mimeType": "image/png"
+        },
+        {
+          "name": "NewSuit3",
+          "mimeType": "image/jpeg"
+        }
+      ],
+      "extensionsUsed": [
+        "KHR_materials_specular",
+        "KHR_materials_ior"
+      ]
+    }
+  ]
+}

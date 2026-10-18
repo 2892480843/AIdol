@@ -1,0 +1,11 @@
+{
+  "files": 593,
+  "mismatches": [],
+  "manifest_sha256": "ac6b3eea3c0c79886fd266e2af1fc2e512e765268a474109fe74805299c0ba1a",
+  "image": "wardrowbe-frontend:dopamine-avatar-20261018-r1",
+  "image_id": "sha256:c099434468448b8525291b9fe0263ddd156ac8e26ff12302900e313911b9bc80",
+  "label": "ac6b3eea3c0c79886fd266e2af1fc2e512e765268a474109fe74805299c0ba1a",
+  "mounts": [],
+  "build_id": "IJpfw_6BSZWrC9zC2Kapd",
+  "label_matches": true
+}

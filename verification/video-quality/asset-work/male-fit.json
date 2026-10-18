@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Tops_knit",
+    "adjustedVertices": 142,
+    "maxClearanceShiftM": 0.011091772874621389
+  },
+  {
+    "name": "Bottoms_tailored",
+    "adjustedVertices": 51,
+    "maxClearanceShiftM": 0.002232506199223458
+  },
+  {
+    "name": "Shoes_sneakers",
+    "adjustedVertices": 270,
+    "maxClearanceShiftM": 0.008258263765269436
+  },
+  {
+    "name": "Bottoms_cargo",
+    "adjustedVertices": 0,
+    "maxClearanceShiftM": 0
+  },
+  {
+    "name": "Tops_tee",
+    "adjustedVertices": 4,
+    "maxClearanceShiftM": 0.002215351586805792
+  },
+  {
+    "name": "Shoes_ankle-boots",
+    "adjustedVertices": 489,
+    "maxClearanceShiftM": 0.008900400982316809
+  },
+  {
+    "name": "Tops_polo",
+    "adjustedVertices": 19,
+    "maxClearanceShiftM": 0.0029396243774675724
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "checks": [
+    {
+      "stage": "before-narrow-fix",
+      "width": 320,
+      "scrollWidth": 346
+    },
+    {
+      "scrollWidth": 830,
+      "width": 830
+    },
+    {
+      "scrollWidth": 320,
+      "stage": "r2-model",
+      "width": 320
+    },
+    {
+      "scrollWidth": 320,
+      "stage": "r2-compare",
+      "width": 320
+    },
+    {
+      "scrollWidth": 320,
+      "stage": "r2-worn",
+      "width": 320
+    },
+    {
+      "scrollWidth": 320,
+      "stage": "r2-tryon",
+      "width": 320
+    },
+    {
+      "scrollWidth": 390,
+      "stage": "r2-tryon-390",
+      "width": 390
+    },
+    {
+      "scrollWidth": 1280,
+      "stage": "r2-final-desktop",
+      "width": 1280
+    }
+  ],
+  "home320": {
+    "scrollWidth": 320,
+    "width": 320
+  }
+}

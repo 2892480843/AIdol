@@ -1,0 +1,80 @@
+[
+  {
+    "background": "background",
+    "foreground": "foreground",
+    "contrast": 12.16,
+    "passesAA": true
+  },
+  {
+    "background": "card",
+    "foreground": "card-foreground",
+    "contrast": 12.16,
+    "passesAA": true
+  },
+  {
+    "background": "popover",
+    "foreground": "popover-foreground",
+    "contrast": 12.16,
+    "passesAA": true
+  },
+  {
+    "background": "primary",
+    "foreground": "primary-foreground",
+    "contrast": 5.81,
+    "passesAA": true
+  },
+  {
+    "background": "secondary",
+    "foreground": "secondary-foreground",
+    "contrast": 5.69,
+    "passesAA": true
+  },
+  {
+    "background": "muted",
+    "foreground": "muted-foreground",
+    "contrast": 6.74,
+    "passesAA": true
+  },
+  {
+    "background": "accent",
+    "foreground": "accent-foreground",
+    "contrast": 4.67,
+    "passesAA": true
+  },
+  {
+    "background": "destructive",
+    "foreground": "destructive-foreground",
+    "contrast": 5.81,
+    "passesAA": true
+  },
+  {
+    "background": "tone-blush",
+    "foreground": "tone-blush-foreground",
+    "contrast": 4.94,
+    "passesAA": true
+  },
+  {
+    "background": "tone-lavender",
+    "foreground": "tone-lavender-foreground",
+    "contrast": 10.92,
+    "passesAA": true
+  },
+  {
+    "background": "tone-mint",
+    "foreground": "tone-mint-foreground",
+    "contrast": 14.2,
+    "passesAA": true
+  },
+  {
+    "background": "tone-lemon",
+    "foreground": "tone-lemon-foreground",
+    "contrast": 6.29,
+    "passesAA": true
+  },
+  {
+    "background": "tone-sky",
+    "foreground": "tone-sky-foreground",
+    "contrast": 14.2,
+    "passesAA": true
+  }
+]

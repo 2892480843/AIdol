@@ -1,0 +1,15 @@
+{
+  "scene_only_import_and_fetch_url_changed": true,
+  "public_file_count": 68,
+  "all_public_bytes_unchanged": true,
+  "preserved": [
+    "geometry",
+    "texture bytes and resolution",
+    "mobile selection rules",
+    "lights",
+    "shadow maps",
+    "pixel ratio",
+    "camera",
+    "recording and export code"
+  ]
+}

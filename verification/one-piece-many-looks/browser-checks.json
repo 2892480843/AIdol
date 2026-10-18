@@ -1,0 +1,65 @@
+[
+  {
+    "check": "home entry",
+    "passed": true,
+    "href": "/dashboard/inspiration#one-piece-many-looks"
+  },
+  {
+    "check": "owned top anchor across everyday and easy-layers",
+    "passed": true,
+    "compatibleExercises": 8,
+    "incompatibleDressExcluded": true
+  },
+  {
+    "check": "optional coat anchor",
+    "passed": true,
+    "compatibleExercises": 4,
+    "skipHidden": true,
+    "swapDisabled": true
+  },
+  {
+    "check": "coat retained across Caroline and Jean creator exercises",
+    "passed": true,
+    "officePieces": 4,
+    "datePieces": 3
+  },
+  {
+    "check": "studio save and detail refresh",
+    "passed": true,
+    "name": "一件多搭验收 · 红色外套 1017",
+    "url": "http://localhost:3000/dashboard/outfits/bda87073-2fdc-4707-97d7-e37a417c2a9c",
+    "items": [
+      "架构验收：黄色连衣裙",
+      "验收样例-shoes",
+      "网页验收：红色外套"
+    ]
+  },
+  {
+    "check": "dress filters to one exercise and incompatible creator releases with explanation",
+    "passed": true
+  },
+  {
+    "check": "mobile 390 layout",
+    "passed": true,
+    "width": 390,
+    "scrollWidth": 390
+  },
+  {
+    "check": "mobile 320 layout",
+    "passed": true,
+    "width": 320,
+    "scrollWidth": 320
+  },
+  {
+    "check": "tablet 830 layout",
+    "passed": true,
+    "width": 830,
+    "scrollWidth": 830
+  },
+  {
+    "check": "desktop 1280 layout",
+    "passed": true,
+    "width": 1280,
+    "scrollWidth": 1280
+  }
+]

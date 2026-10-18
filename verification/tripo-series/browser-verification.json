@@ -1,0 +1,40 @@
+{
+  "desktop": {
+    "width": 1280,
+    "height": 960,
+    "originalAndStreetFemale": true,
+    "originalAndStreetMale": true,
+    "rapidSwitch": true,
+    "oldSampleBookmarkRestore": true,
+    "newStreetBookmarkReload": true,
+    "sourceItemsPreserved": 6
+  },
+  "mobile": {
+    "phone390": {
+      "width": 390,
+      "scrollWidth": 390,
+      "alerts": [],
+      "fullBodyReviewed": true
+    },
+    "phone320": {
+      "width": 320,
+      "scrollWidth": 320,
+      "alerts": [],
+      "fullBodyReviewed": true
+    }
+  },
+  "video": {
+    "productionPreview": {
+      "width": 490,
+      "height": 590,
+      "readyState": 4,
+      "error": ""
+    },
+    "nativeDownloadVerified": true,
+    "file": "production-turntable.webm",
+    "bytes": 1745766,
+    "decodedFrames": 181,
+    "restoredModelExportBelowFold": true
+  },
+  "scope": "Complete generated outfits only; no personal photo-to-3D API or high-detail individual garment replacement."
+}

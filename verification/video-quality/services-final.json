@@ -1,0 +1,52 @@
+[
+  {
+    "Service": "backend",
+    "State": "running",
+    "Health": "healthy"
+  },
+  {
+    "Service": "postgres",
+    "State": "running",
+    "Health": "healthy"
+  },
+  {
+    "Service": "frontend",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "image-worker",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "object-store",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "otel-collector",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "redis",
+    "State": "running",
+    "Health": "healthy"
+  },
+  {
+    "Service": "worker",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "task-dispatcher",
+    "State": "running",
+    "Health": ""
+  },
+  {
+    "Service": "task-worker",
+    "State": "running",
+    "Health": ""
+  }
+]

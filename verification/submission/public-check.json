@@ -1,0 +1,89 @@
+{
+  "checked_at": "2026-10-18T23:37:05.783181+08:00",
+  "url": "https://124.70.96.183:6780",
+  "read_only_business_check": true,
+  "checks": [
+    {
+      "name": "unauthenticated denied",
+      "status": 401
+    },
+    {
+      "name": "dedicated reviewer browser login",
+      "status": "passed"
+    },
+    {
+      "path": "/dashboard",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/wardrobe",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/suggest",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/outfits",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/looks",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/wardrobe/avatar",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/wardrobe/extract",
+      "status": 200
+    },
+    {
+      "path": "/dashboard/wardrobe/tryon",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/items",
+      "status": 200,
+      "count": 3
+    },
+    {
+      "path": "/api/v1/outfits",
+      "status": 200,
+      "count": 2
+    },
+    {
+      "path": "/api/v1/tasks",
+      "status": 200,
+      "count": 3
+    }
+  ],
+  "health": {
+    "status": "healthy",
+    "checks": {
+      "database": "healthy"
+    }
+  },
+  "recommendation_tasks": [
+    {
+      "id": "9a00e9af-2a27-4589-810c-569634c502f5",
+      "status": "succeeded",
+      "attempts": 1,
+      "error_code": null
+    },
+    {
+      "id": "d27e4c4b-d605-4be5-aa39-fa1e95d58328",
+      "status": "failed",
+      "attempts": 1,
+      "error_code": "invalid_request"
+    },
+    {
+      "id": "10580794-9f81-4bc1-b9f4-8a42393fab38",
+      "status": "succeeded",
+      "attempts": 1,
+      "error_code": null
+    }
+  ],
+  "status": "passed"
+}

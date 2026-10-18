@@ -1,0 +1,29 @@
+{
+  "observed_at_local_date": "2026-10-17",
+  "generated_requests_sent": 0,
+  "user_photos_sent": 0,
+  "models": {
+    "method": "GET",
+    "path_type": "/models",
+    "http_status": 200,
+    "model_count": 63,
+    "advertised_media_model_names": [
+      "Doubao-Seedream-5.0-lite",
+      "Doubao-seedream-4.0",
+      "Doubao-seedream-4.5",
+      "happyhorse-1.0-video-edit",
+      "wan2.7-i2v",
+      "wan2.7-image",
+      "wan2.7-image-pro",
+      "wan2.7-r2v",
+      "wan2.7-t2v"
+    ]
+  },
+  "image_route_probes": [
+    {"method": "OPTIONS", "path_type": "/images/generations", "http_status": 200},
+    {"method": "HEAD", "path_type": "/images/generations", "http_status": 403},
+    {"method": "POST", "path_type": "/images/generations", "payload": "empty_object_without_model_prompt_or_images", "http_status": 200, "numeric_code": 500, "data_type": "null"}
+  ],
+  "generation_compatibility_verified": false,
+  "interpretation": "Model listing and empty-route responses do not verify image editing, permission, credit availability, output format, or quality. A separate explicitly requested original-fixture generation must verify compatibility."
+}

@@ -1,0 +1,17 @@
+{
+  "created_date": "2026-10-18",
+  "kind": "synthetic-adult-reference-image",
+  "generator": "built-in image_gen",
+  "source_file": "/Users/a111/.codex/generated_images/01a1475f-6d7d-7462-b87c-3f107bdb5e29/exec-7b9fcdd4-7c1e-429c-9bba-5256da0e0a4e.png",
+  "file": "female-editorial-reference-v1.png",
+  "sha256": "84ea9ec5c58279656d4d632579318941b9959a752a170b1a0c926f4e1b64bb62",
+  "bytes": 1835425,
+  "subject": "Original fictional adult East Asian female, age 25; ivory knit top, butter-yellow plaid pleated skirt, cream sneakers",
+  "review": "Full body, both hands and shoes visible; no text or watermark; approved as modelling input by agent visual inspection. Not a 3D model and not a private user photo.",
+  "tripo_upload_status": "uploaded",
+  "tripo_generation_status": "completed_in_studio",
+  "app_integration_status": "deployed_fixed_pose_complete_outfit",
+  "tripo_task_id": "bcb04483-09a5-44f9-88ff-91c04b2e0c22",
+  "tripo_download_status": "source_glb_received_and_archived",
+  "deployment_record": "generation-manifest.json"
+}

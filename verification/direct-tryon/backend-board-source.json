@@ -1,0 +1,10 @@
+{
+  "files": {
+    "backend/app/services/tryon.py": "918fbd2dc425c2f28f76db812465413214efb3d798097b68c9b10889b97ccc88",
+    "backend/tests/test_tryon_board.py": "b013cfb70d8921957a8a75fec76742ed49963645bc3131b6a552a880cefc7015",
+    "backend/tests/test_tryon_multi.py": "c2d1fd09f31e99c1c80605562d090d01c451b8cbfe3a62ff267c8dc8673f52fb"
+  },
+  "referenceStrategy": "fixed-slot-board-v1",
+  "runtimeLiveModelRequest": false,
+  "migrationRequired": false
+}

@@ -1,0 +1,9 @@
+{
+  "frontend_file_count": 472,
+  "source_mismatches": [],
+  "runtime_manifest_matches": true,
+  "source_manifest_sha256": "81486e2668e3451f56ba0ed3627660dcfff65def5cf2ada971a0061a0175c9af",
+  "tryon_tasks_before": 2,
+  "tryon_tasks_after": 2,
+  "tryon_task_metadata_unchanged": true
+}

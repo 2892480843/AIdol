@@ -1,0 +1,37 @@
+{
+  "host": {
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "images": {
+    "backend": "sha256:f9fafecbc6b859d688b066139f05086f1e1956a90b96048885bf65828aa99905",
+    "postgres": "sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81",
+    "redis": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499"
+  },
+  "isolation": {
+    "network_internal": true,
+    "production_data_volumes": false,
+    "production_credentials": false,
+    "postgres_storage": "temporary memory filesystem",
+    "redis_storage": "disposable container filesystem",
+    "external_ai_calls": "blocked by internal Docker network and loopback test endpoint"
+  },
+  "paths": [
+    "tests/test_studio_source_ownership.py",
+    "tests/test_studio_service.py",
+    "tests/test_external_authoring.py",
+    "tests/test_outfit_wear_history.py",
+    "tests/test_outfit_worn_filter.py",
+    "tests/test_pairings.py"
+  ],
+  "source_manifest_sha256": "5a5067652db40b8d3aacc6fe6122b40a82eadf3beb2db0433f1fa9c733b525be",
+  "exit_code": 0,
+  "elapsed_seconds": 7.454,
+  "result": {
+    "tests": 73,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "fixtures_removed": true
+}

@@ -1,0 +1,26 @@
+{
+  "desktop": {
+    "canvas": 1,
+    "documentWidth": 1280,
+    "failedImages": 0,
+    "width": 1280
+  },
+  "restoredBasket": "下一套搭配\n已选 2 件\n清空搭配篮\n\n选择最多 6 件可穿衣物，带到搭配工作室继续组合。\n\n搭配篮保存在当前浏览器，刷新后可恢复；不同账号分别保存。\n\n架构验收：黄色连衣裙\n网页验收：红色外套\n带到搭配工作室",
+  "studioHref": "/dashboard/outfits/new?seed=082b6966-1580-4ec9-af7a-4fc9de3a6db6%2Cbdf3d913-37fb-4ba3-8abe-cc04ed25a5c7&occasion=casual&name=3D+%E8%A1%A3%E6%9F%9C%E6%90%AD%E9%85%8D",
+  "narrow": {
+    "canvas": 1,
+    "documentWidth": 320,
+    "width": 320
+  },
+  "mobile": {
+    "canvasRect": {
+      "bottom": 627.1640625,
+      "height": 410,
+      "top": 217.1640625,
+      "width": 328
+    },
+    "documentWidth": 390,
+    "width": 390
+  },
+  "browserErrors": []
+}

@@ -1,0 +1,22 @@
+{
+  "backend": {
+    "image": "wardrowbe-backend:loading-performance-20261018-r2",
+    "image_id": "sha256:c3e7052b8d367133cc413f20b12a48d7003e323e46a78b8c1a0b62a65f6b896c",
+    "app_files": 112,
+    "mismatches": [],
+    "mounts": [
+      "/data/wardrobe"
+    ]
+  },
+  "model": {
+    "revision": "2dcf47a59d67ef6ca3680f35e5d87e8c51d28c208bf3c667afc0bcce7963008c",
+    "cache_control": "public, max-age=31536000, immutable",
+    "content_type": "model/gltf-binary",
+    "bytes": 19977536,
+    "sha256": "e232577bfc74f89277bc7ac8317c0aaad56927c252fa9054f8f65e724532c4fd",
+    "source_sha256": "e232577bfc74f89277bc7ac8317c0aaad56927c252fa9054f8f65e724532c4fd",
+    "unversioned_cache_control": "public, max-age=0",
+    "wrong_revision_cache_control": "public, max-age=0"
+  },
+  "health_status": 200
+}

@@ -1,0 +1,75 @@
+{
+  "since": "2026-10-18T11:41:31.003Z",
+  "until": "2026-10-18T11:41:31.919Z",
+  "backToAllFiveResultsMs": 353,
+  "dimensions": [
+    {
+      "alt": "\u8bd5\u7a7f\u6548\u679c",
+      "height": 2048,
+      "loaded": true,
+      "width": 1153
+    },
+    {
+      "alt": "",
+      "height": 2048,
+      "loaded": true,
+      "width": 1153
+    },
+    {
+      "alt": "",
+      "height": 2048,
+      "loaded": true,
+      "width": 1153
+    },
+    {
+      "alt": "",
+      "height": 2048,
+      "loaded": true,
+      "width": 1365
+    },
+    {
+      "alt": "",
+      "height": 2048,
+      "loaded": true,
+      "width": 1365
+    },
+    {
+      "alt": "",
+      "height": 2048,
+      "loaded": true,
+      "width": 1365
+    },
+    {
+      "alt": "\u8bd5\u7a7f\u8bb0\u5f55 7 \u7684\u7167\u7247",
+      "height": 2048,
+      "loaded": true,
+      "width": 1153
+    },
+    {
+      "alt": "\u8bd5\u7a7f\u8bb0\u5f55 6 \u7684\u7167\u7247",
+      "height": 2048,
+      "loaded": true,
+      "width": 1153
+    },
+    {
+      "alt": "\u8bd5\u7a7f\u8bb0\u5f55 5 \u7684\u7167\u7247",
+      "height": 2048,
+      "loaded": true,
+      "width": 1365
+    },
+    {
+      "alt": "\u8bd5\u7a7f\u8bb0\u5f55 4 \u7684\u7167\u7247",
+      "height": 2048,
+      "loaded": true,
+      "width": 1365
+    },
+    {
+      "alt": "\u8bd5\u7a7f\u8bb0\u5f55 2 \u7684\u7167\u7247",
+      "height": 2048,
+      "loaded": true,
+      "width": 1365
+    }
+  ],
+  "server_requests": {},
+  "server_duration_ms": {}
+}

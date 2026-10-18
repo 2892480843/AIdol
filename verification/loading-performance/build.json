@@ -1,0 +1,8 @@
+{
+  "base": "wardrowbe-frontend:loading-performance-20261018-r1-base",
+  "image": "wardrowbe-frontend:loading-performance-20261018-r1",
+  "image_id": "sha256:c1b3ffd244fc8eddb89f0432c0e1a97e41a6305c4d8e367944469679f665fa3b",
+  "manifest_sha256": "b9223ca356b351725b20d212f9a60dc746e1086b56c5f646119afa887deb5722",
+  "public_files": 68,
+  "public_archive_bytes": 171195510
+}

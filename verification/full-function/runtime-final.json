@@ -1,0 +1,79 @@
+{
+  "frontend": {
+    "files": 526,
+    "mismatches": [],
+    "manifest_sha256": "14d4660c83ba716fd8ceb1f8c65037118fd700e97abe79ca4db2b343d73c9d39",
+    "image": "wardrowbe-frontend:full-function-20261018-r3",
+    "image_id": "sha256:3a0652314ee14497639a946ca053caa6aa8f632fe4d7e559accb80793771735c",
+    "label": "14d4660c83ba716fd8ceb1f8c65037118fd700e97abe79ca4db2b343d73c9d39",
+    "mount_destinations": [],
+    "label_matches": true,
+    "build_id": "KhBfgRDe3A5MrC8Cllw54"
+  },
+  "backend": {
+    "files": 260,
+    "mismatches": [],
+    "manifest_sha256": "8d89889ec31a291d8070f4ab359347a3f05bd4a92338098fd02d207bad1da9f1",
+    "image": "wardrowbe-backend:full-function-20261018",
+    "image_id": "sha256:27f1fefce16ffaf56a313a41cb0cea9587d7bf5a1478dc672fbf5cd06169ab37",
+    "label": "8d89889ec31a291d8070f4ab359347a3f05bd4a92338098fd02d207bad1da9f1",
+    "mount_destinations": [
+      "/data/wardrobe"
+    ],
+    "label_matches": true,
+    "studio_runtime_sha256": "62d2efa3c9fe3300bc266136b6bb40400da282afcf24f847a850f2b4df8b9062",
+    "studio_matches": true
+  },
+  "services": [
+    {
+      "Service": "backend",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Service": "postgres",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Service": "frontend",
+      "State": "running",
+      "Health": ""
+    },
+    {
+      "Service": "image-worker",
+      "State": "running",
+      "Health": ""
+    },
+    {
+      "Service": "object-store",
+      "State": "running",
+      "Health": ""
+    },
+    {
+      "Service": "otel-collector",
+      "State": "running",
+      "Health": ""
+    },
+    {
+      "Service": "redis",
+      "State": "running",
+      "Health": "healthy"
+    },
+    {
+      "Service": "worker",
+      "State": "running",
+      "Health": ""
+    },
+    {
+      "Service": "task-dispatcher",
+      "State": "running",
+      "Health": ""
+    },
+    {
+      "Service": "task-worker",
+      "State": "running",
+      "Health": ""
+    }
+  ]
+}

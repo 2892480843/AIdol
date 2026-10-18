@@ -1,0 +1,81 @@
+{
+  "scope": "GET only; existing demonstration account; no generation or data writes",
+  "measurements": {
+    "profile": {
+      "ms": [
+        369.78,
+        35.55,
+        25.39,
+        55.37,
+        43.64
+      ],
+      "median_ms": 43.64,
+      "bytes": 315
+    },
+    "inventory": {
+      "ms": [
+        214.67,
+        44.75,
+        41.49,
+        41.67,
+        38.72
+      ],
+      "median_ms": 41.67,
+      "bytes": 14624
+    },
+    "capabilities": {
+      "ms": [
+        303.18,
+        188.56,
+        68.2,
+        130.08,
+        171.26
+      ],
+      "median_ms": 171.26,
+      "bytes": 1002
+    },
+    "tasks": {
+      "ms": [
+        128.74,
+        262.01,
+        135.8,
+        47.77,
+        45.12
+      ],
+      "median_ms": 128.74,
+      "bytes": 2599
+    }
+  },
+  "history_images": {
+    "count": 5,
+    "parallel_total_ms": 4304.08,
+    "total_bytes": 1213869,
+    "samples": [
+      {
+        "ms": 3955.06,
+        "bytes": 214380,
+        "cache_control": "private, no-store"
+      },
+      {
+        "ms": 4195.66,
+        "bytes": 213569,
+        "cache_control": "private, no-store"
+      },
+      {
+        "ms": 4298.12,
+        "bytes": 252956,
+        "cache_control": "private, no-store"
+      },
+      {
+        "ms": 4280.53,
+        "bytes": 241037,
+        "cache_control": "private, no-store"
+      },
+      {
+        "ms": 4246.2,
+        "bytes": 291927,
+        "cache_control": "private, no-store"
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "host": {
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "images": {
+    "backend": "sha256:27f1fefce16ffaf56a313a41cb0cea9587d7bf5a1478dc672fbf5cd06169ab37",
+    "postgres": "sha256:f7d23353e1b15400d22ebe31189f4d314b87a4c129cc400c8c2d8d4ca127bf81",
+    "redis": "sha256:858f009f9709ce576febc734aa78b8f6d624b82571f9ddb6bda4377c833b3499"
+  },
+  "isolation": {
+    "network_internal": true,
+    "production_data_volumes": false,
+    "production_credentials": false,
+    "postgres_storage": "temporary memory filesystem",
+    "redis_storage": "disposable container filesystem",
+    "external_ai_calls": "blocked by internal Docker network and loopback test endpoint"
+  },
+  "paths": [
+    "tests/test_clothing_extraction_api.py",
+    "tests/test_clothing_extraction.py"
+  ],
+  "source_manifest_sha256": "971172f20ec78678973b19f7b64bf4749a9e5ba10cdd7e7dca6fe61dfff49a9f",
+  "exit_code": 125,
+  "elapsed_seconds": 263.657,
+  "fixtures_removed": true
+}

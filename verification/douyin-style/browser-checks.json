@@ -1,0 +1,63 @@
+{
+  "startedAt": "2026-10-17T13:04:10.164Z",
+  "finishedAt": "2026-10-17T13:11:21.604Z",
+  "checks": [
+    {
+      "check": "douyin-platform-filter",
+      "passed": true,
+      "creators": [
+        "盐百万",
+        "蟹煲",
+        "常鑫"
+      ],
+      "width": 1280,
+      "scrollWidth": 1280
+    },
+    {
+      "check": "creator-filter-and-empty-result-cta",
+      "passed": true,
+      "creator": "蟹煲",
+      "focus": "practice-panel"
+    },
+    {
+      "check": "optional-layer-skip-restore",
+      "passed": true,
+      "before": 4,
+      "skipped": 3,
+      "coverage": "3/3",
+      "seedHref": "/dashboard/outfits/new?seed=58f0e0b7-6a93-419f-9a36-2b4086579a57%2Ca619ca9f-f02a-44bc-b213-e689122c619b%2Cb9288608-f488-43d8-b579-fe04d6220469&occasion=office&name=%E5%A4%96%E6%90%AD%EF%BC%8C%E8%B7%9F%E7%9D%80%E6%B8%A9%E5%BA%A6%E9%80%89"
+    },
+    {
+      "check": "studio-three-items-save-reload",
+      "passed": true,
+      "selected": 3,
+      "occasion": "office",
+      "savedUrl": "http://localhost:3000/dashboard/outfits/f33e1149-fd18-4b52-be1c-a479998b1f98",
+      "name": "抖音灵感验收 · 可选外搭 1017"
+    },
+    {
+      "check": "home-and-discovery-mobile",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "check": "practice-mobile-dark-layout",
+      "passed": true,
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "check": "tablet-layout",
+      "passed": true,
+      "width": 830,
+      "scrollWidth": 830
+    },
+    {
+      "check": "new-douyin-formula-bookmark-reload",
+      "passed": true,
+      "formula": "easy-layers"
+    }
+  ],
+  "consoleErrors": []
+}

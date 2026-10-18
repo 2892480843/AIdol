@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "checkedAtUtc": "2026-10-17T20:07:09.210997+00:00",
+  "reviewer": "avatar_architecture_audit",
+  "method": "Independent Python standard-library parsing of final public GLB files and local provenance cross-check; no source changes, browser, server, provider or model invocation.",
+  "result": "pass_with_documented_capabilities",
+  "checks": [
+    "GLB 2 header magic, version, exact file length, aligned JSON/BIN chunks",
+    "Single embedded buffer and every bufferView/accessor in bounds",
+    "All float accessors contain finite values; sparse target indices/values are bounds-checked and fully decoded",
+    "All images embedded with supported MIME; no external buffer/image URI",
+    "Every mesh has skin plus POSITION/NORMAL/JOINTS_0/WEIGHTS_0 attributes",
+    "All triangle/joint indices in range; skin weight sums within 0.002 of one",
+    "Inverse bind matrices have MAT4 type and count equal to joint count",
+    "Required authored avatarLayer values present for each supported model capability",
+    "Shoes recolor true and Outerwear avatarReplacesTops true metadata",
+    "Runtime pose bone names match after normalization",
+    "Final file size and SHA-256 match PROVENANCE.json",
+    "97 local source files match recorded sizes and SHA-256",
+    "Recorded generation script SHA-256 matches local build-avatars.py",
+    "Every actual outerwear POSITION vertex stays above the lower-leg threshold (body floor + 30% body height); final male declares removal of 8123 source pants vertices",
+    "Named OuterwearLayerFit morph target resolves to its mesh targetNames index and defaults to Basis weight zero",
+    "Morph POSITION/NORMAL deltas have base vertex counts, finite values and valid sparse accessor ranges",
+    "Only one female Body material is explicitly hidden by outerwear; unflagged skin retains head and lower-body extents"
+  ],
+  "models": [
+    {
+      "file": "frontend/public/models/avatar/female.glb",
+      "bytes": 10906708,
+      "sha256": "2f42454d5a21d39e3005416f6d4e952843686c4f80a2b8060e0e8c85be876f4a",
+      "gltfVersion": "2.0",
+      "layers": {
+        "base": 4,
+        "body": 1,
+        "bottoms": 1,
+        "dresses": 1,
+        "hair": 1,
+        "outerwear": 1,
+        "shoes": 1,
+        "tops": 1
+      },
+      "skins": 1,
+      "jointsPerSkin": [
+        53
+      ],
+      "skinnedMeshNodes": 11,
+      "renderPrimitives": 13,
+      "renderVertices": 136795,
+      "embeddedImages": 6,
+      "externalBufferOrImageURIs": 0,
+      "validatedFiniteAccessors": 81,
+      "validatedSparseAccessors": 2,
+      "shoesRecolorEnabled": true,
+      "outerwearReplacesTops": true,
+      "poseBoneNamesMatchRuntime": true,
+      "provenanceHashAndSizeMatch": true
+    },
+    {
+      "file": "frontend/public/models/avatar/male.glb",
+      "bytes": 9474732,
+      "sha256": "e805df1a0ab1dc94d0e94dc83327b7561ea003b112b9d0e1739682ae59fa380a",
+      "gltfVersion": "2.0",
+      "layers": {
+        "base": 4,
+        "body": 1,
+        "bottoms": 1,
+        "hair": 1,
+        "outerwear": 1,
+        "shoes": 1,
+        "tops": 1
+      },
+      "skins": 1,
+      "jointsPerSkin": [
+        53
+      ],
+      "skinnedMeshNodes": 10,
+      "renderPrimitives": 11,
+      "renderVertices": 116939,
+      "embeddedImages": 6,
+      "externalBufferOrImageURIs": 0,
+      "validatedFiniteAccessors": 67,
+      "validatedSparseAccessors": 0,
+      "shoesRecolorEnabled": true,
+      "outerwearReplacesTops": true,
+      "poseBoneNamesMatchRuntime": true,
+      "provenanceHashAndSizeMatch": true
+    }
+  ],
+  "licenseEvidence": {
+    "notice": "frontend/public/models/avatar/NOTICE.txt",
+    "fullLicense": "frontend/public/models/avatar/LICENSE-CC0.txt",
+    "provenance": "frontend/public/models/avatar/PROVENANCE.json",
+    "declaredAssetLicense": "CC0-1.0",
+    "upstream": {
+      "repository": "https://github.com/makehumancommunity/mpfb2/tree/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+      "archiveUrl": "https://codeload.github.com/makehumancommunity/mpfb2/zip/refs/heads/master",
+      "resolvedArchiveCommit": "3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+      "immutableArchiveUrl": "https://codeload.github.com/makehumancommunity/mpfb2/zip/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf",
+      "archiveSha256": "19a58071b985c416c4a5a127b791dd52b2c159d62870cfec7d846b892bd90aab",
+      "license": "https://github.com/makehumancommunity/mpfb2/blob/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf/LICENSE.md",
+      "assetLicense": "https://github.com/makehumancommunity/mpfb2/blob/3af0cd5a2ffba072e93a34e5f6f494fdc4813ddf/LICENSE.ASSETS.md",
+      "licenseConfirmation": "https://static.makehumancommunity.org/about/license.html",
+      "assetPacks": [
+        "https://static.makehumancommunity.org/assets/assetpacks/makehuman_system_assets.html",
+        "https://static.makehumancommunity.org/assets/assetpacks/shirts01.html",
+        "https://static.makehumancommunity.org/assets/assetpacks/pants01.html",
+        "https://static.makehumancommunity.org/assets/assetpacks/dress01.html",
+        "https://static.makehumancommunity.org/assets/assetpacks/suits01.html"
+      ]
+    },
+    "sourceFilesVerified": 97,
+    "sourceHashMismatches": 0,
+    "buildScriptSha256": "937a61680dcc3745f5324a5ba30c3ed63777aeb1bdca2fe4918c32d520f0c856",
+    "scope": "Local files and supplied upstream provenance were independently cross-checked. Original upstream web research is owned by the asset research agent.",
+    "publicEvidenceHashes": {
+      "NOTICE.txt": "09ce6bb70af919060ed19df5f5939f3727a19431856fd3a14f2999b478ca83e6",
+      "PROVENANCE.json": "1114807c739f95b03ef8c6e96c27ee1bb1bb08663fc8711851b98113907b5cd3",
+      "LICENSE-CC0.txt": "f6089cba01cb570a24712b41ab8a586ccd3cc5ef53dc266ca50b95c288956d2c"
+    }
+  },
+  "capabilityFindings": [
+    {
+      "id": "male-no-dress",
+      "severity": "P2 integration mismatch, addressed in UI",
+      "assetFact": "Male asset intentionally omits dresses layer. Female contains dresses.",
+      "reviewedResolution": "Workspace now forces male dressMode false, disables male dress toggle and dress cards, disables switching to male with a selected dress, blocks restored male+dress selections from saving, and displays translated maleDressNotice. Root owns targeted red/green tests."
+    },
+    {
+      "id": "shoe-color",
+      "severity": "P2 integration mismatch, resolved in final assets",
+      "assetFact": "Both final shoe materials now explicitly permit recoloring; former candidate values false were corrected before publication."
+    },
+    {
+      "id": "outerwear-layering",
+      "severity": "Integration contract, resolved in runtime code",
+      "assetFact": "Closed shirt/tie outerwear carries avatarReplacesTops=true. Current applyAvatarWardrobe consumes this metadata to hide independent tops."
+    },
+    {
+      "id": "female-coat-fit",
+      "severity": "P2 asset integration mismatch, resolved in final female asset and runtime",
+      "assetFact": "Only authored covered skin material hides with outerwear; original pants Basis remains default and OuterwearLayerFit applies only with outerwear.",
+      "independentVerification": "Validated unique coverage material and unflagged skin extents, named morph index/default weight, decoded both sparse POSITION/NORMAL target accessors and verified base counts/finite deltas."
+    }
+  ],
+  "poseBoundary": {
+    "bindPoseIsNotFinalDisplay": true,
+    "note": "Final GLBs retain their binding/rest A-pose for valid skinning. NOTICE and PROVENANCE distinguish authoring preview arm posture from runtime arm posture. Root reports scene natural-arm handling complete; this independent asset audit does not claim a browser appearance test."
+  },
+  "independentCodeReview": {
+    "files": [
+      "frontend/components/avatar-studio/workspace.tsx",
+      "frontend/lib/avatar-journal.ts",
+      "frontend/lib/hooks/use-avatar-journal.ts"
+    ],
+    "newUnresolvedP1P2AfterDocumentedFixes": 0,
+    "checks": [
+      "Owner/epoch keyed workspace reset",
+      "Unresolved garment IDs retained until explicit removal",
+      "Same-slot and dress/top conflicts block cloud/local saves",
+      "History stores settings/UUIDs only and resolves actual owner clothes on restore",
+      "Journal hydration reads without writing; failed storage preserves memory",
+      "Export errors do not obscure a usable model",
+      "Local bookmark and cloud outfit persistence remain distinct"
+    ],
+    "sourceManifest": {
+      "file": "verification/avatar-studio/frontend-manifest.json",
+      "sha256": "ce9058862daf3e0d524fad9255190d58aa0741a501066532ac63834f49fe5bb3",
+      "verifiedFiles": 526,
+      "mismatches": 0
+    }
+  },
+  "remainingVerification": [
+    "Root final production build/deployment and source/runtime identity checks",
+    "Root final production-browser appearance and PNG preview/download verification; development GPU appearance was independently reported by root, not repeated by this auditor"
+  ],
+  "outerwearLowerGeometryCheck": [
+    {
+      "model": "female",
+      "coordinateSpace": "glTF source mesh positions, Y up",
+      "bodyFloorY": 0.0007598404190503061,
+      "bodyTopY": 1.7823152542114258,
+      "lowerLegThresholdY": 0.5352264645567629,
+      "outerwearMinimumY": 0.7863697409629822,
+      "outerwearRenderVertices": 25792,
+      "outerwearVerticesBelowThreshold": 0,
+      "removedSourcePantVerticesMetadata": 8372,
+      "noFloorLengthPantsGeometryInOuterwear": true
+    },
+    {
+      "model": "male",
+      "coordinateSpace": "glTF source mesh positions, Y up",
+      "bodyFloorY": 0.0007982501410879195,
+      "bodyTopY": 1.9861913919448853,
+      "lowerLegThresholdY": 0.5964161926822271,
+      "outerwearMinimumY": 0.9197120666503906,
+      "outerwearRenderVertices": 26113,
+      "outerwearVerticesBelowThreshold": 0,
+      "removedSourcePantVerticesMetadata": 8123,
+      "noFloorLengthPantsGeometryInOuterwear": true
+    }
+  ],
+  "outerwearFitMorphCheck": [
+    {
+      "model": "female",
+      "node": "Bottoms",
+      "mesh": "pants_wool",
+      "metadataTargetName": "OuterwearLayerFit",
+      "targetNames": [
+        "OuterwearLayerFit"
+      ],
+      "targetIndex": 0,
+      "defaultWeights": [
+        0
+      ],
+      "basePositionCount": 5750,
+      "positionDeltaCount": 5750,
+      "normalDeltaCount": 5750,
+      "nonzeroPositionDeltas": 770,
+      "maximumDisplacementMeters": 0.02069852895670199,
+      "positionAccessorSparse": true,
+      "normalAccessorSparse": true,
+      "finiteDeltas": true
+    }
+  ],
+  "outerwearCoverageMaterialCheck": [
+    {
+      "model": "female",
+      "explicitCoveredMaterials": [
+        {
+          "node": "Body",
+          "material": "Body_OuterwearCovered_Material",
+          "positionVertices": 10545,
+          "minimumY": 0.8442214727401733,
+          "maximumY": 1.5319020748138428,
+          "sourceCoveredFacesMetadata": 10177,
+          "indices": 61062
+        }
+      ],
+      "unflaggedBodyVertices": 45543,
+      "unflaggedBodyMinimumY": 0.0007598404190503061,
+      "unflaggedBodyMaximumY": 1.7823152542114258,
+      "unflaggedSkinRetainsBodyHeadAndFloorExtents": true
+    },
+    {
+      "model": "male",
+      "explicitCoveredMaterials": [],
+      "unflaggedBodyVertices": 55784,
+      "unflaggedBodyMinimumY": 0.0007982501410879195,
+      "unflaggedBodyMaximumY": 1.9861913919448853,
+      "unflaggedSkinRetainsBodyHeadAndFloorExtents": true
+    }
+  ],
+  "finalFemaleAmendment": {
+    "sha256": "2f42454d5a21d39e3005416f6d4e952843686c4f80a2b8060e0e8c85be876f4a",
+    "bytes": 10906708,
+    "bodyCoveredSourceFaces": 10177,
+    "morphTarget": "OuterwearLayerFit",
+    "defaultBasisWeight": 0,
+    "bodySkinMaskAndMorphVerified": true,
+    "maleSha256Unchanged": true,
+    "allStructuralChecksPassed": true
+  },
+  "historicalMaleAmendment": {
+    "reason": "Male closed-blazer mesh previously retained a duplicate 8123-vertex source trouser component, which caused a black lower-body patch when layered. Asset author removed that identified component and republished male GLB.",
+    "previousMaleSha256": "fb6208333d92e3f6182563c8d4ee7b982ef1a4af0a8364aa9552999cc227159e",
+    "currentMaleSha256": "e805df1a0ab1dc94d0e94dc83327b7561ea003b112b9d0e1739682ae59fa380a",
+    "freshChecksAllPassed": true,
+    "femaleUnchangedAtMaleAmendment": true
+  }
+}

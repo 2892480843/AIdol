@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="4" time="1.393" timestamp="2026-10-17T20:16:30.113360+00:00" hostname="6eb143f14730"><testcase classname="tests.test_studio_source_ownership" name="test_studio_rejects_non_owned_source_before_persisting_an_outfit[missing]" time="0.821"><failure message="sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.ForeignKeyViolationError) insert or update on table &quot;outfits&quot; violates foreign key constraint &quot;fk_outfits_source_item_id&quot;&#10;[SQL: INSERT INTO outfits (id, user_id, occasion, scheduled_for, reasoning, style_notes, season, formality, palette, notes, status, source, source_item_id, name, replaces_outfit_id, cloned_from_outfit_id, sent_at, viewed_at, responded_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::DATE, $5::VARCHAR, $6::VARCHAR, $7::VARCHAR, $8::VARCHAR, $9::JSONB, $10::VARCHAR, $11::outfit_status, $12::outfit_source, $13::UUID, $14::VARCHAR, $15::UUID, $16::UUID, $17::TIMESTAMP WITH TIME ZONE, $18::TIMESTAMP WITH TIME ZONE, $19::TIMESTAMP WITH TIME ZONE) RETURNING outfits.created_at, outfits.updated_at]&#10;[parameters: (UUID('5cf0adce-65b1-4175-b041-17c931c20163'), UUID('aa66f6be-4e8d-4f58-8856-7559e7822603'), 'casual', None, None, None, None, None, 'null', None, 'pending', 'manual', UUID('859466c4-a863-4a96-9873-8830703ab79e'), None, None, None, None, None, None)]&#10;(Background on this error at: https://sqlalche.me/e/21/gkpj)">/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:605: in _prepare_and_execute
+    self._rows = deque(await prepared_stmt.fetch(*parameters))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py:177: in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py:268: in __bind_execute
+    data, status, _ = await self.__do_execute(
+/usr/local/lib/python3.11/site-packages/asyncpg/prepared_stmt.py:257: in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+asyncpg/protocol/protocol.pyx:197: in bind_execute
+    ???
+E   asyncpg.exceptions.ForeignKeyViolationError: insert or update on table "outfits" violates foreign key constraint "fk_outfits_source_item_id"
+E   DETAIL:  Key (source_item_id)=(859466c4-a863-4a96-9873-8830703ab79e) is not present in table "clothing_items".
+
+The above exception was the direct cause of the following exception:
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py:1946: in _exec_single_context
+    self.dialect.do_execute(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+/usr/local/lib/python3.11/site-packages/sqlalchemy/util/concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/sqlalchemy/util/concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:840: in _handle_exception_no_connection
+    raise translated_error from error
+E   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.ForeignKeyViolationError: insert or update on table "outfits" violates foreign key constraint "fk_outfits_source_item_id"
+
+The above exception was the direct cause of the following exception:
+tests/test_studio_source_ownership.py:44: in test_studio_rejects_non_owned_source_before_persisting_an_outfit
+    response = await client.post(
+/usr/local/lib/python3.11/site-packages/httpx/_client.py:1859: in post
+    return await self.request(
+/usr/local/lib/python3.11/site-packages/httpx/_client.py:1540: in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/httpx/_client.py:1629: in send
+    response = await self._send_handling_auth(
+/usr/local/lib/python3.11/site-packages/httpx/_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+/usr/local/lib/python3.11/site-packages/httpx/_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/httpx/_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/httpx/_transports/asgi.py:170: in handle_async_request
+    await self.app(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/applications.py:1216: in __call__
+    await super().__call__(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/starlette/applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py:186: in __call__
+    raise exc
+/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+/usr/local/lib/python3.11/site-packages/fastapi/telemetry/_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+app/observability.py:282: in __call__
+    await self.app(scope, receive, send_with_id)
+/usr/local/lib/python3.11/site-packages/starlette/middleware/gzip.py:78: in __call__
+    await responder(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/starlette/middleware/gzip.py:103: in __call__
+    await self.app(scope, receive, self.send_with_compression)
+/usr/local/lib/python3.11/site-packages/starlette/middleware/cors.py:91: in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+/usr/local/lib/python3.11/site-packages/starlette/middleware/cors.py:149: in simple_response
+    await self.app(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/starlette/routing.py:676: in __call__
+    await self.middleware_stack(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:2786: in app
+    await route.handle(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:1817: in handle
+    await self.original_router.handle(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:2869: in handle
+    await included_router._handle_selected(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:1828: in _handle_selected
+    await route.handle(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:1817: in handle
+    await self.original_router.handle(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:2869: in handle
+    await included_router._handle_selected(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:1843: in _handle_selected
+    await original_route.handle(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:1308: in handle
+    await effective_context.app(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:165: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py:53: in wrapped_app
+    raise exc
+/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:151: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:727: in app
+    raw_response = await run_endpoint_function(
+/usr/local/lib/python3.11/site-packages/fastapi/routing.py:360: in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app/api/outfits.py:1226: in create_studio_outfit
+    outfit = await service.create_from_scratch(
+app/services/studio_service.py:136: in create_from_scratch
+    await self.db.flush()
+/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py:1030: in flush
+    await greenlet_spawn(self.sync_session.flush, objects=objects)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/util/concurrency.py:212: in greenlet_spawn
+    result = context.switch(value)
+             ^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py:4536: in flush
+    self._flush(objects)
+&lt;sqlalchemy generated warned() wrapper for sqlalchemy.orm.session.Session._flush&gt;:2: in _flush
+    return target(fn, self, objects=objects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/sqlalchemy/util/deprecations.py:281: in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py:4679: in _flush
+    with util.safe_reraise():
+/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py:4640: in _flush
+    flush_context.execute()
+/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py:467: in execute
+    rec.execute(self)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/unitofwork.py:643: in execute
+    util.preloaded.orm_persistence._save_obj(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py:92: in _save_obj
+    _emit_insert_statements(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/persistence.py:1237: in _emit_insert_statements
+    result = connection.execute(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py:1451: in execute
+    return meth(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/sql/elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py:1671: in _execute_clauseelement
+    ret = self._execute_context(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py:1825: in _execute_context
+    return self._exec_single_context(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py:1965: in _exec_single_context
+    self._handle_dbapi_exception(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py:2335: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py:1946: in _exec_single_context
+    self.dialect.do_execute(
+/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+/usr/local/lib/python3.11/site-packages/sqlalchemy/util/concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/sqlalchemy/util/concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:840: in _handle_exception_no_connection
+    raise translated_error from error
+E   sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.ForeignKeyViolationError) insert or update on table "outfits" violates foreign key constraint "fk_outfits_source_item_id"
+E   [SQL: INSERT INTO outfits (id, user_id, occasion, scheduled_for, reasoning, style_notes, season, formality, palette, notes, status, source, source_item_id, name, replaces_outfit_id, cloned_from_outfit_id, sent_at, viewed_at, responded_at) VALUES ($1::UUID, $2::UUID, $3::VARCHAR, $4::DATE, $5::VARCHAR, $6::VARCHAR, $7::VARCHAR, $8::VARCHAR, $9::JSONB, $10::VARCHAR, $11::outfit_status, $12::outfit_source, $13::UUID, $14::VARCHAR, $15::UUID, $16::UUID, $17::TIMESTAMP WITH TIME ZONE, $18::TIMESTAMP WITH TIME ZONE, $19::TIMESTAMP WITH TIME ZONE) RETURNING outfits.created_at, outfits.updated_at]
+E   [parameters: (UUID('5cf0adce-65b1-4175-b041-17c931c20163'), UUID('aa66f6be-4e8d-4f58-8856-7559e7822603'), 'casual', None, None, None, None, None, 'null', None, 'pending', 'manual', UUID('859466c4-a863-4a96-9873-8830703ab79e'), None, None, None, None, None, None)]
+E   (Background on this error at: https://sqlalche.me/e/21/gkpj)</failure></testcase><testcase classname="tests.test_studio_source_ownership" name="test_studio_rejects_non_owned_source_before_persisting_an_outfit[other_owner]" time="0.056"><failure message="AssertionError: {&quot;id&quot;:&quot;e2bd7480-1119-4a5f-9cf1-7e111a68709e&quot;,&quot;occasion&quot;:&quot;casual&quot;,&quot;scheduled_for&quot;:null,&quot;status&quot;:&quot;pending&quot;,&quot;name&quot;:null,&quot;replaces_outfit_id&quot;:null,&quot;cloned_from_outfit_id&quot;:null,&quot;source&quot;:&quot;manual&quot;,&quot;reasoning&quot;:null,&quot;style_notes&quot;:null,&quot;season&quot;:null,&quot;formality&quot;:null,&quot;palette&quot;:null,&quot;notes&quot;:null,&quot;highlights&quot;:null,&quot;weather&quot;:null,&quot;items&quot;:[{&quot;id&quot;:&quot;4b378108-f86f-4202-a0bc-14b4f310f3e4&quot;,&quot;type&quot;:&quot;shirt&quot;,&quot;subtype&quot;:null,&quot;name&quot;:null,&quot;primary_color&quot;:null,&quot;colors&quot;:[],&quot;image_path&quot;:&quot;test/d961ca84-140f-41d8-bdde-03a5ce0aa194.jpg&quot;,&quot;thumbnail_path&quot;:null,&quot;layer_type&quot;:null,&quot;position&quot;:0,&quot;image_url&quot;:&quot;/api/v1/images/test/d961ca84-140f-41d8-bdde-03a5ce0aa194.jpg?expires=1792271791&amp;sig=4339939c71c739226b1d62442ef44dc6&quot;,&quot;thumbnail_url&quot;:null}],&quot;feedback&quot;:{&quot;rating&quot;:null,&quot;comment&quot;:null,&quot;worn_at&quot;:null,&quot;actually_worn&quot;:null,&quot;wore_instead_items&quot;:null},&quot;family_ratings&quot;:null,&quot;family_rating_average&quot;:null,&quot;family_rating_count&quot;:null,&quot;is_starter_suggestion&quot;:false,&quot;created_at&quot;:&quot;2026-10-17T20:16:31.438423Z&quot;}&#10;assert 201 == 403&#10; +  where 201 = &lt;Response [201 Created]&gt;.status_code">tests/test_studio_source_ownership.py:54: in test_studio_rejects_non_owned_source_before_persisting_an_outfit
+    assert response.status_code == 403, response.text
+E   AssertionError: {"id":"e2bd7480-1119-4a5f-9cf1-7e111a68709e","occasion":"casual","scheduled_for":null,"status":"pending","name":null,"replaces_outfit_id":null,"cloned_from_outfit_id":null,"source":"manual","reasoning":null,"style_notes":null,"season":null,"formality":null,"palette":null,"notes":null,"highlights":null,"weather":null,"items":[{"id":"4b378108-f86f-4202-a0bc-14b4f310f3e4","type":"shirt","subtype":null,"name":null,"primary_color":null,"colors":[],"image_path":"test/d961ca84-140f-41d8-bdde-03a5ce0aa194.jpg","thumbnail_path":null,"layer_type":null,"position":0,"image_url":"/api/v1/images/test/d961ca84-140f-41d8-bdde-03a5ce0aa194.jpg?expires=1792271791&amp;sig=4339939c71c739226b1d62442ef44dc6","thumbnail_url":null}],"feedback":{"rating":null,"comment":null,"worn_at":null,"actually_worn":null,"wore_instead_items":null},"family_ratings":null,"family_rating_average":null,"family_rating_count":null,"is_starter_suggestion":false,"created_at":"2026-10-17T20:16:31.438423Z"}
+E   assert 201 == 403
+E    +  where 201 = &lt;Response [201 Created]&gt;.status_code</failure></testcase><testcase classname="tests.test_studio_source_ownership" name="test_studio_preserves_owned_source_reference_without_adding_it_to_the_selection[True]" time="0.042" /><testcase classname="tests.test_studio_source_ownership" name="test_studio_preserves_owned_source_reference_without_adding_it_to_the_selection[False]" time="0.046" /></testsuite></testsuites>

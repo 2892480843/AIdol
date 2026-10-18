@@ -1,0 +1,29 @@
+{
+  "checked_at": "2026-10-18T15:57:09.375236+00:00",
+  "url": "https://124.70.96.183:6780",
+  "backend_session_required": true,
+  "automatic_demo_login": "passed",
+  "client_identity_headers_overridden": true,
+  "inventory_count": 3,
+  "signed_thumbnails": "passed",
+  "pages": {
+    "/dashboard": "passed",
+    "/dashboard/wardrobe": "passed",
+    "/dashboard/suggest": "passed",
+    "/dashboard/wardrobe/avatar": "passed",
+    "/dashboard/wardrobe/tryon": "passed",
+    "/dashboard/looks": "passed"
+  },
+  "static_assets_checked": 65,
+  "models": {
+    "beauty-v2/female.glb": {
+      "unchanged": true,
+      "bytes": 18641192
+    },
+    "beauty-v2/male.glb": {
+      "unchanged": true,
+      "bytes": 16293768
+    }
+  },
+  "status": "passed"
+}

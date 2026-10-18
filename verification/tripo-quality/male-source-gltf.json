@@ -1,0 +1,203 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "Tripo"
+  },
+  "extensionsUsed": [
+    "KHR_materials_volume",
+    "FB_ngon_encoding"
+  ],
+  "accessors": [
+    {
+      "bufferView": 3,
+      "byteOffset": 0,
+      "componentType": 5126,
+      "count": 1017475,
+      "type": "VEC3",
+      "max": [
+        0.18329620361328125,
+        0.98052978515625,
+        0.09235763549804688
+      ],
+      "min": [
+        -0.18329620361328125,
+        0.0,
+        -0.09235763549804688
+      ]
+    },
+    {
+      "bufferView": 4,
+      "byteOffset": 0,
+      "componentType": 5126,
+      "count": 1017475,
+      "type": "VEC3",
+      "max": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "min": [
+        -1.0,
+        -1.0,
+        -1.0
+      ]
+    },
+    {
+      "bufferView": 5,
+      "byteOffset": 0,
+      "componentType": 5126,
+      "count": 1017475,
+      "type": "VEC2",
+      "max": [
+        1.0,
+        1.0
+      ],
+      "min": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "bufferView": 6,
+      "byteOffset": 0,
+      "componentType": 5125,
+      "count": 5963220,
+      "type": "SCALAR",
+      "max": [
+        1017474
+      ],
+      "min": [
+        0
+      ]
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 70889740
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteOffset": 0,
+      "byteLength": 10708894
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 10708896,
+      "byteLength": 1272239
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 11981136,
+      "byteLength": 2496523
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 14477660,
+      "byteLength": 12209700,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 26687360,
+      "byteLength": 12209700,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 38897060,
+      "byteLength": 8139800,
+      "target": 34962
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 47036860,
+      "byteLength": 23852880,
+      "target": 34963
+    }
+  ],
+  "images": [
+    {
+      "name": "dada-male-minimal-h31-8k_basecolor.jpg",
+      "bufferView": 0,
+      "mimeType": "image/jpeg"
+    },
+    {
+      "name": "dada-male-minimal-h31-8k_rm.jpg",
+      "bufferView": 1,
+      "mimeType": "image/jpeg"
+    },
+    {
+      "name": "dada-male-minimal-h31-8k_normal.png",
+      "bufferView": 2,
+      "mimeType": "image/png"
+    }
+  ],
+  "materials": [
+    {
+      "name": "tripo_material_327f609d-1815-4375-a3e3-b6dddb0b96dd",
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicRoughnessTexture": {
+          "index": 1
+        }
+      },
+      "normalTexture": {
+        "index": 2
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "meshes[0]",
+      "primitives": [
+        {
+          "mode": 4,
+          "material": 0,
+          "indices": 3,
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          }
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "tripo_node_327f609d-1815-4375-a3e3-b6dddb0b96dd",
+      "mesh": 0
+    }
+  ],
+  "samplers": [
+    {},
+    {},
+    {}
+  ],
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "textures": [
+    {
+      "source": 0,
+      "sampler": 0
+    },
+    {
+      "source": 1,
+      "sampler": 1
+    },
+    {
+      "source": 2,
+      "sampler": 2
+    }
+  ],
+  "scene": 0
+}

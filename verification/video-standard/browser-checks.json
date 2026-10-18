@@ -1,0 +1,50 @@
+{
+  "photoResultsGenerated": 2,
+  "resultDimensions": {
+    "width": 1153,
+    "height": 2048
+  },
+  "taskCountAfterLocalActions": 7,
+  "photoCarouselSwitch": true,
+  "explicitReuse": true,
+  "removeAndUndo": true,
+  "comparisonExactOriginal": true,
+  "newWardrobeItems": 2,
+  "garmentsExtracted": 3,
+  "skirtDirectTryOnSeed": true,
+  "railBefore": {
+    "noticeLeft": 234,
+    "railLeft": 291,
+    "scrollLeft": 72
+  },
+  "railAfter": {
+    "noticeLeft": 306,
+    "overflow": "clip",
+    "railLeft": 291,
+    "scrollLeft": 0
+  },
+  "phone390": {
+    "bodyWidth": 390,
+    "viewport": 390
+  },
+  "rackPhone390": {
+    "bodyWidth": 390,
+    "viewport": 390
+  },
+  "phone320": {
+    "bodyWidth": 320,
+    "viewport": 320
+  },
+  "realMicrophoneTested": false,
+  "downloadCompleted": false,
+  "personal360Completed": false,
+  "rackDefaultViewport": {
+    "bodyWidth": 1280,
+    "viewport": 1280
+  },
+  "phoneRailBounds": {
+    "noticeLeft": 46,
+    "railLeft": 31,
+    "scrollLeft": 0
+  }
+}

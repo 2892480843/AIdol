@@ -17,7 +17,7 @@ services:
       CORS_ORIGINS: '["http://localhost:3000", "http://127.0.0.1:3000"]'
       CLOTHING_EXTRACTION_MODEL_PATH: /data/wardrobe/.models/schp-atr-18-int8-static.onnx
   frontend:
-    image: wardrowbe-frontend:ui-content-20261018-r3
+    image: wardrowbe-frontend:collage-style-20261018-r4
     build:
       context: ./frontend
     ports: !override

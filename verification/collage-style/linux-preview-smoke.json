@@ -1,0 +1,37 @@
+[
+  {
+    "path": "/dashboard",
+    "status": 200,
+    "bytes": 125467
+  },
+  {
+    "path": "/dashboard/wardrobe",
+    "status": 200,
+    "bytes": 125829
+  },
+  {
+    "path": "/dashboard/wardrobe/tryon",
+    "status": 200,
+    "bytes": 125416
+  },
+  {
+    "path": "/dashboard/wardrobe/avatar",
+    "status": 200,
+    "bytes": 125343
+  },
+  {
+    "path": "/dashboard/wardrobe/3d",
+    "status": 200,
+    "bytes": 126216
+  },
+  {
+    "path": "/dashboard/looks",
+    "status": 200,
+    "bytes": 125931
+  },
+  {
+    "path": "/dashboard/inspiration",
+    "status": 200,
+    "bytes": 125158
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "kind": "one_approved_original_fixture_provider_diagnostic",
+  "reference_failed_ui_task_id": "63458b3e-93f0-4208-9c77-ed3847941c83",
+  "model": "Doubao-seedream-4.5",
+  "input_person": "original fictional adult fixture",
+  "input_garment": "existing owned QA top from referenced task",
+  "ui_task_created_or_updated": false,
+  "automatic_retries": 0,
+  "timestamp_utc": "2026-10-17T14:55:49.744840+00:00",
+  "status": "failed",
+  "error_type": "TryOnProviderError",
+  "network_post_count": 1,
+  "provider_diagnostic": {
+    "http_status": 400,
+    "error_code": "InvalidParameter",
+    "error_param": null,
+    "sanitized_message": "The parameter `output_format` specified in the request is not valid: the parameter `output_format` is not supported by the current model. request_id=[redacted]"
+  },
+  "request_field_names": [
+    "image",
+    "model",
+    "prompt",
+    "response_format",
+    "sequential_image_generation",
+    "size",
+    "stream",
+    "watermark"
+  ],
+  "request_field_names_basis": "local_only_MockTransport_serialization_of_identical_deployed_generate_function_not_historical_packet_capture",
+  "output_format_sent_by_application": false,
+  "injection_or_default_in_relay_or_upstream_is_inferred": true,
+  "verified_advertised_candidate_model": "Doubao-Seedream-5.0-lite",
+  "next_default_change": "Doubao-Seedream-5.0-lite; requires subsequent real UI validation"
+}

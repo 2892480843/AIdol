@@ -1,0 +1,158 @@
+<!--
+{
+  "availability" : [
+    "iOS: 17.0.0 -",
+    "iPadOS: 17.0.0 -",
+    "macCatalyst: 15.0.0 -",
+    "macOS: 12.0.0 -"
+  ],
+  "documentType" : "symbol",
+  "framework" : "RealityKit",
+  "identifier" : "/documentation/RealityKit/PhotogrammetrySession",
+  "metadataVersion" : "0.1.0",
+  "role" : "Class",
+  "symbol" : {
+    "kind" : "Class",
+    "modules" : [
+      "RealityKit"
+    ],
+    "preciseIdentifier" : "s:17RealityFoundation21PhotogrammetrySessionC"
+  },
+  "title" : "PhotogrammetrySession"
+}
+-->
+
+# PhotogrammetrySession
+
+Manages the creation of a 3D model from a set of images.
+
+```
+class PhotogrammetrySession
+```
+
+## Overview
+
+For more information on using [`PhotogrammetrySession`](/documentation/RealityKit/PhotogrammetrySession), see
+<doc://com.apple.documentation/documentation/RealityKit/creating-3d-objects-from-photographs>.
+
+## Topics
+
+### Creating the session
+
+[`convenience init(input: URL, configuration: PhotogrammetrySession.Configuration) throws`](/documentation/RealityKit/PhotogrammetrySession/init(input:configuration:)-wo4e)
+
+Creates a session from a specified directory of images.
+
+[`convenience init<S>(input: S, configuration: PhotogrammetrySession.Configuration) throws`](/documentation/RealityKit/PhotogrammetrySession/init(input:configuration:)-7glmh)
+
+Creates a session from a sequence of samples.
+
+[`static var isSupported: Bool`](/documentation/RealityKit/PhotogrammetrySession/isSupported)
+
+Returns `true` if the current hardware supports Object Capture.
+
+### Configuring the session
+
+[`var configuration: PhotogrammetrySession.Configuration`](/documentation/RealityKit/PhotogrammetrySession/configuration-swift.property)
+
+Readonly property  containing the session configuration set in the construction.
+
+[`struct Configuration`](/documentation/RealityKit/PhotogrammetrySession/Configuration-swift.struct)
+
+The configuration parameters for a photogrammetry session.
+
+### Monitoring the session
+
+[`var activeRequests: [PhotogrammetrySession.Request]`](/documentation/RealityKit/PhotogrammetrySession/activeRequests)
+
+The session’s active request objects.
+
+[`var isProcessing: Bool`](/documentation/RealityKit/PhotogrammetrySession/isProcessing)
+
+The session is actively processing requests.
+
+[`var outputs: PhotogrammetrySession.Outputs`](/documentation/RealityKit/PhotogrammetrySession/outputs-swift.property)
+
+Returns the outputs message stream which can be asynchronously iterated on.
+
+[`enum Output`](/documentation/RealityKit/PhotogrammetrySession/Output)
+
+Status updates on the object-creation process.
+
+### Controlling object creation
+
+[`func process(requests: [PhotogrammetrySession.Request]) throws`](/documentation/RealityKit/PhotogrammetrySession/process(requests:))
+
+Starts processing of the provided processing `requests`.  Messages begin to be produced to
+the `output` publisher.
+
+[`func cancel()`](/documentation/RealityKit/PhotogrammetrySession/cancel())
+
+Requests cancellation of any running requests.
+
+### Creating requests
+
+[`enum Request`](/documentation/RealityKit/PhotogrammetrySession/Request)
+
+An object that configures a photogrammetry session reconstruction request.
+
+### Obtaining results
+
+[`enum Result`](/documentation/RealityKit/PhotogrammetrySession/Result)
+
+An object that holds the created 3D object.
+
+[`struct PointCloud`](/documentation/RealityKit/PhotogrammetrySession/PointCloud)
+
+A sparse point cloud data structure output as the payload of a `.pointCloud` request.
+A point cloud is an array of `PointCloud.Point` instances.
+
+[`enum Error`](/documentation/RealityKit/PhotogrammetrySession/Error)
+
+The errors that can occur during reconstruction in a photogrammetry session.
+
+[`struct Pose`](/documentation/RealityKit/PhotogrammetrySession/Pose)
+
+A 6DOF pose relative to the estimated coordinate system.
+
+[`struct Poses`](/documentation/RealityKit/PhotogrammetrySession/Poses)
+
+Once initial photogrammetric calculations are complete, a data structure mapping the sample ID (or index if
+a folder was used) to the 6DOF algorithmically estimated pose of that sample is returned.
+
+### Structures
+
+[`struct Limits`](/documentation/RealityKit/PhotogrammetrySession/Limits-swift.struct)
+
+Data structure to observe hardware limits for reconstruction.  Note that these are specific to the device on which the
+`PhotogrammetrySession` is run.
+
+[`struct Outputs`](/documentation/RealityKit/PhotogrammetrySession/Outputs-swift.struct)
+
+An asynchronous sequence of session-related updates.
+
+### Initializers
+
+[`convenience(input:configuration:)`](/documentation/RealityKit/PhotogrammetrySession/init(input:configuration:))
+
+Creates a session from a specified directory of images.
+
+### Type Properties
+
+[`static let limits: PhotogrammetrySession.Limits`](/documentation/RealityKit/PhotogrammetrySession/limits-swift.type.property)
+
+Observer for the device-specific constant hardware limits for reconstruction.
+
+## Relationships
+
+### Conforms To
+
+[`Copyable`](/documentation/Swift/Copyable)
+
+[`Escapable`](/documentation/Swift/Escapable)
+
+[`Identifiable`](/documentation/Swift/Identifiable)
+
+---
+
+Copyright &copy; 2026 Apple Inc. All rights reserved. | [Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | [Privacy Policy](https://www.apple.com/privacy/privacy-policy)

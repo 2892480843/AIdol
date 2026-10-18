@@ -80,3 +80,6 @@ verification/**/release/public-assets.part-*
 verification/**/release/public-assets.tar*
 verification/**/asset-release/public-assets.part-*
 *.blend1
+
+# Vite dependency prebundles are generated locally.
+.vite/

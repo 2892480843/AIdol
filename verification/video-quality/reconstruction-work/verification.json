@@ -1,0 +1,134 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "check": "source_sha256",
+      "source": "triposr-readme",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "triposr-run",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "triposr-system",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "triposr-config",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "triposr-metadata",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "sf3d-readme",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "sf3d-metadata",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "pshuman-readme",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "sith-readme",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "sam-body-install",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "hunyuan-readme",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "hunyuan-rasterizer",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "hunyuan-swift-readme",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "modelr-manifest",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "apple-session",
+      "passed": true
+    },
+    {
+      "check": "source_sha256",
+      "source": "apple-capture",
+      "passed": true
+    },
+    {
+      "check": "local_link",
+      "target": "reconstruction-work/audit.json",
+      "passed": true
+    },
+    {
+      "check": "local_link",
+      "target": "reconstruction-work/audit.py",
+      "passed": true
+    },
+    {
+      "check": "local_link",
+      "target": "reconstruction-work/audit.json",
+      "passed": true
+    },
+    {
+      "check": "local_link",
+      "target": "reconstruction-work/object-capture-support.swift",
+      "passed": true
+    },
+    {
+      "check": "local_link",
+      "target": "reconstruction-work/object-capture-support.json",
+      "passed": true
+    },
+    {
+      "check": "local_link",
+      "target": "reconstruction-work/verification.json",
+      "passed": true
+    },
+    {
+      "check": "utf8_without_bom",
+      "file": "reconstruction-report.md",
+      "passed": true
+    },
+    {
+      "check": "utf8_without_bom",
+      "file": "audit.py",
+      "passed": true
+    },
+    {
+      "check": "utf8_without_bom",
+      "file": "object-capture-support.swift",
+      "passed": true
+    }
+  ],
+  "python_ast_parse": "passed",
+  "model_inference": "not_run",
+  "human_quality": "not_verified",
+  "object_capture_support": "not_verified"
+}

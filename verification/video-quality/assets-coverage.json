@@ -1,0 +1,58 @@
+{
+  "female": {
+    "faces": {
+      "tops:knit": 9356,
+      "shoes:ankle-boots": 8656
+    },
+    "knitCoverageMethod": "Source sweater has no delete_verts; fully covered shoulder/chest/arm bone regions bounded by actual fitted hem and collar, excluding head/neck/hands",
+    "shoeMaskUpperBoundsM": {
+      "tops:knit": null,
+      "shoes:ankle-boots": 0.12531645321846008
+    },
+    "materialGroups": 5,
+    "protectedBones": [
+      "head",
+      "neck",
+      "hand",
+      "thumb",
+      "index",
+      "middle",
+      "ring",
+      "pinky"
+    ],
+    "bodyVerticesRetained": 53514,
+    "bodyPolygonsRetained": 53512,
+    "necklineRefinement": {
+      "sex": "female",
+      "restoredTriangles": 264,
+      "openingRule": "abs(x)<0.055m, front>0.005m, height>fitted collar maximum minus 0.050m; any vertex restores triangle",
+      "collarMaxM": 1.4005364179611206,
+      "preserved": "all positions, weights, normals, UVs, shoe masks and conditional outerwear flags",
+      "sha256": "8817471e3f5fe71b96fcd8eb15c246a523b33b0b3b22a575d8d93e389ec5e458"
+    }
+  },
+  "male": {
+    "faces": {
+      "tops:knit": 9356,
+      "shoes:ankle-boots": 8816
+    },
+    "knitCoverageMethod": "Source sweater has no delete_verts; fully covered shoulder/chest/arm bone regions bounded by actual fitted hem and collar, excluding head/neck/hands",
+    "shoeMaskUpperBoundsM": {
+      "tops:knit": null,
+      "shoes:ankle-boots": 0.17867913568019866
+    },
+    "materialGroups": 3,
+    "protectedBones": [
+      "head",
+      "neck",
+      "hand",
+      "thumb",
+      "index",
+      "middle",
+      "ring",
+      "pinky"
+    ],
+    "bodyVerticesRetained": 53514,
+    "bodyPolygonsRetained": 53512
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "streetDesktop": {
+    "buttons": [
+      {
+        "bottom": 95.9765625,
+        "name": "关闭预览"
+      },
+      {
+        "bottom": 492.375,
+        "name": "上一套"
+      },
+      {
+        "bottom": 492.375,
+        "name": "下一套"
+      },
+      {
+        "bottom": 489.375,
+        "name": "对比两套"
+      },
+      {
+        "bottom": 544.375,
+        "name": "选择第 1 套"
+      },
+      {
+        "bottom": 544.375,
+        "name": "选择第 2 套"
+      }
+    ],
+    "dialog": {
+      "bottom": 673.0234375,
+      "height": 624,
+      "scrollHeight": 624,
+      "top": 46.9765625
+    },
+    "header": {
+      "bottom": 115.9765625
+    },
+    "photos": [
+      {
+        "bottom": 442.375,
+        "top": 115.9765625,
+        "width": 196
+      },
+      {
+        "bottom": 442.375,
+        "top": 115.9765625,
+        "width": 196
+      }
+    ],
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    }
+  },
+  "allDesktop": {
+    "dialog": {
+      "bottom": 673.0234375,
+      "height": 624,
+      "scrollHeight": 624,
+      "top": 46.9765625
+    },
+    "numberButtons": 12,
+    "photos": [
+      {
+        "bottom": 442.375,
+        "top": 115.9765625,
+        "width": 196
+      },
+      {
+        "bottom": 442.375,
+        "top": 115.9765625,
+        "width": 196
+      }
+    ],
+    "view": "all-desktop",
+    "viewport": {
+      "height": 720,
+      "width": 1280
+    }
+  },
+  "allMobile": {
+    "buttons": [
+      {
+        "bottom": 88.875,
+        "name": "关闭预览",
+        "top": 60.875
+      },
+      {
+        "bottom": 365.0703125,
+        "name": "上一套",
+        "top": 329.0703125
+      },
+      {
+        "bottom": 365.0703125,
+        "name": "下一套",
+        "top": 329.0703125
+      },
+      {
+        "bottom": 407.0703125,
+        "name": "对比两套",
+        "top": 377.0703125
+      },
+      {
+        "bottom": 459.0703125,
+        "name": "选择第 1 套",
+        "top": 421.0703125
+      },
+      {
+        "bottom": 459.0703125,
+        "name": "选择第 2 套",
+        "top": 421.0703125
+      },
+      {
+        "bottom": 459.0703125,
+        "name": "选择第 3 套",
+        "top": 421.0703125
+      },
+      {
+        "bottom": 459.0703125,
+        "name": "选择第 4 套",
+        "top": 421.0703125
+      },
+      {
+        "bottom": 459.0703125,
+        "name": "选择第 5 套",
+        "top": 421.0703125
+      },
+      {
+        "bottom": 505.0703125,
+        "name": "选择第 6 套",
+        "top": 467.0703125
+      },
+      {
+        "bottom": 505.0703125,
+        "name": "选择第 7 套",
+        "top": 467.0703125
+      },
+      {
+        "bottom": 505.0703125,
+        "name": "选择第 8 套",
+        "top": 467.0703125
+      },
+      {
+        "bottom": 505.0703125,
+        "name": "选择第 9 套",
+        "top": 467.0703125
+      },
+      {
+        "bottom": 505.0703125,
+        "name": "选择第 10 套",
+        "top": 467.0703125
+      },
+      {
+        "bottom": 551.0703125,
+        "name": "选择第 11 套",
+        "top": 513.0703125
+      },
+      {
+        "bottom": 551.0703125,
+        "name": "选择第 12 套",
+        "top": 513.0703125
+      }
+    ],
+    "dialog": {
+      "bottom": 700.1171875,
+      "height": 658,
+      "scrollHeight": 658,
+      "top": 39.875,
+      "width": 286
+    },
+    "photos": [
+      {
+        "bottom": 315.0703125,
+        "top": 108.875,
+        "width": 118
+      },
+      {
+        "bottom": 315.0703125,
+        "top": 108.875,
+        "width": 118
+      }
+    ],
+    "selects": [],
+    "view": "all-mobile",
+    "viewport": {
+      "height": 740,
+      "scrollWidth": 320,
+      "width": 320
+    }
+  },
+  "focusRestore": {
+    "dialogs": 0,
+    "focused": "看这套: 奶白衬衫与米裤"
+  }
+}

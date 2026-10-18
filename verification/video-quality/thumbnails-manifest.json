@@ -1,0 +1,110 @@
+[
+  {
+    "sex": "female",
+    "preset": "sweet",
+    "source": "verification/video-quality/gpu-female-sweet-front.png",
+    "source_sha256": "85acebdda938413d2a8902a6e85e94101fcaaf1c8b0b0b769012aa2fcd45430a",
+    "file": "frontend/public/models/avatar/v2/thumbs/female-sweet.webp",
+    "bytes": 3850,
+    "sha256": "d884ed92090b10b4b253b156c0f7a2c57f7f953b5bc48c5f5b5acac5ae5f958e"
+  },
+  {
+    "sex": "female",
+    "preset": "minimal",
+    "source": "verification/video-quality/gpu-female-minimal-front.png",
+    "source_sha256": "7e579a2d820abdd047d24df2657c63e01bd1857706f810761ed4871abc38a9bf",
+    "file": "frontend/public/models/avatar/v2/thumbs/female-minimal.webp",
+    "bytes": 3874,
+    "sha256": "a18857cccc39b04001a7db765b34c299014d69cb0fca49d54125d3d192112731"
+  },
+  {
+    "sex": "female",
+    "preset": "street",
+    "source": "verification/video-quality/gpu-female-street-front.png",
+    "source_sha256": "61526c7a21133d0151c71256986e4584509b9ec243bbd0d760dc160676f2e3b4",
+    "file": "frontend/public/models/avatar/v2/thumbs/female-street.webp",
+    "bytes": 4664,
+    "sha256": "17149ab02f63d20809a3831cd3dfed65359602cc27af107853751edba43ea88b"
+  },
+  {
+    "sex": "female",
+    "preset": "relaxed",
+    "source": "verification/video-quality/gpu-female-relaxed-front.png",
+    "source_sha256": "278c2c6271d94b843b7678d10509d9578dfe9120f456c6393ddb57dea0609f9b",
+    "file": "frontend/public/models/avatar/v2/thumbs/female-relaxed.webp",
+    "bytes": 3630,
+    "sha256": "4cc7151b7ed2e4c873369afb0b577da952835a109f325af05cc37b33b32a48ea"
+  },
+  {
+    "sex": "female",
+    "preset": "elegant",
+    "source": "verification/video-quality/gpu-female-elegant-front.png",
+    "source_sha256": "f000f2a81db4de20ad4c3478fa68391ce11cd135261ba1ca5a00d8748936c444",
+    "file": "frontend/public/models/avatar/v2/thumbs/female-elegant.webp",
+    "bytes": 4566,
+    "sha256": "859b8da1df31b45f533dfe4f1bcb82a56024fa3d179cf9703d97715937ec9689"
+  },
+  {
+    "sex": "female",
+    "preset": "sport",
+    "source": "verification/video-quality/gpu-female-sport-front.png",
+    "source_sha256": "81a19a99c487e981a4478473543000b2253f4ee77bb99e26b9f69a8b628173ea",
+    "file": "frontend/public/models/avatar/v2/thumbs/female-sport.webp",
+    "bytes": 4326,
+    "sha256": "70d57183613cdf8b82e93cbbc2b5988132b4f865a19d712c2b8d192bb13f685b"
+  },
+  {
+    "sex": "male",
+    "preset": "sweet",
+    "source": "verification/video-quality/gpu-male-sweet-front.png",
+    "source_sha256": "0b587c16f5f67ef0a5b0fb2c4db3583b88fd0da37847975ceef198c08d6f811a",
+    "file": "frontend/public/models/avatar/v2/thumbs/male-sweet.webp",
+    "bytes": 3540,
+    "sha256": "814317a15ea18ef4227995d1b8f8c25f293375afcee9ad23cb05d08704055ca1"
+  },
+  {
+    "sex": "male",
+    "preset": "minimal",
+    "source": "verification/video-quality/gpu-male-minimal-front.png",
+    "source_sha256": "b34d0928d77b5a45875f48da13b9764e95ee6899dec40eb637bb4a7b19016d50",
+    "file": "frontend/public/models/avatar/v2/thumbs/male-minimal.webp",
+    "bytes": 4038,
+    "sha256": "105dc092d556e27c922b00b6059ac0f3095afb898ddac3f70988e96405be6ca1"
+  },
+  {
+    "sex": "male",
+    "preset": "street",
+    "source": "verification/video-quality/gpu-male-street-front.png",
+    "source_sha256": "608a0db0a47fafeb94bcbec90f1d5c50d9d08b0152b1905c0799e6f74c432d27",
+    "file": "frontend/public/models/avatar/v2/thumbs/male-street.webp",
+    "bytes": 4708,
+    "sha256": "b60587fbb8f3d127c433f5e4ab1a8c7aa0849bb588f59d388b4a01a200e1bcb1"
+  },
+  {
+    "sex": "male",
+    "preset": "relaxed",
+    "source": "verification/video-quality/gpu-male-relaxed-front.png",
+    "source_sha256": "2c3f3f8eb61c18b562abe6510f18e21beb8c4d4e463d9cf33ba32a7168d6199d",
+    "file": "frontend/public/models/avatar/v2/thumbs/male-relaxed.webp",
+    "bytes": 3652,
+    "sha256": "b0f996d4686f5e87c35d0f5a74eb97ec917ef814e90b79814959ab68a4b51b73"
+  },
+  {
+    "sex": "male",
+    "preset": "elegant",
+    "source": "verification/video-quality/gpu-male-elegant-front.png",
+    "source_sha256": "0926521e014861d478bc9e673fed5389965126e1c8fd13458e4cdacb4c852d74",
+    "file": "frontend/public/models/avatar/v2/thumbs/male-elegant.webp",
+    "bytes": 4528,
+    "sha256": "cedd783b8910ca4db203006960f49c2ee276871cf87352ac2a1c9b4ae86ad855"
+  },
+  {
+    "sex": "male",
+    "preset": "sport",
+    "source": "verification/video-quality/gpu-male-sport-front.png",
+    "source_sha256": "70abb659c3b540280ab8d0e4f9fbf58945d1e9fdbebd1e5570a3c322199e3f0e",
+    "file": "frontend/public/models/avatar/v2/thumbs/male-sport.webp",
+    "bytes": 4320,
+    "sha256": "a722360270f2ad010e947c4cb0fad30088c14a9beadb2a291765974e8a0522a6"
+  }
+]

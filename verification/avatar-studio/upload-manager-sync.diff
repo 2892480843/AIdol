@@ -1,0 +1,77 @@
+diff --git a/frontend/tests/upload-manager.test.ts b/frontend/tests/upload-manager.test.ts
+index 5c6c2d1..beb0d01 100644
+--- a/frontend/tests/upload-manager.test.ts
++++ b/frontend/tests/upload-manager.test.ts
+@@ -47,7 +47,16 @@ beforeEach(() => {
+   manager.init(clientWithFeatures())
+ })
+ 
+-afterEach(() => { manager.shutdown(); setActiveSession(null, null) })
++afterEach(async () => {
++  try {
++    // Fire-and-forget UI actions must finish before the next test replaces IndexedDB.
++    // Check before shutdown: an aborted controller intentionally hides the draining UI state.
++    await vi.waitFor(async () => expect((await manager.getState()).draining).toBe(false))
++  } finally {
++    manager.shutdown()
++    setActiveSession(null, null)
++  }
++})
+ 
+ describe('startDrain', () => {
+   it('uploads staged records and removes them from the queue on success', async () => {
+@@ -409,13 +418,12 @@ describe('failure classification', () => {
+       })
+     })
+     await manager.retryAll()
+-    for (let i = 0; i < 10; i++) {
+-      await new Promise((r) => setTimeout(r, 0))
+-    }
+-
+-    expect(sent).toEqual(['flaky.jpg'])
+-    const remaining = (await manager.getState()).terminalRecords
+-    expect(remaining.map((r) => r.filename)).toEqual(['big.jpg'])
++    await vi.waitFor(async () => {
++      expect(sent).toEqual(['flaky.jpg'])
++      const state = await manager.getState()
++      expect(state.draining).toBe(false)
++      expect(state.terminalRecords.map((r) => r.filename)).toEqual(['big.jpg'])
++    })
+   })
+ })
+ 
+@@ -462,11 +470,10 @@ describe('backoff reschedule', () => {
+       // Nothing external calls startDrain() here - only the manager's own
+       // reschedule, fired by invoking the timer callback it armed.
+       ;(callback as () => void)()
+-      for (let i = 0; i < 10; i++) {
+-        await new Promise((r) => setTimeout(r, 0))
+-      }
+-
+-      expect(await getPendingUploads()).toHaveLength(0)
++      await vi.waitFor(async () => {
++        expect(await getPendingUploads()).toHaveLength(0)
++        expect((await manager.getState()).draining).toBe(false)
++      })
+     } finally {
+       dateSpy.mockRestore()
+       timeoutSpy.mockRestore()
+@@ -498,13 +505,11 @@ describe('retry/dismiss actions', () => {
+     )
+     await manager.retry(id)
+     // retry() kicks off startDrain() without awaiting it (a UI action
+-    // shouldn't block on the network) - give the background chain enough
+-    // ticks to reach fetch, resolve, and settle the record.
+-    for (let i = 0; i < 10; i++) {
+-      await new Promise((r) => setTimeout(r, 0))
+-    }
+-
+-    expect(await getPendingUploads()).toHaveLength(0)
++    // shouldn't block on the network). Wait for the committed queue and idle drain.
++    await vi.waitFor(async () => {
++      expect(await getPendingUploads()).toHaveLength(0)
++      expect((await manager.getState()).draining).toBe(false)
++    })
+   })
+ 
+   it('cancelAll clears a stuck non-terminal record, which has no other recovery path', async () => {

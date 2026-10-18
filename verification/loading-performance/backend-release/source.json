@@ -1,0 +1,5 @@
+{
+  "file": "backend/app/storage/s3.py",
+  "sha256": "2c094833a75aadeba576b9005e74d64f8003f49eaa34be017206916e2b9f9530",
+  "parent_image_id": "sha256:673cc7a9955a7d9ca198effb6b403f5bf7b129bfbe0f17258758fe164be06b73"
+}

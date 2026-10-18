@@ -1,0 +1,27 @@
+[
+  {
+    "scrollWidth": 320,
+    "view": "all",
+    "width": 320
+  },
+  {
+    "scrollWidth": 320,
+    "view": "street",
+    "width": 320
+  },
+  {
+    "scrollWidth": 390,
+    "view": "street",
+    "width": 390
+  },
+  {
+    "scrollWidth": 830,
+    "view": "street",
+    "width": 830
+  },
+  {
+    "scrollWidth": 1280,
+    "view": "street",
+    "width": 1280
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "seconds": 21.49,
+  "returncode": 0,
+  "stdout": "{\"stage\": \"python_started\", \"seconds\": 0.0, \"platform\": \"aarch64\"}\n{\"stage\": \"service_imported\", \"seconds\": 11.751}\n{\"stage\": \"model_stat\", \"seconds\": 11.753, \"bytes\": 69141996, \"mode\": \"0o644\"}\n{\"stage\": \"capabilities\", \"seconds\": 13.231, \"result\": {\"available\": true, \"model\": \"schp-atr18-int8\", \"max_bytes\": 12582912, \"max_pixels\": 16000000}}\n{\"stage\": \"fixture_stat\", \"seconds\": 13.239, \"bytes\": 728004}\n",
+  "stderr": ""
+}

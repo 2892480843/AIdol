@@ -1,0 +1,57 @@
+{
+  "date": "2026-10-18",
+  "platform": "macOS Darwin arm64",
+  "generator": "Tripo Studio H3.1",
+  "settings": {
+    "ultra_geometry": true,
+    "target_source_faces": 2000000,
+    "base_color": 8192,
+    "pbr": true,
+    "delight": true,
+    "web_triangles": 100000
+  },
+  "credits": {
+    "before": 20965,
+    "after": 20825,
+    "used": 140,
+    "generation_each": 65,
+    "retopology_each": 5,
+    "new_purchase": false
+  },
+  "tasks": {
+    "female": {
+      "id": "4f193fa4-55f1-4130-b0c0-a8cb5640555e",
+      "source_triangles": 1990038,
+      "source_vertices": 1036895,
+      "web_triangles": 100000,
+      "web_vertices": 62297
+    },
+    "male": {
+      "id": "b3a38e7a-cdc5-4380-95df-6248b0088043",
+      "source_triangles": 1969594,
+      "source_vertices": 1011762,
+      "web_triangles": 100000,
+      "web_vertices": 57486
+    }
+  },
+  "source_files": {
+    "dada-female-street-source-8k.glb": {
+      "bytes": 72538104,
+      "sha256": "feb37f8fb396085ff6fff0acdc84257d714059389859847a78e2c13b17eb439c"
+    },
+    "dada-male-street-100k-8k.glb": {
+      "bytes": 18819904,
+      "sha256": "69a5c9931637724c5cedcc1a77b986887e84bc3ff453281742d153e4d9d92b7a"
+    },
+    "dada-female-street-100k-8k.glb": {
+      "bytes": 23068380,
+      "sha256": "43c38c20da2ce3bebada627fab1b973c8105f747b95c49235dc884a8309c2fc4"
+    },
+    "dada-male-street-source-8k.glb": {
+      "bytes": 70376576,
+      "sha256": "89c6375ef1007eb45ede01cf6db0abe2b333c83379670d8fd2ab51f778d978b8"
+    }
+  },
+  "reference_inputs": "Original fictional adult women/men; built-in image_gen identity-preserve clothing edits, inspected before upload. No private user photos.",
+  "boundary": "Separately generated complete outfits; no joint posing or arbitrary garment replacement. Photo-to-3D API credentials are still missing."
+}

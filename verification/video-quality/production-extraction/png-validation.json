@@ -1,0 +1,38 @@
+[
+  {
+    "type": "top",
+    "format": "PNG",
+    "mode": "RGBA",
+    "width": 216,
+    "height": 192,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "transparent_pixels": 13183,
+    "hidden_rgb_is_zero": true,
+    "exif_empty": true
+  },
+  {
+    "type": "skirt",
+    "format": "PNG",
+    "mode": "RGBA",
+    "width": 215,
+    "height": 170,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "transparent_pixels": 6662,
+    "hidden_rgb_is_zero": true,
+    "exif_empty": true
+  },
+  {
+    "type": "shoes",
+    "format": "PNG",
+    "mode": "RGBA",
+    "width": 226,
+    "height": 35,
+    "alpha_min": 0,
+    "alpha_max": 255,
+    "transparent_pixels": 5394,
+    "hidden_rgb_is_zero": true,
+    "exif_empty": true
+  }
+]

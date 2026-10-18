@@ -1,0 +1,2 @@
+/wardrobe-frontend wardrowbe-frontend:closet3d-20261018 sha256:307ab7e3668bbbad2238bf2584d50ee7a331e448019ebfbb6770f4e48ad791e8
+/wardrobe-backend wardrowbe-backend:tryon-20261017-r2 sha256:bfdd438346b65c441a2431d9d21f03cfd5f7894cf3d67f53f1273eadd6d3d105

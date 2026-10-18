@@ -1,0 +1,19 @@
+{
+  "outfits": 15,
+  "tryon_tasks": 5,
+  "wear_count": 0,
+  "test_outfits": [
+    {
+      "id": "96fbb152-fde4-4c4c-8d6f-06fe1638e173",
+      "name": "3D工作室验收-20261018",
+      "scheduled_for": "2026-10-18",
+      "status": "pending",
+      "items": [
+        "58f0e0b7-6a93-419f-9a36-2b4086579a57",
+        "a619ca9f-f02a-44bc-b213-e689122c619b",
+        "b9288608-f488-43d8-b579-fe04d6220469",
+        "bdf3d913-37fb-4ba3-8abe-cc04ed25a5c7"
+      ]
+    }
+  ]
+}

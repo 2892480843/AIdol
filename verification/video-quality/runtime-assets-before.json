@@ -1,0 +1,11 @@
+{
+  "checked": 39,
+  "mismatches": [
+    {
+      "path": "models/avatar/v2/female.glb",
+      "expected": "8817471e3f5fe71b96fcd8eb15c246a523b33b0b3b22a575d8d93e389ec5e458",
+      "bytes": 17072128,
+      "sha256": "07ee2d5c1fe61aa612eee140be5a4f706c442becb93632d6a6c2adf0ba4c8386"
+    }
+  ]
+}

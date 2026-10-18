@@ -1,0 +1,11 @@
+{
+  "files": 587,
+  "mismatches": [],
+  "manifest_sha256": "a0925780a5b71ebb3ce350378ca6bb7217eb027b543df0fe5c92a85e992aa461",
+  "image": "wardrowbe-frontend:avatar-beauty-20261018-r1",
+  "image_id": "sha256:3366ccf5400c66d0ed321b7a31b90a3875e95d20a2376ce518a4df668bd865aa",
+  "label": "a0925780a5b71ebb3ce350378ca6bb7217eb027b543df0fe5c92a85e992aa461",
+  "mounts": [],
+  "build_id": "M3C86VyNzFijH562YxFI7",
+  "label_matches": true
+}

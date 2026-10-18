@@ -1,0 +1,25 @@
+# MakeHuman Material definition
+
+name tiermini_leatherMaterial
+
+// Color shading attributes
+diffuseColor  0 0 0
+specularColor  0.2 0.2 0.2
+shininess 0.2
+opacity 1
+
+// Textures and properties
+diffuseTexture SkirtMini-blackLeather.png
+normalmapTexture SkirtMini-blackLeather-NORM.png
+specularmapTexture SkirtMini-blackLeather-spec.png
+
+// Shader programme
+shader data/shaders/glsl/phong
+
+// Configure built-in shader defines
+shaderConfig diffuse true
+shaderConfig bump false
+shaderConfig normal  true
+shaderConfig displacement  false
+shaderConfig spec  true
+shaderConfig vertexColors false

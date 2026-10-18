@@ -1,0 +1,27 @@
+{
+  "returncode": 0,
+  "seconds": 31.876,
+  "stages": [
+    {
+      "stage": "python_started",
+      "seconds": 0.0,
+      "platform": "aarch64"
+    },
+    {
+      "stage": "service_imported",
+      "seconds": 9.149
+    },
+    {
+      "stage": "fixture_read",
+      "seconds": 9.205,
+      "bytes": 728004,
+      "sha256": "21c639d7580e6a3d82d54ca6d498872b9b6d004ba9f9a242975cf09987d4a491"
+    },
+    {
+      "stage": "extraction_returned",
+      "seconds": 29.495,
+      "seconds_in_extract": 20.29
+    }
+  ],
+  "stderr": ""
+}

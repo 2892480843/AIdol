@@ -1,0 +1,11 @@
+{
+  "files": 600,
+  "mismatches": [],
+  "manifest_sha256": "4e1febd78d26205cc07110df3e773ac9321cd840ba448836acaabc0d20d821b8",
+  "image": "wardrowbe-frontend:weather-location-20261018-r1",
+  "image_id": "sha256:52db1624e93eb555e287abb5a30de107d8190ffac4ade3da97aedfd4215e5979",
+  "label": "4e1febd78d26205cc07110df3e773ac9321cd840ba448836acaabc0d20d821b8",
+  "mounts": [],
+  "build_id": "E0M7ZgSlcOZmk5kW_bfvJ",
+  "label_matches": true
+}

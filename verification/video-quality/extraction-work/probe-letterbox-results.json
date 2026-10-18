@@ -1,0 +1,37 @@
+[
+  {
+    "source": "female-sweet-front",
+    "pieces": [
+      {
+        "type": "top",
+        "pixels": 7865,
+        "bbox": [
+          243,
+          199,
+          459,
+          482
+        ]
+      },
+      {
+        "type": "bottom",
+        "pixels": 8424,
+        "bbox": [
+          227,
+          393,
+          455,
+          574
+        ]
+      },
+      {
+        "type": "shoes",
+        "pixels": 615,
+        "bbox": [
+          237,
+          902,
+          461,
+          937
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "before_model_status": 401,
+  "after": [
+    {
+      "path": "/models/avatar/dopamine-v1/female.glb",
+      "status": 200,
+      "expected": 200,
+      "first_four_bytes_hex": "676c5446"
+    },
+    {
+      "path": "/dashboard",
+      "status": 401,
+      "expected": 401,
+      "first_four_bytes_hex": null
+    },
+    {
+      "path": "/api/v1/items",
+      "status": 401,
+      "expected": 401,
+      "first_four_bytes_hex": null
+    }
+  ]
+}

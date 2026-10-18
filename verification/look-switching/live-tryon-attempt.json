@@ -1,0 +1,13 @@
+{
+  "task_id": "63458b3e-93f0-4208-9c77-ed3847941c83",
+  "status": "failed",
+  "error_code": "provider_rejected",
+  "model": "Doubao-seedream-4.5",
+  "upstream_http_status": 400,
+  "created_at": "2026-10-17T14:46:08.410570+00:00",
+  "updated_at": "2026-10-17T14:46:11.373748+00:00",
+  "person_input": "original fictional adult fixture, no private person image",
+  "garment_input": "existing owned synthetic QA T-shirt",
+  "automatic_resubmissions": 0,
+  "successful_generation_verified": false
+}

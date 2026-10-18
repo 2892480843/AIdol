@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-18",
+  "platform": "Darwin arm64",
+  "status": "generated_awaiting_local_glb_not_released",
+  "model_task": "22243a5a-05db-4b71-895c-900c2e7eb104",
+  "tripo_settings": {
+    "model": "H3.1",
+    "geometry_requested": 2000000,
+    "texture": "8K PBR",
+    "delight": true,
+    "ai_enhancement": false
+  },
+  "credits": {
+    "start": 20475,
+    "after_generation_submit": 20410,
+    "used": 65
+  },
+  "reference": {
+    "path": "realistic-reference.png",
+    "sha256": "5e617595fd3badf56d5856e5ee50b427828b28e8aa28b7ffa5a4eb9a33b235e7",
+    "generator": "built-in imagegen",
+    "source": "verification/dopamine-avatar/dopamine-reference.png",
+    "prompt_summary": "Preserve fictional adult identity and dopamine outfit; natural adult facial proportions, pores, subtle asymmetry, anatomically correct relaxed standing pose; gray backdrop, soft de-lit studio light. Reference only, not 3D result."
+  },
+  "baseline_assets": {
+    "frontend/public/models/avatar/dopamine-v1/female.glb": "e232577bfc74f89277bc7ac8317c0aaad56927c252fa9054f8f65e724532c4fd",
+    "verification/dopamine-avatar/originals/dada-dopamine-body-150k-8k.glb": "a42b945e000a19b5f0046fa81aa4d09ec3e4adae96c442f8bf006b7a90066950",
+    "verification/dopamine-avatar/originals/dada-dopamine-body-source-8k.glb": "1927eb988d2b9929fa442630ed7842d4bc57c3ca54dba529cb85b1bbd43d9f78"
+  },
+  "generated_triangles": 1941968,
+  "download": {
+    "filename": "dada-realism-source-8k.glb",
+    "local_file_available": false,
+    "manual_download_requested": true
+  },
+  "baseline_hashes_still_match": true,
+  "followup": {
+    "material_trial": "rejected_insufficient_visual_improvement",
+    "face_surface_trial": "rejected_insufficient_visual_improvement",
+    "obj_export": "download_event_timed_out_no_file",
+    "additional_tripo_credits_used": 0,
+    "browser_choice_requested": [
+      "Chrome",
+      "manual_download"
+    ],
+    "production_model_unchanged": true
+  }
+}

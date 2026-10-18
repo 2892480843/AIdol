@@ -1,0 +1,145 @@
+[
+  {
+    "model": "schp-atr18-int8",
+    "image_width": 700,
+    "image_height": 1000,
+    "pieces": [
+      {
+        "id": "dress",
+        "type": "dress",
+        "category": "dress",
+        "bbox": {
+          "x": 0.31142857142857144,
+          "y": 0.229,
+          "width": 0.36857142857142855,
+          "height": 0.424
+        },
+        "confidence": 0.975,
+        "png_bytes": 67457
+      },
+      {
+        "id": "shoes",
+        "type": "shoes",
+        "category": "shoes",
+        "bbox": {
+          "x": 0.34,
+          "y": 0.903,
+          "width": 0.32,
+          "height": 0.028
+        },
+        "confidence": 0.9649,
+        "png_bytes": 4444
+      }
+    ],
+    "warnings": [
+      "请核对分类与边缘；仅提取照片中可见区域，被遮挡的衣物部分无法还原。"
+    ],
+    "source": "female-elegant-front.png",
+    "source_sha256": "4ebbbd9cf33da2029e5285223adfa40c67cebb95cc4b4a0cfa77d9cf2cf50b6d",
+    "seconds": 3.878
+  },
+  {
+    "model": "schp-atr18-int8",
+    "image_width": 700,
+    "image_height": 1000,
+    "pieces": [
+      {
+        "id": "top",
+        "type": "top",
+        "category": "top",
+        "bbox": {
+          "x": 0.29714285714285715,
+          "y": 0.181,
+          "width": 0.39714285714285713,
+          "height": 0.347
+        },
+        "confidence": 0.9813,
+        "png_bytes": 85012
+      },
+      {
+        "id": "pants",
+        "type": "pants",
+        "category": "bottom",
+        "bbox": {
+          "x": 0.34285714285714286,
+          "y": 0.517,
+          "width": 0.3142857142857143,
+          "height": 0.373
+        },
+        "confidence": 0.9824,
+        "png_bytes": 47194
+      },
+      {
+        "id": "shoes",
+        "type": "shoes",
+        "category": "shoes",
+        "bbox": {
+          "x": 0.33714285714285713,
+          "y": 0.89,
+          "width": 0.32285714285714284,
+          "height": 0.043
+        },
+        "confidence": 0.9568,
+        "png_bytes": 6633
+      }
+    ],
+    "warnings": [
+      "请核对分类与边缘；仅提取照片中可见区域，被遮挡的衣物部分无法还原。"
+    ],
+    "source": "female-minimal-front.png",
+    "source_sha256": "3f0cca916a298712976c1f2a9541fa8d1398bddccd896b402560867cbe9eb5f7",
+    "seconds": 4.397
+  },
+  {
+    "model": "schp-atr18-int8",
+    "image_width": 700,
+    "image_height": 1000,
+    "pieces": [
+      {
+        "id": "top",
+        "type": "top",
+        "category": "top",
+        "bbox": {
+          "x": 0.34714285714285714,
+          "y": 0.202,
+          "width": 0.30857142857142855,
+          "height": 0.192
+        },
+        "confidence": 0.9278,
+        "png_bytes": 27607
+      },
+      {
+        "id": "skirt",
+        "type": "skirt",
+        "category": "bottom",
+        "bbox": {
+          "x": 0.32571428571428573,
+          "y": 0.403,
+          "width": 0.30714285714285716,
+          "height": 0.17
+        },
+        "confidence": 0.9428,
+        "png_bytes": 34347
+      },
+      {
+        "id": "shoes",
+        "type": "shoes",
+        "category": "shoes",
+        "bbox": {
+          "x": 0.33714285714285713,
+          "y": 0.903,
+          "width": 0.32285714285714284,
+          "height": 0.035
+        },
+        "confidence": 0.9641,
+        "png_bytes": 5337
+      }
+    ],
+    "warnings": [
+      "请核对分类与边缘；仅提取照片中可见区域，被遮挡的衣物部分无法还原。"
+    ],
+    "source": "female-sweet-front.png",
+    "source_sha256": "21c639d7580e6a3d82d54ca6d498872b9b6d004ba9f9a242975cf09987d4a491",
+    "seconds": 3.557
+  }
+]

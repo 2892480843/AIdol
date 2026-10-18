@@ -1,0 +1,2 @@
+/wardrobe-frontend wardrowbe-frontend:looks-20261017-r2 sha256:bbe44ec3eb5da0835ad4e9c975fb0a552fcb367151638281913d4806e048cde0
+/wardrobe-backend wardrowbe-backend:tryon-20261017-r2 sha256:bfdd438346b65c441a2431d9d21f03cfd5f7894cf3d67f53f1273eadd6d3d105

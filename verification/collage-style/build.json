@@ -1,0 +1,14 @@
+{
+  "base": "wardrowbe-frontend:ui-content-20261018-r3",
+  "image": "wardrowbe-frontend:collage-style-20261018-r4",
+  "image_id": "sha256:631b3ed3e0b71b61751332e7bbf14240861a36cba41e9d19d32156310e24ec96",
+  "manifest_sha256": "6f6245b7b27295105cd7eb7cb733a0c6e01101e58fc579364d4cb63415ed3884",
+  "build_id": "PEQRW1j-iBdLB73DZbCPA",
+  "compiler_platform": "Darwin/arm64",
+  "runtime_platform": "linux/arm64",
+  "linux_dependencies_preserved": true,
+  "public_assets_preserved": true,
+  "native_node_modules_copied": false,
+  "generated_files": 520,
+  "archive_bytes": 3432556
+}

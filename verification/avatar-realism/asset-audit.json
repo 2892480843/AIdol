@@ -1,0 +1,47 @@
+{
+  "current": {
+    "path": "frontend/public/models/avatar/dopamine-v1/female.glb",
+    "bytes": 19977536,
+    "sha256": "e232577bfc74f89277bc7ac8317c0aaad56927c252fa9054f8f65e724532c4fd",
+    "triangles": 150000,
+    "materials": 1,
+    "skins": 0,
+    "animations": 0,
+    "material_names": [
+      "tripo_mat_07dae4c6-70b2-4550-9d81-604a0cd64036"
+    ],
+    "embedded_images": 3,
+    "external_resources": []
+  },
+  "body150": {
+    "path": "verification/dopamine-avatar/originals/dada-dopamine-body-150k-8k.glb",
+    "bytes": 25043012,
+    "sha256": "a42b945e000a19b5f0046fa81aa4d09ec3e4adae96c442f8bf006b7a90066950",
+    "triangles": 150000,
+    "materials": 1,
+    "skins": 0,
+    "animations": 0,
+    "material_names": [
+      "tripo_mat_07dae4c6-70b2-4550-9d81-604a0cd64036"
+    ],
+    "embedded_images": 3,
+    "external_resources": []
+  },
+  "body2m": {
+    "path": "verification/dopamine-avatar/originals/dada-dopamine-body-source-8k.glb",
+    "bytes": 73037696,
+    "sha256": "1927eb988d2b9929fa442630ed7842d4bc57c3ca54dba529cb85b1bbd43d9f78",
+    "triangles": 1973520,
+    "materials": 1,
+    "skins": 0,
+    "animations": 0,
+    "material_names": [
+      "tripo_material_da306f10-4a98-4882-98b7-b2430e4522ff"
+    ],
+    "embedded_images": 3,
+    "external_resources": []
+  },
+  "candidate": {
+    "available": false
+  }
+}

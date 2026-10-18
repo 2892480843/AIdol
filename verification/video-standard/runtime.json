@@ -1,0 +1,11 @@
+{
+  "files": 595,
+  "mismatches": [],
+  "manifest_sha256": "c848d50dcd99d7f7456f6e19a28493f80c3da1a2fdb4a8a2d0c5354f85fc3c71",
+  "image": "wardrowbe-frontend:video-standard-20261018-r2",
+  "image_id": "sha256:479353ae973a6ef712816543d635d7dc9d5477fcd1edd36d2857127d31d82c7b",
+  "label": "c848d50dcd99d7f7456f6e19a28493f80c3da1a2fdb4a8a2d0c5354f85fc3c71",
+  "mounts": [],
+  "build_id": "g5xaw9-GrbktG-n5u0URw",
+  "label_matches": true
+}

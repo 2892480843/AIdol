@@ -1,0 +1,8 @@
+{
+  "base": "wardrowbe-frontend:dopamine-avatar-20261018-r1-base",
+  "image": "wardrowbe-frontend:dopamine-avatar-20261018-r1",
+  "image_id": "sha256:c099434468448b8525291b9fe0263ddd156ac8e26ff12302900e313911b9bc80",
+  "manifest_sha256": "ac6b3eea3c0c79886fd266e2af1fc2e512e765268a474109fe74805299c0ba1a",
+  "public_files": 68,
+  "public_archive_bytes": 171195510
+}

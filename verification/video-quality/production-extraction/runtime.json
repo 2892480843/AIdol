@@ -1,0 +1,43 @@
+{
+  "platform": {
+    "system": "Linux",
+    "machine": "aarch64"
+  },
+  "container_files": {
+    "app/services/clothing_extraction.py": {
+      "sha256": "e2a306b2ea3c4c540453f196dd24d6d44a407e5e46edc1762590d4799bb89701",
+      "bytes": 10405,
+      "workspace_sha256": "e2a306b2ea3c4c540453f196dd24d6d44a407e5e46edc1762590d4799bb89701",
+      "matches_workspace": true
+    },
+    "app/api/clothing_extraction.py": {
+      "sha256": "71a1cdfc30a3fe1b46cc1ed62a3ebaba9fc702401e58a19da96076861cdcae31",
+      "bytes": 2760,
+      "workspace_sha256": "71a1cdfc30a3fe1b46cc1ed62a3ebaba9fc702401e58a19da96076861cdcae31",
+      "matches_workspace": true
+    },
+    "app/api/router.py": {
+      "sha256": "d3a99ee20de8b724e23f792fb1b783087c3b7768411e0954823b35c1f540858e",
+      "bytes": 1732,
+      "workspace_sha256": "d3a99ee20de8b724e23f792fb1b783087c3b7768411e0954823b35c1f540858e",
+      "matches_workspace": true
+    }
+  },
+  "model": {
+    "configured_path": "/data/wardrobe/.models/schp-atr-18-int8-static.onnx",
+    "bytes": 69141996,
+    "sha256": "4420d8db8c1f266967c89485786b01209f6d405f320fc0f87e8ced49392cefb5",
+    "matches_pinned_sha256": true
+  },
+  "temporary_fixture_exists": true,
+  "container": "wardrobe-backend",
+  "image_id": "sha256:673cc7a9955a7d9ca198effb6b403f5bf7b129bfbe0f17258758fe164be06b73",
+  "cleanup": {
+    "fixture_path": "/tmp/dada-extraction-cc0-fixture.png",
+    "removed": true,
+    "residual_probe_processes": [],
+    "container_processes": [
+      "33952               33912               /usr/local/bin/python3.11 /usr/local/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000"
+    ]
+  }
+}

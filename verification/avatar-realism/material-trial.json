@@ -1,0 +1,19 @@
+{
+  "source_sha256": "e232577bfc74f89277bc7ac8317c0aaad56927c252fa9054f8f65e724532c4fd",
+  "trial_sha256": "21b3b32fa6ba8296a5cd3a214fa09bae0b298ba7b85aaa83747f9994d3105042",
+  "bytes": 21780416,
+  "triangles": 150000,
+  "region_triangles": {
+    "authored": 6595,
+    "skin": 40487,
+    "hair": 38911,
+    "knit": 27815,
+    "skirt": 21612,
+    "footwear": 14580
+  },
+  "all_source_binary_preserved": true,
+  "all_triangles_preserved": true,
+  "texture_editing": false,
+  "status": "rejected_not_released",
+  "rejection_reason": "Insufficient visual improvement; face alignment and sculpted hair remain."
+}
